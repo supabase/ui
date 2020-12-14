@@ -1,0 +1,55 @@
+/* 
+  Puesdo classes
+ */
+
+.btn:focus {
+  @apply outline-none ring;
+}
+
+.btn:disabled {
+  @apply opacity-75 cursor-default;
+  pointer-events: none;
+}
+
+/* 
+  Animation for icon
+*/
+.btn--anim--spin {
+  animation-name: spin;
+  animation-duration: 1500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; 
+  /* transform: rotate(3deg); */
+   /* transform: rotate(0.3rad);/ */
+   /* transform: rotate(3grad); */ 
+   /* transform: rotate(.03turn);  */
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+/* 
+  Hover modifiers for Icon
+*/
+
+.btn--solid:hover svg {
+  @apply text-gray-500;
+}
+.btn--secondary:hover svg {
+  @apply bg-brand-100;
+}
+.btn--white:hover svg {
+  @apply text-gray-600;
+}
+.btn--outline:hover svg {
+  @apply text-white;
+}
+.btn--ghost:hover svg {
+  @apply bg-brand-300
+}
