@@ -2,6 +2,8 @@
 
 ## Using Supabase UI
 
+_Please note, Supabase UI is still a work-in-progress until a major release is published_
+
 Install the NPM package
 
 ```cli
