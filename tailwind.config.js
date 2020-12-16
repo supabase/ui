@@ -3,6 +3,7 @@ module.exports = {
     mode: 'all',
     content: ['./src/components/**/*.js'],
   },
+  darkMode: 'class',
   theme: {
     colors: {
       transparent: 'transparent',
