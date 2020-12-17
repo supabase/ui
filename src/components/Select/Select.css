@@ -1,7 +1,14 @@
-.form-select:disabled {
+/* .form-select:disabled {
   @apply bg-gray-100 cursor-not-allowed;
 }
 
 .form-select--error {
   @apply border-red-500;
+} */
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
 }

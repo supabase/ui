@@ -6,7 +6,6 @@ export * from './components/Icon/index'
 export * from './components/Checkbox/index'
 export * from './components/Input/index'
 export * from './components/Radio/index'
-export * from './components/Select/index'
 export * from './components/Textarea/index'
 
 // OVERLAYS
@@ -17,3 +16,9 @@ export * from './components/SideOver/index'
 // UTILITIES
 
 export * from './components/Transition/index'
+
+
+// DATA ENTRY
+
+export * from './components/Select/index'
+export * from './components/TextField/index'
