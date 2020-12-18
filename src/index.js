@@ -22,3 +22,4 @@ export * from './components/Transition/index'
 
 export * from './components/Select/index'
 export * from './components/TextField/index'
+export * from './components/RadioGroup/index'

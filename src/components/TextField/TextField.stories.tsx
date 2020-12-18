@@ -19,14 +19,15 @@ export const withOption = (args) => <TextField {...args} />
 
 export const withDescription = (args) => <TextField {...args} />
 
-const icon = <Icon type={'email'} className=""/>
+const icon = <Icon stroke={'#666666'} className={''} type={"Package"}/>
 
 Default.args = {
   placeholder: 'Type text here ...',
   disabled: false,
   label: 'Name',
   className: 'font-sans',
-  value: 'Value of input'
+  value: 'Value of input',
+  layout: 'vertical'
 }
 
 ErrorState.args = {
@@ -41,10 +42,9 @@ ErrorState.args = {
 withIcon.args = {
   placeholder: 'Type text here ...',
   disabled: false,
-  label: 'Input with an error message',
+  label: 'Input with an icon',
   className: 'font-sans',
   value: 'Value of input',
-  error: 'Your password must be less than 4 characters.',
   icon: icon
 }
 

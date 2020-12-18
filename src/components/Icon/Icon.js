@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 
 const Icon = ({
   className,
-  size = 24,
+  size = 16,
   type = 'Loader',
-  color = ' ',
+  color = 'black',
   strokeWidth = 2,
   ...props
 }) => {

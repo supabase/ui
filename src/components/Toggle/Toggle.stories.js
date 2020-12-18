@@ -3,7 +3,7 @@ import React from 'react'
 import { Toggle } from '.'
 
 export default {
-  title: 'Basic/Toggle',
+  title: 'Data Input/Toggle',
   component: Toggle,
   argTypes: {
     label: { control: 'text' },
@@ -13,4 +13,5 @@ export default {
 export const Primary = (args) => <Toggle {...args} />
 Primary.args = {
   label: 'Toggle',
+  active: true
 }

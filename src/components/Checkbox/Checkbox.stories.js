@@ -3,24 +3,16 @@ import React from 'react'
 import { Checkbox } from '.'
 
 export default {
-  title: 'Form/Checkbox',
+  title: 'Data Input/Checkbox',
   component: Checkbox,
 }
 
-export const Default = (args) => (
-  <div className="block font-sans">
-    <div>
-      <Checkbox name="checkbox-group" label="JavaScript" {...args} /> 
-    </div>
-    <div>
-      <Checkbox name="checkbox-group" label="TypeScript" {...args} />
-    </div>
-    <div>
-      <Checkbox name="checkbox-group" label="ReScript" {...args} />
-    </div>
-  </div>
-)
+export const Default = (args) => <Checkbox name="checkbox-group" label="JavaScript" {...args} /> 
 
 Default.args = {
+  id: 'checkobox-q',
+  label: 'This is the label',
+  description: 'This is the description',
   disabled: false,
+  className: "font-sans"
 }

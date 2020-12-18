@@ -55,12 +55,13 @@ export const withDescription = (args) => (
 )
 
 const data = ['England', 'Wales', 'Scotland', 'Ireland']
-const icon = <Icon type={'email'} className="" />
+const icon = <Icon stroke={'#666666'} className={''} type={"Book"}/>
 
 Default.args = {
   disabled: false,
   label: 'Label',
   className: 'font-sans',
+  layout: 'vertical'
 }
 
 withCheckboxes.args = {
@@ -68,6 +69,7 @@ withCheckboxes.args = {
   checkboxes: data,
   allowedValues: data,
   className: 'font-sans',
+  layout: 'vertical'
 }
 
 ErrorState.args = {
@@ -78,16 +80,18 @@ ErrorState.args = {
   value: 'Value of input',
   error: 'Your password must be less than 4 characters.',
   allowedValues: data,
+  layout: 'vertical'
 }
 
 withIcon.args = {
   placeholder: 'Type text here ...',
   disabled: false,
-  label: 'Input with an error message',
+  label: 'Input with an Icon',
   className: 'font-sans',
   value: 'Value of input',
   icon: icon,
   allowedValues: data,
+  layout: 'vertical'
 }
 
 withOption.args = {
@@ -98,6 +102,7 @@ withOption.args = {
   value: 'Value of input',
   labelOptional: 'This is required',
   allowedValues: data,
+  layout: 'vertical'
 }
 
 withDescription.args = {
@@ -108,4 +113,5 @@ withDescription.args = {
   value: 'Value of input',
   descriptionText: 'Make your password short and easy to guess',
   allowedValues: data,
+  layout: 'vertical'
 }
