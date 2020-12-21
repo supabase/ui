@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { HTMLFieldProps } from 'uniforms'
+import { FormLayout } from '../../lib/utilities'
 import './RadioGroup.css'
 
 const base64 =
@@ -24,10 +25,14 @@ function RadioGroup({
   checkboxes, // eslint-disable-line no-unused-vars
   disabled,
   id,
+  layout, 
+  error,
+  descriptionText,
   label,
   labelOptional,
   name,
   onChange,
+  type,
   transform,
   value,
   className,
@@ -55,23 +60,16 @@ function RadioGroup({
 
   return (
     <fieldset className={'border-none p-0 m-0 ' + className}>
+      <FormLayout
+        direction={layout}
+        label={label}
+        labelOptional={labelOptional}
+        layout={layout}
+        id={id}
+        error={error}
+        descriptionText={descriptionText}
+      >
       <legend className="sr-only">Privacy setting</legend>
-      <div className="flex justify-between">
-        {label && (
-          <label
-            className="mb-2 block text-sm font-sml text-gray-700 dark:text-gray-300"
-            htmlFor={id}
-          >
-            {label}
-          </label>
-        )}
-        {labelOptional && (
-          <span className="text-sm text-gray-500" id={id + '-optional'}>
-            {labelOptional}
-          </span>
-        )}
-      </div>
-
       <div className="bg-white dark:bg-transparent rounded-md -space-y-px">
         {options.map((option, i) => {
           const active = activeId === option.id ? true : false
@@ -81,24 +79,25 @@ function RadioGroup({
               id={option.id}
               onClick={onToggle}
               className={
-                'relative cursor-pointer border border-solid p-4 py-6 flex' +
-                (active
+                'relative cursor-pointer flex p-0 py-2' +
+                (type === 'cards' ? ' border border-solid px-4 py-4' : '  border-none') +
+                (type === 'cards' && active
                   ? ' bg-brand-100 bg-opacity-20 border-brand-200 z-10'
                   : ' border-solid border-gray-200 dark:border-gray-400') +
-                (i === 0
+                (type === 'cards' && i === 0
                   ? ' rounded-tl-md rounded-tr-md'
                   : i === options.length - 1
                   ? ' rounded-bl-md rounded-br-md'
                   : '')
               }
             >
-              <div className="flex items-center h-5">
+              <div className="flex items-center">
                 <label className="flex flex-row cursor-pointer">
                   <input
                     id={option.id}
                     name={name}
                     type="radio"
-                    className="rounded-2xl focus:ring-brand-500 h-4 w-4 text-brand-600 cursor-pointer border-solid border border-gray-300"
+                    className="ml-0 rounded-2xl focus:ring-brand-500 h-4 w-4 text-brand-600 cursor-pointer border-solid border border-gray-300"
                     checked={active}
                     disabled={disabled || option.disabled}
                     value={option.value}
@@ -120,6 +119,7 @@ function RadioGroup({
           )
         })}
       </div>
+      </FormLayout>
     </fieldset>
   )
 }

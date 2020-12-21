@@ -2,6 +2,7 @@ import React from 'react'
 
 export const FormLayout = (props: any) => {
   const {
+    align,
     direction,
     size,
     label,
@@ -11,13 +12,17 @@ export const FormLayout = (props: any) => {
     id,
     error,
     descriptionText,
+    className,
+    responsive
   } = props
 
   const spacingClass =
     'space-' + (direction === 'vertical' ? 'y' : 'x') + '-' + size
 
+  const responsiveClasses = responsive ? ' md:grid-cols-12' : ' grid-cols-12'
+
   return (
-    <div className="grid md:grid-cols-12 gap-4">
+    <div className={"grid gap-4 " + className + responsiveClasses}>
       <Space
         direction={
           layout && layout === 'horizontal' ? 'vertical' : 'horizontal'
@@ -30,7 +35,7 @@ export const FormLayout = (props: any) => {
       >
         {label && (
           <label
-            className="block text-sm font-sml text-gray-700 dark:text-gray-200"
+            className="block text-sm font-sml text-gray-700 dark:text-gray-200 font-medium"
             htmlFor={id}
           >
             {label}
@@ -42,7 +47,7 @@ export const FormLayout = (props: any) => {
           </span>
         )}
       </Space>
-      <div className={layout !== 'horizontal' ? 'col-span-12' : 'col-span-7'}>
+      <div className={layout !== 'horizontal' ? 'col-span-12' : 'col-span-7' + (align === 'right' ? ' text-right' : '')}>
         {children}
         {error && (
           <p className="mt-2 text-sm text-red-500" id="email-error">

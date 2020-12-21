@@ -12,6 +12,13 @@ export default {
 
 export const Primary = (args) => <Toggle {...args} />
 Primary.args = {
-  label: 'Toggle',
-  active: true
+  active: true,
+  className: 'font-sans',
+  descriptionText: 'This is optional description',
+  disabled: false,
+  error: '',
+  label: 'Radio group main label',
+  labelOptional: 'This is an optional label',
+  name: 'radiogroup-example'
 }
+

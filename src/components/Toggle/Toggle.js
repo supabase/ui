@@ -1,7 +1,27 @@
 import React, { useState } from 'react'
 import { Switch } from '@headlessui/react'
+import { FormLayout } from '../../lib/utilities'
 
-export default function ({ label, active }) {
+function Toggle ({ 
+  allowedValues,
+  checkboxes, // eslint-disable-line no-unused-vars
+  disabled,
+  id,
+  layout, 
+  error,
+  descriptionText,
+  label,
+  labelOptional,
+  name,
+  onChange,
+  type,
+  transform,
+  value,
+  className,
+  options,
+  active,
+  ...props
+}) {
   const [switchValue, setSwitchValue] = useState(false)
 
   return (
@@ -27,6 +47,17 @@ export default function ({ label, active }) {
 
     // <!-- This example requires Tailwind CSS v2.0+ -->
     // <!-- On: "bg-indigo-600", Off: "bg-gray-200" -->
+    <FormLayout
+    className={className}
+    align={'right'}
+    direction={'horizontal'}
+    label={label}
+    labelOptional={labelOptional}
+    layout={'horizontal'}
+    responsive={false}
+    id={id}
+    error={error}
+    descriptionText={descriptionText}>
     <button
       type="button"
       aria-pressed="false"
@@ -45,5 +76,8 @@ export default function ({ label, active }) {
         }
       ></span>
     </button>
+    </FormLayout>
   )
 }
+
+export default Toggle
