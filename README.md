@@ -13,7 +13,7 @@ npm install @supabase/ui
 Example of importing a component
 
 ```js
-@import { Button } from '@supabase/ui'
+import { Button } from '@supabase/ui'
 
 //...
 
@@ -22,7 +22,7 @@ return (
 )
 ```
 
-## Run storybook locally
+## Run storybook locally
 
 Supabase UI uses storybook to develop and organise components.
 They can be viewed locally in the Storybook docs explorer
