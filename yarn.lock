@@ -1431,11 +1431,6 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@headlessui/react@^0.2.0":
-  "integrity" "sha512-YV+vF+QhTRcspydPdHF3ZXe+FkOiJpRdqMjjFIIX9bSdT2O2T7GurgKQdGgamNUM+B99MZBOTRqxS8Dlh485eg=="
-  "resolved" "https://registry.npmjs.org/@headlessui/react/-/react-0.2.0.tgz"
-  "version" "0.2.0"
-
 "@icons/material@^0.2.4":
   "integrity" "sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw=="
   "resolved" "https://registry.npmjs.org/@icons/material/-/material-0.2.4.tgz"
