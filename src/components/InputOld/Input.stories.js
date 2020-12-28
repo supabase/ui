@@ -3,7 +3,7 @@ import React from 'react'
 import { Input } from '.'
 
 export default {
-  title: 'Form/Input',
+  title: 'Archive/Input Old',
   component: Input,
 }
 

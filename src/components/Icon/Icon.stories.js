@@ -6,7 +6,7 @@ import { Icon } from '.'
 const LIST_ICONS = Object.keys(Icons)
 
 export default {
-  title: 'Basic/Icon',
+  title: 'General/Icon',
   component: Icon,
 }
 

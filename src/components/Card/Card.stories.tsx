@@ -1,33 +1,30 @@
 import React from 'react'
-import { AutoForm } from 'uniforms'
+// import { AutoForm } from 'uniforms'
 
-import { TextField } from '.'
+import { Card } from './'
 import { Icon } from '../Icon'
 
 export default {
-  title: 'Data Input/TextField',
-  component: TextField,
+  title: 'Displays/Card',
+  component: Card,
 }
 
-export const Default = (args) => <TextField {...args} />
+export const Default = (args) => <Card {...args} />
 
-export const ErrorState = (args) => <TextField {...args} />
+export const ErrorState = (args) => <Card {...args} />
 
-export const withIcon = (args) => <TextField {...args} />
+export const withIcon = (args) => <Card {...args} />
 
-export const withOption = (args) => <TextField {...args} />
+export const withOption = (args) => <Card {...args} />
 
-export const withDescription = (args) => <TextField {...args} />
+export const withDescription = (args) => <Card {...args} />
 
 const icon = <Icon stroke={'#666666'} className={''} type={"Package"}/>
 
 Default.args = {
-  placeholder: 'Type text here ...',
-  disabled: false,
-  label: 'Name',
-  className: 'font-sans',
-  value: 'Value of input',
-  layout: 'vertical'
+  title: 'I am a title',
+  children: [<p>Hello world</p>],
+  className: 'font-sans'
 }
 
 ErrorState.args = {
