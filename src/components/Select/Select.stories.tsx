@@ -8,7 +8,7 @@ export default {
   component: Select,
 }
 
-export const Default = (args) => (
+export const Default = (args : any) => (
   <Select {...args}>
     <option>JavaScript</option>
     <option>TypeScript</option>
@@ -16,18 +16,9 @@ export const Default = (args) => (
   </Select>
 )
 
-export const withCheckboxes = (args) => <Select {...args} />
+export const withCheckboxes = (args : any) => <Select {...args} />
 
-export const ErrorState = (args) => (
-  <Select {...args}>
-    {' '}
-    <option>JavaScript</option>
-    <option>TypeScript</option>
-    <option>React</option>
-  </Select>
-)
-
-export const withIcon = (args) => (
+export const ErrorState = (args : any) => (
   <Select {...args}>
     {' '}
     <option>JavaScript</option>
@@ -36,7 +27,7 @@ export const withIcon = (args) => (
   </Select>
 )
 
-export const withOption = (args) => (
+export const withIcon = (args : any) => (
   <Select {...args}>
     {' '}
     <option>JavaScript</option>
@@ -45,7 +36,16 @@ export const withOption = (args) => (
   </Select>
 )
 
-export const withDescription = (args) => (
+export const withOption = (args : any) => (
+  <Select {...args}>
+    {' '}
+    <option>JavaScript</option>
+    <option>TypeScript</option>
+    <option>React</option>
+  </Select>
+)
+
+export const withDescription = (args : any) => (
   <Select {...args}>
     {' '}
     <option>JavaScript</option>
@@ -55,7 +55,7 @@ export const withDescription = (args) => (
 )
 
 const data = ['England', 'Wales', 'Scotland', 'Ireland']
-const icon = <Icon stroke={'#666666'} className={''} type={"Book"}/>
+const icon = <Icon stroke={'#666666'} type={"Book"}/>
 
 Default.args = {
   disabled: false,

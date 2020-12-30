@@ -9,17 +9,17 @@ export default {
   component: Input,
 }
 
-export const Default = (args) => <Input {...args} />
+export const Default = (args :any) => <Input {...args} />
 
-export const ErrorState = (args) => <Input {...args} />
+export const ErrorState = (args :any) => <Input {...args} />
 
-export const withIcon = (args) => <Input {...args} />
+export const withIcon = (args :any) => <Input {...args} />
 
-export const withOption = (args) => <Input {...args} />
+export const withOption = (args :any) => <Input {...args} />
 
-export const withDescription = (args) => <Input {...args} />
+export const withDescription = (args :any) => <Input {...args} />
 
-const icon = <Icon stroke={'#666666'} className={''} type={"Package"}/>
+const icon : any = <Icon stroke={'#666666'} className={''} type={"Package"}/>
 
 Default.args = {
   placeholder: 'Type text here ...',
@@ -31,6 +31,7 @@ Default.args = {
 }
 
 ErrorState.args = {
+  type: 'text',
   placeholder: 'Type text here ...',
   disabled: false,
   label: 'Input with an error message',
@@ -40,6 +41,7 @@ ErrorState.args = {
 }
 
 withIcon.args = {
+  type: 'text',
   placeholder: 'Type text here ...',
   disabled: false,
   label: 'Input with an icon',
@@ -49,6 +51,7 @@ withIcon.args = {
 }
 
 withOption.args = {
+  type: 'text',
   placeholder: 'Type text here ...',
   disabled: false,
   label: 'Input with an error message',
@@ -58,6 +61,7 @@ withOption.args = {
 }
 
 withDescription.args = {
+  type: 'text',
   placeholder: 'Type text here ...',
   disabled: false,
   label: 'Input with an error message',

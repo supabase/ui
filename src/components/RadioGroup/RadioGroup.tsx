@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { HTMLFieldProps } from 'uniforms'
-import { FormLayout } from '../../lib/utilities'
+// import { HTMLFieldProps } from 'uniforms'
+import { FormLayout } from '../../lib/Layout'
 import './RadioGroup.css'
 
 const base64 =
@@ -39,7 +39,7 @@ function RadioGroup({
   options,
   ...props
 }: any) {
-  const result = options.filter((obj) => {
+  const result = options.filter((obj : any) => {
     return obj.active === true
   })
   const [activeId, setActiveId] = useState(result[0].id)
@@ -48,12 +48,12 @@ function RadioGroup({
 
   useEffect(() => {}, [])
 
-  function onToggle(e) {
+  function onToggle(e : any) {
     if (onChange) onChange()
     return setActiveId(e.target.id)
   }
 
-  function onSubmit(e) {
+  function onSubmit(e : any) {
     e.preventDefault()
     console.log(e)
   }
@@ -61,7 +61,6 @@ function RadioGroup({
   return (
     <fieldset className={'border-none p-0 m-0 ' + className}>
       <FormLayout
-        direction={layout}
         label={label}
         labelOptional={labelOptional}
         layout={layout}
@@ -71,7 +70,7 @@ function RadioGroup({
       >
       <legend className="sr-only">Privacy setting</legend>
       <div className="bg-white dark:bg-transparent rounded-md -space-y-px">
-        {options.map((option, i) => {
+        {options.map((option :any, i :number) => {
           const active = activeId === option.id ? true : false
           return (
             /* <!-- On: "bg-brand-50 border-brand-200 z-10", Off: "border-gray-200" --> */

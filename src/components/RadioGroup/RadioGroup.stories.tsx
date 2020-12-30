@@ -8,8 +8,8 @@ export default {
   component: RadioGroup,
 }
 
-export const Default = (args) => <RadioGroup {...args}/>
-export const withCards = (args) => <RadioGroup {...args}/>
+export const Default = (args :any) => <RadioGroup {...args}/>
+export const withCards = (args :any) => <RadioGroup {...args}/>
 
 const options = [
   {

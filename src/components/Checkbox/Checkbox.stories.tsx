@@ -7,7 +7,7 @@ export default {
   component: Checkbox,
 }
 
-export const Default = (args) => <Checkbox name="checkbox-group" label="JavaScript" {...args} /> 
+export const Default = (args :any) => <Checkbox name="checkbox-group" label="JavaScript" {...args} /> 
 
 Default.args = {
   id: 'checkobox-q',

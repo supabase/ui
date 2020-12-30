@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Switch } from '@headlessui/react'
-import { FormLayout } from '../../lib/utilities'
+import { FormLayout } from '../../lib/Layout'
 
 function Toggle ({ 
   allowedValues,

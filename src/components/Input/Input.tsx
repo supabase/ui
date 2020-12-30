@@ -1,8 +1,45 @@
 import React, { Ref } from 'react'
-import { FormLayout } from '../../lib/utilities'
+import { FormLayout } from '../../lib/Layout'
 import { Icon } from '../Icon'
+import './Input.css'
 
-function Text({
+export interface Props {
+  type:
+    | 'text'
+    | 'color'
+    | 'date'
+    | 'datetime-local'
+    | 'email'
+    | 'month'
+    | 'number'
+    | 'password'
+    | 'reset'
+    | 'search'
+    | 'submit'
+    | 'tel'
+    | 'time'
+    | 'url'
+    | 'week'
+  text: string
+  url?: string
+  className?: string
+  autoComplete?: boolean
+  descriptionText?: string
+  disabled?: boolean
+  error?: string
+  icon?: any
+  id?: string
+  inputRef?: string
+  label?: string
+  labelOptional?: string
+  layout?: 'horizontal' | 'vertical'
+  name?: string
+  onChange?: any
+  placeholder?: string
+  value?: any
+}
+
+function Input({
   autoComplete,
   className,
   descriptionText,
@@ -18,13 +55,17 @@ function Text({
   onChange,
   placeholder,
   type,
-  value,
-  ...props
-}: any) {
+  value
+}: Props) {
+
+  // if `type` is not assigned, default to text input
+  if(!type) {
+    type = 'text'
+  }
+
   return (
     <div className={className}>
       <FormLayout
-        direction={layout}
         label={label}
         labelOptional={labelOptional}
         layout={layout}
@@ -32,34 +73,37 @@ function Text({
         error={error}
         descriptionText={descriptionText}
       >
-        <div className="relative">
-          <div className="block">
+        <div className="sbui-input-container">
+          {/* <div className="block"> */}
             <input
-              autoComplete={autoComplete}
+              autoComplete={autoComplete && 'autoComplete'}
               disabled={disabled}
               id={id}
               name={name}
-              onChange={(event) => onChange(event.target.value)}
+              onChange={
+                onChange ? (event) => onChange(event.target.value) : undefined
+              }
               placeholder={placeholder}
               ref={inputRef}
               type={type}
-              value={value ?? ''}
+              value={value}
               className={
-                'block w-full rounded-md shadow-sm pl-3 pr-3 py-2 bg-white dark:bg-transparent dark:text-white shadow-sm focus:ring-brand-500 focus:border-brand-500 text-sm border border-solid border-gray-300 dark:border-gray-400 rounded-md' +
-                (error ? ' border-red-500 dark:border-red-500' : '') +
-                (icon ? ' pl-10' : '')
+                'sbui-input' +
+                (error ? ' sbui-input--error' : '') +
+                (icon ? ' sbui-input--with-icon' : '')
               }
             />
-          </div>
+          {/* </div> */}
           {icon && (
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <div className="sbui-input__icon-container">
               {icon}
             </div>
           )}
           {error && (
-            <div className="absolute inset-y-0 right-0 pr-0 flex items-center pointer-events-none">
+            <div className="sbui-input__error-icon-container">
               <Icon
-                size={16}
+                size={21}
+                strokeWidth={2}
                 stroke={'#f56565'}
                 type={'AlertCircle'}
                 className=""
@@ -72,6 +116,6 @@ function Text({
   )
 }
 
-Text.defaultProps = { type: 'text' }
+// Text.defaultProps = { type: 'text' }
 
-export default Text
+export default Input

@@ -10,20 +10,26 @@ export default {
   component: Icon,
 }
 
-export const Default = (args) => (
+export const Default = (args: any) => (
   <div className="block font-sans">
     <div>
       <Icon {...args} />
     </div>
   </div>
 )
-Default.argTypes = {
-  type: {
-    control: {
-      type: 'select',
-      options: LIST_ICONS,
-    },
-  },
+
+Default.args = {
+  size: 16,
+  className: '',
+  type: 'Loader',
+  color: 'black',
+  strokeWidth: 2,
+  // type: {
+  //   control: {
+  //     type: 'select',
+  //     options: LIST_ICONS,
+  //   },
+  // },
 }
 
 export const ListIcons = () => (
@@ -36,7 +42,10 @@ export const ListIcons = () => (
     <div className="flex flex-wrap font-sans">
       {LIST_ICONS.map((icon) => (
         <div className="m-2 shadow-lg rounded-lg w-36 h-36 flex flex-col justify-center items-center">
-          <Icon type={icon} key={icon} />
+          {
+            /* // @ts-ignore */
+            <Icon className={""} type={icon} key={icon} />
+          }
           <span className="mt-2">{icon}</span>
         </div>
       ))}
