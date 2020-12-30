@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports" : true,
+    "jsx": "react",
+    "module": "es6",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    // "outDir": "./dist",
+    "preserveConstEnums": true,
+    "target": "es5"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

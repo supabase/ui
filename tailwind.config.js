@@ -1,8 +1,8 @@
 module.exports = {
-  purge: {
-    mode: 'all',
-    content: ['./src/components/**/*.js'],
-  },
+  purge: [
+    './src/**/**/*.{js,ts,jsx,tsx,html,mdx}',
+    './src/**/*.{js,ts,jsx,tsx,html,mdx}'
+  ],
   darkMode: 'class',
   theme: {
     colors: {
@@ -11,17 +11,31 @@ module.exports = {
 
       black: '#000',
       white: '#fff',
-      brand : {
-        100: '#7DDAB1',
-        200: '#67D4A3',
-        300: '#52CD96',
-        400: '#3DC688',
-        500: '#35B179',
-        600: '#2F9A6A',
-        700: '#29845B',
-        800: '#236E4C',
-        900: '#1C583D',
+
+      dark: {
+        100: '#eeeeee',
+        200: '#e0e0e0',
+        300: '#bbbbbb',
+        400: '#666666',
+        500: '#444444',
+        600: '#2a2a2a',
+        700: '#1f1f1f',
+        800: '#181818',
+        900: '#0f0f0f',
       },
+
+       brand: {
+        50: '#82dab0',
+          100: '#82dab0',
+          200: '#69d3a0',
+          300: '#50cb90',
+          400: '#C5F1DD',
+          500: '#9FE7C7',
+          600: '#65D9A5',
+          700: '#3ECF8E',
+          800: '#38BC81',
+          900: '#10633E',
+        },
 
       
       gray: {
@@ -146,6 +160,10 @@ module.exports = {
       },
     }
   },
+  // purge: {
+  //   // mode: 'all',
+  //   content: ['./src/**/**/*.{js,ts,jsx,tsx}', './src/**/*.{js,ts,jsx,tsx}'],
+  // },
   variants: {
     divideWidth: ['responsive', 'hover', 'focus'],
   },
