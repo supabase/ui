@@ -26,7 +26,7 @@ export function FormLayout({
   label,
   labelOptional,
   layout,
-  responsive
+  responsive = true
 }: Props) {
 
   let containerClasses = ['sbui-formlayout']
