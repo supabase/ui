@@ -1,5 +1,8 @@
 import React from 'react'
 import './Typography.css'
+import Title from './Title'
+import Text from './Text'
+import Link from './Link'
 
 function Typography({
   children,
@@ -18,5 +21,9 @@ function Typography({
     </CustomTag>
   )
 }
+
+Typography.Title = Title;
+Typography.Text = Text;
+Typography.Link = Link;
 
 export default Typography

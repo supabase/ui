@@ -5,9 +5,11 @@ import MarkdownExample from './../../lib/MarkdownSample.md'
 import ReactMarkdown from 'react-markdown'
 const gfm = require('remark-gfm')
 
-import Typography, { Title, Text, Link } from './'
+import Typography from '.'
 // @ts-ignore
 import { Space } from '../../index'
+
+const { Title, Text, Link } = Typography
 
 export default {
   title: 'General/Typography',

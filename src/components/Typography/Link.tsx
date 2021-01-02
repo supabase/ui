@@ -35,4 +35,4 @@ function Link({
   )
 }
 
-export { Link }
+export default Link

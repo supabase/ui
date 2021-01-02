@@ -1,11 +1,17 @@
 import React from 'react'
 import './Title.css'
 
-function Title({ className, level, children, style, ...props }: any) {
-  console.log(level)
+interface Props {
+  className?: string
+  level?: 1 | 2 | 3 | 4 | 5
+  children: any
+  style?: React.CSSProperties
+}
+
+function Title({ className, level = 1, children, style }: Props) {
   
   let classes = ['sbui-typography']
-  if(className) {
+  if (className) {
     classes.push(className)
   }
   const CustomTag: any = `h${level}`
@@ -17,4 +23,4 @@ function Title({ className, level, children, style, ...props }: any) {
   )
 }
 
-export { Title }
+export default Title
