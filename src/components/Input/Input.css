@@ -13,11 +13,3 @@
 .sbui-input--with-icon {
   @apply pl-10;
 }
-
-.sbui-input__icon-container {
-  @apply absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none;
-}
-
-.sbui-input__error-icon-container {
-  @apply absolute inset-y-0 right-3 pr-0 flex items-center pointer-events-none;
-}

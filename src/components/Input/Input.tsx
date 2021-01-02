@@ -1,6 +1,7 @@
 import React, { Ref } from 'react'
 import { FormLayout } from '../../lib/Layout'
-import { Icon } from '../Icon'
+import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
+import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import './Input.css'
 
 export interface Props {
@@ -55,11 +56,10 @@ function Input({
   onChange,
   placeholder,
   type,
-  value
+  value,
 }: Props) {
-
   // if `type` is not assigned, default to text input
-  if(!type) {
+  if (!type) {
     type = 'text'
   }
 
@@ -74,48 +74,30 @@ function Input({
         descriptionText={descriptionText}
       >
         <div className="sbui-input-container">
-          {/* <div className="block"> */}
-            <input
-              autoComplete={autoComplete && 'autoComplete'}
-              disabled={disabled}
-              id={id}
-              name={name}
-              onChange={
-                onChange ? (event) => onChange(event.target.value) : undefined
-              }
-              placeholder={placeholder}
-              ref={inputRef}
-              type={type}
-              value={value}
-              className={
-                'sbui-input' +
-                (error ? ' sbui-input--error' : '') +
-                (icon ? ' sbui-input--with-icon' : '')
-              }
-            />
-          {/* </div> */}
-          {icon && (
-            <div className="sbui-input__icon-container">
-              {icon}
-            </div>
-          )}
-          {error && (
-            <div className="sbui-input__error-icon-container">
-              <Icon
-                size={21}
-                strokeWidth={2}
-                stroke={'#f56565'}
-                type={'AlertCircle'}
-                className=""
-              />
-            </div>
-          )}
+          <input
+            autoComplete={autoComplete && 'autoComplete'}
+            disabled={disabled}
+            id={id}
+            name={name}
+            onChange={
+              onChange ? (event) => onChange(event.target.value) : undefined
+            }
+            placeholder={placeholder}
+            ref={inputRef}
+            type={type}
+            value={value}
+            className={
+              'sbui-input' +
+              (error ? ' sbui-input--error' : '') +
+              (icon ? ' sbui-input--with-icon' : '')
+            }
+          />
+          {icon && <InputIconContainer icon={icon} />}
+          {error && <InputErrorIcon />}
         </div>
       </FormLayout>
     </div>
   )
 }
-
-// Text.defaultProps = { type: 'text' }
 
 export default Input

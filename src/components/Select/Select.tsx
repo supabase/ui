@@ -2,7 +2,8 @@
 import xor from 'lodash/xor'
 import React, { Ref } from 'react'
 import { FormLayout } from '../../lib/Layout'
-import { Icon } from '../Icon'
+import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
+import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import './Select.css'
 // import { HTMLFieldProps, connectField, filterDOMProps } from 'uniforms';
 
@@ -25,20 +26,20 @@ const escape = (x: string) => base64(encodeURIComponent(x)).replace(/=+$/, '')
 // >;
 
 interface OptionProps {
-  value? : string,
-  children? :React.ReactNode
+  value: string
+  children: React.ReactNode
 }
 
 interface OptGroupProps {
-  label : string,
-  children :React.ReactNode
+  label: string
+  children: React.ReactNode
 }
 
 export const ColLayout = (props: any) => (
   <div className="">{props.children}</div>
 )
 
-function Select( {
+function Select({
   allowedValues,
   checkboxes,
   children,
@@ -60,18 +61,27 @@ function Select( {
   transform,
   value,
 }: any) {
+
+  let selectClasses = ['sbui-select']
+  if(error) {
+    selectClasses.push('sbui-select--error')  
+  }
+  if(icon) {
+    selectClasses.push('sbui-select--with-icon')  
+  }
+
   return (
-    <div className={className}>
-      <FormLayout 
+      <FormLayout
         label={label}
         labelOptional={labelOptional}
         layout={layout}
         id={id}
         error={error}
         descriptionText={descriptionText}
+        className={className}
       >
         {checkboxes || fieldType === Array ? (
-          allowedValues!.map((item : any) => (
+          allowedValues!.map((item: any) => (
             <div key={item}>
               <input
                 checked={
@@ -92,16 +102,11 @@ function Select( {
             </div>
           ))
         ) : (
-          <div className="relative">
+          <div className="sbui-select-container">
             <select
               id={id}
               name={name}
-              className={
-                'block w-full bg-white dark:bg-transparent pl-3 pr-10 py-2 text-gray-700 dark:text-white border-gray-300 dark:border-gray-400 focus:outline-none focus:ring-brand-500 focus:border-brand-500 text-sm ' +
-                (error && ' border-red-500 dark:border-red-500') +
-                (icon ? ' pl-10' : '') +
-                ' rounded-md'
-              }
+              className={selectClasses.join(' ')}
               onChange={(event) => {
                 onChange(
                   event.target.value !== '' ? event.target.value : undefined
@@ -113,24 +118,11 @@ function Select( {
             >
               {children}
             </select>
-            {icon && (
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                {icon}
-              </div>
-            )}
-            {error && (
-            <div className="absolute inset-y-0 right-8 pr-0 flex items-center pointer-events-none">
-              <Icon
-                size={16}
-                stroke={'#f56565'}
-                type={'AlertCircle'}
-                className=""
-              />
-            </div>
-          )}
-            <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+            {icon && <InputIconContainer icon={icon}/>}
+            {error && <InputErrorIcon style={{marginRight: '1.2rem'}}/>}
+            <span className="sbui-select-chevron-container">
               <svg
-                className="h-5 w-5 text-gray-400"
+                className="sbui-select-chevron"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -145,25 +137,16 @@ function Select( {
             </span>
           </div>
         )}
-
       </FormLayout>
-    </div>
   )
 }
 
-export function Option({value, children} : OptionProps) {
-  return (
-    <option>{children}</option>
-  )
+export function Option({ value, children }: OptionProps) {
+  return <option value={value}>{children}</option>
 }
 
-
-export function OptGroup({label, children} : OptGroupProps) {
-  return (
-    <optgroup label={label}>
-      {children}
-    </optgroup>
-  )
+export function OptGroup({ label, children }: OptGroupProps) {
+  return <optgroup label={label}>{children}</optgroup>
 }
 
 Select.Option = Option
