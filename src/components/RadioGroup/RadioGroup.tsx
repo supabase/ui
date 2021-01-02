@@ -25,7 +25,7 @@ function RadioGroup({
   checkboxes, // eslint-disable-line no-unused-vars
   disabled,
   id,
-  layout, 
+  layout,
   error,
   descriptionText,
   label,
@@ -39,7 +39,7 @@ function RadioGroup({
   options,
   ...props
 }: any) {
-  const result = options.filter((obj : any) => {
+  const result = options.filter((obj: any) => {
     return obj.active === true
   })
   const [activeId, setActiveId] = useState(result[0].id)
@@ -48,18 +48,18 @@ function RadioGroup({
 
   useEffect(() => {}, [])
 
-  function onToggle(e : any) {
+  function onToggle(e: any) {
     if (onChange) onChange()
     return setActiveId(e.target.id)
   }
 
-  function onSubmit(e : any) {
+  function onSubmit(e: any) {
     e.preventDefault()
     console.log(e)
   }
 
   return (
-    <fieldset className={'border-none p-0 m-0 ' + className}>
+    <fieldset className="sbui-radio-fieldset">
       <FormLayout
         label={label}
         labelOptional={labelOptional}
@@ -67,57 +67,56 @@ function RadioGroup({
         id={id}
         error={error}
         descriptionText={descriptionText}
+        className={className}
       >
-      <legend className="sr-only">Privacy setting</legend>
-      <div className="bg-white dark:bg-transparent rounded-md -space-y-px">
-        {options.map((option :any, i :number) => {
-          const active = activeId === option.id ? true : false
-          return (
-            /* <!-- On: "bg-brand-50 border-brand-200 z-10", Off: "border-gray-200" --> */
-            <div
-              id={option.id}
-              onClick={onToggle}
-              className={
-                'relative cursor-pointer flex p-0 py-2' +
-                (type === 'cards' ? ' border border-solid px-4 py-4' : '  border-none') +
-                (type === 'cards' && active
-                  ? ' bg-brand-100 bg-opacity-20 border-brand-200 z-10'
-                  : ' border-solid border-gray-200 dark:border-gray-400') +
-                (type === 'cards' && i === 0
-                  ? ' rounded-tl-md rounded-tr-md'
-                  : i === options.length - 1
-                  ? ' rounded-bl-md rounded-br-md'
-                  : '')
-              }
-            >
-              <div className="flex items-center">
-                <label className="flex flex-row cursor-pointer">
+        {/* <legend className="sr-only">Privacy setting</legend> */}
+        <div className="bg-white dark:bg-transparent rounded-md -space-y-px">
+          {options.map((option: any, i: number) => {
+            const active = activeId === option.id ? true : false
+
+            let classes = ['sbui-radio-container']
+            if (type === 'cards') {
+              classes.push('sbui-radio-container--card')
+            }
+
+            if (type === 'cards' && active) {
+              classes.push('sbui-radio-container--card--active')
+            }
+
+            return (
+              /* <!-- On: "bg-brand-50 border-brand-200 z-10", Off: "border-gray-200" --> */
+
+              <div
+                id={option.id}
+                onClick={onToggle}
+                className={classes.join(' ')}
+              >
+                <label className="sbui-radio-label">
                   <input
                     id={option.id}
                     name={name}
                     type="radio"
-                    className="ml-0 rounded-2xl focus:ring-brand-500 h-4 w-4 text-brand-600 cursor-pointer border-solid border border-gray-300"
+                    className="sbui-radio"
                     checked={active}
                     disabled={disabled || option.disabled}
                     value={option.value}
                     onChange={onToggle}
                   />
-                  <div className="ml-3">
+                  <div>
                     {/* <!-- On: "text-brand-900", Off: "text-gray-900" --> */}
-                    <span className="block text-sm font-medium dark:text-white">
+                    <span className="sbui-radio-label-text">
                       {option.label}
                     </span>
                     {/* <!-- On: "text-brand-700", Off: "text-gray-500" --> */}
-                    <span className="block text-sm text-gray-400 dark:text-gray-300">
+                    <span className="sbui-radio-label-description">
                       {option.description}
                     </span>
                   </div>
                 </label>
               </div>
-            </div>
-          )
-        })}
-      </div>
+            )
+          })}
+        </div>
       </FormLayout>
     </fieldset>
   )
