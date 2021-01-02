@@ -1,67 +1,93 @@
 import React from 'react'
 
-import { Select } from '.'
+import Select from '.'
 import { Icon } from '../Icon'
+
+const { Option, OptGroup } = Select
 
 export default {
   title: 'Data Input/Select',
   component: Select,
 }
 
-export const Default = (args : any) => (
+export const Default = (args: any) => (
   <Select {...args}>
-    <option>JavaScript</option>
-    <option>TypeScript</option>
-    <option>React</option>
+    <Option value="javascript">JavaScript</Option>
+    <Option value="typeScript">TypeScript</Option>
+    <Option value="react">React</Option>
   </Select>
 )
 
-export const withCheckboxes = (args : any) => <Select {...args} />
+export const withCheckboxes = (args: any) => <Select {...args} />
 
-export const ErrorState = (args : any) => (
+export const ErrorState = (args: any) => (
   <Select {...args}>
-    {' '}
-    <option>JavaScript</option>
-    <option>TypeScript</option>
-    <option>React</option>
+    <Option value="javascript">JavaScript</Option>
+    <Option value="typeScript">TypeScript</Option>
+    <Option value="react">React</Option>
   </Select>
 )
 
-export const withIcon = (args : any) => (
+export const withOptionGroup = (args: any) => (
   <Select {...args}>
-    {' '}
-    <option>JavaScript</option>
-    <option>TypeScript</option>
-    <option>React</option>
+    <OptGroup label="languages">
+      <Option value="javascript">JavaScript</Option>
+      <Option value="typeScript">TypeScript</Option>
+    </OptGroup>
+    <OptGroup label="libaries">
+      <Option value="react">React</Option>
+    </OptGroup>
   </Select>
 )
 
-export const withOption = (args : any) => (
+export const withIcon = (args: any) => (
   <Select {...args}>
-    {' '}
-    <option>JavaScript</option>
-    <option>TypeScript</option>
-    <option>React</option>
+    <Option value="javascript">JavaScript</Option>
+    <Option value="typeScript">TypeScript</Option>
+    <Option value="react">React</Option>
   </Select>
 )
 
-export const withDescription = (args : any) => (
+export const withOptionLabel = (args: any) => (
   <Select {...args}>
-    {' '}
-    <option>JavaScript</option>
-    <option>TypeScript</option>
-    <option>React</option>
+    <Option value="javascript">JavaScript</Option>
+    <Option value="typeScript">TypeScript</Option>
+    <Option value="react">React</Option>
+  </Select>
+)
+
+export const withDescription = (args: any) => (
+  <Select {...args}>
+    <Option value="javascript">JavaScript</Option>
+    <Option value="typeScript">TypeScript</Option>
+    <Option value="react">React</Option>
   </Select>
 )
 
 const data = ['England', 'Wales', 'Scotland', 'Ireland']
-const icon = <Icon stroke={'#666666'} type={"Book"}/>
+const icon = <Icon stroke={'#666666'} type={'Book'} />
 
 Default.args = {
   disabled: false,
   label: 'Label',
   className: 'font-sans',
-  layout: 'vertical'
+  layout: 'vertical',
+  children: [
+    <>
+      <Option value="javascript">JavaScript</Option>
+      <Option value="typeScript">TypeScript</Option>
+      <Option value="react">React</Option>
+    </>,
+  ],
+}
+
+withOptionGroup.args = {
+  placeholder: 'Type text here ...',
+  disabled: false,
+  label: 'Input with an error message',
+  className: 'font-sans',
+  value: 'Value of input',
+  layout: 'vertical',
 }
 
 withCheckboxes.args = {
@@ -69,7 +95,7 @@ withCheckboxes.args = {
   checkboxes: data,
   allowedValues: data,
   className: 'font-sans',
-  layout: 'vertical'
+  layout: 'vertical',
 }
 
 ErrorState.args = {
@@ -80,7 +106,7 @@ ErrorState.args = {
   value: 'Value of input',
   error: 'Your password must be less than 4 characters.',
   allowedValues: data,
-  layout: 'vertical'
+  layout: 'vertical',
 }
 
 withIcon.args = {
@@ -91,10 +117,10 @@ withIcon.args = {
   value: 'Value of input',
   icon: icon,
   allowedValues: data,
-  layout: 'vertical'
+  layout: 'vertical',
 }
 
-withOption.args = {
+withOptionLabel.args = {
   placeholder: 'Type text here ...',
   disabled: false,
   label: 'Input with an error message',
@@ -102,7 +128,7 @@ withOption.args = {
   value: 'Value of input',
   labelOptional: 'This is required',
   allowedValues: data,
-  layout: 'vertical'
+  layout: 'vertical',
 }
 
 withDescription.args = {
@@ -113,5 +139,5 @@ withDescription.args = {
   value: 'Value of input',
   descriptionText: 'Make your password short and easy to guess',
   allowedValues: data,
-  layout: 'vertical'
+  layout: 'vertical',
 }

@@ -24,6 +24,16 @@ const escape = (x: string) => base64(encodeURIComponent(x)).replace(/=+$/, '')
 //   }
 // >;
 
+interface OptionProps {
+  value? : string,
+  children? :React.ReactNode
+}
+
+interface OptGroupProps {
+  label : string,
+  children :React.ReactNode
+}
+
 export const ColLayout = (props: any) => (
   <div className="">{props.children}</div>
 )
@@ -140,6 +150,24 @@ function Select( {
     </div>
   )
 }
+
+export function Option({value, children} : OptionProps) {
+  return (
+    <option>{children}</option>
+  )
+}
+
+
+export function OptGroup({label, children} : OptGroupProps) {
+  return (
+    <optgroup label={label}>
+      {children}
+    </optgroup>
+  )
+}
+
+Select.Option = Option
+Select.OptGroup = OptGroup
 
 // function Option({
 
