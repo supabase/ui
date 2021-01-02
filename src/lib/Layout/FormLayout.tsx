@@ -30,7 +30,7 @@ export function FormLayout({
 }: Props) {
 
   let containerClasses = ['sbui-formlayout']
-  containerClasses.push(responsive ? 'sbui-formlayout--responsive' : '.sbui-formlayout--non-responsive')
+  containerClasses.push(responsive ? 'sbui-formlayout--responsive' : 'sbui-formlayout--non-responsive')
   if(className) {
     containerClasses.push(className)
   }
