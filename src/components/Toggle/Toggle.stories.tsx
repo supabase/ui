@@ -10,7 +10,8 @@ export default {
   },
 }
 
-export const Primary = (args) => <Toggle {...args} />
+export const Primary = (args : any) => <Toggle {...args} />
+
 Primary.args = {
   active: true,
   className: 'font-sans',
@@ -19,6 +20,7 @@ Primary.args = {
   error: '',
   label: 'Radio group main label',
   labelOptional: 'This is an optional label',
-  name: 'radiogroup-example'
+  name: 'radiogroup-example',
+  layout: 'horizontal'
 }
 
