@@ -3,7 +3,7 @@ import React from 'react'
 import { Radio } from '.'
 
 export default {
-  title: 'Form/Radio',
+  title: 'Archive/Radio',
   component: Radio,
 }
 
