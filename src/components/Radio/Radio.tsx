@@ -58,7 +58,7 @@ function RadioGroup({
     setActiveId(value)
   }, [value])
 
-  const onToggle = (e: any) => {
+  const parentCallback = (e: any) => {
     if (onChange) {
       onChange({
         name: e.target.name,
@@ -75,7 +75,7 @@ function RadioGroup({
   }
 
   return (
-    <RadioContext.Provider value={{ onToggle, type, name, activeId }}>
+    <RadioContext.Provider value={{ parentCallback, type, name, activeId }}>
       <fieldset className="sbui-radio-fieldset">
         <FormLayout
           label={label}
@@ -100,11 +100,10 @@ function RadioGroup({
 }
 
 function Radio({ id, disabled, value, label, description, name, onChange }: InputProps) {
-
   const inputName = name
   return (
     <RadioContext.Consumer>
-      {({ onToggle, type, name, activeId }) => {
+      {({ parentCallback, type, name, activeId }) => {
 
         // if id does not exist, use label
         const markupId = id ? id : label.toLowerCase().replace(/^[^A-Z0-9]+/gi,"")
@@ -123,6 +122,18 @@ function Radio({ id, disabled, value, label, description, name, onChange }: Inpu
           classes.push('sbui-radio-container--card--active')
         }
 
+        function onInputChange(e :any) {
+          // '`onChange` callback for parent component
+          if(parentCallback)
+          parentCallback(e)
+          // '`onChange` callback for this component
+          if(onChange)
+          onChange({
+            name: e.target.name,
+            id: e.target.id,
+          })
+        }
+
         return (
           <label id={id} className={classes.join(' ')}>
             <input
@@ -133,7 +144,7 @@ function Radio({ id, disabled, value, label, description, name, onChange }: Inpu
               checked={active}
               disabled={disabled}
               value={value}
-              onChange={onToggle}
+              onChange={onInputChange}
             />
             <div>
               <span className="sbui-radio-label-text">{label}</span>
