@@ -49,3 +49,17 @@ If you want to test Supabase UI components locally, in context in another projec
 
 Follow these instructions here -> 
 [NPM Linking and Unlinking instructions](https://dev.to/erinbush/npm-linking-and-unlinking-2h1g)
+
+### Common issues
+
+*A common issue found with local testing is multiple versions of react running.*
+
+You may need to npm-link the react node module in the target app you want to locally test the library in. Then use that version of react inside the library, and then npm-link the library so the target app can use the library with just the 1 version of react.
+
+Step by step:
+
+• run npm link in /your-app/node_modules/react. This should make the React's global link.
+
+• run npm link react in /supabase/ui. This should make the library use the application’s React copy.
+
+• run npm link @supabase/ui in /your-app
