@@ -3,20 +3,21 @@ import React from 'react'
 import { Space } from '../../index'
 import './FormLayout.css'
 
-type Props =  {
-    align?:string
-    children?:any
-    className?:string
-    descriptionText?:string
-    error?:string
-    id?:string
-    label?:string
-    labelOptional?:string
-    layout:'horizontal' | 'vertical'
-    responsive?:boolean
-  }
+type Props = {
+  align?: string
+  children?: any
+  className?: string
+  descriptionText?: string
+  error?: string
+  id?: string
+  label?: string
+  labelOptional?: string
+  layout: 'horizontal' | 'vertical'
+  style?: React.CSSProperties
+  responsive?: boolean
+}
 
-export function FormLayout({ 
+export function FormLayout({
   align,
   children,
   className,
@@ -26,26 +27,46 @@ export function FormLayout({
   label,
   labelOptional,
   layout,
-  responsive = true
+  style,
+  responsive = true,
 }: Props) {
-
   let containerClasses = ['sbui-formlayout']
-  containerClasses.push(responsive ? 'sbui-formlayout--responsive' : 'sbui-formlayout--non-responsive')
-  if(className) {
+  containerClasses.push(
+    responsive
+      ? 'sbui-formlayout--responsive'
+      : 'sbui-formlayout--non-responsive'
+  )
+  if (className) {
     containerClasses.push(className)
   }
 
+  // if (width) {
+  //   containerClasses.push(
+  //     `sbui-formlayout__content-container--width-${width.toString()}`
+  //   )
+  // }
+
+  // // width styles
+  // let widthStyles = {}
+  // if (width) {
+  //   widthStyles = { width: `${width}%` }
+  // }
+
   return (
     <div className={containerClasses.join(' ')}>
-      <Space 
-        direction={layout && layout === 'horizontal' ? 'vertical' : 'horizontal'}
-        className={"" + (layout !== 'horizontal' ? 'sbui-formlayout__label-container-horizontal' : 'sbui-formlayout__label-container-vertical')}
+      <Space
+        direction={
+          layout && layout === 'horizontal' ? 'vertical' : 'horizontal'
+        }
+        className={
+          '' +
+          (layout !== 'horizontal'
+            ? 'sbui-formlayout__label-container-horizontal'
+            : 'sbui-formlayout__label-container-vertical')
+        }
       >
         {label && (
-          <label
-            className="sbui-formlayout__label"
-            htmlFor={id}
-          >
+          <label className="sbui-formlayout__label" htmlFor={id}>
             {label}
           </label>
         )}
@@ -55,13 +76,19 @@ export function FormLayout({
           </span>
         )}
       </Space>
-      <div className={layout !== 'horizontal' ? 'sbui-formlayout__content-container-horizontal' : 'sbui-formlayout__content-container-vertical' + (align === 'right' ? ' sbui-formlayout__content-container-vertical--align-right' : '')}>
+      <div
+        className={
+          layout !== 'horizontal'
+            ? 'sbui-formlayout__content-container-horizontal'
+            : 'sbui-formlayout__content-container-vertical' +
+              (align === 'right'
+                ? ' sbui-formlayout__content-container-vertical--align-right'
+                : '')
+        }
+        style={style}
+      >
         {children}
-        {error && (
-          <p className="sbui-formlayout__error">
-            {error}
-          </p>
-        )}
+        {error && <p className="sbui-formlayout__error">{error}</p>}
         {descriptionText && (
           <p className="sbui-formlayout__description" id={id + '-description'}>
             {descriptionText}

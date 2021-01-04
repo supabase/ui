@@ -59,7 +59,7 @@ function Input({
   placeholder,
   type,
   value,
-  style,
+  style
 }: Props) {
   // if `type` is not assigned, default to text input
   if (!type) {
