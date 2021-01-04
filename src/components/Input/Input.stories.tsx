@@ -19,6 +19,8 @@ export const withOption = (args :any) => <Input {...args} />
 
 export const withDescription = (args :any) => <Input {...args} />
 
+export const withCustomStyle = (args :any) => <Input {...args} />
+
 const icon : any = <Icon stroke={'#666666'} className={''} type={"Package"}/>
 
 Default.args = {
@@ -69,3 +71,11 @@ withDescription.args = {
   value: 'Value of input',
   descriptionText: 'Make your password short and easy to guess'
 }
+
+withCustomStyle.args = {
+  type: 'text',
+  label: 'This has custom styling {width: 50%}',
+  className: 'font-sans',
+  style: {width: '50%'}
+}
+

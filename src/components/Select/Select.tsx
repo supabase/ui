@@ -5,25 +5,6 @@ import { FormLayout } from '../../lib/Layout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import './Select.css'
-// import { HTMLFieldProps, connectField, filterDOMProps } from 'uniforms';
-
-// @ts-ignore
-const base64: typeof btoa =
-  // @ts-ignore
-  typeof btoa !== 'undefined' ? btoa : (x) => Buffer.from(x).toString('base64')
-const escape = (x: string) => base64(encodeURIComponent(x)).replace(/=+$/, '')
-
-// export type SelectFieldProps = HTMLFieldProps<
-//   string | string[],
-//   HTMLDivElement,
-//   {
-//     allowedValues?: string[];
-//     checkboxes?: boolean;
-//     disableItem?(value: string): boolean;
-//     inputRef?: Ref<HTMLSelectElement>;
-//     transform?(value: string): string;
-//   }
-// >;
 
 interface OptionProps {
   value: string
@@ -60,6 +41,7 @@ function Select({
   required,
   transform,
   value,
+  style
 }: any) {
 
   let selectClasses = ['sbui-select']
@@ -79,6 +61,7 @@ function Select({
         error={error}
         descriptionText={descriptionText}
         className={className}
+        style={style}
       >
         {checkboxes || fieldType === Array ? (
           allowedValues!.map((item: any) => (
@@ -113,7 +96,7 @@ function Select({
                 )
               }}
               ref={inputRef}
-              value={value ?? ''}
+              value={value}
               required={required}
             >
               {children}

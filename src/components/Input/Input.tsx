@@ -37,7 +37,8 @@ export interface Props {
   name?: string
   onChange?: any
   placeholder?: string
-  value?: any
+  value?: any,
+  style?: React.CSSProperties
 }
 
 function Input({
@@ -57,6 +58,7 @@ function Input({
   placeholder,
   type,
   value,
+  style
 }: Props) {
   // if `type` is not assigned, default to text input
   if (!type) {
@@ -72,6 +74,7 @@ function Input({
         id={id}
         error={error}
         descriptionText={descriptionText}
+        style={style}
       >
         <div className="sbui-input-container">
           <input
