@@ -22,8 +22,8 @@ Some of these are a work in progress - we invite anyone to submit a [feature req
 - [x] Select
 - [x] Checkbox (and Checkbox Groups)
 - [x] Radio (and Radio Groups)
-- [x] Toggle
-- [ ] Upload
+- [x] Toggle (work in progress)
+- [ ] Upload (work in progress)
 - [ ] Slider
 - [ ] Date picker
 - [ ] Time picker
@@ -38,10 +38,10 @@ Some of these are a work in progress - we invite anyone to submit a [feature req
 
 *Display*
 
-- [x] Card
+- [x] Card (work in progress)
 - [ ] Avatar
 - [ ] Alert
-- [ ] Badge
+- [x] Badge
 - [ ] Menu
 - [ ] Tooltips
 - [ ] Tables
