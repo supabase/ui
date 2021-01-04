@@ -14,6 +14,7 @@ interface InputProps {
   description?: string
   disabled?: boolean
   id?: string
+  name?: string 
   onChange?(x: OnChangeProps): any
 }
 
@@ -98,13 +99,18 @@ function RadioGroup({
   )
 }
 
-function Radio({ id, disabled, value, label, description, onChange }: InputProps) {
+function Radio({ id, disabled, value, label, description, name, onChange }: InputProps) {
+
+  const inputName = name
   return (
     <RadioContext.Consumer>
       {({ onToggle, type, name, activeId }) => {
 
         // if id does not exist, use label
         const markupId = id ? id : label.toLowerCase().replace(/^[^A-Z0-9]+/gi,"")
+
+        // if name does not exist on Radio then use Context Name from Radio.Group
+        const MarkupName = inputName ? inputName : name
 
         // check if radio is active
         const active = activeId === markupId ? true : false
@@ -121,7 +127,7 @@ function Radio({ id, disabled, value, label, description, onChange }: InputProps
           <label id={id} className={classes.join(' ')}>
             <input
               id={markupId}
-              name={name}
+              name={MarkupName}
               type="radio"
               className="sbui-radio"
               checked={active}
