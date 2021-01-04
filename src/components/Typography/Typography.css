@@ -1,0 +1,84 @@
+/* marker fix */
+.sbui-typography li::marker {
+  display: none;
+  content: "";
+}
+
+.sbui-typography {
+  @apply prose prose-sm lg:prose-lg;
+}
+
+/* .sbui-typography--prose-sm {
+  @apply prose prose-sm;
+}
+
+.sbui-typography--prose-lg {
+  @apply prose prose-lg;
+}
+
+.sbui-typography--prose-xl {
+  @apply prose prose-xl;
+}
+
+.sbui-typography--prose-2xl {
+  @apply prose prose-2xl;
+} */
+
+/*
+  dark mode styles
+
+  default styles are handled by tailwind config
+*/
+
+.dark .sbui-typography {
+  @apply text-gray-200;
+}
+
+.dark .sbui-typography h1 {
+  @apply text-white;
+}
+
+.dark .sbui-typography h2 {
+  @apply text-white;
+}
+
+.dark .sbui-typography h3 {
+  @apply text-white;
+}
+
+.dark .sbui-typography h4 {
+  @apply text-white;
+}
+
+.dark .sbui-typography h5 {
+  @apply text-white;
+}
+
+.dark .sbui-typography strong {
+  @apply text-white;
+}
+
+.dark .sbui-typography li::before {
+  @apply text-gray-300;
+}
+
+.dark .sbui-typography a {
+  @apply text-white;
+}
+
+.dark .sbui-typography blockquote {
+  @apply text-white;
+}
+
+.dark .sbui-typography code {
+  color: #A9B1D6;
+}
+
+.dark .sbui-typography figcaption {
+  @apply text-gray-600;
+}
+
+.dark .sbui-typography::selection {
+  /* @apply bg-brand-500; */
+  backgroundColor: "#6f7bb635";
+}

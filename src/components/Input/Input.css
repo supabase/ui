@@ -1,15 +1,15 @@
-.form-input:disabled {
-  @apply bg-gray-100 cursor-not-allowed;
+.sbui-input-container {
+  @apply relative;
 }
 
-.form-input--small {
-  @apply text-sm py-1;
+.sbui-input {
+  @apply block box-border w-full rounded-md shadow-sm pl-3 pr-3 py-2 bg-white dark:bg-transparent dark:text-white shadow-sm focus:ring-brand-500 focus:border-brand-500 text-sm border border-solid border-gray-300 dark:border-gray-400 rounded-md;
 }
 
-.form-input--medium {
-  @apply text-base;
+.sbui-input--error {
+  @apply border-red-500 dark:border-red-500;
 }
 
-.form-input--error {
-  @apply border-red-500;
+.sbui-input--with-icon {
+  @apply pl-10;
 }

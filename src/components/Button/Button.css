@@ -1,55 +1,115 @@
-/* 
-  Puesdo classes
- */
-
-.btn:focus {
-  @apply outline-none ring;
+.sbui-btn-container {
+  @apply inline-flex rounded-md;
 }
 
-.btn:disabled {
+.sbui-btn {
+  @apply relative cursor-pointer inline-flex space-x-2 text-center;
+}
+
+.sbui-btn-container--shadow {
+  @apply shadow-sm;
+}
+
+.sbui-btn--w-full {
+  @apply w-full flex items-center justify-center;
+}
+
+.sbui-btn:disabled {
   @apply opacity-75 cursor-default;
   pointer-events: none;
+}
+
+/*
+  Button sizes
+*/
+
+.sbui-btn--tiny {
+  @apply inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm;
+}
+.sbui-btn--small {
+  @apply inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md;
+}
+.sbui-btn--medium {
+  @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm;
+}
+.sbui-btn--large {
+  @apply inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm;
+}
+.sbui-btn--xlarge {
+  @apply inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm;
+}
+
+/*
+  Button varients
+*/
+.sbui-btn-primary {
+  @apply text-white hover:text-gray-500 bg-brand-700 hover:bg-brand-600;
+}
+.sbui-btn-secondary {
+  @apply text-brand-800 text-brand-800 bg-brand-50 bg-opacity-75 hover:bg-brand-100;
+}
+.sbui-btn-default {
+  @apply text-gray-500 text-gray-500 bg-white border-gray-100 hover:text-gray-600 hover:bg-white hover:border-gray-200;
+}
+.sbui-btn-outline {
+  @apply text-brand-700 bg-transparent border border-brand-700 border-solid text-brand-700 hover:bg-brand-700 hover:text-white;
+}
+.sbui-btn-ghost {
+  @apply text-brand-700 bg-transparent text-brand-700 border-none hover:bg-brand-300 hover:bg-opacity-25;
 }
 
 /* 
   Animation for icon
 */
-.btn--anim--spin {
+.sbui-btn--anim--spin {
+  @apply stroke-current;
   animation-name: spin;
   animation-duration: 1500ms;
   animation-iteration-count: infinite;
-  animation-timing-function: linear; 
+  animation-timing-function: linear;
   /* transform: rotate(3deg); */
-   /* transform: rotate(0.3rad);/ */
-   /* transform: rotate(3grad); */ 
-   /* transform: rotate(.03turn);  */
+  /* transform: rotate(0.3rad);/ */
+  /* transform: rotate(3grad); */
+  /* transform: rotate(.03turn);  */
 }
 
 @keyframes spin {
-    from {
-        transform:rotate(0deg);
-    }
-    to {
-        transform:rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* 
-  Hover modifiers for Icon
+  Puesdo classes
 */
 
-.btn--solid:hover svg {
+.btn:focus {
+  @apply outline-none ring;
+}
+
+.sbui-btn-primary:hover svg {
   @apply text-gray-500;
 }
-.btn--secondary:hover svg {
+.sbui-btn-secondary:hover svg {
   @apply bg-brand-100;
 }
-.btn--white:hover svg {
+.sbui-btn-default:hover svg {
   @apply text-gray-600;
 }
-.btn--outline:hover svg {
+.sbui-btn-outline:hover svg {
   @apply text-white;
 }
-.btn--ghost:hover svg {
-  @apply bg-brand-300
+.sbui-btn-ghost:hover svg {
+  @apply bg-brand-300;
+}
+
+.sbui-btn--with-icon {
+  @apply pl-10;
+}
+
+.sbui-btn-icon-container {
+  @apply absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none;
 }

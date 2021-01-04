@@ -1,0 +1,51 @@
+.sbui-formlayout {
+  @apply grid gap-2;
+}
+
+.sbui-formlayout--non-responsive {
+  @apply grid-cols-12;
+}
+
+.sbui-formlayout--responsive {
+  @apply md:grid-cols-12;
+}
+
+.sbui-formlayout__label-container-horizontal {
+  @apply justify-between col-span-12;
+}
+
+.sbui-formlayout__label-container-vertical {
+  @apply col-span-5;
+}
+
+.sbui-formlayout__content-container-horizontal {
+  @apply col-span-12;
+}
+
+.sbui-formlayout__content-container-vertical {
+  @apply col-span-7;
+}
+
+.sbui-formlayout__content-container-vertical--align-right {
+  @apply text-right;
+}
+
+.sbui-formlayout__label {
+  @apply block text-sm text-gray-700 dark:text-gray-200 font-medium;
+}
+
+.sbui-formlayout__label-opt {
+  @apply text-sm text-gray-400 dark:text-gray-300;
+}
+
+.sbui-formlayout__error {
+  @apply mt-2 text-sm text-red-500;
+}
+
+.sbui-formlayout__description {
+  @apply mt-2 text-sm text-gray-400 dark:text-gray-300;
+}
+
+/* .sbui-formlayout__content-container--width-25 {
+  width: 
+} */

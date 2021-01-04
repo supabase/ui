@@ -1,0 +1,43 @@
+.sbui-badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-50 text-brand-800;
+}
+
+.sbui-badge--large {
+  @apply px-3 py-0.5 rounded-full text-sm;
+}
+
+.sbui-badge-dot {
+  @apply -ml-0.5 mr-1.5 h-2 w-2;
+}
+
+.sbui-badge--gray {
+  @apply bg-gray-100 text-gray-800;
+}
+
+.sbui-badge--red {
+  @apply bg-red-100 text-red-800;
+}
+
+.sbui-badge--yellow {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.sbui-badge--green {
+  @apply bg-green-100 text-green-800;
+}
+
+.sbui-badge--blue {
+  @apply bg-blue-100 text-blue-800;
+}
+
+.sbui-badge--indigo {
+  @apply bg-indigo-100 text-indigo-800;
+}
+
+.sbui-badge--purple {
+  @apply bg-purple-100 text-purple-800;
+}
+
+.sbui-badge--pink {
+  @apply bg-pink-100 text-pink-800;
+}
