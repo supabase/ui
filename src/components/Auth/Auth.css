@@ -1,0 +1,16 @@
+.sbui-auth-container {
+  @apply w-full;
+}
+
+.sbui-auth-google-button {
+  background-color: 'white' !important;
+  color: '#3d3d3d';
+}
+
+.sbui-auth-facebook-button {
+  background-color: '#4267B2' !important;
+}
+
+.sbui-auth-twitter-button {
+  background-color: '#1DA1F2' !important;
+}
