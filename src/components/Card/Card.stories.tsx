@@ -30,6 +30,12 @@ export const withMeta = (args: any) => (
   </Card>
 )
 
+export const withHover = (args: any) => (
+  <Card {...args}>
+    <Card.Meta title={'To Do List with Vue.JS'} description={'To Do List with Vue.JS'}/>
+  </Card>
+)
+
 Default.args = {
   title: 'I am a title',
   titleExtra: <Typography.Link>Learn more</Typography.Link>,
@@ -47,4 +53,9 @@ withCover.args = {
 
 withMeta.args = {
   title: 'title is here'
+}
+
+withHover.args = {
+  title: 'This card can hover',
+  hoverable: true
 }
