@@ -30,7 +30,3 @@ export * from './components/Upload/index'
 // ARCHIVE
 
 export * from './components/Textarea/index'
-
-// AUTH
-
-export * from './components/Auth/index'
