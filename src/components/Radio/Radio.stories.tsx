@@ -1,39 +1,53 @@
 import React from 'react'
 
-import { RadioGroup } from '.'
+import { action } from '@storybook/addon-actions'
+
+import Radio from '.'
 import { Icon } from '../Icon'
-
-export default {
-  title: 'Data Input/RadioGroup',
-  component: RadioGroup,
-}
-
-export const Default = (args :any) => <RadioGroup {...args}/>
-export const withCards = (args :any) => <RadioGroup {...args}/>
 
 const options = [
   {
-    id: 'radiogroup-1',
     label: 'Comments',
     description: 'Get notified when someones posts a comment on a posting. Get notified when someones posts a comment on a posting Get notified when someones posts a comment on a posting.',
-    active: true,
     value: 1
   },
   {
-    id: 'radiogroup-2',
     label: 'Candidates',
     description: 'Get notified when a candidate applies for a job.',
-    active: false,
     value: 2
   },
   {
-    id: 'radiogroup-3',
     label: 'Offers',
     description: 'Get notified when a candidate accepts or rejects an offer.',
-    active: false,
     value: 3
   }
 ]
+
+export default {
+  title: 'Data Input/Radio',
+  component: Radio,
+  argTypes: { onChange: { action: 'onChange' } },
+}
+
+interface onToggleProps {
+  e?: any
+}
+
+export const Default = (args :any) => (
+  <Radio.Group {...args} onChange={action('onChange')}>
+    {options.map((x, i) => (
+      <Radio name='sbui-radiogroup' key={i} id={x.id} label={x.label} description={x.description} value={x.value}/>
+    ))}
+  </Radio.Group>
+)
+
+export const withOptionsObj = (args :any) => (
+  <Radio.Group {...args}/>
+)
+
+export const withCards = (args :any) => (
+  <Radio.Group {...args}/>
+)
 
 Default.args = {
   className: 'font-sans',
@@ -43,7 +57,18 @@ Default.args = {
   label: 'Radio group main label',
   labelOptional: 'This is an optional label',
   layout: 'vertical',
-  name: 'radiogroup-example',
+  name: 'radiogroup-example-1'
+}
+
+withOptionsObj.args = {
+  className: 'font-sans',
+  descriptionText: 'This is optional description',
+  disabled: false,
+  error: '',
+  label: 'Radio group main label',
+  labelOptional: 'This is an optional label',
+  layout: 'vertical',
+  name: 'radiogroup-example-2',
   options: options
 }
 
@@ -55,7 +80,7 @@ withCards.args = {
   label: 'Radio group main label',
   labelOptional: 'This is an optional label',
   layout: 'vertical',
-  name: 'radiogroup-example',
+  name: 'radiogroup-example-3',
   options: options,
   type: 'cards',
 }
