@@ -21,6 +21,10 @@ export const withDescription = (args :any) => <Input {...args} />
 
 export const withCustomStyle = (args :any) => <Input {...args} />
 
+export const textArea = (args :any) => <Input.TextArea {...args} />
+
+export const textAreaWithLimit = (args :any) => <Input.TextArea {...args} />
+
 const icon : any = <Icon stroke={'#666666'} className={''} type={"Package"}/>
 
 Default.args = {
@@ -79,3 +83,17 @@ withCustomStyle.args = {
   style: {width: '50%'}
 }
 
+textArea.args = {
+  type: 'text',
+  label: 'This is a text area',
+  className: 'font-sans'
+}
+
+textAreaWithLimit.args = {
+  type: 'text',
+  label: 'This is a text area, with 10 rows',
+  labelOptional: '500 character limit',
+  className: 'font-sans',
+  rows: 10,
+  limit: 500
+}
