@@ -12,7 +12,7 @@ interface Props {
 
 function Icon({
   className,
-  size,
+  size = 21,
   type,
   color,
   strokeWidth,
