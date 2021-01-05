@@ -13,6 +13,7 @@ interface Props {
   underline? : boolean, 
   strikethrough? : boolean, 
   strong? : boolean
+  small? : boolean
 }
 
 function Text({ 
@@ -26,7 +27,8 @@ function Text({
   keyboard,
   underline,
   strikethrough,
-  strong
+  strong,
+  small
 }: Props) {
 
   let classes = ['sbui-typography']
@@ -48,6 +50,10 @@ function Text({
 
   if (strikethrough) {
     classes.push(`sbui-typography-strikethrough`)
+  }
+ 
+  if (small) {
+    classes.push('sbui-typography-small')
   }
 
   let content = []

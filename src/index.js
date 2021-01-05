@@ -25,11 +25,8 @@ export * from './components/Checkbox/index'
 export * from './components/Input/index'
 export * from './components/Radio/index'
 export * from './components/Toggle/index'
+export * from './components/Upload/index'
 
 // ARCHIVE
 
 export * from './components/Textarea/index'
-
-// AUTH
-
-export * from './components/Auth/index'

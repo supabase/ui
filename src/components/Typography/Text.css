@@ -1,5 +1,10 @@
+
 span.sbui-typography {
   @apply text-sm;
+}
+
+span.sbui-typography-small {
+  @apply text-xs;
 }
 
 .sbui-typography.sbui-typography-secondary {

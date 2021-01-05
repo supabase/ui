@@ -2,7 +2,7 @@ import React from 'react'
 import './Space.css'
 
 function Space (props: any) {
-  const { direction, size, className, block } = props
+  const { direction, size, className, block, style } = props
 
   const classes = []
   classes.push(direction === 'vertical' ? 'sbui-space-col' : 'sbui-space-row')
@@ -15,7 +15,7 @@ function Space (props: any) {
   }
 
   return (
-    <div className={classes.join(' ')}>
+    <div className={classes.join(' ')} style={style}>
       {props.children}
     </div>
   )

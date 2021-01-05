@@ -59,7 +59,7 @@ function Input({
   placeholder,
   type,
   value,
-  style
+  style,
 }: Props) {
   // if `type` is not assigned, default to text input
   if (!type) {
@@ -160,7 +160,7 @@ function TextArea({
   value,
   style,
   rows = 4,
-  limit
+  limit,
 }: TextAreaProps) {
   const [charLength, setCharLength] = useState(0)
 
@@ -169,7 +169,7 @@ function TextArea({
   if (icon) classes.push('sbui-input--with-icon')
 
   function onInputChange(e: any) {
-    if(onChange) {
+    if (onChange) {
       onChange(e.target.value)
       setCharLength(e.target.value.length)
     }
@@ -202,7 +202,12 @@ function TextArea({
         {value}
       </textarea>
       {limit && (
-        <Typography.Text style={{marginTop:'0.5rem', display: 'block'}}>{charLength}/{limit}</Typography.Text>
+        <Typography.Text
+          type="secondary"
+          style={{ marginTop: '0.5rem', display: 'block' }}
+        >
+          {charLength}/{limit}
+        </Typography.Text>
       )}
     </FormLayout>
   )

@@ -1,14 +1,89 @@
 # Supabase UI
 
-## Using Supabase UI
+Supabase UI is a React UI library.
 
-_Please note, Supabase UI is still a work-in-progress until a major release is published_
+🚧  
+Supabase UI is still a work-in-progress until a major release is published.
 
-Install the NPM package
+## Roadmap
+
+Some of these are a work in progress - we invite anyone to submit a [feature request](https://github.com/supabase/ui/issues/new?labels=enhancement&template=2.Feature_request.md) if there is something you would like to see.
+
+*General*
+
+- [x] Button
+- [x] Typography
+- [x] Icon
+
+*Data Input*
+
+- [x] Input
+- [ ] InputNumber
+- [x] Select
+- [x] Checkbox (and Checkbox Groups)
+- [x] Radio (and Radio Groups)
+- [x] Toggle (work in progress)
+- [ ] Upload (work in progress)
+- [ ] Slider
+- [ ] Date picker
+- [ ] Time picker
+- [ ] Form
+
+*Layout*
+
+- [ ] Layout
+- [ ] Grid (Flex)
+- [ ] Divider
+- [x] Space (Flex)
+
+*Display*
+
+- [x] Card (work in progress)
+- [ ] Avatar
+- [ ] Alert
+- [x] Badge
+- [ ] Menu
+- [ ] Tooltips
+- [ ] Tables
+- [ ] Code block
+
+*Navigation*
+
+- [ ] Tabs
+- [ ] Breadcrumb
+- [ ] Dropdown
+- [ ] Menu
+- [ ] Page Header
+- [ ] Sidebar
+- [ ] Flyout menu
+- [ ] Steps
+
+*Overlay*
+
+- [x] Modal
+- [ ] Drawer / SidePanel
+- [ ] Toast messages / Notifaction
+- [ ] Progress
+- [ ] Feeds / Timeline
+
+*Misc*
+
+- [ ] Storybook docs
+- [ ] Themeing
+- [ ] Supabase Auth Elements
+- [ ] Documentation website
+
+We would be keen to hear any feedback on this project.
+
+Feel free to [submit a question or idea here](https://github.com/supabase/supabase/discussions/category_choices)
+
+## Install Supabase UI
 
 ```cli
 npm install @supabase/ui
 ```
+
+## Using Supabase UI
 
 Example of importing a component
 
@@ -21,6 +96,8 @@ return (
   <Button>I am a Supabase UI button</Button>
 )
 ```
+
+It is probably advisable to use [Normalize](https://github.com/sindresorhus/modern-normalize) with Supabase UI for the timebeing.
 
 ## Run storybook locally
 
