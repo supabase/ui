@@ -4,7 +4,7 @@ import './Button.css'
 import { Transition, Icon } from '../../index'
 
 export const SIZES = ['tiny', 'small', 'medium', 'large', 'xlarge']
-export const VARIANTS = ['primary', 'default', 'secondary', 'outline', 'dashed', 'ghost']
+export const VARIANTS = ['primary', 'default', 'secondary', 'outline', 'dashed', 'link', 'text']
 
 const Button = ({
   block,
@@ -51,14 +51,6 @@ const Button = ({
       xlarge: 'sbui-btn--xlarge',
     }
     classes.push(sizeClasses[size])
-  }
-
-  let variantClasses = {
-    primary: 'sbui-btn-primary',
-    secondary: 'sbui-btn-secondary',
-    default: 'sbui-btn-default',
-    outline: 'sbui-btn-outline',
-    ghost: 'sbui-btn-ghost',
   }
 
   classes.push(`sbui-btn-${type}`)
