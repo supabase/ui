@@ -29,6 +29,7 @@ const Button = ({
   }
 
   if (block) {
+    containerClasses.push('sbui-btn--w-full')
     classes.push('sbui-btn--w-full')
   }
 
@@ -67,7 +68,7 @@ const Button = ({
 
   return (
     <React.Fragment>
-      <span className={containerClasses}>
+      <span className={containerClasses.join(' ')}>
         <button
           {...props}
           className={`sbui-btn ${classes.join(' ')} ${classes.join(
