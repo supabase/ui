@@ -101,8 +101,7 @@ const Button = ({
           {icon && !loading && (
             <div className="sbui-btn-icon-container">{icon}</div>
           )}
-
-          <span>{children}</span>
+          {children && <span>{children}</span>}
         </button>
       </span>
     </React.Fragment>
