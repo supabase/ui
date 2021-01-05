@@ -63,8 +63,8 @@
   @apply text-brand-700 bg-transparent text-brand-700 border-none hover:bg-brand-300 hover:bg-opacity-25;
 }
 .sbui-btn-text {
-  @apply text-brand-700 bg-transparent border-none hover:bg-gray-400 hover:bg-opacity-25;
-  @apply dark:text-dark-300 hover:bg-dark-600;
+  @apply text-gray-400 bg-transparent border-none hover:bg-gray-200 hover:bg-opacity-25;
+  @apply dark:text-dark-300 dark:hover:bg-dark-600;
 }
 
 .sbui-btn--danger {
