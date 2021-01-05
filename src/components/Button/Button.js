@@ -4,7 +4,7 @@ import './Button.css'
 import { Transition, Icon } from '../../index'
 
 export const SIZES = ['tiny', 'small', 'medium', 'large', 'xlarge']
-export const VARIANTS = ['primary', 'default', 'secondary', 'outline', 'ghost']
+export const VARIANTS = ['primary', 'default', 'secondary', 'outline', 'dashed', 'ghost']
 
 const Button = ({
   block,
@@ -48,14 +48,6 @@ const Button = ({
     classes.push(sizeClasses[size])
   }
 
-  let textColor = {
-    primary: 'text-white hover:text-gray-500',
-    secondary: 'text-brand-800',
-    default: 'text-gray-500',
-    outline: 'text-brand-500',
-    ghost: 'text-brand-500',
-  }
-
   let variantClasses = {
     primary: 'sbui-btn-primary',
     secondary: 'sbui-btn-secondary',
@@ -64,7 +56,7 @@ const Button = ({
     ghost: 'sbui-btn-ghost',
   }
 
-  classes.push(variantClasses[type])
+  classes.push(`sbui-btn-${type}`)
 
   return (
     <React.Fragment>
