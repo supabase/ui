@@ -4,7 +4,7 @@ import './Button.css'
 import { Transition, Icon } from '../../index'
 
 export const SIZES = ['tiny', 'small', 'medium', 'large', 'xlarge']
-export const VARIANTS = ['primary', 'default', 'secondary', 'outline', 'ghost']
+export const VARIANTS = ['primary', 'default', 'secondary', 'outline', 'dashed', 'link', 'text']
 
 const Button = ({
   block,
@@ -18,6 +18,7 @@ const Button = ({
   size = 'medium',
   style,
   type = 'primary',
+  danger,
   ...props
 }) => {
   // default classes
@@ -29,11 +30,16 @@ const Button = ({
   }
 
   if (block) {
+    containerClasses.push('sbui-btn--w-full')
     classes.push('sbui-btn--w-full')
   }
 
   if (icon) {
     classes.push('sbui-btn--with-icon')
+  }
+
+  if (danger ) {
+    classes.push('sbui-btn--danger')
   }
 
   if (size) {
@@ -47,27 +53,11 @@ const Button = ({
     classes.push(sizeClasses[size])
   }
 
-  let textColor = {
-    primary: 'text-white hover:text-gray-500',
-    secondary: 'text-brand-800',
-    default: 'text-gray-500',
-    outline: 'text-brand-500',
-    ghost: 'text-brand-500',
-  }
-
-  let variantClasses = {
-    primary: 'sbui-btn-primary',
-    secondary: 'sbui-btn-secondary',
-    default: 'sbui-btn-default',
-    outline: 'sbui-btn-outline',
-    ghost: 'sbui-btn-ghost',
-  }
-
-  classes.push(variantClasses[type])
+  classes.push(`sbui-btn-${type}`)
 
   return (
     <React.Fragment>
-      <span className={containerClasses}>
+      <span className={containerClasses.join(' ')}>
         <button
           {...props}
           className={`sbui-btn ${classes.join(' ')} ${classes.join(
@@ -79,7 +69,7 @@ const Button = ({
           type="button"
         >
           <Transition
-            show={loading ? true : false}
+            show={loading || icon ? true : false}
             enter="ease-out duration-300"
             enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             enterTo="opacity-100 translate-y-0 sm:scale-100"
@@ -87,22 +77,17 @@ const Button = ({
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <Icon
-              size={16}
-              className={
-                'sbui-btn--icon-stroke ' +
-                textColor[type] +
-                ' sbui-btn--anim--spin'
-              }
-              type={'Loader'}
-            />
+            {loading ? (
+              <Icon
+                size={21}
+                className={'sbui-btn--anim--spin'}
+                type={'Loader'}
+              />
+            ) : icon ? (
+              <div className="sbui-btn-icon-container">{icon}</div>
+            ) : null}
           </Transition>
-
-          {icon && !loading && (
-            <div className="sbui-btn-icon-container">{icon}</div>
-          )}
-
-          <span>{children}</span>
+          {children && <span>{children}</span>}
         </button>
       </span>
     </React.Fragment>
@@ -118,6 +103,7 @@ Button.propTypes = {
   loading: PropTypes.bool,
   disabled: PropTypes.bool,
   icon: PropTypes.string,
+  danger: PropTypes.bool
 }
 
 export default Button

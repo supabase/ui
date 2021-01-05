@@ -3,7 +3,7 @@
 }
 
 .sbui-btn {
-  @apply relative cursor-pointer inline-flex space-x-2 text-center;
+  @apply relative cursor-pointer inline-flex space-x-2 text-center border border-solid border-transparent transition ease-out duration-200;
 }
 
 .sbui-btn-container--shadow {
@@ -15,7 +15,7 @@
 }
 
 .sbui-btn:disabled {
-  @apply opacity-75 cursor-default;
+  @apply opacity-75 cursor-not-allowed;
   pointer-events: none;
 }
 
@@ -24,38 +24,56 @@
 */
 
 .sbui-btn--tiny {
-  @apply inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm;
+  @apply px-2.5 py-1.5 text-xs font-medium rounded;
 }
 .sbui-btn--small {
-  @apply inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md;
+  @apply px-3 py-2 text-sm leading-4 font-medium rounded-md;
 }
 .sbui-btn--medium {
-  @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm;
+  @apply px-4 py-2 text-sm font-medium rounded-md;
 }
 .sbui-btn--large {
-  @apply inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm;
+  @apply px-4 py-2 text-base font-medium rounded-md;
 }
 .sbui-btn--xlarge {
-  @apply inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm;
+  @apply px-6 py-3 text-base font-medium rounded-md;
 }
 
 /*
   Button varients
 */
 .sbui-btn-primary {
-  @apply text-white hover:text-gray-500 bg-brand-700 hover:bg-brand-600;
-}
-.sbui-btn-secondary {
-  @apply text-brand-800 text-brand-800 bg-brand-50 bg-opacity-75 hover:bg-brand-100;
+  @apply text-white hover:text-gray-500 bg-brand-700 hover:bg-brand-600 dark:hover:bg-brand-800;
 }
 .sbui-btn-default {
-  @apply text-gray-500 text-gray-500 bg-white border-gray-100 hover:text-gray-600 hover:bg-white hover:border-gray-200;
+  @apply text-gray-500 bg-white border-gray-300 hover:text-gray-600 hover:bg-white hover:border-gray-200; 
+  @apply dark:border-dark-700 dark:bg-gray-600 dark:text-dark-200;
+}
+.sbui-btn-secondary {
+  @apply text-gray-600 bg-gray-200 hover:text-gray-700 hover:bg-gray-300 dark:text-gray-300 dark:bg-gray-500 dark:hover:text-gray-200;
 }
 .sbui-btn-outline {
-  @apply text-brand-700 bg-transparent border border-brand-700 border-solid text-brand-700 hover:bg-brand-700 hover:text-white;
+  @apply border text-gray-500 bg-transparent border-gray-200 border-solid hover:bg-white hover:text-gray-600 hover:border-gray-600 dark:text-white dark:border-dark-400 dark:hover:text-dark-600 dark:hover:border-white;
 }
-.sbui-btn-ghost {
+.sbui-btn-dashed {
+  @apply border text-gray-500 bg-transparent border-gray-200 border-dashed hover:text-gray-600 hover:border-gray-600;
+  @apply dark:text-white dark:border-dark-400 dark:hover:text-white dark:hover:border-white;
+}
+.sbui-btn-link {
   @apply text-brand-700 bg-transparent text-brand-700 border-none hover:bg-brand-300 hover:bg-opacity-25;
+}
+.sbui-btn-text {
+  @apply text-gray-400 bg-transparent border-none hover:bg-gray-200 hover:bg-opacity-25;
+  @apply dark:text-dark-300 dark:hover:bg-dark-600;
+}
+
+.sbui-btn--danger {
+  @apply border-red-500 text-red-500; 
+  @apply dark:border-red-500 dark:text-red-500;
+}
+
+.sbui-btn-primary.sbui-btn--danger {
+  @apply bg-red-500 text-white
 }
 
 /* 
@@ -94,10 +112,10 @@
   @apply text-gray-500;
 }
 .sbui-btn-secondary:hover svg {
-  @apply bg-brand-100;
+  @apply text-gray-100;
 }
 .sbui-btn-default:hover svg {
-  @apply text-gray-600;
+  @apply text-gray-300;
 }
 .sbui-btn-outline:hover svg {
   @apply text-white;
@@ -107,9 +125,9 @@
 }
 
 .sbui-btn--with-icon {
-  @apply pl-10;
+  /* @apply pl-10; */
 }
 
 .sbui-btn-icon-container {
-  @apply absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none;
+  @apply inset-y-0 flex items-center pointer-events-none;
 }

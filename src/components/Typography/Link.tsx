@@ -1,3 +1,4 @@
+import { HandlerFunction } from '@storybook/addon-actions'
 import React from 'react'
 import './Link.css'
 
@@ -7,6 +8,7 @@ interface Props {
   href?: string
   className?: string
   style?: React.CSSProperties
+  onClick?: HandlerFunction
 }
 
 function Link({
@@ -14,7 +16,7 @@ function Link({
   target = '_blank',
   href,
   className,
-
+  onClick,
   style,
 }: Props) {
   let classes = ['sbui-typography sbui-typography-link']
@@ -24,6 +26,7 @@ function Link({
 
   return (
     <a
+      onClick={onClick}
       className={classes.join(' ')}
       href={href}
       target={target}

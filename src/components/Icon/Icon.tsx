@@ -12,7 +12,7 @@ interface Props {
 
 function Icon({
   className,
-  size,
+  size = 21,
   type,
   color,
   strokeWidth,
@@ -24,7 +24,7 @@ function Icon({
 
   return (
     <FeatherIcon
-      stroke={stroke ? stroke : color}
+      stroke={stroke ? stroke : color ? color : 'currentColor'}
       className={`${className}`}
       strokeWidth={strokeWidth}
       size={size}
