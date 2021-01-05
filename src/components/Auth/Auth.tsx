@@ -40,13 +40,13 @@ function Auth({
   socialColors = false,
   socialButtonSize,
   providers,
-  view = 'main'
+  view = 'main',
 }: Props) {
   const [authView, setAuthView] = useState(view)
 
   const verticalSocialLayout = socialLayout === 'vertical' ? true : false
-  
-  let containerClasses = ['sbui-auth-container']
+
+  let containerClasses = ['']
   if (className) {
     containerClasses.push(className)
   }
@@ -105,6 +105,7 @@ function SocialAuth({
   verticalSocialLayout,
   ...props
 }: Props) {
+  
   const buttonStyles: any = {
     google: {
       backgroundColor: '#ce4430',
@@ -141,8 +142,7 @@ function SocialAuth({
             <Space size={2} direction={socialLayout}>
               {providers.map((provider) => {
                 // @ts-ignore
-                const TheIcon = SocialIcons[provider]
-
+                const AuthIcon = SocialIcons[provider]
                 return (
                   <div style={!verticalSocialLayout ? { flexGrow: 1 } : {}}>
                     <Button
@@ -151,7 +151,7 @@ function SocialAuth({
                       shadow
                       size={socialButtonSize}
                       style={socialColors ? buttonStyles[provider] : {}}
-                      icon={<TheIcon />}
+                      icon={<AuthIcon />}
                     >
                       {verticalSocialLayout && 'Sign up with ' + provider}
                     </Button>
@@ -220,17 +220,15 @@ function MagicLink({ setAuthView }: any) {
   return (
     <div>
       <Space size={4} direction={'vertical'}>
-        <Space size={2} direction={'vertical'}>
-          <Space size={3} direction={'vertical'}>
-            <Input
-              label="Email address"
-              placeholder="Your email address"
-              icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
-            />
-            <Button block size="large" icon={<Icon size={21} type="Inbox" />}>
-              Send magic link
-            </Button>
-          </Space>
+        <Space size={3} direction={'vertical'}>
+          <Input
+            label="Email address"
+            placeholder="Your email address"
+            icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
+          />
+          <Button block size="large" icon={<Icon size={21} type="Inbox" />}>
+            Send magic link
+          </Button>
         </Space>
         <Typography.Link onClick={() => setAuthView(VIEWS.MAIN)}>
           Go back to sign up
@@ -244,17 +242,15 @@ function ForgottenPassword({ setAuthView }: any) {
   return (
     <div>
       <Space size={4} direction={'vertical'}>
-        <Space size={2} direction={'vertical'}>
-          <Space size={3} direction={'vertical'}>
-            <Input
-              label="Email address"
-              placeholder="Your email address"
-              icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
-            />
-            <Button block size="large" icon={<Icon size={21} type="Inbox" />}>
-              Send reset password instructions
-            </Button>
-          </Space>
+        <Space size={3} direction={'vertical'}>
+          <Input
+            label="Email address"
+            placeholder="Your email address"
+            icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
+          />
+          <Button block size="large" icon={<Icon size={21} type="Inbox" />}>
+            Send reset password instructions
+          </Button>
         </Space>
         <Typography.Link onClick={() => setAuthView(VIEWS.MAIN)}>
           Go back to sign up
