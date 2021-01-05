@@ -18,6 +18,7 @@ const Button = ({
   size = 'medium',
   style,
   type = 'primary',
+  danger,
   ...props
 }) => {
   // default classes
@@ -35,6 +36,10 @@ const Button = ({
 
   if (icon) {
     classes.push('sbui-btn--with-icon')
+  }
+
+  if (danger ) {
+    classes.push('sbui-btn--danger')
   }
 
   if (size) {
@@ -106,6 +111,7 @@ Button.propTypes = {
   loading: PropTypes.bool,
   disabled: PropTypes.bool,
   icon: PropTypes.string,
+  danger: PropTypes.bool
 }
 
 export default Button
