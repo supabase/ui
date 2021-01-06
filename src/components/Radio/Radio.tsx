@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FormLayout } from '../../lib/Layout'
+import { Space } from '../Space'
 import './Radio.css'
 import { RadioContext } from './RadioContext'
 
@@ -86,12 +87,14 @@ function RadioGroup({
           descriptionText={descriptionText}
           className={className}
         >
-          <div className="bg-white dark:bg-transparent rounded-md -space-y-px">
+          <div className="dark:bg-transparent rounded-md -space-y-px">
+            <Space direction='vertical' size='px' minus>
             {options ? options.map((option: InputProps) => {
               return (
                 <Radio id={option.id} label={option.label} value={option.value} description={option.description}/>
               )
             }) : children}
+            </Space>
           </div>
         </FormLayout>
       </fieldset>

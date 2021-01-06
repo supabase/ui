@@ -2,11 +2,11 @@ import React from 'react'
 import './Space.css'
 
 function Space (props: any) {
-  const { direction, size, className, block, style } = props
+  const { direction, size, className, block, style, minus } = props
 
   const classes = []
   classes.push(direction === 'vertical' ? 'sbui-space-col' : 'sbui-space-row')
-  classes.push('sbui-space-' + (direction === 'vertical' ? 'y' : 'x') + '-' + size)
+  classes.push('sbui-' + (minus ? '-' : '') + 'space-' + (direction === 'vertical' ? 'y' : 'x') + '-' + size)
   if(block) {
     classes.push('sbui-space--block')
   }
