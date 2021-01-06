@@ -1,9 +1,11 @@
 .sbui-btn-container {
-  @apply inline-flex rounded-md;
+  @apply inline-flex;
 }
 
 .sbui-btn {
+  @apply font-medium rounded;
   @apply relative cursor-pointer inline-flex space-x-2 text-center border border-solid border-transparent transition ease-out duration-200;
+  font-family: inherit;
 }
 
 .sbui-btn-container--shadow {
@@ -24,19 +26,19 @@
 */
 
 .sbui-btn--tiny {
-  @apply px-2.5 py-1.5 text-xs font-medium rounded;
+  @apply px-2.5 py-1.5 text-xs;
 }
 .sbui-btn--small {
-  @apply px-3 py-2 text-sm leading-4 font-medium rounded-md;
+  @apply px-3 py-2 text-sm leading-4;
 }
 .sbui-btn--medium {
-  @apply px-4 py-2 text-sm font-medium rounded-md;
+  @apply px-4 py-2 text-sm;
 }
 .sbui-btn--large {
-  @apply px-4 py-2 text-base font-medium rounded-md;
+  @apply px-4 py-2 text-base;
 }
 .sbui-btn--xlarge {
-  @apply px-6 py-3 text-base font-medium rounded-md;
+  @apply px-6 py-3 text-base;
 }
 
 /*

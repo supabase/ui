@@ -4,7 +4,7 @@
 }
 
 .sbui-space-row {
-  @apply flex flex-row;
+  @apply flex flex-row items-center;
 }
 
 .sbui-space-col {
