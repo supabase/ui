@@ -36,7 +36,12 @@
 }
 
 .sbui-radio {
-  @apply ml-0 mr-3.5 rounded-2xl focus:ring-brand-500 h-4 w-4 text-brand-600 cursor-pointer border-solid border border-gray-300 ;
+  @apply h-4 w-4 ml-0 mr-3.5 rounded-2xl border border-solid transition-all;
+  
+  @apply text-brand-600 cursor-pointer border-gray-300;
+  @apply focus:ring-brand-500 hover:border-brand-700 focus:outline-none;
+
+  @apply dark:bg-transparent dark:hover:border-brand-700;
 }
 
 .sbui-radio:checked {
