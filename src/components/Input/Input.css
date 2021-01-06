@@ -4,6 +4,7 @@
 
 .sbui-input {
   @apply block box-border w-full rounded-md shadow-sm pl-3 pr-3 py-2 bg-white dark:bg-transparent dark:text-white shadow-sm focus:ring-brand-500 focus:border-brand-500 text-sm border border-solid border-gray-300 dark:border-gray-400 rounded-md;
+  font-family: inherit;
 }
 
 .sbui-input--error {
