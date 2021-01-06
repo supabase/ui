@@ -3,8 +3,20 @@
 }
 
 .sbui-input {
-  @apply block box-border w-full rounded-md shadow-sm pl-3 pr-3 py-2 bg-white dark:bg-transparent dark:text-white shadow-sm focus:ring-brand-500 focus:border-brand-500 text-sm border border-solid border-gray-300 dark:border-gray-400 rounded-md;
+  @apply block box-border pl-3 pr-3 py-2 w-full rounded-md shadow-sm text-sm border border-solid transition-all;
+  @apply bg-white border-gray-300;
+  @apply focus:ring-brand-500 focus:border-brand-500 focus:outline-none;
+  
+  @apply dark:bg-transparent dark:text-white dark:border-gray-400;
+  @apply dark:focus:border-brand-500 dark:focus:ring-brand-500;
+  
+  box-shadow: 0 0 0 2px rgba(255,255,255,.0);
   font-family: inherit;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.sbui-input:focus {
+  box-shadow: 0 0 0 2px rgba(62,207,142,.1);
 }
 
 .sbui-input--error {

@@ -3,11 +3,23 @@
 }
 
 .sbui-select {
-  @apply block w-full bg-white dark:bg-transparent pl-3 pr-10 py-2 text-gray-700 dark:text-white border-gray-300 dark:border-gray-400 focus:outline-none focus:ring-brand-500 focus:border-brand-500 text-sm rounded-md;
+  @apply block w-full bg-white pl-3 pr-10 py-2 text-sm rounded-md transition-all;
+  
+  @apply text-gray-700 border-gray-300;
+  @apply focus:ring-brand-500 focus:border-brand-500 focus:outline-none;
+
+  @apply dark:bg-transparent dark:text-white dark:border-gray-400;
+  @apply dark:focus:border-brand-500;
   -webkit-appearance: none;
   -moz-appearance: none;
   text-indent: 1px;
   text-overflow: '';
+  box-shadow: 0 0 0 2px rgba(255,255,255,.0);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.sbui-select:focus {
+  box-shadow: 0 0 0 2px rgba(62,207,142,.1);
 }
 
 .sbui-select--error {

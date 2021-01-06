@@ -32,7 +32,6 @@ Default.args = {
   disabled: false,
   label: 'Name',
   className: 'font-sans',
-  value: 'Value of input',
   layout: 'vertical'
 }
 
@@ -42,7 +41,6 @@ ErrorState.args = {
   disabled: false,
   label: 'Input with an error message',
   className: 'font-sans',
-  value: 'Value of input',
   error: 'Your password must be less than 4 characters.'
 }
 
@@ -52,7 +50,6 @@ withIcon.args = {
   disabled: false,
   label: 'Input with an icon',
   className: 'font-sans',
-  value: 'Value of input',
   icon: icon
 }
 
@@ -62,7 +59,6 @@ withOption.args = {
   disabled: false,
   label: 'Input with an error message',
   className: 'font-sans',
-  value: 'Value of input',
   labelOptional: 'This is required'
 }
 
@@ -72,7 +68,6 @@ withDescription.args = {
   disabled: false,
   label: 'Input with an error message',
   className: 'font-sans',
-  value: 'Value of input',
   descriptionText: 'Make your password short and easy to guess'
 }
 
