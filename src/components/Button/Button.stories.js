@@ -15,7 +15,7 @@ export const withBlock = (args) => <Button {...args}>Button text</Button>
 export const withOnlyIcon = (args) => <Button {...args}/>
 export const withOnlyLoading = (args) => <Button {...args}/>
 
-const icon = <Icon className={''} type={"Package"}/>
+const icon = <Icon type={"Package"}/>
 
 withIcon.args = {
   type: 'primary',

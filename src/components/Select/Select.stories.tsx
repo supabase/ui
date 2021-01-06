@@ -65,7 +65,7 @@ export const withDescription = (args: any) => (
 )
 
 const data = ['England', 'Wales', 'Scotland', 'Ireland']
-const icon = <Icon stroke={'#666666'} type={'Book'} />
+const icon = <Icon  type={'Book'} />
 
 Default.args = {
   disabled: false,

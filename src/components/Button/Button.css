@@ -121,7 +121,7 @@
   @apply outline-none ring;
 }
 
-.sbui-btn-primary:hover svg {
+/* .sbui-btn-primary:hover svg {
   @apply text-gray-500;
 }
 .sbui-btn-secondary:hover svg {
@@ -135,7 +135,7 @@
 }
 .sbui-btn-ghost:hover svg {
   @apply bg-brand-300;
-}
+} */
 
 .sbui-btn--with-icon {
   /* @apply pl-10; */

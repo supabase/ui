@@ -25,7 +25,7 @@ export const textArea = (args :any) => <Input.TextArea {...args} />
 
 export const textAreaWithLimit = (args :any) => <Input.TextArea {...args} />
 
-const icon : any = <Icon stroke={'#666666'} className={''} type={"Package"}/>
+const icon : any = <Icon type={"Package"}/>
 
 Default.args = {
   placeholder: 'Type text here ...',
