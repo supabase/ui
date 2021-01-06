@@ -6,10 +6,12 @@
   @apply font-medium rounded;
   @apply relative cursor-pointer inline-flex space-x-2 text-center border border-solid border-transparent transition ease-out duration-200;
   font-family: inherit;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.12);
+  -webkit-box-shadow: 0 2px 0 rgba(0,0,0,.045);
 }
 
 .sbui-btn-container--shadow {
-  @apply shadow-sm;
+  box-shadow: 0 2px 0 rgba(0,0,0,.045);
 }
 
 .sbui-btn--w-full {
@@ -45,14 +47,23 @@
   Button varients
 */
 .sbui-btn-primary {
-  @apply text-white hover:text-gray-500 bg-brand-700 hover:bg-brand-600 dark:hover:bg-brand-800;
+  @apply text-white bg-brand-700 hover:bg-brand-600;
+  @apply dark:hover:bg-brand-800;
 }
 .sbui-btn-default {
-  @apply text-gray-500 bg-white border-gray-300 hover:text-gray-600 hover:bg-white hover:border-gray-200; 
+  @apply text-gray-500 bg-white border-gray-300 hover:text-gray-600; 
+  @apply hover:bg-white hover:border-gray-200; 
+  
   @apply dark:border-dark-700 dark:bg-gray-600 dark:text-dark-200;
+  @apply dark:hover:bg-gray-700;
+  
 }
 .sbui-btn-secondary {
-  @apply text-gray-600 bg-gray-200 hover:text-gray-700 hover:bg-gray-300 dark:text-gray-300 dark:bg-gray-500 dark:hover:text-gray-200;
+  @apply text-gray-600 bg-gray-200;
+  @apply hover:text-gray-700 hover:bg-gray-300;
+
+  @apply dark:text-gray-300 dark:bg-gray-500;
+  @apply dark:hover:bg-gray-600;
 }
 .sbui-btn-outline {
   @apply border text-gray-500 bg-transparent border-gray-200 border-solid hover:bg-white hover:text-gray-600 hover:border-gray-600 dark:text-white dark:border-dark-400 dark:hover:text-dark-600 dark:hover:border-white;
