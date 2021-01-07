@@ -1,11 +1,24 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes, { bool } from 'prop-types'
 import './Button.css'
+// @ts-ignore
 import { Transition, Icon } from '../../index'
-import { IconContext } from './../Icon/IconContext'
+import { IconContext } from '../Icon/IconContext'
 
-export const SIZES = ['tiny', 'small', 'medium', 'large', 'xlarge']
-export const VARIANTS = ['primary', 'default', 'secondary', 'outline', 'dashed', 'link', 'text']
+interface Props {
+  block : boolean
+  className : any
+  children: React.ReactNode
+  disabled: boolean
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
+  icon? : React.ReactNode
+  loading?: boolean
+  shadow?: boolean
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+  style? : React.CSSProperties
+  type?: 'primary' | 'default' | 'secondary' | 'outline' | 'dashed' | 'link' | 'text'
+  danger: boolean
+}
 
 const Button = ({
   block,
@@ -21,14 +34,14 @@ const Button = ({
   type = 'primary',
   danger,
   ...props
-}) => {
+} : Props) => {
   // default classes
   let classes = []
   let containerClasses = ['sbui-btn-container']
 
-  if (type !== 'ghost' && shadow) {
-    containerClasses.push('sbui-btn--shadow')
-  }
+  // if (type !== 'ghost' && shadow) {
+  //   containerClasses.push('sbui-btn--shadow')
+  // }
 
   if (block) {
     containerClasses.push('sbui-btn--w-full')
@@ -55,7 +68,6 @@ const Button = ({
     <React.Fragment>
       <span className={containerClasses.join(' ')}>
         <button
-          {...props}
           className={`sbui-btn ${classes.join(' ')} ${classes.join(
             ' '
           )} ${className}`}
@@ -90,18 +102,6 @@ const Button = ({
       </span>
     </React.Fragment>
   )
-}
-
-Button.propTypes = {
-  size: PropTypes.oneOf(SIZES),
-  type: PropTypes.oneOf(VARIANTS),
-  block: PropTypes.bool,
-  shadow: PropTypes.bool,
-  className: PropTypes.string,
-  loading: PropTypes.bool,
-  disabled: PropTypes.bool,
-  icon: PropTypes.string,
-  danger: PropTypes.bool
 }
 
 export default Button

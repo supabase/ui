@@ -8,19 +8,18 @@ export default {
   component: Button,
 }
 
-export const Default = (args) => <Button {...args}>Button text</Button>
-export const withStyles = (args) => <Button {...args}>Button text</Button>
-export const withIcon = (args) => <Button {...args}>Button text</Button>
-export const withBlock = (args) => <Button {...args}>Button text</Button>
-export const withOnlyIcon = (args) => <Button {...args}/>
-export const withOnlyLoading = (args) => <Button {...args}/>
+export const Default = (args: any) => <Button {...args}>Button text</Button>
+export const withStyles = (args: any) => <Button {...args}>Button text</Button>
+export const withIcon = (args: any) => <Button {...args}>Button text</Button>
+export const withBlock = (args: any) => <Button {...args}>Button text</Button>
+export const withOnlyIcon = (args: any) => <Button {...args}/>
+export const withOnlyLoading = (args: any) => <Button {...args}/>
 
 const icon = <Icon type={"Package"}/>
 
 withIcon.args = {
   type: 'primary',
   icon: icon,
-  // style: {backgroundColor: 'red'}
 }
 
 withStyles.args = {
