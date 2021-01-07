@@ -2,10 +2,6 @@ import React from 'react'
 import * as Icons from 'react-feather'
 import { IconContext } from './IconContext'
 
-// interface ContextProps {
-//   contextSize: string
-// }
-
 interface Props {
   className?: string
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge' | number
@@ -30,25 +26,29 @@ function Icon({ className, size, type, color, strokeWidth, ...props }: Props) {
           xlarge: 24,
         }
 
+        const defaultSize = defaultSizes['large']
         // @ts-ignore
         const FeatherIcon = Icons[type]
 
         // const iconSize = typeof size === 'string' ? defaultSizes[contextSize] : 21
         let iconSize: any = 21
-        if (size) {
-          iconSize = size
-            ? typeof size === 'string'
-              ? defaultSizes[size]
-              : size
-            : 21
-        }
-
+      
+        // use contextSize of parent (via context hook) if one exists
         if (contextSize) {
           iconSize = contextSize
             ? typeof contextSize === 'string'
               ? defaultSizes[contextSize]
               : contextSize
-            : 21
+            : defaultSize
+        }
+
+        // use size prop of this component if one exists
+        if (size) {
+          iconSize = size
+            ? typeof size === 'string'
+              ? defaultSizes[size]
+              : size
+            : defaultSize
         }
 
         return (
