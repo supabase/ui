@@ -58,7 +58,7 @@ function Group({
         name: e.target.name,
         id: e.target.id,
         value: e.target.value,
-        checked: e.target.checked
+        checked: e.target.checked,
       })
     }
   }
@@ -112,11 +112,14 @@ export function Checkbox({
         // if id does not exist, use label
         const markupId = id
           ? id
-          : label.toLowerCase().replace(/^[^A-Z0-9]+/gi, '')
+          : label
+              .toLowerCase()
+              .replace(/^[^A-Z0-9]+/gi, '')
+              .replace(/ /g, '-')
 
         // if name does not exist on Radio then use Context Name from Radio.Group
         // if that fails, use the id
-        const markupName = inputName ? inputName : name ? name : id
+        const markupName = inputName ? inputName : name ? name : markupId
 
         // check if checkbox is active
         const active = checked ? true : null
@@ -148,19 +151,21 @@ export function Checkbox({
               className="sbui-checkbox"
               onChange={onInputChange}
               checked={active}
-              value={value ? value : label}
+              value={value ? value : markupId}
             />
             <div className="sbui-checkbox__label-container">
               <label
                 className="sbui-checkbox__label-container__label"
-                htmlFor={id}
+                htmlFor={markupId}
               >
                 <span className="sbui-checkbox__label-container__label__span">
                   {label}
                 </span>
-                <p className="sbui-checkbox__label-container__label__p">
-                  {description}
-                </p>
+                {description && (
+                  <p className="sbui-checkbox__label-container__label__p">
+                    {description}
+                  </p>
+                )}
               </label>
             </div>
           </div>
