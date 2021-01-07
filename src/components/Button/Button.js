@@ -43,14 +43,7 @@ const Button = ({
   }
 
   if (size) {
-    let sizeClasses = {
-      tiny: 'sbui-btn--tiny',
-      small: 'sbui-btn--small',
-      medium: 'sbui-btn--medium',
-      large: 'sbui-btn--large',
-      xlarge: 'sbui-btn--xlarge',
-    }
-    classes.push(sizeClasses[size])
+    classes.push(`sbui-btn--${size}`)
   }
 
   classes.push(`sbui-btn-${type}`)
