@@ -112,7 +112,7 @@ function Radio({ id, disabled, value, label, description, name, onChange }: Inpu
         const markupId = id ? id : label.toLowerCase().replace(/^[^A-Z0-9]+/gi,"")
 
         // if name does not exist on Radio then use Context Name from Radio.Group
-        const MarkupName = inputName ? inputName : name
+        const markupName = inputName ? inputName : name
 
         // check if radio is active
         const active = activeId === markupId ? true : false
@@ -141,7 +141,7 @@ function Radio({ id, disabled, value, label, description, name, onChange }: Inpu
           <label id={id} className={classes.join(' ')}>
             <input
               id={markupId}
-              name={MarkupName}
+              name={markupName}
               type="radio"
               className="sbui-radio"
               checked={active}

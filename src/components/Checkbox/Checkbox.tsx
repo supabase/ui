@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { FormLayout } from '../../lib/Layout'
 import { CheckboxContext } from './CheckboxContext'
@@ -7,30 +7,23 @@ import './Checkbox.css'
 interface OnChangeProps {
   name: string
   id: string
+  value: boolean
+  checked: boolean
 }
 
 interface InputProps {
   label: string
-  value: string
+  value?: string
   description?: string
   disabled?: boolean
   id?: string
   name?: string
-  onChange?(x: OnChangeProps): any
-}
-
-interface Props {
+  checked?: boolean
   className?: string
-  name: string
-  id?: string
-  label?: string
-  description?: string
   onChange?(x: OnChangeProps): any
 }
 
 interface GroupProps {
-  allowedValues?: any
-  checkboxes?: any
   id?: any
   layout?: 'horizontal' | 'vertical'
   error?: any
@@ -38,12 +31,11 @@ interface GroupProps {
   label?: any
   labelOptional?: any
   name?: any
-  type?: any
-  transform?: any
   value?: any
-  className?: any
+  className?: string
   children?: React.ReactNode
   options: Array<InputProps>
+  defaultValue?: string
   onChange(x: OnChangeProps): any
 }
 
@@ -56,15 +48,17 @@ function Group({
   labelOptional,
   children,
   className,
+  name,
   options,
   onChange,
 }: GroupProps) {
-  
   const parentCallback = (e: any) => {
     if (onChange) {
       onChange({
         name: e.target.name,
         id: e.target.id,
+        value: e.target.value,
+        checked: e.target.checked
       })
     }
   }
@@ -79,57 +73,97 @@ function Group({
       descriptionText={descriptionText}
       className={className}
     >
-      <CheckboxContext.Provider value={{ parentCallback }}>
+      <CheckboxContext.Provider value={{ parentCallback, name }}>
+        {options
+          ? options.map((option: InputProps) => {
+              return (
+                <Checkbox
+                  id={option.id}
+                  value={option.value}
+                  label={option.label}
+                  checked={option.checked}
+                  name={option.name}
+                  description={option.description}
+                />
+              )
+            })
+          : children}
         {children}
       </CheckboxContext.Provider>
     </FormLayout>
   )
 }
 
-export function Checkbox({ className, id, label, description, name, onChange }: Props) {
-  let containerClasses = ['sbui-checkbox-container']
-  if (className) {
-    containerClasses.push(className)
-  }
+export function Checkbox({
+  className,
+  id,
+  label,
+  description,
+  name,
+  checked,
+  value,
+  onChange,
+}: InputProps) {
+  const inputName = name
 
   return (
     <CheckboxContext.Consumer>
-      {({ parentCallback }) => {
-         
-         function onInputChange(e :any) {
-          // '`onChange` callback for parent component
-          if(parentCallback)
-          parentCallback(e)
-          // '`onChange` callback for this component
-          if(onChange)
-          onChange({
-            name: e.target.name,
-            id: e.target.id,
-          })
+      {({ parentCallback, name }) => {
+        // if id does not exist, use label
+        const markupId = id
+          ? id
+          : label.toLowerCase().replace(/^[^A-Z0-9]+/gi, '')
+
+        // if name does not exist on Radio then use Context Name from Radio.Group
+        // if that fails, use the id
+        const markupName = inputName ? inputName : name ? name : id
+
+        // check if checkbox is active
+        const active = checked ? true : null
+
+        let containerClasses = ['sbui-checkbox-container']
+        if (className) {
+          containerClasses.push(className)
         }
+
+        function onInputChange(e: any) {
+          // '`onChange` callback for parent component
+          if (parentCallback) parentCallback(e)
+          // '`onChange` callback for this component
+          if (onChange)
+            onChange({
+              name: e.target.name,
+              id: e.target.id,
+              value: e.target.value,
+              checked: e.target.checked,
+            })
+        }
+
         return (
-        <div className={containerClasses.join(' ')}>
-          <input
-            id={id}
-            name={id}
-            type="checkbox"
-            className="sbui-checkbox"
-            onChange={onInputChange}
-          />
-          <div className="sbui-checkbox__label-container">
-            <label
-              className="sbui-checkbox__label-container__label"
-              htmlFor={id}
-            >
-              <span className="sbui-checkbox__label-container__label__span">
-                {label}
-              </span>
-              <p className="sbui-checkbox__label-container__label__p">
-                {description}
-              </p>
-            </label>
+          <div className={containerClasses.join(' ')}>
+            <input
+              id={markupId}
+              name={markupName}
+              type="checkbox"
+              className="sbui-checkbox"
+              onChange={onInputChange}
+              checked={active}
+              value={value ? value : label}
+            />
+            <div className="sbui-checkbox__label-container">
+              <label
+                className="sbui-checkbox__label-container__label"
+                htmlFor={id}
+              >
+                <span className="sbui-checkbox__label-container__label__span">
+                  {label}
+                </span>
+                <p className="sbui-checkbox__label-container__label__p">
+                  {description}
+                </p>
+              </label>
+            </div>
           </div>
-        </div>
         )
       }}
     </CheckboxContext.Consumer>
