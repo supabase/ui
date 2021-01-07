@@ -7,7 +7,7 @@ export default {
   component: Checkbox,
 }
 
-export const Default = (args :any) => <Checkbox name="checkbox-group" label="JavaScript" {...args} /> 
+export const Default = (args :any) => <Checkbox {...args} /> 
 
 export const withGroup = (args :any) => (
   <Checkbox.Group {...args}>
@@ -26,12 +26,8 @@ export const withGroupHorizontal = (args :any) => (
 )
 
 Default.args = {
-  id: 'checkobox-q',
   label: 'This is the label',
   description: 'This is the description',
-  disabled: false,
-  className: "font-sans",
-  layout: 'vertical'
 }
 
 withGroup.args = {
