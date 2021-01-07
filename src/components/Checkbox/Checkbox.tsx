@@ -88,7 +88,6 @@ function Group({
               )
             })
           : children}
-        {children}
       </CheckboxContext.Provider>
     </FormLayout>
   )
