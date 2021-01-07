@@ -21,8 +21,8 @@ function Icon({ className, size, type, color, strokeWidth, ...props }: Props) {
         const defaultSizes: StringMap = {
           tiny: 14,
           small: 18,
-          medium: 21,
-          large: 21,
+          medium: 20,
+          large: 20,
           xlarge: 24,
         }
 
