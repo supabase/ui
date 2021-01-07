@@ -12,7 +12,7 @@ const Button = ({
   children,
   disabled = false,
   onClick,
-  icon = undefined,
+  icon,
   loading = false,
   shadow = true,
   size = 'medium',
@@ -55,6 +55,8 @@ const Button = ({
 
   classes.push(`sbui-btn-${type}`)
 
+  const showIcon = loading || icon
+
   return (
     <React.Fragment>
       <span className={containerClasses.join(' ')}>
@@ -68,8 +70,9 @@ const Button = ({
           style={style}
           type="button"
         >
+          {showIcon && (
           <Transition
-            show={loading || icon ? true : false}
+            show={showIcon ? true : false}
             enter="ease-out duration-300"
             enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             enterTo="opacity-100 translate-y-0 sm:scale-100"
@@ -87,6 +90,7 @@ const Button = ({
               <div className="sbui-btn-icon-container">{icon}</div>
             ) : null}
           </Transition>
+          )}
           {children && <span>{children}</span>}
         </button>
       </span>
