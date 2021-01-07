@@ -1,13 +1,13 @@
 .sbui-btn-container {
-  @apply inline-flex;
+  @apply inline-flex font-medium;
 }
 
 .sbui-btn {
-  @apply font-medium rounded;
-  @apply relative cursor-pointer inline-flex space-x-2 text-center border border-solid border-transparent transition ease-out duration-200;
+  @apply relative cursor-pointer inline-flex items-center space-x-2 text-center border border-solid border-transparent transition ease-out duration-200;
+  @apply rounded;
   font-family: inherit;
+  font-weight: inherit;
   text-shadow: 0 -1px 0 rgba(0,0,0,.12);
-  -webkit-box-shadow: 0 2px 0 rgba(0,0,0,.045);
 }
 
 .sbui-btn-container--shadow {
@@ -86,8 +86,15 @@
 }
 
 .sbui-btn-primary.sbui-btn--danger {
-  @apply bg-red-500 text-white
+  @apply bg-red-500 text-white;
+  @apply hover:bg-red-600 hover:border-red-600;
 }
+.sbui-btn-default.sbui-btn--danger, .sbui-btn-secondary.sbui-btn--danger, .sbui-btn-outline.sbui-btn--danger, .sbui-btn-dashed.sbui-btn--danger, .sbui-btn-link.sbui-btn--danger, .sbui-btn-text.sbui-btn--danger {
+  @apply hover:bg-red-600 hover:text-white hover:border-red-600;
+}
+ /* {
+  @apply hover:bg-red-600 hover:text-white hover:border-red-600;
+} */
 
 /* 
   Animation for icon
@@ -111,36 +118,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-/* 
-  Puesdo classes
-*/
-
-.btn:focus {
-  @apply outline-none ring;
-}
-
-/* .sbui-btn-primary:hover svg {
-  @apply text-gray-500;
-}
-.sbui-btn-secondary:hover svg {
-  @apply text-gray-100;
-}
-.sbui-btn-default:hover svg {
-  @apply text-gray-300;
-}
-.sbui-btn-outline:hover svg {
-  @apply text-white;
-}
-.sbui-btn-ghost:hover svg {
-  @apply bg-brand-300;
-} */
-
-.sbui-btn--with-icon {
-  /* @apply pl-10; */
-}
-
-.sbui-btn-icon-container {
-  @apply inset-y-0 flex items-center pointer-events-none;
 }
