@@ -3,8 +3,8 @@
 }
 
 .sbui-btn {
+  @apply relative cursor-pointer inline-flex items-center space-x-2 text-center border border-solid border-transparent transition ease-out duration-200;
   @apply font-medium rounded;
-  @apply relative cursor-pointer inline-flex space-x-2 text-center border border-solid border-transparent transition ease-out duration-200;
   font-family: inherit;
   text-shadow: 0 -1px 0 rgba(0,0,0,.12);
   -webkit-box-shadow: 0 2px 0 rgba(0,0,0,.045);
@@ -141,6 +141,6 @@
   /* @apply pl-10; */
 }
 
-.sbui-btn-icon-container {
+/* .sbui-btn-icon-container {
   @apply inset-y-0 flex items-center pointer-events-none;
-}
+} */

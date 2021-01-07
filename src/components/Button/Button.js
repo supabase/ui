@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './Button.css'
 import { Transition, Icon } from '../../index'
+import { IconContext } from './../Icon/IconContext'
 
 export const SIZES = ['tiny', 'small', 'medium', 'large', 'xlarge']
 export const VARIANTS = ['primary', 'default', 'secondary', 'outline', 'dashed', 'link', 'text']
@@ -75,12 +76,12 @@ const Button = ({
           >
             {loading ? (
               <Icon
-                size={21}
+                size={size}
                 className={'sbui-btn--anim--spin'}
                 type={'Loader'}
               />
             ) : icon ? (
-              <div className="sbui-btn-icon-container">{icon}</div>
+              <IconContext.Provider value={{contextSize: size}}>{icon}</IconContext.Provider>
             ) : null}
           </Transition>
           )}
