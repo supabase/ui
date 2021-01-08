@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { FormLayout } from '../../lib/Layout'
+import { FormLayout } from '../../lib/Layout/FormLayout'
+import { Space } from '../Space'
 import './Radio.css'
 import { RadioContext } from './RadioContext'
 
@@ -14,7 +15,8 @@ interface InputProps {
   description?: string
   disabled?: boolean
   id?: string
-  name?: string 
+  name?: string
+  checked? :boolean
   onChange?(x: OnChangeProps): any
 }
 
@@ -33,7 +35,7 @@ interface GroupProps {
   value?: any
   className?: any
   children?: React.ReactNode
-  options: Array<InputProps>;
+  options: Array<InputProps>
   onChange(x: OnChangeProps): any
 }
 
@@ -86,12 +88,21 @@ function RadioGroup({
           descriptionText={descriptionText}
           className={className}
         >
-          <div className="bg-white dark:bg-transparent rounded-md -space-y-px">
-            {options ? options.map((option: InputProps) => {
-              return (
-                <Radio id={option.id} label={option.label} value={option.value} description={option.description}/>
-              )
-            }) : children}
+          <div className="dark:bg-transparent rounded-md -space-y-px">
+            <Space direction="vertical" size="px" minus>
+              {options
+                ? options.map((option: InputProps) => {
+                    return (
+                      <Radio
+                        id={option.id}
+                        label={option.label}
+                        value={option.value}
+                        description={option.description}
+                      />
+                    )
+                  })
+                : children}
+            </Space>
           </div>
         </FormLayout>
       </fieldset>
@@ -99,20 +110,34 @@ function RadioGroup({
   )
 }
 
-function Radio({ id, disabled, value, label, description, name, onChange }: InputProps) {
+function Radio({
+  id,
+  disabled,
+  value,
+  label,
+  description,
+  name,
+  checked,
+  onChange,
+}: InputProps) {
   const inputName = name
   return (
     <RadioContext.Consumer>
       {({ parentCallback, type, name, activeId }) => {
-
         // if id does not exist, use label
-        const markupId = id ? id : label.toLowerCase().replace(/^[^A-Z0-9]+/gi,"")
+        const markupId = id
+          ? id
+          : label
+              .toLowerCase()
+              .toLowerCase()
+              .replace(/^[^A-Z0-9]+/gi, '')
+              .replace(/ /g, '-')
 
         // if name does not exist on Radio then use Context Name from Radio.Group
-        const MarkupName = inputName ? inputName : name
+        const markupName = inputName ? inputName : name ? name : markupId
 
         // check if radio is active
-        const active = activeId === markupId ? true : false
+        const active = activeId === markupId ?  true : checked ? true : false
 
         let classes = ['sbui-radio-container sbui-radio-label']
         if (type === 'cards') {
@@ -122,28 +147,27 @@ function Radio({ id, disabled, value, label, description, name, onChange }: Inpu
           classes.push('sbui-radio-container--card--active')
         }
 
-        function onInputChange(e :any) {
+        function onInputChange(e: any) {
           // '`onChange` callback for parent component
-          if(parentCallback)
-          parentCallback(e)
+          if (parentCallback) parentCallback(e)
           // '`onChange` callback for this component
-          if(onChange)
-          onChange({
-            name: e.target.name,
-            id: e.target.id,
-          })
+          if (onChange)
+            onChange({
+              name: e.target.name,
+              id: e.target.id,
+            })
         }
 
         return (
           <label id={id} className={classes.join(' ')}>
             <input
               id={markupId}
-              name={MarkupName}
+              name={markupName}
               type="radio"
               className="sbui-radio"
               checked={active}
               disabled={disabled}
-              value={value}
+              value={value ? value : markupId}
               onChange={onInputChange}
             />
             <div>

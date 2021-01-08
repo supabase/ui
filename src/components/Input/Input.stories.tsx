@@ -3,11 +3,23 @@ import React from 'react'
 
 import { Input } from '.'
 import { Icon } from '../Icon'
+import { Space } from '../Space'
 
 export default {
   title: 'Data Input/Input',
   component: Input,
 }
+
+export const Testing = () => (
+  <>
+  <Space size={2} direction='vertical'>
+  <Input placeholder='something'/>
+  <Input placeholder='something' label='i have a label'/>
+  <Input layout='horizontal' placeholder='something' label='i have a label'/>
+  <Input layout='horizontal' placeholder='something'/>
+  </Space>
+  </>
+)
 
 export const Default = (args :any) => <Input {...args} />
 
@@ -25,14 +37,13 @@ export const textArea = (args :any) => <Input.TextArea {...args} />
 
 export const textAreaWithLimit = (args :any) => <Input.TextArea {...args} />
 
-const icon : any = <Icon stroke={'#666666'} className={''} type={"Package"}/>
+const icon : any = <Icon type={"Package"}/>
 
 Default.args = {
   placeholder: 'Type text here ...',
   disabled: false,
   label: 'Name',
   className: 'font-sans',
-  value: 'Value of input',
   layout: 'vertical'
 }
 
@@ -42,7 +53,6 @@ ErrorState.args = {
   disabled: false,
   label: 'Input with an error message',
   className: 'font-sans',
-  value: 'Value of input',
   error: 'Your password must be less than 4 characters.'
 }
 
@@ -52,7 +62,6 @@ withIcon.args = {
   disabled: false,
   label: 'Input with an icon',
   className: 'font-sans',
-  value: 'Value of input',
   icon: icon
 }
 
@@ -62,7 +71,6 @@ withOption.args = {
   disabled: false,
   label: 'Input with an error message',
   className: 'font-sans',
-  value: 'Value of input',
   labelOptional: 'This is required'
 }
 
@@ -72,7 +80,6 @@ withDescription.args = {
   disabled: false,
   label: 'Input with an error message',
   className: 'font-sans',
-  value: 'Value of input',
   descriptionText: 'Make your password short and easy to guess'
 }
 

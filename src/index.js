@@ -7,6 +7,7 @@ export * from './components/Icon/index'
 // DISPLAYS
 
 export * from './components/Card/index'
+export * from './components/Badge/index'
 
 // OVERLAYS
 
