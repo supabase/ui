@@ -1,12 +1,12 @@
 import React, { Ref, useState } from 'react'
-import { FormLayout } from '../../lib/Layout'
+import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import Typography from '../Typography'
 import './Input.css'
 
 export interface Props {
-  type:
+  type?:
     | 'text'
     | 'color'
     | 'date'
@@ -22,7 +22,6 @@ export interface Props {
     | 'time'
     | 'url'
     | 'week'
-  text: string
   url?: string
   className?: string
   autoComplete?: boolean

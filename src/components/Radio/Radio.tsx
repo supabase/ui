@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { FormLayout } from '../../lib/Layout'
+import { FormLayout } from '../../lib/Layout/FormLayout'
 import { Space } from '../Space'
 import './Radio.css'
 import { RadioContext } from './RadioContext'
