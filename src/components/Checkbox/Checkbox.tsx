@@ -120,8 +120,9 @@ export function Checkbox({
         // if that fails, use the id
         const markupName = inputName ? inputName : name ? name : markupId
 
-        // check if checkbox is active
-        const active = checked ? true : null
+        // check if checkbox checked is true or false
+        // if neither true or false the checkbox will rely on native control
+        const active = checked ? true : checked === false ? false : null
 
         let containerClasses = ['sbui-checkbox-container']
         if (className) {
