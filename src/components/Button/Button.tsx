@@ -30,81 +30,92 @@ interface Props {
   ref: any
 }
 
-const Button = ({
-  block,
-  className,
-  children,
-  disabled = false,
-  onClick,
-  icon,
-  iconRight,
-  loading = false,
-  shadow = true,
-  size = 'medium',
-  style,
-  type = 'primary',
-  danger,
-  ref
-}: Props) => {
-  let classes = []
-  let containerClasses = ['sbui-btn-container']
+type Ref = any
 
-  if (block) {
-    containerClasses.push('sbui-btn--w-full')
-    classes.push('sbui-btn--w-full')
-  }
+const Button = React.forwardRef<Ref, Props>(
+  (
+    {
+      block,
+      className,
+      children,
+      disabled = false,
+      onClick,
+      icon,
+      iconRight,
+      loading = false,
+      shadow = true,
+      size = 'medium',
+      style,
+      type = 'primary',
+      danger,
+    }: Props,
+    ref
+  ) => {
+    console.log('YOU ARE USING TESTING BUTTON')
 
-  if (danger) {
-    classes.push('sbui-btn--danger')
-  }
+    let classes = ['sbui-btn']
 
-  if (shadow) {
-    classes.push('sbui-btn-container--shadow')
-  }
+    let containerClasses = ['sbui-btn-container']
 
-  if (size) {
-    classes.push(`sbui-btn--${size}`)
-  }
+    classes.push(`sbui-btn-${type}`)
 
-  classes.push(`sbui-btn-${type}`)
+    if (block) {
+      containerClasses.push('sbui-btn--w-full')
+      classes.push('sbui-btn--w-full')
+    }
 
-  const showIcon = loading || icon
+    if (danger) {
+      classes.push('sbui-btn--danger')
+    }
 
-  return (
-    <React.Fragment>
-      <span className={containerClasses.join(' ')}>
-        <button
-          ref={ref}
-          className={`sbui-btn ${classes.join(' ')} ${classes.join(
-            ' '
-          )} ${className}`}
-          disabled={loading || (disabled && true)}
-          onClick={onClick}
-          style={style}
-          type="button"
-        >
-          {showIcon &&
-            (loading ? (
-              <Icon
-                size={size}
-                className={'sbui-btn--anim--spin'}
-                type={'Loader'}
-              />
-            ) : icon ? (
+    if (shadow) {
+      classes.push('sbui-btn-container--shadow')
+    }
+
+    if (size) {
+      classes.push(`sbui-btn--${size}`)
+    }
+
+    if (className) {
+      classes.push(className)
+    }
+
+    const showIcon = loading || icon
+
+    return (
+      <React.Fragment>
+        <span className={containerClasses.join(' ')}>
+          <button
+            ref={ref}
+            className={classes.join(' ')}
+            disabled={loading || (disabled && true)}
+            onClick={onClick}
+            style={style}
+            type="button"
+          >
+            {showIcon &&
+              (loading ? (
+                <Icon
+                  size={size}
+                  className={'sbui-btn--anim--spin'}
+                  type={'Loader'}
+                />
+              ) : icon ? (
+                <IconContext.Provider value={{ contextSize: size }}>
+                  {icon}
+                </IconContext.Provider>
+              ) : null)}
+            {children && <span>{children}</span>}
+            {iconRight && !loading && (
               <IconContext.Provider value={{ contextSize: size }}>
-                {icon}
+                {iconRight}
               </IconContext.Provider>
-            ) : null)}
-          {children && <span>{children}</span>}
-          {iconRight && !loading && (
-            <IconContext.Provider value={{ contextSize: size }}>
-              {iconRight}
-            </IconContext.Provider>
-          )}
-        </button>
-      </span>
-    </React.Fragment>
-  )
-}
+            )}
+          </button>
+        </span>
+      </React.Fragment>
+    )
+  }
+)
 
 export default Button
