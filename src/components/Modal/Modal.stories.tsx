@@ -10,14 +10,13 @@ export default {
   argTypes: { onClick: { action: 'clicked' } },
 }
 
-export const Default = (args) => 
-  <Modal {...args} 
+export const Default = (args: any) => (
+  <Modal
+    {...args}
     className="font-sans"
     onCancel={action('onCancel')}
     onConfirm={action('onConfirm')}
-    >
-    <p className="text-white">
-    Modal content is inserted here
-    </p>
+  >
+    <p className="text-white">Modal content is inserted here</p>
   </Modal>
-
+)

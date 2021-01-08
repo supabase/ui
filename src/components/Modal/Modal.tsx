@@ -4,16 +4,24 @@ import './Modal.css'
 
 import { action } from '@storybook/addon-actions'
 
-import { Button, Transition, Icon } from './../../index'
+import { Button, Transition, Icon } from '../../index'
 
-// import addons, { mockChannel } from '@storybook/addons';
-
-// addons.setChannel(mockChannel());
-
-// import './Button.css'
-
-export const SIZES = ['small', 'medium', 'large']
-export const VARIANTS = ['alert', 'warning', 'success']
+interface Props {
+  className?: string
+  children?: React.ReactNode
+  title?: string
+  description?: string
+  variant?: 'alert' | 'warning' | 'success'
+  showIcon?: boolean
+  visible: boolean
+  onConfirmText?: string
+  onCancelText?: string
+  onCancel?: any
+  onConfirm?: any
+  customFooter?: React.ReactNode
+  hideFooter?: boolean
+  loading?: boolean
+}
 
 const Modal = ({
   className = '',
@@ -30,8 +38,7 @@ const Modal = ({
   customFooter = undefined,
   hideFooter = false,
   loading = false,
-  ...props
-}) => {
+}: Props) => {
   let variantBgColor = {
     alert: 'red',
     warning: 'yellow',
@@ -78,7 +85,7 @@ const Modal = ({
     </div>
   )
 
-  function stopPropagation(e) {
+  function stopPropagation(e: React.MouseEvent) {
     e.stopPropagation()
   }
 
@@ -153,7 +160,7 @@ const Modal = ({
                         </Button>
                       </span>
                       <span className="mt-3 flex w-full sm:mt-0 sm:w-auto">
-                        <Button variant="white" onClick={() => onCancel()}>
+                        <Button type="outline" onClick={() => onCancel()}>
                           {onCancelText}
                         </Button>
                       </span>
@@ -167,18 +174,6 @@ const Modal = ({
       </div>
     </Transition>
   )
-}
-
-Modal.propTypes = {
-  visible: PropTypes.bool,
-  title: PropTypes.string,
-  description: PropTypes.string,
-  variant: PropTypes.oneOf(VARIANTS),
-  showIcon: PropTypes.bool,
-  className: PropTypes.string,
-  onConfirmText: PropTypes.string,
-  onCancelText: PropTypes.string,
-  loading: PropTypes.bool
 }
 
 export default Modal

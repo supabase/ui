@@ -6,10 +6,10 @@ import { Transition, Icon } from '../../index'
 import { IconContext } from '../Icon/IconContext'
 
 interface Props {
-  block: boolean
-  className: any
+  block?: boolean
+  className?: any
   children: React.ReactNode
-  disabled: boolean
+  disabled?: boolean
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   icon?: React.ReactNode
   iconRight?: React.ReactNode
@@ -25,9 +25,9 @@ interface Props {
     | 'dashed'
     | 'link'
     | 'text'
-  danger: boolean
-  spaceSize: number
-  ref: any
+  danger?: boolean
+  spaceSize?: number
+  ref?: any
 }
 
 const Button = ({
@@ -44,7 +44,7 @@ const Button = ({
   style,
   type = 'primary',
   danger,
-  ref
+  ref,
 }: Props) => {
   let classes = []
   let containerClasses = ['sbui-btn-container']
