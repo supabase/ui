@@ -187,16 +187,40 @@ function SocialAuth({
   )
 }
 
-function EmailAuth({ authView, setAuthView, supabaseClient }: any) {
+function EmailAuth({
+  authView,
+  setAuthView,
+  supabaseClient,
+}: {
+  authView: any
+  setAuthView: any
+  supabaseClient: SupabaseClient
+}) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [rememberMe, setRememberMe] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
-    console.log(email, password)
+    switch (authView) {
+      case 'sign_in':
+        const { error: signInError } = await supabaseClient.auth.signIn({
+          email,
+          password,
+        })
+        if (signInError) setError(signInError.message)
+        break
+      case 'sign_up':
+        const { error: signUpError } = await supabaseClient.auth.signUp({
+          email,
+          password,
+        })
+        if (signUpError) setError(signUpError.message)
+        break
+    }
   }
 
   return (
@@ -205,17 +229,28 @@ function EmailAuth({ authView, setAuthView, supabaseClient }: any) {
         <Space size={3} direction={'vertical'}>
           <Input
             label="Email address"
+            autoComplete="email"
             icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
+            onChange={setEmail}
           />
           <Input
             label="Password"
             type="password"
+            autoComplete="current-password"
             icon={<Icon size={21} stroke={'#666666'} type="Key" />}
+            onChange={setPassword}
           />
         </Space>
         <div>
           <Space style={{ justifyContent: 'space-between' }}>
-            <Checkbox label="Remember me" name="remember_me" id="remember_me" />
+            <Checkbox
+              label="Remember me"
+              name="remember_me"
+              id="remember_me"
+              onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
+                setRememberMe(value.target.checked)
+              }
+            />
             {authView === VIEWS.SIGN_IN && (
               <Typography.Link
                 onClick={() => setAuthView(VIEWS.FORGOTTEN_PASSWORD)}
@@ -248,6 +283,7 @@ function EmailAuth({ authView, setAuthView, supabaseClient }: any) {
             Do you have an account? Sign in.
           </Typography.Link>
         )}
+        {error && <Typography.Text type="danger">{error}</Typography.Text>}
       </Space>
     </form>
   )
