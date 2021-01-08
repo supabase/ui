@@ -4,8 +4,9 @@ import { Input, Checkbox, Button, Icon, Space, Typography } from './../../index'
 import * as SocialIcons from './Icons'
 import './Auth.css'
 
-const VIEWS: any = {
-  MAIN: 'main',
+const VIEWS = {
+  SIGN_IN: 'sign_in',
+  SIGN_UP: 'sign_up',
   FORGOTTEN_PASSWORD: 'forgotten_password',
   MAGIC_LINK: 'magic_link',
 }
@@ -29,7 +30,7 @@ interface Props {
   socialButtonSize?: 'small' | 'normal' | 'large'
   providers?: Providers[]
   verticalSocialLayout?: any
-  view?: 'main' | 'forgotten_password' | 'magic_link'
+  view?: 'sign_in' | 'sign_up' | 'forgotten_password' | 'magic_link'
 }
 
 function Auth({
@@ -40,7 +41,7 @@ function Auth({
   socialColors = false,
   socialButtonSize,
   providers,
-  view = 'main',
+  view = 'sign_in',
 }: Props) {
   const [authView, setAuthView] = useState(view)
 
@@ -67,10 +68,15 @@ function Auth({
   )
 
   switch (authView) {
-    case VIEWS.MAIN:
+    case VIEWS.SIGN_IN:
+    case VIEWS.SIGN_UP:
       return (
         <Container>
-          <EmailAuth client={client} setAuthView={setAuthView} />
+          <EmailAuth
+            client={client}
+            authView={authView}
+            setAuthView={setAuthView}
+          />
         </Container>
       )
       break
@@ -105,7 +111,6 @@ function SocialAuth({
   verticalSocialLayout,
   ...props
 }: Props) {
-  
   const buttonStyles: any = {
     google: {
       backgroundColor: '#ce4430',
@@ -175,7 +180,7 @@ function SocialAuth({
   )
 }
 
-function EmailAuth({ setAuthView }: any) {
+function EmailAuth({ authView, setAuthView }: any) {
   return (
     <div>
       <Space size={6} direction={'vertical'}>
@@ -193,11 +198,13 @@ function EmailAuth({ setAuthView }: any) {
         <div>
           <Space style={{ justifyContent: 'space-between' }}>
             <Checkbox label="Remember me" name="remember_me" id="remember_me" />
-            <Typography.Link
-              onClick={() => setAuthView(VIEWS.FORGOTTEN_PASSWORD)}
-            >
-              Forgot your password?
-            </Typography.Link>
+            {authView === VIEWS.SIGN_IN && (
+              <Typography.Link
+                onClick={() => setAuthView(VIEWS.FORGOTTEN_PASSWORD)}
+              >
+                Forgot your password?
+              </Typography.Link>
+            )}
           </Space>
           <Button
             type="primary"
@@ -205,12 +212,23 @@ function EmailAuth({ setAuthView }: any) {
             size="large"
             icon={<Icon size={21} type="Lock" color="currentColor" />}
           >
-            Sign up
+            {authView === VIEWS.SIGN_IN ? 'Sign in' : 'Sign up'}
           </Button>
         </div>
-        <Typography.Link onClick={() => setAuthView(VIEWS.MAGIC_LINK)}>
-          Sign in with magic link
-        </Typography.Link>
+        {authView === VIEWS.SIGN_IN && (
+          <Typography.Link onClick={() => setAuthView(VIEWS.MAGIC_LINK)}>
+            Sign in with magic link
+          </Typography.Link>
+        )}
+        {authView === VIEWS.SIGN_IN ? (
+          <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_UP)}>
+            Don't have an account? Sign up
+          </Typography.Link>
+        ) : (
+          <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
+            Do you have an account? Sign in.
+          </Typography.Link>
+        )}
       </Space>
     </div>
   )
@@ -230,8 +248,8 @@ function MagicLink({ setAuthView }: any) {
             Send magic link
           </Button>
         </Space>
-        <Typography.Link onClick={() => setAuthView(VIEWS.MAIN)}>
-          Go back to sign up
+        <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
+          Sign in with password.
         </Typography.Link>
       </Space>
     </div>
@@ -252,8 +270,8 @@ function ForgottenPassword({ setAuthView }: any) {
             Send reset password instructions
           </Button>
         </Space>
-        <Typography.Link onClick={() => setAuthView(VIEWS.MAIN)}>
-          Go back to sign up
+        <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
+          Go back to sign in
         </Typography.Link>
       </Space>
     </div>
