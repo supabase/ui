@@ -1,15 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import { CheckboxContext } from './CheckboxContext'
 import './Checkbox.css'
-
-interface OnChangeProps {
-  name: string
-  id: string
-  value: boolean
-  checked: boolean
-}
 
 interface InputProps {
   label: string
@@ -20,7 +12,7 @@ interface InputProps {
   name?: string
   checked?: boolean
   className?: string
-  onChange?(x: OnChangeProps): any
+  onChange?(x: React.ChangeEvent<HTMLInputElement>): void
 }
 
 interface GroupProps {
@@ -36,7 +28,7 @@ interface GroupProps {
   children?: React.ReactNode
   options: Array<InputProps>
   defaultValue?: string
-  onChange(x: OnChangeProps): any
+  onChange?(x: React.ChangeEvent<HTMLInputElement>): void
 }
 
 function Group({
@@ -52,15 +44,8 @@ function Group({
   options,
   onChange,
 }: GroupProps) {
-  const parentCallback = (e: any) => {
-    if (onChange) {
-      onChange({
-        name: e.target.name,
-        id: e.target.id,
-        value: e.target.value,
-        checked: e.target.checked,
-      })
-    }
+  const parentCallback = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) onChange(e)
   }
 
   return (
@@ -120,25 +105,20 @@ export function Checkbox({
         // if that fails, use the id
         const markupName = inputName ? inputName : name ? name : markupId
 
-        // check if checkbox is active
-        const active = checked ? true : null
+        // check if checkbox checked is true or false
+        // if neither true or false the checkbox will rely on native control
+        const active = checked ? true : checked === false ? false : null
 
         let containerClasses = ['sbui-checkbox-container']
         if (className) {
           containerClasses.push(className)
         }
 
-        function onInputChange(e: any) {
+        function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
           // '`onChange` callback for parent component
           if (parentCallback) parentCallback(e)
           // '`onChange` callback for this component
-          if (onChange)
-            onChange({
-              name: e.target.name,
-              id: e.target.id,
-              value: e.target.value,
-              checked: e.target.checked,
-            })
+          if (onChange) onChange(e)
         }
 
         return (
