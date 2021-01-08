@@ -16,7 +16,7 @@ interface InputProps {
   disabled?: boolean
   id?: string
   name?: string
-  checked? :boolean
+  checked?: boolean
   onChange?(x: OnChangeProps): any
 }
 
@@ -136,8 +136,17 @@ function Radio({
         // if name does not exist on Radio then use Context Name from Radio.Group
         const markupName = inputName ? inputName : name ? name : markupId
 
-        // check if radio is active
-        const active = activeId === markupId ?  true : checked ? true : false
+        // check if radio id is via parent component
+        // then check if radio checked prop is true or false
+        // if no boolean exists the checkbox will rely on native control
+        const active =
+          activeId === markupId
+            ? true
+            : checked
+            ? true
+            : checked === false
+            ? false
+            : null
 
         let classes = ['sbui-radio-container sbui-radio-label']
         if (type === 'cards') {
