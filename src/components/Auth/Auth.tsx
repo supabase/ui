@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { SupabaseClient } from '@supabase/supabase-js'
 // @ts-ignore
 import { Input, Checkbox, Button, Icon, Space, Typography } from './../../index'
 import * as SocialIcons from './Icons'
@@ -20,9 +21,9 @@ enum Providers {
 }
 
 interface Props {
+  supabaseClient: SupabaseClient
   className?: any
   style?: any
-  client?: any
   children?: any
   authView?: any
   socialLayout?: 'horizontal' | 'vertical'
@@ -34,9 +35,9 @@ interface Props {
 }
 
 function Auth({
+  supabaseClient,
   className,
   style,
-  client,
   socialLayout = 'vertical',
   socialColors = false,
   socialButtonSize,
@@ -55,7 +56,7 @@ function Auth({
     <div className={containerClasses.join(' ')} style={style}>
       <Space size={8} direction={'vertical'}>
         <SocialAuth
-          client={client}
+          supabaseClient={supabaseClient}
           verticalSocialLayout={verticalSocialLayout}
           providers={providers}
           socialLayout={socialLayout}
@@ -73,7 +74,7 @@ function Auth({
       return (
         <Container>
           <EmailAuth
-            client={client}
+            supabaseClient={supabaseClient}
             authView={authView}
             setAuthView={setAuthView}
           />
@@ -83,14 +84,20 @@ function Auth({
     case VIEWS.FORGOTTEN_PASSWORD:
       return (
         <Container>
-          <ForgottenPassword client={client} setAuthView={setAuthView} />
+          <ForgottenPassword
+            supabaseClient={supabaseClient}
+            setAuthView={setAuthView}
+          />
         </Container>
       )
       break
     case VIEWS.MAGIC_LINK:
       return (
         <Container>
-          <MagicLink client={client} setAuthView={setAuthView} />
+          <MagicLink
+            supabaseClient={supabaseClient}
+            setAuthView={setAuthView}
+          />
         </Container>
       )
       break
@@ -102,7 +109,7 @@ function Auth({
 function SocialAuth({
   className,
   style,
-  client,
+  supabaseClient,
   children,
   socialLayout = 'vertical',
   socialColors = false,
@@ -180,9 +187,20 @@ function SocialAuth({
   )
 }
 
-function EmailAuth({ authView, setAuthView }: any) {
+function EmailAuth({ authView, setAuthView, supabaseClient }: any) {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setLoading(true)
+    console.log(email, password)
+  }
+
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <Space size={6} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
@@ -207,6 +225,7 @@ function EmailAuth({ authView, setAuthView }: any) {
             )}
           </Space>
           <Button
+            htmlType="submit"
             type="primary"
             block
             size="large"
@@ -230,7 +249,7 @@ function EmailAuth({ authView, setAuthView }: any) {
           </Typography.Link>
         )}
       </Space>
-    </div>
+    </form>
   )
 }
 
