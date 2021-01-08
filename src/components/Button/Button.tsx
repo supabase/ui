@@ -25,6 +25,7 @@ interface Props {
     | 'dashed'
     | 'link'
     | 'text'
+  htmlType? : 'button' | 'submit' | 'reset'
   danger: boolean
   spaceSize: number
   ref: any
@@ -44,6 +45,7 @@ const Button = ({
   style,
   type = 'primary',
   danger,
+  htmlType = 'button',
   ref
 }: Props) => {
   let classes = []
@@ -81,7 +83,7 @@ const Button = ({
           disabled={loading || (disabled && true)}
           onClick={onClick}
           style={style}
-          type="button"
+          type={htmlType}
         >
           {showIcon &&
             (loading ? (
