@@ -25,7 +25,7 @@ interface Props {
     | 'dashed'
     | 'link'
     | 'text'
-  htmlType? : 'button' | 'submit' | 'reset'
+  htmlType?: 'button' | 'submit' | 'reset'
   danger: boolean
   spaceSize: number
   ref: any
