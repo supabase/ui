@@ -36,7 +36,7 @@ interface GroupProps {
   children?: React.ReactNode
   options: Array<InputProps>
   defaultValue?: string
-  onChange(x: OnChangeProps): any
+  onChange?(x: React.ChangeEvent<HTMLInputElement>): void
 }
 
 function Group({
@@ -52,15 +52,8 @@ function Group({
   options,
   onChange,
 }: GroupProps) {
-  const parentCallback = (e: any) => {
-    if (onChange) {
-      onChange({
-        name: e.target.name,
-        id: e.target.id,
-        value: e.target.value,
-        checked: e.target.checked,
-      })
-    }
+  const parentCallback = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) onChange(e)
   }
 
   return (
