@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FormLayout } from '../../lib/Layout'
+import { FormLayout } from '../../lib/Layout/FormLayout'
 import './Toggle.css'
 
 interface Props {

@@ -3,11 +3,23 @@ import React from 'react'
 
 import { Input } from '.'
 import { Icon } from '../Icon'
+import { Space } from '../Space'
 
 export default {
   title: 'Data Input/Input',
   component: Input,
 }
+
+export const Testing = () => (
+  <>
+  <Space size={2} direction='vertical'>
+  <Input placeholder='something'/>
+  <Input placeholder='something' label='i have a label'/>
+  <Input layout='horizontal' placeholder='something' label='i have a label'/>
+  <Input layout='horizontal' placeholder='something'/>
+  </Space>
+  </>
+)
 
 export const Default = (args :any) => <Input {...args} />
 

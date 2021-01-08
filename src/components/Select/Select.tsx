@@ -1,7 +1,7 @@
 // @ts-ignore
 import xor from 'lodash/xor'
 import React, { Ref } from 'react'
-import { FormLayout } from '../../lib/Layout'
+import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import './Select.css'

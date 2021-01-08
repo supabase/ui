@@ -27,6 +27,7 @@ interface Props {
     | 'text'
   danger: boolean
   spaceSize: number
+  ref: any
 }
 
 const Button = ({
@@ -43,7 +44,7 @@ const Button = ({
   style,
   type = 'primary',
   danger,
-  spaceSize,
+  ref
 }: Props) => {
   let classes = []
   let containerClasses = ['sbui-btn-container']
@@ -73,6 +74,7 @@ const Button = ({
     <React.Fragment>
       <span className={containerClasses.join(' ')}>
         <button
+          ref={ref}
           className={`sbui-btn ${classes.join(' ')} ${classes.join(
             ' '
           )} ${className}`}

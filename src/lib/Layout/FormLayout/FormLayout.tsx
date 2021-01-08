@@ -1,6 +1,6 @@
 import React from 'react'
 // @ts-ignore
-import { Space } from '../../index'
+import { Space } from '../../../index'
 import './FormLayout.css'
 
 type Props = {
@@ -40,42 +40,35 @@ export function FormLayout({
     containerClasses.push(className)
   }
 
-  // if (width) {
-  //   containerClasses.push(
-  //     `sbui-formlayout__content-container--width-${width.toString()}`
-  //   )
-  // }
-
-  // // width styles
-  // let widthStyles = {}
-  // if (width) {
-  //   widthStyles = { width: `${width}%` }
-  // }
-
   return (
     <div className={containerClasses.join(' ')}>
-      <Space
-        direction={
-          layout && layout === 'horizontal' ? 'vertical' : 'horizontal'
-        }
-        className={
-          '' +
-          (layout !== 'horizontal'
-            ? 'sbui-formlayout__label-container-horizontal'
-            : 'sbui-formlayout__label-container-vertical')
-        }
-      >
-        {label && (
-          <label className="sbui-formlayout__label" htmlFor={id}>
-            {label}
-          </label>
-        )}
-        {labelOptional && (
-          <span className="sbui-formlayout__label-opt" id={id + '-optional'}>
-            {labelOptional}
-          </span>
-        )}
-      </Space>
+      {label || labelOptional || layout === 'horizontal' ? (
+          <Space
+            direction={
+              layout && layout === 'horizontal' ? 'vertical' : 'horizontal'
+            }
+            className={
+              '' +
+              (layout !== 'horizontal'
+                ? 'sbui-formlayout__label-container-horizontal'
+                : 'sbui-formlayout__label-container-vertical')
+            }
+          >
+            {label && (
+              <label className="sbui-formlayout__label" htmlFor={id}>
+                {label}
+              </label>
+            )}
+            {labelOptional && (
+              <span
+                className="sbui-formlayout__label-opt"
+                id={id + '-optional'}
+              >
+                {labelOptional}
+              </span>
+            )}
+          </Space>
+       ) : null}
       <div
         className={
           layout !== 'horizontal'
