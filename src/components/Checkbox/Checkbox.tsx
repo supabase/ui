@@ -1,15 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import { CheckboxContext } from './CheckboxContext'
 import './Checkbox.css'
-
-interface OnChangeProps {
-  name: string
-  id: string
-  value: boolean
-  checked: boolean
-}
 
 interface InputProps {
   label: string

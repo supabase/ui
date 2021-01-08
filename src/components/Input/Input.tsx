@@ -22,7 +22,6 @@ export interface Props {
     | 'time'
     | 'url'
     | 'week'
-  url?: string
   className?: string
   autoComplete?: boolean
   descriptionText?: string
@@ -104,24 +103,6 @@ function Input({
 }
 
 export interface TextAreaProps {
-  type:
-    | 'text'
-    | 'color'
-    | 'date'
-    | 'datetime-local'
-    | 'email'
-    | 'month'
-    | 'number'
-    | 'password'
-    | 'reset'
-    | 'search'
-    | 'submit'
-    | 'tel'
-    | 'time'
-    | 'url'
-    | 'week'
-  text: string
-  url?: string
   className?: string
   autoComplete?: boolean
   descriptionText?: string
@@ -129,12 +110,11 @@ export interface TextAreaProps {
   error?: string
   icon?: any
   id?: string
-  inputRef?: string
   label?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
   name?: string
-  onChange?: any
+  onChange?(x: React.ChangeEvent<HTMLTextAreaElement>): void
   placeholder?: string
   value?: any
   style?: React.CSSProperties
@@ -167,9 +147,9 @@ function TextArea({
   if (error) classes.push('sbui-input--error')
   if (icon) classes.push('sbui-input--with-icon')
 
-  function onInputChange(e: any) {
+  function onInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     if (onChange) {
-      onChange(e.target.value)
+      onChange(e)
       setCharLength(e.target.value.length)
     }
   }
