@@ -16,3 +16,8 @@
 .sbui-toggle__handle--active {
   @apply translate-x-5;
 }
+
+.sbui-toggle:disabled {
+  @apply opacity-75 cursor-not-allowed;
+  pointer-events: none;
+}
