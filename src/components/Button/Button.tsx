@@ -48,8 +48,9 @@ const Button = forwardRef<HTMLButtonElement, Props>(
     ref
   ) => {
     let classes = ['sbui-btn']
-
     let containerClasses = ['sbui-btn-container']
+
+    const showIcon = loading || icon
 
     classes.push(`sbui-btn-${type}`)
 
@@ -73,8 +74,6 @@ const Button = forwardRef<HTMLButtonElement, Props>(
     if (className) {
       classes.push(className)
     }
-
-    const showIcon = loading || icon
 
     return (
       <>
