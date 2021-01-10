@@ -4,11 +4,6 @@ import { Space } from '../Space'
 import './Radio.css'
 import { RadioContext } from './RadioContext'
 
-interface OnChangeProps {
-  name: string
-  id: string
-}
-
 interface InputProps {
   label: string
   value: string
@@ -16,8 +11,8 @@ interface InputProps {
   disabled?: boolean
   id?: string
   name?: string
-  checked? :boolean
-  onChange?(x: OnChangeProps): any
+  checked?: boolean
+  onChange?(x: React.ChangeEvent<HTMLInputElement>): void
 }
 
 interface GroupProps {
@@ -36,7 +31,7 @@ interface GroupProps {
   className?: any
   children?: React.ReactNode
   options: Array<InputProps>
-  onChange(x: OnChangeProps): any
+  onChange?(x: React.ChangeEvent<HTMLInputElement>): void
 }
 
 function RadioGroup({
@@ -60,13 +55,8 @@ function RadioGroup({
     setActiveId(value)
   }, [value])
 
-  const parentCallback = (e: any) => {
-    if (onChange) {
-      onChange({
-        name: e.target.name,
-        id: e.target.id,
-      })
-    }
+  const parentCallback = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) onChange(e)
     setActiveId(e.target.id)
   }
 
@@ -136,8 +126,17 @@ function Radio({
         // if name does not exist on Radio then use Context Name from Radio.Group
         const markupName = inputName ? inputName : name ? name : markupId
 
-        // check if radio is active
-        const active = activeId === markupId ?  true : checked ? true : false
+        // check if radio id is via parent component
+        // then check if radio checked prop is true or false
+        // if no boolean exists the checkbox will rely on native control
+        const active =
+          activeId === markupId
+            ? true
+            : checked
+            ? true
+            : checked === false
+            ? false
+            : null
 
         let classes = ['sbui-radio-container sbui-radio-label']
         if (type === 'cards') {
@@ -147,15 +146,11 @@ function Radio({
           classes.push('sbui-radio-container--card--active')
         }
 
-        function onInputChange(e: any) {
+        function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
           // '`onChange` callback for parent component
           if (parentCallback) parentCallback(e)
           // '`onChange` callback for this component
-          if (onChange)
-            onChange({
-              name: e.target.name,
-              id: e.target.id,
-            })
+          if (onChange) onChange(e)
         }
 
         return (

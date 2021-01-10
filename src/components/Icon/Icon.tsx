@@ -28,11 +28,11 @@ function Icon({ className, size, type, color, strokeWidth, ...props }: Props) {
 
         const defaultSize = defaultSizes['large']
         // @ts-ignore
-        const FeatherIcon = Icons[type]
+        const FeatherIcon = Icons[type] ? Icons[type] : Icons['Mail']
 
         // const iconSize = typeof size === 'string' ? defaultSizes[contextSize] : 21
         let iconSize: any = 21
-      
+
         // use contextSize of parent (via context hook) if one exists
         if (contextSize) {
           iconSize = contextSize
