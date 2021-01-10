@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 
 import { Button } from '.'
 import { Icon } from '../Icon'
@@ -15,6 +15,26 @@ export const withIconRight = (args: any) => <Button {...args}>Button text</Butto
 export const withBlock = (args: any) => <Button {...args}>Button text</Button>
 export const withOnlyIcon = (args: any) => <Button {...args}/>
 export const withOnlyLoading = (args: any) => <Button {...args}/>
+export const withRef = () => { 
+  const buttonRef = useRef(null)
+  const [msg, setMsg] = useState("Click button to console.log Ref")
+
+  function onClick() {
+    const message = `Ref: ${buttonRef?.current}`
+    setMsg(message)
+    console.log(message)
+  }
+
+  return(
+  <>
+    <Button ref={buttonRef} onClick={onClick}>
+      Button with ref
+    </Button>
+
+    <p style={{color: '#666666'}}>{msg}</p>
+  </>
+  )
+}
 
 const icon = <Icon type={"Package"}/>
 

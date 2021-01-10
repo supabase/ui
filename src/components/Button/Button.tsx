@@ -1,15 +1,15 @@
-import React from 'react'
-import PropTypes, { bool } from 'prop-types'
+import React, { forwardRef } from 'react'
 import './Button.css'
 // @ts-ignore
-import { Transition, Icon } from '../../index'
+import { Icon } from '../../index'
 import { IconContext } from '../Icon/IconContext'
 
 interface Props {
-  block: boolean
-  className: any
+  block?: boolean
+  className?: any
   children: React.ReactNode
-  disabled: boolean
+  danger?: boolean
+  disabled?: boolean
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   icon?: React.ReactNode
   iconRight?: React.ReactNode
@@ -25,19 +25,16 @@ interface Props {
     | 'dashed'
     | 'link'
     | 'text'
-  danger: boolean
-  spaceSize: number
-  ref: any
+  spaceSize?: number
 }
 
-type Ref = any
-
-const Button = React.forwardRef<Ref, Props>(
+const Button = forwardRef<HTMLButtonElement, Props>(
   (
     {
       block,
       className,
       children,
+      danger,
       disabled = false,
       onClick,
       icon,
@@ -47,12 +44,9 @@ const Button = React.forwardRef<Ref, Props>(
       size = 'medium',
       style,
       type = 'primary',
-      danger,
     }: Props,
     ref
   ) => {
-    console.log('YOU ARE USING TESTING BUTTON')
-
     let classes = ['sbui-btn']
 
     let containerClasses = ['sbui-btn-container']
@@ -83,7 +77,7 @@ const Button = React.forwardRef<Ref, Props>(
     const showIcon = loading || icon
 
     return (
-      <React.Fragment>
+      <>
         <span className={containerClasses.join(' ')}>
           <button
             ref={ref}
@@ -113,7 +107,7 @@ const Button = React.forwardRef<Ref, Props>(
             )}
           </button>
         </span>
-      </React.Fragment>
+      </>
     )
   }
 )
