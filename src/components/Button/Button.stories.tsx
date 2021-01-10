@@ -28,7 +28,7 @@ export const withRef = () => {
   return(
   <>
     <Button ref={buttonRef} onClick={onClick}>
-      Button with ref
+      Button with forwardRef
     </Button>
 
     <p style={{color: '#666666'}}>{msg}</p>
