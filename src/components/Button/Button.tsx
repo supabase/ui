@@ -1,15 +1,15 @@
-import React from 'react'
-import PropTypes, { bool } from 'prop-types'
+import React, { forwardRef } from 'react'
 import './Button.css'
 // @ts-ignore
-import { Transition, Icon } from '../../index'
+import { Icon } from '../../index'
 import { IconContext } from '../Icon/IconContext'
 
 interface Props {
-  block: boolean
-  className: any
+  block?: boolean
+  className?: any
   children: React.ReactNode
-  disabled: boolean
+  danger?: boolean
+  disabled?: boolean
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   icon?: React.ReactNode
   iconRight?: React.ReactNode
@@ -25,86 +25,91 @@ interface Props {
     | 'dashed'
     | 'link'
     | 'text'
-  danger: boolean
-  spaceSize: number
-  ref: any
+  spaceSize?: number
 }
 
-const Button = ({
-  block,
-  className,
-  children,
-  disabled = false,
-  onClick,
-  icon,
-  iconRight,
-  loading = false,
-  shadow = true,
-  size = 'medium',
-  style,
-  type = 'primary',
-  danger,
-  ref
-}: Props) => {
-  let classes = []
-  let containerClasses = ['sbui-btn-container']
+const Button = forwardRef<HTMLButtonElement, Props>(
+  (
+    {
+      block,
+      className,
+      children,
+      danger,
+      disabled = false,
+      onClick,
+      icon,
+      iconRight,
+      loading = false,
+      shadow = true,
+      size = 'medium',
+      style,
+      type = 'primary',
+    }: Props,
+    ref
+  ) => {
+    let classes = ['sbui-btn']
 
-  if (block) {
-    containerClasses.push('sbui-btn--w-full')
-    classes.push('sbui-btn--w-full')
-  }
+    let containerClasses = ['sbui-btn-container']
 
-  if (danger) {
-    classes.push('sbui-btn--danger')
-  }
+    classes.push(`sbui-btn-${type}`)
 
-  if (shadow) {
-    classes.push('sbui-btn-container--shadow')
-  }
+    if (block) {
+      containerClasses.push('sbui-btn--w-full')
+      classes.push('sbui-btn--w-full')
+    }
 
-  if (size) {
-    classes.push(`sbui-btn--${size}`)
-  }
+    if (danger) {
+      classes.push('sbui-btn--danger')
+    }
 
-  classes.push(`sbui-btn-${type}`)
+    if (shadow) {
+      classes.push('sbui-btn-container--shadow')
+    }
 
-  const showIcon = loading || icon
+    if (size) {
+      classes.push(`sbui-btn--${size}`)
+    }
 
-  return (
-    <React.Fragment>
-      <span className={containerClasses.join(' ')}>
-        <button
-          ref={ref}
-          className={`sbui-btn ${classes.join(' ')} ${classes.join(
-            ' '
-          )} ${className}`}
-          disabled={loading || (disabled && true)}
-          onClick={onClick}
-          style={style}
-          type="button"
-        >
-          {showIcon &&
-            (loading ? (
-              <Icon
-                size={size}
-                className={'sbui-btn--anim--spin'}
-                type={'Loader'}
-              />
-            ) : icon ? (
+    if (className) {
+      classes.push(className)
+    }
+
+    const showIcon = loading || icon
+
+    return (
+      <>
+        <span className={containerClasses.join(' ')}>
+          <button
+            ref={ref}
+            className={classes.join(' ')}
+            disabled={loading || (disabled && true)}
+            onClick={onClick}
+            style={style}
+            type="button"
+          >
+            {showIcon &&
+              (loading ? (
+                <Icon
+                  size={size}
+                  className={'sbui-btn--anim--spin'}
+                  type={'Loader'}
+                />
+              ) : icon ? (
+                <IconContext.Provider value={{ contextSize: size }}>
+                  {icon}
+                </IconContext.Provider>
+              ) : null)}
+            {children && <span>{children}</span>}
+            {iconRight && !loading && (
               <IconContext.Provider value={{ contextSize: size }}>
-                {icon}
+                {iconRight}
               </IconContext.Provider>
-            ) : null)}
-          {children && <span>{children}</span>}
-          {iconRight && !loading && (
-            <IconContext.Provider value={{ contextSize: size }}>
-              {iconRight}
-            </IconContext.Provider>
-          )}
-        </button>
-      </span>
-    </React.Fragment>
-  )
-}
+            )}
+          </button>
+        </span>
+      </>
+    )
+  }
+)
 
 export default Button
