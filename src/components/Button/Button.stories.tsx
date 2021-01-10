@@ -25,7 +25,7 @@ export const withRef = () => {
     console.log(message)
   }
 
-  return(
+  return (
   <>
     <Button ref={buttonRef} onClick={onClick}>
       Button with forwardRef
