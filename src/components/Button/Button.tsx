@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import './Button.css'
 // @ts-ignore
 import { Icon } from '../../index'
@@ -28,7 +28,12 @@ interface Props {
   spaceSize?: number
 }
 
-const Button = forwardRef<HTMLButtonElement, Props>(
+interface RefHandle {
+  container:() => HTMLElement,
+  button:() => HTMLButtonElement,
+}
+
+const Button = forwardRef<RefHandle, Props>(
   (
     {
       block,
@@ -47,10 +52,21 @@ const Button = forwardRef<HTMLButtonElement, Props>(
     }: Props,
     ref
   ) => {
+    const containerRef = useRef();
+    const buttonRef = useRef();
+    const showIcon = loading || icon
+
+    useImperativeHandle(ref, () => ({
+      get container() {
+          return containerRef.current;
+      },
+      get button() {
+          return buttonRef.current;
+      }
+    }));
+
     let classes = ['sbui-btn']
     let containerClasses = ['sbui-btn-container']
-
-    const showIcon = loading || icon
 
     classes.push(`sbui-btn-${type}`)
 
@@ -76,37 +92,35 @@ const Button = forwardRef<HTMLButtonElement, Props>(
     }
 
     return (
-      <>
-        <span className={containerClasses.join(' ')}>
-          <button
-            ref={ref}
-            className={classes.join(' ')}
-            disabled={loading || (disabled && true)}
-            onClick={onClick}
-            style={style}
-            type="button"
-          >
-            {showIcon &&
-              (loading ? (
-                <Icon
-                  size={size}
-                  className={'sbui-btn--anim--spin'}
-                  type={'Loader'}
-                />
-              ) : icon ? (
-                <IconContext.Provider value={{ contextSize: size }}>
-                  {icon}
-                </IconContext.Provider>
-              ) : null)}
-            {children && <span>{children}</span>}
-            {iconRight && !loading && (
+      <span ref={containerRef} className={containerClasses.join(' ')}>
+        <button
+          ref={buttonRef}
+          className={classes.join(' ')}
+          disabled={loading || (disabled && true)}
+          onClick={onClick}
+          style={style}
+          type="button"
+        >
+          {showIcon &&
+            (loading ? (
+              <Icon
+                size={size}
+                className={'sbui-btn--anim--spin'}
+                type={'Loader'}
+              />
+            ) : icon ? (
               <IconContext.Provider value={{ contextSize: size }}>
-                {iconRight}
+                {icon}
               </IconContext.Provider>
-            )}
-          </button>
-        </span>
-      </>
+            ) : null)}
+          {children && <span>{children}</span>}
+          {iconRight && !loading && (
+            <IconContext.Provider value={{ contextSize: size }}>
+              {iconRight}
+            </IconContext.Provider>
+          )}
+        </button>
+      </span>
     )
   }
 )
