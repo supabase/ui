@@ -138,7 +138,6 @@ function SocialAuth({
   const [error, setError] = useState('')
 
   const handleProviderSignIn = async (provider: Provider) => {
-    debugger
     setLoading(true)
     const { error } = await supabaseClient.auth.signIn({ provider })
     if (error) setError(error.message)
@@ -349,25 +348,56 @@ function MagicLink({
   )
 }
 
-function ForgottenPassword({ setAuthView }: any) {
+function ForgottenPassword({
+  setAuthView,
+  supabaseClient,
+}: {
+  setAuthView: any
+  supabaseClient: SupabaseClient
+}) {
+  const [email, setEmail] = useState('')
+  const [error, setError] = useState('')
+  const [message, setMessage] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handlePasswordReset = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setError('')
+    setMessage('')
+    setLoading(true)
+    const { error } = await supabaseClient.auth.api.resetPasswordForEmail(email)
+    if (error) setError(error.message)
+    else setMessage('Check your email for the password reset link.')
+    setLoading(false)
+  }
+
   return (
-    <div>
+    <form onSubmit={handlePasswordReset}>
       <Space size={4} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
             label="Email address"
             placeholder="Your email address"
             icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
+            onChange={setEmail}
           />
-          <Button block size="large" icon={<Icon size={21} type="Inbox" />}>
+          <Button
+            block
+            size="large"
+            htmlType="submit"
+            icon={<Icon size={21} type="Inbox" />}
+            loading={loading}
+          >
             Send reset password instructions
           </Button>
         </Space>
         <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
           Go back to sign in
         </Typography.Link>
+        {message && <Typography.Text>{message}</Typography.Text>}
+        {error && <Typography.Text type="danger">{error}</Typography.Text>}
       </Space>
-    </div>
+    </form>
   )
 }
 
