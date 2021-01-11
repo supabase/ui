@@ -22,8 +22,8 @@ function Icon({
   type,
   color,
   strokeWidth,
-  fill = 'none',
-  stroke = '',
+  fill = undefined,
+  stroke = undefined,
   ...props
 }: Props) {
   return (
@@ -62,14 +62,18 @@ function Icon({
             : defaultSize
         }
 
+        // confitional used for Icons with no color settings
+        // default these icons to use 'currentColor' ie, the text color
+        const noColor = !color && !fill && !stroke
+
         return (
           <FeatherIcon
-            color={color ? color : 'currentColor'}
-            stroke={stroke}
+            color={!noColor ? color : 'currentColor'}
+            stroke={!noColor ? stroke : 'currentColor'}
             className={`${className}`}
             strokeWidth={strokeWidth}
             size={iconSize}
-            fill={fill}
+            fill={!noColor ? fill : 'none'}
             {...props}
           />
         )
