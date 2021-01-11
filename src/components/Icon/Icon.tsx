@@ -8,13 +8,24 @@ interface Props {
   type?: string
   color?: string
   strokeWidth?: number
+  fill?: string
+  stroke?: string
 }
 
 interface StringMap {
   [key: string]: number
 }
 
-function Icon({ className, size, type, color, strokeWidth, ...props }: Props) {
+function Icon({
+  className,
+  size,
+  type,
+  color,
+  strokeWidth,
+  fill = 'none',
+  stroke = '',
+  ...props
+}: Props) {
   return (
     <IconContext.Consumer>
       {({ contextSize }) => {
@@ -54,9 +65,11 @@ function Icon({ className, size, type, color, strokeWidth, ...props }: Props) {
         return (
           <FeatherIcon
             color={color ? color : 'currentColor'}
+            stroke={stroke}
             className={`${className}`}
             strokeWidth={strokeWidth}
             size={iconSize}
+            fill={fill}
             {...props}
           />
         )

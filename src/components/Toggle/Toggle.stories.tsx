@@ -10,7 +10,8 @@ export default {
   },
 }
 
-export const Primary = (args : any) => <Toggle {...args} />
+export const Primary = (args: any) => <Toggle {...args} />
+export const noLabel = (args: any) => <Toggle {...args} />
 
 Primary.args = {
   active: true,
@@ -21,6 +22,14 @@ Primary.args = {
   label: 'Radio group main label',
   labelOptional: 'This is an optional label',
   name: 'radiogroup-example',
-  layout: 'horizontal'
+  layout: 'horizontal',
 }
 
+noLabel.args = {
+  active: true,
+  className: 'font-sans',
+  disabled: false,
+  error: '',
+  name: 'radiogroup-example',
+  layout: 'horizontal',
+}
