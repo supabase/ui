@@ -73,7 +73,7 @@ function Icon({
             className={`${className}`}
             strokeWidth={strokeWidth}
             size={iconSize}
-            fill={!noColor ? fill : 'none'}
+            fill={!noColor ? (fill ? fill : 'none') : 'none'}
             {...props}
           />
         )

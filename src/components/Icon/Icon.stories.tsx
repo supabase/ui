@@ -35,7 +35,7 @@ export const IconList = (args: any) => (
     </div>
     <div className="flex flex-wrap font-sans">
       {LIST_ICONS.map((icon) => (
-        <div className="m-2 shadow-lg rounded-lg w-36 h-36 flex flex-col justify-center items-center">
+        <div className="m-2 shadow-lg rounded-lg w-36 h-36 flex flex-col justify-center items-center dark:text-white">
           <Icon type={icon} key={icon} {...args} />
           <span className="mt-2">{icon}</span>
         </div>
@@ -46,6 +46,5 @@ export const IconList = (args: any) => (
 
 IconList.args = {
   size: 16,
-  stroke: 'black',
   strokeWidth: 2,
 }
