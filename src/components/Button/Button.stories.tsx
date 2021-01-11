@@ -20,7 +20,7 @@ export const withRef = () => {
   const [msg, setMsg] = useState("Click button to console.log Ref")
 
   function onClick() {
-    const message = `Ref: ${buttonRef?.current}`
+    const message = `container: ${buttonRef?.current.container}  button:${buttonRef?.current.button}  `
     setMsg(message)
     console.log(message)
   }
