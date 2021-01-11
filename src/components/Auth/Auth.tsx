@@ -208,6 +208,7 @@ function EmailAuth({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setError('')
     setLoading(true)
     switch (authView) {
       case 'sign_in':
@@ -295,25 +296,56 @@ function EmailAuth({
   )
 }
 
-function MagicLink({ setAuthView }: any) {
+function MagicLink({
+  setAuthView,
+  supabaseClient,
+}: {
+  setAuthView: any
+  supabaseClient: SupabaseClient
+}) {
+  const [email, setEmail] = useState('')
+  const [error, setError] = useState('')
+  const [message, setMessage] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handleMagicLinkSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setError('')
+    setMessage('')
+    setLoading(true)
+    const { error } = await supabaseClient.auth.signIn({ email })
+    if (error) setError(error.message)
+    else setMessage('Check your email for the magic link.')
+    setLoading(false)
+  }
+
   return (
-    <div>
+    <form onSubmit={handleMagicLinkSignIn}>
       <Space size={4} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
             label="Email address"
             placeholder="Your email address"
             icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
+            onChange={setEmail}
           />
-          <Button block size="large" icon={<Icon size={21} type="Inbox" />}>
+          <Button
+            block
+            size="large"
+            htmlType="submit"
+            icon={<Icon size={21} type="Inbox" />}
+            loading={loading}
+          >
             Send magic link
           </Button>
         </Space>
         <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
           Sign in with password.
         </Typography.Link>
+        {message && <Typography.Text>{message}</Typography.Text>}
+        {error && <Typography.Text type="danger">{error}</Typography.Text>}
       </Space>
-    </div>
+    </form>
   )
 }
 
