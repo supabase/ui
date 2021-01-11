@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SupabaseClient } from '@supabase/supabase-js'
+import { SupabaseClient, Provider } from '@supabase/supabase-js'
 // @ts-ignore
 import { Input, Checkbox, Button, Icon, Space, Typography } from './../../index'
 import * as SocialIcons from './Icons'
@@ -12,14 +12,6 @@ const VIEWS = {
   MAGIC_LINK: 'magic_link',
 }
 
-enum Providers {
-  'facebook',
-  'google',
-  'github',
-  'gitlab',
-  'bitbucket',
-}
-
 interface Props {
   supabaseClient: SupabaseClient
   className?: any
@@ -29,7 +21,7 @@ interface Props {
   socialLayout?: 'horizontal' | 'vertical'
   socialColors?: boolean
   socialButtonSize?: 'small' | 'normal' | 'large'
-  providers?: Providers[]
+  providers?: Provider[]
   verticalSocialLayout?: any
   view?: 'sign_in' | 'sign_up' | 'forgotten_password' | 'magic_link'
 }
@@ -142,6 +134,16 @@ function SocialAuth({
       color: 'white',
     },
   }
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleProviderSignIn = async (provider: Provider) => {
+    debugger
+    setLoading(true)
+    const { error } = await supabaseClient.auth.signIn({ provider })
+    if (error) setError(error.message)
+    setLoading(false)
+  }
 
   return (
     <Space size={8} direction={'vertical'}>
@@ -164,6 +166,8 @@ function SocialAuth({
                       size={socialButtonSize}
                       style={socialColors ? buttonStyles[provider] : {}}
                       icon={<AuthIcon />}
+                      loading={loading}
+                      onClick={() => handleProviderSignIn(provider)}
                     >
                       {verticalSocialLayout && 'Sign up with ' + provider}
                     </Button>
@@ -221,6 +225,7 @@ function EmailAuth({
         if (signUpError) setError(signUpError.message)
         break
     }
+    setLoading(false)
   }
 
   return (
@@ -265,6 +270,7 @@ function EmailAuth({
             block
             size="large"
             icon={<Icon size={21} type="Lock" color="currentColor" />}
+            loading={loading}
           >
             {authView === VIEWS.SIGN_IN ? 'Sign in' : 'Sign up'}
           </Button>
