@@ -2,6 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import './Button.css'
 // @ts-ignore
 import { Icon } from '../../index'
+import '../../lib/variables/global.css'
 import { IconContext } from '../Icon/IconContext'
 
 interface Props {
@@ -29,8 +30,8 @@ interface Props {
 }
 
 interface RefHandle {
-  container:() => HTMLElement,
-  button:() => HTMLButtonElement,
+  container: () => HTMLElement
+  button: () => HTMLButtonElement
 }
 
 const Button = forwardRef<RefHandle, Props>(
@@ -52,18 +53,18 @@ const Button = forwardRef<RefHandle, Props>(
     }: Props,
     ref
   ) => {
-    const containerRef = useRef();
-    const buttonRef = useRef();
+    const containerRef = useRef()
+    const buttonRef = useRef()
     const showIcon = loading || icon
 
     useImperativeHandle(ref, () => ({
       get container() {
-          return containerRef.current;
+        return containerRef.current
       },
       get button() {
-          return buttonRef.current;
-      }
-    }));
+        return buttonRef.current
+      },
+    }))
 
     let classes = ['sbui-btn']
     let containerClasses = ['sbui-btn-container']

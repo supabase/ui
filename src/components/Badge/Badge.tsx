@@ -1,11 +1,12 @@
 import React from 'react'
 import { Space } from '../Space'
 import Typography from '../Typography'
+import './../../lib/variables/global.css'
 import './Badge.css'
 
 interface Props {
   color?:
-    'gray'
+    | 'gray'
     | 'red'
     | 'yellow'
     | 'green'
@@ -15,7 +16,7 @@ interface Props {
     | 'pink'
   children: string
   size?: 'large' | 'small'
-  dot? : boolean
+  dot?: boolean
 }
 
 function Badge({ color, children, size, dot }: Props) {
@@ -29,16 +30,16 @@ function Badge({ color, children, size, dot }: Props) {
 
   return (
     <span className={classes.join(' ')}>
-      { dot  && (
+      {dot && (
         <svg
-        className={`sbui-badge-dot sbui-badge--${color}`}
-        fill="currentColor"
-        viewBox="0 0 8 8"
-      >
-        <circle cx="4" cy="4" r="3" />
-      </svg>
-      ) }
-      
+          className={`sbui-badge-dot sbui-badge--${color}`}
+          fill="currentColor"
+          viewBox="0 0 8 8"
+        >
+          <circle cx="4" cy="4" r="3" />
+        </svg>
+      )}
+
       {children}
     </span>
   )
