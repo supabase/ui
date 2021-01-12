@@ -250,7 +250,7 @@ function EmailAuth({
             onChange={setPassword}
           />
         </Space>
-        <div>
+        <Space direction="vertical" size={6}>
           <Space style={{ justifyContent: 'space-between' }}>
             <Checkbox
               label="Remember me"
@@ -278,7 +278,7 @@ function EmailAuth({
           >
             {authView === VIEWS.SIGN_IN ? 'Sign in' : 'Sign up'}
           </Button>
-        </div>
+        </Space>
         {authView === VIEWS.SIGN_IN && (
           <Typography.Link onClick={() => setAuthView(VIEWS.MAGIC_LINK)}>
             Sign in with magic link
