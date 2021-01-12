@@ -405,7 +405,57 @@ function ForgottenPassword({
   )
 }
 
+function UpdatePassword({
+  supabaseClient,
+}: {
+  supabaseClient: SupabaseClient
+}) {
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [message, setMessage] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handlePasswordReset = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setError('')
+    setMessage('')
+    setLoading(true)
+    const { error } = await supabaseClient.auth.update({ password })
+    if (error) setError(error.message)
+    else setMessage('Your password has been updated.')
+    setLoading(false)
+  }
+
+  return (
+    <form onSubmit={handlePasswordReset}>
+      <Space size={4} direction={'vertical'}>
+        <Space size={3} direction={'vertical'}>
+          <Input
+            label="New password"
+            placeholder="Enter your new password"
+            type="password"
+            icon={<Icon size={21} stroke={'#666666'} type="Key" />}
+            onChange={setPassword}
+          />
+          <Button
+            block
+            size="large"
+            htmlType="submit"
+            icon={<Icon size={21} type="Key" />}
+            loading={loading}
+          >
+            Update password
+          </Button>
+        </Space>
+        {message && <Typography.Text>{message}</Typography.Text>}
+        {error && <Typography.Text type="danger">{error}</Typography.Text>}
+      </Space>
+    </form>
+  )
+}
+
 Auth.ForgottenPassword = ForgottenPassword
+Auth.UpdatePassword = UpdatePassword
 Auth.MagicLink = MagicLink
 Auth.UserContextProvider = UserContextProvider
 Auth.useUser = useUser
