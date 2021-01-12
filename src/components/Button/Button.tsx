@@ -25,12 +25,13 @@ interface Props {
     | 'dashed'
     | 'link'
     | 'text'
-  spaceSize?: number
+  htmlType?: 'button' | 'submit' | 'reset'
+  ref: any
 }
 
 interface RefHandle {
-  container:() => HTMLElement,
-  button:() => HTMLButtonElement,
+  container: () => HTMLElement
+  button: () => HTMLButtonElement
 }
 
 const Button = forwardRef<RefHandle, Props>(
@@ -49,21 +50,22 @@ const Button = forwardRef<RefHandle, Props>(
       size = 'medium',
       style,
       type = 'primary',
+      htmlType,
     }: Props,
     ref
   ) => {
-    const containerRef = useRef();
-    const buttonRef = useRef();
+    const containerRef = useRef()
+    const buttonRef = useRef()
     const showIcon = loading || icon
 
     useImperativeHandle(ref, () => ({
       get container() {
-          return containerRef.current;
+        return containerRef.current
       },
       get button() {
-          return buttonRef.current;
-      }
-    }));
+        return buttonRef.current
+      },
+    }))
 
     let classes = ['sbui-btn']
     let containerClasses = ['sbui-btn-container']
@@ -99,7 +101,7 @@ const Button = forwardRef<RefHandle, Props>(
           disabled={loading || (disabled && true)}
           onClick={onClick}
           style={style}
-          type="button"
+          type={htmlType}
         >
           {showIcon &&
             (loading ? (
