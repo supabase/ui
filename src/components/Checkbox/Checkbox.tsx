@@ -20,7 +20,7 @@ interface InputProps {
   name?: string
   checked?: boolean
   className?: string
-  onChange?(x: OnChangeProps): any
+  onChange?(x: React.ChangeEvent<HTMLInputElement>): void
 }
 
 interface GroupProps {
@@ -128,17 +128,11 @@ export function Checkbox({
           containerClasses.push(className)
         }
 
-        function onInputChange(e: any) {
+        function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
           // '`onChange` callback for parent component
           if (parentCallback) parentCallback(e)
           // '`onChange` callback for this component
-          if (onChange)
-            onChange({
-              name: e.target.name,
-              id: e.target.id,
-              value: e.target.value,
-              checked: e.target.checked,
-            })
+          if (onChange) onChange(e)
         }
 
         return (

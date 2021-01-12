@@ -1,46 +1,40 @@
 import React, { useState } from 'react'
+import { SupabaseClient, Provider } from '@supabase/supabase-js'
 // @ts-ignore
 import { Input, Checkbox, Button, Icon, Space, Typography } from './../../index'
 import * as SocialIcons from './Icons'
 import './Auth.css'
 
-const VIEWS: any = {
-  MAIN: 'main',
+const VIEWS = {
+  SIGN_IN: 'sign_in',
+  SIGN_UP: 'sign_up',
   FORGOTTEN_PASSWORD: 'forgotten_password',
   MAGIC_LINK: 'magic_link',
 }
 
-enum Providers {
-  'facebook',
-  'google',
-  'github',
-  'gitlab',
-  'bitbucket',
-}
-
 interface Props {
+  supabaseClient: SupabaseClient
   className?: any
   style?: any
-  client?: any
   children?: any
   authView?: any
   socialLayout?: 'horizontal' | 'vertical'
   socialColors?: boolean
   socialButtonSize?: 'small' | 'normal' | 'large'
-  providers?: Providers[]
+  providers?: Provider[]
   verticalSocialLayout?: any
-  view?: 'main' | 'forgotten_password' | 'magic_link'
+  view?: 'sign_in' | 'sign_up' | 'forgotten_password' | 'magic_link'
 }
 
 function Auth({
+  supabaseClient,
   className,
   style,
-  client,
   socialLayout = 'vertical',
   socialColors = false,
   socialButtonSize,
   providers,
-  view = 'main',
+  view = 'sign_in',
 }: Props) {
   const [authView, setAuthView] = useState(view)
 
@@ -54,7 +48,7 @@ function Auth({
     <div className={containerClasses.join(' ')} style={style}>
       <Space size={8} direction={'vertical'}>
         <SocialAuth
-          client={client}
+          supabaseClient={supabaseClient}
           verticalSocialLayout={verticalSocialLayout}
           providers={providers}
           socialLayout={socialLayout}
@@ -67,24 +61,35 @@ function Auth({
   )
 
   switch (authView) {
-    case VIEWS.MAIN:
+    case VIEWS.SIGN_IN:
+    case VIEWS.SIGN_UP:
       return (
         <Container>
-          <EmailAuth client={client} setAuthView={setAuthView} />
+          <EmailAuth
+            supabaseClient={supabaseClient}
+            authView={authView}
+            setAuthView={setAuthView}
+          />
         </Container>
       )
       break
     case VIEWS.FORGOTTEN_PASSWORD:
       return (
         <Container>
-          <ForgottenPassword client={client} setAuthView={setAuthView} />
+          <ForgottenPassword
+            supabaseClient={supabaseClient}
+            setAuthView={setAuthView}
+          />
         </Container>
       )
       break
     case VIEWS.MAGIC_LINK:
       return (
         <Container>
-          <MagicLink client={client} setAuthView={setAuthView} />
+          <MagicLink
+            supabaseClient={supabaseClient}
+            setAuthView={setAuthView}
+          />
         </Container>
       )
       break
@@ -96,7 +101,7 @@ function Auth({
 function SocialAuth({
   className,
   style,
-  client,
+  supabaseClient,
   children,
   socialLayout = 'vertical',
   socialColors = false,
@@ -105,7 +110,6 @@ function SocialAuth({
   verticalSocialLayout,
   ...props
 }: Props) {
-  
   const buttonStyles: any = {
     google: {
       backgroundColor: '#ce4430',
@@ -130,6 +134,15 @@ function SocialAuth({
       color: 'white',
     },
   }
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleProviderSignIn = async (provider: Provider) => {
+    setLoading(true)
+    const { error } = await supabaseClient.auth.signIn({ provider })
+    if (error) setError(error.message)
+    setLoading(false)
+  }
 
   return (
     <Space size={8} direction={'vertical'}>
@@ -152,6 +165,8 @@ function SocialAuth({
                       size={socialButtonSize}
                       style={socialColors ? buttonStyles[provider] : {}}
                       icon={<AuthIcon />}
+                      loading={loading}
+                      onClick={() => handleProviderSignIn(provider)}
                     >
                       {verticalSocialLayout && 'Sign up with ' + provider}
                     </Button>
@@ -175,88 +190,214 @@ function SocialAuth({
   )
 }
 
-function EmailAuth({ setAuthView }: any) {
+function EmailAuth({
+  authView,
+  setAuthView,
+  supabaseClient,
+}: {
+  authView: any
+  setAuthView: any
+  supabaseClient: SupabaseClient
+}) {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [rememberMe, setRememberMe] = useState(false)
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setError('')
+    setLoading(true)
+    switch (authView) {
+      case 'sign_in':
+        const { error: signInError } = await supabaseClient.auth.signIn({
+          email,
+          password,
+        })
+        if (signInError) setError(signInError.message)
+        break
+      case 'sign_up':
+        const { error: signUpError } = await supabaseClient.auth.signUp({
+          email,
+          password,
+        })
+        if (signUpError) setError(signUpError.message)
+        break
+    }
+    setLoading(false)
+  }
+
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <Space size={6} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
             label="Email address"
+            autoComplete="email"
             icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
+            onChange={setEmail}
           />
           <Input
             label="Password"
             type="password"
+            autoComplete="current-password"
             icon={<Icon size={21} stroke={'#666666'} type="Key" />}
+            onChange={setPassword}
           />
         </Space>
         <div>
           <Space style={{ justifyContent: 'space-between' }}>
-            <Checkbox label="Remember me" name="remember_me" id="remember_me" />
-            <Typography.Link
-              onClick={() => setAuthView(VIEWS.FORGOTTEN_PASSWORD)}
-            >
-              Forgot your password?
-            </Typography.Link>
+            <Checkbox
+              label="Remember me"
+              name="remember_me"
+              id="remember_me"
+              onChange={(value: React.ChangeEvent<HTMLInputElement>) =>
+                setRememberMe(value.target.checked)
+              }
+            />
+            {authView === VIEWS.SIGN_IN && (
+              <Typography.Link
+                onClick={() => setAuthView(VIEWS.FORGOTTEN_PASSWORD)}
+              >
+                Forgot your password?
+              </Typography.Link>
+            )}
           </Space>
           <Button
+            htmlType="submit"
             type="primary"
             block
             size="large"
             icon={<Icon size={21} type="Lock" color="currentColor" />}
+            loading={loading}
           >
-            Sign up
+            {authView === VIEWS.SIGN_IN ? 'Sign in' : 'Sign up'}
           </Button>
         </div>
-        <Typography.Link onClick={() => setAuthView(VIEWS.MAGIC_LINK)}>
-          Sign in with magic link
-        </Typography.Link>
+        {authView === VIEWS.SIGN_IN && (
+          <Typography.Link onClick={() => setAuthView(VIEWS.MAGIC_LINK)}>
+            Sign in with magic link
+          </Typography.Link>
+        )}
+        {authView === VIEWS.SIGN_IN ? (
+          <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_UP)}>
+            Don't have an account? Sign up
+          </Typography.Link>
+        ) : (
+          <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
+            Do you have an account? Sign in.
+          </Typography.Link>
+        )}
+        {error && <Typography.Text type="danger">{error}</Typography.Text>}
       </Space>
-    </div>
+    </form>
   )
 }
 
-function MagicLink({ setAuthView }: any) {
+function MagicLink({
+  setAuthView,
+  supabaseClient,
+}: {
+  setAuthView: any
+  supabaseClient: SupabaseClient
+}) {
+  const [email, setEmail] = useState('')
+  const [error, setError] = useState('')
+  const [message, setMessage] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handleMagicLinkSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setError('')
+    setMessage('')
+    setLoading(true)
+    const { error } = await supabaseClient.auth.signIn({ email })
+    if (error) setError(error.message)
+    else setMessage('Check your email for the magic link.')
+    setLoading(false)
+  }
+
   return (
-    <div>
+    <form onSubmit={handleMagicLinkSignIn}>
       <Space size={4} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
             label="Email address"
             placeholder="Your email address"
             icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
+            onChange={setEmail}
           />
-          <Button block size="large" icon={<Icon size={21} type="Inbox" />}>
+          <Button
+            block
+            size="large"
+            htmlType="submit"
+            icon={<Icon size={21} type="Inbox" />}
+            loading={loading}
+          >
             Send magic link
           </Button>
         </Space>
-        <Typography.Link onClick={() => setAuthView(VIEWS.MAIN)}>
-          Go back to sign up
+        <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
+          Sign in with password.
         </Typography.Link>
+        {message && <Typography.Text>{message}</Typography.Text>}
+        {error && <Typography.Text type="danger">{error}</Typography.Text>}
       </Space>
-    </div>
+    </form>
   )
 }
 
-function ForgottenPassword({ setAuthView }: any) {
+function ForgottenPassword({
+  setAuthView,
+  supabaseClient,
+}: {
+  setAuthView: any
+  supabaseClient: SupabaseClient
+}) {
+  const [email, setEmail] = useState('')
+  const [error, setError] = useState('')
+  const [message, setMessage] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handlePasswordReset = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setError('')
+    setMessage('')
+    setLoading(true)
+    const { error } = await supabaseClient.auth.api.resetPasswordForEmail(email)
+    if (error) setError(error.message)
+    else setMessage('Check your email for the password reset link.')
+    setLoading(false)
+  }
+
   return (
-    <div>
+    <form onSubmit={handlePasswordReset}>
       <Space size={4} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
             label="Email address"
             placeholder="Your email address"
             icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
+            onChange={setEmail}
           />
-          <Button block size="large" icon={<Icon size={21} type="Inbox" />}>
+          <Button
+            block
+            size="large"
+            htmlType="submit"
+            icon={<Icon size={21} type="Inbox" />}
+            loading={loading}
+          >
             Send reset password instructions
           </Button>
         </Space>
-        <Typography.Link onClick={() => setAuthView(VIEWS.MAIN)}>
-          Go back to sign up
+        <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
+          Go back to sign in
         </Typography.Link>
+        {message && <Typography.Text>{message}</Typography.Text>}
+        {error && <Typography.Text type="danger">{error}</Typography.Text>}
       </Space>
-    </div>
+    </form>
   )
 }
 
