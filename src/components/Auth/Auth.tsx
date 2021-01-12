@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { SupabaseClient, Provider } from '@supabase/supabase-js'
 // @ts-ignore
 import { Input, Checkbox, Button, Icon, Space, Typography } from './../../index'
+import { UserContextProvider, useUser } from './UserContext'
 import * as SocialIcons from './Icons'
 import './Auth.css'
 
@@ -157,7 +158,10 @@ function SocialAuth({
                 // @ts-ignore
                 const AuthIcon = SocialIcons[provider]
                 return (
-                  <div style={!verticalSocialLayout ? { flexGrow: 1 } : {}}>
+                  <div
+                    key={provider}
+                    style={!verticalSocialLayout ? { flexGrow: 1 } : {}}
+                  >
                     <Button
                       block
                       type="default"
@@ -403,5 +407,7 @@ function ForgottenPassword({
 
 Auth.ForgottenPassword = ForgottenPassword
 Auth.MagicLink = MagicLink
+Auth.UserContextProvider = UserContextProvider
+Auth.useUser = useUser
 
 export default Auth
