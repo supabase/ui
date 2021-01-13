@@ -23,7 +23,7 @@ export interface Props {
     | 'url'
     | 'week'
   className?: string
-  autoComplete?: boolean
+  autoComplete?: string
   descriptionText?: string
   disabled?: boolean
   error?: string
@@ -77,7 +77,7 @@ function Input({
       >
         <div className="sbui-input-container">
           <input
-            autoComplete={autoComplete && 'autoComplete'}
+            autoComplete={autoComplete}
             disabled={disabled}
             id={id}
             name={name}

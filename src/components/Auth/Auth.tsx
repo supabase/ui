@@ -21,7 +21,7 @@ interface Props {
   authView?: any
   socialLayout?: 'horizontal' | 'vertical'
   socialColors?: boolean
-  socialButtonSize?: 'small' | 'normal' | 'large'
+  socialButtonSize?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   providers?: Provider[]
   verticalSocialLayout?: any
   view?: 'sign_in' | 'sign_up' | 'forgotten_password' | 'magic_link'
@@ -33,7 +33,7 @@ function Auth({
   style,
   socialLayout = 'vertical',
   socialColors = false,
-  socialButtonSize,
+  socialButtonSize = 'medium',
   providers,
   view = 'sign_in',
 }: Props) {

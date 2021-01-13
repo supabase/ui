@@ -34,8 +34,8 @@ module.exports = {
           500: '#9FE7C7',
           600: '#65D9A5',
           700: '#3ECF8E',
-          800: '#38BC81',
-          900: '#10633E',
+          800: '#24b47e', // green-500 in dashboard
+          900: '#2c9c6a',
         },
 
         gray: {
