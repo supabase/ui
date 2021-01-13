@@ -47,7 +47,7 @@ const Button = forwardRef<RefHandle, Props>(
       iconRight,
       loading = false,
       shadow = true,
-      size = 'small',
+      size = 'tiny',
       style,
       type = 'primary',
       htmlType,
