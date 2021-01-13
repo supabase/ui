@@ -8,23 +8,17 @@ import { Button, Transition, Icon } from './../../index'
 import Typography from '../Typography'
 import { Space } from '../Space'
 
-// import addons, { mockChannel } from '@storybook/addons';
-
-// addons.setChannel(mockChannel());
-
-// import './Button.css'
-
 export const SIZES = ['small', 'medium', 'large']
 export const VARIANTS = ['alert', 'warning', 'success']
 
 const Modal = ({
   className = '',
   children,
-  title = 'This is the title',
-  description = 'This is the description',
+  title,
+  description,
   variant = 'success',
-  showIcon = true,
-  visible = true,
+  showIcon = false,
+  visible = false,
   onConfirmText = 'Confirm',
   onCancelText = 'Cancel',
   onCancel,
@@ -88,10 +82,9 @@ const Modal = ({
               onClick={stopPropagation}
             >
               <div className="sbui-modal-content">
-                <Space size={5} style={{}}>
+                <Space size={5} style={{ alignItems: 'flex-start' }}>
                   {iconMarkup}
-
-                  <div className="">
+                  <div>
                     <Space
                       size={4}
                       direction="vertical"
@@ -100,8 +93,11 @@ const Modal = ({
                       <div>
                         {title && (
                           <Typography.Title
-                            style={{ marginBottom: '.5rem' }}
-                            level={3}
+                            style={{
+                              marginBottom: '.5rem',
+                              marginTop: '0.2rem',
+                            }}
+                            level={4}
                           >
                             {title}
                           </Typography.Title>
