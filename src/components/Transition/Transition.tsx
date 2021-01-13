@@ -102,15 +102,15 @@ const Transition = ({
   )
 }
 
-Transition.propTypes = {
-  show: PropTypes.bool,
-  enter: PropTypes.string,
-  enterFrom: PropTypes.string,
-  enterTo: PropTypes.string,
-  leave: PropTypes.string,
-  leaveFrom: PropTypes.string,
-  leaveTo: PropTypes.string,
-}
+// Transition.propTypes = {
+//   show: PropTypes.bool,
+//   enter: PropTypes.string,
+//   enterFrom: PropTypes.string,
+//   enterTo: PropTypes.string,
+//   leave: PropTypes.string,
+//   leaveFrom: PropTypes.string,
+//   leaveTo: PropTypes.string,
+// }
 
 export default Transition
 
