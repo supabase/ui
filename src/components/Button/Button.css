@@ -7,11 +7,11 @@
   @apply rounded;
   font-family: inherit;
   font-weight: inherit;
-  text-shadow: 0 -1px 0 rgba(0,0,0,.12);
+  text-shadow: 1px 0px 2px rgba(0, 0, 0, 0.12);
 }
 
 .sbui-btn-container--shadow {
-  box-shadow: 0 2px 0 rgba(0,0,0,.045);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
 }
 
 .sbui-btn--w-full {
@@ -47,16 +47,15 @@
   Button varients
 */
 .sbui-btn-primary {
-  @apply text-white bg-brand-700 hover:bg-brand-600;
-  @apply dark:hover:bg-brand-800;
+  @apply text-white bg-brand-800 hover:bg-brand-600;
+  @apply dark:hover:bg-brand-900;
 }
 .sbui-btn-default {
-  @apply text-gray-500 bg-white border-gray-300 hover:text-gray-600; 
-  @apply hover:bg-white hover:border-gray-200; 
-  
+  @apply text-gray-500 bg-white border-gray-300 hover:text-gray-600;
+  @apply hover:bg-white hover:border-gray-200;
+
   @apply dark:border-dark-700 dark:bg-gray-600 dark:text-dark-200;
   @apply dark:hover:bg-gray-700;
-  
 }
 .sbui-btn-secondary {
   @apply text-gray-600 bg-gray-200;
@@ -73,7 +72,7 @@
   @apply dark:text-white dark:border-dark-400 dark:hover:text-white dark:hover:border-white;
 }
 .sbui-btn-link {
-  @apply text-brand-700 bg-transparent text-brand-700 border-none hover:bg-brand-300 hover:bg-opacity-25;
+  @apply text-brand-800 bg-transparent text-brand-800 border-none hover:bg-brand-900 hover:bg-opacity-25;
 }
 .sbui-btn-text {
   @apply text-gray-400 bg-transparent border-none hover:bg-gray-200 hover:bg-opacity-25;
@@ -81,7 +80,7 @@
 }
 
 .sbui-btn--danger {
-  @apply border-red-500 text-red-500; 
+  @apply border-red-500 text-red-500;
   @apply dark:border-red-500 dark:text-red-500;
 }
 
@@ -89,10 +88,15 @@
   @apply bg-red-500 text-white;
   @apply hover:bg-red-600 hover:border-red-600;
 }
-.sbui-btn-default.sbui-btn--danger, .sbui-btn-secondary.sbui-btn--danger, .sbui-btn-outline.sbui-btn--danger, .sbui-btn-dashed.sbui-btn--danger, .sbui-btn-link.sbui-btn--danger, .sbui-btn-text.sbui-btn--danger {
+.sbui-btn-default.sbui-btn--danger,
+.sbui-btn-secondary.sbui-btn--danger,
+.sbui-btn-outline.sbui-btn--danger,
+.sbui-btn-dashed.sbui-btn--danger,
+.sbui-btn-link.sbui-btn--danger,
+.sbui-btn-text.sbui-btn--danger {
   @apply hover:bg-red-600 hover:text-white hover:border-red-600;
 }
- /* {
+/* {
   @apply hover:bg-red-600 hover:text-white hover:border-red-600;
 } */
 
