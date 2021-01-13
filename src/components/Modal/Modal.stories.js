@@ -15,15 +15,7 @@ export default {
 }
 
 export const Default = (args) => (
-  <Modal
-    {...args}
-    visible={true}
-    className="font-sans"
-    onCancel={action('onCancel')}
-    onConfirm={action('onConfirm')}
-    title="This is the title of the modal"
-    description="And i am the description"
-  >
+  <Modal {...args}>
     <Typography.Text>
       Modal content is inserted here, if you need to insert anything into the
       Modal you can do so via{' '}
@@ -33,16 +25,7 @@ export const Default = (args) => (
 )
 
 export const withIcon = (args) => (
-  <Modal
-    {...args}
-    visible={true}
-    showIcon={true}
-    className="font-sans"
-    onCancel={action('onCancel')}
-    onConfirm={action('onConfirm')}
-    title="This is the title of the modal"
-    description="And i am the description"
-  >
+  <Modal {...args}>
     <Typography.Text>
       Modal content is inserted here, if you need to insert anything into the
       Modal you can do so via{' '}
@@ -52,17 +35,7 @@ export const withIcon = (args) => (
 )
 
 export const hideFooter = (args) => (
-  <Modal
-    {...args}
-    visible={true}
-    showIcon={true}
-    hideFooter={true}
-    className="font-sans"
-    onCancel={action('onCancel')}
-    onConfirm={action('onConfirm')}
-    title="This is the title of the modal"
-    description="And i am the description"
-  >
+  <Modal {...args}>
     <Typography.Text>
       Modal content is inserted here, if you need to insert anything into the
       Modal you can do so via{' '}
@@ -72,26 +45,7 @@ export const hideFooter = (args) => (
 )
 
 export const customFooter = (args) => (
-  <Modal
-    {...args}
-    visible={true}
-    className="font-sans"
-    onCancel={action('onCancel')}
-    onConfirm={action('onConfirm')}
-    title="This is the title of the modal"
-    description="And i am the description"
-    customFooter={[
-      <Space>
-        <div>
-          <Badge color="red" dot size="small">
-            Proceed with caution
-          </Badge>
-        </div>
-        <Button type="secondary">Cancel</Button>
-        <Button danger>Delete</Button>
-      </Space>,
-    ]}
-  >
+  <Modal {...args}>
     <Typography.Text>
       Modal content is inserted here, if you need to insert anything into the
       Modal you can do so via{' '}
@@ -99,3 +53,49 @@ export const customFooter = (args) => (
     </Typography.Text>
   </Modal>
 )
+
+Default.args = {
+  visible: true,
+  className: 'font-sans',
+  onCancel: action('onCancel'),
+  onConfirm: action('onConfirm'),
+  title: 'This is the title of the modal',
+  description: 'And i am the description',
+}
+
+withIcon.args = {
+  visible: true,
+  showIcon: true,
+  onCancel: action('onCancel'),
+  onConfirm: action('onConfirm'),
+  title: 'This is the title of the modal',
+  description: 'And i am the description',
+}
+
+hideFooter.args = {
+  visible: true,
+  hideFooter: false,
+  onCancel: action('onCancel'),
+  onConfirm: action('onConfirm'),
+  title: 'This is the title of the modal',
+  description: 'And i am the description',
+}
+
+customFooter.args = {
+  visible: true,
+  onCancel: action('onCancel'),
+  onConfirm: action('onConfirm'),
+  title: 'This is the title of the modal',
+  description: 'And i am the description',
+  customFooter: [
+    <Space>
+      <div>
+        <Badge color="red" dot size="small">
+          Proceed with caution
+        </Badge>
+      </div>
+      <Button type="secondary">Cancel</Button>
+      <Button danger>Delete</Button>
+    </Space>,
+  ],
+}
