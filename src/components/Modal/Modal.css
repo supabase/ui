@@ -3,7 +3,7 @@ h3 {
 }
 
 .sbui-modal-container {
-  @apply fixed z-10 inset-0 overflow-y-auto;
+  @apply fixed z-50 inset-0 overflow-y-auto;
 }
 
 .sbui-modal-flex-container {
