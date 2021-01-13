@@ -14,7 +14,7 @@ export default {
   argTypes: { onClick: { action: 'clicked' } },
 }
 
-export const Default = (args) => (
+export const Default = (args: any) => (
   <Modal {...args}>
     <Typography.Text>
       Modal content is inserted here, if you need to insert anything into the
@@ -24,7 +24,7 @@ export const Default = (args) => (
   </Modal>
 )
 
-export const withIcon = (args) => (
+export const withIcon = (args: any) => (
   <Modal {...args}>
     <Typography.Text>
       Modal content is inserted here, if you need to insert anything into the
@@ -34,7 +34,7 @@ export const withIcon = (args) => (
   </Modal>
 )
 
-export const hideFooter = (args) => (
+export const hideFooter = (args: any) => (
   <Modal {...args}>
     <Typography.Text>
       Modal content is inserted here, if you need to insert anything into the
@@ -44,7 +44,7 @@ export const hideFooter = (args) => (
   </Modal>
 )
 
-export const customFooter = (args) => (
+export const customFooter = (args: any) => (
   <Modal {...args}>
     <Typography.Text>
       Modal content is inserted here, if you need to insert anything into the

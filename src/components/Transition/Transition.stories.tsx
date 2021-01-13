@@ -7,7 +7,7 @@ export default {
   component: Transition,
 }
 
-export const Default = (args) => (
+export const Default = (args: any) => (
   <Transition {...args} className="font-sans">
     <p>I am some text</p>
   </Transition>

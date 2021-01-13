@@ -8,7 +8,6 @@ interface Props {
   block?: boolean
   className?: any
   children: React.ReactNode
-  danger?: boolean
   disabled?: boolean
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   icon?: React.ReactNode
@@ -25,8 +24,9 @@ interface Props {
     | 'dashed'
     | 'link'
     | 'text'
+  danger?: boolean
   htmlType?: 'button' | 'submit' | 'reset'
-  ref: any
+  ref?: any
 }
 
 interface RefHandle {

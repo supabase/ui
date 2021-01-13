@@ -1,6 +1,7 @@
 // modified, unhooked version
 
 import React from 'react'
+// @ts-ignore
 import { CSSTransition as ReactCSSTransition } from 'react-transition-group'
 import PropTypes from 'prop-types'
 
@@ -22,19 +23,19 @@ function CSSTransition({
   leaveTo = '',
   appear,
   children,
-}) {
-  const enterClasses = enter.split(' ').filter((s) => s.length)
-  const enterFromClasses = enterFrom.split(' ').filter((s) => s.length)
-  const enterToClasses = enterTo.split(' ').filter((s) => s.length)
-  const leaveClasses = leave.split(' ').filter((s) => s.length)
-  const leaveFromClasses = leaveFrom.split(' ').filter((s) => s.length)
-  const leaveToClasses = leaveTo.split(' ').filter((s) => s.length)
+}: any) {
+  const enterClasses = enter.split(' ').filter((s: any) => s.length)
+  const enterFromClasses = enterFrom.split(' ').filter((s: any) => s.length)
+  const enterToClasses = enterTo.split(' ').filter((s: any) => s.length)
+  const leaveClasses = leave.split(' ').filter((s: any) => s.length)
+  const leaveFromClasses = leaveFrom.split(' ').filter((s: any) => s.length)
+  const leaveToClasses = leaveTo.split(' ').filter((s: any) => s.length)
 
-  function addClasses(node, classes) {
+  function addClasses(node: any, classes: any) {
     classes.length && node.classList.add(...classes)
   }
 
-  function removeClasses(node, classes) {
+  function removeClasses(node: any, classes: any) {
     classes.length && node.classList.remove(...classes)
   }
 
@@ -43,27 +44,27 @@ function CSSTransition({
       appear={appear}
       unmountOnExit
       in={show}
-      addEndListener={(node, done) => {
+      addEndListener={(node: any, done: any) => {
         node.addEventListener('transitionend', done, false)
       }}
-      onEnter={(node) => {
+      onEnter={(node: any) => {
         addClasses(node, [...enterClasses, ...enterFromClasses])
       }}
-      onEntering={(node) => {
+      onEntering={(node: any) => {
         removeClasses(node, enterFromClasses)
         addClasses(node, enterToClasses)
       }}
-      onEntered={(node) => {
+      onEntered={(node: any) => {
         removeClasses(node, [...enterToClasses, ...enterClasses])
       }}
-      onExit={(node) => {
+      onExit={(node: any) => {
         addClasses(node, [...leaveClasses, ...leaveFromClasses])
       }}
-      onExiting={(node) => {
+      onExiting={(node: any) => {
         removeClasses(node, leaveFromClasses)
         addClasses(node, leaveToClasses)
       }}
-      onExited={(node) => {
+      onExited={(node: any) => {
         removeClasses(node, [...leaveToClasses, ...leaveClasses])
       }}
     >
@@ -72,10 +73,8 @@ function CSSTransition({
   )
 }
 
-function TransitionCompiler({ show, appear, ...rest }) {
-  return (
-    <CSSTransition appear={appear} show={show} {...rest} />
-  )
+function TransitionCompiler({ show, appear, ...rest }: any) {
+  return <CSSTransition appear={appear} show={show} {...rest} />
 }
 
 const Transition = ({
@@ -86,8 +85,8 @@ const Transition = ({
   leave = 'ease-in duration-200',
   leaveFrom = 'opacity-100',
   leaveTo = 'opacity-0',
-  children
-}) => {
+  children,
+}: any) => {
   return (
     <TransitionCompiler
       show={show}
@@ -103,15 +102,15 @@ const Transition = ({
   )
 }
 
-Transition.propTypes = {
-  show: PropTypes.bool,
-  enter: PropTypes.string,
-  enterFrom: PropTypes.string,
-  enterTo: PropTypes.string,
-  leave: PropTypes.string,
-  leaveFrom: PropTypes.string,
-  leaveTo: PropTypes.string,
-}
+// Transition.propTypes = {
+//   show: PropTypes.bool,
+//   enter: PropTypes.string,
+//   enterFrom: PropTypes.string,
+//   enterTo: PropTypes.string,
+//   leave: PropTypes.string,
+//   leaveFrom: PropTypes.string,
+//   leaveTo: PropTypes.string,
+// }
 
 export default Transition
 

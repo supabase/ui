@@ -1,15 +1,23 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import './Modal.css'
+import { Button, Transition, Icon, Typography, Space } from './../../index'
 
-import { action } from '@storybook/addon-actions'
-
-import { Button, Transition, Icon } from './../../index'
-import Typography from '../Typography'
-import { Space } from '../Space'
-
-export const SIZES = ['small', 'medium', 'large']
-export const VARIANTS = ['alert', 'warning', 'success']
+interface Props {
+  className?: string
+  children?: React.ReactNode
+  title?: string
+  description?: string
+  variant?: 'alert' | 'warning' | 'success'
+  showIcon?: boolean
+  visible: boolean
+  onConfirmText?: string
+  onCancelText?: string
+  onCancel?: any
+  onConfirm?: any
+  customFooter?: React.ReactNode
+  hideFooter?: boolean
+  loading?: boolean
+}
 
 const Modal = ({
   className = '',
@@ -26,7 +34,7 @@ const Modal = ({
   customFooter = undefined,
   hideFooter = false,
   loading = false,
-}) => {
+}: Props) => {
   let icon = {
     alert: <Icon size={24} strokeWidth={2} type="AlertCircle" />,
     warning: <Icon size={24} strokeWidth={2} type="AlertCircle" />,
@@ -40,7 +48,7 @@ const Modal = ({
     <div className={iconClasses.join(' ')}>{icon[variant]}</div>
   )
 
-  function stopPropagation(e) {
+  function stopPropagation(e: React.MouseEvent) {
     e.stopPropagation()
   }
 
@@ -117,23 +125,21 @@ const Modal = ({
                   {customFooter ? (
                     customFooter
                   ) : (
-                    <React.Fragment>
-                      <Space>
-                        <Button
-                          type="outline"
-                          onClick={() => (onCancel ? onCancel() : null)}
-                          disabled={loading}
-                        >
-                          {onCancelText}
-                        </Button>
-                        <Button
-                          onClick={() => (onConfirm ? onConfirm() : null)}
-                          loading={loading}
-                        >
-                          {onConfirmText}
-                        </Button>
-                      </Space>
-                    </React.Fragment>
+                    <Space>
+                      <Button
+                        type="outline"
+                        onClick={() => (onCancel ? onCancel() : null)}
+                        disabled={loading}
+                      >
+                        {onCancelText}
+                      </Button>
+                      <Button
+                        onClick={() => (onConfirm ? onConfirm() : null)}
+                        loading={loading}
+                      >
+                        {onConfirmText}
+                      </Button>
+                    </Space>
                   )}
                 </div>
               )}
@@ -143,18 +149,6 @@ const Modal = ({
       </div>
     </Transition>
   )
-}
-
-Modal.propTypes = {
-  visible: PropTypes.bool,
-  title: PropTypes.string,
-  description: PropTypes.string,
-  variant: PropTypes.oneOf(VARIANTS),
-  showIcon: PropTypes.bool,
-  className: PropTypes.string,
-  onConfirmText: PropTypes.string,
-  onCancelText: PropTypes.string,
-  loading: PropTypes.bool,
 }
 
 export default Modal
