@@ -8,13 +8,24 @@ interface Props {
   type?: string
   color?: string
   strokeWidth?: number
+  fill?: string
+  stroke?: string
 }
 
 interface StringMap {
   [key: string]: number
 }
 
-function Icon({ className, size, type, color, strokeWidth, ...props }: Props) {
+function Icon({
+  className,
+  size,
+  type,
+  color,
+  strokeWidth,
+  fill = undefined,
+  stroke = undefined,
+  ...props
+}: Props) {
   return (
     <IconContext.Consumer>
       {({ contextSize }) => {
@@ -51,12 +62,18 @@ function Icon({ className, size, type, color, strokeWidth, ...props }: Props) {
             : defaultSize
         }
 
+        // confitional used for Icons with no color settings
+        // default these icons to use 'currentColor' ie, the text color
+        const noColor = !color && !fill && !stroke
+
         return (
           <FeatherIcon
-            color={color ? color : 'currentColor'}
+            color={!noColor ? color : 'currentColor'}
+            stroke={!noColor ? stroke : 'currentColor'}
             className={`${className}`}
             strokeWidth={strokeWidth}
             size={iconSize}
+            fill={!noColor ? (fill ? fill : 'none') : 'none'}
             {...props}
           />
         )

@@ -22,17 +22,11 @@ Default.args = {
   size: 16,
   className: '',
   type: 'Loader',
-  color: 'black',
+  stroke: 'black',
   strokeWidth: 2,
-  // type: {
-  //   control: {
-  //     type: 'select',
-  //     options: LIST_ICONS,
-  //   },
-  // },
 }
 
-export const ListIcons = () => (
+export const IconList = (args: any) => (
   <>
     <div className="font-sans text-xl bg-blue-100 p-5 mb-3 rounded-md">
       This icons uses react-feather from Feather Icons. For detail you can check
@@ -41,14 +35,16 @@ export const ListIcons = () => (
     </div>
     <div className="flex flex-wrap font-sans">
       {LIST_ICONS.map((icon) => (
-        <div className="m-2 shadow-lg rounded-lg w-36 h-36 flex flex-col justify-center items-center">
-          {
-            /* // @ts-ignore */
-            <Icon className={""} type={icon} key={icon} />
-          }
+        <div className="m-2 shadow-lg rounded-lg w-36 h-36 flex flex-col justify-center items-center dark:text-white">
+          <Icon type={icon} key={icon} {...args} />
           <span className="mt-2">{icon}</span>
         </div>
       ))}
     </div>
   </>
 )
+
+IconList.args = {
+  size: 16,
+  strokeWidth: 2,
+}
