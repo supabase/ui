@@ -5,6 +5,8 @@ import './Modal.css'
 import { action } from '@storybook/addon-actions'
 
 import { Button, Transition, Icon } from './../../index'
+import Typography from '../Typography'
+import { Space } from '../Space'
 
 // import addons, { mockChannel } from '@storybook/addons';
 
@@ -30,52 +32,18 @@ const Modal = ({
   customFooter = undefined,
   hideFooter = false,
   loading = false,
-  ...props
 }) => {
-  let variantBgColor = {
-    alert: 'red',
-    warning: 'yellow',
-    success: 'green',
-  }
-
   let icon = {
-    alert: (
-      <Icon
-        size={24}
-        strokeWidth={2}
-        type="AlertCircle"
-        color={variantBgColor[variant]}
-      />
-    ),
-    warning: (
-      <Icon
-        size={24}
-        strokeWidth={2}
-        type="AlertCircle"
-        color={variantBgColor[variant]}
-      />
-    ),
-    success: (
-      <Icon
-        size={24}
-        strokeWidth={2}
-        type="Check"
-        color={variantBgColor[variant]}
-      />
-    ),
+    alert: <Icon size={24} strokeWidth={2} type="AlertCircle" />,
+    warning: <Icon size={24} strokeWidth={2} type="AlertCircle" />,
+    success: <Icon size={24} strokeWidth={2} type="Check" />,
   }
 
-  let bgColor = [`bg-${variantBgColor[variant]}-100`]
+  let iconClasses = ['sbui-modal-icon-container']
+  iconClasses.push(`sbui-modal-icon-container--${variant}`)
 
   const iconMarkup = showIcon && (
-    <div
-      className={
-        'mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full sm:mx-0 sm:h-10 sm:w-10 bg-opacity-75 ' +
-        bgColor.join(' ')
-      }
-    >
-      {icon[variant]}
-    </div>
+    <div className={iconClasses.join(' ')}>{icon[variant]}</div>
   )
 
   function stopPropagation(e) {
@@ -93,17 +61,15 @@ const Modal = ({
       leaveTo="opacity-0"
     >
       <div
-        className={'fixed z-10 inset-0 overflow-y-auto ' + className}
+        className={'sbui-modal-container ' + className}
         onClick={() => onCancel()}
       >
-        <div
-          className={`flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0`}
-        >
-          <div className="fixed inset-0 transition-opacity">
-            <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+        <div className="sbui-modal-flex-container">
+          <div className="sbui-modal-overlay-container">
+            <div className="sbui-modal-overlay"></div>
           </div>
           {/* <!-- This element is to trick the browser into centering the modal contents. --> */}
-          <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
+          <span className="sbui-modal-div-trick"></span>
           &#8203;
           <Transition
             show={visible}
@@ -115,48 +81,55 @@ const Modal = ({
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <div
-              className={`inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full`}
+              className="sbui-modal"
               role="dialog"
               aria-modal="true"
               aria-labelledby="modal-headline"
               onClick={stopPropagation}
             >
-              <div className="bg-gray-600 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div className="sm:flex sm:items-start">
+              <div className="sbui-modal-content">
+                <Space size={5} style={{}}>
                   {iconMarkup}
 
-                  <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                    <h3
-                      className="text-lg leading-6 font-medium text-white"
-                      id="modal-headline"
+                  <div className="">
+                    <Space
+                      size={4}
+                      direction="vertical"
+                      style={{ alignItems: 'flex-start' }}
                     >
-                      {title}
-                    </h3>
-                    <div className="mt-2">
-                      <p className="text-sm leading-5 text-gray-300">
-                        {description}
-                      </p>
-                    </div>
-                    {children}
+                      <div>
+                        {title && (
+                          <Typography.Title
+                            style={{ marginBottom: '.5rem' }}
+                            level={3}
+                          >
+                            {title}
+                          </Typography.Title>
+                        )}
+                        {description && (
+                          <Typography.Text>{description}</Typography.Text>
+                        )}
+                      </div>
+                      {children}
+                    </Space>
                   </div>
-                </div>
+                </Space>
               </div>
+
               {!hideFooter && (
-                <div className="bg-gray-500 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <div className="sbui-modal-footer">
                   {customFooter ? (
                     customFooter
                   ) : (
                     <React.Fragment>
-                      <span className="flex w-full sm:ml-3 sm:w-auto">
+                      <Space>
+                        <Button type="outline" onClick={() => onCancel()}>
+                          {onCancelText}
+                        </Button>
                         <Button onClick={() => onConfirm()} loading={loading}>
                           {onConfirmText}
                         </Button>
-                      </span>
-                      <span className="mt-3 flex w-full sm:mt-0 sm:w-auto">
-                        <Button variant="white" onClick={() => onCancel()}>
-                          {onCancelText}
-                        </Button>
-                      </span>
+                      </Space>
                     </React.Fragment>
                   )}
                 </div>
@@ -178,7 +151,7 @@ Modal.propTypes = {
   className: PropTypes.string,
   onConfirmText: PropTypes.string,
   onCancelText: PropTypes.string,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
 }
 
 export default Modal
