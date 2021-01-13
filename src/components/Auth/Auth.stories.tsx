@@ -72,6 +72,7 @@ export const withSocialAuthHorizontal = (args: any) => (
     </Container>
   </Auth.UserContextProvider>
 )
+export const updatePassword = (args: any) => <Auth.UpdatePassword {...args} />
 
 Default.args = {
   supabaseClient: supabase,
@@ -115,4 +116,8 @@ withSocialAuthHorizontal.args = {
   className: 'font-sans',
   providers: ['facebook', 'google'],
   socialLayout: 'horizontal',
+}
+
+updatePassword.args = {
+  supabaseClient: supabase,
 }
