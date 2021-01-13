@@ -95,7 +95,7 @@ const Modal = ({
                           <Typography.Title
                             style={{
                               marginBottom: '.5rem',
-                              marginTop: '0.2rem',
+                              marginTop: '0',
                             }}
                             level={4}
                           >
