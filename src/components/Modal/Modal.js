@@ -126,6 +126,7 @@ const Modal = ({
                         <Button
                           type="outline"
                           onClick={() => (onCancel ? onCancel() : null)}
+                          disabled={loading}
                         >
                           {onCancelText}
                         </Button>
