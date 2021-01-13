@@ -62,7 +62,7 @@ const Modal = ({
     >
       <div
         className={'sbui-modal-container ' + className}
-        onClick={() => onCancel()}
+        onClick={() => (onCancel ? onCancel() : null)}
       >
         <div className="sbui-modal-flex-container">
           <div className="sbui-modal-overlay-container">
@@ -123,10 +123,16 @@ const Modal = ({
                   ) : (
                     <React.Fragment>
                       <Space>
-                        <Button type="outline" onClick={() => onCancel()}>
+                        <Button
+                          type="outline"
+                          onClick={() => (onCancel ? onCancel() : null)}
+                        >
                           {onCancelText}
                         </Button>
-                        <Button onClick={() => onConfirm()} loading={loading}>
+                        <Button
+                          onClick={() => (onConfirm ? onConfirm() : null)}
+                          loading={loading}
+                        >
                           {onConfirmText}
                         </Button>
                       </Space>
