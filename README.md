@@ -9,13 +9,13 @@ Supabase UI is still a work-in-progress until a major release is published.
 
 Some of these are a work in progress - we invite anyone to submit a [feature request](https://github.com/supabase/ui/issues/new?labels=enhancement&template=2.Feature_request.md) if there is something you would like to see.
 
-*General*
+_General_
 
 - [x] Button
 - [x] Typography
 - [x] Icon
 
-*Data Input*
+_Data Input_
 
 - [x] Input
 - [ ] InputNumber
@@ -29,16 +29,16 @@ Some of these are a work in progress - we invite anyone to submit a [feature req
 - [ ] Time picker
 - [ ] Form
 
-*Layout*
+_Layout_
 
 - [ ] Layout
 - [ ] Grid (Flex)
 - [ ] Divider
 - [x] Space (Flex)
 
-*Display*
+_Display_
 
-- [x] Card (work in progress)
+- [x] Card
 - [ ] Avatar
 - [ ] Alert
 - [x] Badge
@@ -47,7 +47,7 @@ Some of these are a work in progress - we invite anyone to submit a [feature req
 - [ ] Tables
 - [ ] Code block
 
-*Navigation*
+_Navigation_
 
 - [ ] Tabs
 - [ ] Breadcrumb
@@ -58,7 +58,7 @@ Some of these are a work in progress - we invite anyone to submit a [feature req
 - [ ] Flyout menu
 - [ ] Steps
 
-*Overlay*
+_Overlay_
 
 - [x] Modal
 - [ ] Drawer / SidePanel
@@ -66,10 +66,10 @@ Some of these are a work in progress - we invite anyone to submit a [feature req
 - [ ] Progress
 - [ ] Feeds / Timeline
 
-*Misc*
+_Misc_
 
 - [ ] Storybook docs
-- [ ] Themeing
+- [ ] Themeing (in progress)
 - [ ] Supabase Auth Elements
 - [ ] Documentation website
 
@@ -92,9 +92,7 @@ import { Button } from '@supabase/ui'
 
 //...
 
-return (
-  <Button>I am a Supabase UI button</Button>
-)
+return <Button>I am a Supabase UI button</Button>
 ```
 
 It is probably advisable to use [Normalize](https://github.com/sindresorhus/modern-normalize) with Supabase UI for the timebeing.
@@ -124,12 +122,12 @@ Storybook runs by default on `http://localhost:6006/`
 
 If you want to test Supabase UI components locally, in context in another project locally, then you will need to `npm link` the supabase-ui project locally.
 
-Follow these instructions here -> 
+Follow these instructions here ->
 [NPM Linking and Unlinking instructions](https://dev.to/erinbush/npm-linking-and-unlinking-2h1g)
 
 ### Common issues
 
-*A common issue found with local testing is multiple versions of react running.*
+_A common issue found with local testing is multiple versions of react running._
 
 You may need to npm-link the react node module in the target app you want to locally test the library in. Then use that version of react inside the library, and then npm-link the library so the target app can use the library with just the 1 version of react.
 
