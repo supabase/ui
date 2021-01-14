@@ -66,6 +66,11 @@ _Overlay_
 - [ ] Progress
 - [ ] Feeds / Timeline
 
+_Utility_
+
+- [x] Loading
+- [x] Transition (work in progress)
+
 _Misc_
 
 - [ ] Storybook docs
