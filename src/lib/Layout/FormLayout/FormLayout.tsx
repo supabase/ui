@@ -39,6 +39,9 @@ export function FormLayout({
     if (align === 'left') {
       containerClasses.push('sbui-formlayout--flex-left')
     }
+    if (align === 'right') {
+      containerClasses.push('sbui-formlayout--flex-right')
+    }
   } else {
     containerClasses.push(
       responsive
@@ -67,7 +70,6 @@ export function FormLayout({
               ? 'sbui-formlayout__label-container-horizontal'
               : 'sbui-formlayout__label-container-vertical')
           }
-          size={flex ? 0 : 3}
         >
           {label && (
             <label className="sbui-formlayout__label" htmlFor={id}>

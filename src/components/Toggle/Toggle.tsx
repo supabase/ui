@@ -30,7 +30,7 @@ function Toggle({
   defaultChecked,
   checked,
   className,
-  align,
+  align = 'right',
 }: Props) {
   const [intChecked, setIntChecked] = useState(defaultChecked || checked)
 
