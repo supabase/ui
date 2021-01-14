@@ -18,8 +18,9 @@ Primary.args = {
   descriptionText: 'This is optional description',
   disabled: false,
   error: '',
-  label: 'Radio group main label',
-  labelOptional: 'This is an optional label',
+  label: "Get insights across your organization's repositories",
+  labelOptional:
+    'Star history, issue tracking, and more to come repository.surf organization',
   name: 'radiogroup-example',
   layout: 'horizontal',
 }

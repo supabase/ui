@@ -14,6 +14,7 @@ type Props = {
   labelOptional?: string
   layout: 'horizontal' | 'vertical'
   style?: React.CSSProperties
+  flex?: boolean
   responsive?: boolean
 }
 
@@ -28,14 +29,24 @@ export function FormLayout({
   labelOptional,
   layout,
   style,
+  flex,
   responsive = true,
 }: Props) {
   let containerClasses = ['sbui-formlayout']
-  containerClasses.push(
-    responsive
-      ? 'sbui-formlayout--responsive'
-      : 'sbui-formlayout--non-responsive'
-  )
+
+  if (flex) {
+    containerClasses.push('sbui-formlayout--flex')
+    if (align === 'left') {
+      containerClasses.push('sbui-formlayout--flex-left')
+    }
+  } else {
+    containerClasses.push(
+      responsive
+        ? 'sbui-formlayout--responsive'
+        : 'sbui-formlayout--non-responsive'
+    )
+  }
+
   if (className) {
     containerClasses.push(className)
   }
@@ -43,32 +54,33 @@ export function FormLayout({
   return (
     <div className={containerClasses.join(' ')}>
       {label || labelOptional || layout === 'horizontal' ? (
-          <Space
-            direction={
-              layout && layout === 'horizontal' ? 'vertical' : 'horizontal'
-            }
-            className={
-              '' +
-              (layout !== 'horizontal'
-                ? 'sbui-formlayout__label-container-horizontal'
-                : 'sbui-formlayout__label-container-vertical')
-            }
-          >
-            {label && (
-              <label className="sbui-formlayout__label" htmlFor={id}>
-                {label}
-              </label>
-            )}
-            {labelOptional && (
-              <span
-                className="sbui-formlayout__label-opt"
-                id={id + '-optional'}
-              >
-                {labelOptional}
-              </span>
-            )}
-          </Space>
-       ) : null}
+        <Space
+          direction={
+            (layout && layout === 'horizontal') ||
+            (flex && layout && layout === 'vertical')
+              ? 'vertical'
+              : 'horizontal'
+          }
+          className={
+            '' +
+            (layout !== 'horizontal' && !flex
+              ? 'sbui-formlayout__label-container-horizontal'
+              : 'sbui-formlayout__label-container-vertical')
+          }
+          size={flex ? 0 : 3}
+        >
+          {label && (
+            <label className="sbui-formlayout__label" htmlFor={id}>
+              {label}
+            </label>
+          )}
+          {labelOptional && (
+            <span className="sbui-formlayout__label-opt" id={id + '-optional'}>
+              {labelOptional}
+            </span>
+          )}
+        </Space>
+      ) : null}
       <div
         className={
           layout !== 'horizontal'

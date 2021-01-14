@@ -2,6 +2,18 @@
   @apply grid gap-2;
 }
 
+.sbui-formlayout--flex {
+  @apply flex justify-between;
+}
+
+.sbui-formlayout--flex-left div:first-child {
+  order: 2;
+}
+
+.sbui-formlayout--flex-left div:last-child {
+  order: 1;
+}
+
 .sbui-formlayout--non-responsive {
   @apply grid-cols-12;
 }
