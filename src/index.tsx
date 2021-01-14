@@ -18,6 +18,7 @@ export * from './components/Modal/index'
 
 export * from './components/Transition/index'
 export * from './components/Space/index'
+export * from './components/Loading/index'
 
 // DATA ENTRY
 
