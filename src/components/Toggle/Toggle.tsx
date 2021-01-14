@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
+import { Space } from '../Space'
 import './Toggle.css'
 
 interface Props {
@@ -14,12 +15,13 @@ interface Props {
   className?: any
   defaultChecked?: boolean
   checked?: boolean
+  align?: 'right' | 'left'
 }
 
 function Toggle({
   disabled,
   id,
-  layout,
+  layout = 'vertical',
   error,
   descriptionText,
   label,
@@ -28,6 +30,7 @@ function Toggle({
   defaultChecked,
   checked,
   className,
+  align,
 }: Props) {
   const [intChecked, setIntChecked] = useState(defaultChecked || checked)
 
@@ -57,9 +60,10 @@ function Toggle({
       label={label}
       labelOptional={labelOptional}
       layout={layout}
-      responsive={false}
       id={id}
       error={error}
+      align={layout === 'vertical' && align}
+      flex={layout === 'vertical' ? true : false}
       descriptionText={descriptionText}
     >
       <button
