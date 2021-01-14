@@ -6,6 +6,10 @@
   @apply flex justify-between;
 }
 
+.sbui-formlayout--flex-right div:last-child {
+  text-align: right;
+}
+
 .sbui-formlayout--flex-left div:first-child {
   order: 2;
 }
