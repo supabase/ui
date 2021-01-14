@@ -3,54 +3,87 @@ import './Modal.css'
 import { Button, Transition, Icon, Typography, Space } from './../../index'
 
 interface Props {
-  className?: string
   children?: React.ReactNode
-  title?: string
-  description?: string
-  variant?: 'alert' | 'warning' | 'success'
-  showIcon?: boolean
-  visible: boolean
-  onConfirmText?: string
-  onCancelText?: string
-  onCancel?: any
-  onConfirm?: any
+  className?: string
   customFooter?: React.ReactNode
+  description?: string
   hideFooter?: boolean
+  alignFooter?: 'right' | 'left'
+  layout?: 'horizontal' | 'vertical'
+  icon?: React.ReactNode
   loading?: boolean
+  onCancel?: any
+  onCancelText?: string
+  onConfirm?: any
+  onConfirmText?: string
+  showIcon?: boolean
+  footerBackground?: boolean
+  title?: string
+  variant?: 'danger' | 'warning' | 'success'
+  visible: boolean
+  size?: 'tiny' | 'small' | 'medium' | 'large'
 }
 
 const Modal = ({
-  className = '',
   children,
-  title,
-  description,
-  variant = 'success',
-  showIcon = false,
-  visible = false,
-  onConfirmText = 'Confirm',
-  onCancelText = 'Cancel',
-  onCancel,
-  onConfirm,
+  className = '',
   customFooter = undefined,
+  description,
   hideFooter = false,
+  alignFooter = 'left',
+  layout = 'horizontal',
   loading = false,
+  onCancel,
+  onCancelText = 'Cancel',
+  onConfirm,
+  onConfirmText = 'Confirm',
+  showIcon = false,
+  title,
+  footerBackground,
+  icon,
+  variant = 'success',
+  visible = false,
+  size = 'large',
 }: Props) => {
-  let icon = {
-    alert: <Icon size={24} strokeWidth={2} type="AlertCircle" />,
-    warning: <Icon size={24} strokeWidth={2} type="AlertCircle" />,
-    success: <Icon size={24} strokeWidth={2} type="Check" />,
-  }
-
-  let iconClasses = ['sbui-modal-icon-container']
-  iconClasses.push(`sbui-modal-icon-container--${variant}`)
-
-  const iconMarkup = showIcon && (
-    <div className={iconClasses.join(' ')}>{icon[variant]}</div>
-  )
-
   function stopPropagation(e: React.MouseEvent) {
     e.stopPropagation()
   }
+
+  let footerClasses = ['sbui-modal-footer']
+  if (footerBackground) {
+    footerClasses.push('sbui-modal-footer--with-bg')
+  }
+
+  const footerContent = customFooter ? (
+    customFooter
+  ) : (
+    <Space
+      style={{
+        width: '100%',
+        justifyContent:
+          layout === 'vertical'
+            ? 'center'
+            : alignFooter === 'right'
+            ? 'flex-end'
+            : 'flex-start',
+      }}
+    >
+      <Button
+        type="outline"
+        onClick={() => (onCancel ? onCancel() : null)}
+        disabled={loading}
+        danger={variant === 'danger'}
+      >
+        {onCancelText}
+      </Button>
+      <Button
+        onClick={() => (onConfirm ? onConfirm() : null)}
+        loading={loading}
+      >
+        {onConfirmText}
+      </Button>
+    </Space>
+  )
 
   return (
     <Transition
@@ -83,26 +116,34 @@ const Modal = ({
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <div
-              className="sbui-modal"
+              className={`sbui-modal sbui-modal--${size}`}
               role="dialog"
               aria-modal="true"
               aria-labelledby="modal-headline"
               onClick={stopPropagation}
             >
               <div className="sbui-modal-content">
-                <Space size={5} style={{ alignItems: 'flex-start' }}>
-                  {iconMarkup}
+                <Space
+                  size={5}
+                  style={{ alignItems: 'flex-start' }}
+                  direction={layout}
+                >
+                  {icon ? icon : null}
                   <div>
                     <Space
                       size={4}
                       direction="vertical"
-                      style={{ alignItems: 'flex-start' }}
+                      style={{
+                        alignItems: 'flex-start',
+                        textAlign: layout === 'vertical' ? 'center' : null,
+                        width: '100%',
+                      }}
                     >
-                      <div>
+                      <span style={{ width: 'inherit' }}>
                         {title && (
                           <Typography.Title
                             style={{
-                              marginBottom: '.5rem',
+                              marginBottom: '.1rem',
                               marginTop: '0',
                             }}
                             level={4}
@@ -113,35 +154,16 @@ const Modal = ({
                         {description && (
                           <Typography.Text>{description}</Typography.Text>
                         )}
-                      </div>
+                      </span>
+
                       {children}
+                      {!footerBackground && !hideFooter && footerContent}
                     </Space>
                   </div>
                 </Space>
               </div>
-
-              {!hideFooter && (
-                <div className="sbui-modal-footer">
-                  {customFooter ? (
-                    customFooter
-                  ) : (
-                    <Space>
-                      <Button
-                        type="outline"
-                        onClick={() => (onCancel ? onCancel() : null)}
-                        disabled={loading}
-                      >
-                        {onCancelText}
-                      </Button>
-                      <Button
-                        onClick={() => (onConfirm ? onConfirm() : null)}
-                        loading={loading}
-                      >
-                        {onConfirmText}
-                      </Button>
-                    </Space>
-                  )}
-                </div>
+              {!hideFooter && footerBackground && (
+                <div className={footerClasses.join(' ')}>{footerContent}</div>
               )}
             </div>
           </Transition>
