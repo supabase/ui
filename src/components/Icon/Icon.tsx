@@ -1,15 +1,34 @@
 import React from 'react'
 import * as Icons from 'react-feather'
 import { IconContext } from './IconContext'
+import './Icon.css'
 
 interface Props {
   className?: string
-  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge' | number
+  size?:
+    | 'tiny'
+    | 'small'
+    | 'medium'
+    | 'large'
+    | 'xlarge'
+    | 'xxlarge'
+    | 'xxxlarge'
+    | number
   type?: string
   color?: string
   strokeWidth?: number
   fill?: string
   stroke?: string
+  background?:
+    | 'brand'
+    | 'gray'
+    | 'red'
+    | 'yellow'
+    | 'green'
+    | 'blue'
+    | 'indigo'
+    | 'purple'
+    | 'pink'
 }
 
 interface StringMap {
@@ -24,6 +43,7 @@ function Icon({
   strokeWidth,
   fill = undefined,
   stroke = undefined,
+  background,
   ...props
 }: Props) {
   return (
@@ -35,6 +55,8 @@ function Icon({
           medium: 20,
           large: 20,
           xlarge: 24,
+          xxlarge: 30,
+          xxxlarge: 42,
         }
 
         const defaultSize = defaultSizes['large']
@@ -66,7 +88,7 @@ function Icon({
         // default these icons to use 'currentColor' ie, the text color
         const noColor = !color && !fill && !stroke
 
-        return (
+        const IconComponent = () => (
           <FeatherIcon
             color={!noColor ? color : 'currentColor'}
             stroke={!noColor ? stroke : 'currentColor'}
@@ -76,6 +98,16 @@ function Icon({
             fill={!noColor ? (fill ? fill : 'none') : 'none'}
             {...props}
           />
+        )
+
+        return background ? (
+          <div
+            className={`sbui-icon-container sbui-icon-container--${background}`}
+          >
+            <IconComponent />
+          </div>
+        ) : (
+          <IconComponent />
         )
       }}
     </IconContext.Consumer>
