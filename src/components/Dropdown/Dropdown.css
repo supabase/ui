@@ -1,3 +1,39 @@
 .sbui-dropdown-card .sbui-card-content {
   padding: 0;
 }
+
+.sbui-dropdown-overlay-continer {
+  @apply w-56;
+}
+
+.sbui-dropdown-overlay-continer--topRight {
+  @apply absolute mt-2 origin-top-right right-0 mt-2;
+}
+
+.sbui-dropdown-overlay-continer--topLeft {
+  @apply absolute mt-2 origin-top-left left-0 mt-2;
+}
+
+.sbui-dropdown-overlay-continer--bottomRight {
+  @apply origin-bottom-right;
+  margin-top: -0.5rem;
+  position: absolute;
+  left: 0;
+  transform-origin: top left;
+  transform: translatey(-100%);
+}
+
+.sbui-dropdown-overlay-continer--bottomLeft {
+  @apply origin-bottom-left;
+  margin-top: -0.5rem;
+  position: absolute;
+  right: 0;
+  transform-origin: top left;
+  transform: translatey(-100%);
+}
+
+.sbui-dropdown-overlay-continer--topCenter {
+  @apply origin-top mt-2;
+  /* transform-origin: bottom center; */
+  transform-origin: center bottom;
+}

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { SupabaseClient, Provider } from '@supabase/supabase-js'
-// @ts-ignore
 import { Input, Checkbox, Button, Icon, Space, Typography } from './../../index'
 import { UserContextProvider, useUser } from './UserContext'
 import * as SocialIcons from './Icons'
