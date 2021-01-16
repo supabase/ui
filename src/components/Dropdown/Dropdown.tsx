@@ -1,18 +1,11 @@
-import React, { useState } from 'react'
-import { Button } from '../Button'
+import React from 'react'
 import { Card } from '../Card'
-import { Icon } from '../Icon'
-import { Transition } from '../Transition'
 import Typography from '../Typography'
 
 import './Dropdown.css'
 
-//@ts-ignore
-import Hooks from './../../lib/Hooks'
 import { Space } from '../Space'
-import { Menu } from '../Menu'
-import { DropdownContext } from './DropdownContext'
-// import { Divider } from '../Menu/Menu'
+import Overlay from '../../lib/Overlay/Overlay'
 
 interface Props {
   visible?: boolean
@@ -25,61 +18,15 @@ interface Props {
     | 'topLeft'
     | 'topRight'
     | 'topCentre'
+  onVisibleChange?: any
+  disabled?: boolean
 }
 
-function Dropdown({
-  visible = false,
-  overlay,
-  children,
-  placement = 'topCentre',
-}: Props) {
-  const [visibleState, setVisibleState] = useState(false)
-
-  function onToggle() {
-    setVisibleState(!visibleState)
-  }
-
-  const clickContainerRef = Hooks.clickOutsideListener((event: any) => {
-    if (visibleState) setVisibleState(!visibleState)
-  })
-
+function Dropdown(props: Props) {
   return (
-    // <!-- This example requires Tailwind CSS v2.0+ -->
-    <div
-      ref={clickContainerRef}
-      className="relative inline-block text-left"
-      style={{ margin: '0 auto', marginLeft: '320px' }}
-    >
-      {placement === 'bottomRight' ||
-      placement === 'bottomLeft' ||
-      placement === 'bottomCenter' ? (
-        <div onClick={onToggle}>{children}</div>
-      ) : null}
-      <Transition
-        show={visibleState}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
-      >
-        <div
-          className={`sbui-dropdown-overlay-continer sbui-dropdown-overlay-continer--${placement}`}
-        >
-          <Card className="sbui-dropdown-card">
-            <DropdownContext.Provider value={{ onClick: onToggle }}>
-              {overlay}
-            </DropdownContext.Provider>
-          </Card>
-        </div>
-      </Transition>
-      {placement === 'topRight' ||
-      placement === 'topLeft' ||
-      placement === 'topCentre' ? (
-        <div onClick={onToggle}>{children}</div>
-      ) : null}
-    </div>
+    <Overlay triggerElement={props.children} {...props}>
+      <Card className="sbui-dropdown-card">{props.overlay}</Card>
+    </Overlay>
   )
 }
 

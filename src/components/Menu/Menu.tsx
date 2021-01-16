@@ -1,5 +1,5 @@
 import React from 'react'
-import { DropdownContext } from '../Dropdown/DropdownContext'
+import { DropdownContext } from '../../lib/Overlay/OverlayContext'
 import { Space } from '../Space'
 import Typography from '../Typography'
 

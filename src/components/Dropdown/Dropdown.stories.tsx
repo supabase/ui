@@ -46,7 +46,4 @@ export const Default = (args: any) => (
   </div>
 )
 
-Default.args = {
-  title: 'I am a title',
-  titleExtra: <Typography.Link>Learn more</Typography.Link>,
-}
+Default.args = {}
