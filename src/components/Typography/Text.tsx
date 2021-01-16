@@ -55,38 +55,35 @@ function Text({
     classes.push('sbui-typography-small')
   }
 
-  if (code || mark || keyboard || strong) {
-    if (code)
-      return (
-        <code style={style} className={classes.join(' ')}>
-          {children}
-        </code>
-      )
-    if (mark)
-      return (
-        <mark style={style} className={classes.join(' ')}>
-          {children}
-        </mark>
-      )
-    if (keyboard)
-      return (
-        <kbd style={style} className={classes.join(' ')}>
-          {children}
-        </kbd>
-      )
-    if (strong)
-      return (
-        <strong style={style} className={classes.join(' ')}>
-          {children}
-        </strong>
-      )
-  } else {
+  if (code)
     return (
-      <span style={style} className={classes.join(' ')}>
+      <code style={style} className={classes.join(' ')}>
         {children}
-      </span>
+      </code>
     )
-  }
+  if (mark)
+    return (
+      <mark style={style} className={classes.join(' ')}>
+        {children}
+      </mark>
+    )
+  if (keyboard)
+    return (
+      <kbd style={style} className={classes.join(' ')}>
+        {children}
+      </kbd>
+    )
+  if (strong)
+    return (
+      <strong style={style} className={classes.join(' ')}>
+        {children}
+      </strong>
+    )
+  return (
+    <span style={style} className={classes.join(' ')}>
+      {children}
+    </span>
+  )
 }
 
 export default Text

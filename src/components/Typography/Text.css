@@ -44,12 +44,12 @@ span.sbui-typography-small {
   @apply text-sm;
 }
 
-.sbui-typography mark {
+mark.sbui-typography {
   padding: 0;
   background-color: #ffe58f;
 }
 
-.sbui-typography code {
+code.sbui-typography {
   /* margin: 0 .2em; */
   padding: 0.2em 0.4em 0.1em;
   /* font-size: 85%; */
@@ -58,7 +58,7 @@ span.sbui-typography-small {
   border-radius: 3px;
 }
 
-.sbui-typography kbd {
+kbd.sbui-typography {
   /* margin: 0 .2em; */
   padding: 0.15em 0.4em 0.1em;
   /* font-size: 90%; */
