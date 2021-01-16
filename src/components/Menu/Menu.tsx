@@ -3,28 +3,12 @@ import { DropdownContext } from '../../lib/Overlay/OverlayContext'
 import { Space } from '../Space'
 import Typography from '../Typography'
 
+import './Menu.css'
+
 function Menu({ children }: any) {
   return (
-    <div
-      className=""
-      role="menu"
-      aria-orientation="vertical"
-      aria-labelledby="options-menu"
-    >
+    <div role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
       {children}
-    </div>
-  )
-}
-interface MiscProps {
-  children: React.ReactNode
-}
-
-export function Misc({ children }: MiscProps) {
-  return (
-    <div className="px-4 py-2">
-      <Typography.Text>
-        <span>{children}</span>
-      </Typography.Text>
     </div>
   )
 }
@@ -41,11 +25,7 @@ export function Item({ children, icon }: ItemProps) {
     <DropdownContext.Consumer>
       {({ onClick }) => {
         return (
-          <div
-            className="px-4 py-2 cursor-pointer hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-dark-800"
-            role="menuitem"
-            onClick={onClick}
-          >
+          <div className="sbui-menu__item" role="menuitem" onClick={onClick}>
             <Typography.Text>
               <Space>
                 {icon && icon}
@@ -67,7 +47,7 @@ interface GroupProps {
 
 export function Group({ children, icon, title }: GroupProps) {
   return (
-    <div className="px-4 py-2">
+    <div className="sbui-menu__group">
       <Space>
         {icon && icon}
         <Typography.Text type="secondary">{title}</Typography.Text>
@@ -77,6 +57,21 @@ export function Group({ children, icon, title }: GroupProps) {
   )
 }
 
+interface MiscProps {
+  children: React.ReactNode
+}
+
+export function Misc({ children }: MiscProps) {
+  return (
+    <div className="sbui-menu__misc">
+      <Typography.Text>
+        <span>{children}</span>
+      </Typography.Text>
+    </div>
+  )
+}
+
 Menu.Item = Item
-Menu.Group = Item
+Menu.Group = Group
+Menu.Misc = Misc
 export default Menu
