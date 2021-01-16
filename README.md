@@ -33,7 +33,7 @@ _Layout_
 
 - [ ] Layout
 - [ ] Grid (Flex)
-- [ ] Divider
+- [x] Divider
 - [x] Space (Flex)
 
 _Display_
@@ -42,7 +42,7 @@ _Display_
 - [ ] Avatar
 - [ ] Alert
 - [x] Badge
-- [ ] Menu
+- [x] Menu
 - [ ] Tooltips
 - [ ] Tables
 - [ ] Code block
@@ -51,7 +51,7 @@ _Navigation_
 
 - [ ] Tabs
 - [ ] Breadcrumb
-- [ ] Dropdown
+- [x] Dropdown
 - [ ] Menu
 - [ ] Page Header
 - [ ] Sidebar
