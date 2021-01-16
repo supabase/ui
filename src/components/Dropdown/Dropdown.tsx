@@ -18,14 +18,20 @@ interface Props {
   visible?: boolean
   overlay?: React.ReactNode
   children?: React.ReactNode
-  placement?: 'bottomLeft' | 'bottomRight' | 'topLeft' | 'topRight'
+  placement?:
+    | 'bottomLeft'
+    | 'bottomRight'
+    | 'bottomCenter'
+    | 'topLeft'
+    | 'topRight'
+    | 'topCentre'
 }
 
 function Dropdown({
   visible = false,
   overlay,
   children,
-  placement = 'bottomRight',
+  placement = 'topCentre',
 }: Props) {
   const [visibleState, setVisibleState] = useState(false)
 
@@ -44,7 +50,9 @@ function Dropdown({
       className="relative inline-block text-left"
       style={{ margin: '0 auto', marginLeft: '320px' }}
     >
-      {placement === 'topRight' || placement === 'topLeft' ? (
+      {placement === 'bottomRight' ||
+      placement === 'bottomLeft' ||
+      placement === 'bottomCenter' ? (
         <div onClick={onToggle}>{children}</div>
       ) : null}
       <Transition
@@ -66,7 +74,9 @@ function Dropdown({
           </Card>
         </div>
       </Transition>
-      {placement === 'bottomRight' || placement === 'bottomLeft' ? (
+      {placement === 'topRight' ||
+      placement === 'topLeft' ||
+      placement === 'topCentre' ? (
         <div onClick={onToggle}>{children}</div>
       ) : null}
     </div>

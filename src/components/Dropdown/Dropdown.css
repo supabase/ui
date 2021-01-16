@@ -6,15 +6,25 @@
   @apply w-56;
 }
 
-.sbui-dropdown-overlay-continer--topRight {
+.sbui-dropdown-overlay-continer--bottomRight {
   @apply absolute mt-2 origin-top-right right-0 mt-2;
 }
 
-.sbui-dropdown-overlay-continer--topLeft {
+.sbui-dropdown-overlay-continer--bottomLeft {
   @apply absolute mt-2 origin-top-left left-0 mt-2;
 }
 
-.sbui-dropdown-overlay-continer--bottomRight {
+.sbui-dropdown-overlay-continer--bottomCenter {
+  margin-top: 0.5rem;
+  position: absolute;
+  transform-origin: center;
+  transform-origin: bottom center;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.sbui-dropdown-overlay-continer--topRight {
   @apply origin-bottom-right;
   margin-top: -0.5rem;
   position: absolute;
@@ -23,7 +33,7 @@
   transform: translatey(-100%);
 }
 
-.sbui-dropdown-overlay-continer--bottomLeft {
+.sbui-dropdown-overlay-continer--topLeft {
   @apply origin-bottom-left;
   margin-top: -0.5rem;
   position: absolute;
@@ -32,8 +42,11 @@
   transform: translatey(-100%);
 }
 
-.sbui-dropdown-overlay-continer--topCenter {
-  @apply origin-top mt-2;
-  /* transform-origin: bottom center; */
-  transform-origin: center bottom;
+.sbui-dropdown-overlay-continer--topCentre {
+  @apply origin-bottom-left;
+  margin-top: -0.5rem;
+  position: absolute;
+  left: 50%;
+  transform-origin: top left;
+  transform: translatey(-100%) translateX(-50%);
 }
