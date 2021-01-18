@@ -29,6 +29,7 @@ interface Props {
     | 'indigo'
     | 'purple'
     | 'pink'
+  src?: React.ReactNode
 }
 
 interface StringMap {
@@ -44,6 +45,7 @@ function Icon({
   fill = undefined,
   stroke = undefined,
   background,
+  src,
   ...props
 }: Props) {
   return (
@@ -100,14 +102,33 @@ function Icon({
           />
         )
 
+        const Icon = src ? (
+          // custom SVG file
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            color={!noColor ? color : 'currentColor'}
+            fill={!noColor ? (fill ? fill : 'none') : 'none'}
+            stroke={!noColor ? stroke : 'currentColor'}
+            className={`${className}`}
+            width={iconSize}
+            height={iconSize}
+          >
+            {src}
+          </svg>
+        ) : (
+          // feather icon
+          <IconComponent />
+        )
+
         return background ? (
           <div
+            // circle coloured background
             className={`sbui-icon-container sbui-icon-container--${background}`}
           >
-            <IconComponent />
+            {Icon}
           </div>
         ) : (
-          <IconComponent />
+          Icon
         )
       }}
     </IconContext.Consumer>
