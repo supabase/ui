@@ -29,7 +29,6 @@ withCenterText.args = {}
 
 withLeftText.args = {
   orientation: 'left',
-  light: true,
 }
 
 withRightText.args = {
