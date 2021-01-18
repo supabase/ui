@@ -131,7 +131,7 @@ const Modal = ({
                   direction={layout}
                 >
                   {icon ? icon : null}
-                  <div>
+                  <div style={{ display: icon ? 'block' : 'contents' }}>
                     <Space
                       size={4}
                       direction="vertical"
