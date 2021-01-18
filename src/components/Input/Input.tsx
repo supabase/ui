@@ -6,24 +6,9 @@ import Typography from '../Typography'
 import './Input.css'
 
 export interface Props {
-  type?:
-    | 'text'
-    | 'color'
-    | 'date'
-    | 'datetime-local'
-    | 'email'
-    | 'month'
-    | 'number'
-    | 'password'
-    | 'reset'
-    | 'search'
-    | 'submit'
-    | 'tel'
-    | 'time'
-    | 'url'
-    | 'week'
-  className?: string
   autoComplete?: string
+  autofocus?: boolean
+  className?: string
   descriptionText?: string
   disabled?: boolean
   error?: string
@@ -36,12 +21,29 @@ export interface Props {
   name?: string
   onChange?: any
   placeholder?: string
-  value?: any
   style?: React.CSSProperties
+  type?:
+    | 'color'
+    | 'date'
+    | 'datetime-local'
+    | 'email'
+    | 'month'
+    | 'number'
+    | 'password'
+    | 'reset'
+    | 'search'
+    | 'submit'
+    | 'tel'
+    | 'text'
+    | 'time'
+    | 'url'
+    | 'week'
+  value?: any
 }
 
 function Input({
   autoComplete,
+  autofocus,
   className,
   descriptionText,
   disabled,
@@ -78,6 +80,7 @@ function Input({
         <div className="sbui-input-container">
           <input
             autoComplete={autoComplete}
+            autoFocus={autofocus}
             disabled={disabled}
             id={id}
             name={name}
@@ -105,6 +108,7 @@ function Input({
 export interface TextAreaProps {
   className?: string
   autoComplete?: boolean
+  autofocus?: boolean
   descriptionText?: string
   disabled?: boolean
   error?: string
@@ -124,6 +128,7 @@ export interface TextAreaProps {
 
 function TextArea({
   autoComplete,
+  autofocus,
   className,
   descriptionText,
   disabled,
@@ -167,6 +172,7 @@ function TextArea({
     >
       <textarea
         autoComplete={autoComplete && 'autoComplete'}
+        autoFocus={autofocus}
         disabled={disabled}
         id={id}
         name={name}
