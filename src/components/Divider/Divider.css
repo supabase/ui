@@ -1,0 +1,5 @@
+.sbui-divider {
+  @apply w-full border-gray-100 dark:border-dark-600;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}

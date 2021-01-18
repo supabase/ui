@@ -40,6 +40,10 @@ span.sbui-typography-small {
   @apply line-through;
 }
 
+.sbui-typography strong {
+  @apply text-sm;
+}
+
 mark.sbui-typography {
   padding: 0;
   background-color: #ffe58f;
