@@ -44,7 +44,7 @@ export function FormLayout({
     }
   } else {
     containerClasses.push(
-      responsive
+      responsive && layout !== 'vertical'
         ? 'sbui-formlayout--responsive'
         : 'sbui-formlayout--non-responsive'
     )
