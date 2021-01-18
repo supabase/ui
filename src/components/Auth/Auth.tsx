@@ -149,8 +149,8 @@ function SocialAuth({
       {providers && providers.length > 0 && (
         <React.Fragment>
           <Space size={4} direction={'vertical'}>
-            <Typography.Text type="secondary" strong>
-              Sign in with:
+            <Typography.Text type="secondary" className="sbui-auth-label">
+              Sign in with
             </Typography.Text>
             <Space size={2} direction={socialLayout}>
               {providers.map((provider) => {
@@ -178,7 +178,7 @@ function SocialAuth({
               })}
             </Space>
           </Space>
-          <Space size={8} style={{ alignItems: 'center' }}>
+          <Space size={8}>
             <div
               style={{ flexGrow: 1, borderBottom: '1px solid #666666' }}
             ></div>
@@ -272,27 +272,29 @@ function EmailAuth({
             type="primary"
             block
             size="large"
-            icon={<Icon size={21} type="Lock" color="currentColor" />}
+            icon={<Icon size={21} type="Lock" />}
             loading={loading}
           >
             {authView === VIEWS.SIGN_IN ? 'Sign in' : 'Sign up'}
           </Button>
         </Space>
-        {authView === VIEWS.SIGN_IN && (
-          <Typography.Link onClick={() => setAuthView(VIEWS.MAGIC_LINK)}>
-            Sign in with magic link
-          </Typography.Link>
-        )}
-        {authView === VIEWS.SIGN_IN ? (
-          <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_UP)}>
-            Don't have an account? Sign up
-          </Typography.Link>
-        ) : (
-          <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
-            Do you have an account? Sign in.
-          </Typography.Link>
-        )}
-        {error && <Typography.Text type="danger">{error}</Typography.Text>}
+        <Space direction="vertical" style={{ textAlign: 'center' }}>
+          {authView === VIEWS.SIGN_IN && (
+            <Typography.Link onClick={() => setAuthView(VIEWS.MAGIC_LINK)}>
+              Sign in with magic link
+            </Typography.Link>
+          )}
+          {authView === VIEWS.SIGN_IN ? (
+            <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_UP)}>
+              Don't have an account? Sign up
+            </Typography.Link>
+          ) : (
+            <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
+              Do you have an account? Sign in.
+            </Typography.Link>
+          )}
+          {error && <Typography.Text type="danger">{error}</Typography.Text>}
+        </Space>
       </Space>
     </form>
   )
