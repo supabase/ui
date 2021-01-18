@@ -18,13 +18,6 @@
   border-bottom-width: 2px;
 }
 
-/* .sbui-tabs-block {
-  justify-content: space-around;
-} */
-
-/* .sbui-tabs-block .sbui-btn-container {
-  width: 100%;
-} */
 .sbui-tab-bar--scrollable {
   overflow: auto;
   white-space: nowrap;

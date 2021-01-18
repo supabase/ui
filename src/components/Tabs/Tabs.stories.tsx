@@ -96,45 +96,23 @@ export const Scroll = (args: any) => (
   </Tabs>
 )
 
-Default.args = {
-  title: 'something',
-}
-
+Default.args = {}
 Underlined.args = {
-  title: 'something',
   type: 'underlined',
 }
-
 WithIcons.args = {
-  title: 'something',
   type: 'underlined',
 }
-
 LargeButtons.args = {
-  title: 'something',
   type: 'underlined',
   size: 'large',
 }
 BlockTabs.args = {
-  title: 'something',
   type: 'underlined',
   block: true,
 }
 Scroll.args = {
-  title: 'something',
   type: 'underlined',
   block: true,
   scrollable: true,
 }
-
-// <Tabs>
-//   <Tabs.Panel id="panel-1" label="2nd tab">
-//     <p>Content for the first panel</p>
-//   </Tabs.Panel>
-//   <Tabs.Panel id="panel-2" label="2nd tab">
-//     <p>Content for the second panel</p>
-//   </Tabs.Panel>
-//   <Tabs.Panel id="panel-3" label="3rd tab">
-//     <p>Content for the third panel</p>
-//   </Tabs.Panel>
-// </Tabs>
