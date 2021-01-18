@@ -4,5 +4,4 @@ import { createContext } from 'react'
 // createContext matches the shape that the consumers expect!
 export const TabsContext = createContext({
   activeTab: '',
-  tabType: 'pills',
 })

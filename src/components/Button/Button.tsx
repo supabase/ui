@@ -27,6 +27,10 @@ interface Props {
   danger?: boolean
   htmlType?: 'button' | 'submit' | 'reset'
   ref?: any
+  ariaSelected?: boolean
+  ariaControls?: string
+  tabIndex?: 0 | -1
+  role?: string
 }
 
 interface RefHandle {
@@ -51,6 +55,10 @@ const Button = forwardRef<RefHandle, Props>(
       style,
       type = 'primary',
       htmlType,
+      ariaSelected,
+      ariaControls,
+      tabIndex,
+      role,
     }: Props,
     ref
   ) => {
@@ -102,6 +110,10 @@ const Button = forwardRef<RefHandle, Props>(
           onClick={onClick}
           style={style}
           type={htmlType}
+          aria-selected={ariaSelected}
+          aria-controls={ariaControls}
+          tabIndex={tabIndex}
+          role={role}
         >
           {showIcon &&
             (loading ? (

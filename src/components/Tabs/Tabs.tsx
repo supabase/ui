@@ -12,9 +12,23 @@ interface TabsProps {
   defaultActiveId?: string
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   block?: boolean
+  tabBarGutter?: number
+  tabBarStyle?: React.CSSProperties
+  onChange?: any
+  onClick?: any
 }
 
-function Tabs({ children, defaultActiveId, type, size, block }: TabsProps) {
+function Tabs({
+  children,
+  defaultActiveId,
+  type,
+  size,
+  block,
+  tabBarGutter,
+  tabBarStyle,
+  onChange,
+  onClick,
+}: TabsProps) {
   const [activeTab, setActiveTab] = useState(
     defaultActiveId
       ? defaultActiveId
@@ -23,35 +37,20 @@ function Tabs({ children, defaultActiveId, type, size, block }: TabsProps) {
       : ''
   )
 
-  // function updateItemArray(e: any) {
-  //   console.log(e)
-  //   setTabs(e)
-  // }
-
-  let tabs: any[] = []
-
-  // console.log(children[0].props)
-
-  let newChildren = children
-  console.log(newChildren)
-
-  // children.map((tab: any, i: any) => {
-  //   newChildren[i].props['label'] = tab.key
-  //   // console.log(children)
-  //   // console.log(tab.key)
-  // })
-
   function onTabClick(id: string) {
+    const newTabSelected = id !== activeTab
     console.log(id)
     setActiveTab(id)
+    if (onClick) onClick(id)
+    if (onChange && newTabSelected) onChange(id)
   }
 
   const underlined = type === 'underlined'
 
   return (
-    <Space direction="vertical">
-      <div role="tablist" aria-label="Sample Tabs">
-        <Space size={underlined ? 6 : 3}>
+    <Space direction="vertical" size={4}>
+      <div role="tablist" aria-label="Sample Tabs" style={tabBarStyle}>
+        <Space size={tabBarGutter ? tabBarGutter : underlined ? 6 : 3}>
           {children.map((tab: any) => {
             const active = activeTab === tab.props.id
             return (
@@ -70,6 +69,10 @@ function Tabs({ children, defaultActiveId, type, size, block }: TabsProps) {
                 type={active && !underlined ? 'primary' : 'text'}
                 key={`${tab.props.id}-tab-button`}
                 onClick={() => onTabClick(tab.props.id)}
+                ariaSelected={active ? true : false}
+                ariaControls={tab.props.id}
+                tabIndex={active ? 0 : -1}
+                role="tab"
               >
                 {tab.props.label}
               </Button>
@@ -87,23 +90,20 @@ function Tabs({ children, defaultActiveId, type, size, block }: TabsProps) {
 
 interface PanelProps {
   children?: React.ReactNode
-  label?: string
   id?: string
 }
-export function Panel({ children, label, id, key }: any) {
+export function Panel({ children, id }: PanelProps) {
   return (
     children && (
       <TabsContext.Consumer>
         {({ activeTab }) => {
-          // console.log('Panel key', key)
-          // console.log(key)
           const active = activeTab === id
           return (
             <div
               id={id}
               role="tabpanel"
               // tabindex="0"
-              // aria-labelledby="tab-1"
+              aria-labelledby={id}
               hidden={!active}
             >
               {children}
