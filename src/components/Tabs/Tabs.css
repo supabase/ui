@@ -1,5 +1,7 @@
 .sbui-tab-button-underline {
   @apply rounded-none;
+  @apply hover:text-gray-600 hover:bg-transparent;
+  @apply dark:hover:text-white dark:hover:bg-transparent;
   border-bottom-style: solid;
   border-bottom-width: 2px;
   margin-bottom: -1px;
@@ -23,3 +25,14 @@
 /* .sbui-tabs-block .sbui-btn-container {
   width: 100%;
 } */
+.sbui-tab-bar--scrollable {
+  overflow: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.sbui-tab-bar--scrollable::-webkit-scrollbar {
+  display: none;
+}

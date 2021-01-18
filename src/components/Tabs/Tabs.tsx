@@ -7,6 +7,7 @@ import { TabsContext } from './TabsContext'
 import './Tabs.css'
 
 interface TabsProps {
+  id?: string
   type?: 'pills' | 'underlined' | 'cards'
   children: any
   defaultActiveId?: string
@@ -17,9 +18,11 @@ interface TabsProps {
   tabBarStyle?: React.CSSProperties
   onChange?: any
   onClick?: any
+  scrollable?: boolean
 }
 
 function Tabs({
+  id,
   children,
   defaultActiveId,
   activeId,
@@ -30,6 +33,7 @@ function Tabs({
   tabBarStyle,
   onChange,
   onClick,
+  scrollable,
 }: TabsProps) {
   const [activeTab, setActiveTab] = useState(
     defaultActiveId
@@ -59,8 +63,11 @@ function Tabs({
 
   return (
     <Space direction="vertical" size={4}>
-      <div role="tablist" aria-label="Sample Tabs" style={tabBarStyle}>
-        <Space size={tabBarGutter ? tabBarGutter : underlined ? 6 : 3}>
+      <div id={id} role="tablist" aria-label={id} style={tabBarStyle}>
+        <Space
+          size={tabBarGutter ? tabBarGutter : underlined ? 6 : 3}
+          className={scrollable && 'sbui-tab-bar--scrollable'}
+        >
           {children.map((tab: any) => {
             const activeMatch = active === tab.props.id
             return (

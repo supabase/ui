@@ -79,6 +79,23 @@ export const BlockTabs = (args: any) => (
   </Tabs>
 )
 
+const limit = 30
+let infitniteSroll: JSX.Element[] = []
+
+for (var i = 0; i < limit; i++) {
+  infitniteSroll.push(
+    <Tabs.Panel id={`panel-${i}`} label={`Tab ${i}`}>
+      <Typography.Text>Content for the panel {i}</Typography.Text>
+    </Tabs.Panel>
+  )
+}
+
+export const Scroll = (args: any) => (
+  <Tabs defaultActiveId={'panel-1'} {...args}>
+    {infitniteSroll}
+  </Tabs>
+)
+
 Default.args = {
   title: 'something',
 }
@@ -102,6 +119,12 @@ BlockTabs.args = {
   title: 'something',
   type: 'underlined',
   block: true,
+}
+Scroll.args = {
+  title: 'something',
+  type: 'underlined',
+  block: true,
+  scrollable: true,
 }
 
 // <Tabs>
