@@ -4,7 +4,7 @@
 
 .sbui-select {
   @apply block w-full bg-white pl-3 pr-10 py-2 text-sm rounded-md transition-all;
-  
+
   @apply text-gray-700 border-gray-300;
   @apply focus:ring-brand-500 focus:border-brand-500 focus:outline-none;
 
@@ -14,12 +14,20 @@
   -moz-appearance: none;
   text-indent: 1px;
   text-overflow: '';
-  box-shadow: 0 0 0 2px rgba(255,255,255,.0);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0);
   transition: box-shadow 0.3s ease-in-out;
+
+  // temporary fix
+  //
+  // temporary fix for supabase apps
+  // tailwind @base styles adds a dropdown chevron
+  // using background image as default
+  //
+  background-image: none;
 }
 
 .sbui-select:focus {
-  box-shadow: 0 0 0 2px rgba(62,207,142,.1);
+  box-shadow: 0 0 0 2px rgba(62, 207, 142, 0.1);
 }
 
 .sbui-select--error {
