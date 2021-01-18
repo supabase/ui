@@ -22,16 +22,16 @@ export const Default = (args: any) => (
           <Typography.Text>Signed in as </Typography.Text>
           <Typography.Text strong>tom@example.com </Typography.Text>
         </Dropdown.Item>,
-        <Divider />,
+        <Divider light />,
         <Menu>
           <Menu.Item icon={<Icon type="Settings" size="tiny" />}>
             Settings
           </Menu.Item>
-          <Divider />
+          <Divider light />
           <Menu.Item>Something</Menu.Item>
           <Menu.Item>Something</Menu.Item>
         </Menu>,
-        <Divider />,
+        <Divider light />,
         <Dropdown.Item>
           <Button type="default" icon={<Icon type="LogOut" />}>
             Log out

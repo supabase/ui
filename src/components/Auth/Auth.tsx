@@ -1,6 +1,14 @@
 import React, { useState } from 'react'
 import { SupabaseClient, Provider } from '@supabase/supabase-js'
-import { Input, Checkbox, Button, Icon, Space, Typography } from './../../index'
+import {
+  Input,
+  Checkbox,
+  Button,
+  Icon,
+  Space,
+  Typography,
+  Divider,
+} from './../../index'
 import { UserContextProvider, useUser } from './UserContext'
 import * as SocialIcons from './Icons'
 import './Auth.css'
@@ -178,15 +186,7 @@ function SocialAuth({
               })}
             </Space>
           </Space>
-          <Space size={8}>
-            <div
-              style={{ flexGrow: 1, borderBottom: '1px solid #666666' }}
-            ></div>
-            <Typography.Text type="secondary">or continue with</Typography.Text>
-            <div
-              style={{ flexGrow: 1, borderBottom: '1px solid #666666' }}
-            ></div>
-          </Space>
+          <Divider>or continue with</Divider>
         </React.Fragment>
       )}
     </Space>
