@@ -2,12 +2,15 @@ import React, { Ref, useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
+import { Space } from '../Space'
 import Typography from '../Typography'
 import './Input.css'
 
 export interface Props {
   autoComplete?: string
   autofocus?: boolean
+  addOnBefore?: string | React.ReactNode
+  addOnAfter?: string | React.ReactNode
   className?: string
   descriptionText?: string
   disabled?: boolean
@@ -44,6 +47,8 @@ export interface Props {
 function Input({
   autoComplete,
   autofocus,
+  addOnBefore,
+  addOnAfter,
   className,
   descriptionText,
   disabled,
@@ -66,6 +71,10 @@ function Input({
     type = 'text'
   }
 
+  let containerClasses = ['sbui-input-container']
+  // if (addOnBefore) containerClasses.push('sbui-input-container--addonbefore')
+  // if (addOnAfter) containerClasses.push('sbui-input-container--addonafter')
+
   return (
     <div className={className}>
       <FormLayout
@@ -77,29 +86,32 @@ function Input({
         descriptionText={descriptionText}
         style={style}
       >
-        <div className="sbui-input-container">
-          <input
-            autoComplete={autoComplete}
-            autoFocus={autofocus}
-            disabled={disabled}
-            id={id}
-            name={name}
-            onChange={
-              onChange ? (event) => onChange(event.target.value) : undefined
-            }
-            placeholder={placeholder}
-            ref={inputRef}
-            type={type}
-            value={value}
-            className={
-              'sbui-input' +
-              (error ? ' sbui-input--error' : '') +
-              (icon ? ' sbui-input--with-icon' : '')
-            }
-          />
-          {icon && <InputIconContainer icon={icon} />}
-          {error && <InputErrorIcon />}
-        </div>
+        <Space size={0} className="sbui-input-container--addonbefore">
+          {addOnBefore ? addOnBefore : null}
+          <div className={containerClasses.join(' ')}>
+            <input
+              autoComplete={autoComplete}
+              autoFocus={autofocus}
+              disabled={disabled}
+              id={id}
+              name={name}
+              onChange={
+                onChange ? (event) => onChange(event.target.value) : undefined
+              }
+              placeholder={placeholder}
+              ref={inputRef}
+              type={type}
+              value={value}
+              className={
+                'sbui-input' +
+                (error ? ' sbui-input--error' : '') +
+                (icon ? ' sbui-input--with-icon' : '')
+              }
+            />
+            {icon && <InputIconContainer icon={icon} />}
+            {error && <InputErrorIcon />}
+          </div>
+        </Space>
       </FormLayout>
     </div>
   )
