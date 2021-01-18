@@ -1,0 +1,25 @@
+.sbui-tab-button-underline {
+  @apply rounded-none;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  margin-bottom: -1px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sbui-tab-button-underline--active {
+  @apply border-brand-700;
+  @apply rounded-none;
+  @apply text-gray-600;
+  @apply dark:text-white;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+}
+
+/* .sbui-tabs-block {
+  justify-content: space-around;
+} */
+
+/* .sbui-tabs-block .sbui-btn-container {
+  width: 100%;
+} */
