@@ -40,7 +40,7 @@ function Auth({
 
   const verticalSocialLayout = socialLayout === 'vertical' ? true : false
 
-  let containerClasses = ['']
+  let containerClasses = ['sbui-auth']
   if (className) {
     containerClasses.push(className)
   }

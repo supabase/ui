@@ -76,44 +76,32 @@ export const updatePassword = (args: any) => <Auth.UpdatePassword {...args} />
 
 Default.args = {
   supabaseClient: supabase,
-  title: 'I am a title',
-  className: 'font-sans',
 }
 
 withSocialAuth.args = {
   supabaseClient: supabase,
-  title: 'I am a title',
-  className: 'font-sans',
   providers: ['facebook', 'google'],
 }
 
 withAllSocialAuth.args = {
   supabaseClient: supabase,
-  title: 'I am a title',
-  className: 'font-sans',
   providers: ['facebook', 'google', 'github', 'gitlab', 'bitbucket'],
 }
 
 withSocialLargeButtons.args = {
   supabaseClient: supabase,
-  title: 'I am a title',
-  className: 'font-sans',
   providers: ['facebook', 'google', 'github', 'gitlab', 'bitbucket'],
   socialButtonSize: 'large',
 }
 
 withColouredSocialAuth.args = {
   supabaseClient: supabase,
-  title: 'I am a title',
-  className: 'font-sans',
   socialColors: true,
   providers: ['facebook', 'google', 'github', 'gitlab', 'bitbucket'],
 }
 
 withSocialAuthHorizontal.args = {
   supabaseClient: supabase,
-  title: 'I am a title',
-  className: 'font-sans',
   providers: ['facebook', 'google'],
   socialLayout: 'horizontal',
 }
