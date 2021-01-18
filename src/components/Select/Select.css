@@ -17,12 +17,12 @@
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0);
   transition: box-shadow 0.3s ease-in-out;
 
-  // temporary fix
+  /* // temporary fix
   //
   // temporary fix for supabase apps
   // tailwind @base styles adds a dropdown chevron
   // using background image as default
-  //
+  // */
   background-image: none;
 }
 
