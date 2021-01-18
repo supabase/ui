@@ -101,6 +101,7 @@ function Tabs({
 interface PanelProps {
   children?: React.ReactNode
   id?: string
+  label?: string
 }
 export function Panel({ children, id }: PanelProps) {
   return (
