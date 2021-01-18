@@ -22,6 +22,8 @@ export const ColLayout = (props: any) => (
 
 function Select({
   allowedValues,
+  autocomplete,
+  autofocus,
   checkboxes,
   children,
   className,
@@ -88,6 +90,8 @@ function Select({
           <select
             id={id}
             name={name}
+            autoComplete={autocomplete}
+            autoFocus={autofocus}
             className={selectClasses.join(' ')}
             onChange={(event) => onChange(event)}
             ref={inputRef}
