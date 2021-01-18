@@ -6,6 +6,7 @@ interface Props {
   children?: React.ReactNode
   className?: string
   customFooter?: React.ReactNode
+  closable?: boolean
   description?: string
   hideFooter?: boolean
   alignFooter?: 'right' | 'left'
@@ -28,6 +29,7 @@ const Modal = ({
   children,
   className = '',
   customFooter = undefined,
+  closable,
   description,
   hideFooter = false,
   alignFooter = 'left',
@@ -164,6 +166,16 @@ const Modal = ({
               </div>
               {!hideFooter && footerBackground && (
                 <div className={footerClasses.join(' ')}>{footerContent}</div>
+              )}
+              {closable && (
+                <div className="sbui-modal-close-container">
+                  <Button
+                    onClick={onCancel}
+                    type="text"
+                    shadow={false}
+                    icon={<Icon size="medium" type="X" />}
+                  />
+                </div>
               )}
             </div>
           </Transition>

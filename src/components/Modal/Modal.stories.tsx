@@ -45,6 +45,15 @@ export const withVerticalLayout = (args: any) => (
   </Modal>
 )
 
+export const withCloseButton = (args: any) => (
+  <Modal {...args}>
+    <Typography.Text type="secondary">
+      This Modal has a close button on the top right
+      <Typography.Text code>{'{children}'}</Typography.Text>
+    </Typography.Text>
+  </Modal>
+)
+
 export const rightAlignedFooter = (args: any) => (
   <Modal {...args}>
     <Typography.Text type="secondary">
@@ -124,6 +133,15 @@ withIcon.args = {
   title: 'This is the title of the modal',
   description: 'And i am the description',
   icon: icon,
+}
+
+withCloseButton.args = {
+  visible: true,
+  closable: true,
+  onCancel: action('onCancel'),
+  onConfirm: action('onConfirm'),
+  title: 'This Modal has a close button on the top right',
+  description: 'And i am the description',
 }
 
 withVerticalLayout.args = {

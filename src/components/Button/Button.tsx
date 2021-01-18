@@ -7,7 +7,7 @@ import { IconContext } from '../Icon/IconContext'
 interface Props {
   block?: boolean
   className?: any
-  children: React.ReactNode
+  children?: React.ReactNode
   disabled?: boolean
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   icon?: React.ReactNode
