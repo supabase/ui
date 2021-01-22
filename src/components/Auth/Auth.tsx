@@ -239,14 +239,18 @@ function EmailAuth({
             label="Email address"
             autoComplete="email"
             icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
-            onChange={setEmail}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
+            }
           />
           <Input
             label="Password"
             type="password"
             autoComplete="current-password"
             icon={<Icon size={21} stroke={'#666666'} type="Key" />}
-            onChange={setPassword}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
+            }
           />
         </Space>
         <Space direction="vertical" size={6}>
@@ -331,7 +335,9 @@ function MagicLink({
             label="Email address"
             placeholder="Your email address"
             icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
-            onChange={setEmail}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
+            }
           />
           <Button
             block
@@ -384,7 +390,9 @@ function ForgottenPassword({
             label="Email address"
             placeholder="Your email address"
             icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
-            onChange={setEmail}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
+            }
           />
           <Button
             block
@@ -436,7 +444,9 @@ function UpdatePassword({
             placeholder="Enter your new password"
             type="password"
             icon={<Icon size={21} stroke={'#666666'} type="Key" />}
-            onChange={setPassword}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
+            }
           />
           <Button
             block
