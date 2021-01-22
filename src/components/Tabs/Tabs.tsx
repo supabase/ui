@@ -50,7 +50,6 @@ function Tabs({
 
   function onTabClick(id: string) {
     const newTabSelected = id !== active
-    console.log(id)
     setActiveTab(id)
     if (onClick) onClick(id)
     if (onChange && newTabSelected) onChange(id)
@@ -109,6 +108,7 @@ interface PanelProps {
   children?: React.ReactNode
   id?: string
   label?: string
+  icon?: React.ReactNode
 }
 export function Panel({ children, id }: PanelProps) {
   return (

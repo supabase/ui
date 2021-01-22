@@ -1,7 +1,8 @@
-import React, { Ref, useState } from 'react'
+import React, { useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
+import { useFormContext } from '../Form/FormContext'
 import Typography from '../Typography'
 import './Input.css'
 
@@ -66,6 +67,13 @@ function Input({
     type = 'text'
   }
 
+  const { formContextOnChange } = useFormContext()
+
+  function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    if (onChange) onChange(e)
+    if (formContextOnChange) formContextOnChange(e)
+  }
+
   return (
     <div className={className}>
       <FormLayout
@@ -84,9 +92,7 @@ function Input({
             disabled={disabled}
             id={id}
             name={name}
-            onChange={
-              onChange ? (event) => onChange(event.target.value) : undefined
-            }
+            onChange={(e) => onInputChange(e)}
             placeholder={placeholder}
             ref={inputRef}
             type={type}
