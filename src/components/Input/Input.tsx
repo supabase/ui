@@ -128,7 +128,7 @@ function Input({
           />
           {icon && <InputIconContainer icon={icon} />}
           {copy || error || actions ? (
-            <Space className="sbui-input-valueafter-container" size={1}>
+            <Space className="sbui-input-actions-container" size={1}>
               {error && <InputErrorIcon />}
               {copy && !hidden ? (
                 <Button
