@@ -3,37 +3,13 @@ import React from 'react'
 
 import { Input } from '.'
 import { Icon } from '../Icon'
+import { Button } from '../Button'
 import { Space } from '../Space'
 
 export default {
   title: 'Data Input/Input',
   component: Input,
 }
-
-export const Testing = () => (
-  <>
-    <Space size={2} direction="vertical">
-      <Input
-        icon={<Icon type="Key" />}
-        value="something"
-        copy
-        disabled
-        error="error here"
-      />
-      <Input icon={<Icon type="Key" />} value="something" error="error here" />
-      <Input value="testy test" copy error="error here" />
-      <Input placeholder="something" value="something" copy />
-      <Input placeholder="something" label="i have a label" />
-      <Input label="i have a label" value="I am the reveal text" reveal copy />
-      <Input
-        layout="horizontal"
-        placeholder="something"
-        label="i have a label"
-      />
-      <Input layout="horizontal" placeholder="something" />
-    </Space>
-  </>
-)
 
 export const Default = (args: any) => <Input {...args} />
 
@@ -52,6 +28,8 @@ export const textArea = (args: any) => <Input.TextArea {...args} />
 export const textAreaWithLimit = (args: any) => <Input.TextArea {...args} />
 
 export const withRevealAndCopy = (args: any) => <Input {...args} />
+
+export const withCustomActions = (args: any) => <Input {...args} />
 
 const icon: any = <Icon type={'Package'} />
 
@@ -120,4 +98,17 @@ withRevealAndCopy.args = {
   value: '12341234HDGRHSGR/adJDJD',
   copy: true,
   reveal: true,
+}
+
+withCustomActions.args = {
+  type: 'text',
+  label: 'Custom actions',
+  labelOptional: 'Use any react components',
+  value: 'Value of input',
+  actions: [
+    <Button type="secondary">Copy text</Button>,
+    <Button type="outline" danger>
+      Delete this
+    </Button>,
+  ],
 }
