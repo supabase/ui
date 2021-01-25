@@ -158,11 +158,14 @@ function TextArea({
   if (error) classes.push('sbui-input--error')
   if (icon) classes.push('sbui-input--with-icon')
 
+  const { formContextOnChange } = useFormContext()
+
   function onInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     if (onChange) {
       onChange(e)
       setCharLength(e.target.value.length)
     }
+    if (formContextOnChange) formContextOnChange(e)
   }
 
   return (
