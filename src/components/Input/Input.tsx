@@ -84,9 +84,7 @@ function Input({
             disabled={disabled}
             id={id}
             name={name}
-            onChange={
-              onChange ? (event) => onChange(event.target.value) : undefined
-            }
+            onChange={onChange ? (event) => onChange(event) : undefined}
             placeholder={placeholder}
             ref={inputRef}
             type={type}
