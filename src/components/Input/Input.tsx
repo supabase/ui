@@ -2,13 +2,14 @@ import React, { Ref, useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
-import Typography from '../Typography'
+import { Button, Icon, Space, Typography } from '../../index'
 import './Input.css'
 
 export interface Props {
   autoComplete?: string
   autofocus?: boolean
   className?: string
+  copy?: boolean
   descriptionText?: string
   disabled?: boolean
   error?: string
@@ -39,12 +40,14 @@ export interface Props {
     | 'url'
     | 'week'
   value?: any
+  reveal?: boolean
 }
 
 function Input({
   autoComplete,
   autofocus,
   className,
+  copy,
   descriptionText,
   disabled,
   error,
@@ -60,11 +63,37 @@ function Input({
   type,
   value,
   style,
+  reveal = false,
 }: Props) {
+  const [copyLabel, setCopyLabel] = useState('Copy')
+  const [hidden, setHidden] = useState(reveal)
+
   // if `type` is not assigned, default to text input
   if (!type) {
     type = 'text'
   }
+
+  function onCopy(value: any) {
+    navigator.clipboard.writeText(value).then(
+      function () {
+        /* clipboard successfully set */
+        setCopyLabel('Copied')
+        setTimeout(function () {
+          setCopyLabel('Copy')
+        }, 3000)
+      },
+      function () {
+        /* clipboard write failed */
+        setCopyLabel('Failed to copy')
+      }
+    )
+  }
+
+  function onReveal() {
+    setHidden(false)
+  }
+
+  const hiddenPlaceholder = '**** **** **** ****'
 
   return (
     <div className={className}>
@@ -88,7 +117,7 @@ function Input({
             placeholder={placeholder}
             ref={inputRef}
             type={type}
-            value={value}
+            value={hidden ? hiddenPlaceholder : value}
             className={
               'sbui-input' +
               (error ? ' sbui-input--error' : '') +
@@ -96,7 +125,26 @@ function Input({
             }
           />
           {icon && <InputIconContainer icon={icon} />}
-          {error && <InputErrorIcon />}
+          {copy || error ? (
+            <Space className="sbui-input-post-container" size={0}>
+              {error && <InputErrorIcon />}
+              {copy && !hidden ? (
+                <Button
+                  size="tiny"
+                  type="default"
+                  onClick={() => onCopy(value)}
+                  icon={<Icon type="Copy" />}
+                >
+                  {copyLabel}
+                </Button>
+              ) : null}
+              {hidden && reveal ? (
+                <Button size="tiny" type="default" onClick={onReveal}>
+                  Reveal
+                </Button>
+              ) : null}
+            </Space>
+          ) : null}
         </div>
       </FormLayout>
     </div>
