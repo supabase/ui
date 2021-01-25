@@ -41,6 +41,7 @@ export interface Props {
     | 'week'
   value?: any
   reveal?: boolean
+  actions?: React.ReactNode
 }
 
 function Input({
@@ -64,6 +65,7 @@ function Input({
   value,
   style,
   reveal = false,
+  actions,
 }: Props) {
   const [copyLabel, setCopyLabel] = useState('Copy')
   const [hidden, setHidden] = useState(reveal)
@@ -125,8 +127,8 @@ function Input({
             }
           />
           {icon && <InputIconContainer icon={icon} />}
-          {copy || error ? (
-            <Space className="sbui-input-post-container" size={0}>
+          {copy || error || actions ? (
+            <Space className="sbui-input-valueafter-container" size={1}>
               {error && <InputErrorIcon />}
               {copy && !hidden ? (
                 <Button
@@ -143,6 +145,7 @@ function Input({
                   Reveal
                 </Button>
               ) : null}
+              {actions && actions}
             </Space>
           ) : null}
         </div>
