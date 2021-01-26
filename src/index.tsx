@@ -13,7 +13,7 @@ export * from './components/Tabs/index'
 // OVERLAYS
 
 export * from './components/Modal/index'
-// export * from './components/SideOver/index'
+export * from './components/SlideOver/index'
 
 // UTILITIES
 
