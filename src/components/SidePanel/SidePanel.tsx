@@ -21,7 +21,7 @@ interface Props {
 }
 
 const SidePanel = ({
-  className = '',
+  className,
   children,
   title,
   description,
