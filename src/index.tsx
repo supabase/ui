@@ -10,10 +10,15 @@ export * from './components/Card/index'
 export * from './components/Badge/index'
 export * from './components/Tabs/index'
 
+// NAV
+
+export * from './components/Menu/index'
+
 // OVERLAYS
 
 export * from './components/Modal/index'
-// export * from './components/SideOver/index'
+export * from './components/SidePanel/index'
+export * from './components/Dropdown/index'
 
 // UTILITIES
 
