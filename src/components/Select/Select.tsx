@@ -9,6 +9,7 @@ import './Select.css'
 interface OptionProps {
   value: string
   children: React.ReactNode
+  selected?: boolean
 }
 
 interface OptGroupProps {
@@ -123,8 +124,12 @@ function Select({
   )
 }
 
-export function Option({ value, children }: OptionProps) {
-  return <option value={value}>{children}</option>
+export function Option({ value, children, selected }: OptionProps) {
+  return (
+    <option value={value} selected={selected}>
+      {children}
+    </option>
+  )
 }
 
 export function OptGroup({ label, children }: OptGroupProps) {
