@@ -1,3 +1,11 @@
 .sbui-dropdown-card .sbui-card-content {
   padding: 0;
 }
+
+.sbui-dropdown-item {
+  @apply px-4 py-2;
+}
+
+.sbui-dropdown-item__content {
+  @apply w-full;
+}

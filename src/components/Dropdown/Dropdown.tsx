@@ -37,11 +37,11 @@ interface ItemProps {
 
 export function Item({ children, icon }: ItemProps) {
   return (
-    <div className="px-4 py-2">
+    <div className="sbui-dropdown-item">
       <Typography.Text>
         <Space>
           {icon && icon}
-          <span>{children}</span>
+          <span className="sbui-dropdown-item__content">{children}</span>
         </Space>
       </Typography.Text>
     </div>
