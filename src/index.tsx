@@ -17,7 +17,7 @@ export * from './components/Menu/index'
 // OVERLAYS
 
 export * from './components/Modal/index'
-export * from './components/SlideOver/index'
+export * from './components/SidePanel/index'
 export * from './components/Dropdown/index'
 
 // UTILITIES
