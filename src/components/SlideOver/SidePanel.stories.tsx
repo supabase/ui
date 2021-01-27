@@ -2,82 +2,82 @@ import { action } from '@storybook/addon-actions'
 import React from 'react'
 import { Button, Space, Typography } from '../../index'
 
-import { SlideOver } from './index'
+import { SidePanel } from './index'
 
 export default {
-  title: 'Overlays/SlideOver',
-  component: SlideOver,
+  title: 'Overlays/SidePanel',
+  component: SidePanel,
 }
 
 export const Default = (args: any) => (
   <>
-    <SlideOver {...args}>
+    <SidePanel {...args}>
       <Typography.Text type="secondary">
-        Slideover content is inserted here, if you need to insert anything into
-        the Slideover you can do so via{' '}
+        SidePanel content is inserted here, if you need to insert anything into
+        the SidePanel you can do so via{' '}
         <Typography.Text code>{'{children}'}</Typography.Text>
       </Typography.Text>
-    </SlideOver>
+    </SidePanel>
   </>
 )
 
 export const withWideLayout = (args: any) => (
   <>
-    <SlideOver {...args}>
+    <SidePanel {...args}>
       <Typography.Text type="secondary">
-        Slideover content is inserted here, if you need to insert anything into
-        the Slideover you can do so via{' '}
+        SidePanel content is inserted here, if you need to insert anything into
+        the SidePanel you can do so via{' '}
         <Typography.Text code>{'{children}'}</Typography.Text>
       </Typography.Text>
-    </SlideOver>
+    </SidePanel>
   </>
 )
 
 export const leftAlignedFooter = (args: any) => (
   <>
-    <SlideOver {...args}>
+    <SidePanel {...args}>
       <Typography.Text type="secondary">
-        Slideover content is inserted here, if you need to insert anything into
-        the Slideover you can do so via{' '}
+        SidePanel content is inserted here, if you need to insert anything into
+        the SidePanel you can do so via{' '}
         <Typography.Text code>{'{children}'}</Typography.Text>
       </Typography.Text>
-    </SlideOver>
+    </SidePanel>
   </>
 )
 
 export const leftAligned = (args: any) => (
   <>
-    <SlideOver {...args}>
+    <SidePanel {...args}>
       <Typography.Text type="secondary">
-        Slideover content is inserted here, if you need to insert anything into
-        the Slideover you can do so via{' '}
+        SidePanel content is inserted here, if you need to insert anything into
+        the SidePanel you can do so via{' '}
         <Typography.Text code>{'{children}'}</Typography.Text>
       </Typography.Text>
-    </SlideOver>
+    </SidePanel>
   </>
 )
 
 export const hideFooter = (args: any) => (
   <>
-    <SlideOver {...args}>
+    <SidePanel {...args}>
       <Typography.Text type="secondary">
-        Slideover content is inserted here, if you need to insert anything into
-        the Slideover you can do so via{' '}
+        SidePanel content is inserted here, if you need to insert anything into
+        the SidePanel you can do so via{' '}
         <Typography.Text code>{'{children}'}</Typography.Text>
       </Typography.Text>
-    </SlideOver>
+    </SidePanel>
   </>
 )
 
 export const customFooter = (args: any) => (
   <>
-    <SlideOver {...args}>
+    <SidePanel {...args}>
       <Typography.Text type="secondary">
-        Slideover content is inserted here, if you need to insert anything into
-        the Slideover you can do so via{' '}
+        SidePanel content is inserted here, if you need to insert anything into
+        the SidePanel you can do so via{' '}
         <Typography.Text code>{'{children}'}</Typography.Text>
       </Typography.Text>
-    </SlideOver>
+    </SidePanel>
   </>
 )
 
@@ -85,7 +85,7 @@ Default.args = {
   visible: true,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
-  title: 'This is the title of the slideover',
+  title: 'This is the title of the SidePanel',
   description: 'And i am the description',
 }
 
@@ -94,7 +94,7 @@ withWideLayout.args = {
   wide: true,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
-  title: 'This is the title of the slideover',
+  title: 'This is the title of the SidePanel',
   description: 'And i am the description',
 }
 
@@ -103,7 +103,7 @@ leftAlignedFooter.args = {
   alignFooter: 'left',
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
-  title: 'This is the title of the slideover',
+  title: 'This is the title of the SidePanel',
   description: 'And i am the description',
 }
 
@@ -112,7 +112,7 @@ leftAligned.args = {
   align: 'left',
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
-  title: 'This is the title of the slideover',
+  title: 'This is the title of the SidePanel',
   description: 'And i am the description',
 }
 
@@ -121,7 +121,7 @@ hideFooter.args = {
   hideFooter: true,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
-  title: 'This is the title of the slideover',
+  title: 'This is the title of the SidePanel',
   description: 'And i am the description',
 }
 
@@ -129,7 +129,7 @@ customFooter.args = {
   visible: true,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
-  title: 'This is the title of the slideover',
+  title: 'This is the title of the SidePanel',
   description: 'And i am the description',
   customFooter: [
     <Space>

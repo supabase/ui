@@ -1,1 +1,1 @@
-export { default as SlideOver } from './SlideOver'
+export { default as SidePanel } from './SidePanel'

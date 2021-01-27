@@ -1,5 +1,5 @@
 import React from 'react'
-import './SlideOver.css'
+import './SidePanel.css'
 import { Button, Icon, Space, Transition, Typography } from '../../index'
 
 interface Props {
@@ -20,7 +20,7 @@ interface Props {
   onConfirmText?: string
 }
 
-const SlideOver = ({
+const SidePanel = ({
   className = '',
   children,
   title,
@@ -44,9 +44,9 @@ const SlideOver = ({
   const left = align === 'left'
   const orientationClasses = left ? 'left-0 pr-10' : 'right-0 pl-10'
 
-  let footerClasses = ['sbui-slideover-footer-container']
+  let footerClasses = ['sbui-sidepanel-footer-container']
   if (!customFooter) {
-    footerClasses.push('sbui-slideover-footer')
+    footerClasses.push('sbui-sidepanel-footer')
   }
 
   const footerContent = customFooter ? (
@@ -88,15 +88,15 @@ const SlideOver = ({
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <div className="sbui-slideover-overlay-container">
-          <div className="sbui-slideover-overlay"></div>
+        <div className="sbui-sidepanel-overlay-container">
+          <div className="sbui-sidepanel-overlay"></div>
         </div>
       </Transition>
 
-      {/* SlideOver element */}
-      <div className="sbui-slideover-fixed" onClick={onCancel}>
-        <div className="sbui-slideover-absolute">
-          <section className={'sbui-slideover-container ' + orientationClasses}>
+      {/* sidepanel element */}
+      <div className="sbui-sidepanel-fixed" onClick={onCancel}>
+        <div className="sbui-sidepanel-absolute">
+          <section className={'sbui-sidepanel-container ' + orientationClasses}>
             <Transition
               show={visible}
               enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -108,7 +108,7 @@ const SlideOver = ({
             >
               <div className={'w-screen ' + (wide ? 'max-w-2xl' : 'max-w-md')}>
                 <div
-                  className={'sbui-slideover ' + className}
+                  className={'sbui-sidepanel ' + className}
                   onClick={stopPropagation}
                 >
                   <Space
@@ -120,7 +120,7 @@ const SlideOver = ({
                       overflowY: 'scroll',
                     }}
                   >
-                    <header className="sbui-slideover-header">
+                    <header className="sbui-sidepanel-header">
                       <Space
                         size={3}
                         direction="row"
@@ -134,7 +134,7 @@ const SlideOver = ({
                             {title}
                           </Typography.Title>
                         )}
-                        <div className="sbui-slideover-close-container">
+                        <div className="sbui-sidepanel-close-container">
                           <Button
                             aria-label="Close panel"
                             onClick={onCancel}
@@ -152,7 +152,7 @@ const SlideOver = ({
                         )}
                       </div>
                     </header>
-                    <div className="sbui-slideover-content">{children}</div>
+                    <div className="sbui-sidepanel-content">{children}</div>
                   </Space>
                   {!hideFooter && footerContent}
                 </div>
@@ -165,4 +165,4 @@ const SlideOver = ({
   )
 }
 
-export default SlideOver
+export default SidePanel

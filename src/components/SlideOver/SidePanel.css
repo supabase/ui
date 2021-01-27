@@ -1,37 +1,37 @@
-.sbui-slideover-overlay-container {
+.sbui-sidepanel-overlay-container {
   @apply fixed inset-0 transition-opacity;
 }
 
-.sbui-slideover-overlay {
+.sbui-sidepanel-overlay {
   @apply absolute inset-0 bg-gray-500 opacity-75;
 }
 
-.sbui-slideover-fixed {
+.sbui-sidepanel-fixed {
   @apply fixed inset-0 overflow-hidden;
 }
 
-.sbui-slideover-absolute {
+.sbui-sidepanel-absolute {
   @apply absolute inset-0 overflow-hidden;
 }
 
-.sbui-slideover-container {
+.sbui-sidepanel-container {
   @apply absolute inset-y-0 max-w-full flex;
 }
 
-.sbui-slideover {
+.sbui-sidepanel {
   @apply h-full flex flex-col bg-white dark:bg-dark-600 shadow-xl;
 }
 
-.sbui-slideover-header {
+.sbui-sidepanel-header {
   @apply space-y-1 py-6 px-4 bg-gray-50 dark:bg-dark-500 sm:px-6;
 }
 
-.sbui-slideover-close-container {
+.sbui-sidepanel-close-container {
   @apply h-7 flex items-center;
 }
 
-.sbui-slideover-close-container button,
-.dark .sbui-slideover-close-container button {
+.sbui-sidepanel-close-container button,
+.dark .sbui-sidepanel-close-container button {
   @apply text-gray-300;
   @apply hover:text-gray-400;
 
@@ -41,16 +41,16 @@
   @apply hover:bg-transparent;
 }
 
-.sbui-slideover-content {
+.sbui-sidepanel-content {
   @apply relative flex-1 px-4 sm:px-6;
 }
 
-.sbui-slideover-footer-container {
+.sbui-sidepanel-footer-container {
   @apply p-4 border-gray-200 dark:border-dark-500;
   border-top-style: solid;
   border-top-width: 1px;
 }
 
-.sbui-slideover-footer {
+.sbui-sidepanel-footer {
   @apply flex flex-shrink-0;
 }
