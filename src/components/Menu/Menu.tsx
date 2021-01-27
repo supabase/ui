@@ -29,7 +29,7 @@ export function Item({ children, icon }: ItemProps) {
             <Typography.Text>
               <Space>
                 {icon && icon}
-                <span>{children}</span>
+                <span className="sbui-menu__content">{children}</span>
               </Space>
             </Typography.Text>
           </div>
@@ -65,7 +65,7 @@ export function Misc({ children }: MiscProps) {
   return (
     <div className="sbui-menu__misc">
       <Typography.Text>
-        <span>{children}</span>
+        <span className="sbui-menu__content">{children}</span>
       </Typography.Text>
     </div>
   )
