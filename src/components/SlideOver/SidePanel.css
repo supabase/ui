@@ -35,11 +35,11 @@
 }
 
 .sbui-sidepanel {
-  @apply h-full flex flex-col bg-white dark:bg-dark-600 shadow-xl;
+  @apply h-full flex flex-col bg-white dark:bg-dark-700 shadow-xl;
 }
 
 .sbui-sidepanel-header {
-  @apply space-y-1 py-6 px-4 bg-gray-50 dark:bg-dark-500 sm:px-6;
+  @apply space-y-1 py-6 px-4 bg-gray-50 dark:bg-dark-600 sm:px-6;
 }
 
 .sbui-sidepanel-close-container {
@@ -62,9 +62,7 @@
 }
 
 .sbui-sidepanel-footer-container {
-  @apply p-4 border-gray-200 dark:border-dark-500;
-  border-top-style: solid;
-  border-top-width: 1px;
+  @apply p-4 bg-gray-50 dark:bg-dark-600;
 }
 
 .sbui-sidepanel-footer {

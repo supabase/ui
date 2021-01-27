@@ -146,6 +146,7 @@ const SidePanel = ({
                             onClick={onCancel}
                             type="text"
                             shadow={false}
+                            style={{ padding: 0 }}
                             icon={
                               <Icon size="xlarge" type="X" strokeWidth={2} />
                             }
@@ -154,7 +155,9 @@ const SidePanel = ({
                       </Space>
                       <div>
                         {description && (
-                          <Typography.Text>{description}</Typography.Text>
+                          <Typography.Text type="secondary">
+                            {description}
+                          </Typography.Text>
                         )}
                       </div>
                     </header>
