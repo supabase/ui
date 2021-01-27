@@ -14,6 +14,7 @@ export * from './components/Tabs/index'
 
 export * from './components/Modal/index'
 // export * from './components/SideOver/index'
+export * from './components/Dropdown/index'
 
 // UTILITIES
 
