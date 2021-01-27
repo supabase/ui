@@ -42,7 +42,9 @@ const SidePanel = ({
   }
 
   const left = align === 'left'
-  const orientationClasses = left ? 'left-0 pr-10' : 'right-0 pl-10'
+  const orientationClasses = left
+    ? 'sbui-sidepanel--left'
+    : 'sbui-sidepanel--right'
 
   let footerClasses = ['sbui-sidepanel-footer-container']
   if (!customFooter) {
@@ -106,7 +108,11 @@ const SidePanel = ({
               leaveFrom="translate-x-0"
               leaveTo={left ? '-translate-x-full' : 'translate-x-full'}
             >
-              <div className={'w-screen ' + (wide ? 'max-w-2xl' : 'max-w-md')}>
+              <div
+                className={
+                  wide ? 'sbui-sidepanel--wide' : 'sbui-sidepanel--medium'
+                }
+              >
                 <div
                   className={'sbui-sidepanel ' + className}
                   onClick={stopPropagation}
