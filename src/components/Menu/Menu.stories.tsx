@@ -20,7 +20,43 @@ export const Default = (args: any) => (
   </Menu>
 )
 
+export const withActiveState = (args: any) => (
+  <Menu>
+    <Menu.Item icon={<Icon type="Mail" />}>Account settings</Menu.Item>
+    <Divider />
+    <Menu.Item active icon={<Icon type="Mail" />}>
+      Account settings
+    </Menu.Item>
+    <Menu.Item icon={<Icon type="Mail" />}>Account settings</Menu.Item>
+  </Menu>
+)
+
+export const withRounded = (args: any) => (
+  <Menu>
+    <Menu.Item rounded icon={<Icon type="Mail" />}>
+      Account settings
+    </Menu.Item>
+    <Divider />
+    <Menu.Item rounded active icon={<Icon type="Mail" />}>
+      Account settings
+    </Menu.Item>
+    <Menu.Item rounded icon={<Icon type="Mail" />}>
+      Account settings
+    </Menu.Item>
+  </Menu>
+)
+
 Default.args = {
+  title: 'I am a title',
+  titleExtra: <Typography.Link>Learn more</Typography.Link>,
+}
+
+withActiveState.args = {
+  title: 'I am a title',
+  titleExtra: <Typography.Link>Learn more</Typography.Link>,
+}
+
+withRounded.args = {
   title: 'I am a title',
   titleExtra: <Typography.Link>Learn more</Typography.Link>,
 }
