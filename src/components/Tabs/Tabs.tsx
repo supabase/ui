@@ -70,7 +70,10 @@ function Tabs({
         <Space className="sbui-tab-bar-container" size={0}>
           <Space
             size={tabBarGutter ? tabBarGutter : underlined ? 6 : 3}
-            className={scrollable && 'sbui-tab-bar--scrollable'}
+            className={
+              'sbui-tab-bar-inner-container' +
+              (scrollable ? ' sbui-tab-bar--scrollable' : '')
+            }
           >
             {addOnBefore}
             {children.map((tab: any) => {
