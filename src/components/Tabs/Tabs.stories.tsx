@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from '../Button'
 import { Icon } from '../Icon'
 import Typography from '../Typography'
 
@@ -96,6 +97,34 @@ export const Scroll = (args: any) => (
   </Tabs>
 )
 
+export const addOnBefore = (args: any) => (
+  <Tabs defaultActiveId={'panel-1'} {...args}>
+    <Tabs.Panel id="panel-1" label="1st tab">
+      <Typography.Text>Content for the first panel</Typography.Text>
+    </Tabs.Panel>
+    <Tabs.Panel id="panel-2" label="2nd tab">
+      <Typography.Text>Content for the second panel</Typography.Text>
+    </Tabs.Panel>
+    <Tabs.Panel id="panel-3" label="3rd tab">
+      <Typography.Text>Content for the third panel</Typography.Text>
+    </Tabs.Panel>
+  </Tabs>
+)
+
+export const addOnAfter = (args: any) => (
+  <Tabs defaultActiveId={'panel-1'} {...args}>
+    <Tabs.Panel id="panel-1" label="1st tab">
+      <Typography.Text>Content for the first panel</Typography.Text>
+    </Tabs.Panel>
+    <Tabs.Panel id="panel-2" label="2nd tab">
+      <Typography.Text>Content for the second panel</Typography.Text>
+    </Tabs.Panel>
+    <Tabs.Panel id="panel-3" label="3rd tab">
+      <Typography.Text>Content for the third panel</Typography.Text>
+    </Tabs.Panel>
+  </Tabs>
+)
+
 Default.args = {}
 Underlined.args = {
   type: 'underlined',
@@ -115,4 +144,14 @@ Scroll.args = {
   type: 'underlined',
   block: true,
   scrollable: true,
+}
+addOnBefore.args = {
+  type: 'underlined',
+  size: 'large',
+  addOnBefore: <Button type="outline">Left button</Button>,
+}
+addOnAfter.args = {
+  type: 'underlined',
+  size: 'large',
+  addOnAfter: <Button type="outline">Right button</Button>,
 }

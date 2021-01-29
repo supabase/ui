@@ -29,3 +29,7 @@
 .sbui-tab-bar--scrollable::-webkit-scrollbar {
   display: none;
 }
+
+.sbui-tab-bar-container {
+  justify-content: space-between;
+}
