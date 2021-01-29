@@ -29,3 +29,12 @@
 .sbui-tab-bar--scrollable::-webkit-scrollbar {
   display: none;
 }
+
+.sbui-tab-bar-inner-container {
+  flex-grow: 1;
+}
+
+.sbui-tab-bar-container {
+  justify-content: space-between;
+  width: 100%;
+}
