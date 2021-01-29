@@ -16,16 +16,22 @@ function Menu({ children }: any) {
 interface ItemProps {
   children: React.ReactNode
   icon?: React.ReactNode
+  active?: boolean
+  rounded?: boolean
 }
 
-export function Item({ children, icon }: ItemProps) {
+export function Item({ children, icon, active, rounded }: ItemProps) {
+  let classes = ['sbui-menu__item']
+  if (active) classes.push('sbui-menu__item--active')
+  if (rounded) classes.push('sbui-menu__item--rounded')
+
   return (
     // DropdownContext allows for MenuItem to
     // close parent dropdown onClick
     <DropdownContext.Consumer>
       {({ onClick }) => {
         return (
-          <div className="sbui-menu__item" role="menuitem" onClick={onClick}>
+          <div className={classes.join(' ')} role="menuitem" onClick={onClick}>
             <Typography.Text>
               <Space>
                 {icon && icon}
