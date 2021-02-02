@@ -43,7 +43,7 @@ export function Item({
       {({ onClick }) => {
         function handleClick(e: React.MouseEvent) {
           if (!doNotCloseOverlay) onClick(e)
-          itemOnClick(e)
+          if (itemOnClick) itemOnClick(e)
         }
 
         return (
