@@ -20,18 +20,18 @@ interface Props {
     | 'topCentre'
   onVisibleChange?: any
   disabled?: boolean
-  overlayStyle?: React.CSSProperties
-  overlayClassName?: string
+  style?: React.CSSProperties
+  className?: string
 }
 
 function Dropdown(props: Props) {
   let classes = ['sbui-dropdown-card']
-  if (props.overlayClassName) {
-    classes.push(props.overlayClassName)
+  if (props.className) {
+    classes.push(props.className)
   }
   return (
     <Overlay triggerElement={props.children} {...props}>
-      <Card className={classes.join(' ')} style={props.overlayStyle}>
+      <Card className={classes.join(' ')} style={props.style}>
         {props.overlay}
       </Card>
     </Overlay>
