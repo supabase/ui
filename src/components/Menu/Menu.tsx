@@ -18,20 +18,40 @@ interface ItemProps {
   icon?: React.ReactNode
   active?: boolean
   rounded?: boolean
+  onClick?: any
+  doNotCloseOverlay?: boolean
 }
 
-export function Item({ children, icon, active, rounded }: ItemProps) {
+export function Item({
+  children,
+  icon,
+  active,
+  rounded,
+  onClick,
+  doNotCloseOverlay = false,
+}: ItemProps) {
   let classes = ['sbui-menu__item']
   if (active) classes.push('sbui-menu__item--active')
   if (rounded) classes.push('sbui-menu__item--rounded')
+
+  const itemOnClick = onClick
 
   return (
     // DropdownContext allows for MenuItem to
     // close parent dropdown onClick
     <DropdownContext.Consumer>
       {({ onClick }) => {
+        function handleClick(e: React.MouseEvent) {
+          if (!doNotCloseOverlay) onClick(e)
+          itemOnClick(e)
+        }
+
         return (
-          <div className={classes.join(' ')} role="menuitem" onClick={onClick}>
+          <div
+            className={classes.join(' ')}
+            role="menuitem"
+            onClick={handleClick}
+          >
             <Typography.Text>
               <Space>
                 {icon && icon}
