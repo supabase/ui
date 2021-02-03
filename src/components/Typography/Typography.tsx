@@ -10,7 +10,7 @@ function Typography({
   tag = 'div',
   style
 }:any) {
-  let classes = ['sbui-typography']
+  let classes = ['sbui-typography', 'sbui-typography-container']
   if(className) {
     classes.push(className)
   }
