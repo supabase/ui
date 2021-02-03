@@ -22,6 +22,8 @@ interface Props {
   disabled?: boolean
   style?: React.CSSProperties
   className?: string
+  overlayStyle?: React.CSSProperties
+  overlayClassName?: string
 }
 
 function Dropdown(props: Props) {

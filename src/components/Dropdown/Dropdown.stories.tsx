@@ -85,3 +85,50 @@ export const doNotcloseOverlay = (args: any) => (
 )
 
 doNotcloseOverlay.args = {}
+
+export const withCustomStyles = (args: any) => (
+  <div
+    style={{
+      margin: '0 auto',
+      minHeight: '420px',
+      marginTop: '220px',
+      marginLeft: '400px',
+    }}
+  >
+    <Dropdown
+      overlayStyle={{ minWidth: '500px' }}
+      placement="bottomRight"
+      {...args}
+      overlay={[
+        <Dropdown.Item>
+          <Typography.Text>Signed in as </Typography.Text>
+          <Typography.Text strong>tom@example.com </Typography.Text>
+        </Dropdown.Item>,
+        <Divider light />,
+        <Menu>
+          <Menu.Item
+            doNotCloseOverlay
+            icon={<Icon type="Settings" size="tiny" />}
+          >
+            This button will not close dropdown
+          </Menu.Item>
+          <Divider light />
+          <Menu.Item>Something</Menu.Item>
+          <Menu.Item>Something</Menu.Item>
+        </Menu>,
+        <Divider light />,
+        <Dropdown.Item>
+          <Button type="default" icon={<Icon type="LogOut" />}>
+            Log out
+          </Button>
+        </Dropdown.Item>,
+      ]}
+    >
+      <Button type="outline" iconRight={<Icon type={'ChevronDown'} />}>
+        Click for dropdown
+      </Button>
+    </Dropdown>
+  </div>
+)
+
+withCustomStyles.args = {}

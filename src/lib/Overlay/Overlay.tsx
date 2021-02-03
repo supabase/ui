@@ -22,6 +22,8 @@ interface Props {
   onVisibleChange?: any
   disabled?: boolean
   triggerElement?: any
+  overlayStyle?: React.CSSProperties
+  overlayClassName?: string
 }
 
 function Overlay({
@@ -32,8 +34,17 @@ function Overlay({
   onVisibleChange,
   disabled,
   triggerElement,
+  overlayStyle,
+  overlayClassName,
 }: Props) {
   const [visibleState, setVisibleState] = useState(false)
+
+  let classes = [
+    'sbui-overlay-container',
+    `sbui-overlay-container--${placement}`,
+  ]
+
+  if (overlayClassName) classes.push(overlayClassName)
 
   function onToggle() {
     setVisibleState(!visibleState)
@@ -69,9 +80,7 @@ function Overlay({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <div
-          className={`sbui-overlay-container sbui-overlay-container--${placement}`}
-        >
+        <div className={classes.join(' ')} style={overlayStyle}>
           <DropdownContext.Provider value={{ onClick: onToggle }}>
             {children}
           </DropdownContext.Provider>
