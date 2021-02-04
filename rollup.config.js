@@ -16,6 +16,8 @@ import typescript from 'rollup-plugin-typescript2'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 
+import icons from './internals/icons'
+
 console.log('Expected Externals', [
   ...Object.keys(pkg.dependencies || {}),
   ...Object.keys(pkg.peerDependencies || {}),
@@ -25,30 +27,33 @@ console.log('Expected Externals', [
 const extensions = ['.js', '.jsx', '.ts', '.tsx']
 
 export default {
-  // input: pkg.source,
   input: {
     index: 'src/index.tsx',
     button: 'src/components/Button/index.tsx',
-    typography: 'src/components/Typography/index.tsx',
-    icon: 'src/components/Icon/index.tsx',
-    card: 'src/components/Card/index.tsx',
-    badge: 'src/components/Badge/index.tsx',
-    tabs: 'src/components/Tabs/index.tsx',
-    menu: 'src/components/Menu/index.tsx',
-    modal: 'src/components/Modal/index.tsx',
-    sidepanel: 'src/components/SidePanel/index.tsx',
-    dropdown: 'src/components/Dropdown/index.tsx',
-    transition: 'src/components/Transition/index.tsx',
-    space: 'src/components/Space/index.tsx',
-    loading: 'src/components/Loading/index.tsx',
-    divider: 'src/components/Divider/index.tsx',
-    select: 'src/components/Select/index.tsx',
-    checkbox: 'src/components/Checkbox/index.tsx',
-    input: 'src/components/Input/index.tsx',
-    radio: 'src/components/Radio/index.tsx',
-    toggle: 'src/components/Toggle/index.tsx',
-    upload: 'src/components/Upload/index.tsx',
-    auth: 'src/components/Auth/index.tsx',
+    // typography: 'src/components/Typography/index.tsx',
+    // icon: 'src/components/Icon/index.tsx',
+    // card: 'src/components/Card/index.tsx',
+    // badge: 'src/components/Badge/index.tsx',
+    // tabs: 'src/components/Tabs/index.tsx',
+    // menu: 'src/components/Menu/index.tsx',
+    // modal: 'src/components/Modal/index.tsx',
+    // sidepanel: 'src/components/SidePanel/index.tsx',
+    // dropdown: 'src/components/Dropdown/index.tsx',
+    // transition: 'src/components/Transition/index.tsx',
+    // space: 'src/components/Space/index.tsx',
+    // loading: 'src/components/Loading/index.tsx',
+    // divider: 'src/components/Divider/index.tsx',
+    // select: 'src/components/Select/index.tsx',
+    // checkbox: 'src/components/Checkbox/index.tsx',
+    // input: 'src/components/Input/index.tsx',
+    // radio: 'src/components/Radio/index.tsx',
+    // toggle: 'src/components/Toggle/index.tsx',
+    // upload: 'src/components/Upload/index.tsx',
+    // auth: 'src/components/Auth/index.tsx',
+
+    // iconLoader: 'src/components/Icon/icons/Loader.tsx',
+    // iconMail: 'src/components/Icon/icons/Mail.tsx',
+    ...icons,
   },
   external: [
     ...Object.keys(pkg.dependencies || {}),

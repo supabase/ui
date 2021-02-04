@@ -10,7 +10,8 @@
     "build-watch": "NODE_ENV=production rollup -c -w",
     "test": "react-scripts test",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "build:icons": "node --experimental-modules internals/populate-icons.js"
   },
   "peerDependencies": {
     "react": "^16.13.1",
@@ -23,9 +24,7 @@
   "dependencies": {
     "lodash": "^4.17.20",
     "prop-types": "^15.7.2",
-    "react-feather": "^2.0.8",
-    "react-transition-group": "^4.4.1",
-    "rollup-plugin-postcss-modules": "^2.0.2"
+    "react-transition-group": "^4.4.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.11.6",
@@ -65,6 +64,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-markdown": "^5.0.3",
+    "react-feather": "^2.0.8",
     "remark-gfm": "^1.0.0",
     "rollup": "^2.28.2",
     "rollup-plugin-delete": "^2.0.0",
@@ -72,6 +72,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^3.1.8",
     "rollup-plugin-typescript2": "^0.29.0",
+    "rollup-plugin-postcss-modules": "^2.0.2",
     "storybook-css-modules-preset": "^1.0.5",
     "storybook-dark-mode": "^1.0.4",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.1",
