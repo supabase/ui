@@ -62,7 +62,7 @@ _Overlay_
 
 - [x] Modal
 - [ ] Drawer / SidePanel
-- [ ] Toast messages / Notifaction
+- [ ] Toast messages / Notification
 - [ ] Progress
 - [ ] Feeds / Timeline
 
