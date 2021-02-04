@@ -1,23 +1,20 @@
-const babel = require('@babel/core');
+const babel = require('@babel/core')
 
 module.exports = {
-  "stories": [
-    "../src/**/*.stories.mdx",
-    "../src/**/*.stories.@(js|jsx|ts|tsx)"
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    'storybook-dark-mode/register',
+    'storybook-css-modules-preset',
   ],
-  "addons": [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    'storybook-dark-mode/register'
-  ],
-  webpackFinal: async config => {
-
+  webpackFinal: async (config) => {
     // This is for fix webpack storybook get module @emotion/styled/base
     // It's wrong module, the right module is @emotion/styled-base
     config.resolve.alias = {
-      '@emotion/styled/base': '@emotion/styled-base'
+      '@emotion/styled/base': '@emotion/styled-base',
     }
 
-    return config;
-  }
+    return config
+  },
 }
