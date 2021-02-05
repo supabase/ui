@@ -5,7 +5,9 @@ var icons = require('./icons.json') //with path
 let iconList = {}
 let importList = []
 
+//
 // create icon .tsx files
+//
 
 Object.values(icons).map((icon) => {
   iconList[
@@ -14,10 +16,6 @@ Object.values(icons).map((icon) => {
   importList.push(`export * as Icon${icon.name} from './Icon${icon.name}'`)
 
   var dir = `src/components/Icon/icons/Icon${icon.name}`
-
-  // if (!fs.existsSync(dir)) {
-  //   fs.mkdirSync(dir)
-  // }
 
   fs.mkdir(dir, { recursive: true }, (err) => {
     if (err) throw err
@@ -53,7 +51,9 @@ Object.values(icons).map((icon) => {
   )
 })
 
+//
 // create export file for icons
+//
 
 fs.writeFile(
   `src/components/Icon/icons/index.tsx`,
@@ -69,7 +69,9 @@ ${importList
   }
 )
 
+//
 // create input destinations for rollup
+//
 
 fs.writeFile(
   `internals/icons.js`,
