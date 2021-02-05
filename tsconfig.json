@@ -9,57 +9,9 @@
     "noImplicitAny": true,
     // "outDir": "./dist",
     "preserveConstEnums": true,
-    // "target": "es5"
-
     "target": "es6",
-
     "module": "es6"
   },
   "include": ["src/components/**/*"],
   "exclude": ["node_modules"]
 }
-
-// {
-//   "compilerOptions": {
-//     "emitDecoratorMetadata": true,
-//     "experimentalDecorators": true,
-//     "forceConsistentCasingInFileNames": true,
-//     "allowSyntheticDefaultImports": true,
-
-//     "declaration": true,
-//     "declarationDir": "lib/types",
-//     "esModuleInterop": true,
-//     "moduleResolution": "Node",
-//     "jsx": "react",
-//     "resolveJsonModule": true,
-//     "strict": true,
-//     "target": "ESNext"
-//   },
-//   "include": ["src/components/**/*"],
-//   "exclude": ["node_modules", "components/**/*.stories.tsx"]
-// }
-
-// {
-//   "compilerOptions": {
-//     "emitDecoratorMetadata": true,
-//     "experimentalDecorators": true,
-//     "forceConsistentCasingInFileNames": true,
-//     "allowSyntheticDefaultImports": true,
-
-//     "declaration": true,
-//     "declarationDir": "lib/types",
-//     "esModuleInterop": true,
-//     "moduleResolution": "Node",
-//     "jsx": "react",
-//     "resolveJsonModule": true,
-//     // "strict": true,
-//     "target": "ESNext"
-
-//     // "module": "es6"
-
-//     // "noImplicitAny": true,
-//     // "outDir": "./dist",
-//     // "preserveConstEnums": true
-//   },
-//   "exclude": ["node_modules"]
-// }
