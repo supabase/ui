@@ -1,5 +1,6 @@
 import React from 'react'
-import './SidePanel.css'
+// @ts-ignore
+import SlidePanelStyles from './SidePanel.module.css'
 import { Button, Icon, Space, Transition, Typography } from '../../index'
 
 interface Props {
@@ -43,12 +44,12 @@ const SidePanel = ({
 
   const left = align === 'left'
   const orientationClasses = left
-    ? 'sbui-sidepanel--left'
-    : 'sbui-sidepanel--right'
+    ? SlidePanelStyles['sbui-sidepanel--left']
+    : SlidePanelStyles['sbui-sidepanel--right']
 
-  let footerClasses = ['sbui-sidepanel-footer-container']
+  let footerClasses = [SlidePanelStyles['sbui-sidepanel-footer-container']]
   if (!customFooter) {
-    footerClasses.push('sbui-sidepanel-footer')
+    footerClasses.push(SlidePanelStyles['sbui-sidepanel-footer'])
   }
 
   const footerContent = customFooter ? (
@@ -90,15 +91,24 @@ const SidePanel = ({
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <div className="sbui-sidepanel-overlay-container">
-          <div className="sbui-sidepanel-overlay"></div>
+        <div className={SlidePanelStyles['sbui-sidepanel-overlay-container']}>
+          <div className={SlidePanelStyles['sbui-sidepanel-overlay']}></div>
         </div>
       </Transition>
 
       {/* sidepanel element */}
-      <div className="sbui-sidepanel-fixed" onClick={onCancel}>
-        <div className="sbui-sidepanel-absolute">
-          <section className={'sbui-sidepanel-container ' + orientationClasses}>
+      <div
+        className={SlidePanelStyles['sbui-sidepanel-fixed']}
+        onClick={onCancel}
+      >
+        <div className={SlidePanelStyles['sbui-sidepanel-absolute']}>
+          <section
+            className={
+              SlidePanelStyles['sbui-sidepanel-container'] +
+              ' ' +
+              orientationClasses
+            }
+          >
             <Transition
               show={visible}
               enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -110,11 +120,15 @@ const SidePanel = ({
             >
               <div
                 className={
-                  wide ? 'sbui-sidepanel--wide' : 'sbui-sidepanel--medium'
+                  wide
+                    ? SlidePanelStyles['sbui-sidepanel--wide']
+                    : SlidePanelStyles['sbui-sidepanel--medium']
                 }
               >
                 <div
-                  className={'sbui-sidepanel ' + className}
+                  className={
+                    SlidePanelStyles['sbui-sidepanel'] + ' ' + className
+                  }
                   onClick={stopPropagation}
                 >
                   <Space
@@ -126,7 +140,9 @@ const SidePanel = ({
                       overflowY: 'scroll',
                     }}
                   >
-                    <header className="sbui-sidepanel-header">
+                    <header
+                      className={SlidePanelStyles['sbui-sidepanel-header']}
+                    >
                       <Space
                         size={3}
                         direction="row"
@@ -140,7 +156,11 @@ const SidePanel = ({
                             {title}
                           </Typography.Title>
                         )}
-                        <div className="sbui-sidepanel-close-container">
+                        <div
+                          className={
+                            SlidePanelStyles['sbui-sidepanel-close-container']
+                          }
+                        >
                           <Button
                             aria-label="Close panel"
                             onClick={onCancel}
@@ -161,7 +181,7 @@ const SidePanel = ({
                         )}
                       </div>
                     </header>
-                    <div className="sbui-sidepanel-content">{children}</div>
+                    <div className={SlidePanelStyles["sbui-sidepanel-content"]}>{children}</div>
                   </Space>
                   {!hideFooter && footerContent}
                 </div>

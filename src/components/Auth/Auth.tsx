@@ -11,7 +11,8 @@ import {
 } from './../../index'
 import { UserContextProvider, useUser } from './UserContext'
 import * as SocialIcons from './Icons'
-import './Auth.css'
+// @ts-ignore
+import authStyles from './Auth.module.css'
 
 const VIEWS = {
   SIGN_IN: 'sign_in',
@@ -48,7 +49,7 @@ function Auth({
 
   const verticalSocialLayout = socialLayout === 'vertical' ? true : false
 
-  let containerClasses = ['sbui-auth']
+  let containerClasses = [authStyles['sbui-auth']]
   if (className) {
     containerClasses.push(className)
   }
@@ -157,7 +158,10 @@ function SocialAuth({
       {providers && providers.length > 0 && (
         <React.Fragment>
           <Space size={4} direction={'vertical'}>
-            <Typography.Text type="secondary" className="sbui-auth-label">
+            <Typography.Text
+              type="secondary"
+              className={authStyles['sbui-auth-label']}
+            >
               Sign in with
             </Typography.Text>
             <Space size={2} direction={socialLayout}>

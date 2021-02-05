@@ -6,7 +6,8 @@ import { Transition } from '../../components/Transition'
 import Hooks from './../../lib/Hooks'
 import { DropdownContext } from './OverlayContext'
 
-import './Overlay.css'
+// @ts-ignore
+import OverlayStyles from './Overlay.module.css'
 
 interface Props {
   visible?: boolean
@@ -40,8 +41,8 @@ function Overlay({
   const [visibleState, setVisibleState] = useState(false)
 
   let classes = [
-    'sbui-overlay-container',
-    `sbui-overlay-container--${placement}`,
+    OverlayStyles['sbui-overlay-container'],
+    OverlayStyles[`sbui-overlay-container--${placement}`],
   ]
 
   if (overlayClassName) classes.push(overlayClassName)
@@ -65,7 +66,7 @@ function Overlay({
   }
 
   return (
-    <div ref={clickContainerRef} className="sbui-overlay">
+    <div ref={clickContainerRef} className={OverlayStyles["sbui-overlay"]}>
       {placement === 'bottomRight' ||
       placement === 'bottomLeft' ||
       placement === 'bottomCenter' ? (

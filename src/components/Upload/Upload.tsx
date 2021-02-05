@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
-import './Upload.css'
+// @ts-ignore
+import UploadStyles from './Upload.module.css'
 
 function Upload({ label, children }: any) {
   return <h1>WIP</h1>
 }
 
 function Dragger({ label, layout, children }: any) {
-  const [classes, setClasses] = useState(['sbui-upload-dragger']);
+  const [classes, setClasses] = useState([UploadStyles['sbui-upload-dragger']])
 
-  const draggedCssClass = 'sbui-upload-dragger--dragged'
+  const draggedCssClass = UploadStyles['sbui-upload-dragger--dragged']
 
   const dragOver = (e: any) => {
     e.preventDefault()
     // console.log('dragOver')
 
-    if(!classes.includes(draggedCssClass)) {
+    if (!classes.includes(draggedCssClass)) {
       let originalClasses = classes
       originalClasses.push(draggedCssClass)
       setClasses(originalClasses)
@@ -26,7 +27,7 @@ function Dragger({ label, layout, children }: any) {
   const dragEnter = (e: any) => {
     e.preventDefault()
     // console.log('dragEnter')
-    if(!classes.includes(draggedCssClass)) {
+    if (!classes.includes(draggedCssClass)) {
       let originalClasses = classes
       originalClasses.push(draggedCssClass)
       setClasses(originalClasses)
@@ -38,13 +39,13 @@ function Dragger({ label, layout, children }: any) {
     e.preventDefault()
     // console.log('dragLeave'
 
-    if(classes.includes(draggedCssClass)) {
+    if (classes.includes(draggedCssClass)) {
       let newClasses = classes
-    
-      for( var i = 0; i < newClasses.length; i++){ 
-          if ( newClasses[i] === draggedCssClass) { 
-            newClasses.splice(i, 1); 
-          }
+
+      for (var i = 0; i < newClasses.length; i++) {
+        if (newClasses[i] === draggedCssClass) {
+          newClasses.splice(i, 1)
+        }
       }
       setClasses(newClasses)
       console.log(classes)
@@ -61,26 +62,23 @@ function Dragger({ label, layout, children }: any) {
 
   return (
     <div
-    onDragOver={dragOver}
-    onDragEnter={dragEnter}
-    onDragLeave={dragLeave}
-    onDrop={fileDrop}>
-    <FormLayout label={label} layout={layout}>
-      <label
-        htmlFor="file-upload"
-        className={classes.join(' ')}
-      >
-        <input
-          id="file-upload"
-          name="file-upload"
-          type="file"
-          className="sr-only"
-        />
-        
+      onDragOver={dragOver}
+      onDragEnter={dragEnter}
+      onDragLeave={dragLeave}
+      onDrop={fileDrop}
+    >
+      <FormLayout label={label} layout={layout}>
+        <label htmlFor="file-upload" className={classes.join(' ')}>
+          <input
+            id="file-upload"
+            name="file-upload"
+            type="file"
+            className="sr-only"
+          />
+
           {children}
-        
-      </label>
-    </FormLayout>
+        </label>
+      </FormLayout>
     </div>
   )
 }

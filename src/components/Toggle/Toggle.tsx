@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import { Space } from '../Space'
-import './Toggle.css'
+// @ts-ignore
+import ToggleStyles from './Toggle.module.css'
 
 interface Props {
   disabled?: boolean
@@ -44,14 +45,14 @@ function Toggle({
     setIntChecked(!intChecked)
   }
 
-  let toggleClasses = ['sbui-toggle']
+  let toggleClasses = [ToggleStyles['sbui-toggle']]
   if (active) {
-    toggleClasses.push('sbui-toggle--active')
+    toggleClasses.push(ToggleStyles['sbui-toggle--active'])
   }
 
-  let handleClasses = ['sbui-toggle__handle']
+  let handleClasses = [ToggleStyles['sbui-toggle__handle']]
   if (active) {
-    handleClasses.push('sbui-toggle__handle--active')
+    handleClasses.push(ToggleStyles['sbui-toggle__handle--active'])
   }
 
   return (

@@ -1,6 +1,7 @@
 import React from 'react'
 import { IconContext } from './IconContext'
-import './Icon.css'
+// @ts-ignore
+import IconStyles from './Icon.module.css'
 
 interface Props {
   className?: string
@@ -125,7 +126,9 @@ function IconBase({
         return background ? (
           <div
             // circle coloured background
-            className={`sbui-icon-container sbui-icon-container--${background}`}
+            className={`${IconStyles['sbui-icon-container']} ${
+              IconStyles[`sbui-icon-container--${background}`]
+            }`}
           >
             {Icon}
           </div>

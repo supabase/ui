@@ -68,3 +68,7 @@
   user-select: none;
   flex-shrink: 0;
 }
+
+.sbui-radio-group-contents {
+  @apply dark:bg-transparent rounded-md -space-y-px;
+}

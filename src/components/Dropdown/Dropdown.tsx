@@ -2,7 +2,8 @@ import React from 'react'
 import { Card } from '../Card'
 import Typography from '../Typography'
 
-import './Dropdown.css'
+// @ts-ignore
+import DropdownStyles from './Dropdown.module.css'
 
 import { Space } from '../Space'
 import Overlay from '../../lib/Overlay/Overlay'
@@ -27,7 +28,7 @@ interface Props {
 }
 
 function Dropdown(props: Props) {
-  let classes = ['sbui-dropdown-card']
+  let classes = [DropdownStyles['sbui-dropdown-card']]
   if (props.className) {
     classes.push(props.className)
   }
@@ -47,11 +48,13 @@ interface ItemProps {
 
 export function Item({ children, icon }: ItemProps) {
   return (
-    <div className="sbui-dropdown-item">
+    <div className={DropdownStyles['sbui-dropdown-item']}>
       <Typography.Text>
         <Space>
           {icon && icon}
-          <span className="sbui-dropdown-item__content">{children}</span>
+          <span className={DropdownStyles['sbui-dropdown-item__content']}>
+            {children}
+          </span>
         </Space>
       </Typography.Text>
     </div>

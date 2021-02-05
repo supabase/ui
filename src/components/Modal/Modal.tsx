@@ -1,5 +1,6 @@
 import React from 'react'
-import './Modal.css'
+// @ts-ignore
+import ModalStyles from './Modal.module.css'
 import { Button, Transition, Icon, Typography, Space } from './../../index'
 
 interface Props {
@@ -51,9 +52,9 @@ const Modal = ({
     e.stopPropagation()
   }
 
-  let footerClasses = ['sbui-modal-footer']
+  let footerClasses = [ModalStyles['sbui-modal-footer']]
   if (footerBackground) {
-    footerClasses.push('sbui-modal-footer--with-bg')
+    footerClasses.push(ModalStyles['sbui-modal-footer--with-bg'])
   }
 
   const footerContent = customFooter ? (
@@ -98,15 +99,15 @@ const Modal = ({
       leaveTo="opacity-0"
     >
       <div
-        className={'sbui-modal-container ' + className}
+        className={ModalStyles['sbui-modal-container'] + ' ' + className}
         onClick={() => (onCancel ? onCancel() : null)}
       >
-        <div className="sbui-modal-flex-container">
-          <div className="sbui-modal-overlay-container">
-            <div className="sbui-modal-overlay"></div>
+        <div className={ModalStyles['sbui-modal-flex-container']}>
+          <div className={ModalStyles['sbui-modal-overlay-container']}>
+            <div className={ModalStyles['sbui-modal-overlay']}></div>
           </div>
           {/* <!-- This element is to trick the browser into centering the modal contents. --> */}
-          <span className="sbui-modal-div-trick"></span>
+          <span className={ModalStyles['sbui-modal-div-trick']}></span>
           &#8203;
           <Transition
             show={visible}
@@ -118,13 +119,13 @@ const Modal = ({
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <div
-              className={`sbui-modal sbui-modal--${size}`}
+              className={ModalStyles[`sbui-modal sbui-modal--${size}`]}
               role="dialog"
               aria-modal="true"
               aria-labelledby="modal-headline"
               onClick={stopPropagation}
             >
-              <div className="sbui-modal-content">
+              <div className={ModalStyles['sbui-modal-content']}>
                 <Space
                   size={5}
                   style={{ alignItems: 'flex-start' }}
@@ -168,7 +169,7 @@ const Modal = ({
                 <div className={footerClasses.join(' ')}>{footerContent}</div>
               )}
               {closable && (
-                <div className="sbui-modal-close-container">
+                <div className={ModalStyles['sbui-modal-close-container']}>
                   <Button
                     onClick={onCancel}
                     type="text"

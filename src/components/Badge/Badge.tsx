@@ -1,11 +1,12 @@
 import React from 'react'
 import { Space } from '../Space'
 import Typography from '../Typography'
-import './Badge.css'
+// @ts-ignore
+import badgeStyles from './Badge.module.css'
 
 interface Props {
   color?:
-    'gray'
+    | 'gray'
     | 'red'
     | 'yellow'
     | 'green'
@@ -15,30 +16,32 @@ interface Props {
     | 'pink'
   children: string
   size?: 'large' | 'small'
-  dot? : boolean
+  dot?: boolean
 }
 
 function Badge({ color, children, size, dot }: Props) {
-  let classes = ['sbui-badge']
+  let classes = [badgeStyles['sbui-badge']]
   if (color) {
-    classes.push(`sbui-badge--${color}`)
+    classes.push(badgeStyles[`sbui-badge--${color}`])
   }
   if (size === 'large') {
-    classes.push('sbui-badge--large')
+    classes.push(badgeStyles['sbui-badge--large'])
   }
 
   return (
     <span className={classes.join(' ')}>
-      { dot  && (
+      {dot && (
         <svg
-        className={`sbui-badge-dot sbui-badge--${color}`}
-        fill="currentColor"
-        viewBox="0 0 8 8"
-      >
-        <circle cx="4" cy="4" r="3" />
-      </svg>
-      ) }
-      
+          className={`${badgeStyles[`sbui-badge-dot`]} ${
+            badgeStyles[`sbui-badge--${color}`]
+          }`}
+          fill="currentColor"
+          viewBox="0 0 8 8"
+        >
+          <circle cx="4" cy="4" r="3" />
+        </svg>
+      )}
+
       {children}
     </span>
   )

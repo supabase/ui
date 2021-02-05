@@ -1,15 +1,19 @@
 import React from 'react'
 // @ts-ignore
 import { Icon } from './../../index'
-import './InputErrorIcon.css'
+// @ts-ignore
+import InputErrorIconStyles from './InputErrorIcon.module.css'
 
 interface Props {
   style?: React.CSSProperties
 }
 
-export default function InputErrorIcon({style}: Props) {
+export default function InputErrorIcon({ style }: Props) {
   return (
-    <div className="sbui-input-error-icon" style={style}>
+    <div
+      className={InputErrorIconStyles['sbui-input-error-icon']}
+      style={style}
+    >
       <Icon
         size={21}
         strokeWidth={2}
