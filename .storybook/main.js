@@ -1,4 +1,5 @@
 const babel = require('@babel/core')
+const postCssLoader = './postCssLoader'
 
 module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -6,7 +7,7 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     'storybook-dark-mode/register',
-    'storybook-css-modules-preset',
+    postCssLoader,
   ],
   webpackFinal: async (config) => {
     // This is for fix webpack storybook get module @emotion/styled/base
