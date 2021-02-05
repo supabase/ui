@@ -1,7 +1,7 @@
 import React from 'react'
 // @ts-ignore
 import SlidePanelStyles from './SidePanel.module.css'
-import { Button, Icon, Space, Transition, Typography } from '../../index'
+import { Button, IconX, Space, Transition, Typography } from '../../index'
 
 interface Props {
   className?: string
@@ -167,9 +167,7 @@ const SidePanel = ({
                             type="text"
                             shadow={false}
                             style={{ padding: 0 }}
-                            icon={
-                              <Icon size="xlarge" type="X" strokeWidth={2} />
-                            }
+                            icon={<IconX size="xlarge" strokeWidth={2} />}
                           />
                         </div>
                       </Space>
@@ -181,7 +179,9 @@ const SidePanel = ({
                         )}
                       </div>
                     </header>
-                    <div className={SlidePanelStyles["sbui-sidepanel-content"]}>{children}</div>
+                    <div className={SlidePanelStyles['sbui-sidepanel-content']}>
+                      {children}
+                    </div>
                   </Space>
                   {!hideFooter && footerContent}
                 </div>

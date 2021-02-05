@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button } from '../Button'
 import { Divider } from '../Divider'
-import { Icon } from '../Icon'
 import { Menu } from '../Menu'
+import { IconSettings, IconLogOut, IconChevronDown } from './../../index'
 import Typography from '../Typography'
 // import { AutoForm } from 'uniforms'
 
@@ -24,22 +24,20 @@ export const Default = (args: any) => (
         </Dropdown.Item>,
         <Divider light />,
         <Menu>
-          <Menu.Item icon={<Icon type="Settings" size="tiny" />}>
-            Settings
-          </Menu.Item>
+          <Menu.Item icon={<IconSettings size="tiny" />}>Settings</Menu.Item>
           <Divider light />
           <Menu.Item>Something</Menu.Item>
           <Menu.Item>Something</Menu.Item>
         </Menu>,
         <Divider light />,
         <Dropdown.Item>
-          <Button type="default" icon={<Icon type="LogOut" />}>
+          <Button type="default" icon={<IconLogOut />}>
             Log out
           </Button>
         </Dropdown.Item>,
       ]}
     >
-      <Button type="outline" iconRight={<Icon type={'ChevronDown'} />}>
+      <Button type="outline" iconRight={<IconChevronDown />}>
         Click for dropdown
       </Button>
     </Dropdown>
@@ -59,10 +57,7 @@ export const doNotcloseOverlay = (args: any) => (
         </Dropdown.Item>,
         <Divider light />,
         <Menu>
-          <Menu.Item
-            doNotCloseOverlay
-            icon={<Icon type="Settings" size="tiny" />}
-          >
+          <Menu.Item doNotCloseOverlay icon={<IconSettings size="tiny" />}>
             This button will not close dropdown
           </Menu.Item>
           <Divider light />
@@ -71,13 +66,13 @@ export const doNotcloseOverlay = (args: any) => (
         </Menu>,
         <Divider light />,
         <Dropdown.Item>
-          <Button type="default" icon={<Icon type="LogOut" />}>
+          <Button type="default" icon={<IconLogOut />}>
             Log out
           </Button>
         </Dropdown.Item>,
       ]}
     >
-      <Button type="outline" iconRight={<Icon type={'ChevronDown'} />}>
+      <Button type="outline" iconRight={<IconChevronDown />}>
         Click for dropdown
       </Button>
     </Dropdown>
@@ -106,10 +101,7 @@ export const withCustomStyles = (args: any) => (
         </Dropdown.Item>,
         <Divider light />,
         <Menu>
-          <Menu.Item
-            doNotCloseOverlay
-            icon={<Icon type="Settings" size="tiny" />}
-          >
+          <Menu.Item doNotCloseOverlay icon={<IconSettings size="tiny" />}>
             This button will not close dropdown
           </Menu.Item>
           <Divider light />
@@ -118,13 +110,13 @@ export const withCustomStyles = (args: any) => (
         </Menu>,
         <Divider light />,
         <Dropdown.Item>
-          <Button type="default" icon={<Icon type="LogOut" />}>
+          <Button type="default" icon={<IconLogOut />}>
             Log out
           </Button>
         </Dropdown.Item>,
       ]}
     >
-      <Button type="outline" iconRight={<Icon type={'ChevronDown'} />}>
+      <Button type="outline" iconRight={<IconChevronDown />}>
         Click for dropdown
       </Button>
     </Dropdown>

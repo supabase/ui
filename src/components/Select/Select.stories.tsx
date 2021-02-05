@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Select from '.'
-import { Icon } from '../Icon'
+import { IconBook } from '../../index'
 
 const { Option, OptGroup } = Select
 
@@ -65,7 +65,7 @@ export const withDescription = (args: any) => (
 )
 
 const data = ['England', 'Wales', 'Scotland', 'Ireland']
-const icon = <Icon  type={'Book'} />
+const icon = <IconBook type={'Book'} />
 
 Default.args = {
   disabled: false,

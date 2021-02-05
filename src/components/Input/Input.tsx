@@ -2,7 +2,7 @@ import React, { Ref, useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
-import { Button, Icon, Space, Typography } from '../../index'
+import { Button, Space, Typography, IconCopy } from '../../index'
 // @ts-ignore
 import InputStyles from './Input.module.css'
 
@@ -139,7 +139,7 @@ function Input({
                   size="tiny"
                   type="default"
                   onClick={() => onCopy(value)}
-                  icon={<Icon type="Copy" />}
+                  icon={<IconCopy />}
                 >
                   {copyLabel}
                 </Button>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '../Button'
-import { Icon } from '../Icon'
+import { IconMail } from '../../index'
 import Typography from '../Typography'
 
 import { Tabs } from './'
@@ -40,13 +40,13 @@ export const Underlined = (args: any) => (
 
 export const WithIcons = (args: any) => (
   <Tabs defaultActiveId={'panel-1'} {...args}>
-    <Tabs.Panel id="panel-1" label="1st tab" icon={<Icon type="Mail" />}>
+    <Tabs.Panel id="panel-1" label="1st tab" icon={<IconMail />}>
       <Typography.Text>Content for the first panel</Typography.Text>
     </Tabs.Panel>
-    <Tabs.Panel id="panel-2" label="2nd tab" icon={<Icon type="Mail" />}>
+    <Tabs.Panel id="panel-2" label="2nd tab" icon={<IconMail />}>
       <Typography.Text>Content for the second panel</Typography.Text>
     </Tabs.Panel>
-    <Tabs.Panel id="panel-3" label="3rd tab" icon={<Icon type="Mail" />}>
+    <Tabs.Panel id="panel-3" label="3rd tab" icon={<IconMail />}>
       <Typography.Text>Content for the third panel</Typography.Text>
     </Tabs.Panel>
   </Tabs>

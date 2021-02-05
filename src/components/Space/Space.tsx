@@ -16,7 +16,7 @@ function Space({
   classes.push(
     SpaceStyles[
       'sbui-' +
-        (minus ? '-' : '') +
+        (minus ? 'minus-' : '') +
         'space-' +
         (direction === 'vertical' ? 'y' : 'x') +
         '-' +

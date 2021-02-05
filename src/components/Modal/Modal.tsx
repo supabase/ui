@@ -1,7 +1,7 @@
 import React from 'react'
 // @ts-ignore
 import ModalStyles from './Modal.module.css'
-import { Button, Transition, Icon, Typography, Space } from './../../index'
+import { Button, Transition, IconX, Typography, Space } from './../../index'
 
 interface Props {
   children?: React.ReactNode
@@ -174,7 +174,7 @@ const Modal = ({
                     onClick={onCancel}
                     type="text"
                     shadow={false}
-                    icon={<Icon size="medium" type="X" />}
+                    icon={<IconX size="medium" />}
                   />
                 </div>
               )}

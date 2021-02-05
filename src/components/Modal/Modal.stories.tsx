@@ -8,6 +8,7 @@ import { Badge } from '../Badge'
 import { Button } from '../Button'
 import { Space } from '../Space'
 import { Icon } from '../Icon'
+import { IconTrash, IconAlertCircle, IconCheck } from './../../index'
 
 export default {
   title: 'Overlays/Modal',
@@ -123,7 +124,7 @@ withFooterBackground.args = {
   description: 'And i am the description',
 }
 
-const icon = <Icon type="Alert" background="brand" size="xlarge" />
+const icon = <IconAlertCircle background="brand" size="xlarge" />
 
 withIcon.args = {
   visible: true,
@@ -205,7 +206,7 @@ customFooterVertical.args = {
       <Button size="medium" block type="secondary">
         Cancel
       </Button>
-      <Button size="medium" block danger icon={<Icon type="Trash" />}>
+      <Button size="medium" block danger icon={<IconTrash />}>
         Delete
       </Button>
     </Space>,
@@ -224,7 +225,7 @@ customFooterOneButton.args = {
   layout: 'vertical',
   customFooter: [
     <Space style={{ width: '100%' }}>
-      <Button size="medium" block icon={<Icon type="Check" />}>
+      <Button size="medium" block icon={<IconCheck />}>
         Confirm
       </Button>
     </Space>,
