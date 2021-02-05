@@ -66,7 +66,7 @@ function Overlay({
   }
 
   return (
-    <div ref={clickContainerRef} className={OverlayStyles["sbui-overlay"]}>
+    <div ref={clickContainerRef} className={OverlayStyles['sbui-overlay']}>
       {placement === 'bottomRight' ||
       placement === 'bottomLeft' ||
       placement === 'bottomCenter' ? (
