@@ -4,7 +4,8 @@ import { Divider } from '../Divider'
 import { Space } from '../Space'
 import { TabsContext } from './TabsContext'
 
-import './Tabs.css'
+// @ts-ignore
+import TabsStyles from './Tabs.module.css'
 
 interface TabsProps {
   id?: string
@@ -67,12 +68,12 @@ function Tabs({
   return (
     <Space direction="vertical" size={4}>
       <div id={id} role="tablist" aria-label={id} style={tabBarStyle}>
-        <Space className="sbui-tab-bar-container" size={0}>
+        <Space className={TabsStyles['sbui-tab-bar-container']} size={0}>
           <Space
             size={tabBarGutter ? tabBarGutter : underlined ? 6 : 3}
             className={
-              'sbui-tab-bar-inner-container' +
-              (scrollable ? ' sbui-tab-bar--scrollable' : '')
+              TabsStyles['sbui-tab-bar-inner-container'] +
+              (scrollable ? ` ${TabsStyles['sbui-tab-bar--scrollable']}` : '')
             }
           >
             {addOnBefore}
@@ -86,9 +87,9 @@ function Tabs({
                   shadow={!block}
                   className={
                     underlined && activeMatch
-                      ? 'sbui-tab-button-underline sbui-tab-button-underline--active'
+                      ? `${TabsStyles['sbui-tab-button-underline']} ${TabsStyles['sbui-tab-button-underline--active']}`
                       : underlined
-                      ? 'sbui-tab-button-underline'
+                      ? TabsStyles['sbui-tab-button-underline']
                       : ''
                   }
                   type={activeMatch && !underlined ? 'primary' : 'text'}

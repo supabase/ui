@@ -1,6 +1,7 @@
 import { HandlerFunction } from '@storybook/addon-actions'
 import React from 'react'
-import './Link.css'
+// @ts-ignore
+import LinkStyles from './Link.module.css'
 
 interface Props {
   children?: React.ReactNode
@@ -19,7 +20,10 @@ function Link({
   onClick,
   style,
 }: Props) {
-  let classes = ['sbui-typography sbui-typography-link']
+  let classes = [
+    LinkStyles['sbui-typography'],
+    LinkStyles['sbui-typography-link'],
+  ]
   if (className) {
     classes.push(className)
   }

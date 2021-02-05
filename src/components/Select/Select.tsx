@@ -4,7 +4,8 @@ import React, { Ref } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
-import './Select.css'
+// @ts-ignore
+import SelectStyles from './Select.module.css'
 
 interface OptionProps {
   value: string
@@ -46,12 +47,12 @@ function Select({
   value,
   style,
 }: any) {
-  let selectClasses = ['sbui-select']
+  let selectClasses = [SelectStyles['sbui-select']]
   if (error) {
-    selectClasses.push('sbui-select--error')
+    selectClasses.push(SelectStyles['sbui-select--error'])
   }
   if (icon) {
-    selectClasses.push('sbui-select--with-icon')
+    selectClasses.push(SelectStyles['sbui-select--with-icon'])
   }
 
   return (
@@ -87,7 +88,7 @@ function Select({
           </div>
         ))
       ) : (
-        <div className="sbui-select-container">
+        <div className={SelectStyles['sbui-select-container']}>
           <select
             id={id}
             name={name}
@@ -103,9 +104,9 @@ function Select({
           </select>
           {icon && <InputIconContainer icon={icon} />}
           {error && <InputErrorIcon style={{ marginRight: '1.2rem' }} />}
-          <span className="sbui-select-chevron-container">
+          <span className={SelectStyles['sbui-select-chevron-container']}>
             <svg
-              className="sbui-select-chevron"
+              className={SelectStyles["sbui-select-chevron"]}
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"

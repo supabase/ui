@@ -1,5 +1,6 @@
 import React from 'react'
-import './Text.css'
+// @ts-ignore
+import TextStyles from './Text.module.css'
 
 interface Props {
   className?: string
@@ -30,29 +31,29 @@ function Text({
   strong,
   small,
 }: Props) {
-  let classes = ['sbui-typography']
+  let classes = [TextStyles['sbui-typography']]
   if (className) {
     classes.push(className)
   }
 
   if (type) {
-    classes.push(`sbui-typography-${type}`)
+    classes.push(TextStyles[`sbui-typography-${type}`])
   }
 
   if (disabled) {
-    classes.push(`sbui-typography-disabled`)
+    classes.push(TextStyles[`sbui-typography-disabled`])
   }
 
   if (underline) {
-    classes.push(`sbui-typography-underline`)
+    classes.push(TextStyles[`sbui-typography-underline`])
   }
 
   if (strikethrough) {
-    classes.push(`sbui-typography-strikethrough`)
+    classes.push(TextStyles[`sbui-typography-strikethrough`])
   }
 
   if (small) {
-    classes.push('sbui-typography-small')
+    classes.push(TextStyles['sbui-typography-small'])
   }
 
   if (code)

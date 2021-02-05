@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import { CheckboxContext } from './CheckboxContext'
-import './Checkbox.css'
+// @ts-ignore
+import CheckboxStyles from './Checkbox.module.css'
 
 interface InputProps {
   label: string
@@ -109,7 +110,7 @@ export function Checkbox({
         // if neither true or false the checkbox will rely on native control
         const active = checked ? true : checked === false ? false : null
 
-        let containerClasses = ['sbui-checkbox-container']
+        let containerClasses = [CheckboxStyles['sbui-checkbox-container']]
         if (className) {
           containerClasses.push(className)
         }
@@ -127,21 +128,33 @@ export function Checkbox({
               id={markupId}
               name={markupName}
               type="checkbox"
-              className="sbui-checkbox"
+              className={CheckboxStyles['sbui-checkbox']}
               onChange={onInputChange}
               checked={active}
               value={value ? value : markupId}
             />
-            <div className="sbui-checkbox__label-container">
+            <div className={CheckboxStyles['sbui-checkbox__label-container']}>
               <label
-                className="sbui-checkbox__label-container__label"
+                className={
+                  CheckboxStyles['sbui-checkbox__label-container__label']
+                }
                 htmlFor={markupId}
               >
-                <span className="sbui-checkbox__label-container__label__span">
+                <span
+                  className={
+                    CheckboxStyles[
+                      'sbui-checkbox__label-container__label__span'
+                    ]
+                  }
+                >
                   {label}
                 </span>
                 {description && (
-                  <p className="sbui-checkbox__label-container__label__p">
+                  <p
+                    className={
+                      CheckboxStyles['sbui-checkbox__label-container__label__p']
+                    }
+                  >
                     {description}
                   </p>
                 )}

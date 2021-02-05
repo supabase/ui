@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Divider } from '../Divider'
-import { Icon } from '../Icon'
+import { IconMail } from './../../index'
 import Typography from '../Typography'
 
 import { Menu } from './'
@@ -13,34 +13,34 @@ export default {
 
 export const Default = (args: any) => (
   <Menu>
-    <Menu.Item icon={<Icon type="Mail" />}>Account settings</Menu.Item>
+    <Menu.Item icon={<IconMail />}>Account settings</Menu.Item>
     <Divider />
-    <Menu.Item icon={<Icon type="Mail" />}>Account settings</Menu.Item>
-    <Menu.Item icon={<Icon type="Mail" />}>Account settings</Menu.Item>
+    <Menu.Item icon={<IconMail />}>Account settings</Menu.Item>
+    <Menu.Item icon={<IconMail />}>Account settings</Menu.Item>
   </Menu>
 )
 
 export const withActiveState = (args: any) => (
   <Menu>
-    <Menu.Item icon={<Icon type="Mail" />}>Account settings</Menu.Item>
+    <Menu.Item icon={<IconMail />}>Account settings</Menu.Item>
     <Divider />
-    <Menu.Item active icon={<Icon type="Mail" />}>
+    <Menu.Item active icon={<IconMail />}>
       Account settings
     </Menu.Item>
-    <Menu.Item icon={<Icon type="Mail" />}>Account settings</Menu.Item>
+    <Menu.Item icon={<IconMail />}>Account settings</Menu.Item>
   </Menu>
 )
 
 export const withRounded = (args: any) => (
   <Menu>
-    <Menu.Item rounded icon={<Icon type="Mail" />}>
+    <Menu.Item rounded icon={<IconMail />}>
       Account settings
     </Menu.Item>
     <Divider />
-    <Menu.Item rounded active icon={<Icon type="Mail" />}>
+    <Menu.Item rounded active icon={<IconMail />}>
       Account settings
     </Menu.Item>
-    <Menu.Item rounded icon={<Icon type="Mail" />}>
+    <Menu.Item rounded icon={<IconMail />}>
       Account settings
     </Menu.Item>
   </Menu>

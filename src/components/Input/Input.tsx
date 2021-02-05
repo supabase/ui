@@ -2,8 +2,9 @@ import React, { Ref, useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
-import { Button, Icon, Space, Typography } from '../../index'
-import './Input.css'
+import { Button, Space, Typography, IconCopy } from '../../index'
+// @ts-ignore
+import InputStyles from './Input.module.css'
 
 export interface Props {
   autoComplete?: string
@@ -108,7 +109,7 @@ function Input({
         descriptionText={descriptionText}
         style={style}
       >
-        <div className="sbui-input-container">
+        <div className={InputStyles['sbui-input-container']}>
           <input
             autoComplete={autoComplete}
             autoFocus={autofocus}
@@ -121,21 +122,24 @@ function Input({
             type={type}
             value={hidden ? hiddenPlaceholder : value}
             className={
-              'sbui-input' +
-              (error ? ' sbui-input--error' : '') +
-              (icon ? ' sbui-input--with-icon' : '')
+              InputStyles['sbui-input'] +
+              (error ? ` ${InputStyles['sbui-input--error']}` : '') +
+              (icon ? ` ${InputStyles['sbui-input--with-icon']}` : '')
             }
           />
           {icon && <InputIconContainer icon={icon} />}
           {copy || error || actions ? (
-            <Space className="sbui-input-actions-container" size={1}>
+            <Space
+              className={InputStyles['sbui-input-actions-container']}
+              size={1}
+            >
               {error && <InputErrorIcon />}
               {copy && !hidden ? (
                 <Button
                   size="tiny"
                   type="default"
                   onClick={() => onCopy(value)}
-                  icon={<Icon type="Copy" />}
+                  icon={<IconCopy />}
                 >
                   {copyLabel}
                 </Button>
@@ -197,9 +201,9 @@ function TextArea({
 }: TextAreaProps) {
   const [charLength, setCharLength] = useState(0)
 
-  let classes = ['sbui-input']
-  if (error) classes.push('sbui-input--error')
-  if (icon) classes.push('sbui-input--with-icon')
+  let classes = [InputStyles['sbui-input']]
+  if (error) classes.push(InputStyles['sbui-input--error'])
+  if (icon) classes.push(InputStyles['sbui-input--with-icon'])
 
   function onInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     if (onChange) {

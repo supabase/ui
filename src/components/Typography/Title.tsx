@@ -1,5 +1,6 @@
 import React from 'react'
-import './Title.css'
+// @ts-ignore
+import TitleStyles from './Title.module.css'
 
 interface Props {
   className?: string
@@ -9,8 +10,7 @@ interface Props {
 }
 
 function Title({ className, level = 1, children, style }: Props) {
-  
-  let classes = ['sbui-typography']
+  let classes = [TitleStyles['sbui-typography']]
   if (className) {
     classes.push(className)
   }

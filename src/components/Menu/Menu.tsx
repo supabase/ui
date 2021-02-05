@@ -3,7 +3,8 @@ import { DropdownContext } from '../../lib/Overlay/OverlayContext'
 import { Space } from '../Space'
 import Typography from '../Typography'
 
-import './Menu.css'
+// @ts-ignore
+import MenuStyles from './Menu.module.css'
 
 function Menu({ children }: any) {
   return (
@@ -30,9 +31,9 @@ export function Item({
   onClick,
   doNotCloseOverlay = false,
 }: ItemProps) {
-  let classes = ['sbui-menu__item']
-  if (active) classes.push('sbui-menu__item--active')
-  if (rounded) classes.push('sbui-menu__item--rounded')
+  let classes = [MenuStyles['sbui-menu__item']]
+  if (active) classes.push(MenuStyles['sbui-menu__item--active'])
+  if (rounded) classes.push(MenuStyles['sbui-menu__item--rounded'])
 
   const itemOnClick = onClick
 
@@ -55,7 +56,9 @@ export function Item({
             <Typography.Text>
               <Space>
                 {icon && icon}
-                <span className="sbui-menu__content">{children}</span>
+                <span className={MenuStyles['sbui-menu__content']}>
+                  {children}
+                </span>
               </Space>
             </Typography.Text>
           </div>
@@ -73,7 +76,7 @@ interface GroupProps {
 
 export function Group({ children, icon, title }: GroupProps) {
   return (
-    <div className="sbui-menu__group">
+    <div className={MenuStyles['sbui-menu__group']}>
       <Space>
         {icon && icon}
         <Typography.Text type="secondary">{title}</Typography.Text>
@@ -89,9 +92,9 @@ interface MiscProps {
 
 export function Misc({ children }: MiscProps) {
   return (
-    <div className="sbui-menu__misc">
+    <div className={MenuStyles['sbui-menu__misc']}>
       <Typography.Text>
-        <span className="sbui-menu__content">{children}</span>
+        <span className={MenuStyles['sbui-menu__content']}>{children}</span>
       </Typography.Text>
     </div>
   )

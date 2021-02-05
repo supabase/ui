@@ -1,5 +1,6 @@
 import React from 'react'
-import './Divider.css'
+// @ts-ignore
+import DividerStyles from './Divider.module.css'
 
 interface Props {
   children?: React.ReactNode
@@ -16,21 +17,25 @@ export default function Divider({
   orientation = 'center',
   style,
 }: Props) {
-  let classes = ['sbui-divider']
+  let classes = [DividerStyles['sbui-divider']]
   if (light) {
-    classes.push(`sbui-divider--light`)
+    classes.push(DividerStyles['sbui-divider--light'])
   }
   if (children) {
-    classes.push(`sbui-divider--${orientation}`)
+    classes.push(DividerStyles[`sbui-divider--${orientation}`])
   } else {
-    classes.push(`sbui-divider--no-text`)
+    classes.push(DividerStyles[`sbui-divider--no-text`])
   }
 
   if (className) classes.push(className)
 
   return (
     <div className={classes.join(' ')} role="seperator" style={style}>
-      {children && <span className="sbui-divider__content">{children}</span>}
+      {children && (
+        <span className={DividerStyles['sbui-divider__content']}>
+          {children}
+        </span>
+      )}
     </div>
   )
 }

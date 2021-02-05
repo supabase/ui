@@ -4,14 +4,18 @@ import {
   Input,
   Checkbox,
   Button,
-  Icon,
   Space,
   Typography,
   Divider,
+  IconKey,
+  IconMail,
+  IconInbox,
+  IconLock,
 } from './../../index'
 import { UserContextProvider, useUser } from './UserContext'
 import * as SocialIcons from './Icons'
-import './Auth.css'
+// @ts-ignore
+import AuthStyles from './Auth.module.css'
 
 const VIEWS = {
   SIGN_IN: 'sign_in',
@@ -48,7 +52,7 @@ function Auth({
 
   const verticalSocialLayout = socialLayout === 'vertical' ? true : false
 
-  let containerClasses = ['sbui-auth']
+  let containerClasses = [AuthStyles['sbui-auth']]
   if (className) {
     containerClasses.push(className)
   }
@@ -157,7 +161,10 @@ function SocialAuth({
       {providers && providers.length > 0 && (
         <React.Fragment>
           <Space size={4} direction={'vertical'}>
-            <Typography.Text type="secondary" className="sbui-auth-label">
+            <Typography.Text
+              type="secondary"
+              className={AuthStyles['sbui-auth-label']}
+            >
               Sign in with
             </Typography.Text>
             <Space size={2} direction={socialLayout}>
@@ -238,7 +245,7 @@ function EmailAuth({
           <Input
             label="Email address"
             autoComplete="email"
-            icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
+            icon={<IconMail size={21} stroke={'#666666'} />}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setEmail(e.target.value)
             }
@@ -247,7 +254,7 @@ function EmailAuth({
             label="Password"
             type="password"
             autoComplete="current-password"
-            icon={<Icon size={21} stroke={'#666666'} type="Key" />}
+            icon={<IconKey size={21} stroke={'#666666'} />}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setPassword(e.target.value)
             }
@@ -276,7 +283,7 @@ function EmailAuth({
             type="primary"
             block
             size="large"
-            icon={<Icon size={21} type="Lock" />}
+            icon={<IconLock size={21} />}
             loading={loading}
           >
             {authView === VIEWS.SIGN_IN ? 'Sign in' : 'Sign up'}
@@ -334,7 +341,7 @@ function MagicLink({
           <Input
             label="Email address"
             placeholder="Your email address"
-            icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
+            icon={<IconMail size={21} stroke={'#666666'} />}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setEmail(e.target.value)
             }
@@ -343,7 +350,7 @@ function MagicLink({
             block
             size="large"
             htmlType="submit"
-            icon={<Icon size={21} type="Inbox" />}
+            icon={<IconInbox size={21} />}
             loading={loading}
           >
             Send magic link
@@ -389,7 +396,7 @@ function ForgottenPassword({
           <Input
             label="Email address"
             placeholder="Your email address"
-            icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
+            icon={<IconMail size={21} stroke={'#666666'} />}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setEmail(e.target.value)
             }
@@ -398,7 +405,7 @@ function ForgottenPassword({
             block
             size="large"
             htmlType="submit"
-            icon={<Icon size={21} type="Inbox" />}
+            icon={<IconInbox size={21} />}
             loading={loading}
           >
             Send reset password instructions
@@ -443,7 +450,7 @@ function UpdatePassword({
             label="New password"
             placeholder="Enter your new password"
             type="password"
-            icon={<Icon size={21} stroke={'#666666'} type="Key" />}
+            icon={<IconKey size={21} stroke={'#666666'} />}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setPassword(e.target.value)
             }
@@ -452,7 +459,7 @@ function UpdatePassword({
             block
             size="large"
             htmlType="submit"
-            icon={<Icon size={21} type="Key" />}
+            icon={<IconKey size={21} />}
             loading={loading}
           >
             Update password

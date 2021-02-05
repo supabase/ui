@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import { Space } from '../Space'
-import './Radio.css'
+// @ts-ignore
+import RadioStyles from './Radio.module.css'
 import { RadioContext } from './RadioContext'
 
 interface InputProps {
@@ -60,15 +61,15 @@ function RadioGroup({
     setActiveId(e.target.id)
   }
 
-  let classes = ['sbui-radio-fieldset']
+  let classes = [RadioStyles['sbui-radio-fieldset']]
 
   if (type === 'cards') {
-    classes.push('sbui-radio-fieldset--cards')
+    classes.push(RadioStyles['sbui-radio-fieldset--cards'])
   }
 
   return (
     <RadioContext.Provider value={{ parentCallback, type, name, activeId }}>
-      <fieldset className="sbui-radio-fieldset">
+      <fieldset className={RadioStyles['sbui-radio-fieldset']}>
         <FormLayout
           label={label}
           labelOptional={labelOptional}
@@ -78,7 +79,7 @@ function RadioGroup({
           descriptionText={descriptionText}
           className={className}
         >
-          <div className="dark:bg-transparent rounded-md -space-y-px">
+          <div className={RadioStyles['sbui-radio-group-contents']}>
             <Space direction="vertical" size="px" minus>
               {options
                 ? options.map((option: InputProps) => {
@@ -138,12 +139,15 @@ function Radio({
             ? false
             : null
 
-        let classes = ['sbui-radio-container sbui-radio-label']
+        let classes = [
+          RadioStyles['sbui-radio-container'],
+          RadioStyles['sbui-radio-label'],
+        ]
         if (type === 'cards') {
-          classes.push('sbui-radio-container--card')
+          classes.push(RadioStyles['sbui-radio-container--card'])
         }
         if (type === 'cards' && active) {
-          classes.push('sbui-radio-container--card--active')
+          classes.push(RadioStyles['sbui-radio-container--card--active'])
         }
 
         function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -159,16 +163,18 @@ function Radio({
               id={markupId}
               name={markupName}
               type="radio"
-              className="sbui-radio"
+              className={RadioStyles['sbui-radio']}
               checked={active}
               disabled={disabled}
               value={value ? value : markupId}
               onChange={onInputChange}
             />
             <div>
-              <span className="sbui-radio-label-text">{label}</span>
+              <span className={RadioStyles['sbui-radio-label-text']}>
+                {label}
+              </span>
               {description && (
-                <span className="sbui-radio-label-description">
+                <span className={RadioStyles['sbui-radio-label-description']}>
                   {description}
                 </span>
               )}

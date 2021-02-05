@@ -2,7 +2,7 @@ import React from 'react'
 // import { AutoForm } from 'uniforms'
 
 import { Input } from '.'
-import { Icon } from '../Icon'
+import { IconPackage } from './../../index'
 import { Button } from '../Button'
 import { Space } from '../Space'
 
@@ -31,7 +31,7 @@ export const withRevealAndCopy = (args: any) => <Input {...args} />
 
 export const withCustomActions = (args: any) => <Input {...args} />
 
-const icon: any = <Icon type={'Package'} />
+const icon: any = <IconPackage />
 
 Default.args = {
   placeholder: 'Type text here ...',

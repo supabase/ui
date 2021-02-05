@@ -1,5 +1,6 @@
 import React from 'react'
-import './Space.css'
+// @ts-ignore
+import SpaceStyles from './Space.module.css'
 
 function Space({
   direction,
@@ -13,15 +14,17 @@ function Space({
   const classes = []
   classes.push(direction === 'vertical' ? 'sbui-space-col' : 'sbui-space-row')
   classes.push(
-    'sbui-' +
-      (minus ? '-' : '') +
-      'space-' +
-      (direction === 'vertical' ? 'y' : 'x') +
-      '-' +
-      size
+    SpaceStyles[
+      'sbui-' +
+        (minus ? 'minus-' : '') +
+        'space-' +
+        (direction === 'vertical' ? 'y' : 'x') +
+        '-' +
+        size
+    ]
   )
   if (block) {
-    classes.push('sbui-space--block')
+    classes.push(SpaceStyles['sbui-space--block'])
   }
   if (className) {
     classes.push(className)
