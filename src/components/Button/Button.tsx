@@ -1,8 +1,9 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import './Button.css'
 // @ts-ignore
-import { Icon } from '../../index'
+import cssStyles from './Button.module.css'
+// @ts-ignore
 import { IconContext } from '../Icon/IconContext'
+import { IconLoader } from '../Icon/icons/IconLoader'
 
 interface Props {
   block?: boolean
@@ -75,26 +76,26 @@ const Button = forwardRef<RefHandle, Props>(
       },
     }))
 
-    let classes = ['sbui-btn']
-    let containerClasses = ['sbui-btn-container']
+    let classes = [cssStyles['sbui-btn']]
+    let containerClasses = [cssStyles['sbui-btn-container']]
 
-    classes.push(`sbui-btn-${type}`)
+    classes.push(cssStyles[`sbui-btn-${type}`])
 
     if (block) {
-      containerClasses.push('sbui-btn--w-full')
-      classes.push('sbui-btn--w-full')
+      containerClasses.push(cssStyles['sbui-btn--w-full'])
+      classes.push(cssStyles['sbui-btn--w-full'])
     }
 
     if (danger) {
-      classes.push('sbui-btn--danger')
+      classes.push(cssStyles['sbui-btn--danger'])
     }
 
     if (shadow) {
-      classes.push('sbui-btn-container--shadow')
+      classes.push(cssStyles['sbui-btn-container--shadow'])
     }
 
     if (size) {
-      classes.push(`sbui-btn--${size}`)
+      classes.push(cssStyles[`sbui-btn--${size}`])
     }
 
     if (className) {
@@ -117,10 +118,9 @@ const Button = forwardRef<RefHandle, Props>(
         >
           {showIcon &&
             (loading ? (
-              <Icon
+              <IconLoader
                 size={size}
-                className={'sbui-btn--anim--spin'}
-                type={'Loader'}
+                className={cssStyles['sbui-btn--anim--spin']}
               />
             ) : icon ? (
               <IconContext.Provider value={{ contextSize: size }}>

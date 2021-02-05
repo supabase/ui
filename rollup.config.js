@@ -62,7 +62,7 @@ export default {
   ],
   output: [
     { dir: 'dist/cjs', format: 'cjs' },
-    { dir: 'dist/esm', format: 'esm' },
+    { dir: 'dist/esm', format: 'es' },
   ],
   plugins: [
     external(),
@@ -91,19 +91,12 @@ export default {
       sourceMap: false,
       // extract: false,
       minimize: true,
+      modules: {
+        // see generateScopedName options here
+        // https://github.com/css-modules/postcss-modules
+        generateScopedName: '[local]',
+      },
     }),
-
-    // postcss({
-    //   extract: true, // extracts to `${basename(dest)}.css`
-    //   plugins: [
-    //     require('postcss-import'),
-    //     require('tailwindcss'),
-    //     require('autoprefixer'),
-    //   ],
-    //   writeDefinitions: true,
-    //   // modules: { ... }
-    // }),
-
     babel({
       babelHelpers: 'runtime',
       exclude: 'node_modules/**',
