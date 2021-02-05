@@ -108,7 +108,6 @@ const Modal = ({
           </div>
           {/* <!-- This element is to trick the browser into centering the modal contents. --> */}
           <span className={ModalStyles['sbui-modal-div-trick']}></span>
-          &#8203;
           <Transition
             show={visible}
             enter="ease-out duration-300"
@@ -119,7 +118,9 @@ const Modal = ({
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <div
-              className={ModalStyles[`sbui-modal sbui-modal--${size}`]}
+              className={`${ModalStyles[`sbui-modal`]} ${
+                ModalStyles[`sbui-modal--${size}`]
+              }`}
               role="dialog"
               aria-modal="true"
               aria-labelledby="modal-headline"

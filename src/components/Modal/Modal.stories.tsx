@@ -7,7 +7,6 @@ import Typography from '../Typography'
 import { Badge } from '../Badge'
 import { Button } from '../Button'
 import { Space } from '../Space'
-import { Icon } from '../Icon'
 import { IconTrash, IconAlertCircle, IconCheck } from './../../index'
 
 export default {
@@ -216,7 +215,7 @@ customFooterVertical.args = {
 customFooterOneButton.args = {
   visible: true,
   size: 'small',
-  icon: <Icon type="Check" background="brand" size="xxxlarge" />,
+  icon: <IconCheck background="brand" size="xxxlarge" />,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
   title: 'Payment succesful',
