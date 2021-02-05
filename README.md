@@ -5,6 +5,91 @@ Supabase UI is a React UI library.
 🚧  
 Supabase UI is still a work-in-progress until a major release is published.
 
+[View full storybook documentation](https://ui.supabase.com)
+
+## Install Supabase UI
+
+```cli
+npm install @supabase/ui
+```
+
+## Using Supabase UI
+
+Example of importing a component
+
+```js
+import { Button } from '@supabase/ui'
+
+//...
+
+return <Button>I am a Supabase UI button</Button>
+```
+
+It is probably advisable to use [Normalize](https://github.com/sindresorhus/modern-normalize) with Supabase UI for the timebeing.
+
+## Using Icons
+
+We use [Feather icon library](https://feathericons.com/) in Supabase UI
+
+You can use any Icon from the library as a component by prepending `Icon` to any Icon name, like, `<IconMail>`
+
+```js
+import { IconMail } from '@supabase/ui'
+
+//...
+
+return <IconMail size="small" />
+```
+
+## Using Supabase UI Auth
+
+You can use our Auth widget straight out the box with Supabase auth including social logins.
+
+The Auth component also includes a context component which detects wether a user is logged in our not.
+
+Make sure to also install `@supabase/supabase-js`
+
+```cli
+npm install @supabase/supabase-js
+```
+
+You can then easily import `Auth` from the ui library and pass the `createClient` to the `Auth` component.
+
+```js
+import { Auth, Typography } from "@supabase/ui";
+import { createClient } from "@supabase/supabase-js";
+
+const { Text } = Typography
+
+// Create a single supabase client for interacting with your database
+const supabase = createClient(
+  "https://xyzcompany.supabase.co",
+  "public-anon-key"
+);
+
+const Container = (props) => {
+  const { user } = Auth.useUser();
+  if (user)
+    return (
+      <>
+        <Text>Signed in: {user.email}</Text>
+        <Button block onClick={() => props.supabaseClient.auth.signOut()}>
+          Sign out
+        </Button>
+      </>
+    );
+  return props.children;
+};
+
+export default function Home() {
+  return (
+    <Auth.UserContextProvider superbaseClient={supabase}>
+      <Auth providers={['facebook', 'github']}>
+    </Auth.UserContextProvider>
+  );
+};
+```
+
 ## Roadmap
 
 Some of these are a work in progress - we invite anyone to submit a [feature request](https://github.com/supabase/ui/issues/new?labels=enhancement&template=2.Feature_request.md) if there is something you would like to see.
@@ -81,65 +166,3 @@ _Misc_
 We would be keen to hear any feedback on this project.
 
 Feel free to [submit a question or idea here](https://github.com/supabase/supabase/discussions/category_choices)
-
-## Install Supabase UI
-
-```cli
-npm install @supabase/ui
-```
-
-## Using Supabase UI
-
-Example of importing a component
-
-```js
-import { Button } from '@supabase/ui'
-
-//...
-
-return <Button>I am a Supabase UI button</Button>
-```
-
-It is probably advisable to use [Normalize](https://github.com/sindresorhus/modern-normalize) with Supabase UI for the timebeing.
-
-## Run storybook locally
-
-Supabase UI uses storybook to develop and organise components.
-They can be viewed locally in the Storybook docs explorer
-
-make sure you are in the supabase-ui folder
-
-```cli
-cd supabase-ui
-```
-
-run storybook
-
-```cli
-npm run storybook
-```
-
-(you may need to run `npm install` first)
-
-Storybook runs by default on `http://localhost:6006/`
-
-## Local Development
-
-If you want to test Supabase UI components locally, in context in another project locally, then you will need to `npm link` the supabase-ui project locally.
-
-Follow these instructions here ->
-[NPM Linking and Unlinking instructions](https://dev.to/erinbush/npm-linking-and-unlinking-2h1g)
-
-### Common issues
-
-_A common issue found with local testing is multiple versions of react running._
-
-You may need to npm-link the react node module in the target app you want to locally test the library in. Then use that version of react inside the library, and then npm-link the library so the target app can use the library with just the 1 version of react.
-
-Step by step:
-
-• run npm link in /your-app/node_modules/react. This should make the React's global link.
-
-• run npm link react in /supabase/ui. This should make the library use the application’s React copy.
-
-• run npm link @supabase/ui in /your-app
