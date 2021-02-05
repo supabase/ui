@@ -1,8 +1,6 @@
 import React from 'react'
-import { Space } from '../Space'
-import Typography from '../Typography'
 // @ts-ignore
-import badgeStyles from './Badge.module.css'
+import BadgeStyles from './Badge.module.css'
 
 interface Props {
   color?:
@@ -20,20 +18,20 @@ interface Props {
 }
 
 function Badge({ color, children, size, dot }: Props) {
-  let classes = [badgeStyles['sbui-badge']]
+  let classes = [BadgeStyles['sbui-badge']]
   if (color) {
-    classes.push(badgeStyles[`sbui-badge--${color}`])
+    classes.push(BadgeStyles[`sbui-badge--${color}`])
   }
   if (size === 'large') {
-    classes.push(badgeStyles['sbui-badge--large'])
+    classes.push(BadgeStyles['sbui-badge--large'])
   }
 
   return (
     <span className={classes.join(' ')}>
       {dot && (
         <svg
-          className={`${badgeStyles[`sbui-badge-dot`]} ${
-            badgeStyles[`sbui-badge--${color}`]
+          className={`${BadgeStyles[`sbui-badge-dot`]} ${
+            BadgeStyles[`sbui-badge--${color}`]
           }`}
           fill="currentColor"
           viewBox="0 0 8 8"
