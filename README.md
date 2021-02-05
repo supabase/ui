@@ -48,7 +48,7 @@ You can use our Auth widget straight out the box with Supabase auth including so
 <img width="380" alt="Screenshot 2021-02-05 at 19 25 01" src="https://user-images.githubusercontent.com/8291514/107029572-32f72d00-67ea-11eb-982e-e737f052eea1.png">
 
 
-The Auth component also includes a context component which detects wether a user is logged in our not.
+The Auth component also includes a context component which detects whether a user is logged in our not.
 
 Make sure to also install `@supabase/supabase-js`
 
