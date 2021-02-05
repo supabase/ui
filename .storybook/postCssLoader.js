@@ -30,7 +30,6 @@ module.exports = {
                     ..._.options,
                     // modules: true,
                     modules: {
-                      getJSON: false,
                       //   localIdentName: '[name]__[local]__[hash:base64:5]',
                       localIdentName: '[local]',
                     },
