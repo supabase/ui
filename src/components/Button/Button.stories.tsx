@@ -1,8 +1,6 @@
 import React, { useRef, useState } from 'react'
 
-import { Button } from '.'
-import { Space } from '../../components/Space'
-import { Icon } from '../Icon'
+import { Button, Space, IconPackage, IconChevronRight } from './../../index'
 
 export default {
   title: 'General/Button',
@@ -159,7 +157,7 @@ export const allButtons = (args: any) => (
   </>
 )
 
-const icon = <Icon type={'Package'} />
+const icon = <IconPackage />
 
 withIcon.args = {
   type: 'primary',
@@ -168,7 +166,7 @@ withIcon.args = {
 
 withIconRight.args = {
   type: 'primary',
-  iconRight: <Icon type={'ChevronRight'} strokeWidth={2} />,
+  iconRight: <IconChevronRight strokeWidth={2} />,
 }
 
 withStyles.args = {

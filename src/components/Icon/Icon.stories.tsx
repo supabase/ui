@@ -19,7 +19,6 @@ export const Default = (args: any) => (
 
 Default.args = {
   size: 16,
-  stroke: 'black',
   strokeWidth: 2,
 }
 
