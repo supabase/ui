@@ -7,10 +7,10 @@
     "jsx": "react",
     "moduleResolution": "node",
     "noImplicitAny": true,
-    // "outDir": "./dist",
     "preserveConstEnums": true,
     "target": "es6",
-    "module": "es6"
+    "module": "es6",
+    "declaration": true
   },
   "include": ["src/components/**/*"],
   "exclude": ["node_modules"]

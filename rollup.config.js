@@ -51,8 +51,18 @@ export default {
     './src',
   ],
   output: [
-    { dir: 'dist/cjs', format: 'cjs' },
-    { dir: 'dist/esm', format: 'es' },
+    {
+      dir: 'dist/cjs',
+      format: 'cjs',
+      preserveModules: true,
+      preserveModulesRoot: 'src',
+    },
+    {
+      dir: 'dist/esm',
+      format: 'es',
+      preserveModules: true,
+      preserveModulesRoot: 'src',
+    },
   ],
   plugins: [
     external(),
