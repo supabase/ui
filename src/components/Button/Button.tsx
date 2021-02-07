@@ -5,7 +5,7 @@ import ButtonStyles from './Button.module.css'
 import { IconContext } from '../Icon/IconContext'
 import { IconLoader } from '../Icon/icons/IconLoader'
 
-interface Props {
+export interface Props {
   block?: boolean
   className?: any
   children?: React.ReactNode
@@ -34,7 +34,7 @@ interface Props {
   role?: string
 }
 
-interface RefHandle {
+export interface RefHandle {
   container: () => HTMLElement
   button: () => HTMLButtonElement
 }
