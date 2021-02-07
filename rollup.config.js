@@ -56,12 +56,14 @@ export default {
       format: 'cjs',
       preserveModules: true,
       preserveModulesRoot: 'src',
+      exports: 'named',
     },
     {
       dir: 'dist/esm',
       format: 'es',
       preserveModules: true,
       preserveModulesRoot: 'src',
+      exports: 'named',
     },
   ],
   plugins: [
