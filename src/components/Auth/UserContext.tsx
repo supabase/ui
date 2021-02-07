@@ -1,14 +1,14 @@
 import React, { useEffect, useState, createContext, useContext } from 'react'
 import { SupabaseClient, Session, User } from '@supabase/supabase-js'
 
-interface AuthSession {
+export interface AuthSession {
   user: User
   session: Session
 }
 
 const UserContext = createContext<AuthSession>({ user: null, session: null })
 
-interface Props {
+export interface Props {
   supabaseClient: SupabaseClient
   [propName: string]: any
 }

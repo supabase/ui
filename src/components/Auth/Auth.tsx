@@ -24,7 +24,7 @@ const VIEWS = {
   MAGIC_LINK: 'magic_link',
 }
 
-interface Props {
+export interface Props {
   supabaseClient: SupabaseClient
   className?: any
   style?: any
