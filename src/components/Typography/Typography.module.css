@@ -1,15 +1,16 @@
 /* marker fix */
 .sbui-typography li::marker {
   display: none;
-  content: "";
-}
-
-.sbui-typography {
-  @apply text-base;
+  content: '';
 }
 
 .sbui-typography-container {
   @apply prose prose-sm lg:prose-lg;
+}
+
+.sbui-typography {
+  @apply text-base;
+  @apply text-gray-400;
 }
 
 /* .sbui-typography--prose-sm {
@@ -35,7 +36,7 @@
 */
 
 .dark .sbui-typography {
-  @apply text-gray-200;
+  @apply text-gray-300;
 }
 
 .dark .sbui-typography h1 {
@@ -75,7 +76,7 @@
 }
 
 .dark .sbui-typography code {
-  color: #A9B1D6;
+  color: #a9b1d6;
 }
 
 .dark .sbui-typography figcaption {
@@ -84,5 +85,5 @@
 
 .dark .sbui-typography::selection {
   /* @apply bg-brand-500; */
-  backgroundColor: "#6f7bb635";
+  backgroundcolor: '#6f7bb635';
 }
