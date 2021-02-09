@@ -1,5 +1,6 @@
 span.sbui-typography {
   @apply text-sm;
+  @apply text-gray-500;
 }
 
 span.sbui-typography-small {
@@ -8,6 +9,7 @@ span.sbui-typography-small {
 
 .sbui-typography.sbui-typography-secondary {
   @apply text-gray-300;
+  @apply dark:text-gray-300;
 }
 
 .sbui-typography.sbui-typography-success {
