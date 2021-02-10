@@ -59,7 +59,7 @@ npm install @supabase/supabase-js
 You can then easily import `Auth` from the ui library and pass the `createClient` to the `Auth` component.
 
 ```js
-import { Auth, Typography } from "@supabase/ui";
+import { Auth, Typography, Button } from "@supabase/ui";
 import { createClient } from "@supabase/supabase-js";
 
 const { Text } = Typography
