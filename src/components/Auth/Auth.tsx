@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SupabaseClient, Provider } from '@supabase/supabase-js'
 import {
   Input,
@@ -56,6 +56,7 @@ function Auth({
   if (className) {
     containerClasses.push(className)
   }
+
   const Container = (props: any) => (
     <div className={containerClasses.join(' ')} style={style}>
       <Space size={8} direction={'vertical'}>
@@ -71,6 +72,11 @@ function Auth({
       </Space>
     </div>
   )
+
+  useEffect(() => {
+    // handle view override
+    setAuthView(view)
+  }, [view])
 
   switch (authView) {
     case VIEWS.SIGN_IN:
