@@ -28,8 +28,8 @@
 
 .sbui-checkbox[type='checkbox']:checked {
   @apply dark:bg-brand-700;
+  @apply bg-brand-700;
   border-color: transparent;
-  background-color: currentColor;
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
