@@ -10,7 +10,7 @@ interface Props {
 }
 
 function Title({ className, level = 1, children, style }: Props) {
-  let classes = [TitleStyles['sbui-typography']]
+  let classes = [TitleStyles['sbui-typography-title']]
   if (className) {
     classes.push(className)
   }
