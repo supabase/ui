@@ -46,6 +46,42 @@ export const withRounded = (args: any) => (
   </Menu>
 )
 
+export const withGroupTitles = () => (
+  <Menu>
+    <Menu.Group title="First group" />
+    <Menu.Item rounded icon={<IconMail />}>
+      Account settings
+    </Menu.Item>
+    <Menu.Item rounded icon={<IconMail />}>
+      Account settings
+    </Menu.Item>
+    <Menu.Item rounded icon={<IconMail />}>
+      Account settings
+    </Menu.Item>
+    <Menu.Group title="Second group" />
+    <Menu.Item rounded icon={<IconMail />}>
+      Account settings
+    </Menu.Item>
+    <Menu.Item rounded icon={<IconMail />}>
+      Account settings
+    </Menu.Item>
+  </Menu>
+)
+
+export const withActiveBar = () => (
+  <Menu>
+    <Menu.Group title="First group" />
+    <Menu.Item icon={<IconMail />}>Account settings</Menu.Item>
+    <Menu.Item active showActiveBar icon={<IconMail />}>
+      Account settings
+    </Menu.Item>
+    <Menu.Item icon={<IconMail />}>Account settings</Menu.Item>
+    <Menu.Group title="Second group" />
+    <Menu.Item icon={<IconMail />}>Account settings</Menu.Item>
+    <Menu.Item icon={<IconMail />}>Account settings</Menu.Item>
+  </Menu>
+)
+
 Default.args = {
   title: 'I am a title',
   titleExtra: <Typography.Link>Learn more</Typography.Link>,

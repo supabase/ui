@@ -21,6 +21,7 @@ interface ItemProps {
   rounded?: boolean
   onClick?: any
   doNotCloseOverlay?: boolean
+  showActiveBar?: boolean
 }
 
 export function Item({
@@ -30,9 +31,12 @@ export function Item({
   rounded,
   onClick,
   doNotCloseOverlay = false,
+  showActiveBar = false,
 }: ItemProps) {
   let classes = [MenuStyles['sbui-menu__item']]
   if (active) classes.push(MenuStyles['sbui-menu__item--active'])
+  if (active && showActiveBar)
+    classes.push(MenuStyles['sbui-menu__item--active--bar'])
   if (rounded) classes.push(MenuStyles['sbui-menu__item--rounded'])
 
   const itemOnClick = onClick
@@ -69,7 +73,7 @@ export function Item({
 }
 
 interface GroupProps {
-  children: React.ReactNode
+  children?: React.ReactNode
   icon?: React.ReactNode
   title: string
 }

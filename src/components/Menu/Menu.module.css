@@ -12,7 +12,20 @@
 
 .sbui-menu__item--active {
   @apply bg-gray-100;
-  @apply dark:bg-dark-800;
+  @apply dark:bg-dark-900;
+
+  @apply text-gray-900;
+  @apply dark:text-white;
+}
+
+.sbui-menu__item--active .sbui-menu__content {
+  @apply text-gray-900;
+  @apply dark:text-white;
+}
+
+.sbui-menu__item--active--bar {
+  @apply border-l-4 border-brand-500;
+  border-left-style: solid;
 }
 
 .sbui-menu__item--rounded {
