@@ -11,7 +11,7 @@
 }
 
 .sbui-modal-overlay {
-  @apply absolute inset-0 bg-gray-500 opacity-75;
+  @apply absolute inset-0 bg-gray-900 opacity-75;
 }
 
 .sbui-modal-div-trick {
@@ -19,7 +19,10 @@
 }
 
 .sbui-modal {
-  @apply inline-block align-bottom bg-white dark:bg-dark-700 rounded-lg text-left overflow-hidden shadow-xl transform transition-all align-middle;
+  @apply inline-block align-bottom bg-white dark:bg-dark-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all align-middle;
+  /* border */
+  @apply border-gray-400 border border-solid;
+  @apply dark:border-gray-600 border border-solid;
 }
 
 .sbui-modal--tiny {

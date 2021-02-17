@@ -5,7 +5,6 @@ import { Button, Transition, IconX, Typography, Space } from './../../index'
 
 interface Props {
   children?: React.ReactNode
-  className?: string
   customFooter?: React.ReactNode
   closable?: boolean
   description?: string
@@ -24,11 +23,15 @@ interface Props {
   variant?: 'danger' | 'warning' | 'success'
   visible: boolean
   size?: 'tiny' | 'small' | 'medium' | 'large'
+  style?: React.CSSProperties
+  overlayStyle?: React.CSSProperties
+  contentStyle?: React.CSSProperties
+  className?: string
+  overlayClassName?: string
 }
 
 const Modal = ({
   children,
-  className = '',
   customFooter = undefined,
   closable,
   description,
@@ -47,6 +50,11 @@ const Modal = ({
   variant = 'success',
   visible = false,
   size = 'large',
+  style,
+  overlayStyle,
+  contentStyle,
+  className = '',
+  overlayClassName,
 }: Props) => {
   function stopPropagation(e: React.MouseEvent) {
     e.stopPropagation()
@@ -56,6 +64,15 @@ const Modal = ({
   if (footerBackground) {
     footerClasses.push(ModalStyles['sbui-modal-footer--with-bg'])
   }
+
+  let modalClasses = [
+    ModalStyles[`sbui-modal`],
+    ModalStyles[`sbui-modal--${size}`],
+  ]
+  if (className) modalClasses.push(className)
+
+  let overlayClasses = [ModalStyles['sbui-modal-overlay']]
+  if (overlayClassName) overlayClasses.push(overlayClassName)
 
   const footerContent = customFooter ? (
     customFooter
@@ -104,7 +121,10 @@ const Modal = ({
       >
         <div className={ModalStyles['sbui-modal-flex-container']}>
           <div className={ModalStyles['sbui-modal-overlay-container']}>
-            <div className={ModalStyles['sbui-modal-overlay']}></div>
+            <div
+              className={overlayClasses.join(' ')}
+              style={overlayStyle}
+            ></div>
           </div>
           {/* <!-- This element is to trick the browser into centering the modal contents. --> */}
           <span className={ModalStyles['sbui-modal-div-trick']}></span>
@@ -118,15 +138,17 @@ const Modal = ({
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <div
-              className={`${ModalStyles[`sbui-modal`]} ${
-                ModalStyles[`sbui-modal--${size}`]
-              }`}
+              className={modalClasses.join(' ')}
               role="dialog"
               aria-modal="true"
               aria-labelledby="modal-headline"
               onClick={stopPropagation}
+              style={style}
             >
-              <div className={ModalStyles['sbui-modal-content']}>
+              <div
+                className={ModalStyles['sbui-modal-content']}
+                style={contentStyle}
+              >
                 <Space
                   size={5}
                   style={{ alignItems: 'flex-start' }}
