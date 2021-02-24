@@ -3,7 +3,7 @@
 }
 
 .sbui-btn {
-  @apply relative cursor-pointer inline-flex items-center space-x-2 text-center border border-solid border-transparent transition ease-out duration-200;
+  @apply relative cursor-pointer inline-flex items-center space-x-2 text-center border border-solid border-transparent transition ease-out duration-200 outline-none;
   @apply rounded;
   font-family: inherit;
   font-weight: inherit;
