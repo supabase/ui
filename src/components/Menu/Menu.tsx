@@ -22,6 +22,7 @@ interface ItemProps {
   onClick?: any
   doNotCloseOverlay?: boolean
   showActiveBar?: boolean
+  style?: React.CSSProperties
 }
 
 export function Item({
@@ -32,6 +33,7 @@ export function Item({
   onClick,
   doNotCloseOverlay = false,
   showActiveBar = false,
+  style,
 }: ItemProps) {
   let classes = [MenuStyles['sbui-menu__item']]
   if (active) classes.push(MenuStyles['sbui-menu__item--active'])
@@ -56,6 +58,7 @@ export function Item({
             className={classes.join(' ')}
             role="menuitem"
             onClick={handleClick}
+            style={style}
           >
             <Typography.Text>
               <Space>
