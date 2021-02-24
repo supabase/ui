@@ -54,7 +54,7 @@
   @apply text-gray-500 bg-white border-gray-300 hover:text-gray-600;
   @apply hover:bg-white hover:border-gray-200;
 
-  @apply dark:border-dark-700 dark:bg-gray-600 dark:text-dark-200;
+  @apply dark:border-gray-600 dark:bg-gray-600 dark:text-dark-200;
   @apply dark:hover:bg-gray-700;
   text-shadow: 0px 0px 4px rgba(31 31 31 / 50%);
 }
