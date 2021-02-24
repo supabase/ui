@@ -19,11 +19,11 @@
 }
 
 .sbui-formlayout--non-responsive {
-  @apply grid-cols-12;
+  @apply grid grid-cols-12 gap-4;
 }
 
 .sbui-formlayout--responsive {
-  @apply md:grid-cols-12;
+  @apply md:grid md:grid-cols-12 md:gap-4;
 }
 
 .sbui-formlayout__label-container-horizontal {
@@ -31,7 +31,7 @@
 }
 
 .sbui-formlayout__label-container-vertical {
-  @apply col-span-5;
+  @apply col-span-4;
 }
 
 .sbui-formlayout__content-container-horizontal {
@@ -39,7 +39,7 @@
 }
 
 .sbui-formlayout__content-container-vertical {
-  @apply col-span-7;
+  @apply col-span-8;
 }
 
 .sbui-formlayout__content-container-vertical--align-right {
