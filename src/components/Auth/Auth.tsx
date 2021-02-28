@@ -49,6 +49,8 @@ function Auth({
   view = 'sign_in',
 }: Props) {
   const [authView, setAuthView] = useState(view)
+  const [defaultEmail, setDefaultEmail] = useState('')
+  const [defaultPassword, setDefaultPassword] = useState('')
 
   const verticalSocialLayout = socialLayout === 'vertical' ? true : false
 
@@ -87,6 +89,10 @@ function Auth({
             supabaseClient={supabaseClient}
             authView={authView}
             setAuthView={setAuthView}
+            defaultEmail={defaultEmail}
+            defaultPassword={defaultPassword}
+            setDefaultEmail={setDefaultEmail}
+            setDefaultPassword={setDefaultPassword}
           />
         </Container>
       )
@@ -208,18 +214,31 @@ function SocialAuth({
 
 function EmailAuth({
   authView,
+  defaultEmail,
+  defaultPassword,
   setAuthView,
+  setDefaultEmail,
+  setDefaultPassword,
   supabaseClient,
 }: {
   authView: any
+  defaultEmail: string
+  defaultPassword: string
   setAuthView: any
+  setDefaultEmail: (email: string) => void
+  setDefaultPassword: (password: string) => void
   supabaseClient: SupabaseClient
 }) {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState(defaultEmail)
+  const [password, setPassword] = useState(defaultPassword)
   const [rememberMe, setRememberMe] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setEmail(defaultEmail)
+    setPassword(defaultPassword)
+  }, [authView])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -244,6 +263,12 @@ function EmailAuth({
     setLoading(false)
   }
 
+  const handleViewChange = (newView: string) => {
+    setDefaultEmail(email)
+    setDefaultPassword(password)
+    setAuthView(newView)
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <Space size={6} direction={'vertical'}>
@@ -251,6 +276,7 @@ function EmailAuth({
           <Input
             label="Email address"
             autoComplete="email"
+            defaultValue={email}
             icon={<IconMail size={21} stroke={'#666666'} />}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setEmail(e.target.value)
@@ -259,6 +285,7 @@ function EmailAuth({
           <Input
             label="Password"
             type="password"
+            defaultValue={password}
             autoComplete="current-password"
             icon={<IconKey size={21} stroke={'#666666'} />}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -302,14 +329,14 @@ function EmailAuth({
             </Typography.Link>
           )}
           {authView === VIEWS.SIGN_IN ? (
-            <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_UP)}>
+            <Typography.Link onClick={() => handleViewChange(VIEWS.SIGN_UP)}>
               Don't have an account? Sign up
             </Typography.Link>
           ) : (
-            <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
-              Do you have an account? Sign in.
-            </Typography.Link>
-          )}
+              <Typography.Link onClick={() => handleViewChange(VIEWS.SIGN_IN)}>
+                Do you have an account? Sign in.
+              </Typography.Link>
+            )}
           {error && <Typography.Text type="danger">{error}</Typography.Text>}
         </Space>
       </Space>

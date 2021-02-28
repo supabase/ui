@@ -11,6 +11,7 @@ export interface Props {
   autofocus?: boolean
   className?: string
   copy?: boolean
+  defaultValue?: string | number
   descriptionText?: string
   disabled?: boolean
   error?: string
@@ -50,6 +51,7 @@ function Input({
   autofocus,
   className,
   copy,
+  defaultValue,
   descriptionText,
   disabled,
   error,
@@ -113,6 +115,7 @@ function Input({
           <input
             autoComplete={autoComplete}
             autoFocus={autofocus}
+            defaultValue={defaultValue}
             disabled={disabled}
             id={id}
             name={name}
