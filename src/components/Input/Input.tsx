@@ -78,6 +78,13 @@ function Input({
     type = 'text'
   }
 
+  let inputClasses = [InputStyles['sbui-input']]
+  if (error) inputClasses.push(InputStyles['sbui-input--error'])
+  if (icon) inputClasses.push(InputStyles['sbui-input--with-icon'])
+  if (size) {
+    inputClasses.push(InputStyles[`sbui-input--${size}`])
+  }
+
   function onCopy(value: any) {
     navigator.clipboard.writeText(value).then(
       function () {
@@ -99,15 +106,6 @@ function Input({
   }
 
   const hiddenPlaceholder = '**** **** **** ****'
-
-  const inputClasses = [InputStyles['sbui-input']]
-
-  if (error) inputClasses.push(InputStyles['sbui-input--error'])
-  if (icon) inputClasses.push(InputStyles['sbui-input--with-icon'])
-
-  if (size) {
-    inputClasses.push(InputStyles[`sbui-input--${size}`])
-  }
 
   return (
     <div className={className}>

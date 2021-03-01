@@ -64,6 +64,14 @@ export const withDescription = (args: any) => (
   </Select>
 )
 
+export const size = (args: any) => (
+  <Select {...args}>
+    <Option value="javascript">JavaScript</Option>
+    <Option value="typeScript">TypeScript</Option>
+    <Option value="react">React</Option>
+  </Select>
+)
+
 const data = ['England', 'Wales', 'Scotland', 'Ireland']
 const icon = <IconBook type={'Book'} />
 
@@ -140,4 +148,15 @@ withDescription.args = {
   descriptionText: 'Make your password short and easy to guess',
   allowedValues: data,
   layout: 'vertical',
+}
+
+size.args = {
+  placeholder: 'Type text here ...',
+  disabled: false,
+  label: 'Input with a size selected',
+  value: 'Value of input',
+  descriptionText: 'Choose a different size and font and padding will change',
+  allowedValues: data,
+  layout: 'vertical',
+  size: 'tiny',
 }
