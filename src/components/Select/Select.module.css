@@ -54,6 +54,10 @@
   @apply px-6 py-3 text-base;
 }
 
+.sbui-select-actions-container {
+  @apply absolute inset-y-0 right-0 pl-3 pr-1 mr-5 flex items-center;
+}
+
 /*
   Select icon
 */

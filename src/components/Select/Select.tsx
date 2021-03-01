@@ -3,8 +3,10 @@ import React, { Ref } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
+import { Space } from '../../index'
 // @ts-ignore
 import SelectStyles from './Select.module.css'
+import { Icon } from '../Icon'
 
 interface OptionProps {
   value: string
@@ -118,7 +120,11 @@ function Select({
           {children}
         </select>
         {icon && <InputIconContainer icon={icon} />}
-        {error && <InputErrorIcon style={{ marginRight: '1.2rem' }} />}
+        {error && (
+          <div className="sbui-select-actions-container">
+            {error && <InputErrorIcon size={size} />}
+          </div>
+        )}
         <span className={SelectStyles['sbui-select-chevron-container']}>
           <svg
             className={SelectStyles['sbui-select-chevron']}
@@ -135,7 +141,6 @@ function Select({
           </svg>
         </span>
       </div>
-      {/* )} */}
     </FormLayout>
   )
 }
