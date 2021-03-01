@@ -7,7 +7,7 @@
 }
 
 .sbui-radio-container--card {
-  @apply border border-solid px-4 py-4 border-gray-200 dark:border-gray-500;
+  @apply p-4 border border-solid border-gray-200 dark:border-gray-500;
 }
 
 .sbui-radio-container--card--active {
@@ -71,4 +71,34 @@
 
 .sbui-radio-group-contents {
   @apply dark:bg-transparent rounded-md -space-y-px;
+}
+
+/*
+  Label sizes
+*/
+
+.sbui-radio-container--tiny .sbui-radio-label,
+.sbui-radio-container--tiny .sbui-radio-label-text,
+.sbui-radio-container--tiny .sbui-radio-label-description {
+  @apply text-xs;
+}
+.sbui-radio-container--small .sbui-radio-label,
+.sbui-radio-container--small .sbui-radio-label-text,
+.sbui-radio-container--small .sbui-radio-label-description {
+  @apply text-sm;
+}
+.sbui-radio-container--medium .sbui-radio-label,
+.sbui-radio-container--medium .sbui-radio-label-text,
+.sbui-radio-container--medium .sbui-radio-label-description {
+  @apply text-sm;
+}
+.sbui-radio-container--large .sbui-radio-label,
+.sbui-radio-container--large .sbui-radio-label-text,
+.sbui-radio-container--large .sbui-radio-label-description {
+  @apply text-base;
+}
+.sbui-radio-container--xlarge .sbui-radio-label,
+.sbui-radio-container--xlarge .sbui-radio-label-text,
+.sbui-radio-container--xlarge .sbui-radio-label-description {
+  @apply text-base;
 }
