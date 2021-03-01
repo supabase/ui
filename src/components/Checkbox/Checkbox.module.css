@@ -36,7 +36,7 @@
 }
 
 .sbui-checkbox {
-  @apply m-0 h-4 w-4 border border-solid rounded;
+  @apply border border-solid rounded;
 
   @apply text-brand-700 border-gray-300 transition-all;
   @apply hover:border-brand-500 focus:ring-brand-500 focus:outline-none;
@@ -52,11 +52,11 @@
 }
 
 .sbui-checkbox__label-container {
-  @apply ml-3 text-sm;
+  @apply leading-none;
 }
 
 .sbui-checkbox__label-container__label {
-  @apply text-gray-700 dark:text-white cursor-pointer;
+  @apply text-gray-700 dark:text-white cursor-pointer mt-0;
 }
 
 .sbui-checkbox__label-container__label__span {
@@ -65,4 +65,58 @@
 
 .sbui-checkbox__label-container__label__p {
   @apply mt-0 text-gray-400 dark:text-gray-300;
+}
+
+/*
+  Label sizes
+*/
+
+.sbui-checkbox-container--tiny .sbui-checkbox__label-container__label,
+.sbui-checkbox-container--tiny .sbui-checkbox__label-container__label__span,
+.sbui-checkbox-container--tiny .sbui-checkbox__label-container__label__p {
+  @apply text-xs;
+}
+.sbui-checkbox-container--small .sbui-checkbox__label-container__label,
+.sbui-checkbox-container--small .sbui-checkbox__label-container__label__span,
+.sbui-checkbox-container--small .sbui-checkbox__label-container__label__p {
+  @apply text-sm;
+}
+.sbui-checkbox-container--medium .sbui-checkbox__label-container__label,
+.sbui-checkbox-container--medium .sbui-checkbox__label-container__label__span,
+.sbui-checkbox-container--medium .sbui-checkbox__label-container__label__p {
+  @apply text-sm;
+}
+.sbui-checkbox-container--large .sbui-checkbox__label-container__label,
+.sbui-checkbox-container--large .sbui-checkbox__label-container__label__span,
+.sbui-checkbox-container--large .sbui-checkbox__label-container__label__p {
+  @apply text-base;
+}
+.sbui-checkbox-container--xlarge .sbui-checkbox__label-container__label,
+.sbui-checkbox-container--xlarge .sbui-checkbox__label-container__label__span,
+.sbui-checkbox-container--xlarge .sbui-checkbox__label-container__label__p {
+  @apply text-base;
+}
+
+/*
+  Checkbox sizes
+*/
+
+.sbui-checkbox-container--tiny .sbui-checkbox {
+  @apply h-3 w-3 mt-1 mr-3;
+}
+
+.sbui-checkbox-container--small .sbui-checkbox {
+  @apply h-3.5 w-3.5 mt-0.5 mr-3.5;
+}
+
+.sbui-checkbox-container--medium .sbui-checkbox {
+  @apply h-4 w-4 mt-0.5 mr-3.5;
+}
+
+.sbui-checkbox-container--large .sbui-checkbox {
+  @apply h-5 w-5 mt-0.5 mr-4;
+}
+
+.sbui-checkbox-container--xlarge .sbui-checkbox {
+  @apply h-5 w-5 mt-0.5 mr-4;
 }
