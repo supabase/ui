@@ -31,6 +31,10 @@ export const withRevealAndCopy = (args: any) => <Input {...args} />
 
 export const withCustomActions = (args: any) => <Input {...args} />
 
+export const customThing = (args: any) => {
+  return <Input {...args} />
+}
+
 const icon: any = <IconPackage />
 
 Default.args = {
@@ -111,4 +115,14 @@ withCustomActions.args = {
       Delete this
     </Button>,
   ],
+}
+
+customThing.args = {
+  type: 'text',
+  label: 'Reveal and copy',
+  labelOptional: 'Reveal the text, then copy it',
+  value: '12341234HDGRHSGR/adJDJD',
+  copy: true,
+  reveal: true,
+  size: 'tiny',
 }

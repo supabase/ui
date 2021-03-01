@@ -43,6 +43,7 @@ export interface Props {
   value?: any
   reveal?: boolean
   actions?: React.ReactNode
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
 function Input({
@@ -67,6 +68,7 @@ function Input({
   style,
   reveal = false,
   actions,
+  size = 'medium',
 }: Props) {
   const [copyLabel, setCopyLabel] = useState('Copy')
   const [hidden, setHidden] = useState(reveal)
@@ -98,6 +100,15 @@ function Input({
 
   const hiddenPlaceholder = '**** **** **** ****'
 
+  const inputClasses = [InputStyles['sbui-input']]
+
+  if (error) inputClasses.push(InputStyles['sbui-input--error'])
+  if (icon) inputClasses.push(InputStyles['sbui-input--with-icon'])
+
+  if (size) {
+    inputClasses.push(InputStyles[`sbui-input--${size}`])
+  }
+
   return (
     <div className={className}>
       <FormLayout
@@ -108,6 +119,7 @@ function Input({
         error={error}
         descriptionText={descriptionText}
         style={style}
+        size={size}
       >
         <div className={InputStyles['sbui-input-container']}>
           <input
@@ -121,11 +133,7 @@ function Input({
             ref={inputRef}
             type={type}
             value={hidden ? hiddenPlaceholder : value}
-            className={
-              InputStyles['sbui-input'] +
-              (error ? ` ${InputStyles['sbui-input--error']}` : '') +
-              (icon ? ` ${InputStyles['sbui-input--with-icon']}` : '')
-            }
+            className={inputClasses.join(' ')}
           />
           {icon && <InputIconContainer icon={icon} />}
           {copy || error || actions ? (
