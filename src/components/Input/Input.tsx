@@ -81,9 +81,7 @@ function Input({
   let inputClasses = [InputStyles['sbui-input']]
   if (error) inputClasses.push(InputStyles['sbui-input--error'])
   if (icon) inputClasses.push(InputStyles['sbui-input--with-icon'])
-  if (size) {
-    inputClasses.push(InputStyles[`sbui-input--${size}`])
-  }
+  if (size) inputClasses.push(InputStyles[`sbui-input--${size}`])
 
   function onCopy(value: any) {
     navigator.clipboard.writeText(value).then(
@@ -139,7 +137,7 @@ function Input({
               className={InputStyles['sbui-input-actions-container']}
               size={1}
             >
-              {error && <InputErrorIcon />}
+              {error && <InputErrorIcon size={size} />}
               {copy && !hidden ? (
                 <Button
                   size="tiny"
@@ -183,6 +181,7 @@ export interface TextAreaProps {
   style?: React.CSSProperties
   rows?: number
   limit?: number
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
 function TextArea({
@@ -204,12 +203,14 @@ function TextArea({
   style,
   rows = 4,
   limit,
+  size,
 }: TextAreaProps) {
   const [charLength, setCharLength] = useState(0)
 
   let classes = [InputStyles['sbui-input']]
   if (error) classes.push(InputStyles['sbui-input--error'])
   if (icon) classes.push(InputStyles['sbui-input--with-icon'])
+  if (size) classes.push(InputStyles[`sbui-input--${size}`])
 
   function onInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     if (onChange) {
@@ -228,6 +229,7 @@ function TextArea({
       error={error}
       descriptionText={descriptionText}
       style={style}
+      size={size}
     >
       <textarea
         autoComplete={autoComplete && 'autoComplete'}

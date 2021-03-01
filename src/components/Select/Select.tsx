@@ -1,5 +1,4 @@
 // @ts-ignore
-import xor from 'lodash/xor'
 import React, { Ref } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'

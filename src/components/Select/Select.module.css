@@ -34,18 +34,6 @@
   @apply border-red-500 dark:border-red-500;
 }
 
-.sbui-select--with-icon {
-  @apply pl-10;
-}
-
-.sbui-select-chevron-container {
-  @apply absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none;
-}
-
-.sbui-select-chevron {
-  @apply h-5 w-5 text-gray-400;
-}
-
 /*
   Select sizes
 */
@@ -64,4 +52,24 @@
 }
 .sbui-select--xlarge {
   @apply px-6 py-3 text-base;
+}
+
+/*
+  Select icon
+*/
+
+.sbui-select--with-icon {
+  @apply pl-10;
+}
+
+/*
+  Select Chevron
+*/
+
+.sbui-select-chevron-container {
+  @apply absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none;
+}
+
+.sbui-select-chevron {
+  @apply h-5 w-5 text-gray-400;
 }
