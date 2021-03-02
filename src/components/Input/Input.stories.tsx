@@ -31,9 +31,7 @@ export const withRevealAndCopy = (args: any) => <Input {...args} />
 
 export const withCustomActions = (args: any) => <Input {...args} />
 
-export const customThing = (args: any) => {
-  return <Input {...args} />
-}
+export const size = (args: any) => <Input {...args} />
 
 const icon: any = <IconPackage />
 
@@ -117,12 +115,8 @@ withCustomActions.args = {
   ],
 }
 
-customThing.args = {
+size.args = {
   type: 'text',
-  label: 'Reveal and copy',
-  labelOptional: 'Reveal the text, then copy it',
-  value: '12341234HDGRHSGR/adJDJD',
-  copy: true,
-  reveal: true,
+  label: 'You can change the size of this Input',
   size: 'tiny',
 }
