@@ -16,6 +16,9 @@ export const withIconRight = (args: any) => (
 export const withBlock = (args: any) => <Button {...args}>Button text</Button>
 export const withOnlyIcon = (args: any) => <Button {...args} />
 export const withOnlyLoading = (args: any) => <Button {...args} />
+export const withLoadingCentered = (args: any) => (
+  <Button {...args}>Loading icon is centered</Button>
+)
 export const withRef = () => {
   const buttonRef = useRef(null)
   const [msg, setMsg] = useState('Click button to console.log Ref')
@@ -185,6 +188,11 @@ withOnlyIcon.args = {
 
 withOnlyLoading.args = {
   loading: true,
+}
+
+withLoadingCentered.args = {
+  loading: true,
+  loadingCentered: true,
 }
 
 allButtons.args = {

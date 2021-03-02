@@ -14,6 +14,7 @@ export interface Props {
   icon?: React.ReactNode
   iconRight?: React.ReactNode
   loading?: boolean
+  loadingCentered?: boolean
   shadow?: boolean
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   style?: React.CSSProperties
@@ -51,6 +52,7 @@ const Button = forwardRef<RefHandle, Props>(
       icon,
       iconRight,
       loading = false,
+      loadingCentered = false,
       shadow = true,
       size = 'tiny',
       style,
@@ -102,6 +104,14 @@ const Button = forwardRef<RefHandle, Props>(
       classes.push(className)
     }
 
+    const iconLoaderClasses = [ButtonStyles['sbui-btn--anim--spin']]
+    if (loadingCentered) {
+      iconLoaderClasses.push(ButtonStyles[`sbui-btn-loader--center`])
+    }
+    if (loading && loadingCentered) {
+      classes.push(ButtonStyles[`sbui-btn--text-fade-out`])
+    }
+
     return (
       <span ref={containerRef} className={containerClasses.join(' ')}>
         <button
@@ -118,10 +128,7 @@ const Button = forwardRef<RefHandle, Props>(
         >
           {showIcon &&
             (loading ? (
-              <IconLoader
-                size={size}
-                className={ButtonStyles['sbui-btn--anim--spin']}
-              />
+              <IconLoader size={size} className={iconLoaderClasses.join(' ')} />
             ) : icon ? (
               <IconContext.Provider value={{ contextSize: size }}>
                 {icon}

@@ -116,6 +116,7 @@
   /* transform: rotate(0.3rad);/ */
   /* transform: rotate(3grad); */
   /* transform: rotate(.03turn);  */
+  transform-origin: center center;
 }
 
 @keyframes spin {
@@ -125,4 +126,22 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.sbui-btn-loader--center {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  bottom: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto 0;
+
+  width: inherit;
+  height: inherit;
+}
+
+.sbui-btn--text-fade-out span {
+  @apply opacity-0;
 }
