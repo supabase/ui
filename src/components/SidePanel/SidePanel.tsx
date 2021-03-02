@@ -80,117 +80,118 @@ const SidePanel = ({
   )
 
   return (
-    <React.Fragment>
-      {/* Background overlay */}
-      <Transition
-        show={visible}
-        enter="ease-out duration-200"
-        enterFrom="opacity-0"
-        enterTo="opacity-100"
-        leave="ease-in duration-200"
-        leaveFrom="opacity-100"
-        leaveTo="opacity-0"
-      >
+    <Transition
+      show={visible}
+      enter="ease-out duration-200"
+      enterFrom="opacity-0"
+      enterTo="opacity-100"
+      leave="ease-in duration-200"
+      leaveFrom="opacity-100"
+      leaveTo="opacity-0"
+    >
+      <div onClick={() => (onCancel ? onCancel() : null)}>
         <div className={SlidePanelStyles['sbui-sidepanel-overlay-container']}>
           <div className={SlidePanelStyles['sbui-sidepanel-overlay']}></div>
         </div>
-      </Transition>
 
-      {/* sidepanel element */}
-      <div
-        className={SlidePanelStyles['sbui-sidepanel-fixed']}
-        onClick={onCancel}
-      >
-        <div className={SlidePanelStyles['sbui-sidepanel-absolute']}>
-          <section
-            className={
-              SlidePanelStyles['sbui-sidepanel-container'] +
-              ' ' +
-              orientationClasses
-            }
-          >
-            <Transition
-              show={visible}
-              enter="transform transition ease-in-out duration-500 sm:duration-700"
-              enterFrom={left ? '-translate-x-full' : 'translate-x-full'}
-              enterTo="translate-x-0"
-              leave="transform transition ease-in-out duration-500 sm:duration-700"
-              leaveFrom="translate-x-0"
-              leaveTo={left ? '-translate-x-full' : 'translate-x-full'}
+        {/* sidepanel element */}
+        <div
+          className={SlidePanelStyles['sbui-sidepanel-fixed']}
+          onClick={onCancel}
+        >
+          <div className={SlidePanelStyles['sbui-sidepanel-absolute']}>
+            <div
+              className={
+                SlidePanelStyles['sbui-sidepanel-container'] +
+                ' ' +
+                orientationClasses
+              }
             >
-              <div
-                className={
-                  wide
-                    ? SlidePanelStyles['sbui-sidepanel--wide']
-                    : SlidePanelStyles['sbui-sidepanel--medium']
-                }
+              <Transition
+                show={visible}
+                enter="transform transition ease-in-out duration-500 sm:duration-700"
+                enterFrom={left ? '-translate-x-full' : 'translate-x-full'}
+                enterTo="translate-x-0"
+                leave="transform transition ease-in-out duration-500 sm:duration-700"
+                leaveFrom="translate-x-0"
+                leaveTo={left ? '-translate-x-full' : 'translate-x-full'}
               >
                 <div
                   className={
-                    SlidePanelStyles['sbui-sidepanel'] + ' ' + className
+                    wide
+                      ? SlidePanelStyles['sbui-sidepanel--wide']
+                      : SlidePanelStyles['sbui-sidepanel--medium']
                   }
-                  onClick={stopPropagation}
                 >
-                  <Space
-                    size={6}
-                    direction="vertical"
-                    style={{
-                      minHeight: '0',
-                      flex: '1 1 0%',
-                      overflowY: 'scroll',
-                    }}
+                  <div
+                    className={
+                      SlidePanelStyles['sbui-sidepanel'] + ' ' + className
+                    }
+                    onClick={stopPropagation}
                   >
-                    <header
-                      className={SlidePanelStyles['sbui-sidepanel-header']}
+                    <Space
+                      size={6}
+                      direction="vertical"
+                      style={{
+                        minHeight: '0',
+                        flex: '1 1 0%',
+                        overflowY: 'scroll',
+                      }}
                     >
-                      <Space
-                        size={3}
-                        direction="row"
-                        style={{
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                        }}
+                      <header
+                        className={SlidePanelStyles['sbui-sidepanel-header']}
                       >
-                        {title && (
-                          <Typography.Title className="m-0" level={4}>
-                            {title}
-                          </Typography.Title>
-                        )}
-                        <div
-                          className={
-                            SlidePanelStyles['sbui-sidepanel-close-container']
-                          }
+                        <Space
+                          size={3}
+                          direction="row"
+                          style={{
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                          }}
                         >
-                          <Button
-                            aria-label="Close panel"
-                            onClick={onCancel}
-                            type="text"
-                            shadow={false}
-                            style={{ padding: 0 }}
-                            icon={<IconX size="xlarge" strokeWidth={2} />}
-                          />
+                          {title && (
+                            <Typography.Title className="m-0" level={4}>
+                              {title}
+                            </Typography.Title>
+                          )}
+                          <div
+                            className={
+                              SlidePanelStyles['sbui-sidepanel-close-container']
+                            }
+                          >
+                            <Button
+                              aria-label="Close panel"
+                              onClick={onCancel}
+                              type="text"
+                              shadow={false}
+                              style={{ padding: 0 }}
+                              icon={<IconX size="xlarge" strokeWidth={2} />}
+                            />
+                          </div>
+                        </Space>
+                        <div>
+                          {description && (
+                            <Typography.Text type="secondary">
+                              {description}
+                            </Typography.Text>
+                          )}
                         </div>
-                      </Space>
-                      <div>
-                        {description && (
-                          <Typography.Text type="secondary">
-                            {description}
-                          </Typography.Text>
-                        )}
+                      </header>
+                      <div
+                        className={SlidePanelStyles['sbui-sidepanel-content']}
+                      >
+                        {children}
                       </div>
-                    </header>
-                    <div className={SlidePanelStyles['sbui-sidepanel-content']}>
-                      {children}
-                    </div>
-                  </Space>
-                  {!hideFooter && footerContent}
+                    </Space>
+                    {!hideFooter && footerContent}
+                  </div>
                 </div>
-              </div>
-            </Transition>
-          </section>
+              </Transition>
+            </div>
+          </div>
         </div>
       </div>
-    </React.Fragment>
+    </Transition>
   )
 }
 
