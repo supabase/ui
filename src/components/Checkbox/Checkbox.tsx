@@ -14,6 +14,7 @@ interface InputProps {
   checked?: boolean
   className?: string
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
 interface GroupProps {
@@ -30,6 +31,7 @@ interface GroupProps {
   options: Array<InputProps>
   defaultValue?: string
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
 function Group({
@@ -44,6 +46,7 @@ function Group({
   name,
   options,
   onChange,
+  size = 'medium',
 }: GroupProps) {
   const parentCallback = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) onChange(e)
@@ -58,8 +61,11 @@ function Group({
       error={error}
       descriptionText={descriptionText}
       className={className}
+      size={size}
     >
-      <CheckboxContext.Provider value={{ parentCallback, name }}>
+      <CheckboxContext.Provider
+        value={{ parentCallback, name, parentSize: size }}
+      >
         {options
           ? options.map((option: InputProps) => {
               return (
@@ -88,12 +94,13 @@ export function Checkbox({
   checked,
   value,
   onChange,
+  size = 'medium',
 }: InputProps) {
   const inputName = name
 
   return (
     <CheckboxContext.Consumer>
-      {({ parentCallback, name }) => {
+      {({ parentCallback, name, parentSize }) => {
         // if id does not exist, use label
         const markupId = id
           ? id
@@ -110,10 +117,13 @@ export function Checkbox({
         // if neither true or false the checkbox will rely on native control
         const active = checked ? true : checked === false ? false : null
 
-        let containerClasses = [CheckboxStyles['sbui-checkbox-container']]
-        if (className) {
-          containerClasses.push(className)
-        }
+        let containerClasses = [
+          CheckboxStyles['sbui-checkbox-container'],
+          CheckboxStyles[
+            `sbui-checkbox-container--${parentSize ? parentSize : size}`
+          ],
+        ]
+        if (className) containerClasses.push(className)
 
         function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
           // '`onChange` callback for parent component

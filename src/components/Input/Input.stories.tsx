@@ -31,6 +31,8 @@ export const withRevealAndCopy = (args: any) => <Input {...args} />
 
 export const withCustomActions = (args: any) => <Input {...args} />
 
+export const size = (args: any) => <Input {...args} />
+
 const icon: any = <IconPackage />
 
 Default.args = {
@@ -111,4 +113,10 @@ withCustomActions.args = {
       Delete this
     </Button>,
   ],
+}
+
+size.args = {
+  type: 'text',
+  label: 'You can change the size of this Input',
+  size: 'tiny',
 }

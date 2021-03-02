@@ -34,9 +34,41 @@
   @apply border-red-500 dark:border-red-500;
 }
 
+/*
+  Select sizes
+*/
+
+.sbui-select--tiny {
+  @apply px-2.5 py-1.5 text-xs;
+}
+.sbui-select--small {
+  @apply px-3 py-2 text-sm leading-4;
+}
+.sbui-select--medium {
+  @apply px-4 py-2 text-sm;
+}
+.sbui-select--large {
+  @apply px-4 py-2 text-base;
+}
+.sbui-select--xlarge {
+  @apply px-6 py-3 text-base;
+}
+
+.sbui-select-actions-container {
+  @apply absolute inset-y-0 right-0 pl-3 pr-1 mr-5 flex items-center;
+}
+
+/*
+  Select icon
+*/
+
 .sbui-select--with-icon {
   @apply pl-10;
 }
+
+/*
+  Select Chevron
+*/
 
 .sbui-select-chevron-container {
   @apply absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none;

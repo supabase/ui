@@ -17,6 +17,7 @@ interface Props {
   defaultChecked?: boolean
   checked?: boolean
   align?: 'right' | 'left'
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
 function Toggle({
@@ -32,6 +33,7 @@ function Toggle({
   checked,
   className,
   align = 'right',
+  size = 'medium',
 }: Props) {
   const [intChecked, setIntChecked] = useState(defaultChecked || checked)
 
@@ -45,15 +47,14 @@ function Toggle({
     setIntChecked(!intChecked)
   }
 
-  let toggleClasses = [ToggleStyles['sbui-toggle']]
-  if (active) {
-    toggleClasses.push(ToggleStyles['sbui-toggle--active'])
-  }
+  let toggleClasses = [
+    ToggleStyles['sbui-toggle'],
+    ToggleStyles[`sbui-toggle--${size}`],
+  ]
+  if (active) toggleClasses.push(ToggleStyles['sbui-toggle--active'])
 
   let handleClasses = [ToggleStyles['sbui-toggle__handle']]
-  if (active) {
-    handleClasses.push(ToggleStyles['sbui-toggle__handle--active'])
-  }
+  if (active) handleClasses.push(ToggleStyles['sbui-toggle__handle--active'])
 
   return (
     <FormLayout
@@ -66,6 +67,7 @@ function Toggle({
       align={layout === 'vertical' && align}
       flex={layout === 'vertical' ? true : false}
       descriptionText={descriptionText}
+      size={size}
     >
       <button
         type="button"

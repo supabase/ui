@@ -43,6 +43,7 @@ export interface Props {
   value?: any
   reveal?: boolean
   actions?: React.ReactNode
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
 function Input({
@@ -67,6 +68,7 @@ function Input({
   style,
   reveal = false,
   actions,
+  size = 'medium',
 }: Props) {
   const [copyLabel, setCopyLabel] = useState('Copy')
   const [hidden, setHidden] = useState(reveal)
@@ -75,6 +77,11 @@ function Input({
   if (!type) {
     type = 'text'
   }
+
+  let inputClasses = [InputStyles['sbui-input']]
+  if (error) inputClasses.push(InputStyles['sbui-input--error'])
+  if (icon) inputClasses.push(InputStyles['sbui-input--with-icon'])
+  if (size) inputClasses.push(InputStyles[`sbui-input--${size}`])
 
   function onCopy(value: any) {
     navigator.clipboard.writeText(value).then(
@@ -108,6 +115,7 @@ function Input({
         error={error}
         descriptionText={descriptionText}
         style={style}
+        size={size}
       >
         <div className={InputStyles['sbui-input-container']}>
           <input
@@ -121,11 +129,7 @@ function Input({
             ref={inputRef}
             type={type}
             value={hidden ? hiddenPlaceholder : value}
-            className={
-              InputStyles['sbui-input'] +
-              (error ? ` ${InputStyles['sbui-input--error']}` : '') +
-              (icon ? ` ${InputStyles['sbui-input--with-icon']}` : '')
-            }
+            className={inputClasses.join(' ')}
           />
           {icon && <InputIconContainer icon={icon} />}
           {copy || error || actions ? (
@@ -133,7 +137,7 @@ function Input({
               className={InputStyles['sbui-input-actions-container']}
               size={1}
             >
-              {error && <InputErrorIcon />}
+              {error && <InputErrorIcon size={size} />}
               {copy && !hidden ? (
                 <Button
                   size="tiny"
@@ -177,6 +181,7 @@ export interface TextAreaProps {
   style?: React.CSSProperties
   rows?: number
   limit?: number
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
 function TextArea({
@@ -198,12 +203,14 @@ function TextArea({
   style,
   rows = 4,
   limit,
+  size,
 }: TextAreaProps) {
   const [charLength, setCharLength] = useState(0)
 
   let classes = [InputStyles['sbui-input']]
   if (error) classes.push(InputStyles['sbui-input--error'])
   if (icon) classes.push(InputStyles['sbui-input--with-icon'])
+  if (size) classes.push(InputStyles[`sbui-input--${size}`])
 
   function onInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     if (onChange) {
@@ -222,6 +229,7 @@ function TextArea({
       error={error}
       descriptionText={descriptionText}
       style={style}
+      size={size}
     >
       <textarea
         autoComplete={autoComplete && 'autoComplete'}

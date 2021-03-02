@@ -65,3 +65,38 @@
 /* .sbui-formlayout__content-container--width-25 {
   width: 
 } */
+
+/*
+  Layout sizes
+*/
+
+.sbui-formlayout--tiny .sbui-formlayout__label,
+.sbui-formlayout--tiny .sbui-formlayout__label-opt,
+.sbui-formlayout--tiny .sbui-formlayout__error,
+.sbui-formlayout--tiny .sbui-formlayout__description {
+  @apply text-xs;
+}
+.sbui-formlayout--small .sbui-formlayout__label,
+.sbui-formlayout--small .sbui-formlayout__label-opt,
+.sbui-formlayout--small .sbui-formlayout__error,
+.sbui-formlayout--small .sbui-formlayout__description {
+  @apply text-sm leading-4;
+}
+.sbui-formlayout--medium .sbui-formlayout__label,
+.sbui-formlayout--medium .sbui-formlayout__label-opt,
+.sbui-formlayout--medium .sbui-formlayout__error,
+.sbui-formlayout--medium .sbui-formlayout__description {
+  @apply text-sm;
+}
+.sbui-formlayout--large .sbui-formlayout__label,
+.sbui-formlayout--large .sbui-formlayout__label-opt,
+.sbui-formlayout--large .sbui-formlayout__error,
+.sbui-formlayout--large .sbui-formlayout__description {
+  @apply text-base;
+}
+.sbui-formlayout--xlarge .sbui-formlayout__label,
+.sbui-formlayout--xlarge .sbui-formlayout__label-opt,
+.sbui-formlayout--xlarge .sbui-formlayout__error,
+.sbui-formlayout--xlarge .sbui-formlayout__description {
+  @apply text-base;
+}

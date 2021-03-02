@@ -17,6 +17,7 @@ type Props = {
   style?: React.CSSProperties
   flex?: boolean
   responsive?: boolean
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
 export function FormLayout({
@@ -32,8 +33,13 @@ export function FormLayout({
   style,
   flex,
   responsive = true,
+  size = 'medium',
 }: Props) {
   let containerClasses = [FormLayoutStyles['sbui-formlayout']]
+
+  if (size) {
+    containerClasses.push(FormLayoutStyles[`sbui-formlayout--${size}`])
+  }
 
   if (flex) {
     containerClasses.push(FormLayoutStyles['sbui-formlayout--flex'])

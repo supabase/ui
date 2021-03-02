@@ -14,6 +14,7 @@ interface InputProps {
   name?: string
   checked?: boolean
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
 interface GroupProps {
@@ -33,6 +34,7 @@ interface GroupProps {
   children?: React.ReactNode
   options: Array<InputProps>
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
 function RadioGroup({
@@ -49,6 +51,7 @@ function RadioGroup({
   value,
   name,
   onChange,
+  size = 'medium',
 }: GroupProps) {
   const [activeId, setActiveId] = useState('')
 
@@ -68,7 +71,9 @@ function RadioGroup({
   }
 
   return (
-    <RadioContext.Provider value={{ parentCallback, type, name, activeId }}>
+    <RadioContext.Provider
+      value={{ parentCallback, type, name, activeId, parentSize: size }}
+    >
       <fieldset className={RadioStyles['sbui-radio-fieldset']}>
         <FormLayout
           label={label}
@@ -78,6 +83,7 @@ function RadioGroup({
           error={error}
           descriptionText={descriptionText}
           className={className}
+          size={size}
         >
           <div className={RadioStyles['sbui-radio-group-contents']}>
             <Space direction="vertical" size="px" minus>
@@ -110,11 +116,12 @@ function Radio({
   name,
   checked,
   onChange,
+  size = 'medium',
 }: InputProps) {
   const inputName = name
   return (
     <RadioContext.Consumer>
-      {({ parentCallback, type, name, activeId }) => {
+      {({ parentCallback, type, name, activeId, parentSize }) => {
         // if id does not exist, use label
         const markupId = id
           ? id
@@ -142,6 +149,9 @@ function Radio({
         let classes = [
           RadioStyles['sbui-radio-container'],
           RadioStyles['sbui-radio-label'],
+          RadioStyles[
+            `sbui-radio-container--${parentSize ? parentSize : size}`
+          ],
         ]
         if (type === 'cards') {
           classes.push(RadioStyles['sbui-radio-container--card'])
