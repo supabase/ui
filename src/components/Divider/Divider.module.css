@@ -5,6 +5,16 @@
   white-space: nowrap;
 }
 
+.sbui-divider-vertical {
+  @apply bg-gray-200 dark:bg-dark-500;
+  width: 1px;
+  height: inherit;
+}
+
+.sbui-divider-vertical.sbui-divider--light {
+  @apply bg-gray-100 dark:bg-dark-600;
+}
+
 .sbui-divider--no-text {
   @apply border-gray-200 dark:border-dark-500;
   border-bottom-style: solid;

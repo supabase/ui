@@ -8,6 +8,7 @@ interface Props {
   light?: boolean
   orientation?: 'left' | 'right' | 'center'
   style?: React.CSSProperties
+  type?: 'vertical' | 'horizontal'
 }
 
 export default function Divider({
@@ -16,14 +17,18 @@ export default function Divider({
   light = false,
   orientation = 'center',
   style,
+  type = 'horizontal',
 }: Props) {
-  let classes = [DividerStyles['sbui-divider']]
-  if (light) {
-    classes.push(DividerStyles['sbui-divider--light'])
-  }
+  let classes = [
+    type === 'horizontal'
+      ? DividerStyles['sbui-divider']
+      : DividerStyles['sbui-divider-vertical'],
+  ]
+  if (light) classes.push(DividerStyles['sbui-divider--light'])
+
   if (children) {
     classes.push(DividerStyles[`sbui-divider--${orientation}`])
-  } else {
+  } else if (!children && type === 'horizontal') {
     classes.push(DividerStyles[`sbui-divider--no-text`])
   }
 
