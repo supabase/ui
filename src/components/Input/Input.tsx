@@ -22,6 +22,9 @@ export interface Props {
   layout?: 'horizontal' | 'vertical'
   name?: string
   onChange?: any
+  onFocus?: any
+  onBlur?: any
+  onKeyDown?: any
   placeholder?: string
   style?: React.CSSProperties
   type?:
@@ -62,6 +65,9 @@ function Input({
   layout,
   name,
   onChange,
+  onBlur,
+  onFocus,
+  onKeyDown,
   placeholder,
   type,
   value,
@@ -125,6 +131,9 @@ function Input({
             id={id}
             name={name}
             onChange={onChange ? (event) => onChange(event) : undefined}
+            onFocus={onFocus ? (event) => onFocus(event) : undefined}
+            onBlur={onBlur ? (event) => onBlur(event) : undefined}
+            onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
             placeholder={placeholder}
             ref={inputRef}
             type={type}
