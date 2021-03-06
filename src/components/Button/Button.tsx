@@ -48,7 +48,7 @@ const Button = forwardRef<RefHandle, Props>(
       children,
       danger,
       disabled = false,
-      onClick,
+      onClick = undefined,
       icon,
       iconRight,
       loading = false,
@@ -118,7 +118,7 @@ const Button = forwardRef<RefHandle, Props>(
           ref={buttonRef}
           className={classes.join(' ')}
           disabled={loading || (disabled && true)}
-          onClick={onClick}
+          onClick={onClick ? (e) => onClick(e) : undefined}
           style={style}
           type={htmlType}
           aria-selected={ariaSelected}

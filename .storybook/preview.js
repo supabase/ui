@@ -8,4 +8,5 @@ export const parameters = {
     lightClass: 'light',
     stylePreview: true,
   },
+  viewMode: 'docs',
 }

@@ -1,0 +1,149 @@
+import {
+  Meta,
+  Story,
+  Canvas,
+  ArgsTable,
+  Source,
+} from '@storybook/addon-docs/blocks'
+import Button from './Button'
+
+import ButtonImage from './../../assets/button.svg'
+
+import { Typography, IconCheck, Space, IconArrowUpRight } from './../../index'
+
+<Meta title="General/Button" component={Button} />
+
+<Typography>
+
+
+<Story name="Intro"></Story>
+
+# Button
+
+### A general button with various visual variations
+
+<img class="preview-header" src={ButtonImage} alt="Button" width="100%" />
+
+<div>
+<a href="https://github.com/supabase/ui" style={{ textDecoration: 'none' }}>
+  <Space>
+    <IconArrowUpRight /> <span>View on github</span>
+  </Space>
+</a>
+
+
+<a href="https://github.com/supabase/ui" style={{ textDecoration: 'none' }}>
+  <Space>
+    <IconArrowUpRight /> <span>Report an issue</span>
+  </Space>
+</a>
+</div>
+
+
+## Installing
+
+Install the component
+
+```cli
+npm install @supabase/ui
+
+```
+
+## Getting started
+
+Import the component
+
+```js
+@import { Button } from '@supabase/ui'
+
+```
+
+## Basic
+
+<!--- This is your Story template function, shown here in React -->
+
+Let's define a story for our `Badge` component:
+
+<Canvas>
+  <Story
+    name="Basic"
+    args={{
+      type: 'outline',
+      children: 'hello',
+    }}
+  >
+    {(args) => <Button {...args} />}
+  </Story>
+</Canvas>
+
+<Source language="css" code={` .container { display: grid | inline-grid; } `} />
+
+## Button types
+
+<!--- This is your Story template function, shown here in React -->
+
+You can define the type of a button using the `type` prop.
+
+There are `primary`, `default`, `secondary`, `outline`, `dashed`, and `text`,
+
+<Canvas>
+  <Story name="Types">
+    <Space>
+      <Button type="primary">Default</Button>
+      <Button type="default">Default</Button>
+      <Button type="secondary">Default</Button>
+      <Button type="outline">Default</Button>
+      <Button type="dashed">Default</Button>
+      <Button type="text">Default</Button>
+    </Space>
+  </Story>
+</Canvas>
+
+## Size
+
+<!--- This is your Story template function, shown here in React -->
+
+You can define the size of a button using the `size` prop.
+
+There are `tiny`, `small`, `medium`, `large` and `xlarge`. The default size is `tiny`
+
+<Canvas>
+  <Story name="Size">
+    <Space>
+      <Button size="tiny">Tiny</Button>
+      <Button size="small">Small</Button>
+      <Button size="medium">Medium</Button>
+      <Button size="large">Large</Button>
+      <Button size="xlarge">XLarge</Button>
+    </Space>
+  </Story>
+</Canvas>
+
+## Using icons
+
+<!--- This is your Story template function, shown here in React -->
+
+Icons can be used with a Button.
+You can import an [Icon]("https://ui") component from Supabase UI
+
+If you use Icons from the Supabase UI library, the Icon will respect the size of the Button. For example: if the Button is shown in Xlarge, then the Icon will be shown in XLarge.
+
+<Canvas>
+  <Story name="Icon">
+    <Space>
+      <Button icon={<IconCheck />}>Default</Button>
+      <Button type="default">Default</Button>
+      <Button type="secondary">Default</Button>
+      <Button type="outline">Default</Button>
+      <Button type="dashed">Default</Button>
+      <Button type="text">Default</Button>
+    </Space>
+  </Story>
+</Canvas>
+
+## API reference
+
+<ArgsTable of={Button} />
+
+</Typography>
+

@@ -1,8 +1,25 @@
+/* @font-face {
+  font-family: 'poppins';
+  src: url(/new/fonts/custom/CustomFont-Book.woff2) format('woff2'),
+    url(/new/fonts/custom/CustomFont-Book.woff) format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'custom-font';
+  src: url(/new/fonts/custom/CustomFont-Medium.woff2) format('woff2'),
+    url(/new/fonts/custom/CustomFont-Medium.woff) format('woff');
+  font-weight: 500;
+  font-style: normal;
+} */
+
 .dark,
 .light {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji' !important;
 }
 
 .dark,
@@ -12,4 +29,95 @@
 
 .light {
   background: '#ffffff';
+}
+
+.sbdocs.sbdocs-content {
+  max-width: 720px;
+}
+
+img.preview-header {
+  margin: 32px 0;
+}
+
+.sbdocs-preview {
+  position: relative;
+  display: block;
+}
+
+.dark .sbdocs-wrapper {
+  @apply bg-dark-800;
+}
+
+/* code box */
+.dark .sbdocs-preview {
+  border: 1px solid rgb(60 60 60);
+  background: none;
+}
+
+.sbui-typography-container {
+}
+
+.sbdocs-wrapper h1 {
+  font-family: 'Inter' !important;
+  font-weight: 600 !important;
+}
+
+.sbdocs-wrapper h2,
+.sbdocs-wrapper h3 {
+  font-family: 'Inter' !important;
+  font-weight: 400 !important;
+}
+
+.sbdocs-wrapper p {
+  @apply text-sm;
+  @apply text-gray-400;
+}
+
+.dark .sbdocs-wrapper p {
+  @apply text-gray-300;
+}
+
+.dark .sbdocs-wrapper h1 {
+  @apply text-white;
+}
+
+.dark .sbdocs-wrapper h2 {
+  @apply text-white;
+}
+
+.dark .sbdocs-wrapper h3 {
+  @apply text-white;
+}
+
+.dark .sbdocs-wrapper h4 {
+  @apply text-white;
+}
+
+.dark .sbdocs-wrapper h5 {
+  @apply text-white;
+}
+
+.dark .sbdocs-wrapper strong {
+  @apply text-white;
+}
+
+.dark .sbdocs-wrapper li::before {
+  @apply text-gray-300;
+}
+
+.dark .sbdocs-wrapper a {
+  @apply text-white;
+}
+
+.dark .sbdocs-wrapper blockquote {
+  @apply text-white;
+}
+
+.dark .sbdocs-wrapper code {
+  @apply dark:bg-gray-900;
+  color: #a9b1d6;
+}
+
+.dark .sbdocs-wrapper figcaption {
+  @apply text-gray-600;
 }

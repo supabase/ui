@@ -1,5 +1,4 @@
-import { actions } from '@storybook/addon-actions'
-import React from 'react'
+import React, { useState } from 'react'
 import { action } from '@storybook/addon-actions'
 
 import { Modal } from '.'
@@ -15,15 +14,22 @@ export default {
   argTypes: { onClick: { action: 'clicked' } },
 }
 
-export const Default = (args: any) => (
-  <Modal {...args}>
-    <Typography.Text type="secondary">
-      Modal content is inserted here, if you need to insert anything into the
-      Modal you can do so via{' '}
-      <Typography.Text code>{'{children}'}</Typography.Text>
-    </Typography.Text>
-  </Modal>
-)
+export const Default = (args: any) => {
+  const [visible, setVisible] = useState(false)
+  return (
+    <>
+      @import sdsodm
+      <Button onClick={() => setVisible(!visible)}>Open modal</Button>
+      <Modal {...args} visible={visible} onCancel={() => setVisible(!visible)}>
+        <Typography.Text type="secondary">
+          Modal content is inserted here, if you need to insert anything into
+          the Modal you can do so via{' '}
+          <Typography.Text code>{'{children}'}</Typography.Text>
+        </Typography.Text>
+      </Modal>
+    </>
+  )
+}
 
 export const withIcon = (args: any) => (
   <Modal {...args}>
@@ -107,7 +113,7 @@ export const customFooterVertical = (args: any) => (
 export const customFooterOneButton = (args: any) => <Modal {...args} />
 
 Default.args = {
-  visible: true,
+  visible: false,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
   title: 'This is the title of the modal',
@@ -115,7 +121,7 @@ Default.args = {
 }
 
 withFooterBackground.args = {
-  visible: true,
+  visible: false,
   footerBackground: true,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
@@ -126,7 +132,7 @@ withFooterBackground.args = {
 const icon = <IconAlertCircle background="brand" size="xlarge" />
 
 withIcon.args = {
-  visible: true,
+  visible: false,
   showIcon: true,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
@@ -136,7 +142,7 @@ withIcon.args = {
 }
 
 withCloseButton.args = {
-  visible: true,
+  visible: false,
   closable: true,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
@@ -145,7 +151,7 @@ withCloseButton.args = {
 }
 
 withVerticalLayout.args = {
-  visible: true,
+  visible: false,
   size: 'small',
   layout: 'vertical',
   onCancel: action('onCancel'),
@@ -156,7 +162,7 @@ withVerticalLayout.args = {
 }
 
 rightAlignedFooter.args = {
-  visible: true,
+  visible: false,
   alignFooter: 'right',
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
@@ -165,7 +171,7 @@ rightAlignedFooter.args = {
 }
 
 hideFooter.args = {
-  visible: true,
+  visible: false,
   hideFooter: true,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
@@ -174,7 +180,7 @@ hideFooter.args = {
 }
 
 customFooter.args = {
-  visible: true,
+  visible: false,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
   title: 'This is the title of the modal',
@@ -193,7 +199,7 @@ customFooter.args = {
 }
 
 customFooterVertical.args = {
-  visible: true,
+  visible: false,
   size: 'small',
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
@@ -213,7 +219,7 @@ customFooterVertical.args = {
 }
 
 customFooterOneButton.args = {
-  visible: true,
+  visible: false,
   size: 'small',
   icon: <IconCheck background="brand" size="xxxlarge" />,
   onCancel: action('onCancel'),

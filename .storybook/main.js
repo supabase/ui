@@ -2,11 +2,20 @@ const babel = require('@babel/core')
 const postCssLoader = './postCssLoader'
 
 module.exports = {
+  // stories: ['../src/**/*.stories.@(mdx)'],
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     'storybook-dark-mode/register',
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        configureJSX: true,
+        babelOptions: {},
+        sourceLoaderOptions: null,
+      },
+    },
     postCssLoader,
   ],
   webpackFinal: async (config) => {
