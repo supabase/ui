@@ -15,8 +15,6 @@ interface InputProps {
   checked?: boolean
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
   onFocus?(x: React.FocusEvent<HTMLInputElement>): void
-  onBlur?(x: React.FocusEvent<HTMLInputElement>): void
-  onKeyDown?(x: React.KeyboardEvent<HTMLInputElement>): void
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
@@ -120,8 +118,6 @@ function Radio({
   checked,
   onChange,
   onFocus,
-  onBlur,
-  onKeyDown,
   size = 'medium',
 }: InputProps) {
   const inputName = name
@@ -185,8 +181,6 @@ function Radio({
               value={value ? value : markupId}
               onChange={onInputChange}
               onFocus={onFocus ? (event) => onFocus(event) : undefined}
-              onBlur={onBlur ? (event) => onBlur(event) : undefined}
-              onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
             />
             <div>
               <span className={RadioStyles['sbui-radio-label-text']}>

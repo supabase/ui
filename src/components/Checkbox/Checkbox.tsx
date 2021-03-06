@@ -16,7 +16,6 @@ interface InputProps {
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
   onFocus?(x: React.FocusEvent<HTMLInputElement>): void
   onBlur?(x: React.FocusEvent<HTMLInputElement>): void
-  onKeyDown?(x: React.KeyboardEvent<HTMLInputElement>): void
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
