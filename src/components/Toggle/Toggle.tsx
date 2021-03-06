@@ -12,7 +12,7 @@ interface Props {
   descriptionText?: string
   label?: string
   labelOptional?: string
-  onChange?(x: React.MouseEventHandler<HTMLButtonElement>): void
+  onChange?(x: Boolean): void
   className?: any
   defaultChecked?: boolean
   checked?: boolean
