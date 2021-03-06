@@ -185,6 +185,9 @@ export interface TextAreaProps {
   layout?: 'horizontal' | 'vertical'
   name?: string
   onChange?(x: React.ChangeEvent<HTMLTextAreaElement>): void
+  onFocus?: any
+  onBlur?: any
+  onKeyDown?: any
   placeholder?: string
   value?: any
   style?: React.CSSProperties
@@ -207,6 +210,9 @@ function TextArea({
   layout,
   name,
   onChange,
+  onFocus,
+  onBlur,
+  onKeyDown,
   placeholder,
   value,
   style,
@@ -250,6 +256,9 @@ function TextArea({
         cols={100}
         placeholder={placeholder}
         onChange={onInputChange}
+        onFocus={onFocus ? (event) => onFocus(event) : undefined}
+        onBlur={onBlur ? (event) => onBlur(event) : undefined}
+        onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
         value={value}
         className={classes.join(' ')}
         maxLength={limit}
