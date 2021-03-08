@@ -14,6 +14,7 @@ interface InputProps {
   name?: string
   checked?: boolean
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
+  onFocus?(x: React.FocusEvent<HTMLInputElement>): void
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
@@ -116,6 +117,7 @@ function Radio({
   name,
   checked,
   onChange,
+  onFocus,
   size = 'medium',
 }: InputProps) {
   const inputName = name
@@ -178,6 +180,7 @@ function Radio({
               disabled={disabled}
               value={value ? value : markupId}
               onChange={onInputChange}
+              onFocus={onFocus ? (event) => onFocus(event) : undefined}
             />
             <div>
               <span className={RadioStyles['sbui-radio-label-text']}>

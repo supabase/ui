@@ -11,6 +11,7 @@ export interface Props {
   autofocus?: boolean
   className?: string
   copy?: boolean
+  defaultValue?: string | number
   descriptionText?: string
   disabled?: boolean
   error?: string
@@ -21,10 +22,10 @@ export interface Props {
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
   name?: string
-  onChange?: any
-  onFocus?: any
-  onBlur?: any
-  onKeyDown?: any
+  onChange?(x: React.ChangeEvent<HTMLInputElement>): void
+  onFocus?(x: React.FocusEvent<HTMLInputElement>): void
+  onBlur?(x: React.FocusEvent<HTMLInputElement>): void
+  onKeyDown?(x: React.KeyboardEvent<HTMLInputElement>): void
   placeholder?: string
   style?: React.CSSProperties
   type?:
@@ -54,6 +55,7 @@ function Input({
   autofocus,
   className,
   copy,
+  defaultValue,
   descriptionText,
   disabled,
   error,
@@ -127,6 +129,7 @@ function Input({
           <input
             autoComplete={autoComplete}
             autoFocus={autofocus}
+            defaultValue={defaultValue}
             disabled={disabled}
             id={id}
             name={name}
@@ -185,9 +188,9 @@ export interface TextAreaProps {
   layout?: 'horizontal' | 'vertical'
   name?: string
   onChange?(x: React.ChangeEvent<HTMLTextAreaElement>): void
-  onFocus?: any
-  onBlur?: any
-  onKeyDown?: any
+  onFocus?(x: React.FocusEvent<HTMLTextAreaElement>): void
+  onBlur?(x: React.FocusEvent<HTMLTextAreaElement>): void
+  onKeyDown?(x: React.KeyboardEvent<HTMLTextAreaElement>): void
   placeholder?: string
   value?: any
   style?: React.CSSProperties

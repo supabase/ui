@@ -87,7 +87,7 @@ const Container = (props) => {
 export default function Home() {
   return (
     <Auth.UserContextProvider supabaseClient={supabase}>
-      <Auth providers={['facebook', 'github']}>
+      <Auth providers={['facebook', 'github']}/>
     </Auth.UserContextProvider>
   );
 };
