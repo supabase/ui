@@ -270,7 +270,6 @@ function EmailAuth({
   }
 
   const handleViewChange = (newView: ViewType) => {
-    console.log(newView)
     setDefaultEmail(email)
     setDefaultPassword(password)
     setAuthView(newView)
