@@ -14,6 +14,8 @@ interface InputProps {
   checked?: boolean
   className?: string
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
+  onFocus?(x: React.FocusEvent<HTMLInputElement>): void
+  onBlur?(x: React.FocusEvent<HTMLInputElement>): void
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
@@ -94,6 +96,8 @@ export function Checkbox({
   checked,
   value,
   onChange,
+  onFocus,
+  onBlur,
   size = 'medium',
 }: InputProps) {
   const inputName = name
@@ -140,6 +144,8 @@ export function Checkbox({
               type="checkbox"
               className={CheckboxStyles['sbui-checkbox']}
               onChange={onInputChange}
+              onFocus={onFocus ? (event) => onFocus(event) : undefined}
+              onBlur={onBlur ? (event) => onBlur(event) : undefined}
               checked={active}
               value={value ? value : markupId}
             />

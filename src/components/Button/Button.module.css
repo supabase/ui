@@ -74,7 +74,7 @@
   @apply dark:text-white dark:border-dark-400 dark:hover:text-white dark:hover:border-white;
 }
 .sbui-btn-link {
-  @apply text-brand-800 bg-transparent text-brand-800 border-none hover:bg-brand-900 hover:bg-opacity-25;
+  @apply bg-transparent text-brand-800 border-none hover:bg-brand-900 hover:bg-opacity-25;
 }
 .sbui-btn-text {
   @apply text-gray-400 bg-transparent border-none hover:bg-gray-200 hover:bg-opacity-25;

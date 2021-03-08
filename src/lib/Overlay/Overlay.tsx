@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-
-import { Transition } from '../../components/Transition'
-
 //@ts-ignore
 import Hooks from './../../lib/Hooks'
+import { Transition } from '../../components/Transition'
 import { DropdownContext } from './OverlayContext'
-
+import { AnimationTailwindClasses } from './../../types'
 // @ts-ignore
 import OverlayStyles from './Overlay.module.css'
 
@@ -25,6 +23,7 @@ interface Props {
   triggerElement?: any
   overlayStyle?: React.CSSProperties
   overlayClassName?: string
+  transition?: AnimationTailwindClasses
 }
 
 function Overlay({
@@ -37,6 +36,7 @@ function Overlay({
   triggerElement,
   overlayStyle,
   overlayClassName,
+  transition,
 }: Props) {
   const [visibleState, setVisibleState] = useState(false)
 
@@ -74,12 +74,13 @@ function Overlay({
       ) : null}
       <Transition
         show={visibleState}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
+        transition={transition}
+        enter={OverlayStyles[`sbui-overlay--enter`]}
+        enterFrom={OverlayStyles[`sbui-overlay--enterFrom`]}
+        enterTo={OverlayStyles[`sbui-overlay--enterTo`]}
+        leave={OverlayStyles[`sbui-overlay--leave`]}
+        leaveFrom={OverlayStyles[`sbui-overlay--leaveFrom`]}
+        leaveTo={OverlayStyles[`sbui-overlay--leaveTo`]}
       >
         <div className={classes.join(' ')} style={overlayStyle}>
           <DropdownContext.Provider value={{ onClick: onToggle }}>

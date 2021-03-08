@@ -2,6 +2,7 @@ import React from 'react'
 // @ts-ignore
 import SlidePanelStyles from './SidePanel.module.css'
 import { Button, IconX, Space, Transition, Typography } from '../../index'
+import { AnimationTailwindClasses } from '../../types'
 
 interface Props {
   className?: string
@@ -19,6 +20,8 @@ interface Props {
   onCancelText?: string
   onConfirm?: any
   onConfirmText?: string
+  transition?: AnimationTailwindClasses
+  transitionOverlay?: AnimationTailwindClasses
 }
 
 const SidePanel = ({
@@ -37,6 +40,8 @@ const SidePanel = ({
   onCancel,
   onConfirmText = 'Confirm',
   onCancelText = 'Cancel',
+  transition,
+  transitionOverlay,
 }: Props) => {
   function stopPropagation(e: React.MouseEvent) {
     e.stopPropagation()
@@ -82,12 +87,13 @@ const SidePanel = ({
   return (
     <Transition
       show={visible}
-      enter="ease-out duration-200"
-      enterFrom="opacity-0"
-      enterTo="opacity-100"
-      leave="ease-in duration-200"
-      leaveFrom="opacity-100"
-      leaveTo="opacity-0"
+      transition={transitionOverlay}
+      enter={SlidePanelStyles[`sbui-sidepanel-overlay--enter`]}
+      enterFrom={SlidePanelStyles[`sbui-sidepanel-overlay--enterFrom`]}
+      enterTo={SlidePanelStyles[`sbui-sidepanel-overlay--enterTo`]}
+      leave={SlidePanelStyles[`sbui-sidepanel-overlay--leave`]}
+      leaveFrom={SlidePanelStyles[`sbui-sidepanel-overlay--leaveFrom`]}
+      leaveTo={SlidePanelStyles[`sbui-sidepanel-overlay--leaveTo`]}
     >
       <div onClick={() => (onCancel ? onCancel() : null)}>
         <div className={SlidePanelStyles['sbui-sidepanel-overlay-container']}>
@@ -109,12 +115,21 @@ const SidePanel = ({
             >
               <Transition
                 show={visible}
-                enter="transform transition ease-in-out duration-500 sm:duration-700"
-                enterFrom={left ? '-translate-x-full' : 'translate-x-full'}
-                enterTo="translate-x-0"
-                leave="transform transition ease-in-out duration-500 sm:duration-700"
-                leaveFrom="translate-x-0"
-                leaveTo={left ? '-translate-x-full' : 'translate-x-full'}
+                transition={transition}
+                enter={SlidePanelStyles[`sbui-sidepanel--enter`]}
+                enterFrom={
+                  left
+                    ? SlidePanelStyles[`sbui-sidepanel--enterFrom--left`]
+                    : SlidePanelStyles[`sbui-sidepanel--enterFrom`]
+                }
+                enterTo={SlidePanelStyles[`sbui-sidepanel--enterTo`]}
+                leave={SlidePanelStyles[`sbui-sidepanel--leave`]}
+                leaveFrom={SlidePanelStyles[`sbui-sidepanel--leaveFrom`]}
+                leaveTo={
+                  left
+                    ? SlidePanelStyles[`sbui-sidepanel--leaveTo--left`]
+                    : SlidePanelStyles[`sbui-sidepanel--leaveTo`]
+                }
               >
                 <div
                   className={

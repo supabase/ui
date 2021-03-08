@@ -34,7 +34,9 @@ export interface Props {
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
   name?: string
-  onChange?: any
+  onChange?(x: React.ChangeEvent<HTMLSelectElement>): void
+  onFocus?(x: React.FocusEvent<HTMLSelectElement>): void
+  onBlur?(x: React.FocusEvent<HTMLSelectElement>): void
   placeholder?: string
   style?: React.CSSProperties
   type?:
@@ -80,6 +82,8 @@ function Select({
   layout,
   name,
   onChange,
+  onFocus,
+  onBlur,
   placeholder,
   required,
   value,
@@ -110,7 +114,9 @@ function Select({
           autoComplete={autoComplete}
           autoFocus={autofocus}
           className={selectClasses.join(' ')}
-          onChange={(event) => onChange(event)}
+          onChange={onChange ? (event) => onChange(event) : undefined}
+          onFocus={onFocus ? (event) => onFocus(event) : undefined}
+          onBlur={onBlur ? (event) => onBlur(event) : undefined}
           ref={inputRef}
           value={value}
           disabled={disabled}

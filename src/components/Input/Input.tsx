@@ -11,6 +11,7 @@ export interface Props {
   autofocus?: boolean
   className?: string
   copy?: boolean
+  defaultValue?: string | number
   descriptionText?: string
   disabled?: boolean
   error?: string
@@ -21,7 +22,10 @@ export interface Props {
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
   name?: string
-  onChange?: any
+  onChange?(x: React.ChangeEvent<HTMLInputElement>): void
+  onFocus?(x: React.FocusEvent<HTMLInputElement>): void
+  onBlur?(x: React.FocusEvent<HTMLInputElement>): void
+  onKeyDown?(x: React.KeyboardEvent<HTMLInputElement>): void
   placeholder?: string
   style?: React.CSSProperties
   type?:
@@ -51,6 +55,7 @@ function Input({
   autofocus,
   className,
   copy,
+  defaultValue,
   descriptionText,
   disabled,
   error,
@@ -62,6 +67,9 @@ function Input({
   layout,
   name,
   onChange,
+  onBlur,
+  onFocus,
+  onKeyDown,
   placeholder,
   type,
   value,
@@ -121,10 +129,14 @@ function Input({
           <input
             autoComplete={autoComplete}
             autoFocus={autofocus}
+            defaultValue={defaultValue}
             disabled={disabled}
             id={id}
             name={name}
             onChange={onChange ? (event) => onChange(event) : undefined}
+            onFocus={onFocus ? (event) => onFocus(event) : undefined}
+            onBlur={onBlur ? (event) => onBlur(event) : undefined}
+            onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
             placeholder={placeholder}
             ref={inputRef}
             type={type}
@@ -176,6 +188,9 @@ export interface TextAreaProps {
   layout?: 'horizontal' | 'vertical'
   name?: string
   onChange?(x: React.ChangeEvent<HTMLTextAreaElement>): void
+  onFocus?(x: React.FocusEvent<HTMLTextAreaElement>): void
+  onBlur?(x: React.FocusEvent<HTMLTextAreaElement>): void
+  onKeyDown?(x: React.KeyboardEvent<HTMLTextAreaElement>): void
   placeholder?: string
   value?: any
   style?: React.CSSProperties
@@ -198,6 +213,9 @@ function TextArea({
   layout,
   name,
   onChange,
+  onFocus,
+  onBlur,
+  onKeyDown,
   placeholder,
   value,
   style,
@@ -241,6 +259,9 @@ function TextArea({
         cols={100}
         placeholder={placeholder}
         onChange={onInputChange}
+        onFocus={onFocus ? (event) => onFocus(event) : undefined}
+        onBlur={onBlur ? (event) => onBlur(event) : undefined}
+        onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
         value={value}
         className={classes.join(' ')}
         maxLength={limit}
