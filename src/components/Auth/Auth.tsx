@@ -17,12 +17,18 @@ import * as SocialIcons from './Icons'
 // @ts-ignore
 import AuthStyles from './Auth.module.css'
 
-const VIEWS = {
+const VIEWS: ViewsMap = {
   SIGN_IN: 'sign_in',
   SIGN_UP: 'sign_up',
   FORGOTTEN_PASSWORD: 'forgotten_password',
   MAGIC_LINK: 'magic_link',
 }
+
+interface ViewsMap {
+  [key: string]: ViewType
+}
+
+type ViewType = 'sign_in' | 'sign_up' | 'forgotten_password' | 'magic_link'
 
 export interface Props {
   supabaseClient: SupabaseClient
@@ -35,7 +41,7 @@ export interface Props {
   socialButtonSize?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   providers?: Provider[]
   verticalSocialLayout?: any
-  view?: 'sign_in' | 'sign_up' | 'forgotten_password' | 'magic_link'
+  view?: ViewType
 }
 
 function Auth({
@@ -263,7 +269,8 @@ function EmailAuth({
     setLoading(false)
   }
 
-  const handleViewChange = (newView: string) => {
+  const handleViewChange = (newView: ViewType) => {
+    console.log(newView)
     setDefaultEmail(email)
     setDefaultPassword(password)
     setAuthView(newView)
@@ -333,10 +340,10 @@ function EmailAuth({
               Don't have an account? Sign up
             </Typography.Link>
           ) : (
-              <Typography.Link onClick={() => handleViewChange(VIEWS.SIGN_IN)}>
-                Do you have an account? Sign in.
-              </Typography.Link>
-            )}
+            <Typography.Link onClick={() => handleViewChange(VIEWS.SIGN_IN)}>
+              Do you have an account? Sign in.
+            </Typography.Link>
+          )}
           {error && <Typography.Text type="danger">{error}</Typography.Text>}
         </Space>
       </Space>
