@@ -7,6 +7,7 @@ import DropdownStyles from './Dropdown.module.css'
 
 import { Space } from '../Space'
 import Overlay from '../../lib/Overlay/Overlay'
+import { AnimationTailwindClasses } from '../../types'
 
 interface Props {
   visible?: boolean
@@ -25,6 +26,7 @@ interface Props {
   className?: string
   overlayStyle?: React.CSSProperties
   overlayClassName?: string
+  transition?: AnimationTailwindClasses
 }
 
 function Dropdown(props: Props) {

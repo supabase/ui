@@ -2,6 +2,7 @@ import React from 'react'
 // @ts-ignore
 import ModalStyles from './Modal.module.css'
 import { Button, Transition, IconX, Typography, Space } from './../../index'
+import { AnimationTailwindClasses } from '../../types'
 
 interface Props {
   children?: React.ReactNode
@@ -28,6 +29,8 @@ interface Props {
   contentStyle?: React.CSSProperties
   className?: string
   overlayClassName?: string
+  transition?: AnimationTailwindClasses
+  transitionOverlay?: AnimationTailwindClasses
 }
 
 const Modal = ({
@@ -55,6 +58,8 @@ const Modal = ({
   contentStyle,
   className = '',
   overlayClassName,
+  transition,
+  transitionOverlay,
 }: Props) => {
   function stopPropagation(e: React.MouseEvent) {
     e.stopPropagation()
@@ -108,12 +113,13 @@ const Modal = ({
   return (
     <Transition
       show={visible}
-      enter="ease-out duration-200"
-      enterFrom="opacity-0"
-      enterTo="opacity-100"
-      leave="ease-in duration-200"
-      leaveFrom="opacity-100"
-      leaveTo="opacity-0"
+      transition={transitionOverlay}
+      enter={ModalStyles[`sbui-modal-overlay--enter`]}
+      enterFrom={ModalStyles[`sbui-modal-overlay--enterFrom`]}
+      enterTo={ModalStyles[`sbui-modal-overlay--enterTo`]}
+      leave={ModalStyles[`sbui-modal-overlay--leave`]}
+      leaveFrom={ModalStyles[`sbui-modal-overlay--leaveFrom`]}
+      leaveTo={ModalStyles[`sbui-modal-overlay--leaveTo`]}
     >
       <div
         className={ModalStyles['sbui-modal-container'] + ' ' + className}
@@ -130,12 +136,13 @@ const Modal = ({
           <span className={ModalStyles['sbui-modal-div-trick']}></span>
           <Transition
             show={visible}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            enterTo="opacity-100 translate-y-0 sm:scale-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            transition={transition}
+            enter={ModalStyles[`sbui-modal--enter`]}
+            enterFrom={ModalStyles[`sbui-modal--enterFrom`]}
+            enterTo={ModalStyles[`sbui-modal--enterTo`]}
+            leave={ModalStyles[`sbui-modal--leave`]}
+            leaveFrom={ModalStyles[`sbui-modal--leaveFrom`]}
+            leaveTo={ModalStyles[`sbui-modal--leaveTo`]}
           >
             <div
               className={modalClasses.join(' ')}
