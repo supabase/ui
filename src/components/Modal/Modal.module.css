@@ -63,7 +63,7 @@
 }
 
 .sbui-modal {
-  @apply inline-block align-bottom bg-white dark:bg-dark-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all align-middle;
+  @apply inline-block bg-white dark:bg-dark-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all align-middle;
   /* border */
   @apply border-gray-400 border border-solid;
   @apply dark:border-gray-600 border border-solid;

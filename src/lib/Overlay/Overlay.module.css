@@ -30,11 +30,11 @@
 }
 
 .sbui-overlay-container--bottomRight {
-  @apply absolute mt-2 origin-top-right right-0 mt-2;
+  @apply absolute origin-top-right right-0 mt-2;
 }
 
 .sbui-overlay-container--bottomLeft {
-  @apply absolute mt-2 origin-top-left left-0 mt-2;
+  @apply absolute origin-top-left left-0 mt-2;
 }
 
 .sbui-overlay-container--bottomCenter {
