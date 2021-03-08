@@ -4,6 +4,7 @@ import React from 'react'
 // @ts-ignore
 import { CSSTransition as ReactCSSTransition } from 'react-transition-group'
 import PropTypes from 'prop-types'
+import { AnimationTailwindClasses } from './../../types'
 
 // function useIsInitialRender() {
 //   const isInitialRender = useRef(true)
@@ -77,40 +78,59 @@ function TransitionCompiler({ show, appear, ...rest }: any) {
   return <CSSTransition appear={appear} show={show} {...rest} />
 }
 
-const Transition = ({
-  show = true,
-  enter = 'ease-out duration-200',
-  enterFrom = 'opacity-0',
-  enterTo = 'opacity-100',
-  leave = 'ease-in duration-200',
-  leaveFrom = 'opacity-100',
-  leaveTo = 'opacity-0',
-  children,
-}: any) => {
+interface TransitionProps {
+  show: Boolean
+  children?: React.ReactNode
+  // supabase ui animation
+  enter?: string
+  enterFrom?: string
+  enterTo?: string
+  leave?: string
+  leaveFrom?: string
+  leaveTo?: string
+  // custom animation (tailwind based)
+  transition?: AnimationTailwindClasses
+}
+
+const Transition = (props: TransitionProps) => {
   return (
     <TransitionCompiler
-      show={show}
-      enter={enter}
-      enterFrom={enterFrom}
-      enterTo={enterTo}
-      leave={leave}
-      leaveFrom={leaveFrom}
-      leaveTo={leaveTo}
+      show={props.show}
+      enter={
+        props.transition && props.transition.enter
+          ? props.transition.enter
+          : props.enter
+      }
+      enterFrom={
+        props.transition && props.transition.enterFrom
+          ? props.transition.enterFrom
+          : props.enterFrom
+      }
+      enterTo={
+        props.transition && props.transition.enterTo
+          ? props.transition.enterTo
+          : props.enterTo
+      }
+      leave={
+        props.transition && props.transition.leave
+          ? props.transition.leave
+          : props.leave
+      }
+      leaveFrom={
+        props.transition && props.transition.leaveFrom
+          ? props.transition.leaveFrom
+          : props.leaveFrom
+      }
+      leaveTo={
+        props.transition && props.transition.leaveTo
+          ? props.transition.leaveTo
+          : props.leaveTo
+      }
     >
-      {children}
+      {props.children}
     </TransitionCompiler>
   )
 }
-
-// Transition.propTypes = {
-//   show: PropTypes.bool,
-//   enter: PropTypes.string,
-//   enterFrom: PropTypes.string,
-//   enterTo: PropTypes.string,
-//   leave: PropTypes.string,
-//   leaveFrom: PropTypes.string,
-//   leaveTo: PropTypes.string,
-// }
 
 export default Transition
 
