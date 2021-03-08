@@ -14,8 +14,8 @@ interface InputProps {
   checked?: boolean
   className?: string
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
-  onFocus?: any
-  onBlur?: any
+  onFocus?(x: React.FocusEvent<HTMLInputElement>): void
+  onBlur?(x: React.FocusEvent<HTMLInputElement>): void
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 

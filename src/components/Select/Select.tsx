@@ -34,9 +34,9 @@ export interface Props {
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
   name?: string
-  onChange?: any
-  onFocus?: any
-  onBlur?: any
+  onChange?(x: React.ChangeEvent<HTMLSelectElement>): void
+  onFocus?(x: React.FocusEvent<HTMLSelectElement>): void
+  onBlur?(x: React.FocusEvent<HTMLSelectElement>): void
   placeholder?: string
   style?: React.CSSProperties
   type?:
