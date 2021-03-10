@@ -28,7 +28,6 @@ export interface Props {
   placeholder?: string
   style?: React.CSSProperties
   value?: any
-  actions?: React.ReactNode
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   min?: number
   max?: number
