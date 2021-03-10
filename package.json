@@ -17,8 +17,8 @@
     "build:icons": "node --experimental-modules internals/populate-icons.js"
   },
   "peerDependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react": "^16.13.1 || ^17.0.1",
+    "react-dom": "^16.13.1 || ^17.0.1"
   },
   "resolutions": {
     "react": "^17.0.1",
