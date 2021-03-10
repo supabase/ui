@@ -2,11 +2,11 @@ import React from 'react'
 import { Button } from '../Button'
 import { Divider } from '../Divider'
 import { Menu } from '../Menu'
-import { IconSettings, IconLogOut, IconChevronDown } from './../../index'
+import { IconSettings, IconLogOut, IconChevronDown } from '../../index'
 import Typography from '../Typography'
 // import { AutoForm } from 'uniforms'
 
-import { Dropdown } from './'
+import { Dropdown } from '.'
 
 export default {
   title: 'Navigation/Dropdown',

@@ -29,15 +29,36 @@ interface Props {
   transition?: AnimationTailwindClasses
 }
 
-function Dropdown(props: Props) {
+function Dropdown({
+  visible = false,
+  overlay,
+  children,
+  placement = 'bottomLeft',
+  onVisibleChange,
+  disabled = false,
+  style,
+  className,
+  overlayStyle,
+  overlayClassName,
+  transition,
+}: Props) {
   let classes = [DropdownStyles['sbui-dropdown-card']]
-  if (props.className) {
-    classes.push(props.className)
+  if (className) {
+    classes.push(className)
   }
   return (
-    <Overlay triggerElement={props.children} {...props}>
-      <Card className={classes.join(' ')} style={props.style}>
-        {props.overlay}
+    <Overlay
+      triggerElement={children}
+      overlayClassName={overlayClassName}
+      overlayStyle={overlayStyle}
+      disabled={disabled}
+      onVisibleChange={onVisibleChange}
+      placement={placement}
+      visible={visible}
+      transition={transition}
+    >
+      <Card className={classes.join(' ')} style={style}>
+        {overlay}
       </Card>
     </Overlay>
   )

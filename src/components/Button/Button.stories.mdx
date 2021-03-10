@@ -6,6 +6,7 @@ import {
   Source,
 } from '@storybook/addon-docs/blocks'
 import Button from './Button'
+import { Header } from './../../lib/Stories'
 
 import ButtonImage from './../../assets/button.svg'
 
@@ -22,23 +23,7 @@ import { Typography, IconCheck, Space, IconArrowUpRight } from './../../index'
 
 ### A general button with various visual variations
 
-<img class="preview-header" src={ButtonImage} alt="Button" width="100%" />
-
-<div>
-<a href="https://github.com/supabase/ui" style={{ textDecoration: 'none' }}>
-  <Space>
-    <IconArrowUpRight /> <span>View on github</span>
-  </Space>
-</a>
-
-
-<a href="https://github.com/supabase/ui" style={{ textDecoration: 'none' }}>
-  <Space>
-    <IconArrowUpRight /> <span>Report an issue</span>
-  </Space>
-</a>
-</div>
-
+<Header img={ButtonImage} />
 
 ## Installing
 

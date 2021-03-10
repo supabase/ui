@@ -1,0 +1,161 @@
+import { useState } from 'react'
+import {
+  Meta,
+  Story,
+  Canvas,
+  ArgsTable,
+  Source,
+} from '@storybook/addon-docs/blocks'
+import Dropdown, { Item as DropdownItem } from './Dropdown'
+import { Header } from './../../lib/Stories'
+import CoverDropdown from './../../assets/cover-dropdown.svg'
+import {
+  Button,
+  Menu,
+  Divider,
+  Typography,
+  IconCheck,
+  Space,
+  IconArrowUpRight,
+  IconClipboard,
+  IconCopy,
+  IconTrash,
+  IconChevronDown,
+  Radio,
+} from './../../index'
+
+<Meta title="Overlays/Dropdown" component={Dropdown} />
+
+<Typography>
+
+
+<Story name="Dropdown"></Story>
+
+# Dropdown
+
+### A customisable panel with multiple placements around a trigger
+
+<Header img={CoverDropdown} />
+
+## Getting started
+
+Import the component from the Supabase lib.
+
+To to install the @supabase/ui library click here
+
+```js
+import { Dropdown } from '@supabase/ui'
+```
+
+## Basic Dropdown
+
+A dropdown triggered by a button.
+
+<Canvas>
+  <Story
+    name="Basic"
+    args={{
+      type: 'outline',
+    }}
+  >
+    {(args) => (
+      <div className={'h-64 flex justify-center items-center'}>
+        <Dropdown
+          overlay={[
+            <Menu>
+              <Menu.Item icon={<IconClipboard />}>Copy</Menu.Item>
+              <Menu.Item icon={<IconCopy />}>Duplicate</Menu.Item>
+              <Divider light />
+              <Menu.Item icon={<IconTrash stroke="red" />}>Delete</Menu.Item>
+            </Menu>,
+          ]}
+        >
+          <Button type="outline">Click me</Button>
+        </Dropdown>
+      </div>
+    )}
+  </Story>
+</Canvas>
+
+## Placement
+
+The dropdown supports different placements to the dropdown to appear in.
+
+You can use the prop `placement` and it acceepts `bottomLeft`, `bottomRight`, `bottomCenter`, `topLeft`, `topRight` and `topCentre`.
+
+<Canvas>
+  <Story
+    name="Placement"
+    args={{
+      type: 'outline',
+    }}
+  >
+    {(args) => {
+      const [placement, setPlacement] = useState('bottomLeft')
+      const options = [
+        `bottomLeft`,
+        `bottomRight`,
+        `bottomCenter`,
+        `topLeft`,
+        `topRight`,
+        `topCentre`,
+      ]
+      return (
+        <>
+          <Radio.Group
+            className="z-0"
+            type="cards"
+            size="tiny"
+            layout="vertical"
+            name="radiogroup-radiogroup"
+            onChange={(e) => console.log(setPlacement(e.target.value))}
+            value={placement}
+          >
+            {options.map((placement) => {
+              return (
+                <Radio
+                  name="sbui-radiogroup"
+                  id={placement}
+                  value={placement}
+                  label={placement}
+                />
+              )
+            })}
+          </Radio.Group>
+          <div className={'h-64 flex justify-center items-center z-50'}>
+            <Dropdown
+              placement={placement}
+              overlay={[
+                <Menu>
+                  <Menu.Item icon={<IconClipboard />}>Copy</Menu.Item>
+                  <Menu.Item icon={<IconCopy />}>Duplicate</Menu.Item>
+                  <Divider light />
+                  <Menu.Item icon={<IconTrash stroke="red" />}>
+                    Delete
+                  </Menu.Item>
+                </Menu>,
+              ]}
+            >
+              <Button type="outline" iconRight={<IconChevronDown />}>
+                Click me to open
+              </Button>
+            </Dropdown>
+          </div>
+        </>
+      )
+    }}
+  </Story>
+</Canvas>
+
+## API
+
+### Dropdown
+
+<ArgsTable of={Dropdown} />
+
+### Dropdown.Item
+
+<ArgsTable of={DropdownItem} />
+
+</Typography>
+

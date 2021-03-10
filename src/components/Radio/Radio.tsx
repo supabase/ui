@@ -33,7 +33,7 @@ interface GroupProps {
   value?: any
   className?: any
   children?: React.ReactNode
-  options: Array<InputProps>
+  options?: Array<InputProps>
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
