@@ -1,0 +1,56 @@
+.sbui-inputnumber-container {
+  @apply relative;
+}
+
+.sbui-inputnumber {
+  @apply block box-border pl-3 pr-3 py-2 w-full rounded-md shadow-sm text-sm border border-solid transition-all;
+  @apply bg-white border-gray-300;
+  @apply focus:ring-brand-500 focus:border-brand-500 focus:outline-none;
+
+  @apply dark:bg-transparent dark:text-white dark:border-gray-500;
+  @apply dark:focus:border-brand-500 dark:focus:ring-brand-500;
+
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0);
+  font-family: inherit;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.sbui-inputnumber:focus {
+  box-shadow: 0 0 0 2px rgba(62, 207, 142, 0.1);
+}
+
+.sbui-inputnumber--error {
+  @apply border-red-500 dark:border-red-500;
+}
+
+.sbui-inputnumber-actions-container {
+  @apply absolute inset-y-0 right-0 pl-3 pr-1 flex items-center;
+}
+
+/*
+    Input sizes
+  */
+
+.sbui-inputnumber--tiny {
+  @apply px-2.5 py-1.5 text-xs;
+}
+.sbui-inputnumber--small {
+  @apply px-3 py-2 text-sm leading-4;
+}
+.sbui-inputnumber--medium {
+  @apply px-4 py-2 text-sm;
+}
+.sbui-inputnumber--large {
+  @apply px-4 py-2 text-base;
+}
+.sbui-inputnumber--xlarge {
+  @apply px-6 py-3 text-base;
+}
+
+/*
+    Input icon
+  */
+
+.sbui-inputnumber--with-icon {
+  @apply pl-10;
+}
