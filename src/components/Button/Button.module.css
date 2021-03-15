@@ -9,6 +9,10 @@
   font-weight: inherit;
 }
 
+.sbui-btn:focus {
+  @apply outline-none;
+}
+
 .sbui-btn-container--shadow {
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
 }
