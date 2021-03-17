@@ -340,7 +340,7 @@ function EmailAuth({
             </Typography.Link>
           ) : (
             <Typography.Link onClick={() => handleViewChange(VIEWS.SIGN_IN)}>
-              Do you have an account? Sign in.
+              Do you have an account? Sign in
             </Typography.Link>
           )}
           {error && <Typography.Text type="danger">{error}</Typography.Text>}
@@ -369,7 +369,7 @@ function MagicLink({
     setLoading(true)
     const { error } = await supabaseClient.auth.signIn({ email })
     if (error) setError(error.message)
-    else setMessage('Check your email for the magic link.')
+    else setMessage('Check your email for the magic link')
     setLoading(false)
   }
 
@@ -396,7 +396,7 @@ function MagicLink({
           </Button>
         </Space>
         <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
-          Sign in with password.
+          Sign in with password
         </Typography.Link>
         {message && <Typography.Text>{message}</Typography.Text>}
         {error && <Typography.Text type="danger">{error}</Typography.Text>}
@@ -424,7 +424,7 @@ function ForgottenPassword({
     setLoading(true)
     const { error } = await supabaseClient.auth.api.resetPasswordForEmail(email)
     if (error) setError(error.message)
-    else setMessage('Check your email for the password reset link.')
+    else setMessage('Check your email for the password reset link')
     setLoading(false)
   }
 
@@ -477,7 +477,7 @@ function UpdatePassword({
     setLoading(true)
     const { error } = await supabaseClient.auth.update({ password })
     if (error) setError(error.message)
-    else setMessage('Your password has been updated.')
+    else setMessage('Your password has been updated')
     setLoading(false)
   }
 
