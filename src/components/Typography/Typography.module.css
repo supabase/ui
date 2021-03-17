@@ -29,6 +29,13 @@
   @apply prose prose-2xl;
 } */
 
+.sbui-typography code {
+  padding: 0.2em 0.4em 0.1em;
+  background: hsla(0, 0%, 58.8%, 0.1);
+  border: 1px solid hsla(0, 0%, 39.2%, 0.2);
+  border-radius: 3px;
+}
+
 /*
   dark mode styles
 
@@ -76,7 +83,7 @@
 }
 
 .dark .sbui-typography code {
-  color: #a9b1d6;
+  color: white;
 }
 
 .dark .sbui-typography figcaption {
