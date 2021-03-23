@@ -14,8 +14,9 @@ export default {
 export const Default = (args: any) => <InputNumber {...args} />
 
 Default.args = {
-  placeholder: 'Type text here ...',
+  label: 'Max of 100 and min of 0',
   disabled: false,
-  label: 'Name',
   layout: 'vertical',
+  max: 100,
+  min: 0,
 }
