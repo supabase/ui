@@ -5,7 +5,7 @@
 .sbui-select {
   @apply block w-full bg-white pl-3 pr-10 py-2 text-sm rounded-md transition-all;
 
-  @apply text-gray-700 border-gray-300;
+  @apply text-gray-700 border border-gray-300;
   @apply focus:ring-brand-500 focus:border-brand-500 focus:outline-none;
 
   @apply dark:bg-transparent dark:text-white dark:border-gray-500;

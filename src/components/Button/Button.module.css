@@ -9,6 +9,10 @@
   font-weight: inherit;
 }
 
+.sbui-btn:focus {
+  @apply outline-none;
+}
+
 .sbui-btn-container--shadow {
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
 }
@@ -48,24 +52,33 @@
 .sbui-btn-primary {
   @apply text-white bg-brand-800 hover:bg-brand-600;
   @apply dark:hover:bg-brand-900;
+}
+.dark .sbui-btn-primary {
   text-shadow: 0px 0px 4px rgba(38 111 78 / 50%);
 }
+
 .sbui-btn-default {
-  @apply text-gray-500 bg-white border-gray-300 hover:text-gray-600;
+  @apply text-gray-500 bg-white border-gray-200 hover:text-gray-600;
   @apply hover:bg-white hover:border-gray-200;
 
   @apply dark:border-gray-600 dark:bg-gray-600 dark:text-dark-200;
   @apply dark:hover:bg-gray-700;
+}
+.dark .sbui-btn-default {
   text-shadow: 0px 0px 4px rgba(31 31 31 / 50%);
 }
+
 .sbui-btn-secondary {
   @apply text-gray-600 bg-gray-200;
   @apply hover:text-gray-700 hover:bg-gray-300;
 
   @apply dark:text-gray-300 dark:bg-gray-500;
   @apply dark:hover:bg-gray-600;
+}
+.dark .sbui-btn-secondary {
   text-shadow: 0px 0px 4px rgba(42 42 42 / 50%);
 }
+
 .sbui-btn-outline {
   @apply border text-gray-500 bg-transparent border-gray-200 border-solid hover:bg-white hover:text-gray-600 hover:border-gray-600 dark:text-white dark:border-dark-400 dark:hover:text-dark-600 dark:hover:border-white;
 }
@@ -84,6 +97,9 @@
 .sbui-btn--danger {
   @apply border-red-500 text-red-500;
   @apply dark:border-red-500 dark:text-red-500;
+}
+
+.dark .sbui-btn--danger {
   text-shadow: 0px 0px 4px rgba(229, 62, 62 / 50%);
 }
 
