@@ -92,7 +92,7 @@ const Button = forwardRef<RefHandle, Props>(
       classes.push(ButtonStyles['sbui-btn--danger'])
     }
 
-    if (shadow) {
+    if (shadow && type !== 'link' && type !== 'text') {
       classes.push(ButtonStyles['sbui-btn-container--shadow'])
     }
 
