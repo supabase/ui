@@ -88,10 +88,12 @@
 }
 .sbui-btn-link {
   @apply bg-transparent text-brand-800 border-none hover:bg-brand-900 hover:bg-opacity-25;
+  box-shadow: none;
 }
 .sbui-btn-text {
   @apply text-gray-400 bg-transparent border-none hover:bg-gray-200 hover:bg-opacity-25;
   @apply dark:text-dark-300 dark:hover:bg-dark-600;
+  box-shadow: none;
 }
 
 .sbui-btn--danger {
