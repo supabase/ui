@@ -1,7 +1,7 @@
 .sbui-typography-text {
   @apply text-sm;
   @apply text-gray-400;
-  @apply dark:text-gray-300;
+  @apply dark:text-gray-200;
 }
 
 .sbui-typography-text-small {

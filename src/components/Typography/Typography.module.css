@@ -43,7 +43,7 @@
 */
 
 .dark .sbui-typography {
-  @apply text-gray-300;
+  @apply text-gray-200;
 }
 
 .dark .sbui-typography h1 {

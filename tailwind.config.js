@@ -6,6 +6,18 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            'code::before': {
+              content: '""',
+            },
+            'code::after': {
+              content: '""',
+            },
+          },
+        },
+      },
       colors: {
         transparent: 'transparent',
         current: 'currentColor',
