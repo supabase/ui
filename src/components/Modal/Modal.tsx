@@ -97,13 +97,13 @@ const Modal = ({
         type="outline"
         onClick={() => (onCancel ? onCancel() : null)}
         disabled={loading}
-        danger={variant === 'danger'}
       >
         {onCancelText}
       </Button>
       <Button
         onClick={() => (onConfirm ? onConfirm() : null)}
         loading={loading}
+        danger={variant === 'danger'}
       >
         {onConfirmText}
       </Button>
@@ -158,41 +158,41 @@ const Modal = ({
               >
                 <Space
                   size={5}
-                  style={{ alignItems: 'flex-start' }}
+                  style={{
+                    alignItems: layout === 'vertical' ? 'center' : 'flex-start',
+                  }}
                   direction={layout}
                 >
                   {icon ? icon : null}
-                  <div style={{ display: icon ? 'block' : 'contents' }}>
-                    <Space
-                      size={4}
-                      direction="vertical"
-                      style={{
-                        alignItems: 'flex-start',
-                        textAlign: layout === 'vertical' ? 'center' : null,
-                        width: '100%',
-                      }}
-                    >
-                      <span style={{ width: 'inherit' }}>
-                        {title && (
-                          <Typography.Title
-                            style={{
-                              marginBottom: '.1rem',
-                              marginTop: '0',
-                            }}
-                            level={4}
-                          >
-                            {title}
-                          </Typography.Title>
-                        )}
-                        {description && (
-                          <Typography.Text>{description}</Typography.Text>
-                        )}
-                      </span>
+                  <Space
+                    size={4}
+                    direction="vertical"
+                    style={{
+                      alignItems: 'flex-start',
+                      textAlign: layout === 'vertical' ? 'center' : null,
+                      width: '100%',
+                    }}
+                  >
+                    <span style={{ width: 'inherit' }}>
+                      {title && (
+                        <Typography.Title
+                          style={{
+                            marginBottom: '.1rem',
+                            marginTop: '0',
+                          }}
+                          level={4}
+                        >
+                          {title}
+                        </Typography.Title>
+                      )}
+                      {description && (
+                        <Typography.Text>{description}</Typography.Text>
+                      )}
+                    </span>
 
-                      {children}
-                      {!footerBackground && !hideFooter && footerContent}
-                    </Space>
-                  </div>
+                    {children}
+                    {!footerBackground && !hideFooter && footerContent}
+                  </Space>
                 </Space>
               </div>
               {!hideFooter && footerBackground && (

@@ -1,5 +1,5 @@
 .sbui-icon-container {
-  @apply mx-auto flex-shrink-0 flex items-center justify-center rounded-full p-3;
+  @apply flex-shrink-0 flex items-center justify-center rounded-full p-3;
 }
 
 .sbui-icon-container--brand {
