@@ -38,7 +38,7 @@ function Overlay({
   overlayClassName,
   transition,
 }: Props) {
-  const ref = useRef()
+  const ref = useRef(null)
   const [visibleState, setVisibleState] = useState(false)
 
   let classes = [
@@ -58,7 +58,11 @@ function Overlay({
   }
 
   // detect clicks from outside
-  useOnClickOutside(ref, () => setVisibleState(!visibleState))
+  useOnClickOutside(ref, () => {
+    if (visibleState) {
+      setVisibleState(!visibleState)
+    }
+  })
 
   const TriggerElement = () => {
     return <div onClick={onToggle}>{triggerElement}</div>
