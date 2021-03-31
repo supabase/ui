@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 //@ts-ignore
-import Hooks from './../../lib/Hooks'
+import { useOnClickOutside } from './../../lib/Hooks'
 import { Transition } from '../../components/Transition'
 import { DropdownContext } from './OverlayContext'
 import { AnimationTailwindClasses } from './../../types'
@@ -38,13 +38,13 @@ function Overlay({
   overlayClassName,
   transition,
 }: Props) {
+  const ref = useRef()
   const [visibleState, setVisibleState] = useState(false)
 
   let classes = [
     OverlayStyles['sbui-overlay-container'],
     OverlayStyles[`sbui-overlay-container--${placement}`],
   ]
-
   if (overlayClassName) classes.push(overlayClassName)
 
   function onToggle() {
@@ -57,16 +57,15 @@ function Overlay({
     setVisibleState(visible)
   }
 
-  const clickContainerRef = Hooks.clickOutsideListener((event: any) => {
-    if (visibleState) setVisibleState(!visibleState)
-  })
+  // detect clicks from outside
+  useOnClickOutside(ref, () => setVisibleState(!visibleState))
 
   const TriggerElement = () => {
     return <div onClick={onToggle}>{triggerElement}</div>
   }
 
   return (
-    <div ref={clickContainerRef} className={OverlayStyles['sbui-overlay']}>
+    <div ref={ref} className={OverlayStyles['sbui-overlay']}>
       {placement === 'bottomRight' ||
       placement === 'bottomLeft' ||
       placement === 'bottomCenter' ? (
