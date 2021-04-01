@@ -14,7 +14,9 @@
     "test": "react-scripts test",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build:icons": "node --experimental-modules internals/populate-icons.js"
+    "build:icons": "node --experimental-modules internals/populate-icons.js",
+    "typedoc": "typedoc --mode file --target ES6 --theme minimal",
+    "typedoc:json": "typedoc --json docs/spec.json --mode modules --includeDeclarations --excludeExternals"
   },
   "peerDependencies": {
     "react": "^16.13.1 || ^17.0.1",
@@ -50,7 +52,6 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
     "@testing-library/user-event": "^12.1.7",
-    "postcss-modules-values": "^4.0.0",
     "autoprefixer": "^9.8.6",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
@@ -62,6 +63,7 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^7.0.35",
     "postcss-import": "^12.0.1",
+    "postcss-modules-values": "^4.0.0",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.1.2",
     "react": "^17.0.1",
@@ -77,6 +79,7 @@
     "rollup-plugin-typescript2": "^0.29.0",
     "storybook-dark-mode": "^1.0.4",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.1",
+    "typedoc": "^0.19.1",
     "typescript": "^4.1.3"
   },
   "browserslist": {
