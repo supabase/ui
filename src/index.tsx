@@ -9,6 +9,7 @@ export * from './components/Icon/index'
 export * from './components/Card/index'
 export * from './components/Badge/index'
 export * from './components/Tabs/index'
+export * from './components/Alert/index'
 
 // NAV
 

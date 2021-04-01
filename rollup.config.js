@@ -28,6 +28,7 @@ export default {
     card: 'src/components/Card/index.tsx',
     badge: 'src/components/Badge/index.tsx',
     tabs: 'src/components/Tabs/index.tsx',
+    alert: 'src/components/Alert/index.tsx',
     menu: 'src/components/Menu/index.tsx',
     modal: 'src/components/Modal/index.tsx',
     sidepanel: 'src/components/SidePanel/index.tsx',

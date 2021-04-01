@@ -5,6 +5,7 @@ import { IconInfo } from '../Icon/icons/IconInfo'
 import { IconX } from '../Icon/icons/IconX'
 import { IconXCircle } from '../Icon/icons/IconXCircle'
 
+// @ts-ignore
 import AlertStyles from './Alert.module.css'
 
 interface Props {
