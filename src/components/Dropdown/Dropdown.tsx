@@ -19,7 +19,7 @@ interface Props {
     | 'bottomCenter'
     | 'topLeft'
     | 'topRight'
-    | 'topCentre'
+    | 'topCenter'
   onVisibleChange?: any
   disabled?: boolean
   style?: React.CSSProperties
