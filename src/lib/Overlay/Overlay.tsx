@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react'
 import { useOnClickOutside } from './../../lib/Hooks'
 import { Transition } from '../../components/Transition'
 import { DropdownContext } from './OverlayContext'
-import { AnimationTailwindClasses } from './../../types'
+import { AnimationTailwindClasses } from '../../types'
 // @ts-ignore
 import OverlayStyles from './Overlay.module.css'
 
@@ -17,7 +17,7 @@ interface Props {
     | 'bottomCenter'
     | 'topLeft'
     | 'topRight'
-    | 'topCentre'
+    | 'topCenter'
   onVisibleChange?: any
   disabled?: boolean
   triggerElement?: any
@@ -30,7 +30,7 @@ function Overlay({
   visible,
   overlay,
   children,
-  placement = 'topCentre',
+  placement = 'topCenter',
   onVisibleChange,
   disabled,
   triggerElement,
@@ -93,7 +93,7 @@ function Overlay({
       </Transition>
       {placement === 'topRight' ||
       placement === 'topLeft' ||
-      placement === 'topCentre' ? (
+      placement === 'topCenter' ? (
         <TriggerElement />
       ) : null}
     </div>

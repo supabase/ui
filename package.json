@@ -15,8 +15,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build:icons": "node --experimental-modules internals/populate-icons.js",
-    "typedoc": "typedoc --mode file --target ES6 --theme minimal",
-    "typedoc:json": "typedoc --json docs/spec.json --mode modules --includeDeclarations --excludeExternals"
+    "typedoc:json": "typedoc --json spec/spec.json --mode modules --includeDeclarations --excludeExternals"
   },
   "peerDependencies": {
     "react": "^16.13.1 || ^17.0.1",

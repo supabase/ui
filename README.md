@@ -162,7 +162,7 @@ _Utility_
 _Misc_
 
 - [ ] Storybook docs
-- [ ] Themeing (in progress)
+- [ ] Theming (in progress)
 - [ ] Supabase Auth Elements
 - [ ] Documentation website
 

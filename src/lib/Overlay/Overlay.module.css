@@ -65,7 +65,7 @@
   transform: translatey(-100%);
 }
 
-.sbui-overlay-container--topCentre {
+.sbui-overlay-container--topCenter {
   @apply origin-bottom-left;
   margin-top: -0.5rem;
   position: absolute;
