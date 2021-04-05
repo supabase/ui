@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 //@ts-ignore
 import { useOnClickOutside } from './../../lib/Hooks'
 import { Transition } from '../../components/Transition'
@@ -39,7 +39,7 @@ function Overlay({
   transition,
 }: Props) {
   const ref = useRef(null)
-  const [visibleState, setVisibleState] = useState(false)
+  const [visibleState, setVisibleState] = useState(!!visible)
 
   let classes = [
     OverlayStyles['sbui-overlay-container'],
@@ -53,9 +53,9 @@ function Overlay({
   }
 
   // allow ovveride of Dropdown
-  if (visible) {
-    setVisibleState(visible)
-  }
+  useEffect(() => {
+    setVisibleState(!!visible)
+  }, [visible])
 
   // detect clicks from outside
   useOnClickOutside(ref, () => {
