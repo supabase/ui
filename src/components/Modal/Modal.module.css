@@ -13,7 +13,7 @@
   @apply opacity-100;
 }
 .sbui-modal-overlay--leave {
-  @apply ease-in duration-200;
+  @apply ease-in duration-150;
 }
 .sbui-modal-overlay--leaveFrom {
   @apply opacity-100;
@@ -24,22 +24,22 @@
 
 /* modal animation */
 .sbui-modal--enter {
-  @apply ease-out duration-300;
+  @apply ease-out duration-150 delay-150;
 }
 .sbui-modal--enterFrom {
-  @apply opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95;
+  @apply opacity-0 translate-y-4 sm:translate-y-0 transform sm:scale-95;
 }
 .sbui-modal--enterTo {
-  @apply opacity-100 translate-y-0 sm:scale-100;
+  @apply opacity-100 translate-y-0 transform sm:scale-100;
 }
 .sbui-modal--leave {
-  @apply ease-in duration-200;
+  @apply ease-in duration-150;
 }
 .sbui-modal--leaveFrom {
-  @apply opacity-100 translate-y-0 sm:scale-100;
+  @apply opacity-100 translate-y-0 transform sm:scale-100;
 }
 .sbui-modal--leaveTo {
-  @apply opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95;
+  @apply opacity-0 translate-y-4 sm:translate-y-0 transform sm:scale-95;
 }
 
 .sbui-modal-container {
