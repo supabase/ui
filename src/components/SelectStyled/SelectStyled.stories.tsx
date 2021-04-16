@@ -109,20 +109,20 @@ export const People = (args: any) => (
         <Select.Option
           value={person}
           label={person.label}
+          addOnBefore={({ active, selected }: any) => [
+            <img
+              src={person.avatar}
+              alt=""
+              className="flex-shrink-0 h-6 w-6 rounded-full"
+            />,
+          ]}
           children={({ active, selected }: any) => {
             // console.log('selected', selected)
             // console.log('active', active)
             return (
-              <div className="flex items-center">
-                <img
-                  src={person.avatar}
-                  alt=""
-                  className="flex-shrink-0 h-6 w-6 rounded-full"
-                />
-                <span className={'font-normal ml-3 block truncate'}>
-                  {person.label}
-                </span>
-              </div>
+              <span className={'font-normal block truncate'}>
+                {person.label}
+              </span>
             )
           }}
         />

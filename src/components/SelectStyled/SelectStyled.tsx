@@ -166,8 +166,8 @@ function SelectOption({
         // console.log(label, active)
         return (
           <>
-            <div className="flex items-center">
-              {addOnBefore && <span>{addOnBefore({ active, selected })}</span>}
+            <div className="flex items-center space-x-3">
+              {addOnBefore && addOnBefore({ active, selected })}
               <span
                 className={classNames(
                   selected
