@@ -5,6 +5,8 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 // @ts-ignore
 import SelectStyles from './SelectStyled.module.css'
+import InputIconContainer from '../../lib/Layout/InputIconContainer'
+import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
@@ -63,12 +65,19 @@ function Select({
   size = 'medium',
   defaultValue,
 }: Props) {
-  const [selected, setSelected] = useState(defaultValue)
+  const [selected, setSelected] = useState(
+    value ? value : defaultValue ? defaultValue : null
+  )
 
   function handleOnChange(e: any) {
     if (onChange) onChange(e.target.value)
     setSelected(e)
   }
+
+  let selectClasses = [SelectStyles['sbui-select']]
+  if (error) selectClasses.push(SelectStyles['sbui-select--error'])
+  if (icon) selectClasses.push(SelectStyles['sbui-select--with-icon'])
+  if (size) selectClasses.push(SelectStyles[`sbui-select--${size}`])
 
   return (
     <FormLayout
@@ -87,18 +96,15 @@ function Select({
           {({ open }) => {
             return (
               <>
-                <div className="mt-1 relative">
+                <div className="relative">
                   <Listbox.Button
-                    className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-3 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    onClick={() =>
-                      console.log('clickevent from ListBox.Button')
-                    }
+                    // className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-3 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-brand-600 focus:border-brand-600 sm:text-sm"
+                    className={selectClasses.join(' ')}
                   >
-                    <span className="w-full inline-flex truncate">
+                    {icon && <InputIconContainer icon={icon} />}
+                    <span className="w-full flex flex-row truncate">
                       <span className="truncate">{selected.id}</span>
-                      <span className="ml-2 truncate text-gray-500">
-                        {selected.label}
-                      </span>
+                      <span className="truncate">{selected.label}</span>
                     </span>
                     <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                       <SelectorIcon
@@ -106,8 +112,12 @@ function Select({
                         aria-hidden="true"
                       />
                     </span>
+                    {error && (
+                      <div className="sbui-select-actions-container">
+                        {error && <InputErrorIcon size={size} />}
+                      </div>
+                    )}
                   </Listbox.Button>
-
                   <Transition
                     show={open}
                     as={Fragment}
@@ -117,7 +127,7 @@ function Select({
                   >
                     <Listbox.Options
                       static
-                      className="list-none p-0 absolute mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+                      className="list-none p-0 absolute mt-1 w-full bg-white dark:bg-gray-800 shadow-lg border border-solid border-gray-100 dark:border-gray-600 max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
                     >
                       {children}
                     </Listbox.Options>
@@ -132,16 +142,22 @@ function Select({
   )
 }
 
-function SelectOption({ id, className, value, children, label }: any) {
-  // const [selected, setSelected] = useState<any>(null)
-  // const [active, setActive] = useState(null)
+function SelectOption({
+  id,
+  className,
+  value,
+  children,
+  label,
+  addOnBefore,
+  addOnAfter,
+}: any) {
   return (
     <Listbox.Option
       key={id}
       value={value}
       className={({ active }) =>
         classNames(
-          active ? 'text-white bg-brand-600' : 'text-gray-900',
+          active ? 'text-white bg-brand-600 bg-opacity-20' : 'text-gray-900',
           'cursor-default select-none relative py-2 pl-3 pr-9'
         )
       }
@@ -150,28 +166,26 @@ function SelectOption({ id, className, value, children, label }: any) {
         // console.log(label, active)
         return (
           <>
-            <div className="flex">
+            <div className="flex items-center">
+              {addOnBefore && <span>{addOnBefore({ active, selected })}</span>}
               <span
                 className={classNames(
-                  selected ? 'font-semibold' : 'font-normal',
-                  'truncate'
+                  selected
+                    ? 'text-gray-900 dark:text-white font-semibold'
+                    : 'text-gray-700 dark:text-gray-300 font-normal',
+                  'truncate text-sm'
                 )}
               >
                 {children({ active, selected })}
               </span>
-              <span
-                className={classNames(
-                  active ? 'text-indigo-200' : 'text-gray-500',
-                  'ml-2 truncate'
-                )}
-              ></span>
+              {addOnAfter && <span>{addOnAfter({ active, selected })}</span>}
             </div>
 
             {selected ? (
               <span
                 className={classNames(
-                  active ? 'text-white' : 'text-brand-600',
-                  'absolute inset-y-0 right-0 flex items-center pr-4'
+                  active ? 'text-brand-600' : 'text-brand-600',
+                  'absolute inset-y-0 right-0 flex items-center pr-3'
                 )}
               >
                 <CheckIcon className="h-5 w-5" aria-hidden="true" />
