@@ -146,7 +146,7 @@ const Modal = ({
               leave={ModalStyles[`sbui-modal--leave`]}
               leaveFrom={ModalStyles[`sbui-modal--leaveFrom`]}
               leaveTo={ModalStyles[`sbui-modal--leaveTo`]}
-              className="fixed inset-0"
+              className="fixed inset-0 overflow-y-auto"
             >
               <div
                 className={modalClasses.join(' ')}

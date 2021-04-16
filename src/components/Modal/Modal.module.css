@@ -43,7 +43,7 @@
 }
 
 .sbui-modal-container {
-  @apply fixed z-50 inset-0 overflow-y-auto;
+  @apply fixed z-50 inset-0;
 }
 
 .sbui-modal-flex-container {
