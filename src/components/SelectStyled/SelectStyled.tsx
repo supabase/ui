@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { FormLayout } from '../../lib/Layout/FormLayout'
@@ -13,61 +13,82 @@ function classNames(...classes: any) {
 }
 
 export interface Props {
-  autoComplete?: string
-  autofocus?: boolean
+  // autoComplete?: string
+  // autofocus?: boolean
   className?: string
   children: React.ReactNode
   descriptionText?: string
-  disabled?: boolean
+  // disabled?: boolean
   error?: string
   icon?: any
   id?: string
-  inputRef?: string
+  // inputRef?: string
   label?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
-  name?: string
+  // name?: string
   onChange?(x: React.ChangeEvent<HTMLSelectElement>): void
-  onFocus?(x: React.FocusEvent<HTMLSelectElement>): void
-  onBlur?(x: React.FocusEvent<HTMLSelectElement>): void
-  placeholder?: string
+  // onFocus?(x: React.FocusEvent<HTMLSelectElement>): void
+  // onBlur?(x: React.FocusEvent<HTMLSelectElement>): void
+  // placeholder?: string
+  // required?: boolean
   style?: React.CSSProperties
   value?: any
   reveal?: boolean
-  required?: boolean
   actions?: React.ReactNode
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   defaultValue?: any
+  // Array of options for your select
+  options?: any
 }
 
 function Select({
-  autoComplete,
-  autofocus,
+  // autoComplete,
+  // autofocus,
   children,
   className,
   descriptionText,
-  disabled,
+  // disabled,
   error,
   icon,
   id,
-  inputRef,
+  // inputRef,
   label,
   labelOptional,
   layout,
-  name,
+  // name,
   onChange,
-  onFocus,
-  onBlur,
-  placeholder,
-  required,
+  // onFocus,
+  // onBlur,
+  // placeholder,
+  // required,
   value,
   style,
   size = 'medium',
   defaultValue,
+  options,
 }: Props) {
   const [selected, setSelected] = useState(
     value ? value : defaultValue ? defaultValue : null
   )
+  const [content, setContent] = useState([])
+
+  const [selectedNode, setSelectedNode] = useState<any>({})
+
+  useEffect(() => {
+    const data = children
+
+    // loop through children and add to content state
+    data.map((node: any) => {
+      let modifiedContent = content
+      modifiedContent.push(node.props)
+      setContent(modifiedContent)
+    })
+
+    // sets the active select option using content array
+    // and selected value from headlessui select
+    setSelectedNode(content.find((node) => node.value === selected))
+  }, [children, options, selected])
 
   function handleOnChange(e: any) {
     if (onChange) onChange(e.target.value)
@@ -97,14 +118,11 @@ function Select({
             return (
               <>
                 <div className="relative">
-                  <Listbox.Button
-                    // className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-3 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-brand-600 focus:border-brand-600 sm:text-sm"
-                    className={selectClasses.join(' ')}
-                  >
+                  <Listbox.Button className={selectClasses.join(' ')}>
                     {icon && <InputIconContainer icon={icon} />}
-                    <span className="w-full flex flex-row truncate">
-                      <span className="truncate">{selected.id}</span>
-                      <span className="truncate">{selected.label}</span>
+                    <span className="w-full flex flex-row items-center space-x-3">
+                      {selectedNode.addOnBefore && <selectedNode.addOnBefore />}
+                      <span className="truncate">{selectedNode.label}</span>
                     </span>
                     <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                       <SelectorIcon
@@ -149,7 +167,6 @@ function SelectOption({
   children,
   label,
   addOnBefore,
-  addOnAfter,
 }: any) {
   return (
     <Listbox.Option
@@ -178,7 +195,6 @@ function SelectOption({
               >
                 {children({ active, selected })}
               </span>
-              {addOnAfter && <span>{addOnAfter({ active, selected })}</span>}
             </div>
 
             {selected ? (

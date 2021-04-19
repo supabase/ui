@@ -100,21 +100,17 @@ const people = [
 
 export const People = (args: any) => (
   <Select
-    defaultValue={people[1]}
+    defaultValue={people[1].value}
     label="Choose a person"
     descriptionText="Choose a person for this role"
   >
     {people.map((person) => {
       return (
         <Select.Option
-          value={person}
+          value={person.value}
           label={person.label}
           addOnBefore={({ active, selected }: any) => [
-            <img
-              src={person.avatar}
-              alt=""
-              className="flex-shrink-0 h-6 w-6 rounded-full"
-            />,
+            <img src={person.avatar} alt="" className="h-6 w-6 rounded-full" />,
           ]}
           children={({ active, selected }: any) => {
             // console.log('selected', selected)
@@ -130,3 +126,10 @@ export const People = (args: any) => (
     })}
   </Select>
 )
+
+People.args = {
+  disabled: false,
+  label: 'Label',
+  layout: 'vertical',
+  size: 'medium',
+}
