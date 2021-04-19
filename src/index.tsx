@@ -23,7 +23,6 @@ export * from './components/Dropdown/index'
 
 // UTILITIES
 
-export * from './components/Transition/index'
 export * from './components/Space/index'
 export * from './components/Loading/index'
 export * from './components/Divider/index'
