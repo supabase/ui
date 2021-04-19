@@ -65,20 +65,20 @@
 }
 
 .sbui-sidepanel--medium {
-  @apply w-screen max-w-md;
+  @apply w-screen max-w-md h-full;
 }
 
 .sbui-sidepanel--wide {
-  @apply w-screen max-w-2xl;
+  @apply w-screen max-w-2xl h-full;
 }
 
-.sbui-sidepanel-fixed {
+/* .sbui-sidepanel-fixed {
   @apply fixed inset-0 overflow-hidden;
-}
+} */
 
-.sbui-sidepanel-absolute {
+/* .sbui-sidepanel-absolute {
   @apply absolute inset-0 overflow-hidden;
-}
+} */
 
 .sbui-sidepanel-container {
   @apply absolute inset-y-0 max-w-full flex;

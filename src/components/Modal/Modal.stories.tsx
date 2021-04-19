@@ -104,6 +104,192 @@ export const customFooterVertical = (args: any) => (
   </Modal>
 )
 
+export const LongModal = () => (
+  <div>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <p>
+      Modal content is inserted here, if you need to insert anything into the
+      Modal you can do so via
+    </p>
+    <Modal visible={true}>
+      <Typography.Text type="secondary">
+        <p>
+          Modal content is inserted here, if you need to insert anything into
+          the Modal you can do so via
+        </p>
+        <p>
+          Modal content is inserted here, if you need to insert anything into
+          the Modal you can do so via
+        </p>
+        <p>
+          Modal content is inserted here, if you need to insert anything into
+          the Modal you can do so via
+        </p>
+        <p>
+          Modal content is inserted here, if you need to insert anything into
+          the Modal you can do so via
+        </p>
+        <p>
+          Modal content is inserted here, if you need to insert anything into
+          the Modal you can do so via
+        </p>
+        <p>
+          Modal content is inserted here, if you need to insert anything into
+          the Modal you can do so via
+        </p>
+        <p>
+          Modal content is inserted here, if you need to insert anything into
+          the Modal you can do so via
+        </p>
+        <p>
+          Modal content is inserted here, if you need to insert anything into
+          the Modal you can do so via
+        </p>
+        <p>
+          Modal content is inserted here, if you need to insert anything into
+          the Modal you can do so via
+        </p>
+        <p>
+          Modal content is inserted here, if you need to insert anything into
+          the Modal you can do so via
+        </p>
+        <p>
+          Modal content is inserted here, if you need to insert anything into
+          the Modal you can do so via
+        </p>
+        <p>
+          Modal content is inserted here, if you need to insert anything into
+          the Modal you can do so via
+        </p>
+        <p>
+          Modal content is inserted here, if you need to insert anything into
+          the Modal you can do so via
+        </p>
+        <p>
+          Modal content is inserted here, if you need to insert anything into
+          the Modal you can do so via
+        </p>
+        <Typography.Text code>{'{children}'}</Typography.Text>
+      </Typography.Text>
+    </Modal>
+  </div>
+)
+
 export const customFooterOneButton = (args: any) => <Modal {...args} />
 
 Default.args = {
