@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 //@ts-ignore
 import { useOnClickOutside } from './../../lib/Hooks'
-import { Transition } from '../../components/Transition'
 import { DropdownContext } from './OverlayContext'
 import { AnimationTailwindClasses } from '../../types'
 // @ts-ignore
 import OverlayStyles from './Overlay.module.css'
+
+import { Transition } from '@headlessui/react'
 
 interface Props {
   visible?: boolean
@@ -77,7 +78,6 @@ function Overlay({
       ) : null}
       <Transition
         show={visibleState}
-        transition={transition}
         enter={OverlayStyles[`sbui-overlay--enter`]}
         enterFrom={OverlayStyles[`sbui-overlay--enterFrom`]}
         enterTo={OverlayStyles[`sbui-overlay--enterTo`]}

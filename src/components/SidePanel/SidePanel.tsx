@@ -1,8 +1,10 @@
 import React from 'react'
 // @ts-ignore
 import SlidePanelStyles from './SidePanel.module.css'
-import { Button, IconX, Space, Transition, Typography } from '../../index'
+import { Button, IconX, Space, Typography } from '../../index'
 import { AnimationTailwindClasses } from '../../types'
+
+import { Transition } from '@headlessui/react'
 
 interface Props {
   className?: string
@@ -47,10 +49,17 @@ const SidePanel = ({
     e.stopPropagation()
   }
 
+  const sidePanelClasses = [SlidePanelStyles['sbui-sidepanel']]
+  if (className) sidePanelClasses.push(className)
+
   const left = align === 'left'
-  const orientationClasses = left
-    ? SlidePanelStyles['sbui-sidepanel--left']
-    : SlidePanelStyles['sbui-sidepanel--right']
+
+  const containerClasses = [SlidePanelStyles['sbui-sidepanel-container']]
+  if (left) {
+    containerClasses.push(SlidePanelStyles['sbui-sidepanel--left'])
+  } else {
+    containerClasses.push(SlidePanelStyles['sbui-sidepanel--right'])
+  }
 
   let footerClasses = [SlidePanelStyles['sbui-sidepanel-footer-container']]
   if (!customFooter) {
@@ -85,127 +94,116 @@ const SidePanel = ({
   )
 
   return (
-    <Transition
-      show={visible}
-      transition={transitionOverlay}
-      enter={SlidePanelStyles[`sbui-sidepanel-overlay--enter`]}
-      enterFrom={SlidePanelStyles[`sbui-sidepanel-overlay--enterFrom`]}
-      enterTo={SlidePanelStyles[`sbui-sidepanel-overlay--enterTo`]}
-      leave={SlidePanelStyles[`sbui-sidepanel-overlay--leave`]}
-      leaveFrom={SlidePanelStyles[`sbui-sidepanel-overlay--leaveFrom`]}
-      leaveTo={SlidePanelStyles[`sbui-sidepanel-overlay--leaveTo`]}
-    >
-      <div onClick={() => (onCancel ? onCancel() : null)}>
-        <div className={SlidePanelStyles['sbui-sidepanel-overlay-container']}>
-          <div className={SlidePanelStyles['sbui-sidepanel-overlay']}></div>
-        </div>
+    <Transition show={visible}>
+      <Transition.Child
+        enter={SlidePanelStyles[`sbui-sidepanel-overlay--enter`]}
+        enterFrom={SlidePanelStyles[`sbui-sidepanel-overlay--enterFrom`]}
+        enterTo={SlidePanelStyles[`sbui-sidepanel-overlay--enterTo`]}
+        leave={SlidePanelStyles[`sbui-sidepanel-overlay--leave`]}
+        leaveFrom={SlidePanelStyles[`sbui-sidepanel-overlay--leaveFrom`]}
+        leaveTo={SlidePanelStyles[`sbui-sidepanel-overlay--leaveTo`]}
+      >
+        <div onClick={() => (onCancel ? onCancel() : null)}>
+          <div className={SlidePanelStyles['sbui-sidepanel-overlay-container']}>
+            <div className={SlidePanelStyles['sbui-sidepanel-overlay']}></div>
+          </div>
 
-        {/* sidepanel element */}
-        <div
-          className={SlidePanelStyles['sbui-sidepanel-fixed']}
-          onClick={onCancel}
-        >
-          <div className={SlidePanelStyles['sbui-sidepanel-absolute']}>
-            <div
-              className={
-                SlidePanelStyles['sbui-sidepanel-container'] +
-                ' ' +
-                orientationClasses
+          {/* sidepanel element */}
+          {/* <div
+            className={SlidePanelStyles['sbui-sidepanel-fixed']}
+            onClick={onCancel}
+          > */}
+          {/* <div className={SlidePanelStyles['sbui-sidepanel-absolute']}> */}
+          <div className={containerClasses.join(' ')}>
+            <Transition.Child
+              enter={SlidePanelStyles[`sbui-sidepanel--enter`]}
+              enterFrom={
+                left
+                  ? SlidePanelStyles[`sbui-sidepanel--enterFrom--left`]
+                  : SlidePanelStyles[`sbui-sidepanel--enterFrom`]
               }
+              enterTo={SlidePanelStyles[`sbui-sidepanel--enterTo`]}
+              leave={SlidePanelStyles[`sbui-sidepanel--leave`]}
+              leaveFrom={SlidePanelStyles[`sbui-sidepanel--leaveFrom`]}
+              leaveTo={
+                left
+                  ? SlidePanelStyles[`sbui-sidepanel--leaveTo--left`]
+                  : SlidePanelStyles[`sbui-sidepanel--leaveTo`]
+              }
+              // className="fixed inset-0 overflow-y-auto h-100"
             >
-              <Transition
-                show={visible}
-                transition={transition}
-                enter={SlidePanelStyles[`sbui-sidepanel--enter`]}
-                enterFrom={
-                  left
-                    ? SlidePanelStyles[`sbui-sidepanel--enterFrom--left`]
-                    : SlidePanelStyles[`sbui-sidepanel--enterFrom`]
-                }
-                enterTo={SlidePanelStyles[`sbui-sidepanel--enterTo`]}
-                leave={SlidePanelStyles[`sbui-sidepanel--leave`]}
-                leaveFrom={SlidePanelStyles[`sbui-sidepanel--leaveFrom`]}
-                leaveTo={
-                  left
-                    ? SlidePanelStyles[`sbui-sidepanel--leaveTo--left`]
-                    : SlidePanelStyles[`sbui-sidepanel--leaveTo`]
+              <div
+                className={
+                  wide
+                    ? SlidePanelStyles['sbui-sidepanel--wide']
+                    : SlidePanelStyles['sbui-sidepanel--medium']
                 }
               >
                 <div
-                  className={
-                    wide
-                      ? SlidePanelStyles['sbui-sidepanel--wide']
-                      : SlidePanelStyles['sbui-sidepanel--medium']
-                  }
+                  className={sidePanelClasses.join(' ')}
+                  onClick={stopPropagation}
                 >
-                  <div
-                    className={
-                      SlidePanelStyles['sbui-sidepanel'] + ' ' + className
-                    }
-                    onClick={stopPropagation}
+                  <Space
+                    size={6}
+                    direction="vertical"
+                    style={{
+                      minHeight: '0',
+                      flex: '1 1 0%',
+                      overflowY: 'scroll',
+                    }}
                   >
-                    <Space
-                      size={6}
-                      direction="vertical"
-                      style={{
-                        minHeight: '0',
-                        flex: '1 1 0%',
-                        overflowY: 'scroll',
-                      }}
+                    <header
+                      className={SlidePanelStyles['sbui-sidepanel-header']}
                     >
-                      <header
-                        className={SlidePanelStyles['sbui-sidepanel-header']}
+                      <Space
+                        size={3}
+                        direction="row"
+                        style={{
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                        }}
                       >
-                        <Space
-                          size={3}
-                          direction="row"
-                          style={{
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                          }}
+                        {title && (
+                          <Typography.Title className="m-0" level={4}>
+                            {title}
+                          </Typography.Title>
+                        )}
+                        <div
+                          className={
+                            SlidePanelStyles['sbui-sidepanel-close-container']
+                          }
                         >
-                          {title && (
-                            <Typography.Title className="m-0" level={4}>
-                              {title}
-                            </Typography.Title>
-                          )}
-                          <div
-                            className={
-                              SlidePanelStyles['sbui-sidepanel-close-container']
-                            }
-                          >
-                            <Button
-                              aria-label="Close panel"
-                              onClick={onCancel}
-                              type="text"
-                              shadow={false}
-                              style={{ padding: 0 }}
-                              icon={<IconX size="xlarge" strokeWidth={2} />}
-                            />
-                          </div>
-                        </Space>
-                        <div>
-                          {description && (
-                            <Typography.Text type="secondary">
-                              {description}
-                            </Typography.Text>
-                          )}
+                          <Button
+                            aria-label="Close panel"
+                            onClick={onCancel}
+                            type="text"
+                            shadow={false}
+                            style={{ padding: 0 }}
+                            icon={<IconX size="xlarge" strokeWidth={2} />}
+                          />
                         </div>
-                      </header>
-                      <div
-                        className={SlidePanelStyles['sbui-sidepanel-content']}
-                      >
-                        {children}
+                      </Space>
+                      <div>
+                        {description && (
+                          <Typography.Text type="secondary">
+                            {description}
+                          </Typography.Text>
+                        )}
                       </div>
-                    </Space>
-                    {!hideFooter && footerContent}
-                  </div>
+                    </header>
+                    <div className={SlidePanelStyles['sbui-sidepanel-content']}>
+                      {children}
+                    </div>
+                  </Space>
+                  {!hideFooter && footerContent}
                 </div>
-              </Transition>
-            </div>
+              </div>
+            </Transition.Child>
           </div>
         </div>
-      </div>
+        {/* </div> */}
+        {/* </div> */}
+      </Transition.Child>
     </Transition>
   )
 }
