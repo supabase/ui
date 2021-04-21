@@ -296,6 +296,8 @@ Default.args = {
   visible: true,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
+  onCancelText: 'Cancel',
+  onConfirmText: 'Confirm',
   title: 'This is the title of the modal',
   description: 'And i am the description',
 }
@@ -305,6 +307,8 @@ withFooterBackground.args = {
   footerBackground: true,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
+  onCancelText: 'Cancel',
+  onConfirmText: 'Confirm',
   title: 'This is the title of the modal',
   description: 'And i am the description',
 }
@@ -316,6 +320,8 @@ withIcon.args = {
   showIcon: true,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
+  onCancelText: 'Cancel',
+  onConfirmText: 'Confirm',
   title: 'This is the title of the modal',
   description: 'And i am the description',
   icon: icon,
@@ -326,6 +332,8 @@ withCloseButton.args = {
   closable: true,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
+  onCancelText: 'Cancel',
+  onConfirmText: 'Confirm',
   title: 'This Modal has a close button on the top right',
   description: 'And i am the description',
 }
@@ -336,6 +344,8 @@ withVerticalLayout.args = {
   layout: 'vertical',
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
+  onCancelText: 'Cancel',
+  onConfirmText: 'Confirm',
   title: 'This is the title of the modal',
   description: 'And i am the description',
   icon: icon,
@@ -346,6 +356,8 @@ rightAlignedFooter.args = {
   alignFooter: 'right',
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
+  onCancelText: 'Cancel',
+  onConfirmText: 'Confirm',
   title: 'This is the title of the modal',
   description: 'And i am the description',
 }
@@ -355,6 +367,8 @@ hideFooter.args = {
   hideFooter: true,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
+  onCancelText: 'Cancel',
+  onConfirmText: 'Confirm',
   title: 'This is the title of the modal',
   description: 'And i am the description',
 }
@@ -363,6 +377,8 @@ customFooter.args = {
   visible: true,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
+  onCancelText: 'Cancel',
+  onConfirmText: 'Confirm',
   title: 'This is the title of the modal',
   description: 'And i am the description',
   customFooter: [
@@ -383,6 +399,8 @@ customFooterVertical.args = {
   size: 'small',
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
+  onCancelText: 'Cancel',
+  onConfirmText: 'Confirm',
   title: 'This is the title of the modal',
   description: 'And i am the description',
   layout: 'vertical',
@@ -398,12 +416,15 @@ customFooterVertical.args = {
   ],
 }
 
+
 customFooterOneButton.args = {
   visible: true,
   size: 'small',
   icon: <IconCheck background="brand" size="xxxlarge" />,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
+  onCancelText: 'Cancel',
+  onConfirmText: 'Confirm',
   title: 'Payment succesful',
   description:
     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet labore.',
