@@ -99,6 +99,7 @@ export function Checkbox({
   onFocus,
   onBlur,
   size = 'medium',
+  disabled = false,
 }: InputProps) {
   const inputName = name
 
@@ -148,6 +149,7 @@ export function Checkbox({
               onBlur={onBlur ? (event) => onBlur(event) : undefined}
               checked={active}
               value={value ? value : markupId}
+              disabled={disabled}
             />
             <div className={CheckboxStyles['sbui-checkbox__label-container']}>
               <label
