@@ -25,6 +25,11 @@ module.exports = {
         black: '#000',
         white: '#fff',
 
+        'secondary-text': {
+          light: '#71767F',
+          dark: '#878787',
+        },
+
         dark: {
           100: '#eeeeee',
           200: '#e0e0e0',
