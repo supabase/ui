@@ -83,8 +83,6 @@ const Modal = ({
   let overlayClasses = [ModalStyles['sbui-modal-overlay']]
   if (overlayClassName) overlayClasses.push(overlayClassName)
 
-  console.log('onConfirmText', onConfirmText)
-
   const footerContent = customFooter ? (
     customFooter
   ) : (
