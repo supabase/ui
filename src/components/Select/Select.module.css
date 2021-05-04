@@ -5,11 +5,11 @@
 .sbui-select {
   @apply block w-full bg-white pl-3 pr-10 py-2 text-sm rounded-md transition-all;
 
-  @apply text-gray-700 border border-solid border-gray-300;
-  @apply focus:ring-brand-500 focus:border-brand-500 focus:outline-none;
+  @apply text-input-value-light border border-solid border-input-border-light;
+  @apply focus:ring-input-border-focus-light focus:border-input-border-focus-light focus:outline-none;
 
-  @apply dark:bg-transparent dark:text-white dark:border-gray-500;
-  @apply dark:focus:border-brand-500;
+  @apply dark:bg-transparent dark:text-input-value-dark dark:border-input-border-dark;
+  @apply dark:focus:border-input-border-focus-dark dark:focus:ring-input-border-focus-dark;
   -webkit-appearance: none;
   -moz-appearance: none;
   text-overflow: '';
