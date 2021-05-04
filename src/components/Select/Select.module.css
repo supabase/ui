@@ -3,7 +3,7 @@
 }
 
 .sbui-select {
-  @apply block w-full bg-white pl-3 pr-10 py-2 text-sm rounded-md transition-all;
+  @apply block w-full bg-white pl-3 pr-10 py-2 text-sm rounded-md shadow-sm transition-all;
 
   @apply text-input-value-light border border-solid border-input-border-light;
   @apply focus:ring-input-border-focus-light focus:border-input-border-focus-light focus:outline-none;
@@ -13,7 +13,7 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   text-overflow: '';
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0);
+  /* box-shadow: 0 0 0 2px rgba(255, 255, 255, 0); */
   transition: box-shadow 0.3s ease-in-out;
 
   /* // temporary fix
