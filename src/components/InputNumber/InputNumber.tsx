@@ -18,7 +18,7 @@ export interface Props {
   error?: string
   icon?: any
   id?: string
-  inputRef?: string
+  inputRef?: React.RefObject<HTMLInputElement>
   label?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
@@ -66,6 +66,9 @@ function InputNumber({
     InputNumberStyles['sbui-inputnumber-button'],
     InputNumberStyles['sbui-inputnumber-button-up'],
   ]
+  const inputRefCurrent = inputRef
+    ? inputRef
+    : React.createRef<HTMLInputElement>()
   const iconDownClasses = [
     InputNumberStyles['sbui-inputnumber-button'],
     InputNumberStyles['sbui-inputnumber-button-down'],
@@ -73,6 +76,14 @@ function InputNumber({
   if (error) inputClasses.push(InputNumberStyles['sbui-inputnumber--error'])
   if (icon) inputClasses.push(InputNumberStyles['sbui-inputnumber--with-icon'])
   if (size) inputClasses.push(InputNumberStyles[`sbui-inputnumber--${size}`])
+
+  const onClickChevronUp = () => {
+    inputRefCurrent.current?.stepUp()
+  }
+
+  const onClickChevronDown = () => {
+    inputRefCurrent.current?.stepDown()
+  }
 
   return (
     <div className={className}>
@@ -99,7 +110,7 @@ function InputNumber({
             onBlur={onBlur ? (event) => onBlur(event) : undefined}
             onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
             placeholder={placeholder}
-            ref={inputRef}
+            ref={inputRefCurrent}
             type={'number'}
             value={value}
             className={inputClasses.join(' ')}
@@ -107,8 +118,14 @@ function InputNumber({
             max={max}
           />
           <div className={InputNumberStyles['sbui-inputnumber-nav']}>
-            <IconChevronUp className={iconUpClasses.join(' ')} />
-            <IconChevronDown className={iconDownClasses.join(' ')} />
+            <IconChevronUp
+              className={iconUpClasses.join(' ')}
+              onClick={onClickChevronUp}
+            />
+            <IconChevronDown
+              className={iconDownClasses.join(' ')}
+              onClick={onClickChevronDown}
+            />
           </div>
           {icon && <InputIconContainer icon={icon} />}
           {error ? (
