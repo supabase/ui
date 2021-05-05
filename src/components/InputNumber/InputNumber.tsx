@@ -1,6 +1,8 @@
 import React from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
+import { IconChevronDown } from '../Icon/icons/IconChevronDown'
+import { IconChevronUp } from '../Icon/icons/IconChevronUp'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import { Space } from '../../index'
 // @ts-ignore
@@ -60,6 +62,14 @@ function InputNumber({
   max,
 }: Props) {
   let inputClasses = [InputNumberStyles['sbui-inputnumber']]
+  const iconUpClasses = [
+    InputNumberStyles['sbui-inputnumber-button'],
+    InputNumberStyles['sbui-inputnumber-button-up'],
+  ]
+  const iconDownClasses = [
+    InputNumberStyles['sbui-inputnumber-button'],
+    InputNumberStyles['sbui-inputnumber-button-down'],
+  ]
   if (error) inputClasses.push(InputNumberStyles['sbui-inputnumber--error'])
   if (icon) inputClasses.push(InputNumberStyles['sbui-inputnumber--with-icon'])
   if (size) inputClasses.push(InputNumberStyles[`sbui-inputnumber--${size}`])
@@ -96,6 +106,10 @@ function InputNumber({
             min={min}
             max={max}
           />
+          <div className={InputNumberStyles['sbui-inputnumber-nav']}>
+            <IconChevronUp className={iconUpClasses.join(' ')} />
+            <IconChevronDown className={iconDownClasses.join(' ')} />
+          </div>
           {icon && <InputIconContainer icon={icon} />}
           {error ? (
             <Space

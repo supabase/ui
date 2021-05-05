@@ -14,6 +14,8 @@
   font-family: inherit;
   transition: box-shadow 0.3s ease-in-out;
   -moz-appearance: textfield;
+  float: left;
+  display: block;
 }
 
 .sbui-inputnumber[type='number']::-webkit-inner-spin-button,
@@ -24,6 +26,7 @@
 
 .sbui-inputnumber:focus {
   box-shadow: 0 0 0 2px rgba(62, 207, 142, 0.1);
+  outline: 0;
 }
 
 .sbui-inputnumber--error {
@@ -32,6 +35,55 @@
 
 .sbui-inputnumber-actions-container {
   @apply absolute inset-y-0 right-0 pl-3 pr-1 flex items-center;
+}
+
+.sbui-inputnumber-nav {
+  float: left;
+  position: relative;
+  height: 38px;
+}
+
+.sbui-inputnumber-button {
+  @apply block box-border pl-3 pr-3 py-2 w-full rounded-md shadow-sm text-sm border border-solid transition-all;
+  @apply bg-white border-gray-300;
+
+  position: relative;
+  cursor: pointer;
+  width: 21px;
+  text-align: center;
+  color: #333;
+  font-size: 13px;
+  font-family: 'FontAwesome' !important;
+  line-height: 1.5;
+  padding: 0;
+  background: #fafafa;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.sbui-inputnumber-button:active {
+  background: #eaeaea;
+}
+
+.sbui-inputnumber-button-up {
+  position: absolute;
+  height: 50%;
+  top: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0 4px 0 0;
+  line-height: 1.6;
+}
+
+.sbui-inputnumber-button-down {
+  position: absolute;
+  bottom: 0;
+  height: 50%;
+  border-radius: 0 0 4px 0;
 }
 
 /*
