@@ -13,6 +13,13 @@
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0);
   font-family: inherit;
   transition: box-shadow 0.3s ease-in-out;
+  -moz-appearance: textfield;
+}
+
+.sbui-inputnumber[type='number']::-webkit-inner-spin-button,
+.sbui-inputnumber[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .sbui-inputnumber:focus {
