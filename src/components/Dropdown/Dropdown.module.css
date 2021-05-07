@@ -6,8 +6,29 @@
 
 .sbui-dropdown-item {
   @apply px-4 py-2;
+  cursor: 'default';
 }
 
+.sbui-dropdown-item:focus {
+  @apply focus:ring-1 ring-brand-500;
+  outline: 'none';
+  /* background-color: 'dodgerblue'; */
+  color: 'white';
+}
+
+,
 .sbui-dropdown-item__content {
   @apply w-full;
 }
+
+/* 
+fontSize: 13,
+  padding: '5px 10px',
+  borderRadius: 3,
+  cursor: 'default',
+
+  '&:focus': {
+    outline: 'none',
+    backgroundColor: 'dodgerblue',
+    color: 'white',
+  }, */

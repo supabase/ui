@@ -7,6 +7,9 @@ import Typography from '../Typography'
 // import { AutoForm } from 'uniforms'
 
 import { Dropdown } from './'
+import { IconLogIn } from '../Icon/icons/IconLogIn'
+import { Input } from '../Input'
+import { IconSearch } from '../Icon/icons/IconSearch'
 
 export default {
   title: 'Navigation/Dropdown',
@@ -18,22 +21,38 @@ export const Default = (args: any) => (
     <Dropdown
       {...args}
       overlay={[
+        <Dropdown.Misc>
+          <Typography.Text>Signed in as </Typography.Text>
+          <Typography.Text strong>tom@example.com </Typography.Text>
+        </Dropdown.Misc>,
+        <Divider light />,
+        <Dropdown.Item>
+          <Typography.Text>Signed in as </Typography.Text>
+          <Typography.Text strong>tom@example.com </Typography.Text>
+        </Dropdown.Item>,
+        // <Input />,
+        <Dropdown.Item>
+          {/* <input id="testinput" /> */}
+          <Input size="tiny" icon={<IconSearch />} autofocus={false} />
+        </Dropdown.Item>,
+        <Dropdown.Item>
+          <Typography.Text>Signed in as </Typography.Text>
+          <Typography.Text strong>tom@example.com </Typography.Text>
+        </Dropdown.Item>,
         <Dropdown.Item>
           <Typography.Text>Signed in as </Typography.Text>
           <Typography.Text strong>tom@example.com </Typography.Text>
         </Dropdown.Item>,
         <Divider light />,
-        <Menu>
-          <Menu.Item icon={<IconSettings size="tiny" />}>Settings</Menu.Item>
-          <Divider light />
-          <Menu.Item>Something</Menu.Item>
-          <Menu.Item>Something</Menu.Item>
-        </Menu>,
-        <Divider light />,
-        <Dropdown.Item>
-          <Button type="default" icon={<IconLogOut />}>
-            Log out
-          </Button>
+        // <Menu>
+        //   <Menu.Item icon={<IconSettings size="tiny" />}>Settings</Menu.Item>
+        //   <Divider light />
+        //   <Menu.Item>Something</Menu.Item>
+        //   <Menu.Item>Something</Menu.Item>
+        // </Menu>,
+        // <Divider light />,
+        <Dropdown.Item icon={<IconLogIn />}>
+          <Typography.Text>Log out</Typography.Text>
         </Dropdown.Item>,
       ]}
     >
@@ -66,9 +85,7 @@ export const doNotcloseOverlay = (args: any) => (
         </Menu>,
         <Divider light />,
         <Dropdown.Item>
-          <Button type="default" icon={<IconLogOut />}>
-            Log out
-          </Button>
+          <Button icon={<IconLogOut />}>Log out</Button>
         </Dropdown.Item>,
       ]}
     >

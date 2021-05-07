@@ -9,6 +9,8 @@ import { Space } from '../Space'
 import Overlay from '../../lib/Overlay/Overlay'
 import { AnimationTailwindClasses } from '../../types'
 
+import * as RadixDropdown from '@radix-ui/react-dropdown-menu'
+
 interface Props {
   visible?: boolean
   overlay?: React.ReactNode
@@ -35,11 +37,22 @@ function Dropdown(props: Props) {
     classes.push(props.className)
   }
   return (
-    <Overlay triggerElement={props.children} {...props}>
-      <Card className={classes.join(' ')} style={props.style}>
-        {props.overlay}
-      </Card>
-    </Overlay>
+    <RadixDropdown.Root>
+      {/* <Overlay
+        triggerElement={[ */}
+      <RadixDropdown.Trigger className="border-none bg-transparent p-0">
+        {props.children}
+      </RadixDropdown.Trigger>
+      {/* ,]}
+        {...props}
+      > */}
+      <RadixDropdown.Content sideOffset={8} side="bottom" align="end">
+        <Card className={classes.join(' ')} style={props.style}>
+          {props.overlay}
+        </Card>
+      </RadixDropdown.Content>
+      {/* </Overlay> */}
+    </RadixDropdown.Root>
   )
 }
 
@@ -49,6 +62,21 @@ interface ItemProps {
 }
 
 export function Item({ children, icon }: ItemProps) {
+  return (
+    <RadixDropdown.Item className={DropdownStyles['sbui-dropdown-item']}>
+      <Typography.Text>
+        <Space>
+          {icon && icon}
+          <span className={DropdownStyles['sbui-dropdown-item__content']}>
+            {children}
+          </span>
+        </Space>
+      </Typography.Text>
+    </RadixDropdown.Item>
+  )
+}
+
+export function Misc({ children, icon }: ItemProps) {
   return (
     <div className={DropdownStyles['sbui-dropdown-item']}>
       <Typography.Text>
@@ -64,4 +92,5 @@ export function Item({ children, icon }: ItemProps) {
 }
 
 Dropdown.Item = Item
+Dropdown.Misc = Misc
 export default Dropdown
