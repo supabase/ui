@@ -8,7 +8,7 @@ Supabase UI is still a work-in-progress until a major release is published.
 [![Product hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=290768&theme=light)](https://www.producthunt.com/posts/supabase-ui)
 
 
-[View full storybook documentation](https://ui.supabase.com)
+[View docs](https://ui.supabase.com)
 
 ## Install Supabase UI
 
