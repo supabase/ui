@@ -19,9 +19,9 @@ interface Props {
   icon?: React.ReactNode
   loading?: boolean
   onCancel?: any
-  onCancelText?: string
+  cancelText?: string
   onConfirm?: any
-  onConfirmText?: string
+  confirmText?: string
   showIcon?: boolean
   footerBackground?: boolean
   title?: string
@@ -47,9 +47,9 @@ const Modal = ({
   layout = 'horizontal',
   loading = false,
   onCancel,
-  onCancelText = 'Cancel',
+  cancelText = 'Cancel',
   onConfirm,
-  onConfirmText = 'Confirm',
+  confirmText = 'Confirm',
   showIcon = false,
   title,
   footerBackground,
@@ -102,14 +102,14 @@ const Modal = ({
         onClick={() => (onCancel ? onCancel() : null)}
         disabled={loading}
       >
-        {onCancelText}
+        {cancelText}
       </Button>
       <Button
         onClick={() => (onConfirm ? onConfirm() : null)}
         loading={loading}
         danger={variant === 'danger'}
       >
-        {onConfirmText}
+        {confirmText}
       </Button>
     </Space>
   )

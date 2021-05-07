@@ -19,9 +19,9 @@ interface Props {
   hideFooter?: boolean
   customFooter?: React.ReactNode
   onCancel?: any
-  onCancelText?: string
+  cancelText?: string
   onConfirm?: any
-  onConfirmText?: string
+  confirmText?: string
   transition?: AnimationTailwindClasses
   transitionOverlay?: AnimationTailwindClasses
 }
@@ -40,8 +40,8 @@ const SidePanel = ({
   customFooter = undefined,
   onConfirm,
   onCancel,
-  onConfirmText = 'Confirm',
-  onCancelText = 'Cancel',
+  confirmText = 'Confirm',
+  cancelText = 'Cancel',
   transition,
   transitionOverlay,
 }: Props) => {
@@ -81,13 +81,13 @@ const SidePanel = ({
           type="outline"
           onClick={() => (onCancel ? onCancel() : null)}
         >
-          {onCancelText}
+          {cancelText}
         </Button>
         <Button
           loading={loading}
           onClick={() => (onConfirm ? onConfirm() : null)}
         >
-          {onConfirmText}
+          {confirmText}
         </Button>
       </Space>
     </div>
