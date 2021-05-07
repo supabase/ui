@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import { IconChevronDown } from '../Icon/icons/IconChevronDown'
@@ -61,7 +61,8 @@ function InputNumber({
   min,
   max,
 }: Props) {
-  let inputClasses = [InputNumberStyles['sbui-inputnumber']]
+  const [isFocused, setIsFocused] = useState<boolean>(false)
+  const inputClasses = [InputNumberStyles['sbui-inputnumber']]
   const iconUpClasses = [
     InputNumberStyles['sbui-inputnumber-button'],
     InputNumberStyles['sbui-inputnumber-button-up'],
@@ -73,9 +74,13 @@ function InputNumber({
     InputNumberStyles['sbui-inputnumber-button'],
     InputNumberStyles['sbui-inputnumber-button-down'],
   ]
+  const iconNavClasses = [InputNumberStyles['sbui-inputnumber-nav']]
   if (error) inputClasses.push(InputNumberStyles['sbui-inputnumber--error'])
   if (icon) inputClasses.push(InputNumberStyles['sbui-inputnumber--with-icon'])
-  if (size) inputClasses.push(InputNumberStyles[`sbui-inputnumber--${size}`])
+  if (size) {
+    inputClasses.push(InputNumberStyles[`sbui-inputnumber--${size}`])
+    iconNavClasses.push(InputNumberStyles[`sbui-inputnumber-nav--${size}`])
+  }
 
   const onClickChevronUp = () => {
     inputRefCurrent.current?.stepUp()
@@ -84,6 +89,15 @@ function InputNumber({
   const onClickChevronDown = () => {
     inputRefCurrent.current?.stepDown()
   }
+
+  useEffect(() => {
+    if (
+      document.hasFocus() &&
+      inputRefCurrent.current.contains(document.activeElement)
+    ) {
+      setIsFocused(true)
+    }
+  }, [])
 
   return (
     <div className={className}>
@@ -106,8 +120,22 @@ function InputNumber({
             id={id}
             name={name}
             onChange={onChange ? (event) => onChange(event) : undefined}
-            onFocus={onFocus ? (event) => onFocus(event) : undefined}
-            onBlur={onBlur ? (event) => onBlur(event) : undefined}
+            onFocus={
+              onFocus
+                ? (event) => {
+                    setIsFocused(true)
+                    onFocus(event)
+                  }
+                : undefined
+            }
+            onBlur={
+              onBlur
+                ? (event) => {
+                    setIsFocused(false)
+                    onBlur(event)
+                  }
+                : undefined
+            }
             onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
             placeholder={placeholder}
             ref={inputRefCurrent}
@@ -117,16 +145,18 @@ function InputNumber({
             min={min}
             max={max}
           />
-          <div className={InputNumberStyles['sbui-inputnumber-nav']}>
-            <IconChevronUp
-              className={iconUpClasses.join(' ')}
-              onClick={onClickChevronUp}
-            />
-            <IconChevronDown
-              className={iconDownClasses.join(' ')}
-              onClick={onClickChevronDown}
-            />
-          </div>
+          {isFocused ? (
+            <div className={iconNavClasses.join(' ')}>
+              <IconChevronUp
+                className={iconUpClasses.join(' ')}
+                onClick={onClickChevronUp}
+              />
+              <IconChevronDown
+                className={iconDownClasses.join(' ')}
+                onClick={onClickChevronDown}
+              />
+            </div>
+          ) : null}
           {icon && <InputIconContainer icon={icon} />}
           {error ? (
             <Space

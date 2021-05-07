@@ -18,8 +18,8 @@
   display: block;
 }
 
-.sbui-inputnumber[type='number']::-webkit-inner-spin-button,
-.sbui-inputnumber[type='number']::-webkit-outer-spin-button {
+.sbui-inputnumber::-webkit-inner-spin-button,
+.sbui-inputnumber::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -40,7 +40,6 @@
 .sbui-inputnumber-nav {
   float: left;
   position: relative;
-  height: 38px;
 }
 
 .sbui-inputnumber-button {
@@ -54,7 +53,6 @@
   text-align: center;
   color: #333;
   font-size: 13px;
-  font-family: 'FontAwesome' !important;
   line-height: 1.5;
   padding: 0;
   background: #fafafa;
@@ -107,6 +105,21 @@
   @apply px-6 py-3 text-base;
 }
 
+.sbui-inputnumber-nav--tiny {
+  height: 30px;
+}
+.sbui-inputnumber-nav--small {
+  height: 34px;
+}
+.sbui-inputnumber-nav--medium {
+  height: 38px;
+}
+.sbui-inputnumber-nav--large {
+  height: 42px;
+}
+.sbui-inputnumber-nav--xlarge {
+  height: 50px;
+}
 /*
     Input icon
   */
