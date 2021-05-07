@@ -6,9 +6,20 @@ import Typography from '../Typography'
 // @ts-ignore
 import MenuStyles from './Menu.module.css'
 
-function Menu({ children }: any) {
+interface MenuProps {
+  children: React.ReactNode
+  className: string
+  style: React.CSSProperties
+}
+function Menu({ children, className, style }: MenuProps) {
   return (
-    <div role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+    <div
+      role="menu"
+      aria-orientation="vertical"
+      aria-labelledby="options-menu"
+      className={className}
+      style={style}
+    >
       {children}
     </div>
   )
