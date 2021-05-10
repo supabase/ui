@@ -1,17 +1,13 @@
 import React, { useState } from 'react'
+
+import * as RadixDropdown from '@radix-ui/react-dropdown-menu'
 import { Card } from '../Card'
-import Typography from '../Typography'
+import { IconCheck } from '../Icon/icons/IconCheck'
 
 // @ts-ignore
 import DropdownStyles from './Dropdown.module.css'
 
-import { Space } from '../Space'
-import Overlay from '../../lib/Overlay/Overlay'
-import { AnimationTailwindClasses } from '../../types'
-
-import * as RadixDropdown from '@radix-ui/react-dropdown-menu'
 import type * as RadixDropdownTypes from '@radix-ui/react-dropdown-menu/'
-import { IconCheck } from '../Icon/icons/IconCheck'
 
 interface RootProps {
   open?: boolean
@@ -83,12 +79,10 @@ export function Item({ children, icon, disabled }: ItemProps) {
 export function Misc({ children, icon }: ItemProps) {
   return (
     <div className={DropdownStyles['sbui-dropdown-item']}>
-      <Space>
-        {icon && icon}
-        <span className={DropdownStyles['sbui-dropdown-item__content']}>
-          {children}
-        </span>
-      </Space>
+      {icon && icon}
+      <span className={DropdownStyles['sbui-dropdown-item__content']}>
+        {children}
+      </span>
     </div>
   )
 }
@@ -167,7 +161,6 @@ export function RadioGroup({
   const handleChange = (e: string) => {
     if (onChange) onChange(e)
     setValue(e)
-    console.log(e)
   }
 
   return (
