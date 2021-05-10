@@ -46,7 +46,12 @@ function Dropdown({
         {children}
       </RadixDropdown.Trigger>
 
-      <RadixDropdown.Content sideOffset={8} side={side} align={align}>
+      <RadixDropdown.Content
+        sideOffset={8}
+        side={side}
+        align={align}
+        className={DropdownStyles['sbui-dropdown__content']}
+      >
         <Card className={classes.join(' ')} style={style}>
           {overlay}
         </Card>

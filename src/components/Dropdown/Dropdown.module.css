@@ -24,7 +24,7 @@
   /* @apply focus:ring-1 ring-brand-500; */
   /* outline: 'none'; */
   /* background-color: 'dodgerblue'; */
-  color: 'white';
+  /* color: 'white'; */
 }
 
 .sbui-dropdown-item__content {
@@ -33,4 +33,20 @@
 
 .sbui-dropdown-checkbox {
   @apply flex items-center space-x-2;
+}
+
+@keyframes transition {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.sbui-dropdown__content {
+  transform-origin: var(--radix-dropdown-menu-content-transform-origin);
+  animation: transition 0.1s ease-out;
 }
