@@ -109,6 +109,43 @@ module.exports = {
           800: '#24b47e', // green-500 in dashboard
           900: '#2c9c6a',
         },
+
+        /* 
+          typography
+        */
+        'typography-body': {
+          light: coolGray[600],
+          dark: gray[100],
+        },
+        'typography-body-secondary': {
+          light: coolGray[500],
+          dark: gray[200],
+        },
+        'typography-body-strong': {
+          light: coolGray[100],
+          dark: 'white',
+        },
+        'typography-body-faded': {
+          light: coolGray[400],
+          dark: gray[300],
+        },
+
+        /* 
+          app backgrounds
+        */
+        'bg-primary': {
+          light: 'white',
+          dark: gray[800],
+        },
+        'bg-secondary': {
+          light: blueGray[100],
+          dark: gray[700],
+        },
+        'bg-alt': {
+          light: blueGray[50], // gray[100],
+          dark: gray[600],
+        },
+
         /* 
           Forms
         */
