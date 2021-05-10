@@ -1,14 +1,18 @@
 .sbui-dropdown-card .sbui-card-content {
-  @apply dark:bg-dark-800;
+  @apply dark:bg-dark-800 p-0;
   overflow: visible;
   padding: 0;
 }
 
 .sbui-dropdown-item {
-  @apply px-4 py-2;
+  @apply px-4 py-1.5 flex items-center space-x-2;
   @apply cursor-pointer;
   @apply focus:bg-bg-secondary-light dark:focus:bg-bg-secondary-dark border-none;
   cursor: 'default';
+}
+
+.sbui-dropdown-item svg {
+  @apply text-typography-body-secondary-light dark:text-typography-body-secondary-dark;
 }
 
 .sbui-dropdown-item:focus-visible {
@@ -23,19 +27,10 @@
   color: 'white';
 }
 
-,
 .sbui-dropdown-item__content {
   @apply w-full;
 }
 
-/* 
-fontSize: 13,
-  padding: '5px 10px',
-  borderRadius: 3,
-  cursor: 'default',
-
-  '&:focus': {
-    outline: 'none',
-    backgroundColor: 'dodgerblue',
-    color: 'white',
-  }, */
+.sbui-dropdown-checkbox {
+  @apply flex items-center space-x-2;
+}

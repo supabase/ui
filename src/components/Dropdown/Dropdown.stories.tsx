@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '../Button'
 import { Divider } from '../Divider'
 import { Menu } from '../Menu'
@@ -22,46 +22,23 @@ export const Default = (args: any) => (
       {...args}
       overlay={[
         <Dropdown.Misc>
-          <Input
-            size="tiny"
-            icon={<IconSearch size="tiny" />}
-            autofocus={false}
-          />
-        </Dropdown.Misc>,
-        <Dropdown.Misc>
-          <Typography.Text small>Signed in as </Typography.Text>
-          <Typography.Text small strong>
-            tom@example.com{' '}
-          </Typography.Text>
+          <div>
+            <Typography.Text small>Signed in as </Typography.Text>
+          </div>
+          <div>
+            <Typography.Text small strong>
+              tom@example.com{' '}
+            </Typography.Text>
+          </div>
         </Dropdown.Misc>,
         <Divider light />,
         <Dropdown.Item>
-          <Typography.Text small>Signed in as </Typography.Text>
-          <Typography.Text small strong>
-            tom@example.com{' '}
-          </Typography.Text>
-        </Dropdown.Item>,
-        // <Input />,
-        <Dropdown.Item>
-          <Typography.Text small>Signed in as </Typography.Text>
-          <Typography.Text small strong>
-            tom@example.com{' '}
-          </Typography.Text>
+          <Typography.Text small>Account</Typography.Text>
         </Dropdown.Item>,
         <Dropdown.Item>
-          <Typography.Text small>Signed in as </Typography.Text>
-          <Typography.Text small strong>
-            tom@example.com{' '}
-          </Typography.Text>
+          <Typography.Text small>Settings</Typography.Text>
         </Dropdown.Item>,
         <Divider light />,
-        // <Menu>
-        //   <Menu.Item icon={<IconSettings size="tiny" />}>Settings</Menu.Item>
-        //   <Divider light />
-        //   <Menu.Item>Something</Menu.Item>
-        //   <Menu.Item>Something</Menu.Item>
-        // </Menu>,
-        // <Divider light />,
         <Dropdown.Item icon={<IconLogIn size="tiny" />}>
           <Typography.Text small>Log out</Typography.Text>
         </Dropdown.Item>,
@@ -190,3 +167,62 @@ export const SearchList = (args: any) => (
 )
 
 SearchList.args = {}
+
+export const Checkbox = (args: any) => {
+  const [checked, setChecked] = useState(false)
+
+  return (
+    <div style={{ margin: '0 auto', minHeight: '420px', marginTop: '220px' }}>
+      <Dropdown
+        {...args}
+        overlay={[
+          <Dropdown.Item icon={<IconSettings size="small" />}>
+            <Typography.Text small>Account</Typography.Text>
+          </Dropdown.Item>,
+          <Dropdown.Item>
+            <Typography.Text small>Settings</Typography.Text>
+          </Dropdown.Item>,
+          <Divider light />,
+          <Dropdown.Checkbox checked={checked} onChange={setChecked}>
+            <Typography.Text small>Show subtitles</Typography.Text>
+          </Dropdown.Checkbox>,
+        ]}
+      >
+        <Button type="outline" iconRight={<IconChevronDown />}>
+          Click for dropdown
+        </Button>
+      </Dropdown>
+    </div>
+  )
+}
+
+export const Radio = (args: any) => {
+  const [value, setValue] = useState('red')
+
+  return (
+    <div style={{ margin: '0 auto', minHeight: '420px', marginTop: '220px' }}>
+      <Dropdown
+        {...args}
+        overlay={[
+          <Dropdown.RadioGroup value={value} onChange={setValue}>
+            <Dropdown.Radio value={'red'}>
+              <Typography.Text small>Red</Typography.Text>
+            </Dropdown.Radio>
+
+            <Dropdown.Radio value={'blue'}>
+              <Typography.Text small>Blue</Typography.Text>
+            </Dropdown.Radio>
+
+            <Dropdown.Radio value={'green'}>
+              <Typography.Text small>Green</Typography.Text>
+            </Dropdown.Radio>
+          </Dropdown.RadioGroup>,
+        ]}
+      >
+        <Button type="outline" iconRight={<IconChevronDown />}>
+          Click for dropdown
+        </Button>
+      </Dropdown>
+    </div>
+  )
+}

@@ -111,6 +111,26 @@ module.exports = {
         },
 
         /* 
+          typography
+        */
+        'typography-body': {
+          light: coolGray[600],
+          dark: gray[100],
+        },
+        'typography-body-secondary': {
+          light: coolGray[500],
+          dark: gray[200],
+        },
+        'typography-body-strong': {
+          light: coolGray[100],
+          dark: 'white',
+        },
+        'typography-body-faded': {
+          light: coolGray[400],
+          dark: gray[300],
+        },
+
+        /* 
           app backgrounds
         */
         'bg-primary': {
