@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import { Button } from '../Button'
 import { Divider } from '../Divider'
-import { Menu } from '../Menu'
 import { IconSettings, IconLogOut, IconChevronDown } from './../../index'
 import Typography from '../Typography'
-// import { AutoForm } from 'uniforms'
 
 import { Dropdown } from './'
 import { IconLogIn } from '../Icon/icons/IconLogIn'
@@ -58,20 +56,17 @@ export const doNotcloseOverlay = (args: any) => (
     <Dropdown
       {...args}
       overlay={[
-        <Dropdown.Item>
+        <Dropdown.Misc>
           <Typography.Text>Signed in as </Typography.Text>
           <Typography.Text strong>tom@example.com </Typography.Text>
+        </Dropdown.Misc>,
+        <Divider light />,
+        <Dropdown.Item>
+          <Typography.Text small>Account</Typography.Text>
         </Dropdown.Item>,
-        <Divider light />,
-        <Menu>
-          <Menu.Item doNotCloseOverlay icon={<IconSettings size="tiny" />}>
-            This button will not close dropdown
-          </Menu.Item>
-          <Divider light />
-          <Menu.Item>Something</Menu.Item>
-          <Menu.Item>Something</Menu.Item>
-        </Menu>,
-        <Divider light />,
+        <Dropdown.Item>
+          <Typography.Text small>Settings</Typography.Text>
+        </Dropdown.Item>,
         <Dropdown.Item>
           <Button icon={<IconLogOut />}>Log out</Button>
         </Dropdown.Item>,
@@ -105,14 +100,12 @@ export const withCustomStyles = (args: any) => (
           <Typography.Text strong>tom@example.com </Typography.Text>
         </Dropdown.Item>,
         <Divider light />,
-        <Menu>
-          <Menu.Item doNotCloseOverlay icon={<IconSettings size="tiny" />}>
-            This button will not close dropdown
-          </Menu.Item>
-          <Divider light />
-          <Menu.Item>Something</Menu.Item>
-          <Menu.Item>Something</Menu.Item>
-        </Menu>,
+        <Dropdown.Item>
+          <Typography.Text small>Account</Typography.Text>
+        </Dropdown.Item>,
+        <Dropdown.Item>
+          <Typography.Text small>Settings</Typography.Text>
+        </Dropdown.Item>,
         <Divider light />,
         <Dropdown.Item>
           <Button type="default" icon={<IconLogOut />}>
@@ -147,13 +140,6 @@ export const SearchList = (args: any) => (
           <Typography.Text strong>tom@example.com </Typography.Text>
         </Dropdown.Item>,
         <Divider light />,
-        // <Menu>
-        //   <Menu.Item icon={<IconSettings size="tiny" />}>Settings</Menu.Item>
-        //   <Divider light />
-        //   <Menu.Item>Something</Menu.Item>
-        //   <Menu.Item>Something</Menu.Item>
-        // </Menu>,
-        // <Divider light />,
         <Dropdown.Item icon={<IconLogIn />}>
           <Typography.Text>Log out</Typography.Text>
         </Dropdown.Item>,
