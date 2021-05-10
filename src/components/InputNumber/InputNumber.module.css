@@ -38,8 +38,13 @@
 }
 
 .sbui-inputnumber-nav {
+  @apply hidden;
   float: left;
   position: relative;
+}
+
+.sbui-inputnumber:focus + .sbui-inputnumber-nav {
+  @apply block;
 }
 
 .sbui-inputnumber-button {
