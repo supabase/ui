@@ -13,53 +13,44 @@ import * as RadixDropdown from '@radix-ui/react-dropdown-menu'
 import type * as RadixDropdownTypes from '@radix-ui/react-dropdown-menu/'
 import { IconCheck } from '../Icon/icons/IconCheck'
 
-interface Props {
-  visible?: boolean
-  overlay?: React.ReactNode
-  children?: React.ReactNode
-  placement?:
-    | 'bottomLeft'
-    | 'bottomRight'
-    | 'bottomCenter'
-    | 'topLeft'
-    | 'topRight'
-    | 'topCenter'
+interface RootProps {
+  open?: boolean
+  onOpenChange?: RadixDropdownTypes.DropdownMenuOwnProps['onOpenChange']
+  id?: string
   side?: RadixDropdownTypes.DropdownMenuContentOwnProps['side']
   align?: RadixDropdownTypes.DropdownMenuContentOwnProps['align']
-  onVisibleChange?: any
-  disabled?: boolean
+  overlay?: React.ReactNode
+  children?: React.ReactNode
   style?: React.CSSProperties
   className?: string
-  overlayStyle?: React.CSSProperties
-  overlayClassName?: string
-  transition?: AnimationTailwindClasses
 }
 
-function Dropdown(props: Props) {
+function Dropdown({
+  open,
+  onOpenChange,
+  id,
+  side,
+  align,
+  overlay,
+  children,
+  style,
+  className,
+}: RootProps) {
   let classes = [DropdownStyles['sbui-dropdown-card']]
-  if (props.className) {
-    classes.push(props.className)
+  if (className) {
+    classes.push(className)
   }
   return (
-    <RadixDropdown.Root>
-      {/* <Overlay
-        triggerElement={[ */}
+    <RadixDropdown.Root onOpenChange={onOpenChange} open={open} id={id}>
       <RadixDropdown.Trigger className="border-none bg-transparent p-0 focus:border-none focus:ring-0">
-        {props.children}
+        {children}
       </RadixDropdown.Trigger>
-      {/* ,]}
-        {...props}
-      > */}
-      <RadixDropdown.Content
-        sideOffset={8}
-        side={props.side}
-        align={props.align}
-      >
-        <Card className={classes.join(' ')} style={props.style}>
-          {props.overlay}
+
+      <RadixDropdown.Content sideOffset={8} side={side} align={align}>
+        <Card className={classes.join(' ')} style={style}>
+          {overlay}
         </Card>
       </RadixDropdown.Content>
-      {/* </Overlay> */}
     </RadixDropdown.Root>
   )
 }
