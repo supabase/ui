@@ -6,12 +6,19 @@
 
 .sbui-dropdown-item {
   @apply px-4 py-2;
+  @apply cursor-pointer;
+  @apply focus:bg-bg-secondary-light dark:focus:bg-bg-secondary-dark border-none;
   cursor: 'default';
 }
 
-.sbui-dropdown-item:focus {
-  @apply focus:ring-1 ring-brand-500;
-  outline: 'none';
+.sbui-dropdown-item:focus-visible {
+  border: none;
+  outline: none;
+}
+
+.sbui-dropdown-item:hover {
+  /* @apply focus:ring-1 ring-brand-500; */
+  /* outline: 'none'; */
   /* background-color: 'dodgerblue'; */
   color: 'white';
 }

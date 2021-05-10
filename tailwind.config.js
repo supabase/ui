@@ -109,6 +109,23 @@ module.exports = {
           800: '#24b47e', // green-500 in dashboard
           900: '#2c9c6a',
         },
+
+        /* 
+          app backgrounds
+        */
+        'bg-primary': {
+          light: 'white',
+          dark: gray[800],
+        },
+        'bg-secondary': {
+          light: blueGray[100],
+          dark: gray[700],
+        },
+        'bg-alt': {
+          light: blueGray[50], // gray[100],
+          dark: gray[600],
+        },
+
         /* 
           Forms
         */

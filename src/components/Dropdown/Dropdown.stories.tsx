@@ -22,26 +22,37 @@ export const Default = (args: any) => (
       {...args}
       overlay={[
         <Dropdown.Misc>
-          <Typography.Text>Signed in as </Typography.Text>
-          <Typography.Text strong>tom@example.com </Typography.Text>
+          <Input
+            size="tiny"
+            icon={<IconSearch size="tiny" />}
+            autofocus={false}
+          />
+        </Dropdown.Misc>,
+        <Dropdown.Misc>
+          <Typography.Text small>Signed in as </Typography.Text>
+          <Typography.Text small strong>
+            tom@example.com{' '}
+          </Typography.Text>
         </Dropdown.Misc>,
         <Divider light />,
         <Dropdown.Item>
-          <Typography.Text>Signed in as </Typography.Text>
-          <Typography.Text strong>tom@example.com </Typography.Text>
+          <Typography.Text small>Signed in as </Typography.Text>
+          <Typography.Text small strong>
+            tom@example.com{' '}
+          </Typography.Text>
         </Dropdown.Item>,
         // <Input />,
         <Dropdown.Item>
-          {/* <input id="testinput" /> */}
-          <Input size="tiny" icon={<IconSearch />} autofocus={false} />
+          <Typography.Text small>Signed in as </Typography.Text>
+          <Typography.Text small strong>
+            tom@example.com{' '}
+          </Typography.Text>
         </Dropdown.Item>,
         <Dropdown.Item>
-          <Typography.Text>Signed in as </Typography.Text>
-          <Typography.Text strong>tom@example.com </Typography.Text>
-        </Dropdown.Item>,
-        <Dropdown.Item>
-          <Typography.Text>Signed in as </Typography.Text>
-          <Typography.Text strong>tom@example.com </Typography.Text>
+          <Typography.Text small>Signed in as </Typography.Text>
+          <Typography.Text small strong>
+            tom@example.com{' '}
+          </Typography.Text>
         </Dropdown.Item>,
         <Divider light />,
         // <Menu>
@@ -51,8 +62,8 @@ export const Default = (args: any) => (
         //   <Menu.Item>Something</Menu.Item>
         // </Menu>,
         // <Divider light />,
-        <Dropdown.Item icon={<IconLogIn />}>
-          <Typography.Text>Log out</Typography.Text>
+        <Dropdown.Item icon={<IconLogIn size="tiny" />}>
+          <Typography.Text small>Log out</Typography.Text>
         </Dropdown.Item>,
       ]}
     >
@@ -141,3 +152,41 @@ export const withCustomStyles = (args: any) => (
 )
 
 withCustomStyles.args = {}
+
+export const SearchList = (args: any) => (
+  <div style={{ margin: '0 auto', minHeight: '420px', marginTop: '220px' }}>
+    <Dropdown
+      {...args}
+      overlay={[
+        <Dropdown.Item>
+          <Input size="tiny" icon={<IconSearch />} autofocus={false} />
+        </Dropdown.Item>,
+        <Dropdown.Item>
+          <Typography.Text>Signed in as </Typography.Text>
+          <Typography.Text strong>tom@example.com </Typography.Text>
+        </Dropdown.Item>,
+        <Dropdown.Item>
+          <Typography.Text>Signed in as </Typography.Text>
+          <Typography.Text strong>tom@example.com </Typography.Text>
+        </Dropdown.Item>,
+        <Divider light />,
+        // <Menu>
+        //   <Menu.Item icon={<IconSettings size="tiny" />}>Settings</Menu.Item>
+        //   <Divider light />
+        //   <Menu.Item>Something</Menu.Item>
+        //   <Menu.Item>Something</Menu.Item>
+        // </Menu>,
+        // <Divider light />,
+        <Dropdown.Item icon={<IconLogIn />}>
+          <Typography.Text>Log out</Typography.Text>
+        </Dropdown.Item>,
+      ]}
+    >
+      <Button type="outline" iconRight={<IconChevronDown />}>
+        Click for dropdown
+      </Button>
+    </Dropdown>
+  </div>
+)
+
+SearchList.args = {}

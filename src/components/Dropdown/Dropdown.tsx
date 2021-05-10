@@ -10,6 +10,7 @@ import Overlay from '../../lib/Overlay/Overlay'
 import { AnimationTailwindClasses } from '../../types'
 
 import * as RadixDropdown from '@radix-ui/react-dropdown-menu'
+import type * as RadixDropdownTypes from '@radix-ui/react-dropdown-menu/'
 
 interface Props {
   visible?: boolean
@@ -22,6 +23,8 @@ interface Props {
     | 'topLeft'
     | 'topRight'
     | 'topCenter'
+  side?: RadixDropdownTypes.DropdownMenuContentOwnProps['side']
+  align?: RadixDropdownTypes.DropdownMenuContentOwnProps['align']
   onVisibleChange?: any
   disabled?: boolean
   style?: React.CSSProperties
@@ -40,13 +43,17 @@ function Dropdown(props: Props) {
     <RadixDropdown.Root>
       {/* <Overlay
         triggerElement={[ */}
-      <RadixDropdown.Trigger className="border-none bg-transparent p-0">
+      <RadixDropdown.Trigger className="border-none bg-transparent p-0 focus:border-none focus:ring-0">
         {props.children}
       </RadixDropdown.Trigger>
       {/* ,]}
         {...props}
       > */}
-      <RadixDropdown.Content sideOffset={8} side="bottom" align="end">
+      <RadixDropdown.Content
+        sideOffset={8}
+        side={props.side}
+        align={props.align}
+      >
         <Card className={classes.join(' ')} style={props.style}>
           {props.overlay}
         </Card>
@@ -59,11 +66,15 @@ function Dropdown(props: Props) {
 interface ItemProps {
   children: React.ReactNode
   icon?: React.ReactNode
+  disabled?: boolean
 }
 
-export function Item({ children, icon }: ItemProps) {
+export function Item({ children, icon, disabled }: ItemProps) {
   return (
-    <RadixDropdown.Item className={DropdownStyles['sbui-dropdown-item']}>
+    <RadixDropdown.Item
+      className={DropdownStyles['sbui-dropdown-item']}
+      disabled={disabled}
+    >
       <Typography.Text>
         <Space>
           {icon && icon}
