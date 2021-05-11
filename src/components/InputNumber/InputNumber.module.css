@@ -13,10 +13,20 @@
   /* box-shadow: 0 0 0 2px rgba(255, 255, 255, 0); */
   font-family: inherit;
   transition: box-shadow 0.3s ease-in-out;
+  -moz-appearance: textfield;
+  float: left;
+  display: block;
+}
+
+.sbui-inputnumber::-webkit-inner-spin-button,
+.sbui-inputnumber::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .sbui-inputnumber:focus {
   box-shadow: 0 0 0 2px rgba(62, 207, 142, 0.1);
+  outline: 0;
 }
 
 .sbui-inputnumber--error {
@@ -25,6 +35,59 @@
 
 .sbui-inputnumber-actions-container {
   @apply absolute inset-y-0 right-0 pl-3 pr-1 flex items-center;
+}
+
+.sbui-inputnumber-nav {
+  @apply hidden;
+  float: left;
+  position: relative;
+}
+
+.sbui-inputnumber:focus + .sbui-inputnumber-nav {
+  @apply block;
+}
+
+.sbui-inputnumber-button {
+  @apply block box-border pl-3 pr-3 py-2 w-full rounded-md shadow-sm text-sm border border-solid transition-all;
+  @apply bg-white border-gray-300;
+  @apply dark:bg-transparent dark:text-white dark:border-gray-500;
+
+  position: relative;
+  cursor: pointer;
+  width: 21px;
+  text-align: center;
+  color: #333;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 0;
+  background: #fafafa;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.sbui-inputnumber-button:active {
+  background: #eaeaea;
+}
+
+.sbui-inputnumber-button-up {
+  position: absolute;
+  height: 50%;
+  top: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0 4px 0 0;
+  line-height: 1.6;
+}
+
+.sbui-inputnumber-button-down {
+  position: absolute;
+  bottom: 0;
+  height: 50%;
+  border-radius: 0 0 4px 0;
 }
 
 /*
@@ -47,6 +110,21 @@
   @apply px-6 py-3 text-base;
 }
 
+.sbui-inputnumber-nav--tiny {
+  height: 30px;
+}
+.sbui-inputnumber-nav--small {
+  height: 34px;
+}
+.sbui-inputnumber-nav--medium {
+  height: 38px;
+}
+.sbui-inputnumber-nav--large {
+  height: 42px;
+}
+.sbui-inputnumber-nav--xlarge {
+  height: 50px;
+}
 /*
     Input icon
   */

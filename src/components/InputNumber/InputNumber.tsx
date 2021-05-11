@@ -1,6 +1,8 @@
 import React from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
+import { IconChevronDown } from '../Icon/icons/IconChevronDown'
+import { IconChevronUp } from '../Icon/icons/IconChevronUp'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import { Space } from '../../index'
 // @ts-ignore
@@ -16,7 +18,7 @@ export interface Props {
   error?: string
   icon?: any
   id?: string
-  inputRef?: string
+  inputRef?: React.RefObject<HTMLInputElement>
   label?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
@@ -59,10 +61,33 @@ function InputNumber({
   min,
   max,
 }: Props) {
-  let inputClasses = [InputNumberStyles['sbui-inputnumber']]
+  const inputClasses = [InputNumberStyles['sbui-inputnumber']]
+  const iconUpClasses = [
+    InputNumberStyles['sbui-inputnumber-button'],
+    InputNumberStyles['sbui-inputnumber-button-up'],
+  ]
+  const inputRefCurrent = inputRef
+    ? inputRef
+    : React.createRef<HTMLInputElement>()
+  const iconDownClasses = [
+    InputNumberStyles['sbui-inputnumber-button'],
+    InputNumberStyles['sbui-inputnumber-button-down'],
+  ]
+  const iconNavClasses = [InputNumberStyles['sbui-inputnumber-nav']]
   if (error) inputClasses.push(InputNumberStyles['sbui-inputnumber--error'])
   if (icon) inputClasses.push(InputNumberStyles['sbui-inputnumber--with-icon'])
-  if (size) inputClasses.push(InputNumberStyles[`sbui-inputnumber--${size}`])
+  if (size) {
+    inputClasses.push(InputNumberStyles[`sbui-inputnumber--${size}`])
+    iconNavClasses.push(InputNumberStyles[`sbui-inputnumber-nav--${size}`])
+  }
+
+  const onClickChevronUp = () => {
+    inputRefCurrent.current?.stepUp()
+  }
+
+  const onClickChevronDown = () => {
+    inputRefCurrent.current?.stepDown()
+  }
 
   return (
     <div className={className}>
@@ -89,13 +114,23 @@ function InputNumber({
             onBlur={onBlur ? (event) => onBlur(event) : undefined}
             onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
             placeholder={placeholder}
-            ref={inputRef}
+            ref={inputRefCurrent}
             type={'number'}
             value={value}
             className={inputClasses.join(' ')}
             min={min}
             max={max}
           />
+          <div className={iconNavClasses.join(' ')}>
+            <IconChevronUp
+              className={iconUpClasses.join(' ')}
+              onClick={onClickChevronUp}
+            />
+            <IconChevronDown
+              className={iconDownClasses.join(' ')}
+              onClick={onClickChevronDown}
+            />
+          </div>
           {icon && <InputIconContainer icon={icon} />}
           {error ? (
             <Space
