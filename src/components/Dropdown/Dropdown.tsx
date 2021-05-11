@@ -12,7 +12,6 @@ import type * as RadixDropdownTypes from '@radix-ui/react-dropdown-menu/'
 interface RootProps {
   open?: boolean
   onOpenChange?: RadixDropdownTypes.DropdownMenuOwnProps['onOpenChange']
-  id?: string
   side?: RadixDropdownTypes.DropdownMenuContentOwnProps['side']
   align?: RadixDropdownTypes.DropdownMenuContentOwnProps['align']
   overlay?: React.ReactNode
@@ -24,7 +23,6 @@ interface RootProps {
 function Dropdown({
   open,
   onOpenChange,
-  id,
   side,
   align,
   overlay,
@@ -37,7 +35,7 @@ function Dropdown({
     classes.push(className)
   }
   return (
-    <RadixDropdown.Root onOpenChange={onOpenChange} open={open} id={id}>
+    <RadixDropdown.Root onOpenChange={onOpenChange} open={open}>
       <RadixDropdown.Trigger className="border-none bg-transparent p-0 focus:border-none focus:ring-0">
         {children}
       </RadixDropdown.Trigger>

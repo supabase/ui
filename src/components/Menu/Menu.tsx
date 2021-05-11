@@ -8,8 +8,8 @@ import MenuStyles from './Menu.module.css'
 
 interface MenuProps {
   children: React.ReactNode
-  className: string
-  style: React.CSSProperties
+  className?: string
+  style?: React.CSSProperties
 }
 function Menu({ children, className, style }: MenuProps) {
   return (
