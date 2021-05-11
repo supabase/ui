@@ -41,6 +41,7 @@ function Dropdown({
       </RadixDropdown.Trigger>
 
       <RadixDropdown.Content
+        disableOutsidePointerEvents={false}
         sideOffset={8}
         side={side}
         align={align}
