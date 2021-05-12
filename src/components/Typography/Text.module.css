@@ -1,7 +1,6 @@
 .sbui-typography-text {
   @apply text-sm;
-  @apply text-gray-600;
-  @apply dark:text-gray-200;
+  @apply text-typography-body-light dark:text-typography-body-dark;
 }
 
 .sbui-typography-text-small {
@@ -9,8 +8,8 @@
 }
 
 .sbui-typography-text-secondary {
-  @apply text-secondary-text-light;
-  @apply dark:text-secondary-text-dark;
+  @apply text-typography-body-secondary-light;
+  @apply dark:text-typography-body-secondary-dark;
 }
 
 .sbui-typography-text-success {

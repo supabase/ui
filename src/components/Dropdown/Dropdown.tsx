@@ -16,8 +16,8 @@ interface RootProps {
   align?: RadixDropdownTypes.DropdownMenuContentOwnProps['align']
   overlay?: React.ReactNode
   children?: React.ReactNode
-  style?: React.CSSProperties
   className?: string
+  style?: React.CSSProperties
 }
 
 function Dropdown({
@@ -27,10 +27,10 @@ function Dropdown({
   align,
   overlay,
   children,
-  style,
   className,
+  style,
 }: RootProps) {
-  let classes = [DropdownStyles['sbui-dropdown-card']]
+  let classes = [DropdownStyles['sbui-dropdown__content']]
   if (className) {
     classes.push(className)
   }
@@ -45,11 +45,10 @@ function Dropdown({
         sideOffset={8}
         side={side}
         align={align}
-        className={DropdownStyles['sbui-dropdown__content']}
+        className={classes.join(' ')}
+        style={style}
       >
-        <Card className={classes.join(' ')} style={style}>
-          {overlay}
-        </Card>
+        {overlay}
       </RadixDropdown.Content>
     </RadixDropdown.Root>
   )
@@ -59,29 +58,27 @@ interface ItemProps {
   children: React.ReactNode
   icon?: React.ReactNode
   disabled?: boolean
+  onClick?: (event: Event) => void
 }
 
-export function Item({ children, icon, disabled }: ItemProps) {
+export function Item({ children, icon, disabled, onClick }: ItemProps) {
   return (
     <RadixDropdown.Item
       className={DropdownStyles['sbui-dropdown-item']}
       disabled={disabled}
+      onSelect={onClick ? onClick : null}
     >
       {icon && icon}
-      <span className={DropdownStyles['sbui-dropdown-item__content']}>
-        {children}
-      </span>
+      <span>{children}</span>
     </RadixDropdown.Item>
   )
 }
 
 export function Misc({ children, icon }: ItemProps) {
   return (
-    <div className={DropdownStyles['sbui-dropdown-item']}>
+    <div className={DropdownStyles['sbui-dropdown-misc']}>
       {icon && icon}
-      <span className={DropdownStyles['sbui-dropdown-item__content']}>
-        {children}
-      </span>
+      {children}
     </div>
   )
 }
@@ -112,14 +109,16 @@ export function Checkbox({
     <RadixDropdown.CheckboxItem
       checked={checked}
       onCheckedChange={handleChange}
-      className={`${DropdownStyles['sbui-dropdown-item']} ${DropdownStyles['sbui-dropdown-checkbox']}`}
+      className={`${DropdownStyles['sbui-dropdown-item']} ${DropdownStyles['sbui-dropdown-input']}`}
       disabled={disabled}
     >
-      <RadixDropdown.ItemIndicator>
+      <RadixDropdown.ItemIndicator
+        className={DropdownStyles['sbui-dropdown-input__check']}
+      >
         {ItemIndicator ? ItemIndicator : <IconCheck size="tiny" />}
         <RadixDropdown.CheckboxItem />
       </RadixDropdown.ItemIndicator>
-      {children}
+      <span>{children}</span>
     </RadixDropdown.CheckboxItem>
   )
 }
@@ -134,12 +133,14 @@ export function Radio({ children, value, ItemIndicator }: RadioProps) {
   return (
     <RadixDropdown.RadioItem
       value={value}
-      className={`${DropdownStyles['sbui-dropdown-item']} ${DropdownStyles['sbui-dropdown-checkbox']}`}
+      className={`${DropdownStyles['sbui-dropdown-item']} ${DropdownStyles['sbui-dropdown-input']}`}
     >
-      <RadixDropdown.ItemIndicator>
+      <RadixDropdown.ItemIndicator
+        className={DropdownStyles['sbui-dropdown-input__check']}
+      >
         {ItemIndicator ? ItemIndicator : <IconCheck size="tiny" />}
       </RadixDropdown.ItemIndicator>
-      {children}
+      <span>{children}</span>
     </RadixDropdown.RadioItem>
   )
 }
@@ -169,9 +170,22 @@ export function RadioGroup({
   )
 }
 
+interface LabelProps {
+  children: React.ReactNode
+}
+
+export function Label({ children }: LabelProps) {
+  return (
+    <RadixDropdown.Label className={DropdownStyles['sbui-dropdown-label']}>
+      {children}
+    </RadixDropdown.Label>
+  )
+}
+
 Dropdown.Item = Item
 Dropdown.Misc = Misc
 Dropdown.Checkbox = Checkbox
 Dropdown.Radio = Radio
 Dropdown.RadioGroup = RadioGroup
+Dropdown.Label = Label
 export default Dropdown

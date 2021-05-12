@@ -1,13 +1,9 @@
-.sbui-dropdown-card .sbui-card-content {
-  @apply dark:bg-dark-800 p-0;
-  overflow: visible;
-  padding: 0;
-}
-
 .sbui-dropdown-item {
+  @apply text-xs;
+  @apply text-typography-body-light dark:text-typography-body-dark;
   @apply px-4 py-1.5 flex items-center space-x-2;
   @apply cursor-pointer;
-  @apply focus:bg-bg-secondary-light dark:focus:bg-bg-secondary-dark border-none;
+  @apply focus:bg-bg-secondary-light dark:focus:bg-bg-primary-dark border-none;
   cursor: 'default';
 }
 
@@ -15,24 +11,37 @@
   @apply text-typography-body-secondary-light dark:text-typography-body-secondary-dark;
 }
 
+.sbui-dropdown-label {
+  @apply text-typography-body-secondary-light dark:text-typography-body-secondary-dark;
+  @apply px-4 py-1.5 flex items-center space-x-2;
+  font-size: 0.65rem;
+}
+
+.sbui-dropdown-misc {
+  @apply px-4 py-1.5;
+}
+
 .sbui-dropdown-item:focus-visible {
   border: none;
   outline: none;
 }
 
-.sbui-dropdown-item:hover {
-  /* @apply focus:ring-1 ring-brand-500; */
-  /* outline: 'none'; */
-  /* background-color: 'dodgerblue'; */
-  /* color: 'white'; */
-}
-
-.sbui-dropdown-item__content {
-  @apply w-full;
-}
-
-.sbui-dropdown-checkbox {
+.sbui-dropdown-input {
   @apply flex items-center space-x-2;
+}
+
+.sbui-dropdown-input__check {
+  @apply flex items-center;
+}
+
+.sbui-dropdown__content {
+  @apply bg-bg-primary-light dark:bg-bg-secondary-dark p-0;
+  @apply rounded;
+  @apply border border-lightmode dark:border-darkmode;
+  @apply shadow;
+  overflow: visible;
+  border-style: solid;
+  border-width: 1px;
 }
 
 @keyframes transition {
