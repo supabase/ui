@@ -108,14 +108,16 @@ export function Checkbox({
     <RadixDropdown.CheckboxItem
       checked={checked}
       onCheckedChange={handleChange}
-      className={`${DropdownStyles['sbui-dropdown-item']} ${DropdownStyles['sbui-dropdown-checkbox']}`}
+      className={`${DropdownStyles['sbui-dropdown-item']} ${DropdownStyles['sbui-dropdown-input']}`}
       disabled={disabled}
     >
-      <RadixDropdown.ItemIndicator>
+      <RadixDropdown.ItemIndicator
+        className={DropdownStyles['sbui-dropdown-input__check']}
+      >
         {ItemIndicator ? ItemIndicator : <IconCheck size="tiny" />}
         <RadixDropdown.CheckboxItem />
       </RadixDropdown.ItemIndicator>
-      {children}
+      <span>{children}</span>
     </RadixDropdown.CheckboxItem>
   )
 }
@@ -130,12 +132,14 @@ export function Radio({ children, value, ItemIndicator }: RadioProps) {
   return (
     <RadixDropdown.RadioItem
       value={value}
-      className={`${DropdownStyles['sbui-dropdown-item']} ${DropdownStyles['sbui-dropdown-checkbox']}`}
+      className={`${DropdownStyles['sbui-dropdown-item']} ${DropdownStyles['sbui-dropdown-input']}`}
     >
-      <RadixDropdown.ItemIndicator>
+      <RadixDropdown.ItemIndicator
+        className={DropdownStyles['sbui-dropdown-input__check']}
+      >
         {ItemIndicator ? ItemIndicator : <IconCheck size="tiny" />}
       </RadixDropdown.ItemIndicator>
-      {children}
+      <span>{children}</span>
     </RadixDropdown.RadioItem>
   )
 }

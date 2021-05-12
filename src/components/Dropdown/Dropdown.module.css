@@ -3,7 +3,7 @@
   @apply text-typography-body-light dark:text-typography-body-dark;
   @apply px-4 py-1.5 flex items-center space-x-2;
   @apply cursor-pointer;
-  @apply focus:bg-bg-secondary-light dark:focus:bg-bg-secondary-dark border-none;
+  @apply focus:bg-bg-primary-light dark:focus:bg-bg-primary-dark border-none;
   cursor: 'default';
 }
 
@@ -26,10 +26,19 @@
   outline: none;
 }
 
+.sbui-dropdown-input {
+  @apply flex items-center space-x-2;
+}
+
+.sbui-dropdown-input__check {
+  @apply flex items-center;
+}
+
 .sbui-dropdown__content {
-  @apply bg-bg-primary-light dark:bg-bg-primary-dark p-0;
+  @apply bg-bg-secondary-light dark:bg-bg-secondary-dark p-0;
   @apply rounded;
-  @apply border border-light dark:border-darkmode;
+  @apply border border-lightmode dark:border-darkmode;
+  @apply shadow;
   overflow: visible;
   border-style: solid;
   border-width: 1px;

@@ -59,8 +59,8 @@ module.exports = {
       ...theme('colors'),
       DEFAULT: '#f0f2f5',
       // note: default border not working
-      // workaround is to use 'light' variation below
-      light: '#f0f2f5',
+      // temp workaround is to use variations below
+      lightmode: '#f0f2f5',
       darkmode: theme('colors.gray.600', 'currentColor'),
     }),
     extend: {
