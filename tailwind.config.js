@@ -55,6 +55,14 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
+    borderColor: (theme) => ({
+      ...theme('colors'),
+      DEFAULT: '#f0f2f5',
+      // note: default border not working
+      // temp workaround is to use variations below
+      lightmode: '#f0f2f5',
+      darkmode: theme('colors.gray.600', 'currentColor'),
+    }),
     extend: {
       typography: {
         DEFAULT: {
@@ -119,7 +127,7 @@ module.exports = {
         },
         'typography-body-secondary': {
           light: coolGray[500],
-          dark: gray[200],
+          dark: gray[300],
         },
         'typography-body-strong': {
           light: coolGray[100],
@@ -127,7 +135,7 @@ module.exports = {
         },
         'typography-body-faded': {
           light: coolGray[400],
-          dark: gray[300],
+          dark: gray[400],
         },
 
         /* 
