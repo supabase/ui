@@ -23,7 +23,7 @@ module.exports = {
             ...cssRule,
             test: /\.module\.css$/,
             use: cssRule.use.map((_) => {
-              if (_ && _.loader && _.loader.match(/\/css-loader/g)) {
+              if (_ && _.loader && _.loader.match(/[\/\\]css-loader/g)) {
                 return {
                   ..._,
                   options: {
