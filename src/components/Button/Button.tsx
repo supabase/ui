@@ -5,7 +5,7 @@ import ButtonStyles from './Button.module.css'
 import { IconContext } from '../Icon/IconContext'
 import { IconLoader } from '../Icon/icons/IconLoader'
 
-export interface Props {
+export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   block?: boolean
   className?: any
   children?: React.ReactNode
@@ -33,14 +33,17 @@ export interface Props {
   ariaControls?: string
   tabIndex?: 0 | -1
   role?: string
+  as?: keyof JSX.IntrinsicElements
 }
+
+interface CustomButtonProps extends React.HTMLAttributes<HTMLOrSVGElement> {}
 
 export interface RefHandle {
   container: () => HTMLElement
   button: () => HTMLButtonElement
 }
 
-const Button = forwardRef<RefHandle, Props>(
+const Button = forwardRef<RefHandle, ButtonProps>(
   (
     {
       block,
@@ -62,7 +65,9 @@ const Button = forwardRef<RefHandle, Props>(
       ariaControls,
       tabIndex,
       role,
-    }: Props,
+      as,
+      ...props
+    }: ButtonProps,
     ref
   ) => {
     const containerRef = useRef()
@@ -77,6 +82,8 @@ const Button = forwardRef<RefHandle, Props>(
         return buttonRef.current
       },
     }))
+
+    const HtmlTag: React.ClassAttributes<HTMLObjectElement> = as as keyof JSX.IntrinsicElements
 
     let classes = [ButtonStyles['sbui-btn']]
     let containerClasses = [ButtonStyles['sbui-btn-container']]
@@ -112,9 +119,23 @@ const Button = forwardRef<RefHandle, Props>(
       classes.push(ButtonStyles[`sbui-btn--text-fade-out`])
     }
 
-    return (
-      <span ref={containerRef} className={containerClasses.join(' ')}>
+    const CustomButton: React.FC<CustomButtonProps> = ({ ...props }) => {
+      const Tag = as as keyof JSX.IntrinsicElements
+      return <Tag {...props} />
+    }
+
+    const RenderedButton = ({ children }: any) =>
+      as ? (
+        <CustomButton
+          className={classes.join(' ')}
+          onClick={onClick}
+          style={style}
+        >
+          {children}
+        </CustomButton>
+      ) : (
         <button
+          {...props}
           ref={buttonRef}
           className={classes.join(' ')}
           disabled={loading || (disabled && true)}
@@ -126,6 +147,13 @@ const Button = forwardRef<RefHandle, Props>(
           tabIndex={tabIndex}
           role={role}
         >
+          {children}
+        </button>
+      )
+
+    return (
+      <span ref={containerRef} className={containerClasses.join(' ')}>
+        <RenderedButton>
           {showIcon &&
             (loading ? (
               <IconLoader size={size} className={iconLoaderClasses.join(' ')} />
@@ -140,7 +168,7 @@ const Button = forwardRef<RefHandle, Props>(
               {iconRight}
             </IconContext.Provider>
           )}
-        </button>
+        </RenderedButton>
       </span>
     )
   }

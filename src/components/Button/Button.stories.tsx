@@ -160,6 +160,10 @@ export const allButtons = (args: any) => (
   </>
 )
 
+export const withCustomTag = (args: any) => (
+  <Button {...args}>Button text</Button>
+)
+
 const icon = <IconPackage />
 
 withIcon.args = {
@@ -198,4 +202,8 @@ withLoadingCentered.args = {
 allButtons.args = {
   loading: false,
   danger: false,
+}
+
+withCustomTag.args = {
+  as: 'span',
 }
