@@ -1,7 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 // @ts-ignore
 import ButtonStyles from './Button.module.css'
-// @ts-ignore
 import { IconContext } from '../Icon/IconContext'
 import { IconLoader } from '../Icon/icons/IconLoader'
 
@@ -70,9 +69,9 @@ const Button = forwardRef<RefHandle, ButtonProps>(
     }: ButtonProps,
     ref
   ) => {
+    // button ref
     const containerRef = useRef()
     const buttonRef = useRef()
-    const showIcon = loading || icon
 
     useImperativeHandle(ref, () => ({
       get container() {
@@ -83,7 +82,8 @@ const Button = forwardRef<RefHandle, ButtonProps>(
       },
     }))
 
-    const HtmlTag: React.ClassAttributes<HTMLObjectElement> = as as keyof JSX.IntrinsicElements
+    // styles
+    const showIcon = loading || icon
 
     let classes = [ButtonStyles['sbui-btn']]
     let containerClasses = [ButtonStyles['sbui-btn-container']]
@@ -112,6 +112,7 @@ const Button = forwardRef<RefHandle, ButtonProps>(
     }
 
     const iconLoaderClasses = [ButtonStyles['sbui-btn--anim--spin']]
+
     if (loadingCentered) {
       iconLoaderClasses.push(ButtonStyles[`sbui-btn-loader--center`])
     }
@@ -119,6 +120,7 @@ const Button = forwardRef<RefHandle, ButtonProps>(
       classes.push(ButtonStyles[`sbui-btn--text-fade-out`])
     }
 
+    // custom button tag
     const CustomButton: React.FC<CustomButtonProps> = ({ ...props }) => {
       const Tag = as as keyof JSX.IntrinsicElements
       return <Tag {...props} />
