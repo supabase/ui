@@ -36,7 +36,9 @@ function Dropdown({
   }
   return (
     <RadixDropdown.Root onOpenChange={onOpenChange} open={open}>
-      <RadixDropdown.Trigger className="border-none bg-transparent p-0 focus:border-none focus:ring-0">
+      <RadixDropdown.Trigger
+        className={DropdownStyles['sbui-dropdown__trigger']}
+      >
         {children}
       </RadixDropdown.Trigger>
 
