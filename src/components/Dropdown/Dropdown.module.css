@@ -59,3 +59,7 @@
   transform-origin: var(--radix-dropdown-menu-content-transform-origin);
   animation: transition 0.1s ease-out;
 }
+
+.sbui-dropdown__trigger {
+  @apply border-none bg-transparent p-0 focus:ring-0;
+}
