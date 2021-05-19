@@ -40,7 +40,7 @@ export const Default = (args: any) => (
         <Dropdown.Item icon={<IconLogIn size="tiny" />}>Log out</Dropdown.Item>,
       ]}
     >
-      <Button type="outline" iconRight={<IconChevronDown />}>
+      <Button as="span" type="outline" iconRight={<IconChevronDown />}>
         Click for dropdown
       </Button>
     </Dropdown>
@@ -66,7 +66,7 @@ export const doNotcloseOverlay = (args: any) => (
         </Dropdown.Item>,
       ]}
     >
-      <Button type="outline" iconRight={<IconChevronDown />}>
+      <Button as="span" type="outline" iconRight={<IconChevronDown />}>
         Click for dropdown
       </Button>
     </Dropdown>
@@ -104,7 +104,7 @@ export const withCustomStyles = (args: any) => (
         </Dropdown.Item>,
       ]}
     >
-      <Button type="outline" iconRight={<IconChevronDown />}>
+      <Button as="span" type="outline" iconRight={<IconChevronDown />}>
         Click for dropdown
       </Button>
     </Dropdown>
@@ -135,7 +135,7 @@ export const SearchList = (args: any) => (
         </Dropdown.Item>,
       ]}
     >
-      <Button type="outline" iconRight={<IconChevronDown />}>
+      <Button as="span" type="outline" iconRight={<IconChevronDown />}>
         Click for dropdown
       </Button>
     </Dropdown>
@@ -162,7 +162,7 @@ export const Checkbox = (args: any) => {
           </Dropdown.Checkbox>,
         ]}
       >
-        <Button type="outline" iconRight={<IconChevronDown />}>
+        <Button as="span" type="outline" iconRight={<IconChevronDown />}>
           Click for dropdown
         </Button>
       </Dropdown>
@@ -185,7 +185,7 @@ export const Radio = (args: any) => {
           </Dropdown.RadioGroup>,
         ]}
       >
-        <Button type="outline" iconRight={<IconChevronDown />}>
+        <Button as="span" type="outline" iconRight={<IconChevronDown />}>
           Click for dropdown
         </Button>
       </Dropdown>
