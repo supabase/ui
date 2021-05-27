@@ -1,7 +1,7 @@
 .sbui-dropdown-item {
   @apply text-xs;
   @apply text-typography-body-light dark:text-typography-body-dark;
-  @apply px-4 py-1.5 flex items-center space-x-2;
+  @apply pl-8 pr-4 py-1.5 flex items-center space-x-2;
   @apply cursor-pointer;
   @apply focus:bg-bg-secondary-light dark:focus:bg-bg-primary-dark border-none;
   cursor: 'default';
@@ -27,10 +27,11 @@
 }
 
 .sbui-dropdown-input {
-  @apply flex items-center space-x-2;
+  @apply flex items-center space-x-0;
 }
 
 .sbui-dropdown-input__check {
+  @apply absolute left-2;
   @apply flex items-center;
 }
 
