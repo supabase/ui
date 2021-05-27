@@ -62,32 +62,41 @@ function InputNumber({
   max,
 }: Props) {
   const inputClasses = [InputNumberStyles['sbui-inputnumber']]
+
   const iconUpClasses = [
     InputNumberStyles['sbui-inputnumber-button'],
     InputNumberStyles['sbui-inputnumber-button-up'],
   ]
+
   const inputRefCurrent = inputRef
     ? inputRef
     : React.createRef<HTMLInputElement>()
+
   const iconDownClasses = [
     InputNumberStyles['sbui-inputnumber-button'],
     InputNumberStyles['sbui-inputnumber-button-down'],
   ]
+
   const iconNavClasses = [InputNumberStyles['sbui-inputnumber-nav']]
+
   if (error) inputClasses.push(InputNumberStyles['sbui-inputnumber--error'])
+
   if (icon) inputClasses.push(InputNumberStyles['sbui-inputnumber--with-icon'])
+
   if (size) {
     inputClasses.push(InputNumberStyles[`sbui-inputnumber--${size}`])
     iconNavClasses.push(InputNumberStyles[`sbui-inputnumber-nav--${size}`])
   }
 
-  const onClickChevronUp = () => {
-    inputRefCurrent.current?.stepUp()
-  }
+  // removed chevrons temporarily
+  // issues with arrows not sized correctly
+  // const onClickChevronUp = () => {
+  //   inputRefCurrent.current?.stepUp()
+  // }
 
-  const onClickChevronDown = () => {
-    inputRefCurrent.current?.stepDown()
-  }
+  // const onClickChevronDown = () => {
+  //   inputRefCurrent.current?.stepDown()
+  // }
 
   return (
     <div className={className}>
@@ -121,7 +130,7 @@ function InputNumber({
             min={min}
             max={max}
           />
-          <div className={iconNavClasses.join(' ')}>
+          {/* <div className={iconNavClasses.join(' ')}>
             <IconChevronUp
               className={iconUpClasses.join(' ')}
               onClick={onClickChevronUp}
@@ -130,7 +139,7 @@ function InputNumber({
               className={iconDownClasses.join(' ')}
               onClick={onClickChevronDown}
             />
-          </div>
+          </div> */}
           {icon && <InputIconContainer icon={icon} />}
           {error ? (
             <Space

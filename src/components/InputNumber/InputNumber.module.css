@@ -13,9 +13,6 @@
   /* box-shadow: 0 0 0 2px rgba(255, 255, 255, 0); */
   font-family: inherit;
   transition: box-shadow 0.3s ease-in-out;
-  -moz-appearance: textfield;
-  float: left;
-  display: block;
 }
 
 .sbui-inputnumber::-webkit-inner-spin-button,
