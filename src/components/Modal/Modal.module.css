@@ -67,7 +67,6 @@
   /* border */
   @apply border-gray-400 border border-solid;
   @apply dark:border-gray-600 border border-solid;
-  @apply mb-4 mt-4;
 
   position: absolute;
   top: 50%;
@@ -132,4 +131,8 @@
   @apply hover:text-dark-300;
 
   @apply hover:bg-transparent;
+}
+
+.sbui-sidepanel__trigger {
+  @apply border-none bg-transparent p-0 focus:ring-0;
 }
