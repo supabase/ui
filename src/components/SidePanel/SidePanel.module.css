@@ -118,3 +118,7 @@
 .sbui-sidepanel-footer {
   @apply flex flex-shrink-0;
 }
+
+.sbui-sidepanel__trigger {
+  @apply border-none bg-transparent p-0 focus:ring-0;
+}
