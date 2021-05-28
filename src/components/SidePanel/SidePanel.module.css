@@ -81,7 +81,7 @@
 } */
 
 .sbui-sidepanel-container {
-  @apply absolute inset-y-0 max-w-full flex;
+  @apply absolute inset-y-0 max-w-full flex h-screen;
 }
 
 .sbui-sidepanel {
