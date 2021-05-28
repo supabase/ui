@@ -34,7 +34,7 @@ const SidePanel = ({
   children,
   title,
   description,
-  visible = true,
+  visible,
   wide = false,
   loading,
   align = 'right',
@@ -101,8 +101,18 @@ const SidePanel = ({
     </div>
   )
 
+  function handleOpenChange(open: boolean) {
+    if (visible !== undefined && !open) {
+      // controlled component behaviour
+      onCancel()
+    } else {
+      // un-controlled component behaviour
+      setOpen(open)
+    }
+  }
+
   return (
-    <Dialog.Root open={open} onOpenChange={setOpen}>
+    <Dialog.Root open={open} onOpenChange={handleOpenChange}>
       {triggerElement && (
         <Dialog.Trigger className={SlidePanelStyles[`sbui-sidepanel__trigger`]}>
           {triggerElement}
