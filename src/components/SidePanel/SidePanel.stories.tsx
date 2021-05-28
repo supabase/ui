@@ -81,6 +81,16 @@ export const customFooter = (args: any) => (
   </>
 )
 
+export const triggerElement = (args: any) => (
+  <>
+    <SidePanel {...args}>
+      <Typography.Text type="secondary">
+        This was opened with a trigger element
+      </Typography.Text>
+    </SidePanel>
+  </>
+)
+
 Default.args = {
   visible: true,
   onCancel: action('onCancel'),
@@ -137,4 +147,13 @@ customFooter.args = {
       <Button danger>Delete</Button>
     </Space>,
   ],
+}
+
+triggerElement.args = {
+  visible: true,
+  onCancel: action('onCancel'),
+  onConfirm: action('onConfirm'),
+  title: 'This is the title of the SidePanel',
+  description: 'And i am the description',
+  triggerElement: <Button as="span">Open</Button>,
 }
