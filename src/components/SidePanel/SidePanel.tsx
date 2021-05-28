@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 // @ts-ignore
 import SlidePanelStyles from './SidePanel.module.css'
 import { Button, IconX, Space, Typography } from '../../index'
 import { AnimationTailwindClasses } from '../../types'
+
+import * as Dialog from '@radix-ui/react-dialog'
 
 import { Transition } from '@headlessui/react'
 
@@ -24,6 +26,7 @@ interface Props {
   confirmText?: string
   transition?: AnimationTailwindClasses
   transitionOverlay?: AnimationTailwindClasses
+  triggerElement?: React.ReactNode
 }
 
 const SidePanel = ({
@@ -42,9 +45,14 @@ const SidePanel = ({
   onCancel,
   confirmText = 'Confirm',
   cancelText = 'Cancel',
-  transition,
-  transitionOverlay,
+  triggerElement,
 }: Props) => {
+  const [open, setOpen] = React.useState(visible ? visible : false)
+
+  useEffect(() => {
+    setOpen(visible)
+  }, [visible])
+
   function stopPropagation(e: React.MouseEvent) {
     e.stopPropagation()
   }
@@ -94,26 +102,31 @@ const SidePanel = ({
   )
 
   return (
-    <Transition show={visible}>
-      <Transition.Child
-        enter={SlidePanelStyles[`sbui-sidepanel-overlay--enter`]}
-        enterFrom={SlidePanelStyles[`sbui-sidepanel-overlay--enterFrom`]}
-        enterTo={SlidePanelStyles[`sbui-sidepanel-overlay--enterTo`]}
-        leave={SlidePanelStyles[`sbui-sidepanel-overlay--leave`]}
-        leaveFrom={SlidePanelStyles[`sbui-sidepanel-overlay--leaveFrom`]}
-        leaveTo={SlidePanelStyles[`sbui-sidepanel-overlay--leaveTo`]}
-      >
-        <div onClick={() => (onCancel ? onCancel() : null)}>
-          <div className={SlidePanelStyles['sbui-sidepanel-overlay-container']}>
-            <div className={SlidePanelStyles['sbui-sidepanel-overlay']}></div>
-          </div>
+    <Dialog.Root open={open} onOpenChange={setOpen}>
+      {triggerElement && (
+        <Dialog.Trigger className={SlidePanelStyles[`sbui-sidepanel__trigger`]}>
+          {triggerElement}
+        </Dialog.Trigger>
+      )}
+      <Transition show={open}>
+        <Dialog.Overlay forceMount>
+          <Transition.Child
+            enter={SlidePanelStyles[`sbui-sidepanel-overlay--enter`]}
+            enterFrom={SlidePanelStyles[`sbui-sidepanel-overlay--enterFrom`]}
+            enterTo={SlidePanelStyles[`sbui-sidepanel-overlay--enterTo`]}
+            leave={SlidePanelStyles[`sbui-sidepanel-overlay--leave`]}
+            leaveFrom={SlidePanelStyles[`sbui-sidepanel-overlay--leaveFrom`]}
+            leaveTo={SlidePanelStyles[`sbui-sidepanel-overlay--leaveTo`]}
+          >
+            <div
+              className={SlidePanelStyles['sbui-sidepanel-overlay-container']}
+            >
+              <div className={SlidePanelStyles['sbui-sidepanel-overlay']}></div>
+            </div>
+          </Transition.Child>
+        </Dialog.Overlay>
 
-          {/* sidepanel element */}
-          {/* <div
-            className={SlidePanelStyles['sbui-sidepanel-fixed']}
-            onClick={onCancel}
-          > */}
-          {/* <div className={SlidePanelStyles['sbui-sidepanel-absolute']}> */}
+        <Dialog.Content forceMount style={{ width: '100vw' }}>
           <div className={containerClasses.join(' ')}>
             <Transition.Child
               enter={SlidePanelStyles[`sbui-sidepanel--enter`]}
@@ -130,7 +143,6 @@ const SidePanel = ({
                   ? SlidePanelStyles[`sbui-sidepanel--leaveTo--left`]
                   : SlidePanelStyles[`sbui-sidepanel--leaveTo`]
               }
-              // className="fixed inset-0 overflow-y-auto h-100"
             >
               <div
                 className={
@@ -200,11 +212,9 @@ const SidePanel = ({
               </div>
             </Transition.Child>
           </div>
-        </div>
-        {/* </div> */}
-        {/* </div> */}
-      </Transition.Child>
-    </Transition>
+        </Dialog.Content>
+      </Transition>
+    </Dialog.Root>
   )
 }
 
