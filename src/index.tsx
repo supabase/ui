@@ -3,6 +3,7 @@
 export * from './components/Button/index'
 export * from './components/Typography/index'
 export * from './components/Icon/index'
+export * from './components/Image/index'
 
 // DISPLAYS
 
@@ -34,7 +35,7 @@ export * from './components/Checkbox/index'
 export * from './components/Input/index'
 export * from './components/InputNumber/index'
 export * from './components/Radio/index'
-export * from './components/Toggle/index'
+export * from './components/Toggle/index'   
 export * from './components/Upload/index'
 
 // ARCHIVE
