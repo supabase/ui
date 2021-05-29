@@ -36,7 +36,6 @@
 
 .sbui-dropdown__content {
   @apply bg-bg-primary-light dark:bg-bg-secondary-dark p-0;
-  @apply rounded;
   @apply border border-lightmode dark:border-darkmode;
   @apply shadow;
   overflow: visible;
@@ -62,4 +61,25 @@
 
 .sbui-dropdown__trigger {
   @apply border-none bg-transparent p-0 focus:ring-0;
+}
+
+.sbui-dropdown__arrow {
+  @apply fill-current text-bg-primary-light dark:text-bg-secondary-dark;
+  @apply border border-lightmode dark:border-darkmode;
+}
+
+.sbui-dropdown-content__unrounded-top-left {
+  @apply rounded-tr rounded-br rounded-bl;
+}
+
+.sbui-dropdown-content__unrounded-top-right {
+  @apply rounded-tl rounded-br rounded-bl;
+}
+
+.sbui-dropdown-content__unrounded-bottom-left {
+  @apply rounded-tr rounded-br rounded-tl;
+}
+
+.sbui-dropdown-content__unrounded-bottom-right {
+  @apply rounded-tr rounded-bl rounded-tl;
 }

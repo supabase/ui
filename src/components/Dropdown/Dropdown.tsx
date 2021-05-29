@@ -11,6 +11,7 @@ import type * as RadixDropdownTypes from '@radix-ui/react-dropdown-menu/'
 
 interface RootProps {
   open?: boolean
+  arrow?: boolean
   onOpenChange?: RadixDropdownTypes.DropdownMenuOwnProps['onOpenChange']
   side?: RadixDropdownTypes.DropdownMenuContentOwnProps['side']
   align?: RadixDropdownTypes.DropdownMenuContentOwnProps['align']
@@ -23,17 +24,52 @@ interface RootProps {
 function Dropdown({
   open,
   onOpenChange,
-  side,
-  align,
+  align = "center", //Default value
+  side = "bottom", //Default value
   overlay,
   children,
   className,
   style,
+  arrow
 }: RootProps) {
   let classes = [DropdownStyles['sbui-dropdown__content']]
   if (className) {
     classes.push(className)
   }
+
+  /**
+   * Border radius classnames if arrow is enabled
+   */
+  let dropdownContentBorderClasses = []
+  if(!arrow) {
+    dropdownContentBorderClasses.push('rounded')
+  } else {
+    if(align === "start") {
+      if(side === "right") {
+        dropdownContentBorderClasses.push(DropdownStyles['sbui-dropdown-content__unrounded-top-left'])
+      } else if(side === "left") {
+        dropdownContentBorderClasses.push(DropdownStyles['sbui-dropdown-content__unrounded-top-right'])
+      } else if(side === "top") {
+        dropdownContentBorderClasses.push(DropdownStyles['sbui-dropdown-content__unrounded-bottom-left'])
+      } else if(side === "bottom") {
+        dropdownContentBorderClasses.push(DropdownStyles['sbui-dropdown-content__unrounded-top-left'])
+      }
+    } else if(align === "end") {
+      if(side === "right") {
+        dropdownContentBorderClasses.push(DropdownStyles['sbui-dropdown-content__unrounded-bottom-left'])
+      } else if(side === "left") {
+        dropdownContentBorderClasses.push(DropdownStyles['sbui-dropdown-content__unrounded-bottom-right'])
+      } else if(side === "top") {
+        dropdownContentBorderClasses.push(DropdownStyles['sbui-dropdown-content__unrounded-bottom-right'])
+      } else if(side === "bottom") {
+        dropdownContentBorderClasses.push(DropdownStyles['sbui-dropdown-content__unrounded-top-right'])
+      }
+    } else if(align === "center") {
+      dropdownContentBorderClasses.push('rounded')
+    }
+  }
+  classes.push(dropdownContentBorderClasses)
+
   return (
     <RadixDropdown.Root onOpenChange={onOpenChange} open={open}>
       <RadixDropdown.Trigger
@@ -50,6 +86,9 @@ function Dropdown({
         className={classes.join(' ')}
         style={style}
       >
+        {arrow &&
+          <RadixDropdown.Arrow className={DropdownStyles['sbui-dropdown__arrow']}></RadixDropdown.Arrow>
+        }
         {overlay}
       </RadixDropdown.Content>
     </RadixDropdown.Root>
