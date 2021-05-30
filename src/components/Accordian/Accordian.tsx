@@ -1,5 +1,8 @@
 import React from 'react'
 import { Disclosure } from '@headlessui/react'
+// @ts-ignore
+import AccordianStyles from './Accordian.module.css'
+
 interface AccordianProps {
   children?: React.ReactNode
   className?: string
@@ -17,11 +20,15 @@ function Accordian({
   expandIconPosition,
   bordered,
 }: AccordianProps) {
-  return (
-    <div className={className}>
-      <Disclosure>{({ open }) => <>{children}</>}</Disclosure>
-    </div>
-  )
+  let containerClasses = [AccordianStyles['sbui-accordian-container']]
+  if (bordered) {
+    containerClasses.push(AccordianStyles['sbui-accordian-container--bordered'])
+  }
+  if (className) {
+    containerClasses.push(className)
+  }
+
+  return <div className={containerClasses.join(' ')}>{children}</div>
 }
 
 interface ItemProps {
@@ -31,11 +38,26 @@ interface ItemProps {
 }
 
 export function Item({ children, className, label }: ItemProps) {
+  let panelClasses = [AccordianStyles['sbui-accordian-item__panel']]
+
+  let buttonClasses = [AccordianStyles['sbui-accordian-item__button']]
+  if (className) {
+    buttonClasses.push(className)
+  }
+
   return (
-    <>
-      <Disclosure.Button>{label}</Disclosure.Button>
-      <Disclosure.Panel className={className}>{children}</Disclosure.Panel>
-    </>
+    <Disclosure>
+      {({ open }) => (
+        <>
+          <Disclosure.Button className={buttonClasses.join(' ')}>
+            {label}
+          </Disclosure.Button>
+          <Disclosure.Panel className={panelClasses.join(' ')}>
+            {children}
+          </Disclosure.Panel>
+        </>
+      )}
+    </Disclosure>
   )
 }
 
