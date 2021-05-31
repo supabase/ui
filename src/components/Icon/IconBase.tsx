@@ -52,7 +52,7 @@ function IconBase({
 }: Props) {
   return (
     <IconContext.Consumer>
-      {({ contextSize }) => {
+      {({ contextSize, className: contextClassName }) => {
         const defaultSizes: StringMap = {
           tiny: 14,
           small: 18,
@@ -93,11 +93,16 @@ function IconBase({
         // default these icons to use 'currentColor' ie, the text color
         const noColor = !color && !fill && !stroke
 
+        let classes = [className]
+        if (contextClassName) {
+          classes.push(contextClassName)
+        }
+
         const IconComponent = () => (
           <FeatherIcon
             color={!noColor ? color : 'currentColor'}
             stroke={!noColor ? stroke : 'currentColor'}
-            className={`${className}`}
+            className={classes.join(' ')}
             strokeWidth={strokeWidth}
             size={iconSize}
             fill={!noColor ? (fill ? fill : 'none') : 'none'}
@@ -112,7 +117,7 @@ function IconBase({
             color={!noColor ? color : 'currentColor'}
             fill={!noColor ? (fill ? fill : 'none') : 'none'}
             stroke={!noColor ? stroke : 'currentColor'}
-            className={`${className}`}
+            className={classes.join(' ')}
             width={iconSize}
             height={iconSize}
           >
