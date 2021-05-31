@@ -8,7 +8,7 @@ export default {
   component: Accordian,
 }
 
-export const Single = (args: any) => (
+export const Default = (args: any) => (
   <Accordian {...args}>
     <Accordian.Item label="Single Item">
       <Typography>
@@ -19,7 +19,7 @@ export const Single = (args: any) => (
   </Accordian>
 )
 
-export const Multiple = (args: any) => (
+export const withMultiple = (args: any) => (
   <Accordian {...args}>
     <Accordian.Item label="1st Item">
       <Typography>
@@ -36,7 +36,7 @@ export const Multiple = (args: any) => (
   </Accordian>
 )
 
-export const Bordered = (args: any) => (
+export const withBorder = (args: any) => (
   <Accordian {...args}>
     <Accordian.Item label="1st Item">
       <Typography>
@@ -53,10 +53,25 @@ export const Bordered = (args: any) => (
   </Accordian>
 )
 
-Single.args = {}
+export const withDefaultActive = (args: any) => (
+  <Accordian {...args}>
+    <Accordian.Item label="Single Item" id={1}>
+      <Typography>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+        amet labore.
+      </Typography>
+    </Accordian.Item>
+  </Accordian>
+)
 
-Multiple.args = {}
+Default.args = {}
 
-Bordered.args = {
+withMultiple.args = {}
+
+withBorder.args = {
   bordered: true,
+}
+
+withDefaultActive.args = {
+  defaultActiveId: 1,
 }

@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { createContext, useContext } from 'react'
 import { Disclosure } from '@headlessui/react'
 // @ts-ignore
 import AccordianStyles from './Accordian.module.css'
+
+type ContextValue = Required<Pick<AccordianProps, 'defaultActiveId'>>
+
+const AccordianContext = createContext<ContextValue>({
+  defaultActiveId: undefined,
+})
 
 interface AccordianProps {
   children?: React.ReactNode
@@ -28,16 +34,27 @@ function Accordian({
     containerClasses.push(className)
   }
 
-  return <div className={containerClasses.join(' ')}>{children}</div>
+  const contextValue = {
+    defaultActiveId,
+  }
+
+  return (
+    <AccordianContext.Provider value={contextValue}>
+      <div className={containerClasses.join(' ')}>{children}</div>
+    </AccordianContext.Provider>
+  )
 }
 
 interface ItemProps {
   children?: React.ReactNode
   className?: string
   label: string
+  id?: string | number
 }
 
-export function Item({ children, className, label }: ItemProps) {
+export function Item({ children, className, label, id }: ItemProps) {
+  const { defaultActiveId } = useContext(AccordianContext)
+
   let panelClasses = [AccordianStyles['sbui-accordian-item__panel']]
 
   let buttonClasses = [AccordianStyles['sbui-accordian-item__button']]
@@ -45,8 +62,10 @@ export function Item({ children, className, label }: ItemProps) {
     buttonClasses.push(className)
   }
 
+  const isDefaultActive = defaultActiveId && defaultActiveId === id
+
   return (
-    <Disclosure>
+    <Disclosure defaultOpen={isDefaultActive}>
       {({ open }) => (
         <>
           <Disclosure.Button className={buttonClasses.join(' ')}>
