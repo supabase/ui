@@ -33,6 +33,7 @@ export default {
     modal: 'src/components/Modal/index.tsx',
     sidepanel: 'src/components/SidePanel/index.tsx',
     dropdown: 'src/components/Dropdown/index.tsx',
+    contextmenu: 'src/components/ContextMenu/index.tsx',
     space: 'src/components/Space/index.tsx',
     loading: 'src/components/Loading/index.tsx',
     divider: 'src/components/Divider/index.tsx',
