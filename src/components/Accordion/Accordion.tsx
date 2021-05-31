@@ -1,22 +1,22 @@
 import React, { createContext, useContext } from 'react'
 import { Disclosure } from '@headlessui/react'
 // @ts-ignore
-import AccordianStyles from './Accordian.module.css'
+import AccordionStyles from './Accordion.module.css'
 import { IconChevronUp } from '../Icon/icons/IconChevronUp'
 import { IconContext } from '../Icon/IconContext'
 import Typography from '../Typography'
 
 type ContextValue = Required<
-  Pick<AccordianProps, 'defaultActiveId' | 'icon' | 'iconPosition'>
+  Pick<AccordionProps, 'defaultActiveId' | 'icon' | 'iconPosition'>
 >
 
-const AccordianContext = createContext<ContextValue>({
+const AccordionContext = createContext<ContextValue>({
   defaultActiveId: undefined,
   icon: <IconChevronUp strokeWidth={2} />,
   iconPosition: 'right',
 })
 
-interface AccordianProps {
+interface AccordionProps {
   children?: React.ReactNode
   className?: string
   defaultActiveId?: string | number
@@ -25,17 +25,17 @@ interface AccordianProps {
   bordered?: boolean
 }
 
-function Accordian({
+function Accordion({
   children,
   className,
   defaultActiveId,
   icon = <IconChevronUp strokeWidth={2} />,
   iconPosition = 'right',
   bordered,
-}: AccordianProps) {
-  let containerClasses = [AccordianStyles['sbui-accordian-container']]
+}: AccordionProps) {
+  let containerClasses = [AccordionStyles['sbui-accordion-container']]
   if (bordered) {
-    containerClasses.push(AccordianStyles['sbui-accordian-container--bordered'])
+    containerClasses.push(AccordionStyles['sbui-accordion-container--bordered'])
   }
   if (className) {
     containerClasses.push(className)
@@ -48,9 +48,9 @@ function Accordian({
   }
 
   return (
-    <AccordianContext.Provider value={contextValue}>
+    <AccordionContext.Provider value={contextValue}>
       <div className={containerClasses.join(' ')}>{children}</div>
-    </AccordianContext.Provider>
+    </AccordionContext.Provider>
   )
 }
 
@@ -62,11 +62,11 @@ interface ItemProps {
 }
 
 export function Item({ children, className, label, id }: ItemProps) {
-  const { defaultActiveId, icon, iconPosition } = useContext(AccordianContext)
+  const { defaultActiveId, icon, iconPosition } = useContext(AccordionContext)
 
-  let panelClasses = [AccordianStyles['sbui-accordian-item__panel']]
+  let panelClasses = [AccordionStyles['sbui-accordion-item__panel']]
 
-  let buttonClasses = [AccordianStyles['sbui-accordian-item__button']]
+  let buttonClasses = [AccordionStyles['sbui-accordion-item__button']]
   if (className) {
     buttonClasses.push(className)
   }
@@ -80,7 +80,7 @@ export function Item({ children, className, label, id }: ItemProps) {
           <Disclosure.Button
             className={
               open
-                ? `${buttonClasses.join(' ')} sbui-accordian-item__button--open`
+                ? `${buttonClasses.join(' ')} sbui-accordion-item__button--open`
                 : buttonClasses.join(' ')
             }
           >
@@ -101,5 +101,5 @@ export function Item({ children, className, label, id }: ItemProps) {
   )
 }
 
-Accordian.Item = Item
-export default Accordian
+Accordion.Item = Item
+export default Accordion

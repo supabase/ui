@@ -1,42 +1,42 @@
 import React from 'react'
 
-import { Accordian } from './'
+import { Accordion } from '.'
 import { Typography } from '../Typography'
 import { IconArrowUp } from '../Icon/icons/IconArrowUp'
 
 export default {
-  title: 'Displays/Accordian',
-  component: Accordian,
+  title: 'Displays/Accordion',
+  component: Accordion,
 }
 
 export const Default = (args: any) => (
-  <Accordian {...args}>
-    <Accordian.Item label="Single Item">
+  <Accordion {...args}>
+    <Accordion.Item label="Single Item">
       <Typography>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
         amet labore.
       </Typography>
-    </Accordian.Item>
-  </Accordian>
+    </Accordion.Item>
+  </Accordion>
 )
 
 Default.args = {}
 
 const Multiple = (args: any) => (
-  <Accordian {...args}>
-    <Accordian.Item label="1st Item">
+  <Accordion {...args}>
+    <Accordion.Item label="1st Item">
       <Typography>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
         amet labore.
       </Typography>
-    </Accordian.Item>
-    <Accordian.Item label="2nd Item">
+    </Accordion.Item>
+    <Accordion.Item label="2nd Item">
       <Typography>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
         amet labore.
       </Typography>
-    </Accordian.Item>
-  </Accordian>
+    </Accordion.Item>
+  </Accordion>
 )
 
 export const withMultiple = Multiple.bind({})
