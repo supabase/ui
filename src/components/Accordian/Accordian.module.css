@@ -25,11 +25,27 @@
   font-weight: inherit;
 }
 
-.sbui-accordian-container--bordered .sbui-accordian-item__button--open {
+.sbui-accordian-item__button .sbui-typography {
+  @apply w-full;
+}
+
+.sbui-accordian-item__button .sbui-typography:last-child {
+  @apply pl-2;
+}
+
+.sbui-accordian-container--bordered
+  .sbui-accordian-item__button:not(:last-child),
+.sbui-accordian-container--bordered
+  .sbui-accordian-item__panel:not(:last-child) {
   border-bottom: 1px solid #e0e0e0;
 }
 
-.dark .sbui-accordian-container--bordered .sbui-accordian-item__button--open {
+.dark
+  .sbui-accordian-container--bordered
+  .sbui-accordian-item__button:not(:last-child),
+.dark
+  .sbui-accordian-container--bordered
+  .sbui-accordian-item__panel:not(:last-child) {
   border-bottom: 1px solid #2a2a2a;
 }
 
