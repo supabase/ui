@@ -111,7 +111,7 @@ _General_
 _Data Input_
 
 - [x] Input
-- [ ] InputNumber
+- [x] InputNumber
 - [x] Select
 - [x] Checkbox (and Checkbox Groups)
 - [x] Radio (and Radio Groups)
@@ -133,7 +133,7 @@ _Display_
 
 - [x] Card
 - [ ] Avatar
-- [ ] Alert
+- [x] Alert
 - [x] Badge
 - [x] Menu
 - [ ] Tooltips
@@ -142,10 +142,10 @@ _Display_
 
 _Navigation_
 
-- [ ] Tabs
+- [x] Tabs
 - [ ] Breadcrumb
 - [x] Dropdown
-- [ ] Menu
+- [x] Menu
 - [ ] Page Header
 - [ ] Sidebar
 - [ ] Flyout menu
@@ -154,7 +154,8 @@ _Navigation_
 _Overlay_
 
 - [x] Modal
-- [ ] Drawer / SidePanel
+- [x] Context Menu
+- [x] Drawer / SidePanel
 - [ ] Toast messages / Notification
 - [ ] Progress
 - [ ] Feeds / Timeline
@@ -166,10 +167,10 @@ _Utility_
 
 _Misc_
 
-- [ ] Storybook docs
+- [x] Storybook docs
 - [ ] Theming (in progress)
-- [ ] Supabase Auth Elements
-- [ ] Documentation website
+- [x] Supabase Auth Elements
+- [x] Documentation website
 
 We would be keen to hear any feedback on this project.
 
