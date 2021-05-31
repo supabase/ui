@@ -4,6 +4,7 @@ import { Disclosure } from '@headlessui/react'
 import AccordianStyles from './Accordian.module.css'
 import { IconChevronUp } from '../Icon/icons/IconChevronUp'
 import { IconContext } from '../Icon/IconContext'
+import Typography from '../Typography'
 
 type ContextValue = Required<
   Pick<AccordianProps, 'defaultActiveId' | 'icon' | 'iconPosition'>
@@ -87,7 +88,7 @@ export function Item({ children, className, label, id }: ItemProps) {
               value={{ className: open ? 'transform rotate-180' : '' }}
             >
               {iconPosition === 'left' && icon}
-              {label}
+              <Typography>{label}</Typography>
               {iconPosition === 'right' && icon}
             </IconContext.Provider>
           </Disclosure.Button>
