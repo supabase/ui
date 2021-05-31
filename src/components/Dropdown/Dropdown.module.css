@@ -27,10 +27,11 @@
 }
 
 .sbui-dropdown-input {
-  @apply flex items-center space-x-2;
+  @apply flex items-center space-x-0 pl-8 pr-4;
 }
 
 .sbui-dropdown-input__check {
+  @apply absolute left-2;
   @apply flex items-center;
 }
 
