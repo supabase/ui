@@ -76,7 +76,13 @@ export function Item({ children, className, label, id }: ItemProps) {
     <Disclosure defaultOpen={isDefaultActive}>
       {({ open }) => (
         <>
-          <Disclosure.Button className={buttonClasses.join(' ')}>
+          <Disclosure.Button
+            className={
+              open
+                ? `${buttonClasses.join(' ')} sbui-accordian-item__button--open`
+                : buttonClasses.join(' ')
+            }
+          >
             <IconContext.Provider
               value={{ className: open ? 'transform rotate-180' : '' }}
             >
