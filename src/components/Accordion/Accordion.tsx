@@ -3,7 +3,6 @@ import { Disclosure, Transition } from '@headlessui/react'
 // @ts-ignore
 import AccordionStyles from './Accordion.module.css'
 import { IconChevronUp } from '../Icon/icons/IconChevronUp'
-import { IconContext } from '../Icon/IconContext'
 import Typography from '../Typography'
 
 type ContextValue = Required<
@@ -103,14 +102,9 @@ export function Item({ children, className, label, id }: ItemProps) {
                 : buttonClasses.join(' ')
             }
           >
-            <IconContext.Provider
-              value={{
-                className: open ? 'mt-px transform rotate-180' : 'mt-px',
-              }}
-            >
-              {iconPosition === 'left' && icon}
+            {iconPosition === 'left' && icon}
             <Typography.Text>{label}</Typography.Text>
-            </IconContext.Provider>
+            {iconPosition === 'right' && icon}
           </Disclosure.Button>
           <Transition
             show={open}

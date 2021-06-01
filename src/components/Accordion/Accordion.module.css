@@ -33,6 +33,14 @@
   @apply pl-2;
 }
 
+.sbui-accordion-item__button .sbui-icon {
+  @apply mt-px;
+}
+
+.sbui-accordion-item__button--open .sbui-icon {
+  @apply transform rotate-180;
+}
+
 .sbui-accordion-container--bordered
   .sbui-accordion-item__button:not(:first-child) {
   @apply rounded-none;
