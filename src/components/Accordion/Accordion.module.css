@@ -26,7 +26,7 @@
 }
 
 .sbui-accordion-item__button .sbui-typography {
-  @apply w-full;
+  @apply w-full max-w-none;
 }
 
 .sbui-accordion-item__button .sbui-typography:last-child {
