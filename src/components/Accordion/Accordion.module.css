@@ -34,21 +34,42 @@
 }
 
 .sbui-accordion-container--bordered
-  .sbui-accordion-item__button:not(:last-child),
-.sbui-accordion-container--bordered
-  .sbui-accordion-item__panel:not(:last-child) {
-  border-bottom: 1px solid #e0e0e0;
+  .sbui-accordion-item__button:not(:first-child) {
+  @apply rounded-none;
+  border-top: 1px solid #e0e0e0;
 }
 
 .dark
   .sbui-accordion-container--bordered
-  .sbui-accordion-item__button:not(:last-child),
-.dark
-  .sbui-accordion-container--bordered
-  .sbui-accordion-item__panel:not(:last-child) {
-  border-bottom: 1px solid #2a2a2a;
+  .sbui-accordion-item__button:not(:first-child) {
+  @apply rounded-none;
+  border-top: 1px solid #2a2a2a;
 }
 
 .sbui-accordion-item__panel {
-  @apply w-full p-2;
+  @apply p-2;
+}
+
+.sbui-accordion-item__panel--enter {
+  @apply transition-max-height ease-in-out duration-700 overflow-hidden;
+}
+
+.sbui-accordion-item__panel--enterFrom {
+  @apply max-h-0;
+}
+
+.sbui-accordion-item__panel--enterTo {
+  @apply max-h-screen;
+}
+
+.sbui-accordion-item__panel--leave {
+  @apply transition-max-height ease-in-out duration-300 overflow-hidden;
+}
+
+.sbui-accordion-item__panel--leaveFrom {
+  @apply max-h-screen;
+}
+
+.sbui-accordion-item__panel--leaveTo {
+  @apply max-h-0;
 }

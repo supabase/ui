@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react'
-import { Disclosure } from '@headlessui/react'
+import { Disclosure, Transition } from '@headlessui/react'
 // @ts-ignore
 import AccordionStyles from './Accordion.module.css'
 import { IconChevronUp } from '../Icon/icons/IconChevronUp'
@@ -92,9 +92,19 @@ export function Item({ children, className, label, id }: ItemProps) {
               {iconPosition === 'right' && icon}
             </IconContext.Provider>
           </Disclosure.Button>
-          <Disclosure.Panel className={panelClasses.join(' ')}>
-            {children}
-          </Disclosure.Panel>
+          <Transition
+            show={open}
+            enter={AccordionStyles[`sbui-accordion-item__panel--enter`]}
+            enterFrom={AccordionStyles[`sbui-accordion-item__panel--enterFrom`]}
+            enterTo={AccordionStyles[`sbui-accordion-item__panel--enterTo`]}
+            leave={AccordionStyles[`sbui-accordion-item__panel--leave`]}
+            leaveFrom={AccordionStyles[`sbui-accordion-item__panel--leaveFrom`]}
+            leaveTo={AccordionStyles[`sbui-accordion-item__panel--leaveTo`]}
+          >
+            <Disclosure.Panel className={panelClasses.join(' ')} static>
+              {children}
+            </Disclosure.Panel>
+          </Transition>
         </>
       )}
     </Disclosure>
