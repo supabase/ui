@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react'
+import React, { createContext, useCallback, useContext, useEffect } from 'react'
 import { Disclosure, Transition } from '@headlessui/react'
 // @ts-ignore
 import AccordionStyles from './Accordion.module.css'
@@ -7,13 +7,14 @@ import { IconContext } from '../Icon/IconContext'
 import Typography from '../Typography'
 
 type ContextValue = Required<
-  Pick<AccordionProps, 'defaultActiveId' | 'icon' | 'iconPosition'>
+  Pick<AccordionProps, 'defaultActiveId' | 'icon' | 'iconPosition' | 'onChange'>
 >
 
 const AccordionContext = createContext<ContextValue>({
   defaultActiveId: [],
   icon: <IconChevronUp strokeWidth={2} />,
   iconPosition: 'right',
+  onChange: undefined,
 })
 
 interface AccordionProps {
@@ -23,6 +24,11 @@ interface AccordionProps {
   icon?: React.ReactNode
   iconPosition?: 'left' | 'right'
   bordered?: boolean
+  onChange?: (item: {
+    label: string
+    id?: string | number
+    open: boolean
+  }) => void
 }
 
 function Accordion({
@@ -32,6 +38,7 @@ function Accordion({
   icon = <IconChevronUp strokeWidth={2} />,
   iconPosition = 'right',
   bordered,
+  onChange,
 }: AccordionProps) {
   let containerClasses = [AccordionStyles['sbui-accordion-container']]
   if (bordered) {
@@ -45,6 +52,7 @@ function Accordion({
     defaultActiveId,
     icon,
     iconPosition,
+    onChange,
   }
 
   return (
@@ -62,7 +70,9 @@ interface ItemProps {
 }
 
 export function Item({ children, className, label, id }: ItemProps) {
-  const { defaultActiveId, icon, iconPosition } = useContext(AccordionContext)
+  const { defaultActiveId, icon, iconPosition, onChange } = useContext(
+    AccordionContext
+  )
 
   let panelClasses = [AccordionStyles['sbui-accordion-item__panel']]
 
@@ -72,6 +82,15 @@ export function Item({ children, className, label, id }: ItemProps) {
   }
 
   const isDefaultActive = defaultActiveId.includes(id)
+
+  const handleOnChange = useCallback(
+    (open: boolean) => () => {
+      if (onChange) {
+        onChange({ id, label, open })
+      }
+    },
+    [onChange, id, label]
+  )
 
   return (
     <Disclosure defaultOpen={isDefaultActive}>
@@ -102,6 +121,8 @@ export function Item({ children, className, label, id }: ItemProps) {
             leave={AccordionStyles[`sbui-accordion-item__panel--leave`]}
             leaveFrom={AccordionStyles[`sbui-accordion-item__panel--leaveFrom`]}
             leaveTo={AccordionStyles[`sbui-accordion-item__panel--leaveTo`]}
+            afterEnter={handleOnChange(open)}
+            afterLeave={handleOnChange(open)}
           >
             <Disclosure.Panel className={panelClasses.join(' ')} static>
               {children}
