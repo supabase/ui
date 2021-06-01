@@ -88,7 +88,7 @@ function Icon({
         // default these icons to use 'currentColor' ie, the text color
         const noColor = !color && !fill && !stroke
 
-        let classes = [className]
+        let classes = ['sbui-icon', className]
         if (contextClassName) {
           classes.push(contextClassName)
         }
