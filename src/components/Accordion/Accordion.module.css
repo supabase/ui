@@ -16,7 +16,7 @@
 }
 
 .sbui-accordion-item__button {
-  @apply flex justify-between w-full text-left cursor-pointer p-2 border-0 font-medium text-base rounded-t-md bg-transparent;
+  @apply flex justify-between w-full text-left cursor-pointer px-6 py-4 border-0 font-medium text-base rounded-t-md bg-transparent;
 
   @apply border-gray-200 text-gray-500 hover:text-gray-600;
   @apply dark:border-gray-600 dark:text-dark-200 dark:hover:text-white;
@@ -47,7 +47,7 @@
 }
 
 .sbui-accordion-item__panel {
-  @apply p-2;
+  @apply px-6 py-4;
 }
 
 .sbui-accordion-item__panel--enter {
