@@ -109,8 +109,7 @@ export function Item({ children, className, label, id }: ItemProps) {
               }}
             >
               {iconPosition === 'left' && icon}
-              <Typography>{label}</Typography>
-              {iconPosition === 'right' && icon}
+            <Typography.Text>{label}</Typography.Text>
             </IconContext.Provider>
           </Disclosure.Button>
           <Transition
