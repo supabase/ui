@@ -24,13 +24,13 @@ Default.args = {}
 
 const Multiple = (args: any) => (
   <Accordion {...args}>
-    <Accordion.Item label="1st Item">
+    <Accordion.Item label="1st Item" id={1}>
       <Typography>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
         amet labore.
       </Typography>
     </Accordion.Item>
-    <Accordion.Item label="2nd Item">
+    <Accordion.Item label="2nd Item" id={2}>
       <Typography>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
         amet labore.
@@ -49,7 +49,7 @@ withBorder.args = {
 
 export const withDefaultActive = Multiple.bind({})
 withDefaultActive.args = {
-  defaultActiveId: 1,
+  defaultActiveId: [1],
 }
 
 export const withIconLeft = Multiple.bind({})

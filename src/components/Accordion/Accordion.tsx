@@ -11,7 +11,7 @@ type ContextValue = Required<
 >
 
 const AccordionContext = createContext<ContextValue>({
-  defaultActiveId: undefined,
+  defaultActiveId: [],
   icon: <IconChevronUp strokeWidth={2} />,
   iconPosition: 'right',
 })
@@ -19,7 +19,7 @@ const AccordionContext = createContext<ContextValue>({
 interface AccordionProps {
   children?: React.ReactNode
   className?: string
-  defaultActiveId?: string | number
+  defaultActiveId?: (string | number)[]
   icon?: React.ReactNode
   iconPosition?: 'left' | 'right'
   bordered?: boolean
@@ -28,7 +28,7 @@ interface AccordionProps {
 function Accordion({
   children,
   className,
-  defaultActiveId,
+  defaultActiveId = [],
   icon = <IconChevronUp strokeWidth={2} />,
   iconPosition = 'right',
   bordered,
@@ -71,7 +71,7 @@ export function Item({ children, className, label, id }: ItemProps) {
     buttonClasses.push(className)
   }
 
-  const isDefaultActive = defaultActiveId && defaultActiveId === id
+  const isDefaultActive = defaultActiveId.includes(id)
 
   return (
     <Disclosure defaultOpen={isDefaultActive}>
