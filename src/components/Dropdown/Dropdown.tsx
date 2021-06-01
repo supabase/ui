@@ -11,6 +11,7 @@ import type * as RadixDropdownTypes from '@radix-ui/react-dropdown-menu/'
 
 interface RootProps {
   open?: boolean
+  arrow?: boolean
   onOpenChange?: RadixDropdownTypes.DropdownMenuOwnProps['onOpenChange']
   side?: RadixDropdownTypes.DropdownMenuContentOwnProps['side']
   align?: RadixDropdownTypes.DropdownMenuContentOwnProps['align']
@@ -23,17 +24,19 @@ interface RootProps {
 function Dropdown({
   open,
   onOpenChange,
-  side,
-  align,
+  align = "center", //Default value
+  side = "bottom", //Default value
   overlay,
   children,
   className,
   style,
+  arrow
 }: RootProps) {
   let classes = [DropdownStyles['sbui-dropdown__content']]
   if (className) {
     classes.push(className)
   }
+
   return (
     <RadixDropdown.Root onOpenChange={onOpenChange} open={open}>
       <RadixDropdown.Trigger
@@ -50,6 +53,13 @@ function Dropdown({
         className={classes.join(' ')}
         style={style}
       >
+        {arrow &&
+          <RadixDropdown.Arrow 
+            className={DropdownStyles['sbui-dropdown__arrow']}
+            offset={10}
+          >
+          </RadixDropdown.Arrow>
+        }
         {overlay}
       </RadixDropdown.Content>
     </RadixDropdown.Root>
