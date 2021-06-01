@@ -85,7 +85,9 @@ export function Item({ children, className, label, id }: ItemProps) {
             }
           >
             <IconContext.Provider
-              value={{ className: open ? 'transform rotate-180' : '' }}
+              value={{
+                className: open ? 'mt-px transform rotate-180' : 'mt-px',
+              }}
             >
               {iconPosition === 'left' && icon}
               <Typography>{label}</Typography>
