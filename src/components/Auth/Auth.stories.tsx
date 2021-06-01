@@ -132,7 +132,6 @@ withAllSocialAuth.args = {
     'github',
     'gitlab',
     'bitbucket',
-    'apple',
   ],
 }
 
@@ -145,7 +144,6 @@ withSocialLargeButtons.args = {
     'github',
     'gitlab',
     'bitbucket',
-    'apple',
   ],
   socialButtonSize: 'large',
 }
@@ -160,7 +158,6 @@ withColouredSocialAuth.args = {
     'github',
     'gitlab',
     'bitbucket',
-    'apple',
   ],
 }
 
