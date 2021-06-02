@@ -130,16 +130,22 @@ function InputNumber({
             min={min}
             max={max}
           />
-          {/* <div className={iconNavClasses.join(' ')}>
+          <div className={iconNavClasses.join(' ')}>
             <IconChevronUp
               className={iconUpClasses.join(' ')}
               onClick={onClickChevronUp}
+              onMouseDown={(e: React.MouseEvent) => {
+                e.preventDefault()
+              }}
             />
             <IconChevronDown
               className={iconDownClasses.join(' ')}
               onClick={onClickChevronDown}
+              onMouseDown={(e: React.MouseEvent) => {
+                e.preventDefault()
+              }}
             />
-          </div> */}
+          </div>
           {icon && <InputIconContainer icon={icon} />}
           {error ? (
             <Space
