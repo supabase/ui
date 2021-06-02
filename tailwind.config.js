@@ -182,6 +182,10 @@ module.exports = {
           dark: brand[300],
         },
       },
+
+      transitionProperty: {
+        'max-height': 'max-height',
+      },
     },
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
