@@ -3,12 +3,9 @@
 }
 
 .sbui-accordion-container--bordered {
-  @apply bg-white dark:bg-dark-700;
-  border: 1px solid #e0e0e0;
-}
-
-.dark .sbui-accordion-container--bordered {
-  border: 1px solid #2a2a2a;
+  @apply border border-solid;
+  @apply bg-white border-gray-200;
+  @apply dark:bg-dark-700 dark:border-darkmode;
 }
 
 .sbui-accordion-item {
@@ -16,20 +13,20 @@
 }
 
 .sbui-accordion-item__button {
-  @apply flex justify-between w-full text-left cursor-pointer px-6 py-4 border-0 font-medium text-base rounded-t-md bg-transparent;
+  @apply flex justify-between w-full text-left cursor-pointer px-6 py-4 border-0 border-solid font-medium text-base rounded-t-md bg-transparent;
 
   @apply border-gray-200 text-gray-500 hover:text-gray-600;
-  @apply dark:border-gray-600 dark:text-dark-200 dark:hover:text-white;
+  @apply dark:border-darkmode dark:text-dark-200 dark:hover:text-white;
 
   font-family: inherit;
   font-weight: inherit;
 }
 
-.sbui-accordion-item__button .sbui-typography {
+.sbui-accordion-item__button .sbui-typography-text {
   @apply w-full max-w-none;
 }
 
-.sbui-accordion-item__button .sbui-typography:last-child {
+.sbui-accordion-item__button .sbui-typography-text:last-child {
   @apply pl-2;
 }
 
@@ -43,15 +40,7 @@
 
 .sbui-accordion-container--bordered
   .sbui-accordion-item__button:not(:first-child) {
-  @apply rounded-none;
-  border-top: 1px solid #e0e0e0;
-}
-
-.dark
-  .sbui-accordion-container--bordered
-  .sbui-accordion-item__button:not(:first-child) {
-  @apply rounded-none;
-  border-top: 1px solid #2a2a2a;
+  @apply rounded-none border-t border-gray-200 dark:border-darkmode;
 }
 
 .sbui-accordion-item__panel {
