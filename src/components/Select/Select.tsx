@@ -89,6 +89,7 @@ function Select({
   value,
   style,
   size = 'medium',
+  ...props
 }: Props) {
   let selectClasses = [SelectStyles['sbui-select']]
   if (error) selectClasses.push(SelectStyles['sbui-select--error'])
@@ -122,6 +123,7 @@ function Select({
           disabled={disabled}
           required={required}
           placeholder={placeholder}
+          {...props}
         >
           {children}
         </select>
