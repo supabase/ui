@@ -1,0 +1,16 @@
+.sbui-image {
+
+}
+
+.sbui-image-avatar {
+    border-radius: 50%;
+}
+
+.sbui-image-normal {
+
+}
+
+.sbui-image-responsive {
+    width: 100%;
+    height: auto;  
+}

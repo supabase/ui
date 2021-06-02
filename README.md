@@ -107,16 +107,17 @@ _General_
 - [x] Button
 - [x] Typography
 - [x] Icon
+- [x] Image (work in progress)
 
 _Data Input_
 
 - [x] Input
 - [x] InputNumber
-- [x] Select
-- [x] Checkbox (and Checkbox Groups)
-- [x] Radio (and Radio Groups)
-- [x] Toggle (work in progress)
-- [ ] Upload (work in progress)
+- [x] Select (custom select wip)
+- [x] Checkbox
+- [x] Radio
+- [x] Toggle
+- [ ] Upload
 - [ ] Slider
 - [ ] Date picker
 - [ ] Time picker
@@ -124,8 +125,8 @@ _Data Input_
 
 _Layout_
 
-- [ ] Layout
-- [ ] Grid (Flex)
+~~- [ ] Layout~~
+~~- [ ] Grid (Flex)~~
 - [x] Divider
 - [x] Space (Flex)
 
@@ -133,6 +134,7 @@ _Display_
 
 - [x] Card
 - [ ] Avatar
+- [x] Accordian
 - [x] Alert
 - [x] Badge
 - [x] Menu
