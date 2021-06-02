@@ -88,15 +88,31 @@ function InputNumber({
     iconNavClasses.push(InputNumberStyles[`sbui-inputnumber-nav--${size}`])
   }
 
-  // removed chevrons temporarily
-  // issues with arrows not sized correctly
-  // const onClickChevronUp = () => {
-  //   inputRefCurrent.current?.stepUp()
-  // }
+  const onClickChevronUp = () => {
+    inputRefCurrent.current?.stepUp()
+    if (onChange) {
+      inputRefCurrent.current.dispatchEvent(
+        new InputEvent('change', {
+          view: window,
+          bubbles: true,
+          cancelable: false,
+        })
+      )
+    }
+  }
 
-  // const onClickChevronDown = () => {
-  //   inputRefCurrent.current?.stepDown()
-  // }
+  const onClickChevronDown = () => {
+    inputRefCurrent.current?.stepDown()
+    if (onChange) {
+      inputRefCurrent.current.dispatchEvent(
+        new InputEvent('change', {
+          view: window,
+          bubbles: true,
+          cancelable: false,
+        })
+      )
+    }
+  }
 
   return (
     <div className={className}>
