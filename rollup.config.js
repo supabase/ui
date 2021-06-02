@@ -25,6 +25,7 @@ export default {
     button: 'src/components/Button/index.tsx',
     typography: 'src/components/Typography/index.tsx',
     icon: 'src/components/Icon/index.tsx',
+    image: 'src/components/Image/index.tsx',
     card: 'src/components/Card/index.tsx',
     badge: 'src/components/Badge/index.tsx',
     alert: 'src/components/Alert/index.tsx',
