@@ -26,6 +26,8 @@ interface GroupProps {
   error?: any
   descriptionText?: any
   label?: any
+  afterLabel?: string
+  beforeLabel?: string
   labelOptional?: any
   name?: any
   type?: any
@@ -44,6 +46,8 @@ function RadioGroup({
   error,
   descriptionText,
   label,
+  afterLabel,
+  beforeLabel,
   labelOptional,
   children,
   className,
@@ -78,6 +82,8 @@ function RadioGroup({
       <fieldset className={RadioStyles['sbui-radio-fieldset']}>
         <FormLayout
           label={label}
+          afterLabel={afterLabel}
+          beforeLabel={beforeLabel}
           labelOptional={labelOptional}
           layout={layout}
           id={id}

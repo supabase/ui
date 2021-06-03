@@ -25,6 +25,8 @@ interface GroupProps {
   error?: any
   descriptionText?: any
   label?: any
+  afterLabel?: string
+  beforeLabel?: string
   labelOptional?: any
   name?: any
   value?: any
@@ -42,6 +44,8 @@ function Group({
   error,
   descriptionText,
   label,
+  afterLabel,
+  beforeLabel,
   labelOptional,
   children,
   className,
@@ -57,6 +61,8 @@ function Group({
   return (
     <FormLayout
       label={label}
+      afterLabel={afterLabel}
+      beforeLabel={beforeLabel}
       labelOptional={labelOptional}
       layout={layout}
       id={id}

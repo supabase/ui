@@ -190,6 +190,8 @@ export interface TextAreaProps {
   icon?: any
   id?: string
   label?: string
+  afterLabel?: string
+  beforeLabel?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
   name?: string
@@ -215,6 +217,8 @@ function TextArea({
   icon,
   id,
   label,
+  afterLabel,
+  beforeLabel,
   labelOptional,
   layout,
   name,
@@ -247,6 +251,8 @@ function TextArea({
     <FormLayout
       className={className}
       label={label}
+      afterLabel={afterLabel}
+      beforeLabel={beforeLabel}
       labelOptional={labelOptional}
       layout={layout}
       id={id}
