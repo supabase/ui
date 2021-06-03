@@ -121,7 +121,7 @@ export function Checkbox({
 
         // check if checkbox checked is true or false
         // if neither true or false the checkbox will rely on native control
-        const active = checked ? true : checked === false ? false : null
+        const active = checked ? true : checked === false ? false : undefined
 
         let containerClasses = [
           CheckboxStyles['sbui-checkbox-container'],

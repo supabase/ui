@@ -13,7 +13,7 @@ type Props = {
   id?: string
   label?: string
   labelOptional?: string
-  layout: 'horizontal' | 'vertical'
+  layout?: 'horizontal' | 'vertical'
   style?: React.CSSProperties
   flex?: boolean
   responsive?: boolean

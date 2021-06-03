@@ -12,7 +12,7 @@ interface Props {
   descriptionText?: string
   label?: string
   labelOptional?: string
-  onChange?(x: Boolean): void
+  onChange?(x: boolean): void
   className?: any
   defaultChecked?: boolean
   checked?: boolean
@@ -35,11 +35,13 @@ function Toggle({
   align = 'right',
   size = 'medium',
 }: Props) {
-  const [intChecked, setIntChecked] = useState(defaultChecked || checked)
+  const [intChecked, setIntChecked] = useState(
+    (defaultChecked || checked) ?? false
+  )
 
   // check if toggle checked is true or false
   // if neither true or false the toggle will rely on component state internally
-  const active = checked ? true : checked === false ? false : intChecked
+  const active = checked ?? intChecked
 
   function onClick(e: React.MouseEvent<HTMLButtonElement>) {
     // '`onChange` callback for this component
@@ -64,7 +66,7 @@ function Toggle({
       layout={layout}
       id={id}
       error={error}
-      align={layout === 'vertical' && align}
+      align={layout === 'vertical' ? align : undefined}
       flex={layout === 'vertical' ? true : false}
       descriptionText={descriptionText}
       size={size}

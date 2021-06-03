@@ -24,13 +24,13 @@ interface RootProps {
 function Dropdown({
   open,
   onOpenChange,
-  align = "center", //Default value
-  side = "bottom", //Default value
+  align = 'center', //Default value
+  side = 'bottom', //Default value
   overlay,
   children,
   className,
   style,
-  arrow
+  arrow,
 }: RootProps) {
   let classes = [DropdownStyles['sbui-dropdown__content']]
   if (className) {
@@ -53,13 +53,12 @@ function Dropdown({
         className={classes.join(' ')}
         style={style}
       >
-        {arrow &&
-          <RadixDropdown.Arrow 
+        {arrow && (
+          <RadixDropdown.Arrow
             className={DropdownStyles['sbui-dropdown__arrow']}
             offset={10}
-          >
-          </RadixDropdown.Arrow>
-        }
+          ></RadixDropdown.Arrow>
+        )}
         {overlay}
       </RadixDropdown.Content>
     </RadixDropdown.Root>
@@ -78,7 +77,7 @@ export function Item({ children, icon, disabled, onClick }: ItemProps) {
     <RadixDropdown.Item
       className={DropdownStyles['sbui-dropdown-item']}
       disabled={disabled}
-      onSelect={onClick ? onClick : null}
+      onSelect={onClick ? onClick : undefined}
     >
       {icon && icon}
       <span>{children}</span>

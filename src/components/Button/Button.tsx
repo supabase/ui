@@ -38,8 +38,8 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 interface CustomButtonProps extends React.HTMLAttributes<HTMLOrSVGElement> {}
 
 export interface RefHandle {
-  container: () => HTMLElement
-  button: () => HTMLButtonElement
+  container: () => HTMLElement | null
+  button: () => HTMLButtonElement | null
 }
 
 const Button = forwardRef<RefHandle, ButtonProps>(
@@ -70,14 +70,14 @@ const Button = forwardRef<RefHandle, ButtonProps>(
     ref
   ) => {
     // button ref
-    const containerRef = useRef()
-    const buttonRef = useRef()
+    const containerRef = useRef<HTMLElement>(null)
+    const buttonRef = useRef<HTMLButtonElement>(null)
 
     useImperativeHandle(ref, () => ({
-      get container() {
+      container: () => {
         return containerRef.current
       },
-      get button() {
+      button: () => {
         return buttonRef.current
       },
     }))
