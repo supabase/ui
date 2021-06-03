@@ -29,7 +29,7 @@ export default {
     card: 'src/components/Card/index.tsx',
     badge: 'src/components/Badge/index.tsx',
     alert: 'src/components/Alert/index.tsx',
-    accordian: 'src/components/Accordian/index.tsx',
+    accordian: 'src/components/Accordion/index.tsx',
     tabs: 'src/components/Tabs/index.tsx',
     menu: 'src/components/Menu/index.tsx',
     modal: 'src/components/Modal/index.tsx',
