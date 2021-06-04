@@ -16,21 +16,50 @@ export const Normal = (args: any) => {
 }
 
 export const Circle = (args: any) => {
-    return (
-      <>
-        <Image {...args} />
-      </>
-    )
-  }
+  return (
+    <>
+      <Image {...args} />
+    </>
+  )
+}
+
+export const Rounded = (args: any) => {
+  return (
+    <>
+      <Image {...args} />
+    </>
+  )
+}
+
+export const Responsive = (args: any) => {
+  return (
+    <>
+      <Image {...args} />
+    </>
+  )
+}
 
 Normal.args = {
   active: true,
-  type: 'normal',
   source: 'https://via.placeholder.com/300'
 }
 
 Circle.args = {
     active: true,
-    type: 'avatar',
+    type: 'circle',
     source: 'https://via.placeholder.com/300'
+}
+
+Rounded.args = {
+  active: true,
+  type: 'rounded',
+  source: 'https://via.placeholder.com/300'
+}
+
+Responsive.args = {
+  active: true,
+  type: 'normal',
+  source: 'https://via.placeholder.com/300',
+  responsive: true
+
 }

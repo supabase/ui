@@ -6,7 +6,7 @@ interface Props {
     source?: string
     style?: React.CSSProperties
     className?: string
-    type?: 'avatar' | 'normal'
+    type?: 'rounded' | 'circle'
     alt?: string
     responsive?: boolean
 }
@@ -19,12 +19,14 @@ export default function Image({
     alt,
     responsive
 }: Props){
-    let classes = [type==='avatar' ? ImageStyles['sbui-image-avatar'] : ImageStyles['sbui-image-normal']]
+    let classes = [ImageStyles['sbui-image-normal']]
+    classes.push(type === 'rounded' && ImageStyles['sbui-image-rounded'])
+    classes.push(type === 'circle' && ImageStyles['sbui-image-circle']) 
     if(responsive) classes.push(ImageStyles['sbui-image-responsive'])
     if (className) classes.push(className)
     return (
-        <div>
+        <>
             <img className={classes.join(' ')} src={source} style={style} alt={alt} />
-        </div>
+        </>
     )
 }
