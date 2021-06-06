@@ -56,6 +56,14 @@ export const withOptionLabel = (args: any) => (
   </Select>
 )
 
+export const withBeforeAndAfterLabel = (args: any) => (
+  <Select {...args}>
+    <Option value="javascript">JavaScript</Option>
+    <Option value="typeScript">TypeScript</Option>
+    <Option value="react">React</Option>
+  </Select>
+)
+
 export const withDescription = (args: any) => (
   <Select {...args}>
     <Option value="javascript">JavaScript</Option>
@@ -132,6 +140,19 @@ withOptionLabel.args = {
   placeholder: 'Type text here ...',
   disabled: false,
   label: 'Input with an error message',
+  className: 'font-sans',
+  value: 'Value of input',
+  labelOptional: 'This is required',
+  allowedValues: data,
+  layout: 'vertical',
+}
+
+withBeforeAndAfterLabel.args = {
+  placeholder: 'Type text here ...',
+  disabled: false,
+  label: 'Label',
+  beforeLabel: 'Before : ',
+  afterLabel: ' : After',
   className: 'font-sans',
   value: 'Value of input',
   labelOptional: 'This is required',
