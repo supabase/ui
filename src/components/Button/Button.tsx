@@ -94,6 +94,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       loadingCentered && ButtonStyles[`sbui-btn-loader--center`]
     )
 
+    const _icon = icon ? (
+      <IconContext.Provider value={{ contextSize: size }}>
+        {icon}
+      </IconContext.Provider>
+    ) : null
+
     // custom button tag
     const CustomButton: React.FC<CustomButtonProps> = ({ ...props }) => {
       const Tag = as as keyof JSX.IntrinsicElements
@@ -129,11 +135,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           {showIcon &&
             (loading ? (
               <IconLoader size={size} className={iconLoaderClasses} />
-            ) : icon ? (
-              <IconContext.Provider value={{ contextSize: size }}>
-                {icon}
-              </IconContext.Provider>
-            ) : null)}
+            ) : (
+              _icon
+            ))}
           {children && <span>{children}</span>}
           {iconRight && !loading && (
             <IconContext.Provider value={{ contextSize: size }}>
