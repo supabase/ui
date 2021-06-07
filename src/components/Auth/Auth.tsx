@@ -22,13 +22,14 @@ const VIEWS: ViewsMap = {
   SIGN_UP: 'sign_up',
   FORGOTTEN_PASSWORD: 'forgotten_password',
   MAGIC_LINK: 'magic_link',
+  UPDATE_PASSWORD: 'update_password',
 }
 
 interface ViewsMap {
   [key: string]: ViewType
 }
 
-type ViewType = 'sign_in' | 'sign_up' | 'forgotten_password' | 'magic_link'
+type ViewType = 'sign_in' | 'sign_up' | 'forgotten_password' | 'magic_link' | 'update_password'
 
 export interface Props {
   supabaseClient: SupabaseClient
@@ -123,6 +124,15 @@ function Auth({
         </Container>
       )
       break
+    case VIEWS.UPDATE_PASSWORD:
+      return (
+        <Container>
+          <UpdatePassword
+            supabaseClient={supabaseClient}
+            setAuthView={setAuthView}
+          />
+        </Container>
+      )
     default:
       break
   }
