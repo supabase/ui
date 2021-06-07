@@ -3,6 +3,7 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import ButtonStyles from './Button.module.css'
 import { IconContext } from '../Icon/IconContext'
 import { IconLoader } from '../Icon/icons/IconLoader'
+import { c8s } from '../../lib/utilities'
 
 export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   block?: boolean
@@ -85,40 +86,29 @@ const Button = forwardRef<RefHandle, ButtonProps>(
     // styles
     const showIcon = loading || icon
 
-    let classes = [ButtonStyles['sbui-btn']]
-    let containerClasses = [ButtonStyles['sbui-btn-container']]
+    const classes = c8s(
+      ButtonStyles['sbui-btn'],
+      ButtonStyles[`sbui-btn-${type}`],
+      block && ButtonStyles['sbui-btn--w-full'],
+      danger && ButtonStyles['sbui-btn--danger'],
+      shadow &&
+        type !== 'link' &&
+        type !== 'text' &&
+        ButtonStyles['sbui-btn-container--shadow'],
+      size && ButtonStyles[`sbui-btn--${size}`],
+      className,
+      loading && loadingCentered && ButtonStyles[`sbui-btn--text-fade-out`]
+    )
 
-    classes.push(ButtonStyles[`sbui-btn-${type}`])
+    const containerClasses = c8s(
+      ButtonStyles['sbui-btn-container'],
+      block && ButtonStyles['sbui-btn--w-full']
+    )
 
-    if (block) {
-      containerClasses.push(ButtonStyles['sbui-btn--w-full'])
-      classes.push(ButtonStyles['sbui-btn--w-full'])
-    }
-
-    if (danger) {
-      classes.push(ButtonStyles['sbui-btn--danger'])
-    }
-
-    if (shadow && type !== 'link' && type !== 'text') {
-      classes.push(ButtonStyles['sbui-btn-container--shadow'])
-    }
-
-    if (size) {
-      classes.push(ButtonStyles[`sbui-btn--${size}`])
-    }
-
-    if (className) {
-      classes.push(className)
-    }
-
-    const iconLoaderClasses = [ButtonStyles['sbui-btn--anim--spin']]
-
-    if (loadingCentered) {
-      iconLoaderClasses.push(ButtonStyles[`sbui-btn-loader--center`])
-    }
-    if (loading && loadingCentered) {
-      classes.push(ButtonStyles[`sbui-btn--text-fade-out`])
-    }
+    const iconLoaderClasses = c8s(
+      ButtonStyles['sbui-btn--anim--spin'],
+      loadingCentered && ButtonStyles[`sbui-btn-loader--center`]
+    )
 
     // custom button tag
     const CustomButton: React.FC<CustomButtonProps> = ({ ...props }) => {
@@ -128,18 +118,14 @@ const Button = forwardRef<RefHandle, ButtonProps>(
 
     const RenderedButton = ({ children }: any) =>
       as ? (
-        <CustomButton
-          className={classes.join(' ')}
-          onClick={onClick}
-          style={style}
-        >
+        <CustomButton className={classes} onClick={onClick} style={style}>
           {children}
         </CustomButton>
       ) : (
         <button
           {...props}
           ref={buttonRef}
-          className={classes.join(' ')}
+          className={classes}
           disabled={loading || (disabled && true)}
           onClick={onClick}
           style={style}
@@ -154,11 +140,11 @@ const Button = forwardRef<RefHandle, ButtonProps>(
       )
 
     return (
-      <span ref={containerRef} className={containerClasses.join(' ')}>
+      <span ref={containerRef} className={containerClasses}>
         <RenderedButton>
           {showIcon &&
             (loading ? (
-              <IconLoader size={size} className={iconLoaderClasses.join(' ')} />
+              <IconLoader size={size} className={iconLoaderClasses} />
             ) : icon ? (
               <IconContext.Provider value={{ contextSize: size }}>
                 {icon}
