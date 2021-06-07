@@ -5,6 +5,7 @@ export * from './components/Typography/index'
 export * from './components/Icon/index'
 export * from './components/Image/index'
 
+
 // DISPLAYS
 
 export * from './components/Card/index'
@@ -39,6 +40,8 @@ export * from './components/InputNumber/index'
 export * from './components/Radio/index'
 export * from './components/Toggle/index'   
 export * from './components/Upload/index'
+export * from './components/BigRadio/index'
+export * from './components/WideRadio/index'
 
 // ARCHIVE
 
