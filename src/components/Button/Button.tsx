@@ -64,20 +64,16 @@ const Button: ButtonComponent = forwardRef(
       children,
       danger,
       disabled = false,
-      onClick,
       icon,
       iconRight,
       loading = false,
       loadingCentered = false,
       shadow = true,
       size = 'tiny',
-      style,
       type = 'primary',
       htmlType,
       ariaSelected,
       ariaControls,
-      tabIndex,
-      role,
       as,
       containerRef,
       ...props
@@ -125,14 +121,10 @@ const Button: ButtonComponent = forwardRef(
           {...props}
           ref={ref}
           className={classes}
-          disabled={loading || (disabled && true)}
-          onClick={onClick}
-          style={style}
+          disabled={loading || disabled}
           type={htmlType}
           aria-selected={ariaSelected}
           aria-controls={ariaControls}
-          tabIndex={tabIndex}
-          role={role}
         >
           {showIcon &&
             (loading ? (
