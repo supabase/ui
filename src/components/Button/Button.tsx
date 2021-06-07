@@ -34,16 +34,12 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   tabIndex?: 0 | -1
   role?: string
   as?: keyof JSX.IntrinsicElements
+  containerRef?: React.Ref<HTMLSpanElement>
 }
 
 interface CustomButtonProps extends React.HTMLAttributes<HTMLOrSVGElement> {}
 
-export interface RefHandle {
-  container: () => HTMLElement
-  button: () => HTMLButtonElement
-}
-
-const Button = forwardRef<RefHandle, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       block,
@@ -66,23 +62,11 @@ const Button = forwardRef<RefHandle, ButtonProps>(
       tabIndex,
       role,
       as,
+      containerRef,
       ...props
     }: ButtonProps,
     ref
   ) => {
-    // button ref
-    const containerRef = useRef()
-    const buttonRef = useRef()
-
-    useImperativeHandle(ref, () => ({
-      get container() {
-        return containerRef.current
-      },
-      get button() {
-        return buttonRef.current
-      },
-    }))
-
     // styles
     const showIcon = loading || icon
 
@@ -124,7 +108,7 @@ const Button = forwardRef<RefHandle, ButtonProps>(
       ) : (
         <button
           {...props}
-          ref={buttonRef}
+          ref={ref}
           className={classes}
           disabled={loading || (disabled && true)}
           onClick={onClick}
