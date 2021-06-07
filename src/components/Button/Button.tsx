@@ -1,16 +1,36 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import React, {
+  forwardRef,
+  useRef,
+  useImperativeHandle,
+  ComponentType,
+  ElementType,
+  WeakValidationMap,
+  ValidationMap,
+  ComponentProps,
+  ComponentPropsWithoutRef,
+  ForwardedRef,
+  ComponentPropsWithRef,
+  Ref,
+  PropsWithChildren,
+  ReactElement,
+} from 'react'
+import { c8s } from '../../lib/utilities'
+import {
+  RefForwardingComponentWithAsProps,
+  ComponentWithAsProps,
+  AsPropsWithoutRef,
+} from '../../types'
+
 // @ts-ignore
 import ButtonStyles from './Button.module.css'
 import { IconContext } from '../Icon/IconContext'
 import { IconLoader } from '../Icon/icons/IconLoader'
-import { c8s } from '../../lib/utilities'
 
-export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+export type ButtonProps = {
   block?: boolean
-  className?: any
+  className?: string
   children?: React.ReactNode
   disabled?: boolean
-  onClick?: React.MouseEventHandler<HTMLButtonElement>
   icon?: React.ReactNode
   iconRight?: React.ReactNode
   loading?: boolean
@@ -28,18 +48,15 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
     | 'text'
   danger?: boolean
   htmlType?: 'button' | 'submit' | 'reset'
-  ref?: any
   ariaSelected?: boolean
   ariaControls?: string
   tabIndex?: 0 | -1
   role?: string
-  as?: keyof JSX.IntrinsicElements
-  containerRef?: React.Ref<HTMLSpanElement>
+  containerRef?: Ref<HTMLSpanElement>
 }
+type ButtonComponent = RefForwardingComponentWithAsProps<'button', ButtonProps>
 
-interface CustomButtonProps extends React.HTMLAttributes<HTMLOrSVGElement> {}
-
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+const Button: ButtonComponent = forwardRef(
   (
     {
       block,
@@ -64,7 +81,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       as,
       containerRef,
       ...props
-    }: ButtonProps,
+    },
     ref
   ) => {
     // styles
@@ -100,19 +117,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       </IconContext.Provider>
     ) : null
 
-    // custom button tag
-    const CustomButton: React.FC<CustomButtonProps> = ({ ...props }) => {
-      const Tag = as as keyof JSX.IntrinsicElements
-      return <Tag {...props} />
-    }
+    const Component = as || 'button'
 
-    const RenderedButton = ({ children }: any) =>
-      as ? (
-        <CustomButton className={classes} onClick={onClick} style={style}>
-          {children}
-        </CustomButton>
-      ) : (
-        <button
+    return (
+      <span ref={containerRef} className={containerClasses}>
+        <Component
           {...props}
           ref={ref}
           className={classes}
@@ -125,13 +134,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           tabIndex={tabIndex}
           role={role}
         >
-          {children}
-        </button>
-      )
-
-    return (
-      <span ref={containerRef} className={containerClasses}>
-        <RenderedButton>
           {showIcon &&
             (loading ? (
               <IconLoader size={size} className={iconLoaderClasses} />
@@ -144,7 +146,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               {iconRight}
             </IconContext.Provider>
           )}
-        </RenderedButton>
+        </Component>
       </span>
     )
   }
