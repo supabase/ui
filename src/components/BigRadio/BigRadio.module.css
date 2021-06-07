@@ -3,7 +3,7 @@
 }
 
 .big-radio-options {
-  @apply flex flex-1;
+  @apply flex flex-1 flex-wrap sm:flex-nowrap;
 }
 .big-radio-options-wrap {
   @apply flex flex-1 flex-wrap;
@@ -23,7 +23,7 @@
 }
 
 .big-radio-wrapper > div {
-  @apply text-2xl leading-8	 text-black cursor-pointer flex items-center h-40 text-center relative flex-1 rounded-xl box-border border  border-solid	 border-transparent;
+  @apply text-xl sm:text-2xl leading-8	 text-black cursor-pointer flex items-center h-40 text-center relative flex-1 rounded-xl box-border border  border-solid	 border-transparent;
 }
 
 .big-radio-wrapper img {
