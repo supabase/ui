@@ -30,6 +30,11 @@
   @apply block text-sm font-medium dark:text-white;
 }
 
+.sbui-radio-label-text .sbui-radio__label-text-before,
+.sbui-radio-label-text .sbui-radio__label-text-after {
+  @apply text-gray-400 dark:text-gray-300;
+}
+
 .sbui-radio-label-description {
   @apply block text-sm text-gray-400 dark:text-gray-300;
 }

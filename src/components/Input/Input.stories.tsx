@@ -31,6 +31,8 @@ export const withRevealAndCopy = (args: any) => <Input {...args} />
 
 export const withCustomActions = (args: any) => <Input {...args} />
 
+export const withBeforeAndAfterLabel = (args: any) => <Input {...args} />
+
 export const size = (args: any) => <Input {...args} />
 
 const icon: any = <IconPackage />
@@ -119,4 +121,11 @@ size.args = {
   type: 'text',
   label: 'You can change the size of this Input',
   size: 'tiny',
+}
+
+withBeforeAndAfterLabel.args = {
+  type: 'text',
+  label: 'This is the label',
+  beforeLabel: 'Before label : ',
+  afterLabel: ' : After label',
 }

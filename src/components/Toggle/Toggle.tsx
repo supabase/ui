@@ -11,6 +11,8 @@ interface Props {
   error?: string
   descriptionText?: string
   label?: string
+  afterLabel?: string
+  beforeLabel?: string
   labelOptional?: string
   onChange?(x: boolean): void
   className?: any
@@ -27,6 +29,8 @@ function Toggle({
   error,
   descriptionText,
   label,
+  afterLabel,
+  beforeLabel,
   labelOptional,
   onChange,
   defaultChecked,
@@ -62,6 +66,8 @@ function Toggle({
     <FormLayout
       className={className}
       label={label}
+      afterLabel={afterLabel}
+      beforeLabel={beforeLabel}
       labelOptional={labelOptional}
       layout={layout}
       id={id}

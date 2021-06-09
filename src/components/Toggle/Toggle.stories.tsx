@@ -16,6 +16,7 @@ export default {
 export const Primary = (args: any) => <Toggle {...args} />
 export const checkedDefault = (args: any) => <Toggle {...args} />
 export const noLabel = (args: any) => <Toggle {...args} />
+export const withBeforeAndAfterLabel = (args: any) => <Toggle {...args} />
 export const size = (args: any) => <Toggle {...args} />
 
 Primary.args = {
@@ -42,6 +43,12 @@ noLabel.args = {
   error: '',
   name: 'radiogroup-example',
   layout: 'horizontal',
+}
+
+withBeforeAndAfterLabel.args = {
+  label: 'Label',
+  beforeLabel: 'Before : ',
+  afterLabel: ' : After',
 }
 
 size.args = {

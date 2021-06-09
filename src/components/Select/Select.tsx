@@ -31,6 +31,8 @@ export interface Props {
   id?: string
   inputRef?: string
   label?: string
+  afterLabel?: string
+  beforeLabel?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
   name?: string
@@ -78,6 +80,8 @@ function Select({
   id,
   inputRef,
   label,
+  afterLabel,
+  beforeLabel,
   labelOptional,
   layout,
   name,
@@ -99,6 +103,8 @@ function Select({
   return (
     <FormLayout
       label={label}
+      afterLabel={afterLabel}
+      beforeLabel={beforeLabel}
       labelOptional={labelOptional}
       layout={layout}
       id={id}

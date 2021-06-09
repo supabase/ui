@@ -6,6 +6,8 @@ import CheckboxStyles from './Checkbox.module.css'
 
 interface InputProps {
   label: string
+  afterLabel?: string
+  beforeLabel?: string
   value?: string
   description?: string
   disabled?: boolean
@@ -25,6 +27,8 @@ interface GroupProps {
   error?: any
   descriptionText?: any
   label?: any
+  afterLabel?: string
+  beforeLabel?: string
   labelOptional?: any
   name?: any
   value?: any
@@ -42,6 +46,8 @@ function Group({
   error,
   descriptionText,
   label,
+  afterLabel,
+  beforeLabel,
   labelOptional,
   children,
   className,
@@ -57,6 +63,8 @@ function Group({
   return (
     <FormLayout
       label={label}
+      afterLabel={afterLabel}
+      beforeLabel={beforeLabel}
       labelOptional={labelOptional}
       layout={layout}
       id={id}
@@ -75,6 +83,8 @@ function Group({
                   id={option.id}
                   value={option.value}
                   label={option.label}
+                  beforeLabel={option.beforeLabel}
+                  afterLabel={option.afterLabel}
                   checked={option.checked}
                   name={option.name}
                   description={option.description}
@@ -91,6 +101,8 @@ export function Checkbox({
   className,
   id,
   label,
+  afterLabel,
+  beforeLabel,
   description,
   name,
   checked,
@@ -167,8 +179,27 @@ export function Checkbox({
                     ]
                   }
                 >
+                  {beforeLabel && (
+                    <span
+                      className={
+                        CheckboxStyles['sbui-checkbox__label-text-before']
+                      }
+                    >
+                      {beforeLabel}
+                    </span>
+                  )}
                   {label}
+                  {afterLabel && (
+                    <span
+                      className={
+                        CheckboxStyles['sbui-checkbox__label-text-after']
+                      }
+                    >
+                      {afterLabel}
+                    </span>
+                  )}
                 </span>
+
                 {description && (
                   <p
                     className={

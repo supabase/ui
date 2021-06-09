@@ -2,15 +2,20 @@
 
 }
 
-.sbui-image-avatar {
-    border-radius: 50%;
+.sbui-image-circle {
+    @apply rounded-full;
 }
 
 .sbui-image-normal {
 
 }
 
+.sbui-image-rounded {
+    @apply rounded
+}
+
 .sbui-image-responsive {
-    width: 100%;
-    height: auto;  
+    @apply w-full;
+    @apply h-auto;
+
 }

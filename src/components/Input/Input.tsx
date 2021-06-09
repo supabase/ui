@@ -19,6 +19,8 @@ export interface Props {
   id?: string
   inputRef?: string
   label?: string
+  afterLabel?: string
+  beforeLabel?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
   name?: string
@@ -63,6 +65,8 @@ function Input({
   id,
   inputRef,
   label,
+  afterLabel,
+  beforeLabel,
   labelOptional,
   layout,
   name,
@@ -117,6 +121,8 @@ function Input({
     <div className={className}>
       <FormLayout
         label={label}
+        afterLabel={afterLabel}
+        beforeLabel={beforeLabel}
         labelOptional={labelOptional}
         layout={layout}
         id={id}
@@ -184,6 +190,8 @@ export interface TextAreaProps {
   icon?: any
   id?: string
   label?: string
+  afterLabel?: string
+  beforeLabel?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
   name?: string
@@ -209,6 +217,8 @@ function TextArea({
   icon,
   id,
   label,
+  afterLabel,
+  beforeLabel,
   labelOptional,
   layout,
   name,
@@ -241,6 +251,8 @@ function TextArea({
     <FormLayout
       className={className}
       label={label}
+      afterLabel={afterLabel}
+      beforeLabel={beforeLabel}
       labelOptional={labelOptional}
       layout={layout}
       id={id}

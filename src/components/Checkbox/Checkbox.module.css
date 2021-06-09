@@ -63,6 +63,11 @@
   @apply font-medium;
 }
 
+.sbui-checkbox__label-container__label__span .sbui-checkbox__label-text-before,
+.sbui-checkbox__label-container__label__span .sbui-checkbox__label-text-after {
+  @apply text-gray-400 dark:text-gray-300;
+}
+
 .sbui-checkbox__label-container__label__p {
   @apply mt-0 text-gray-400 dark:text-gray-300;
 }

@@ -20,6 +20,8 @@ export interface Props {
   id?: string
   inputRef?: React.RefObject<HTMLInputElement>
   label?: string
+  afterLabel?: string
+  beforeLabel?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
   name?: string
@@ -47,6 +49,8 @@ function InputNumber({
   id,
   inputRef,
   label,
+  afterLabel,
+  beforeLabel,
   labelOptional,
   layout,
   name,
@@ -88,20 +92,38 @@ function InputNumber({
     iconNavClasses.push(InputNumberStyles[`sbui-inputnumber-nav--${size}`])
   }
 
-  // removed chevrons temporarily
-  // issues with arrows not sized correctly
-  // const onClickChevronUp = () => {
-  //   inputRefCurrent.current?.stepUp()
-  // }
+  const onClickChevronUp = () => {
+    inputRefCurrent.current?.stepUp()
+    if (onChange) {
+      inputRefCurrent.current?.dispatchEvent(
+        new InputEvent('change', {
+          view: window,
+          bubbles: true,
+          cancelable: false,
+        })
+      )
+    }
+  }
 
-  // const onClickChevronDown = () => {
-  //   inputRefCurrent.current?.stepDown()
-  // }
+  const onClickChevronDown = () => {
+    inputRefCurrent.current?.stepDown()
+    if (onChange) {
+      inputRefCurrent.current?.dispatchEvent(
+        new InputEvent('change', {
+          view: window,
+          bubbles: true,
+          cancelable: false,
+        })
+      )
+    }
+  }
 
   return (
     <div className={className}>
       <FormLayout
         label={label}
+        afterLabel={afterLabel}
+        beforeLabel={beforeLabel}
         labelOptional={labelOptional}
         layout={layout}
         id={id}
@@ -130,16 +152,22 @@ function InputNumber({
             min={min}
             max={max}
           />
-          {/* <div className={iconNavClasses.join(' ')}>
+          <div className={iconNavClasses.join(' ')}>
             <IconChevronUp
               className={iconUpClasses.join(' ')}
               onClick={onClickChevronUp}
+              onMouseDown={(e: React.MouseEvent) => {
+                e.preventDefault()
+              }}
             />
             <IconChevronDown
               className={iconDownClasses.join(' ')}
               onClick={onClickChevronDown}
+              onMouseDown={(e: React.MouseEvent) => {
+                e.preventDefault()
+              }}
             />
-          </div> */}
+          </div>
           {icon && <InputIconContainer icon={icon} />}
           {error ? (
             <Space
