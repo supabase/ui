@@ -5,10 +5,10 @@ import AccordionStyles from './Accordion.module.css'
 import { IconChevronUp } from '../Icon/icons/IconChevronUp'
 import Typography from '../Typography'
 
-type ContextValue = Pick<
-  AccordionProps,
-  'defaultActiveId' | 'icon' | 'iconPosition' | 'onChange'
->
+type ContextValue = Required<
+  Pick<AccordionProps, 'defaultActiveId' | 'icon' | 'iconPosition'>
+> &
+  Pick<AccordionProps, 'onChange'>
 
 const AccordionContext = createContext<ContextValue>({
   defaultActiveId: [],
@@ -80,12 +80,7 @@ export function Item({ children, className, label, id }: ItemProps) {
     buttonClasses.push(className)
   }
 
-  let isDefaultActive
-  if (id) {
-    isDefaultActive = defaultActiveId?.includes(id)
-  } else {
-    isDefaultActive = false
-  }
+  const isDefaultActive = id ? defaultActiveId?.includes(id) : false
 
   const handleOnChange = useCallback(
     (open: boolean) => () => {

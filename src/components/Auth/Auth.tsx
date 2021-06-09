@@ -281,7 +281,7 @@ function EmailAuth({
         <Space size={3} direction={'vertical'}>
           <Input
             label="Email address"
-            autoComplete="on"
+            autoComplete="email"
             defaultValue={email}
             icon={<IconMail size={21} stroke={'#666666'} />}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -292,7 +292,7 @@ function EmailAuth({
             label="Password"
             type="password"
             defaultValue={password}
-            autoComplete="on"
+            autoComplete="current-password"
             icon={<IconKey size={21} stroke={'#666666'} />}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setPassword(e.target.value)

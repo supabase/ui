@@ -67,7 +67,7 @@ export function Item({ children, icon, disabled, onClick }: ItemProps) {
     <RadixContextMenu.Item
       className={ContextMenuStyles['sbui-contextmenu-item']}
       disabled={disabled}
-      onSelect={onClick ? onClick : undefined}
+      onSelect={onClick}
     >
       {icon && icon}
       <span>{children}</span>

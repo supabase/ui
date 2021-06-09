@@ -45,7 +45,7 @@ function Toggle({
 
   function onClick(e: React.MouseEvent<HTMLButtonElement>) {
     // '`onChange` callback for this component
-    if (onChange) onChange(active)
+    if (onChange) onChange(!active)
     setIntChecked(!intChecked)
   }
 

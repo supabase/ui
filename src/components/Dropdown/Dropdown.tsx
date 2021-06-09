@@ -77,7 +77,7 @@ export function Item({ children, icon, disabled, onClick }: ItemProps) {
     <RadixDropdown.Item
       className={DropdownStyles['sbui-dropdown-item']}
       disabled={disabled}
-      onSelect={onClick ? onClick : undefined}
+      onSelect={onClick}
     >
       {icon && icon}
       <span>{children}</span>

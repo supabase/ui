@@ -7,7 +7,7 @@ import { Button, Space, Typography, IconCopy } from '../../index'
 import InputStyles from './Input.module.css'
 
 export interface Props {
-  autoComplete?: 'on' | 'off'
+  autoComplete?: string
   autofocus?: boolean
   className?: string
   copy?: boolean
@@ -176,7 +176,7 @@ function Input({
 
 export interface TextAreaProps {
   className?: string
-  autoComplete?: 'on' | 'off'
+  autoComplete?: boolean
   autofocus?: boolean
   descriptionText?: string
   disabled?: boolean
@@ -250,7 +250,7 @@ function TextArea({
       size={size}
     >
       <textarea
-        autoComplete={autoComplete}
+        autoComplete={autoComplete ? 'on' : 'off'}
         autoFocus={autofocus}
         disabled={disabled}
         id={id}
