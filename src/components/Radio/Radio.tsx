@@ -7,6 +7,8 @@ import { RadioContext } from './RadioContext'
 
 interface InputProps {
   label: string
+  afterLabel?: string
+  beforeLabel?: string
   value: string
   description?: string
   disabled?: boolean
@@ -26,6 +28,8 @@ interface GroupProps {
   error?: any
   descriptionText?: any
   label?: any
+  afterLabel?: string
+  beforeLabel?: string
   labelOptional?: any
   name?: any
   type?: any
@@ -44,6 +48,8 @@ function RadioGroup({
   error,
   descriptionText,
   label,
+  afterLabel,
+  beforeLabel,
   labelOptional,
   children,
   className,
@@ -78,6 +84,8 @@ function RadioGroup({
       <fieldset className={RadioStyles['sbui-radio-fieldset']}>
         <FormLayout
           label={label}
+          afterLabel={afterLabel}
+          beforeLabel={beforeLabel}
           labelOptional={labelOptional}
           layout={layout}
           id={id}
@@ -94,6 +102,8 @@ function RadioGroup({
                       <Radio
                         id={option.id}
                         label={option.label}
+                        beforeLabel={option.beforeLabel}
+                        afterLabel={option.afterLabel}
                         value={option.value}
                         description={option.description}
                       />
@@ -113,6 +123,8 @@ function Radio({
   disabled,
   value,
   label,
+  afterLabel,
+  beforeLabel,
   description,
   name,
   checked,
@@ -184,8 +196,21 @@ function Radio({
             />
             <div>
               <span className={RadioStyles['sbui-radio-label-text']}>
+                {beforeLabel && (
+                  <span
+                    className={RadioStyles['sbui-radio__label-text-before']}
+                  >
+                    {beforeLabel}
+                  </span>
+                )}
                 {label}
+                {afterLabel && (
+                  <span className={RadioStyles['sbui-radio__label-text-after']}>
+                    {afterLabel}
+                  </span>
+                )}
               </span>
+
               {description && (
                 <span className={RadioStyles['sbui-radio-label-description']}>
                   {description}
