@@ -78,6 +78,10 @@ export const size = (args: any) => (
   </Checkbox.Group>
 )
 
+export const withBeforeAndAfterLabels = (args: any) => (
+  <Checkbox.Group {...args} />
+)
+
 Default.args = {
   label: 'This is the label',
   description: 'This is the description',
@@ -110,4 +114,19 @@ size.args = {
   className: 'font-sans',
   layout: 'horizontal',
   size: 'tiny',
+}
+
+withBeforeAndAfterLabels.args = {
+  label: 'Label',
+  beforeLabel: 'Before : ',
+  afterLabel: ' : After',
+  options: [
+    {
+      label: 'Label',
+      beforeLabel: 'Before : ',
+      afterLabel: ' : After',
+      description: 'Description',
+    },
+  ],
+  className: 'font-sans',
 }

@@ -7,7 +7,7 @@ function Upload({ label, children }: any) {
   return <h1>WIP</h1>
 }
 
-function Dragger({ label, layout, children }: any) {
+function Dragger({ label, afterLabel, beforeLabel, layout, children }: any) {
   const [classes, setClasses] = useState([UploadStyles['sbui-upload-dragger']])
 
   const draggedCssClass = UploadStyles['sbui-upload-dragger--dragged']
@@ -67,7 +67,12 @@ function Dragger({ label, layout, children }: any) {
       onDragLeave={dragLeave}
       onDrop={fileDrop}
     >
-      <FormLayout label={label} layout={layout}>
+      <FormLayout
+        label={label}
+        afterLabel={afterLabel}
+        beforeLabel={beforeLabel}
+        layout={layout}
+      >
         <label htmlFor="file-upload" className={classes.join(' ')}>
           <input
             id="file-upload"

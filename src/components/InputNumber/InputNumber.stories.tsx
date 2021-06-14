@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 // import { AutoForm } from 'uniforms'
 
 import { InputNumber } from '.'
@@ -16,6 +16,17 @@ export const Default = (args: any) => <InputNumber {...args} />
 export const ErrorState = (args: any) => <InputNumber {...args} />
 
 export const WithIcon = (args: any) => <InputNumber {...args} />
+
+export const Controlled = (props: any) => {
+  const [state, setState] = useState(() => undefined)
+
+  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log({ e, value: e.currentTarget.value })
+    setState(e.currentTarget.value)
+  }, [])
+
+  return <InputNumber {...props} onChange={onChange} value={state} />
+}
 
 Default.args = {
   label: 'Max of 100 and min of 0',
@@ -39,4 +50,12 @@ WithIcon.args = {
   max: 100,
   min: 0,
   icon: <IconPackage />,
+}
+
+Controlled.args = {
+  label: 'Max of 100 and min of 0',
+  disabled: false,
+  layout: 'vertical',
+  max: 100,
+  min: 0,
 }

@@ -30,6 +30,8 @@ interface ViewsMap {
 
 type ViewType = 'sign_in' | 'sign_up' | 'forgotten_password' | 'magic_link'
 
+type RedirectTo = undefined | string
+
 export interface Props {
   supabaseClient: SupabaseClient
   className?: any
@@ -42,6 +44,7 @@ export interface Props {
   providers?: Provider[]
   verticalSocialLayout?: any
   view?: ViewType
+  redirectTo?: RedirectTo
 }
 
 function Auth({
@@ -53,6 +56,7 @@ function Auth({
   socialButtonSize = 'medium',
   providers,
   view = 'sign_in',
+  redirectTo,
 }: Props) {
   const [authView, setAuthView] = useState(view)
   const [defaultEmail, setDefaultEmail] = useState('')
@@ -75,6 +79,7 @@ function Auth({
           socialLayout={socialLayout}
           socialButtonSize={socialButtonSize}
           socialColors={socialColors}
+          redirectTo={redirectTo}
         />
         {props.children}
       </Space>
@@ -99,6 +104,7 @@ function Auth({
             defaultPassword={defaultPassword}
             setDefaultEmail={setDefaultEmail}
             setDefaultPassword={setDefaultPassword}
+            redirectTo={redirectTo}
           />
         </Container>
       )
@@ -109,6 +115,7 @@ function Auth({
           <ForgottenPassword
             supabaseClient={supabaseClient}
             setAuthView={setAuthView}
+            redirectTo={redirectTo}
           />
         </Container>
       )
@@ -119,6 +126,7 @@ function Auth({
           <MagicLink
             supabaseClient={supabaseClient}
             setAuthView={setAuthView}
+            redirectTo={redirectTo}
           />
         </Container>
       )
@@ -138,6 +146,7 @@ function SocialAuth({
   socialButtonSize,
   providers,
   verticalSocialLayout,
+  redirectTo,
   ...props
 }: Props) {
   const buttonStyles: any = {
@@ -169,7 +178,10 @@ function SocialAuth({
 
   const handleProviderSignIn = async (provider: Provider) => {
     setLoading(true)
-    const { error } = await supabaseClient.auth.signIn({ provider })
+    const { error } = await supabaseClient.auth.signIn(
+      { provider },
+      { redirectTo }
+    )
     if (error) setError(error.message)
     setLoading(false)
   }
@@ -226,6 +238,7 @@ function EmailAuth({
   setDefaultEmail,
   setDefaultPassword,
   supabaseClient,
+  redirectTo,
 }: {
   authView: any
   defaultEmail: string
@@ -234,6 +247,7 @@ function EmailAuth({
   setDefaultEmail: (email: string) => void
   setDefaultPassword: (password: string) => void
   supabaseClient: SupabaseClient
+  redirectTo?: RedirectTo
 }) {
   const [email, setEmail] = useState(defaultEmail)
   const [password, setPassword] = useState(defaultPassword)
@@ -252,17 +266,23 @@ function EmailAuth({
     setLoading(true)
     switch (authView) {
       case 'sign_in':
-        const { error: signInError } = await supabaseClient.auth.signIn({
-          email,
-          password,
-        })
+        const { error: signInError } = await supabaseClient.auth.signIn(
+          {
+            email,
+            password,
+          },
+          { redirectTo }
+        )
         if (signInError) setError(signInError.message)
         break
       case 'sign_up':
-        const { error: signUpError } = await supabaseClient.auth.signUp({
-          email,
-          password,
-        })
+        const { error: signUpError } = await supabaseClient.auth.signUp(
+          {
+            email,
+            password,
+          },
+          { redirectTo }
+        )
         if (signUpError) setError(signUpError.message)
         break
     }
@@ -353,9 +373,11 @@ function EmailAuth({
 function MagicLink({
   setAuthView,
   supabaseClient,
+  redirectTo,
 }: {
   setAuthView: any
   supabaseClient: SupabaseClient
+  redirectTo?: RedirectTo
 }) {
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
@@ -367,7 +389,10 @@ function MagicLink({
     setError('')
     setMessage('')
     setLoading(true)
-    const { error } = await supabaseClient.auth.signIn({ email })
+    const { error } = await supabaseClient.auth.signIn(
+      { email },
+      { redirectTo }
+    )
     if (error) setError(error.message)
     else setMessage('Check your email for the magic link')
     setLoading(false)
@@ -408,9 +433,11 @@ function MagicLink({
 function ForgottenPassword({
   setAuthView,
   supabaseClient,
+  redirectTo,
 }: {
   setAuthView: any
   supabaseClient: SupabaseClient
+  redirectTo?: RedirectTo
 }) {
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
@@ -422,7 +449,10 @@ function ForgottenPassword({
     setError('')
     setMessage('')
     setLoading(true)
-    const { error } = await supabaseClient.auth.api.resetPasswordForEmail(email)
+    const { error } = await supabaseClient.auth.api.resetPasswordForEmail(
+      email,
+      { redirectTo }
+    )
     if (error) setError(error.message)
     else setMessage('Check your email for the password reset link')
     setLoading(false)
