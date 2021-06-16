@@ -1,0 +1,40 @@
+.sbui-avatar {
+    @apply rounded-full;
+}
+
+.sbui-avatar-type-rounded {
+    border-radius: 10%;
+}
+
+.sbui-avatar-type-square {
+    border-radius: 0;
+}
+
+.sbui-avatar-image {
+    objectFit: 'contain';
+    borderRadius: '50%';
+
+}
+
+.sbui-avatar-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: cadetblue;
+    float: left;
+    height: 42px;
+    width: 42px;
+}
+
+.sbui-avatar-single {
+
+}
+
+.sbui-avatar-multiple {
+
+}
+
+.sbui-image-responsive {
+    width: 100%;
+    height: auto;  
+}
