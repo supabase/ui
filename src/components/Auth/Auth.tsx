@@ -264,6 +264,7 @@ function EmailAuth({
   const [rememberMe, setRememberMe] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState('')
 
   useEffect(() => {
     setEmail(defaultEmail)
@@ -286,7 +287,7 @@ function EmailAuth({
         if (signInError) setError(signInError.message)
         break
       case 'sign_up':
-        const { error: signUpError } = await supabaseClient.auth.signUp(
+        const { error: signUpError, data: signUpData } = await supabaseClient.auth.signUp(
           {
             email,
             password,
@@ -294,6 +295,9 @@ function EmailAuth({
           { redirectTo }
         )
         if (signUpError) setError(signUpError.message)
+        // checking if it has access_token to know if email verification is disabled 
+        else if (signUpData.hasOwnProperty('confirmation_sent_at')) 
+          setMessage('Check your email for the confirmation link.')
         break
     }
     setLoading(false)
@@ -373,6 +377,7 @@ function EmailAuth({
               Do you have an account? Sign in
             </Typography.Link>
           )}
+          {message && <Typography.Text>{message}</Typography.Text>}
           {error && <Typography.Text type="danger">{error}</Typography.Text>}
         </Space>
       </Space>
