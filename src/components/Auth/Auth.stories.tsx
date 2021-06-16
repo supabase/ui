@@ -128,6 +128,7 @@ withAllSocialAuth.args = {
   providers: [
     'facebook',
     'twitter',
+    'apple',
     'google',
     'github',
     'gitlab',
@@ -140,6 +141,7 @@ withSocialLargeButtons.args = {
   providers: [
     'facebook',
     'twitter',
+    'apple',
     'google',
     'github',
     'gitlab',
@@ -154,6 +156,7 @@ withColouredSocialAuth.args = {
   providers: [
     'facebook',
     'twitter',
+    'apple',
     'google',
     'github',
     'gitlab',

@@ -29,7 +29,12 @@ interface ViewsMap {
   [key: string]: ViewType
 }
 
-type ViewType = 'sign_in' | 'sign_up' | 'forgotten_password' | 'magic_link' | 'update_password'
+type ViewType =
+  | 'sign_in'
+  | 'sign_up'
+  | 'forgotten_password'
+  | 'magic_link'
+  | 'update_password'
 
 type RedirectTo = undefined | string
 
@@ -171,6 +176,10 @@ function SocialAuth({
     twitter: {
       backgroundColor: '#1DA1F2',
     },
+    apple: {
+      backgroundColor: '#000',
+      color: 'white',
+    },
     gitlab: {
       backgroundColor: '#FC6D27',
     },
@@ -287,16 +296,17 @@ function EmailAuth({
         if (signInError) setError(signInError.message)
         break
       case 'sign_up':
-        const { error: signUpError, data: signUpData } = await supabaseClient.auth.signUp(
-          {
-            email,
-            password,
-          },
-          { redirectTo }
-        )
+        const { error: signUpError, data: signUpData } =
+          await supabaseClient.auth.signUp(
+            {
+              email,
+              password,
+            },
+            { redirectTo }
+          )
         if (signUpError) setError(signUpError.message)
-        // checking if it has access_token to know if email verification is disabled 
-        else if (signUpData.hasOwnProperty('confirmation_sent_at')) 
+        // checking if it has access_token to know if email verification is disabled
+        else if (signUpData.hasOwnProperty('confirmation_sent_at'))
           setMessage('Check your email for the confirmation link.')
         break
     }
