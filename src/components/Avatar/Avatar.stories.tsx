@@ -31,6 +31,14 @@ export const Icon = (args: any) => {
   )
 }
 
+export const Fallback = (args: any) => {
+  return (
+    <>
+      <Avatar {...args} />
+    </>
+  )
+}
+
 
 
 
@@ -46,4 +54,8 @@ Text.args = {
 
 Icon.args = {
   active: true,
+}
+
+Fallback.args = {
+  active: true
 }

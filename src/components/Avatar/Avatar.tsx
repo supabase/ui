@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Children } from 'react'
+import { IconUser } from '../Icon/icons/IconUser';
 // @ts-ignore
 import AvatarStyles from './Avatar.module.css'
 
@@ -11,7 +12,7 @@ interface Props {
     responsive?: boolean
     text?: string
     variant?: 'circle' | 'square'
-    icon?: React.ReactNode
+    Icon?: React.ReactNode
     size: number
 }
 
@@ -23,8 +24,9 @@ export default function Avatar({
     responsive,
     text,
     variant,
-    icon,
-    size
+    Icon,
+    size,
+    children
 }: Props){
     const classes = [AvatarStyles['sbui-avatar']]
     classes.push(className);
@@ -52,21 +54,47 @@ export default function Avatar({
                 className={classes.join(' ')} 
                 src={source} 
                 alt={alt} 
-                style={style}
+                style={{height:size, width: size, ...style}}
             />
         )
-    }else if(icon){
+    }else if(Icon){
         classes.push(AvatarStyles['sbui-avatar-icon'])
         objectToRender = (
-            <div className={classes.join(' ')} style={style}>
-                //TODO: Implement Icon
+            <div 
+            className={classes.join(' ')} 
+            style={{height:size, width: size, ...style}}
+            >
+                // TODO: Add icon here
             </div>
         )
     }else if(text){
         classes.push(AvatarStyles['sbui-avatar-text'])
         objectToRender = (
-            <div className={classes.join(' ')} style={style}>
+            <div 
+            className={classes.join(' ')} 
+            style={{height:size, width: size, ...style}}
+            >
                 <p>{text[0]}</p>
+            </div>
+        )
+    }else if(children) {
+        classes.push(AvatarStyles['sbui-avatar-children'])
+        objectToRender = (
+            <div 
+            className={classes.join(' ')} 
+            style={{height:size, width: size, ...style}}
+            >
+                {children}
+            </div>
+        )
+    }else {
+        classes.push(AvatarStyles['sbui-avatar-fallback'])
+        objectToRender = (
+            <div 
+            className={classes.join(' ')} 
+            style={{height:size, width: size, ...style}}
+            >
+                <IconUser />
             </div>
         )
     }

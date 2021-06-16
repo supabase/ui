@@ -13,15 +13,29 @@
 .sbui-avatar-image {
     objectFit: 'contain';
     borderRadius: '50%';
+}
 
+.sbui-avatar-children {
+    @apply flex;
+    @apply justify-center;
+    @apply items-center
 }
 
 .sbui-avatar-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
     background-color: cadetblue;
     float: left;
+    height: 42px;
+    width: 42px;
+}
+
+.sbui-avatar-fallback {
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
+    background-color: cadetblue;
     height: 42px;
     width: 42px;
 }
