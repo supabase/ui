@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { IconAirplay } from '../Icon/icons/IconAirplay'
 
 import Avatar from './Avatar'
 
@@ -54,6 +55,7 @@ Text.args = {
 
 Icon.args = {
   active: true,
+  Icon: IconAirplay
 }
 
 Fallback.args = {

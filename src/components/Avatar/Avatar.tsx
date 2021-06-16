@@ -1,4 +1,5 @@
-import React, { Children } from 'react'
+import React from 'react'
+import { Icon } from '../Icon/IconImportHandler';
 import { IconUser } from '../Icon/icons/IconUser';
 // @ts-ignore
 import AvatarStyles from './Avatar.module.css'
@@ -12,7 +13,7 @@ interface Props {
     responsive?: boolean
     text?: string
     variant?: 'circle' | 'square'
-    Icon?: React.ReactNode
+    AvatarIcon?: Icon
     size: number
 }
 
@@ -24,7 +25,7 @@ export default function Avatar({
     responsive,
     text,
     variant,
-    Icon,
+    AvatarIcon,
     size,
     children
 }: Props){
@@ -57,14 +58,14 @@ export default function Avatar({
                 style={{height:size, width: size, ...style}}
             />
         )
-    }else if(Icon){
+    }else if(AvatarIcon){
         classes.push(AvatarStyles['sbui-avatar-icon'])
         objectToRender = (
             <div 
             className={classes.join(' ')} 
             style={{height:size, width: size, ...style}}
             >
-                // TODO: Add icon here
+                <AvatarIcon />
             </div>
         )
     }else if(text){
