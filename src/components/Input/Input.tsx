@@ -262,7 +262,7 @@ function TextArea({
       size={size}
     >
       <textarea
-        autoComplete={autoComplete && 'autoComplete'}
+        autoComplete={autoComplete ? 'on' : 'off'}
         autoFocus={autofocus}
         disabled={disabled}
         id={id}

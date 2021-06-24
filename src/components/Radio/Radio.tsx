@@ -158,7 +158,7 @@ function Radio({
             ? true
             : checked === false
             ? false
-            : null
+            : undefined
 
         let classes = [
           RadioStyles['sbui-radio-container'],

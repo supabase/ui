@@ -112,6 +112,7 @@ export function Checkbox({
   onBlur,
   size = 'medium',
   disabled = false,
+  ...props
 }: InputProps) {
   const inputName = name
 
@@ -132,7 +133,7 @@ export function Checkbox({
 
         // check if checkbox checked is true or false
         // if neither true or false the checkbox will rely on native control
-        const active = checked ? true : checked === false ? false : null
+        const active = checked ?? undefined
 
         let containerClasses = [
           CheckboxStyles['sbui-checkbox-container'],
@@ -162,6 +163,7 @@ export function Checkbox({
               checked={active}
               value={value ? value : markupId}
               disabled={disabled}
+              {...props}
             />
             <div className={CheckboxStyles['sbui-checkbox__label-container']}>
               <label

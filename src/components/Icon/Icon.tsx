@@ -100,9 +100,11 @@ function Icon({
             color={!noColor ? color : 'currentColor'}
             fill={!noColor ? (fill ? fill : 'none') : 'none'}
             stroke={!noColor ? stroke : 'currentColor'}
+            strokeWidth={strokeWidth}
             className={classes.join(' ')}
             width={iconSize}
             height={iconSize}
+            {...props}
           >
             {src}
           </svg>

@@ -95,7 +95,7 @@ function InputNumber({
   const onClickChevronUp = () => {
     inputRefCurrent.current?.stepUp()
     if (onChange) {
-      inputRefCurrent.current.dispatchEvent(
+      inputRefCurrent.current?.dispatchEvent(
         new InputEvent('change', {
           view: window,
           bubbles: true,
@@ -108,7 +108,7 @@ function InputNumber({
   const onClickChevronDown = () => {
     inputRefCurrent.current?.stepDown()
     if (onChange) {
-      inputRefCurrent.current.dispatchEvent(
+      inputRefCurrent.current?.dispatchEvent(
         new InputEvent('change', {
           view: window,
           bubbles: true,
