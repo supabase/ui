@@ -11,8 +11,8 @@
 }
 
 .sbui-avatar-image {
-    objectFit: 'contain';
-    borderRadius: '50%';
+    object-fit: 'contain';
+    border-radius: '50%';
     height: 3rem;
     width: 3rem;
 }
