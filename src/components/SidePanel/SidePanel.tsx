@@ -58,7 +58,6 @@ const SidePanel = ({
   }
 
   const sidePanelClasses = [SlidePanelStyles['sbui-sidepanel']]
-  if (className) sidePanelClasses.push(className)
 
   const left = align === 'left'
 
@@ -68,6 +67,7 @@ const SidePanel = ({
   } else {
     containerClasses.push(SlidePanelStyles['sbui-sidepanel--right'])
   }
+  if (className) containerClasses.push(className)
 
   let footerClasses = [SlidePanelStyles['sbui-sidepanel-footer-container']]
   if (!customFooter) {
