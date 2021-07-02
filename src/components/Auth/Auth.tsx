@@ -140,10 +140,7 @@ function Auth({
     case VIEWS.UPDATE_PASSWORD:
       return (
         <Container>
-          <UpdatePassword
-            supabaseClient={supabaseClient}
-            setAuthView={setAuthView}
-          />
+          <UpdatePassword supabaseClient={supabaseClient} />
         </Container>
       )
     default:
