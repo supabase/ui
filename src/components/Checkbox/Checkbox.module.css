@@ -1,6 +1,6 @@
 /* clear native styling */
 .sbui-checkbox[type='checkbox'] {
-  webkit-appearance: none;
+  -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   padding: 0;
