@@ -20,6 +20,8 @@ export interface Props {
   id?: string
   inputRef?: React.RefObject<HTMLInputElement>
   label?: string
+  afterLabel?: string
+  beforeLabel?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
   name?: string
@@ -47,6 +49,8 @@ function InputNumber({
   id,
   inputRef,
   label,
+  afterLabel,
+  beforeLabel,
   labelOptional,
   layout,
   name,
@@ -91,7 +95,7 @@ function InputNumber({
   const onClickChevronUp = () => {
     inputRefCurrent.current?.stepUp()
     if (onChange) {
-      inputRefCurrent.current.dispatchEvent(
+      inputRefCurrent.current?.dispatchEvent(
         new InputEvent('change', {
           view: window,
           bubbles: true,
@@ -104,7 +108,7 @@ function InputNumber({
   const onClickChevronDown = () => {
     inputRefCurrent.current?.stepDown()
     if (onChange) {
-      inputRefCurrent.current.dispatchEvent(
+      inputRefCurrent.current?.dispatchEvent(
         new InputEvent('change', {
           view: window,
           bubbles: true,
@@ -118,6 +122,8 @@ function InputNumber({
     <div className={className}>
       <FormLayout
         label={label}
+        afterLabel={afterLabel}
+        beforeLabel={beforeLabel}
         labelOptional={labelOptional}
         layout={layout}
         id={id}

@@ -50,7 +50,9 @@
   @apply block text-sm text-input-label-light dark:text-input-label-dark;
 }
 
-.sbui-formlayout__label-opt {
+.sbui-formlayout__label-opt,
+.sbui-formlayout__label .sbui-formlayout__label-before,
+.sbui-formlayout__label .sbui-formlayout__label-after {
   @apply text-sm text-gray-400 dark:text-gray-300;
 }
 

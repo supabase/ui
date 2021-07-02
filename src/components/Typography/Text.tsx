@@ -2,7 +2,7 @@ import React from 'react'
 // @ts-ignore
 import TextStyles from './Text.module.css'
 
-interface Props {
+export interface Props {
   className?: string
   children: any
   style?: React.CSSProperties

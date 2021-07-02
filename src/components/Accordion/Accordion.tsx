@@ -6,8 +6,9 @@ import { IconChevronUp } from '../Icon/icons/IconChevronUp'
 import Typography from '../Typography'
 
 type ContextValue = Required<
-  Pick<AccordionProps, 'defaultActiveId' | 'icon' | 'iconPosition' | 'onChange'>
->
+  Pick<AccordionProps, 'defaultActiveId' | 'icon' | 'iconPosition'>
+> &
+  Pick<AccordionProps, 'onChange'>
 
 const AccordionContext = createContext<ContextValue>({
   defaultActiveId: [],
@@ -69,9 +70,8 @@ interface ItemProps {
 }
 
 export function Item({ children, className, label, id }: ItemProps) {
-  const { defaultActiveId, icon, iconPosition, onChange } = useContext(
-    AccordionContext
-  )
+  const { defaultActiveId, icon, iconPosition, onChange } =
+    useContext(AccordionContext)
 
   let panelClasses = [AccordionStyles['sbui-accordion-item__panel']]
 
@@ -80,7 +80,7 @@ export function Item({ children, className, label, id }: ItemProps) {
     buttonClasses.push(className)
   }
 
-  const isDefaultActive = defaultActiveId.includes(id)
+  const isDefaultActive = id ? defaultActiveId?.includes(id) : false
 
   const handleOnChange = useCallback(
     (open: boolean) => () => {

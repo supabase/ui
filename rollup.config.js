@@ -22,6 +22,7 @@ const extensions = ['.js', '.jsx', '.ts', '.tsx']
 export default {
   input: {
     index: 'src/index.tsx',
+    // avatar: 'src/components/Avatar/index.tsx',
     button: 'src/components/Button/index.tsx',
     typography: 'src/components/Typography/index.tsx',
     icon: 'src/components/Icon/index.tsx',
@@ -29,7 +30,7 @@ export default {
     card: 'src/components/Card/index.tsx',
     badge: 'src/components/Badge/index.tsx',
     alert: 'src/components/Alert/index.tsx',
-    accordian: 'src/components/Accordian/index.tsx',
+    accordion: 'src/components/Accordion/index.tsx',
     tabs: 'src/components/Tabs/index.tsx',
     menu: 'src/components/Menu/index.tsx',
     modal: 'src/components/Modal/index.tsx',

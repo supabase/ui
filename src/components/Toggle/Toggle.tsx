@@ -11,8 +11,10 @@ interface Props {
   error?: string
   descriptionText?: string
   label?: string
+  afterLabel?: string
+  beforeLabel?: string
   labelOptional?: string
-  onChange?(x: Boolean): void
+  onChange?(x: boolean): void
   className?: any
   defaultChecked?: boolean
   checked?: boolean
@@ -27,6 +29,8 @@ function Toggle({
   error,
   descriptionText,
   label,
+  afterLabel,
+  beforeLabel,
   labelOptional,
   onChange,
   defaultChecked,
@@ -35,15 +39,17 @@ function Toggle({
   align = 'right',
   size = 'medium',
 }: Props) {
-  const [intChecked, setIntChecked] = useState(defaultChecked || checked)
+  const [intChecked, setIntChecked] = useState(
+    (defaultChecked || checked) ?? false
+  )
 
   // check if toggle checked is true or false
   // if neither true or false the toggle will rely on component state internally
-  const active = checked ? true : checked === false ? false : intChecked
+  const active = checked ?? intChecked
 
   function onClick(e: React.MouseEvent<HTMLButtonElement>) {
     // '`onChange` callback for this component
-    if (onChange) onChange(active)
+    if (onChange) onChange(!active)
     setIntChecked(!intChecked)
   }
 
@@ -60,11 +66,13 @@ function Toggle({
     <FormLayout
       className={className}
       label={label}
+      afterLabel={afterLabel}
+      beforeLabel={beforeLabel}
       labelOptional={labelOptional}
       layout={layout}
       id={id}
       error={error}
-      align={layout === 'vertical' && align}
+      align={layout === 'vertical' ? align : undefined}
       flex={layout === 'vertical' ? true : false}
       descriptionText={descriptionText}
       size={size}

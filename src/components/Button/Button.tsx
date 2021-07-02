@@ -1,25 +1,6 @@
-import React, {
-  forwardRef,
-  useRef,
-  useImperativeHandle,
-  ComponentType,
-  ElementType,
-  WeakValidationMap,
-  ValidationMap,
-  ComponentProps,
-  ComponentPropsWithoutRef,
-  ForwardedRef,
-  ComponentPropsWithRef,
-  Ref,
-  PropsWithChildren,
-  ReactElement,
-} from 'react'
+import React, { forwardRef, Ref } from 'react'
 import { c8s } from '../../lib/utilities'
-import {
-  RefForwardingComponentWithAsProps,
-  ComponentWithAsProps,
-  AsPropsWithoutRef,
-} from '../../types'
+import { RefForwardingComponentWithAsProps } from '../../types'
 
 // @ts-ignore
 import ButtonStyles from './Button.module.css'

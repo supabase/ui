@@ -24,7 +24,7 @@
 
 /* panel animation */
 .sbui-sidepanel--enter {
-  @apply transform transition ease-in-out duration-500 sm:duration-700;
+  @apply transform transition ease-in-out duration-200 lg:duration-300;
 }
 .sbui-sidepanel--enterFrom {
   @apply translate-x-full;
@@ -36,7 +36,7 @@
   @apply translate-x-0;
 }
 .sbui-sidepanel--leave {
-  @apply transform transition ease-in-out duration-500 sm:duration-700;
+  @apply transform transition ease-in-out duration-200 lg:duration-300;
 }
 .sbui-sidepanel--leaveFrom {
   @apply translate-x-0;

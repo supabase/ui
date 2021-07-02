@@ -51,6 +51,8 @@ export const withOptionsObj = (args: any) => <Radio.Group {...args} />
 
 export const withCards = (args: any) => <Radio.Group {...args} />
 
+export const withBeforeAndAfterLabels = (args: any) => <Radio.Group {...args} />
+
 Default.args = {
   className: 'font-sans',
   descriptionText: 'This is optional description',
@@ -85,4 +87,18 @@ withCards.args = {
   name: 'radiogroup-example-3',
   options: options,
   type: 'cards',
+}
+
+withBeforeAndAfterLabels.args = {
+  label: 'Label',
+  beforeLabel: 'Before : ',
+  afterLabel: ' : After',
+  options: [
+    {
+      label: 'Label',
+      beforeLabel: 'Before : ',
+      afterLabel: ' : After',
+      description: 'Description',
+    },
+  ],
 }
