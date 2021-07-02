@@ -6,17 +6,14 @@ import { Button, Space, Typography, IconCopy } from '../../index'
 // @ts-ignore
 import InputStyles from './Input.module.css'
 
-export interface Props {
-  autoComplete?: string
-  autofocus?: boolean
-  className?: string
+export interface Props
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   copy?: boolean
   defaultValue?: string | number
   descriptionText?: string
   disabled?: boolean
   error?: string
   icon?: any
-  id?: string
   inputRef?: string
   label?: string
   afterLabel?: string
@@ -24,29 +21,6 @@ export interface Props {
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
   name?: string
-  onChange?(x: React.ChangeEvent<HTMLInputElement>): void
-  onFocus?(x: React.FocusEvent<HTMLInputElement>): void
-  onBlur?(x: React.FocusEvent<HTMLInputElement>): void
-  onKeyDown?(x: React.KeyboardEvent<HTMLInputElement>): void
-  placeholder?: string
-  style?: React.CSSProperties
-  type?:
-    | 'color'
-    | 'date'
-    | 'datetime-local'
-    | 'email'
-    | 'month'
-    | 'number'
-    | 'password'
-    | 'reset'
-    | 'search'
-    | 'submit'
-    | 'tel'
-    | 'text'
-    | 'time'
-    | 'url'
-    | 'week'
-  value?: any
   reveal?: boolean
   actions?: React.ReactNode
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
@@ -54,7 +28,7 @@ export interface Props {
 
 function Input({
   autoComplete,
-  autofocus,
+  autoFocus,
   className,
   copy,
   defaultValue,
@@ -134,7 +108,7 @@ function Input({
         <div className={InputStyles['sbui-input-container']}>
           <input
             autoComplete={autoComplete}
-            autoFocus={autofocus}
+            autoFocus={autoFocus}
             defaultValue={defaultValue}
             disabled={disabled}
             id={id}
