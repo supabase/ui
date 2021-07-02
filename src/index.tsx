@@ -23,6 +23,7 @@ export * from './components/Modal/index'
 export * from './components/SidePanel/index'
 export * from './components/Dropdown/index'
 export * from './components/ContextMenu/index'
+export * from './components/Toast/index'
 
 // UTILITIES
 
@@ -37,7 +38,7 @@ export * from './components/Checkbox/index'
 export * from './components/Input/index'
 export * from './components/InputNumber/index'
 export * from './components/Radio/index'
-export * from './components/Toggle/index'   
+export * from './components/Toggle/index'
 export * from './components/Upload/index'
 
 // ARCHIVE
