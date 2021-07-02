@@ -303,7 +303,7 @@ function EmailAuth({
           )
         if (signUpError) setError(signUpError.message)
         // checking if it has access_token to know if email verification is disabled
-        else if (signUpData.hasOwnProperty('confirmation_sent_at'))
+        else if (signUpData?.hasOwnProperty('confirmation_sent_at'))
           setMessage('Check your email for the confirmation link.')
         break
     }

@@ -23,7 +23,7 @@ export * from './components/Modal/index'
 export * from './components/SidePanel/index'
 export * from './components/Dropdown/index'
 export * from './components/ContextMenu/index'
-export * from './components/Toast/index'
+// export * from './components/Toast/index'
 
 // UTILITIES
 

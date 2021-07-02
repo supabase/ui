@@ -27,8 +27,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.20",
-    "prop-types": "^15.7.2",
-    "react-hot-toast": "^2.0.0"
+    "prop-types": "^15.7.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.11.6",
@@ -69,11 +68,12 @@
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.1.2",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-feather": "^2.0.8",
-    "react-markdown": "^5.0.3",
-    "react-scripts": "^4.0.3",
     "react-transition-group": "^4.4.1",
+    "react-scripts": "^4.0.3",
+    "react-markdown": "^5.0.3",
+    "react-hot-toast": "^2.0.0",
+    "react-feather": "^2.0.8",
+    "react-dom": "^17.0.1",
     "remark-gfm": "^1.0.0",
     "rollup": "^2.28.2",
     "rollup-plugin-delete": "^2.0.0",

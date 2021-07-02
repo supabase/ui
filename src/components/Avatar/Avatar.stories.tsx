@@ -17,11 +17,11 @@ export const Image = (args: any) => {
 }
 
 export const Text = (args: any) => {
-    return (
-      <>
-        <Avatar {...args} />
-      </>
-    )
+  return (
+    <>
+      <Avatar {...args} />
+    </>
+  )
 }
 
 export const Icon = (args: any) => {
@@ -40,24 +40,21 @@ export const Fallback = (args: any) => {
   )
 }
 
-
-
-
 Image.args = {
-    active: true,
-    source: 'https://via.placeholder.com/150',
+  active: true,
+  src: 'https://via.placeholder.com/150',
 }
 
 Text.args = {
   active: true,
-  text:"Shoury"
+  text: 'Shoury',
 }
 
 Icon.args = {
   active: true,
-  Icon: IconAirplay
+  Icon: IconAirplay,
 }
 
 Fallback.args = {
-  active: true
+  active: true,
 }

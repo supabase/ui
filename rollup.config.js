@@ -22,7 +22,7 @@ const extensions = ['.js', '.jsx', '.ts', '.tsx']
 export default {
   input: {
     index: 'src/index.tsx',
-    avatar: 'src/components/Avatar/index.tsx',
+    // avatar: 'src/components/Avatar/index.tsx',
     button: 'src/components/Button/index.tsx',
     typography: 'src/components/Typography/index.tsx',
     icon: 'src/components/Icon/index.tsx',
