@@ -63,7 +63,7 @@ function Auth({
   providers,
   view = 'sign_in',
   redirectTo,
-}: Props) {
+}: Props): JSX.Element | null {
   const [authView, setAuthView] = useState(view)
   const [defaultEmail, setDefaultEmail] = useState('')
   const [defaultPassword, setDefaultPassword] = useState('')
@@ -114,7 +114,6 @@ function Auth({
           />
         </Container>
       )
-      break
     case VIEWS.FORGOTTEN_PASSWORD:
       return (
         <Container>
@@ -125,7 +124,7 @@ function Auth({
           />
         </Container>
       )
-      break
+
     case VIEWS.MAGIC_LINK:
       return (
         <Container>
@@ -136,15 +135,16 @@ function Auth({
           />
         </Container>
       )
-      break
+
     case VIEWS.UPDATE_PASSWORD:
       return (
         <Container>
           <UpdatePassword supabaseClient={supabaseClient} />
         </Container>
       )
+
     default:
-      break
+      return null
   }
 }
 

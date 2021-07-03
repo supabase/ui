@@ -68,12 +68,12 @@
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.1.2",
     "react": "^17.0.1",
-    "react-transition-group": "^4.4.1",
-    "react-scripts": "^4.0.3",
-    "react-markdown": "^5.0.3",
-    "react-hot-toast": "^2.0.0",
-    "react-feather": "^2.0.8",
     "react-dom": "^17.0.1",
+    "react-feather": "^2.0.8",
+    "react-markdown": "^5.0.3",
+    "react-transition-group": "^4.4.1",
+    "react-hot-toast": "^2.0.0",
+    "react-scripts": "^4.0.3",
     "remark-gfm": "^1.0.0",
     "rollup": "^2.28.2",
     "rollup-plugin-delete": "^2.0.0",
@@ -97,6 +97,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
   },
   "jest": {
     "transformIgnorePatterns": [
