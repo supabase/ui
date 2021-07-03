@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { IconAlertTriangle } from '../Icon/icons/IconAlertTriangle'
 import { IconCheck } from '../Icon/icons/IconCheck'
 import { IconInfo } from '../Icon/icons/IconInfo'
 import { IconX } from '../Icon/icons/IconX'
 import { IconXCircle } from '../Icon/icons/IconXCircle'
+
+import { ThemeContext } from './../../theme/themeContext'
 
 // @ts-ignore
 import AlertStyles from './Alert.module.css'
@@ -43,6 +45,12 @@ const Alert = ({
   descriptionClasses.push(AlertStyles[`sbui-alert-description--${variant}`])
   let closeButtonClasses = [AlertStyles['sbui-close-button']]
   closeButtonClasses.push(AlertStyles[`sbui-close-button--${variant}`])
+
+  const {
+    theme: { alert },
+  } = useContext(ThemeContext)
+
+  console.log(alert)
 
   return (
     <>
