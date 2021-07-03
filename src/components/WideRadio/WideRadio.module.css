@@ -1,0 +1,71 @@
+.wide-radio-container {
+  @apply flex w-full justify-center mt-4;
+}
+
+.wide-radio-options {
+  @apply flex w-full flex-col;
+}
+
+.wide-radio-options .wide-radio-wrapper {
+  @apply flex  pr-2 mb-2  box-border;
+}
+
+.wide-radio-wrapper input {
+  @apply hidden;
+}
+
+.wide-radio-wrapper > div {
+  @apply text-sm  text-black cursor-pointer flex items-center text-center relative flex-1 rounded-xl box-border border  border-solid	 border-transparent;
+}
+
+.wide-radio-wrapper img {
+  @apply w-40;
+}
+
+.light .wide-radio-wrapper > div {
+  @apply border-gray-600 text-coolGray-600;
+}
+
+.dark .wide-radio-wrapper > div {
+  @apply border-gray-500 text-coolGray-100;
+}
+
+.wide-radio-wrapper input:checked + div {
+  @apply border border-solid border-green-500 text-green-500 text-sm;
+}
+
+.wide-radio-wrapper input:checked + div:after {
+  content: '';
+  @apply text-white top-3 right-4 absolute z-10 rounded-full h-4 w-4  bg-green-500;
+}
+
+.dark .wide-radio-wrapper input:checked + div:after {
+  @apply text-black;
+}
+
+.wide-radio-label-wrapper {
+  @apply w-full text-left ml-4 py-2;
+}
+
+.wide-radio-label-display {
+  @apply flex flex-col;
+}
+
+.wide-radio-label-display .label {
+  @apply font-bold;
+}
+
+.wide-radio-label-display .description {
+  @apply w-11/12;
+}
+
+.wide-radio-label-display .description {
+  @apply opacity-90;
+}
+.dark .wide-radio-label-display .description {
+  @apply w-11/12;
+}
+
+.wide-radio-wrapper > div {
+  @apply h-auto;
+}
