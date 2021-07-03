@@ -31,7 +31,7 @@ export function FormLayout({
   id,
   label,
   labelOptional,
-  layout = 'horizontal',
+  layout = 'vertical',
   style,
   flex,
   responsive = true,
