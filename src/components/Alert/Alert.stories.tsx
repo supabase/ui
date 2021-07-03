@@ -2,16 +2,21 @@ import React from 'react'
 
 import { Alert } from './'
 
+import { ThemeProvider } from './../../theme/themeContext'
+import defaultTheme from './../../theme/defaultTheme'
+
 export default {
   title: 'Displays/Alert',
   component: Alert,
 }
 
 export const Success = (args: any) => (
-  <Alert {...args}>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet
-    labore.
-  </Alert>
+  <ThemeProvider value={{ theme: ThemeProvider }}>
+    <Alert {...args}>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet
+      labore.
+    </Alert>
+  </ThemeProvider>
 )
 
 export const SuccessWithIcon = (args: any) => (
