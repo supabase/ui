@@ -1,8 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-// @ts-ignore
-import ButtonStyles from './Button.module.css'
 import { IconContext } from '../Icon/IconContext'
 import { IconLoader } from '../Icon/icons/IconLoader'
+import defaultTheme from '../../theme/defaultTheme'
 
 export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   block?: boolean
@@ -82,43 +81,49 @@ const Button = forwardRef<RefHandle, ButtonProps>(
       },
     }))
 
+    const __styles = defaultTheme.button
+
     // styles
     const showIcon = loading || icon
 
-    let classes = [ButtonStyles['sbui-btn']]
-    let containerClasses = [ButtonStyles['sbui-btn-container']]
+    let classes = [__styles.base]
+    let containerClasses = [__styles.container]
 
-    classes.push(ButtonStyles[`sbui-btn-${type}`])
+    classes.push(__styles.type[type])
 
     if (block) {
-      containerClasses.push(ButtonStyles['sbui-btn--w-full'])
-      classes.push(ButtonStyles['sbui-btn--w-full'])
+      containerClasses.push(__styles.block)
+      classes.push(__styles.block)
     }
 
     if (danger) {
-      classes.push(ButtonStyles['sbui-btn--danger'])
+      classes.push(__styles.danger[type])
     }
 
     if (shadow && type !== 'link' && type !== 'text') {
-      classes.push(ButtonStyles['sbui-btn-container--shadow'])
+      classes.push(__styles.shadow)
     }
 
     if (size) {
-      classes.push(ButtonStyles[`sbui-btn--${size}`])
+      classes.push(__styles.size[size])
     }
 
     if (className) {
       classes.push(className)
     }
 
-    const iconLoaderClasses = [ButtonStyles['sbui-btn--anim--spin']]
+    if (disabled) {
+      classes.push(__styles.disabled)
+    }
 
-    if (loadingCentered) {
-      iconLoaderClasses.push(ButtonStyles[`sbui-btn-loader--center`])
-    }
-    if (loading && loadingCentered) {
-      classes.push(ButtonStyles[`sbui-btn--text-fade-out`])
-    }
+    const iconLoaderClasses = [__styles.loading]
+
+    // if (loadingCentered) {
+    //   iconLoaderClasses.push(ButtonStyles[`sbui-btn-loader--center`])
+    // }
+    // if (loading && loadingCentered) {
+    //   classes.push(ButtonStyles[`sbui-btn--text-fade-out`])
+    // }
 
     // custom button tag
     const CustomButton: React.FC<CustomButtonProps> = ({ ...props }) => {
