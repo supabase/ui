@@ -21,8 +21,8 @@ export default {
         'border text-gray-500 bg-transparent border-gray-200 border-solid hover:bg-white hover:text-gray-600 hover:border-gray-600 dark:text-white dark:border-dark-400 dark:hover:text-dark-600 dark:hover:border-white',
       dashed:
         'border text-gray-500 bg-transparent border-gray-200 border-dashed hover:text-gray-600 hover:border-gray-600 dark:text-white dark:border-dark-400 dark:hover:text-white dark:hover:border-white',
-      link: 'bg-transparent text-brand-800 border-none hover:bg-brand-900 hover:bg-opacity-25',
-      text: 'text-gray-400 bg-transparent border-none hover:bg-gray-200 hover:bg-opacity-25 dark:text-dark-300 dark:hover:bg-dark-600',
+      link: 'bg-transparent text-brand-800 hover:bg-brand-900 hover:bg-opacity-25',
+      text: 'text-gray-400 bg-transparent hover:bg-gray-200 hover:bg-opacity-25 dark:text-dark-300 dark:hover:bg-dark-600',
     },
     block: 'w-full flex items-center justify-center',
     danger: {
