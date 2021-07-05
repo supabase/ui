@@ -5,6 +5,7 @@ import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import { Button, Space, Typography, IconCopy } from '../../index'
 // @ts-ignore
 import InputStyles from './Input.module.css'
+import defaultTheme from '../../theme/defaultTheme'
 
 export interface Props
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -59,15 +60,17 @@ function Input({
   const [copyLabel, setCopyLabel] = useState('Copy')
   const [hidden, setHidden] = useState(reveal)
 
+  const __styles = defaultTheme.input
+
   // if `type` is not assigned, default to text input
   if (!type) {
     type = 'text'
   }
 
-  let inputClasses = [InputStyles['sbui-input']]
-  if (error) inputClasses.push(InputStyles['sbui-input--error'])
-  if (icon) inputClasses.push(InputStyles['sbui-input--with-icon'])
-  if (size) inputClasses.push(InputStyles[`sbui-input--${size}`])
+  let inputClasses = [__styles.base]
+  if (error) inputClasses.push(__styles.error)
+  if (icon) inputClasses.push(__styles.with_icon)
+  if (size) inputClasses.push(__styles.size[size])
 
   function onCopy(value: any) {
     navigator.clipboard.writeText(value).then(
@@ -105,7 +108,7 @@ function Input({
         style={style}
         size={size}
       >
-        <div className={InputStyles['sbui-input-container']}>
+        <div className={__styles.container}>
           <input
             autoComplete={autoComplete}
             autoFocus={autoFocus}
@@ -125,10 +128,7 @@ function Input({
           />
           {icon && <InputIconContainer icon={icon} />}
           {copy || error || actions ? (
-            <Space
-              className={InputStyles['sbui-input-actions-container']}
-              size={1}
-            >
+            <Space className={__styles.actions_container} size={1}>
               {error && <InputErrorIcon size={size} />}
               {copy && !hidden ? (
                 <Button
