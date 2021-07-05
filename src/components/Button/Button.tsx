@@ -1,15 +1,17 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { forwardRef, Ref } from 'react'
+import { c8s } from '../../lib/utilities'
+import { RefForwardingComponentWithAsProps } from '../../types'
+
 // @ts-ignore
 import ButtonStyles from './Button.module.css'
 import { IconContext } from '../Icon/IconContext'
 import { IconLoader } from '../Icon/icons/IconLoader'
 
-export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+export type ButtonProps = {
   block?: boolean
-  className?: any
+  className?: string
   children?: React.ReactNode
   disabled?: boolean
-  onClick?: React.MouseEventHandler<HTMLButtonElement>
   icon?: React.ReactNode
   iconRight?: React.ReactNode
   loading?: boolean
@@ -27,22 +29,15 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
     | 'text'
   danger?: boolean
   htmlType?: 'button' | 'submit' | 'reset'
-  ref?: any
   ariaSelected?: boolean
   ariaControls?: string
   tabIndex?: 0 | -1
   role?: string
-  as?: keyof JSX.IntrinsicElements
+  containerRef?: Ref<HTMLSpanElement>
 }
+type ButtonComponent = RefForwardingComponentWithAsProps<'button', ButtonProps>
 
-interface CustomButtonProps extends React.HTMLAttributes<HTMLOrSVGElement> {}
-
-export interface RefHandle {
-  container: () => HTMLElement | null
-  button: () => HTMLButtonElement | null
-}
-
-const Button = forwardRef<RefHandle, ButtonProps>(
+const Button: ButtonComponent = forwardRef(
   (
     {
       block,
@@ -50,127 +45,81 @@ const Button = forwardRef<RefHandle, ButtonProps>(
       children,
       danger,
       disabled = false,
-      onClick,
       icon,
       iconRight,
       loading = false,
       loadingCentered = false,
       shadow = true,
       size = 'tiny',
-      style,
       type = 'primary',
       htmlType,
       ariaSelected,
       ariaControls,
-      tabIndex,
-      role,
       as,
+      containerRef,
       ...props
-    }: ButtonProps,
+    },
     ref
   ) => {
-    // button ref
-    const containerRef = useRef<HTMLElement>(null)
-    const buttonRef = useRef<HTMLButtonElement>(null)
-
-    useImperativeHandle(ref, () => ({
-      container: () => {
-        return containerRef.current
-      },
-      button: () => {
-        return buttonRef.current
-      },
-    }))
-
     // styles
     const showIcon = loading || icon
 
-    let classes = [ButtonStyles['sbui-btn']]
-    let containerClasses = [ButtonStyles['sbui-btn-container']]
+    const classes = c8s(
+      ButtonStyles['sbui-btn'],
+      ButtonStyles[`sbui-btn-${type}`],
+      block && ButtonStyles['sbui-btn--w-full'],
+      danger && ButtonStyles['sbui-btn--danger'],
+      shadow &&
+        type !== 'link' &&
+        type !== 'text' &&
+        ButtonStyles['sbui-btn-container--shadow'],
+      size && ButtonStyles[`sbui-btn--${size}`],
+      className,
+      loading && loadingCentered && ButtonStyles[`sbui-btn--text-fade-out`]
+    )
 
-    classes.push(ButtonStyles[`sbui-btn-${type}`])
+    const containerClasses = c8s(
+      ButtonStyles['sbui-btn-container'],
+      block && ButtonStyles['sbui-btn--w-full']
+    )
 
-    if (block) {
-      containerClasses.push(ButtonStyles['sbui-btn--w-full'])
-      classes.push(ButtonStyles['sbui-btn--w-full'])
-    }
+    const iconLoaderClasses = c8s(
+      ButtonStyles['sbui-btn--anim--spin'],
+      loadingCentered && ButtonStyles[`sbui-btn-loader--center`]
+    )
 
-    if (danger) {
-      classes.push(ButtonStyles['sbui-btn--danger'])
-    }
+    const _icon = icon ? (
+      <IconContext.Provider value={{ contextSize: size }}>
+        {icon}
+      </IconContext.Provider>
+    ) : null
 
-    if (shadow && type !== 'link' && type !== 'text') {
-      classes.push(ButtonStyles['sbui-btn-container--shadow'])
-    }
+    const Component = as || 'button'
 
-    if (size) {
-      classes.push(ButtonStyles[`sbui-btn--${size}`])
-    }
-
-    if (className) {
-      classes.push(className)
-    }
-
-    const iconLoaderClasses = [ButtonStyles['sbui-btn--anim--spin']]
-
-    if (loadingCentered) {
-      iconLoaderClasses.push(ButtonStyles[`sbui-btn-loader--center`])
-    }
-    if (loading && loadingCentered) {
-      classes.push(ButtonStyles[`sbui-btn--text-fade-out`])
-    }
-
-    // custom button tag
-    const CustomButton: React.FC<CustomButtonProps> = ({ ...props }) => {
-      const Tag = as as keyof JSX.IntrinsicElements
-      return <Tag {...props} />
-    }
-
-    const RenderedButton = ({ children }: any) =>
-      as ? (
-        <CustomButton
-          className={classes.join(' ')}
-          onClick={onClick}
-          style={style}
-        >
-          {children}
-        </CustomButton>
-      ) : (
-        <button
+    return (
+      <span ref={containerRef} className={containerClasses}>
+        <Component
           {...props}
-          ref={buttonRef}
-          className={classes.join(' ')}
-          disabled={loading || (disabled && true)}
-          onClick={onClick}
-          style={style}
+          ref={ref}
+          className={classes}
+          disabled={loading || disabled}
           type={htmlType}
           aria-selected={ariaSelected}
           aria-controls={ariaControls}
-          tabIndex={tabIndex}
-          role={role}
         >
-          {children}
-        </button>
-      )
-
-    return (
-      <span ref={containerRef} className={containerClasses.join(' ')}>
-        <RenderedButton>
           {showIcon &&
             (loading ? (
-              <IconLoader size={size} className={iconLoaderClasses.join(' ')} />
-            ) : icon ? (
-              <IconContext.Provider value={{ contextSize: size }}>
-                {icon}
-              </IconContext.Provider>
-            ) : null)}
+              <IconLoader size={size} className={iconLoaderClasses} />
+            ) : (
+              _icon
+            ))}
           {children && <span>{children}</span>}
           {iconRight && !loading && (
             <IconContext.Provider value={{ contextSize: size }}>
               {iconRight}
             </IconContext.Provider>
           )}
-        </RenderedButton>
+        </Component>
       </span>
     )
   }

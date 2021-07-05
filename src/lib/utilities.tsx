@@ -1,5 +1,9 @@
 import React from 'react'
 
+export const c8s = (...opts: (string | boolean | undefined | null)[]) => {
+  return opts.filter(Boolean).join(' ')
+}
+
 // export const FormLayout = (props: any) => {
 //   const {
 //     align,
