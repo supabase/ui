@@ -3,7 +3,7 @@ import React from 'react'
 import { Space } from '../../../index'
 import defaultTheme from '../../../theme/defaultTheme'
 // @ts-ignore
-import FormLayoutStyles from './FormLayout.module.css'
+// import FormLayoutStyles from './FormLayout.module.css'
 
 type Props = {
   align?: string

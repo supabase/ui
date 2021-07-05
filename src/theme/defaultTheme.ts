@@ -116,11 +116,12 @@ focus:ring-1 focus:ring-brand-600 transition focus:outline-none focus:border-bra
       },
     },
 
-    responsive: 'md:grid md:grid-cols-12 md:gap-4',
-    non_responsive: 'grid grid-cols-12 gap-4',
+    responsive: 'md:grid md:grid-cols-12 md:gap-x-4',
+    non_responsive: 'grid grid-cols-12 gap-2',
 
-    label_horizontal_layout: 'justify-between col-span-12',
-    label_vertical_layout: 'col-span-4',
+    label_horizontal_layout:
+      'flex flex-row space-x-2 justify-between col-span-12',
+    label_vertical_layout: 'flex flex-col space-y-2 col-span-4',
 
     data_input_horizontal_layout: 'col-span-12',
     data_input_vertical_layout: 'col-span-8',
