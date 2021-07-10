@@ -4,14 +4,31 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "preserveConstEnums": true,
     "target": "es6",
-    "module": "es6",
-    "declaration": true
+    "module": "esnext",
+    "declaration": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
   },
-  "include": ["src/components/**/*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "src/components/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

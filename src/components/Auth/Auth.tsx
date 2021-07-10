@@ -22,13 +22,21 @@ const VIEWS: ViewsMap = {
   SIGN_UP: 'sign_up',
   FORGOTTEN_PASSWORD: 'forgotten_password',
   MAGIC_LINK: 'magic_link',
+  UPDATE_PASSWORD: 'update_password',
 }
 
 interface ViewsMap {
   [key: string]: ViewType
 }
 
-type ViewType = 'sign_in' | 'sign_up' | 'forgotten_password' | 'magic_link'
+type ViewType =
+  | 'sign_in'
+  | 'sign_up'
+  | 'forgotten_password'
+  | 'magic_link'
+  | 'update_password'
+
+type RedirectTo = undefined | string
 
 export interface Props {
   supabaseClient: SupabaseClient
@@ -42,6 +50,7 @@ export interface Props {
   providers?: Provider[]
   verticalSocialLayout?: any
   view?: ViewType
+  redirectTo?: RedirectTo
 }
 
 function Auth({
@@ -53,7 +62,8 @@ function Auth({
   socialButtonSize = 'medium',
   providers,
   view = 'sign_in',
-}: Props) {
+  redirectTo,
+}: Props): JSX.Element | null {
   const [authView, setAuthView] = useState(view)
   const [defaultEmail, setDefaultEmail] = useState('')
   const [defaultPassword, setDefaultPassword] = useState('')
@@ -75,6 +85,7 @@ function Auth({
           socialLayout={socialLayout}
           socialButtonSize={socialButtonSize}
           socialColors={socialColors}
+          redirectTo={redirectTo}
         />
         {props.children}
       </Space>
@@ -99,32 +110,41 @@ function Auth({
             defaultPassword={defaultPassword}
             setDefaultEmail={setDefaultEmail}
             setDefaultPassword={setDefaultPassword}
+            redirectTo={redirectTo}
           />
         </Container>
       )
-      break
     case VIEWS.FORGOTTEN_PASSWORD:
       return (
         <Container>
           <ForgottenPassword
             supabaseClient={supabaseClient}
             setAuthView={setAuthView}
+            redirectTo={redirectTo}
           />
         </Container>
       )
-      break
+
     case VIEWS.MAGIC_LINK:
       return (
         <Container>
           <MagicLink
             supabaseClient={supabaseClient}
             setAuthView={setAuthView}
+            redirectTo={redirectTo}
           />
         </Container>
       )
-      break
+
+    case VIEWS.UPDATE_PASSWORD:
+      return (
+        <Container>
+          <UpdatePassword supabaseClient={supabaseClient} />
+        </Container>
+      )
+
     default:
-      break
+      return null
   }
 }
 
@@ -138,6 +158,7 @@ function SocialAuth({
   socialButtonSize,
   providers,
   verticalSocialLayout,
+  redirectTo,
   ...props
 }: Props) {
   const buttonStyles: any = {
@@ -151,6 +172,10 @@ function SocialAuth({
     },
     twitter: {
       backgroundColor: '#1DA1F2',
+    },
+    apple: {
+      backgroundColor: '#000',
+      color: 'white',
     },
     gitlab: {
       backgroundColor: '#FC6D27',
@@ -169,7 +194,10 @@ function SocialAuth({
 
   const handleProviderSignIn = async (provider: Provider) => {
     setLoading(true)
-    const { error } = await supabaseClient.auth.signIn({ provider })
+    const { error } = await supabaseClient.auth.signIn(
+      { provider },
+      { redirectTo }
+    )
     if (error) setError(error.message)
     setLoading(false)
   }
@@ -226,6 +254,7 @@ function EmailAuth({
   setDefaultEmail,
   setDefaultPassword,
   supabaseClient,
+  redirectTo,
 }: {
   authView: any
   defaultEmail: string
@@ -234,12 +263,14 @@ function EmailAuth({
   setDefaultEmail: (email: string) => void
   setDefaultPassword: (password: string) => void
   supabaseClient: SupabaseClient
+  redirectTo?: RedirectTo
 }) {
   const [email, setEmail] = useState(defaultEmail)
   const [password, setPassword] = useState(defaultPassword)
   const [rememberMe, setRememberMe] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState('')
 
   useEffect(() => {
     setEmail(defaultEmail)
@@ -252,18 +283,28 @@ function EmailAuth({
     setLoading(true)
     switch (authView) {
       case 'sign_in':
-        const { error: signInError } = await supabaseClient.auth.signIn({
-          email,
-          password,
-        })
+        const { error: signInError } = await supabaseClient.auth.signIn(
+          {
+            email,
+            password,
+          },
+          { redirectTo }
+        )
         if (signInError) setError(signInError.message)
         break
       case 'sign_up':
-        const { error: signUpError } = await supabaseClient.auth.signUp({
-          email,
-          password,
-        })
+        const { error: signUpError, data: signUpData } =
+          await supabaseClient.auth.signUp(
+            {
+              email,
+              password,
+            },
+            { redirectTo }
+          )
         if (signUpError) setError(signUpError.message)
+        // checking if it has access_token to know if email verification is disabled
+        else if (signUpData?.hasOwnProperty('confirmation_sent_at'))
+          setMessage('Check your email for the confirmation link.')
         break
     }
     setLoading(false)
@@ -343,6 +384,7 @@ function EmailAuth({
               Do you have an account? Sign in
             </Typography.Link>
           )}
+          {message && <Typography.Text>{message}</Typography.Text>}
           {error && <Typography.Text type="danger">{error}</Typography.Text>}
         </Space>
       </Space>
@@ -353,9 +395,11 @@ function EmailAuth({
 function MagicLink({
   setAuthView,
   supabaseClient,
+  redirectTo,
 }: {
   setAuthView: any
   supabaseClient: SupabaseClient
+  redirectTo?: RedirectTo
 }) {
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
@@ -367,7 +411,10 @@ function MagicLink({
     setError('')
     setMessage('')
     setLoading(true)
-    const { error } = await supabaseClient.auth.signIn({ email })
+    const { error } = await supabaseClient.auth.signIn(
+      { email },
+      { redirectTo }
+    )
     if (error) setError(error.message)
     else setMessage('Check your email for the magic link')
     setLoading(false)
@@ -408,9 +455,11 @@ function MagicLink({
 function ForgottenPassword({
   setAuthView,
   supabaseClient,
+  redirectTo,
 }: {
   setAuthView: any
   supabaseClient: SupabaseClient
+  redirectTo?: RedirectTo
 }) {
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
@@ -422,7 +471,10 @@ function ForgottenPassword({
     setError('')
     setMessage('')
     setLoading(true)
-    const { error } = await supabaseClient.auth.api.resetPasswordForEmail(email)
+    const { error } = await supabaseClient.auth.api.resetPasswordForEmail(
+      email,
+      { redirectTo }
+    )
     if (error) setError(error.message)
     else setMessage('Check your email for the password reset link')
     setLoading(false)

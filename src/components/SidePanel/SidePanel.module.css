@@ -24,7 +24,7 @@
 
 /* panel animation */
 .sbui-sidepanel--enter {
-  @apply transform transition ease-in-out duration-500 sm:duration-700;
+  @apply transform transition ease-in-out duration-200 lg:duration-300;
 }
 .sbui-sidepanel--enterFrom {
   @apply translate-x-full;
@@ -36,7 +36,7 @@
   @apply translate-x-0;
 }
 .sbui-sidepanel--leave {
-  @apply transform transition ease-in-out duration-500 sm:duration-700;
+  @apply transform transition ease-in-out duration-200 lg:duration-300;
 }
 .sbui-sidepanel--leaveFrom {
   @apply translate-x-0;
@@ -81,7 +81,7 @@
 } */
 
 .sbui-sidepanel-container {
-  @apply absolute inset-y-0 max-w-full flex;
+  @apply absolute inset-y-0 max-w-full flex h-screen;
 }
 
 .sbui-sidepanel {
@@ -117,4 +117,8 @@
 
 .sbui-sidepanel-footer {
   @apply flex flex-shrink-0;
+}
+
+.sbui-sidepanel__trigger {
+  @apply border-none bg-transparent p-0 focus:ring-0;
 }

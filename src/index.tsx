@@ -3,6 +3,7 @@
 export * from './components/Button/index'
 export * from './components/Typography/index'
 export * from './components/Icon/index'
+export * from './components/Image/index'
 
 // DISPLAYS
 
@@ -10,6 +11,7 @@ export * from './components/Card/index'
 export * from './components/Badge/index'
 export * from './components/Tabs/index'
 export * from './components/Alert/index'
+export * from './components/Accordion/index'
 
 // NAV
 
@@ -20,6 +22,8 @@ export * from './components/Menu/index'
 export * from './components/Modal/index'
 export * from './components/SidePanel/index'
 export * from './components/Dropdown/index'
+export * from './components/ContextMenu/index'
+// export * from './components/Toast/index'
 
 // UTILITIES
 

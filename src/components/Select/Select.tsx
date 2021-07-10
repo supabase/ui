@@ -31,6 +31,8 @@ export interface Props {
   id?: string
   inputRef?: string
   label?: string
+  afterLabel?: string
+  beforeLabel?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
   name?: string
@@ -78,6 +80,8 @@ function Select({
   id,
   inputRef,
   label,
+  afterLabel,
+  beforeLabel,
   labelOptional,
   layout,
   name,
@@ -89,6 +93,7 @@ function Select({
   value,
   style,
   size = 'medium',
+  ...props
 }: Props) {
   let selectClasses = [SelectStyles['sbui-select']]
   if (error) selectClasses.push(SelectStyles['sbui-select--error'])
@@ -98,6 +103,8 @@ function Select({
   return (
     <FormLayout
       label={label}
+      afterLabel={afterLabel}
+      beforeLabel={beforeLabel}
       labelOptional={labelOptional}
       layout={layout}
       id={id}
@@ -122,6 +129,7 @@ function Select({
           disabled={disabled}
           required={required}
           placeholder={placeholder}
+          {...props}
         >
           {children}
         </select>

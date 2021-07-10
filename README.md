@@ -8,7 +8,7 @@ Supabase UI is still a work-in-progress until a major release is published.
 [![Product hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=290768&theme=light)](https://www.producthunt.com/posts/supabase-ui)
 
 
-[View full storybook documentation](https://ui.supabase.com)
+[View docs](https://ui.supabase.com)
 
 ## Install Supabase UI
 
@@ -90,7 +90,9 @@ const Container = (props) => {
 export default function Home() {
   return (
     <Auth.UserContextProvider supabaseClient={supabase}>
-      <Auth providers={['facebook', 'github']}/>
+      <Container supabaseClient={supabase}>
+        <Auth providers={['facebook', 'github']} supabaseClient={supabase}/>
+      </Container>
     </Auth.UserContextProvider>
   );
 };
@@ -105,16 +107,17 @@ _General_
 - [x] Button
 - [x] Typography
 - [x] Icon
+- [x] Image (work in progress)
 
 _Data Input_
 
 - [x] Input
-- [ ] InputNumber
-- [x] Select
-- [x] Checkbox (and Checkbox Groups)
-- [x] Radio (and Radio Groups)
-- [x] Toggle (work in progress)
-- [ ] Upload (work in progress)
+- [x] InputNumber
+- [x] Select (custom select wip)
+- [x] Checkbox
+- [x] Radio
+- [x] Toggle
+- [ ] Upload
 - [ ] Slider
 - [ ] Date picker
 - [ ] Time picker
@@ -122,8 +125,8 @@ _Data Input_
 
 _Layout_
 
-- [ ] Layout
-- [ ] Grid (Flex)
+~~- [ ] Layout~~
+~~- [ ] Grid (Flex)~~
 - [x] Divider
 - [x] Space (Flex)
 
@@ -131,7 +134,8 @@ _Display_
 
 - [x] Card
 - [ ] Avatar
-- [ ] Alert
+- [x] Accordian
+- [x] Alert
 - [x] Badge
 - [x] Menu
 - [ ] Tooltips
@@ -140,10 +144,10 @@ _Display_
 
 _Navigation_
 
-- [ ] Tabs
+- [x] Tabs
 - [ ] Breadcrumb
 - [x] Dropdown
-- [ ] Menu
+- [x] Menu
 - [ ] Page Header
 - [ ] Sidebar
 - [ ] Flyout menu
@@ -152,7 +156,8 @@ _Navigation_
 _Overlay_
 
 - [x] Modal
-- [ ] Drawer / SidePanel
+- [x] Context Menu
+- [x] Drawer / SidePanel
 - [ ] Toast messages / Notification
 - [ ] Progress
 - [ ] Feeds / Timeline
@@ -164,10 +169,10 @@ _Utility_
 
 _Misc_
 
-- [ ] Storybook docs
+- [x] Storybook docs
 - [ ] Theming (in progress)
-- [ ] Supabase Auth Elements
-- [ ] Documentation website
+- [x] Supabase Auth Elements
+- [x] Documentation website
 
 We would be keen to hear any feedback on this project.
 

@@ -1,6 +1,6 @@
 /* clear native styling */
 .sbui-checkbox[type='checkbox'] {
-  webkit-appearance: none;
+  -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   padding: 0;
@@ -61,6 +61,11 @@
 
 .sbui-checkbox__label-container__label__span {
   @apply font-medium;
+}
+
+.sbui-checkbox__label-container__label__span .sbui-checkbox__label-text-before,
+.sbui-checkbox__label-container__label__span .sbui-checkbox__label-text-after {
+  @apply text-gray-400 dark:text-gray-300;
 }
 
 .sbui-checkbox__label-container__label__p {

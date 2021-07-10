@@ -47,7 +47,7 @@
 }
 
 .sbui-modal-flex-container {
-  @apply flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0;
+  @apply flex items-end justify-center min-h-screen pt-4 px-6 pb-20 text-center sm:block sm:p-0;
 }
 
 .sbui-modal-overlay-container {
@@ -67,7 +67,6 @@
   /* border */
   @apply border-gray-400 border border-solid;
   @apply dark:border-gray-600 border border-solid;
-  @apply mb-4 mt-4;
 
   position: absolute;
   top: 50%;
@@ -92,7 +91,7 @@
 }
 
 .sbui-modal-content {
-  @apply px-5 pt-5 pb-5 sm:p-6;
+  @apply px-6 pt-5 pb-5 sm:p-6;
 }
 
 .sbui-modal-footer {
@@ -100,7 +99,7 @@
 }
 
 .sbui-modal-footer--with-bg {
-  @apply bg-gray-50 dark:bg-dark-600 px-4 py-3 sm:px-6 sm:flex sm:flex-row justify-end;
+  @apply bg-gray-50 dark:bg-dark-600 px-6 py-3 sm:px-6 sm:flex sm:flex-row justify-end;
 }
 
 .sbui-modal-icon-container {
@@ -132,4 +131,8 @@
   @apply hover:text-dark-300;
 
   @apply hover:bg-transparent;
+}
+
+.sbui-sidepanel__trigger {
+  @apply border-none bg-transparent p-0 focus:ring-0;
 }

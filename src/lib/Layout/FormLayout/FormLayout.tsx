@@ -13,11 +13,13 @@ type Props = {
   id?: string
   label?: string
   labelOptional?: string
-  layout: 'horizontal' | 'vertical'
+  layout?: 'horizontal' | 'vertical'
   style?: React.CSSProperties
   flex?: boolean
   responsive?: boolean
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+  beforeLabel?: string
+  afterLabel?: string
 }
 
 export function FormLayout({
@@ -29,11 +31,13 @@ export function FormLayout({
   id,
   label,
   labelOptional,
-  layout,
+  layout = 'vertical',
   style,
   flex,
   responsive = true,
   size = 'medium',
+  beforeLabel,
+  afterLabel,
 }: Props) {
   let containerClasses = [FormLayoutStyles['sbui-formlayout']]
 
@@ -61,9 +65,11 @@ export function FormLayout({
     containerClasses.push(className)
   }
 
+  const labelled = Boolean(label || beforeLabel || afterLabel)
+
   return (
     <div className={containerClasses.join(' ')}>
-      {label || labelOptional || layout === 'horizontal' ? (
+      {labelled || labelOptional || layout === 'horizontal' ? (
         <Space
           direction={
             (layout && layout === 'horizontal') ||
@@ -78,12 +84,28 @@ export function FormLayout({
               : FormLayoutStyles['sbui-formlayout__label-container-vertical'])
           }
         >
-          {label && (
+          {labelled && (
             <label
               className={FormLayoutStyles['sbui-formlayout__label']}
               htmlFor={id}
             >
+              {beforeLabel && (
+                <span
+                  className={FormLayoutStyles['sbui-formlayout__label-before']}
+                  id={id + '-before'}
+                >
+                  {beforeLabel}
+                </span>
+              )}
               {label}
+              {afterLabel && (
+                <span
+                  className={FormLayoutStyles['sbui-formlayout__label-after']}
+                  id={id + '-after'}
+                >
+                  {afterLabel}
+                </span>
+              )}
             </label>
           )}
           {labelOptional && (

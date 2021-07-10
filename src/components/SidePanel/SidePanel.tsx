@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 // @ts-ignore
 import SlidePanelStyles from './SidePanel.module.css'
 import { Button, IconX, Space, Typography } from '../../index'
 import { AnimationTailwindClasses } from '../../types'
+
+import * as Dialog from '@radix-ui/react-dialog'
 
 import { Transition } from '@headlessui/react'
 
@@ -19,11 +21,12 @@ interface Props {
   hideFooter?: boolean
   customFooter?: React.ReactNode
   onCancel?: any
-  onCancelText?: string
+  cancelText?: string
   onConfirm?: any
-  onConfirmText?: string
+  confirmText?: string
   transition?: AnimationTailwindClasses
   transitionOverlay?: AnimationTailwindClasses
+  triggerElement?: React.ReactNode
 }
 
 const SidePanel = ({
@@ -31,7 +34,7 @@ const SidePanel = ({
   children,
   title,
   description,
-  visible = true,
+  visible,
   wide = false,
   loading,
   align = 'right',
@@ -40,17 +43,21 @@ const SidePanel = ({
   customFooter = undefined,
   onConfirm,
   onCancel,
-  onConfirmText = 'Confirm',
-  onCancelText = 'Cancel',
-  transition,
-  transitionOverlay,
+  confirmText = 'Confirm',
+  cancelText = 'Cancel',
+  triggerElement,
 }: Props) => {
+  const [open, setOpen] = React.useState(visible ? visible : false)
+
+  useEffect(() => {
+    setOpen(visible)
+  }, [visible])
+
   function stopPropagation(e: React.MouseEvent) {
     e.stopPropagation()
   }
 
   const sidePanelClasses = [SlidePanelStyles['sbui-sidepanel']]
-  if (className) sidePanelClasses.push(className)
 
   const left = align === 'left'
 
@@ -60,6 +67,7 @@ const SidePanel = ({
   } else {
     containerClasses.push(SlidePanelStyles['sbui-sidepanel--right'])
   }
+  if (className) containerClasses.push(className)
 
   let footerClasses = [SlidePanelStyles['sbui-sidepanel-footer-container']]
   if (!customFooter) {
@@ -81,39 +89,54 @@ const SidePanel = ({
           type="outline"
           onClick={() => (onCancel ? onCancel() : null)}
         >
-          {onCancelText}
+          {cancelText}
         </Button>
         <Button
           loading={loading}
           onClick={() => (onConfirm ? onConfirm() : null)}
         >
-          {onConfirmText}
+          {confirmText}
         </Button>
       </Space>
     </div>
   )
 
-  return (
-    <Transition show={visible}>
-      <Transition.Child
-        enter={SlidePanelStyles[`sbui-sidepanel-overlay--enter`]}
-        enterFrom={SlidePanelStyles[`sbui-sidepanel-overlay--enterFrom`]}
-        enterTo={SlidePanelStyles[`sbui-sidepanel-overlay--enterTo`]}
-        leave={SlidePanelStyles[`sbui-sidepanel-overlay--leave`]}
-        leaveFrom={SlidePanelStyles[`sbui-sidepanel-overlay--leaveFrom`]}
-        leaveTo={SlidePanelStyles[`sbui-sidepanel-overlay--leaveTo`]}
-      >
-        <div onClick={() => (onCancel ? onCancel() : null)}>
-          <div className={SlidePanelStyles['sbui-sidepanel-overlay-container']}>
-            <div className={SlidePanelStyles['sbui-sidepanel-overlay']}></div>
-          </div>
+  function handleOpenChange(open: boolean) {
+    if (visible !== undefined && !open) {
+      // controlled component behaviour
+      onCancel()
+    } else {
+      // un-controlled component behaviour
+      setOpen(open)
+    }
+  }
 
-          {/* sidepanel element */}
-          {/* <div
-            className={SlidePanelStyles['sbui-sidepanel-fixed']}
-            onClick={onCancel}
-          > */}
-          {/* <div className={SlidePanelStyles['sbui-sidepanel-absolute']}> */}
+  return (
+    <Dialog.Root open={open} onOpenChange={handleOpenChange}>
+      {triggerElement && (
+        <Dialog.Trigger className={SlidePanelStyles[`sbui-sidepanel__trigger`]}>
+          {triggerElement}
+        </Dialog.Trigger>
+      )}
+      <Transition show={open}>
+        <Dialog.Overlay forceMount>
+          <Transition.Child
+            enter={SlidePanelStyles[`sbui-sidepanel-overlay--enter`]}
+            enterFrom={SlidePanelStyles[`sbui-sidepanel-overlay--enterFrom`]}
+            enterTo={SlidePanelStyles[`sbui-sidepanel-overlay--enterTo`]}
+            leave={SlidePanelStyles[`sbui-sidepanel-overlay--leave`]}
+            leaveFrom={SlidePanelStyles[`sbui-sidepanel-overlay--leaveFrom`]}
+            leaveTo={SlidePanelStyles[`sbui-sidepanel-overlay--leaveTo`]}
+          >
+            <div
+              className={SlidePanelStyles['sbui-sidepanel-overlay-container']}
+            >
+              <div className={SlidePanelStyles['sbui-sidepanel-overlay']}></div>
+            </div>
+          </Transition.Child>
+        </Dialog.Overlay>
+
+        <Dialog.Content forceMount style={{ width: '100vw' }}>
           <div className={containerClasses.join(' ')}>
             <Transition.Child
               enter={SlidePanelStyles[`sbui-sidepanel--enter`]}
@@ -130,7 +153,6 @@ const SidePanel = ({
                   ? SlidePanelStyles[`sbui-sidepanel--leaveTo--left`]
                   : SlidePanelStyles[`sbui-sidepanel--leaveTo`]
               }
-              // className="fixed inset-0 overflow-y-auto h-100"
             >
               <div
                 className={
@@ -200,11 +222,9 @@ const SidePanel = ({
               </div>
             </Transition.Child>
           </div>
-        </div>
-        {/* </div> */}
-        {/* </div> */}
-      </Transition.Child>
-    </Transition>
+        </Dialog.Content>
+      </Transition>
+    </Dialog.Root>
   )
 }
 

@@ -50,7 +50,7 @@ function Icon({
 }: Props) {
   return (
     <IconContext.Consumer>
-      {({ contextSize }) => {
+      {({ contextSize, className: contextClassName }) => {
         const defaultSizes: StringMap = {
           tiny: 14,
           small: 18,
@@ -88,6 +88,11 @@ function Icon({
         // default these icons to use 'currentColor' ie, the text color
         const noColor = !color && !fill && !stroke
 
+        let classes = ['sbui-icon', className]
+        if (contextClassName) {
+          classes.push(contextClassName)
+        }
+
         const Icon = (
           // custom SVG file
           <svg
@@ -95,9 +100,11 @@ function Icon({
             color={!noColor ? color : 'currentColor'}
             fill={!noColor ? (fill ? fill : 'none') : 'none'}
             stroke={!noColor ? stroke : 'currentColor'}
-            className={`${className}`}
+            strokeWidth={strokeWidth}
+            className={classes.join(' ')}
             width={iconSize}
             height={iconSize}
+            {...props}
           >
             {src}
           </svg>
