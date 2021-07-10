@@ -19,47 +19,20 @@ interface OptGroupProps {
   children: React.ReactNode
 }
 
-export interface Props {
-  autoComplete?: string
+export interface Props
+  extends Omit<React.InputHTMLAttributes<HTMLSelectElement>, 'size'> {
   autofocus?: boolean
-  className?: string
   children: React.ReactNode
   descriptionText?: string
-  disabled?: boolean
   error?: string
   icon?: any
-  id?: string
   inputRef?: string
   label?: string
   afterLabel?: string
   beforeLabel?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
-  name?: string
-  onChange?(x: React.ChangeEvent<HTMLSelectElement>): void
-  onFocus?(x: React.FocusEvent<HTMLSelectElement>): void
-  onBlur?(x: React.FocusEvent<HTMLSelectElement>): void
-  placeholder?: string
-  style?: React.CSSProperties
-  type?:
-    | 'color'
-    | 'date'
-    | 'datetime-local'
-    | 'email'
-    | 'month'
-    | 'number'
-    | 'password'
-    | 'reset'
-    | 'search'
-    | 'submit'
-    | 'tel'
-    | 'text'
-    | 'time'
-    | 'url'
-    | 'week'
-  value?: any
   reveal?: boolean
-  required?: boolean
   actions?: React.ReactNode
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
