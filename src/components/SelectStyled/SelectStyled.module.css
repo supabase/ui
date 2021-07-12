@@ -1,8 +1,8 @@
-.sbui-select-container {
+.sbui-listbox-container {
   @apply relative;
 }
 
-.sbui-select {
+.sbui-listbox {
   @apply block w-full bg-white pl-3 pr-10 py-2 text-sm rounded-md transition-all;
 
   @apply text-gray-700 border border-solid border-gray-300;
@@ -28,11 +28,11 @@
   background-image: none;
 }
 
-.sbui-select:focus {
+.sbui-listbox:focus {
   box-shadow: 0 0 0 2px rgba(62, 207, 142, 0.1);
 }
 
-.sbui-select--error {
+.sbui-listbox--error {
   @apply border-red-500 dark:border-red-500;
 }
 
@@ -40,23 +40,23 @@
   Select sizes
 */
 
-.sbui-select--tiny {
+.sbui-listbox--tiny {
   @apply px-2.5 py-1.5 text-xs;
 }
-.sbui-select--small {
+.sbui-listbox--small {
   @apply px-3 py-2 text-sm leading-4;
 }
-.sbui-select--medium {
+.sbui-listbox--medium {
   @apply px-4 py-2 text-sm;
 }
-.sbui-select--large {
+.sbui-listbox--large {
   @apply px-4 py-2 text-base;
 }
-.sbui-select--xlarge {
+.sbui-listbox--xlarge {
   @apply px-6 py-3 text-base;
 }
 
-.sbui-select-actions-container {
+.sbui-listbox-actions-container {
   @apply absolute inset-y-0 right-0 pl-3 pr-1 mr-5 flex items-center;
 }
 
@@ -64,7 +64,7 @@
   Select icon
 */
 
-.sbui-select--with-icon {
+.sbui-listbox--with-icon {
   @apply pl-10;
 }
 
@@ -72,10 +72,26 @@
   Select Chevron
 */
 
-.sbui-select-chevron-container {
+.sbui-listbox-chevron-container {
   @apply absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none;
 }
 
-.sbui-select-chevron {
+.sbui-listbox-chevron {
   @apply h-5 w-5 text-gray-400;
+}
+
+/*
+  Option
+*/
+
+.sbui-listbox-option {
+  @apply cursor-default select-none relative py-2 pl-3 pr-9 text-gray-900;
+}
+
+.sbui-listbox-option--active {
+  @apply text-brand-600 bg-brand-600 bg-opacity-20;
+}
+
+.sbui-listbox-option__inner {
+  @apply flex items-center space-x-3;
 }
