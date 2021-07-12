@@ -34,6 +34,7 @@ export * from './components/Divider/index'
 // DATA ENTRY
 
 export * from './components/Select/index'
+export * from './components/Listbox/index'
 export * from './components/Checkbox/index'
 export * from './components/Input/index'
 export * from './components/InputNumber/index'

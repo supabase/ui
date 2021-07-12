@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import Select from './Select'
+import Select from './Listbox'
 
 describe('#Select', () => {
   it('should render select correctly', async () => {
@@ -20,6 +20,8 @@ describe('#Select', () => {
         <option>2</option>
       </Select>
     )
-    expect(screen.queryByTestId('form-select')).toHaveClass('form-select border-solid form-select--error')
+    expect(screen.queryByTestId('form-select')).toHaveClass(
+      'form-select border-solid form-select--error'
+    )
   })
 })

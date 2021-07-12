@@ -57,11 +57,11 @@ function Select({
   const [selectedNode, setSelectedNode] = useState<any>({})
 
   useEffect(() => {
-    const data = children
+    const data: any = children
 
     // loop through children and add to content state
     data.map((node: any) => {
-      let modifiedContent = content
+      let modifiedContent: any = content
       modifiedContent.push(node.props)
       setContent(modifiedContent)
     })
@@ -69,7 +69,7 @@ function Select({
     // sets the active select option using content array
     // and selected value from headlessui select
     if (selected)
-      setSelectedNode(content.find((node) => node.value === selected))
+      setSelectedNode(content.find((node: any) => node.value === selected))
     else setSelectedNode(content[0])
   }, [children, options, selected])
 
@@ -102,13 +102,17 @@ function Select({
               <div className="relative">
                 <Listbox.Button className={selectClasses.join(' ')}>
                   {icon && <InputIconContainer icon={icon} />}
-                  <span className="w-full flex flex-row items-center space-x-3">
+                  <span className={SelectStyles['sbui-listbox-addonbefore']}>
                     {selectedNode?.addOnBefore && <selectedNode.addOnBefore />}
-                    <span className="truncate">{selectedNode?.label}</span>
+                    <span className={SelectStyles['sbui-listbox-label']}>
+                      {selectedNode?.label}
+                    </span>
                   </span>
-                  <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                  <span
+                    className={SelectStyles['sbui-listbox-selector-container']}
+                  >
                     <SelectorIcon
-                      className="h-5 w-5 text-gray-400"
+                      className={SelectStyles['sbui-listbox-selector']}
                       aria-hidden="true"
                     />
                   </span>
@@ -123,13 +127,15 @@ function Select({
                 <Transition
                   show={open}
                   as={Fragment}
-                  leave="transition ease-in duration-100"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
+                  leave={SelectStyles['sbui-listbox-transition--leave']}
+                  leaveFrom={
+                    SelectStyles['sbui-listbox-transition--leave-from']
+                  }
+                  leaveTo={SelectStyles['sbui-listbox-transition--leave-to']}
                 >
                   <Listbox.Options
                     static
-                    className="list-none p-0 absolute mt-1 w-full bg-white dark:bg-gray-800 shadow-lg border border-solid border-gray-100 dark:border-gray-600 max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+                    className={SelectStyles['sbui-listbox-option-container']}
                   >
                     {children}
                   </Listbox.Options>
@@ -156,10 +162,10 @@ function SelectOption({
   return (
     <Listbox.Option key={id} value={value}>
       {({ selected, active }) => {
-        if (active) {
-          console.log('selected', selected, 'active', active)
-          console.log(label)
-        }
+        // if (active) {
+        //   console.log('selected', selected, 'active', active)
+        //   console.log(label)
+        // }
         return (
           <div
             className={classNames(
@@ -179,11 +185,16 @@ function SelectOption({
             {selected ? (
               <span
                 className={classNames(
-                  active ? 'text-brand-600' : 'text-brand-600',
-                  'absolute inset-y-0 right-0 flex items-center pr-3'
+                  active
+                    ? SelectStyles['sbui-listbox-option__check--active']
+                    : '',
+                  SelectStyles['sbui-listbox-option__check']
                 )}
               >
-                <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                <CheckIcon
+                  className={SelectStyles['sbui-listbox-option__check__icon']}
+                  aria-hidden="true"
+                />
               </span>
             ) : null}
           </div>

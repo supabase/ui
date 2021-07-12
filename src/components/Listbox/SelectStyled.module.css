@@ -69,6 +69,18 @@
 }
 
 /*
+  Add on before
+*/
+
+.sbui-listbox-addonbefore {
+  @apply w-full flex flex-row items-center space-x-3;
+}
+
+.sbui-listbox-label {
+  @apply truncate;
+}
+
+/*
   Select Chevron
 */
 
@@ -84,6 +96,10 @@
   Option
 */
 
+.sbui-listbox-option-container {
+  @apply list-none p-0 absolute mt-1 w-full bg-white dark:bg-gray-800 shadow-lg border border-solid border-gray-100 dark:border-gray-600 max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm;
+}
+
 .sbui-listbox-option {
   @apply cursor-default select-none relative py-2 pl-3 pr-9 text-gray-900;
 }
@@ -94,4 +110,44 @@
 
 .sbui-listbox-option__inner {
   @apply flex items-center space-x-3;
+}
+
+.sbui-listbox-option__check {
+  @apply absolute inset-y-0 right-0 flex items-center pr-3;
+}
+
+.sbui-listbox-option__check--active {
+  @apply text-brand-600;
+}
+
+.sbui-listbox-option__check__icon {
+  @apply h-5 w-5;
+}
+
+/*
+  Selector
+*/
+
+.sbui-listbox-selector-container {
+  @apply absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none;
+}
+
+.sbui-listbox-selector {
+  @apply h-5 w-5 text-gray-400;
+}
+
+/*
+  Transition
+*/
+
+.sbui-listbox-transition--leave {
+  @apply transition ease-in duration-100;
+}
+
+.sbui-listbox-transition--leave-from {
+  @apply opacity-100;
+}
+
+.sbui-listbox-transition--leave-to {
+  @apply opacity-0;
 }
