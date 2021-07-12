@@ -1,12 +1,12 @@
 /* This example requires Tailwind CSS v2.0+ */
 import React, { Fragment, useEffect, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 // @ts-ignore
 import SelectStyles from './SelectStyled.module.css'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
+import { IconCheck } from '../Icon/icons/IconCheck'
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
@@ -109,12 +109,21 @@ function Select({
                     </span>
                   </span>
                   <span
-                    className={SelectStyles['sbui-listbox-selector-container']}
+                    className={SelectStyles['sbui-listbox-chevron-container']}
                   >
-                    <SelectorIcon
-                      className={SelectStyles['sbui-listbox-selector']}
+                    <svg
+                      className={SelectStyles['sbui-listbox-chevron']}
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
                       aria-hidden="true"
-                    />
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
                   </span>
                   {error && (
                     <div
@@ -191,7 +200,7 @@ function SelectOption({
                   SelectStyles['sbui-listbox-option__check']
                 )}
               >
-                <CheckIcon
+                <IconCheck
                   className={SelectStyles['sbui-listbox-option__check__icon']}
                   aria-hidden="true"
                 />

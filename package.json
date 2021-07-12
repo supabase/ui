@@ -27,8 +27,6 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.0.0",
-    "@heroicons/react": "^1.0.1",
-    "heroicons": "^1.0.1",
     "lodash": "^4.17.20",
     "prop-types": "^15.7.2"
   },

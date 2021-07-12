@@ -101,11 +101,11 @@
 }
 
 .sbui-listbox-option {
-  @apply cursor-default select-none relative py-2 pl-3 pr-9 text-gray-900;
+  @apply cursor-default select-none relative py-2 pl-3 pr-9 text-gray-900 dark:text-white;
 }
 
 .sbui-listbox-option--active {
-  @apply text-brand-600 bg-brand-600 bg-opacity-20;
+  @apply text-brand-600 dark:text-brand-600 bg-brand-600 bg-opacity-20;
 }
 
 .sbui-listbox-option__inner {
@@ -122,18 +122,6 @@
 
 .sbui-listbox-option__check__icon {
   @apply h-5 w-5;
-}
-
-/*
-  Selector
-*/
-
-.sbui-listbox-selector-container {
-  @apply absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none;
-}
-
-.sbui-listbox-selector {
-  @apply h-5 w-5 text-gray-400;
 }
 
 /*
