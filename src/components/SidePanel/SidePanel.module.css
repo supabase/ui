@@ -53,7 +53,7 @@
 }
 
 .sbui-sidepanel-overlay {
-  @apply absolute inset-0 bg-gray-500 opacity-75;
+  @apply absolute inset-0 bg-gray-900 opacity-75;
 }
 
 .sbui-sidepanel--left {
