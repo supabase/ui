@@ -26,6 +26,7 @@
     "react-dom": "^17.0.1"
   },
   "dependencies": {
+    "@headlessui/react": "^1.0.0",
     "lodash": "^4.17.20",
     "prop-types": "^15.7.2"
   },

@@ -41,6 +41,7 @@ export default {
     loading: 'src/components/Loading/index.tsx',
     divider: 'src/components/Divider/index.tsx',
     select: 'src/components/Select/index.tsx',
+    listbox: 'src/components/Listbox/index.tsx',
     checkbox: 'src/components/Checkbox/index.tsx',
     input: 'src/components/Input/index.tsx',
     radio: 'src/components/Radio/index.tsx',
