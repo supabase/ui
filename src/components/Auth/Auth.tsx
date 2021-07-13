@@ -51,6 +51,7 @@ export interface Props {
   verticalSocialLayout?: any
   view?: ViewType
   redirectTo?: RedirectTo
+  onlyThirdPartyProviders?: boolean
 }
 
 function Auth({
@@ -63,6 +64,7 @@ function Auth({
   providers,
   view = 'sign_in',
   redirectTo,
+  onlyThirdPartyProviders = false,
 }: Props): JSX.Element | null {
   const [authView, setAuthView] = useState(view)
   const [defaultEmail, setDefaultEmail] = useState('')
@@ -86,8 +88,9 @@ function Auth({
           socialButtonSize={socialButtonSize}
           socialColors={socialColors}
           redirectTo={redirectTo}
+          onlyThirdPartyProviders={onlyThirdPartyProviders}
         />
-        {props.children}
+        {!onlyThirdPartyProviders && props.children}
       </Space>
     </div>
   )
@@ -159,6 +162,7 @@ function SocialAuth({
   providers,
   verticalSocialLayout,
   redirectTo,
+  onlyThirdPartyProviders,
   ...props
 }: Props) {
   const buttonStyles: any = {
@@ -239,7 +243,7 @@ function SocialAuth({
               })}
             </Space>
           </Space>
-          <Divider>or continue with</Divider>
+          {!onlyThirdPartyProviders && <Divider>or continue with</Divider>}
         </React.Fragment>
       )}
     </Space>
