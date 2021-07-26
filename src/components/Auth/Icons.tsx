@@ -131,3 +131,108 @@ export const bitbucket = () => (
     ></path>
   </svg>
 )
+
+export const discord = () => (
+  <svg
+    width={size}
+    aria-hidden="true"
+    focusable="false"
+    data-prefix="fab"
+    data-icon="discord"
+    className="svg-inline--fa fa-discord fa-w-14"
+    role="img"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 448 512"
+  >
+    <path
+      fill="currentColor"
+      d="M297.216 243.2c0 15.616-11.52 28.416-26.112 28.416-14.336 0-26.112-12.8-26.112-28.416s11.52-28.416 26.112-28.416c14.592 0 26.112 12.8 26.112 28.416zm-119.552-28.416c-14.592 0-26.112 12.8-26.112 28.416s11.776 28.416 26.112 28.416c14.592 0 26.112-12.8 26.112-28.416.256-15.616-11.52-28.416-26.112-28.416zM448 52.736V512c-64.494-56.994-43.868-38.128-118.784-107.776l13.568 47.36H52.48C23.552 451.584 0 428.032 0 398.848V52.736C0 23.552 23.552 0 52.48 0h343.04C424.448 0 448 23.552 448 52.736zm-72.96 242.688c0-82.432-36.864-149.248-36.864-149.248-36.864-27.648-71.936-26.88-71.936-26.88l-3.584 4.096c43.52 13.312 63.744 32.512 63.744 32.512-60.811-33.329-132.244-33.335-191.232-7.424-9.472 4.352-15.104 7.424-15.104 7.424s21.248-20.224 67.328-33.536l-2.56-3.072s-35.072-.768-71.936 26.88c0 0-36.864 66.816-36.864 149.248 0 0 21.504 37.12 78.08 38.912 0 0 9.472-11.52 17.152-21.248-32.512-9.728-44.8-30.208-44.8-30.208 3.766 2.636 9.976 6.053 10.496 6.4 43.21 24.198 104.588 32.126 159.744 8.96 8.96-3.328 18.944-8.192 29.44-15.104 0 0-12.8 20.992-46.336 30.464 7.68 9.728 16.896 20.736 16.896 20.736 56.576-1.792 78.336-38.912 78.336-38.912z"
+    ></path>
+  </svg>
+)
+
+export const azure = () => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 96 96"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <linearGradient
+        id="e399c19f-b68f-429d-b176-18c2117ff73c"
+        x1="-1032.172"
+        x2="-1059.213"
+        y1="145.312"
+        y2="65.426"
+        gradientTransform="matrix(1 0 0 -1 1075 158)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset="0" stop-color="#fff"></stop>
+        <stop offset="1" stop-color="#fff"></stop>
+      </linearGradient>
+      <linearGradient
+        id="ac2a6fc2-ca48-4327-9a3c-d4dcc3256e15"
+        x1="-1023.725"
+        x2="-1029.98"
+        y1="108.083"
+        y2="105.968"
+        gradientTransform="matrix(1 0 0 -1 1075 158)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset="0" stop-opacity=".3"></stop>
+        <stop offset=".071" stop-opacity=".2"></stop>
+        <stop offset=".321" stop-opacity=".1"></stop>
+        <stop offset=".623" stop-opacity=".05"></stop>
+        <stop offset="1" stop-opacity="0"></stop>
+      </linearGradient>
+      <linearGradient
+        id="a7fee970-a784-4bb1-af8d-63d18e5f7db9"
+        x1="-1027.165"
+        x2="-997.482"
+        y1="147.642"
+        y2="68.561"
+        gradientTransform="matrix(1 0 0 -1 1075 158)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset="0" stop-color="#fff"></stop>
+        <stop offset="1" stop-color="#fff"></stop>
+      </linearGradient>
+    </defs>
+    <path
+      fill="url(#e399c19f-b68f-429d-b176-18c2117ff73c)"
+      d="M33.338 6.544h26.038l-27.03 80.087a4.152 4.152 0 0 1-3.933 2.824H8.149a4.145 4.145 0 0 1-3.928-5.47L29.404 9.368a4.152 4.152 0 0 1 3.934-2.825z"
+    ></path>
+    <path
+      fill="#fff"
+      d="M71.175 60.261h-41.29a1.911 1.911 0 0 0-1.305 3.309l26.532 24.764a4.171 4.171 0 0 0 2.846 1.121h23.38z"
+    ></path>
+    <path
+      fill="#fff"
+      d="M33.338 6.544a4.118 4.118 0 0 0-3.943 2.879L4.252 83.917a4.14 4.14 0 0 0 3.908 5.538h20.787a4.443 4.443 0 0 0 3.41-2.9l5.014-14.777 17.91 16.705a4.237 4.237 0 0 0 2.666.972H81.24L71.024 60.261l-29.781.007L59.47 6.544z"
+    ></path>
+    <path
+      fill="#fff"
+      d="M66.595 9.364a4.145 4.145 0 0 0-3.928-2.82H33.648a4.146 4.146 0 0 1 3.928 2.82l25.184 74.62a4.146 4.146 0 0 1-3.928 5.472h29.02a4.146 4.146 0 0 0 3.927-5.472z"
+    ></path>
+  </svg>
+)
+
+export const twitch = () => (
+  <svg
+    width={size}
+    aria-hidden="true"
+    focusable="false"
+    data-prefix="fab"
+    data-icon="twitch"
+    className="svg-inline--fa fa-twitch fa-w-16"
+    role="img"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 512 512"
+  >
+    <path
+      fill="currentColor"
+      d="M391.17,103.47H352.54v109.7h38.63ZM285,103H246.37V212.75H285ZM120.83,0,24.31,91.42V420.58H140.14V512l96.53-91.42h77.25L487.69,256V0ZM449.07,237.75l-77.22,73.12H294.61l-67.6,64v-64H140.14V36.58H449.07Z"
+    ></path>
+  </svg>
+)
