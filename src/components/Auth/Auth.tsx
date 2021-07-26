@@ -166,30 +166,43 @@ function SocialAuth({
   ...props
 }: Props) {
   const buttonStyles: any = {
-    google: {
-      backgroundColor: '#ce4430',
+    azure: {
+      backgroundColor: '#008AD7',
+      color: 'white',
+    },
+    bitbucket: {
+      backgroundColor: '#205081',
       color: 'white',
     },
     facebook: {
       backgroundColor: '#4267B2',
       color: 'white',
     },
-    twitter: {
-      backgroundColor: '#1DA1F2',
-    },
-    apple: {
-      backgroundColor: '#000',
+    github: {
+      backgroundColor: '#333',
       color: 'white',
     },
     gitlab: {
       backgroundColor: '#FC6D27',
     },
-    github: {
-      backgroundColor: '#333',
+    google: {
+      backgroundColor: '#ce4430',
       color: 'white',
     },
-    bitbucket: {
-      backgroundColor: '#205081',
+    twitter: {
+      backgroundColor: '#1DA1F2',
+      color: 'white',
+    },
+    apple: {
+      backgroundColor: '#000',
+      color: 'white',
+    },
+    discord: {
+      backgroundColor: '#404fec',
+      color: 'white',
+    },
+    twitch: {
+      backgroundColor: '#9146ff',
       color: 'white',
     },
   }
@@ -235,6 +248,7 @@ function SocialAuth({
                       icon={<AuthIcon />}
                       loading={loading}
                       onClick={() => handleProviderSignIn(provider)}
+                      className="flex items-center"
                     >
                       {verticalSocialLayout && 'Sign up with ' + provider}
                     </Button>
