@@ -187,6 +187,7 @@ function SocialAuth({
     },
     twitter: {
       backgroundColor: '#1DA1F2',
+      color: 'white',
     },
     apple: {
       backgroundColor: '#000',
@@ -243,6 +244,7 @@ function SocialAuth({
                       icon={<AuthIcon />}
                       loading={loading}
                       onClick={() => handleProviderSignIn(provider)}
+                      className="flex items-center"
                     >
                       {verticalSocialLayout && 'Sign up with ' + provider}
                     </Button>
