@@ -74,7 +74,7 @@ function Select({
   }, [children, options, selected])
 
   function handleOnChange(e: any) {
-    if (onChange) onChange(e.target.value)
+    if (onChange) onChange(e)
     setSelected(e)
   }
 
