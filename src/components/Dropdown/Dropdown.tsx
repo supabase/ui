@@ -97,10 +97,7 @@ export function Item({ children, icon, disabled, onClick }: ItemProps) {
 
 export function TriggerItem({ children, icon, disabled }: ItemProps) {
   return (
-    <div
-      className={DropdownStyles['sbui-dropdown-item-trigger']}
-      disabled={disabled}
-    >
+    <div className={DropdownStyles['sbui-dropdown-item-trigger']}>
       {icon && icon}
       <span>{children}</span>
     </div>
