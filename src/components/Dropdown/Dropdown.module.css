@@ -70,3 +70,24 @@
   @apply border-0 border-t;
   border-style: solid;
 }
+
+.sbui-dropdown-item-trigger {
+  @apply text-xs;
+  @apply text-typography-body-light dark:text-typography-body-dark;
+  @apply px-4 py-1.5 flex items-center space-x-2;
+  @apply cursor-pointer;
+  cursor: 'default';
+}
+
+.sbui-dropdown-item-trigger svg {
+  @apply text-typography-body-secondary-light dark:text-typography-body-secondary-dark;
+}
+
+.sbui-dropdown-item-trigger:focus-visible {
+  border: none;
+  outline: none;
+}
+
+.sbui-dropdown__trigger-item[data-state='open'] {
+  @apply bg-bg-secondary-light dark:bg-bg-primary-dark border-none;
+}

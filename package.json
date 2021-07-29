@@ -40,7 +40,7 @@
     "@headlessui/react": "^1.0.0",
     "@radix-ui/react-context-menu": "^0.0.19",
     "@radix-ui/react-dialog": "^0.0.17",
-    "@radix-ui/react-dropdown-menu": "^0.0.18",
+    "@radix-ui/react-dropdown-menu": "^0.0.22",
     "@rollup/plugin-babel": "^5.2.1",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.1",

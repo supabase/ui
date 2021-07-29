@@ -19,6 +19,7 @@ interface RootProps {
   children?: React.ReactNode
   className?: string
   style?: React.CSSProperties
+  isNested?: Boolean
 }
 
 function Dropdown({
@@ -31,6 +32,7 @@ function Dropdown({
   className,
   style,
   arrow,
+  isNested,
 }: RootProps) {
   let classes = [DropdownStyles['sbui-dropdown__content']]
   if (className) {
@@ -39,11 +41,19 @@ function Dropdown({
 
   return (
     <RadixDropdown.Root onOpenChange={onOpenChange} open={open}>
-      <RadixDropdown.Trigger
-        className={DropdownStyles['sbui-dropdown__trigger']}
-      >
-        {children}
-      </RadixDropdown.Trigger>
+      {isNested ? (
+        <RadixDropdown.TriggerItem
+          className={DropdownStyles['sbui-dropdown__trigger-item']}
+        >
+          {children}
+        </RadixDropdown.TriggerItem>
+      ) : (
+        <RadixDropdown.Trigger
+          className={DropdownStyles['sbui-dropdown__trigger']}
+        >
+          {children}
+        </RadixDropdown.Trigger>
+      )}
 
       <RadixDropdown.Content
         disableOutsidePointerEvents={false}
@@ -82,6 +92,18 @@ export function Item({ children, icon, disabled, onClick }: ItemProps) {
       {icon && icon}
       <span>{children}</span>
     </RadixDropdown.Item>
+  )
+}
+
+export function TriggerItem({ children, icon, disabled }: ItemProps) {
+  return (
+    <div
+      className={DropdownStyles['sbui-dropdown-item-trigger']}
+      disabled={disabled}
+    >
+      {icon && icon}
+      <span>{children}</span>
+    </div>
   )
 }
 
@@ -199,4 +221,5 @@ Dropdown.Checkbox = Checkbox
 Dropdown.Radio = Radio
 Dropdown.RadioGroup = RadioGroup
 Dropdown.Label = Label
+Dropdown.TriggerItem = TriggerItem
 export default Dropdown
