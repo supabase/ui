@@ -192,3 +192,42 @@ export const Radio = (args: any) => {
     </div>
   )
 }
+
+export const Nested = (args: any) => {
+  const [value, setValue] = useState('red')
+
+  return (
+    <div style={{ margin: '0 auto', minHeight: '420px', marginTop: '220px' }}>
+      <Dropdown
+        {...args}
+        overlay={
+          <>
+            <Dropdown.RadioGroup value={value} onChange={setValue}>
+              <Dropdown.Radio value={'red'}>Red</Dropdown.Radio>
+              <Dropdown.Radio value={'blue'}>Blue</Dropdown.Radio>
+              <Dropdown.Radio value={'green'}>Green</Dropdown.Radio>
+            </Dropdown.RadioGroup>
+
+            <Dropdown
+              isNested
+              overlay={[
+                <Dropdown.RadioGroup value={value} onChange={setValue}>
+                  <Dropdown.Radio value={'red'}>Red</Dropdown.Radio>
+                  <Dropdown.Radio value={'blue'}>Blue</Dropdown.Radio>
+                  <Dropdown.Radio value={'green'}>Green</Dropdown.Radio>
+                </Dropdown.RadioGroup>,
+              ]}
+            >
+              <Dropdown.TriggerItem>Open sub menu</Dropdown.TriggerItem>
+            </Dropdown>
+            <Dropdown.Item>hello</Dropdown.Item>
+          </>
+        }
+      >
+        <Button as="span" type="outline" iconRight={<IconChevronDown />}>
+          Click for dropdown
+        </Button>
+      </Dropdown>
+    </div>
+  )
+}
