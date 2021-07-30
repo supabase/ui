@@ -35,6 +35,7 @@ export interface Props
   reveal?: boolean
   actions?: React.ReactNode
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+  borderless?: boolean
 }
 
 export const ColLayout = (props: any) => (
@@ -66,12 +67,14 @@ function Select({
   value,
   style,
   size = 'medium',
+  borderless = false,
   ...props
 }: Props) {
   let selectClasses = [SelectStyles['sbui-select']]
   if (error) selectClasses.push(SelectStyles['sbui-select--error'])
   if (icon) selectClasses.push(SelectStyles['sbui-select--with-icon'])
   if (size) selectClasses.push(SelectStyles[`sbui-select--${size}`])
+  if (borderless) selectClasses.push(SelectStyles[`sbui-select--borderless`])
 
   return (
     <FormLayout

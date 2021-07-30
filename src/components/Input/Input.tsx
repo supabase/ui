@@ -24,6 +24,7 @@ export interface Props
   reveal?: boolean
   actions?: React.ReactNode
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+  borderless?: boolean
 }
 
 function Input({
@@ -55,6 +56,7 @@ function Input({
   reveal = false,
   actions,
   size = 'medium',
+  borderless = false,
 }: Props) {
   const [copyLabel, setCopyLabel] = useState('Copy')
   const [hidden, setHidden] = useState(reveal)
@@ -68,6 +70,7 @@ function Input({
   if (error) inputClasses.push(InputStyles['sbui-input--error'])
   if (icon) inputClasses.push(InputStyles['sbui-input--with-icon'])
   if (size) inputClasses.push(InputStyles[`sbui-input--${size}`])
+  if (borderless) inputClasses.push(InputStyles['sbui-input--borderless'])
 
   function onCopy(value: any) {
     navigator.clipboard.writeText(value).then(

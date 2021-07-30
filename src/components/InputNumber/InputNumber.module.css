@@ -34,6 +34,10 @@
   @apply border-red-500 dark:border-red-500;
 }
 
+.sbui-inputnumber--borderless {
+  @apply border-0;
+}
+
 .sbui-inputnumber-actions-container {
   @apply absolute inset-y-0 right-0 pl-3 pr-1 flex items-center;
 }

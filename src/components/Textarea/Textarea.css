@@ -5,3 +5,7 @@
 .form-textarea--error {
   @apply border-red-500;
 }
+
+.form-textarea--borderless {
+  @apply border-0;
+}

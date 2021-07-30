@@ -30,6 +30,7 @@ export interface Props {
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   defaultValue?: any
   options?: any
+  borderless?: boolean
 }
 
 function Select({
@@ -48,6 +49,7 @@ function Select({
   size = 'medium',
   defaultValue,
   options,
+  borderless = false,
 }: Props) {
   const [selected, setSelected] = useState(
     value ? value : defaultValue ? defaultValue : null
@@ -82,6 +84,7 @@ function Select({
   if (error) selectClasses.push(SelectStyles['sbui-listbox--error'])
   if (icon) selectClasses.push(SelectStyles['sbui-listbox--with-icon'])
   if (size) selectClasses.push(SelectStyles[`sbui-listbox--${size}`])
+  if (borderless) selectClasses.push(SelectStyles['sbui-listbox--borderless'])
 
   return (
     <FormLayout
