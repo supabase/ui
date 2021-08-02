@@ -37,7 +37,7 @@
 }
 
 .sbui-listbox--borderless {
-  @apply border-0;
+  @apply border-transparent shadow-none;
 }
 
 /*

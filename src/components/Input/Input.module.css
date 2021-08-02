@@ -24,7 +24,7 @@
 }
 
 .sbui-input--borderless {
-  @apply border-none shadow-none;
+  @apply border-transparent shadow-none;
 }
 
 .sbui-input-actions-container {

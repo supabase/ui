@@ -4,7 +4,7 @@ import Select from './Listbox'
 import { IconBook } from '../../index'
 
 export default {
-  title: 'Data Input/SelectStyled',
+  title: 'Data Input/Listbox',
   component: Select,
 }
 

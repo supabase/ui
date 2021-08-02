@@ -35,7 +35,7 @@
 }
 
 .sbui-inputnumber--borderless {
-  @apply border-0;
+  @apply border-transparent shadow-none;
 }
 
 .sbui-inputnumber-actions-container {
