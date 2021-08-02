@@ -7,5 +7,5 @@
 }
 
 .form-textarea--borderless {
-  @apply border-0;
+  @apply border-none;
 }
