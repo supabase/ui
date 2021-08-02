@@ -32,6 +32,7 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   ariaControls?: string
   tabIndex?: 0 | -1
   role?: string
+  textAlign?: 'left' | 'center' | 'right'
   as?: keyof JSX.IntrinsicElements
 }
 
@@ -65,6 +66,7 @@ const Button = forwardRef<RefHandle, ButtonProps>(
       tabIndex,
       role,
       as,
+      textAlign = 'center',
       ...props
     }: ButtonProps,
     ref
@@ -119,6 +121,8 @@ const Button = forwardRef<RefHandle, ButtonProps>(
     if (loading && loadingCentered) {
       classes.push(ButtonStyles[`sbui-btn--text-fade-out`])
     }
+
+    classes.push(ButtonStyles[`sbui-btn--text-align-${textAlign}`])
 
     // custom button tag
     const CustomButton: React.FC<CustomButtonProps> = ({ ...props }) => {

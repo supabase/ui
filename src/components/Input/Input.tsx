@@ -5,6 +5,7 @@ import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import { Button, Space, Typography, IconCopy } from '../../index'
 // @ts-ignore
 import InputStyles from './Input.module.css'
+import { borderless } from './Input.stories'
 
 export interface Props
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -24,6 +25,7 @@ export interface Props
   reveal?: boolean
   actions?: React.ReactNode
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+  borderless?: boolean
 }
 
 function Input({
@@ -55,6 +57,7 @@ function Input({
   reveal = false,
   actions,
   size = 'medium',
+  borderless = false,
 }: Props) {
   const [copyLabel, setCopyLabel] = useState('Copy')
   const [hidden, setHidden] = useState(reveal)
@@ -68,6 +71,7 @@ function Input({
   if (error) inputClasses.push(InputStyles['sbui-input--error'])
   if (icon) inputClasses.push(InputStyles['sbui-input--with-icon'])
   if (size) inputClasses.push(InputStyles[`sbui-input--${size}`])
+  if (borderless) inputClasses.push(InputStyles['sbui-input--borderless'])
 
   function onCopy(value: any) {
     navigator.clipboard.writeText(value).then(
@@ -179,6 +183,7 @@ export interface TextAreaProps {
   rows?: number
   limit?: number
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+  borderless?: boolean
 }
 
 function TextArea({
@@ -206,6 +211,7 @@ function TextArea({
   rows = 4,
   limit,
   size,
+  borderless = false,
 }: TextAreaProps) {
   const [charLength, setCharLength] = useState(0)
 
@@ -213,6 +219,7 @@ function TextArea({
   if (error) classes.push(InputStyles['sbui-input--error'])
   if (icon) classes.push(InputStyles['sbui-input--with-icon'])
   if (size) classes.push(InputStyles[`sbui-input--${size}`])
+  if (borderless) classes.push(InputStyles['sbui-input--borderless'])
 
   function onInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     if (onChange) {

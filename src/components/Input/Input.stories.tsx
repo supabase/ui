@@ -35,6 +35,8 @@ export const withBeforeAndAfterLabel = (args: any) => <Input {...args} />
 
 export const size = (args: any) => <Input {...args} />
 
+export const borderless = (args: any) => <Input {...args} />
+
 const icon: any = <IconPackage />
 
 Default.args = {
@@ -128,4 +130,11 @@ withBeforeAndAfterLabel.args = {
   label: 'This is the label',
   beforeLabel: 'Before label : ',
   afterLabel: ' : After label',
+}
+
+borderless.args = {
+  type: 'text',
+  label: 'This is the label',
+  borderless: true,
+  size: 'tiny',
 }
