@@ -35,6 +35,7 @@ export interface Props {
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   min?: number
   max?: number
+  borderless?: boolean
 }
 
 function InputNumber({
@@ -64,6 +65,7 @@ function InputNumber({
   size = 'medium',
   min,
   max,
+  borderless = false,
 }: Props) {
   const inputClasses = [InputNumberStyles['sbui-inputnumber']]
 
@@ -91,6 +93,9 @@ function InputNumber({
     inputClasses.push(InputNumberStyles[`sbui-inputnumber--${size}`])
     iconNavClasses.push(InputNumberStyles[`sbui-inputnumber-nav--${size}`])
   }
+
+  if (borderless)
+    inputClasses.push(InputNumberStyles['sbui-inputnumber--borderless'])
 
   const onClickChevronUp = () => {
     inputRefCurrent.current?.stepUp()

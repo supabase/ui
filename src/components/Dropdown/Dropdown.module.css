@@ -5,6 +5,8 @@
   @apply cursor-pointer;
   @apply focus:bg-bg-secondary-light dark:focus:bg-bg-primary-dark border-none;
   cursor: 'default';
+
+  user-select: none;
 }
 
 .sbui-dropdown-item svg {

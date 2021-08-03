@@ -134,7 +134,7 @@ _Display_
 
 - [x] Card
 - [ ] Avatar
-- [x] Accordian
+- [x] Accordion
 - [x] Alert
 - [x] Badge
 - [x] Menu

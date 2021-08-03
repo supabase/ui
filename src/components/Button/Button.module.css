@@ -163,3 +163,15 @@
 .sbui-btn--text-fade-out span {
   @apply opacity-0;
 }
+
+.sbui-btn--text-align-left {
+  @apply justify-start;
+}
+
+.sbui-btn--text-align-right {
+  @apply justify-end;
+}
+
+.sbui-btn--text-align-center {
+  @apply justify-center;
+}
