@@ -7,7 +7,15 @@ function Upload({ label, children }: any) {
   return <h1>WIP</h1>
 }
 
-function Dragger({ label, afterLabel, beforeLabel, layout, children }: any) {
+function Dragger({
+  label,
+  afterLabel,
+  beforeLabel,
+  layout,
+  children,
+  files,
+  setFiles,
+}: any) {
   const [classes, setClasses] = useState([UploadStyles['sbui-upload-dragger']])
 
   const draggedCssClass = UploadStyles['sbui-upload-dragger--dragged']
@@ -54,10 +62,20 @@ function Dragger({ label, afterLabel, beforeLabel, layout, children }: any) {
 
   const fileDrop = (e: any) => {
     e.preventDefault()
-    // console.log('fileDrop')
-    const files = e.dataTransfer.files
-    console.log(files)
+    console.log('fileDrop')
+    const newFiles = e.dataTransfer.files
+    console.log(newFiles)
     console.log(classes)
+    setFiles([...files, ...newFiles])
+  }
+
+  const fileUpload = (e: any) => {
+    e.preventDefault()
+    // console.log('fileUpload')
+    const newFiles = e.target.files
+    console.log(newFiles)
+    console.log(classes)
+    setFiles([...files, ...newFiles])
   }
 
   return (
@@ -79,6 +97,7 @@ function Dragger({ label, afterLabel, beforeLabel, layout, children }: any) {
             name="file-upload"
             type="file"
             className="sr-only"
+            onChange={fileUpload}
           />
 
           {children}
