@@ -1,4 +1,4 @@
-.sbui-alert-container {
+/* .sbui-alert-container {
   @apply rounded-md p-4;
 }
 
@@ -16,9 +16,9 @@
 
 .sbui-alert-container--success {
   @apply bg-green-600 bg-opacity-10 text-green-600;
-}
+} */
 
-.sbui-alert-title {
+/* .sbui-alert-title {
   @apply m-0 text-sm font-medium;
 }
 
@@ -60,4 +60,4 @@
 
 .sbui-close-button--info {
   @apply text-blue-500 hover:bg-blue-600 hover:bg-opacity-10;
-}
+} */

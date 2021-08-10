@@ -1,7 +1,13 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import React, {
+  forwardRef,
+  useRef,
+  useImperativeHandle,
+  useContext,
+} from 'react'
 import { IconContext } from '../Icon/IconContext'
 import { IconLoader } from '../Icon/icons/IconLoader'
-import defaultTheme from '../../theme/defaultTheme'
+
+import styleHandler from '../../lib/theme/styleHandler'
 
 export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   block?: boolean
@@ -81,7 +87,7 @@ const Button = forwardRef<RefHandle, ButtonProps>(
       },
     }))
 
-    const __styles = defaultTheme.button
+    let __styles = styleHandler('button')
 
     // styles
     const showIcon = loading || icon

@@ -25,16 +25,28 @@ Default.args = {}
 const Multiple = (args: any) => (
   <Accordion {...args}>
     <Accordion.Item label="1st Item" id={1}>
-      <Typography>
+      <Typography.Text>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
         amet labore.
-      </Typography>
+      </Typography.Text>
     </Accordion.Item>
     <Accordion.Item label="2nd Item" id={2}>
-      <Typography>
+      <Typography.Text>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
         amet labore.
-      </Typography>
+      </Typography.Text>
+    </Accordion.Item>
+    <Accordion.Item label="3rd Item" id={3}>
+      <Typography.Text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+        amet labore.
+      </Typography.Text>
+    </Accordion.Item>
+    <Accordion.Item label="4th Item" id={4}>
+      <Typography.Text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+        amet labore.
+      </Typography.Text>
     </Accordion.Item>
   </Accordion>
 )

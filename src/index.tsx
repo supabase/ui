@@ -30,6 +30,7 @@ export * from './components/ContextMenu/index'
 export * from './components/Space/index'
 export * from './components/Loading/index'
 export * from './components/Divider/index'
+export * from './components/ThemeProvider/index'
 
 // DATA ENTRY
 

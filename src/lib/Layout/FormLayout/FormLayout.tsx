@@ -1,7 +1,6 @@
 import React from 'react'
 // @ts-ignore
-import { Space } from '../../../index'
-import defaultTheme from '../../../theme/defaultTheme'
+import defaultTheme from '../../theme/defaultTheme'
 // @ts-ignore
 // import FormLayoutStyles from './FormLayout.module.css'
 
@@ -91,13 +90,13 @@ export function FormLayout({
   return (
     <div className={containerClasses.join(' ')}>
       {labelled || labelOptional || layout === 'horizontal' ? (
-        <Space
-          direction={
-            (layout && layout === 'horizontal') ||
-            (flex && layout && layout === 'vertical')
-              ? 'vertical'
-              : 'horizontal'
-          }
+        <div
+          // direction={
+          //   (layout && layout === 'horizontal') ||
+          //   (flex && layout && layout === 'vertical')
+          //     ? 'vertical'
+          //     : 'horizontal'
+          // }
           className={labelContainerClasses.join(' ')}
         >
           {labelled && (
@@ -143,7 +142,7 @@ export function FormLayout({
               {labelOptional}
             </span>
           )}
-        </Space>
+        </div>
       ) : null}
       <div className={dataInputContainerClasses.join(' ')} style={style}>
         {children}

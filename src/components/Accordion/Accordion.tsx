@@ -4,6 +4,7 @@ import { Disclosure, Transition } from '@headlessui/react'
 import AccordionStyles from './Accordion.module.css'
 import { IconChevronUp } from '../Icon/icons/IconChevronUp'
 import Typography from '../Typography'
+import styleHandler from '../../lib/theme/styleHandler'
 
 type ContextValue = Required<
   Pick<AccordionProps, 'defaultActiveId' | 'icon' | 'iconPosition'>
@@ -12,7 +13,7 @@ type ContextValue = Required<
 
 const AccordionContext = createContext<ContextValue>({
   defaultActiveId: [],
-  icon: <IconChevronUp strokeWidth={2} />,
+  // icon: <IconChevronUp strokeWidth={2} />,
   iconPosition: 'right',
   onChange: undefined,
 })
@@ -40,9 +41,11 @@ function Accordion({
   bordered,
   onChange,
 }: AccordionProps) {
-  let containerClasses = [AccordionStyles['sbui-accordion-container']]
+  const __styles = styleHandler('accordion')
+
+  let containerClasses = [__styles.base]
   if (bordered) {
-    containerClasses.push(AccordionStyles['sbui-accordion-container--bordered'])
+    containerClasses.push(__styles.bordered)
   }
   if (className) {
     containerClasses.push(className)
@@ -67,15 +70,16 @@ interface ItemProps {
   className?: string
   label: string
   id?: string | number
+  icon?: React.ReactNode
 }
 
-export function Item({ children, className, label, id }: ItemProps) {
-  const { defaultActiveId, icon, iconPosition, onChange } =
+export function Item({ children, className, label, id, icon }: ItemProps) {
+  const __styles = styleHandler('accordion')
+
+  const { defaultActiveId, iconPosition, onChange } =
     useContext(AccordionContext)
 
-  let panelClasses = [AccordionStyles['sbui-accordion-item__panel']]
-
-  let buttonClasses = [AccordionStyles['sbui-accordion-item__button']]
+  let buttonClasses = [__styles.button]
   if (className) {
     buttonClasses.push(className)
   }
@@ -95,29 +99,30 @@ export function Item({ children, className, label, id }: ItemProps) {
     <Disclosure defaultOpen={isDefaultActive}>
       {({ open }) => (
         <>
-          <Disclosure.Button
-            className={
-              open
-                ? `${buttonClasses.join(' ')} sbui-accordion-item__button--open`
-                : buttonClasses.join(' ')
-            }
-          >
+          <Disclosure.Button className={buttonClasses.join(' ')}>
             {iconPosition === 'left' && icon}
-            <Typography.Text>{label}</Typography.Text>
+            <span className={__styles.label}>{label}</span>
+            <IconChevronUp
+              strokeWidth={2}
+              size={16}
+              className={`${__styles.chevron} ${
+                open ? __styles['chevron--open'] : __styles['chevron--closed']
+              }`}
+            />
             {iconPosition === 'right' && icon}
           </Disclosure.Button>
           <Transition
             show={open}
-            enter={AccordionStyles[`sbui-accordion-item__panel--enter`]}
-            enterFrom={AccordionStyles[`sbui-accordion-item__panel--enterFrom`]}
-            enterTo={AccordionStyles[`sbui-accordion-item__panel--enterTo`]}
-            leave={AccordionStyles[`sbui-accordion-item__panel--leave`]}
-            leaveFrom={AccordionStyles[`sbui-accordion-item__panel--leaveFrom`]}
-            leaveTo={AccordionStyles[`sbui-accordion-item__panel--leaveTo`]}
+            enter={__styles.animate.enter}
+            enterFrom={__styles.animate.enterFrom}
+            enterTo={__styles.animate.enterTo}
+            leave={__styles.animate.leave}
+            leaveFrom={__styles.animate.leaveFrom}
+            leaveTo={__styles.animate.leaveTo}
             afterEnter={handleOnChange(open)}
             afterLeave={handleOnChange(open)}
           >
-            <Disclosure.Panel className={panelClasses.join(' ')} static>
+            <Disclosure.Panel className={__styles.panel} static>
               {children}
             </Disclosure.Panel>
           </Transition>

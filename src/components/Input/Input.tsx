@@ -5,7 +5,7 @@ import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import { Button, Space, Typography, IconCopy } from '../../index'
 // @ts-ignore
 import InputStyles from './Input.module.css'
-import defaultTheme from '../../theme/defaultTheme'
+import defaultTheme from '../../lib/theme/defaultTheme'
 
 export interface Props
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
