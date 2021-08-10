@@ -69,12 +69,10 @@ function Dragger({
     setFiles([...files, ...newFiles])
   }
 
-  const fileUpload = (e: any) => {
+  const fileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     // console.log('fileUpload')
-    const newFiles = e.target.files
-    console.log(newFiles)
-    console.log(classes)
+    const newFiles = e.target.files || []
     setFiles([...files, ...newFiles])
   }
 
