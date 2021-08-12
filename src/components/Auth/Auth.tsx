@@ -52,6 +52,7 @@ export interface Props {
   view?: ViewType
   redirectTo?: RedirectTo
   onlyThirdPartyProviders?: boolean
+  withMagicLink?: boolean
 }
 
 function Auth({
@@ -65,6 +66,7 @@ function Auth({
   view = 'sign_in',
   redirectTo,
   onlyThirdPartyProviders = false,
+  withMagicLink = false,
 }: Props): JSX.Element | null {
   const [authView, setAuthView] = useState(view)
   const [defaultEmail, setDefaultEmail] = useState('')
@@ -89,6 +91,7 @@ function Auth({
           socialColors={socialColors}
           redirectTo={redirectTo}
           onlyThirdPartyProviders={onlyThirdPartyProviders}
+          withMagicLink={withMagicLink}
         />
         {!onlyThirdPartyProviders && props.children}
       </Space>
@@ -114,6 +117,7 @@ function Auth({
             setDefaultEmail={setDefaultEmail}
             setDefaultPassword={setDefaultPassword}
             redirectTo={redirectTo}
+            withMagicLink={withMagicLink}
           />
         </Container>
       )
@@ -163,6 +167,7 @@ function SocialAuth({
   verticalSocialLayout,
   redirectTo,
   onlyThirdPartyProviders,
+  withMagicLink,
   ...props
 }: Props) {
   const buttonStyles: any = {
@@ -273,6 +278,7 @@ function EmailAuth({
   setDefaultPassword,
   supabaseClient,
   redirectTo,
+  withMagicLink,
 }: {
   authView: any
   defaultEmail: string
@@ -282,6 +288,7 @@ function EmailAuth({
   setDefaultPassword: (password: string) => void
   supabaseClient: SupabaseClient
   redirectTo?: RedirectTo
+  withMagicLink?: boolean
 }) {
   const [email, setEmail] = useState(defaultEmail)
   const [password, setPassword] = useState(defaultPassword)
@@ -388,7 +395,7 @@ function EmailAuth({
           </Button>
         </Space>
         <Space direction="vertical" style={{ textAlign: 'center' }}>
-          {authView === VIEWS.SIGN_IN && (
+          {authView === VIEWS.SIGN_IN && withMagicLink && (
             <Typography.Link onClick={() => setAuthView(VIEWS.MAGIC_LINK)}>
               Sign in with magic link
             </Typography.Link>
