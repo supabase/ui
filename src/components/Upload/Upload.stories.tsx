@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import Upload from '.'
 import Typography from '../Typography'
@@ -10,10 +10,6 @@ export default {
 
 export const Draggable = () => {
   const [files, setFiles] = useState<Array<File>>([])
-
-  useEffect(() => {
-    console.log('Files', files)
-  }, [files])
 
   return (
     <Upload.Dragger

@@ -22,30 +22,25 @@ function Dragger({
 
   const dragOver = (e: any) => {
     e.preventDefault()
-    // console.log('dragOver')
 
     if (!classes.includes(draggedCssClass)) {
       let originalClasses = classes
       originalClasses.push(draggedCssClass)
       setClasses(originalClasses)
-      console.log(classes)
     }
   }
 
   const dragEnter = (e: any) => {
     e.preventDefault()
-    // console.log('dragEnter')
     if (!classes.includes(draggedCssClass)) {
       let originalClasses = classes
       originalClasses.push(draggedCssClass)
       setClasses(originalClasses)
-      console.log(classes)
     }
   }
 
   const dragLeave = (e: any) => {
     e.preventDefault()
-    // console.log('dragLeave'
 
     if (classes.includes(draggedCssClass)) {
       let newClasses = classes
@@ -56,22 +51,17 @@ function Dragger({
         }
       }
       setClasses(newClasses)
-      console.log(classes)
     }
   }
 
   const fileDrop = (e: any) => {
     e.preventDefault()
-    console.log('fileDrop')
     const newFiles = e.dataTransfer.files
-    console.log(newFiles)
-    console.log(classes)
     setFiles([...files, ...newFiles])
   }
 
   const fileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
-    // console.log('fileUpload')
     const newFiles = e.target.files || []
     setFiles([...files, ...newFiles])
   }
