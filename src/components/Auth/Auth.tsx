@@ -308,7 +308,11 @@ function EmailAuth({
           },
           { redirectTo }
         )
-        if (signInError) setError(signInError.message)
+        if (signInError) {
+          setError(signInError.message)
+          setLoading(false)
+        }
+
         break
       case 'sign_up':
         const { error: signUpError, data: signUpData } =
@@ -319,13 +323,15 @@ function EmailAuth({
             },
             { redirectTo }
           )
-        if (signUpError) setError(signUpError.message)
+        if (signUpError) {
+          setError(signUpError.message)
+          setLoading(false)
+        }
         // checking if it has access_token to know if email verification is disabled
         else if (signUpData?.hasOwnProperty('confirmation_sent_at'))
           setMessage('Check your email for the confirmation link.')
         break
     }
-    setLoading(false)
   }
 
   const handleViewChange = (newView: ViewType) => {
