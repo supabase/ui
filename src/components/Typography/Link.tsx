@@ -28,14 +28,26 @@ function Link({
     classes.push(className)
   }
 
+  function keyDownHandler(e: React.KeyboardEvent<HTMLAnchorElement>) {
+    if (
+      typeof onClick !== 'undefined' &&
+      (e.code === 'Space' || e.code === 'Enter')
+    ) {
+      e.stopPropagation()
+      onClick(e)
+    }
+  }
+
   return (
     <a
       onClick={onClick}
+      onKeyDown={keyDownHandler}
       className={classes.join(' ')}
       href={href}
       target={target}
       rel="noopener noreferrer"
       style={style}
+      tabIndex={0}
     >
       {children}
     </a>
