@@ -41,6 +41,7 @@ type RedirectTo = undefined | string
 export interface Props {
   supabaseClient: SupabaseClient
   className?: string
+  children?: React.ReactNode
   style?: React.CSSProperties
   socialLayout?: 'horizontal' | 'vertical'
   socialColors?: boolean
