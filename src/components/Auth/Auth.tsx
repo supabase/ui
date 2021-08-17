@@ -52,7 +52,7 @@ export interface Props {
   view?: ViewType
   redirectTo?: RedirectTo
   onlyThirdPartyProviders?: boolean
-  withMagicLink?: boolean
+  magicLink?: boolean
 }
 
 function Auth({
@@ -66,7 +66,7 @@ function Auth({
   view = 'sign_in',
   redirectTo,
   onlyThirdPartyProviders = false,
-  withMagicLink = false,
+  magicLink = false,
 }: Props): JSX.Element | null {
   const [authView, setAuthView] = useState(view)
   const [defaultEmail, setDefaultEmail] = useState('')
@@ -91,7 +91,7 @@ function Auth({
           socialColors={socialColors}
           redirectTo={redirectTo}
           onlyThirdPartyProviders={onlyThirdPartyProviders}
-          withMagicLink={withMagicLink}
+          magicLink={magicLink}
         />
         {!onlyThirdPartyProviders && props.children}
       </Space>
@@ -117,7 +117,7 @@ function Auth({
             setDefaultEmail={setDefaultEmail}
             setDefaultPassword={setDefaultPassword}
             redirectTo={redirectTo}
-            withMagicLink={withMagicLink}
+            magicLink={magicLink}
           />
         </Container>
       )
@@ -167,7 +167,7 @@ function SocialAuth({
   verticalSocialLayout,
   redirectTo,
   onlyThirdPartyProviders,
-  withMagicLink,
+  magicLink,
   ...props
 }: Props) {
   const buttonStyles: any = {
@@ -278,7 +278,7 @@ function EmailAuth({
   setDefaultPassword,
   supabaseClient,
   redirectTo,
-  withMagicLink,
+  magicLink,
 }: {
   authView: any
   defaultEmail: string
@@ -288,7 +288,7 @@ function EmailAuth({
   setDefaultPassword: (password: string) => void
   supabaseClient: SupabaseClient
   redirectTo?: RedirectTo
-  withMagicLink?: boolean
+  magicLink?: boolean
 }) {
   const [email, setEmail] = useState(defaultEmail)
   const [password, setPassword] = useState(defaultPassword)
@@ -395,7 +395,7 @@ function EmailAuth({
           </Button>
         </Space>
         <Space direction="vertical" style={{ textAlign: 'center' }}>
-          {authView === VIEWS.SIGN_IN && withMagicLink && (
+          {authView === VIEWS.SIGN_IN && magicLink && (
             <Typography.Link onClick={() => setAuthView(VIEWS.MAGIC_LINK)}>
               Sign in with magic link
             </Typography.Link>
