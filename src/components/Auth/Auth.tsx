@@ -40,10 +40,8 @@ type RedirectTo = undefined | string
 
 export interface Props {
   supabaseClient: SupabaseClient
-  className?: any
-  style?: any
-  children?: any
-  authView?: any
+  className?: string
+  style?: React.CSSProperties
   socialLayout?: 'horizontal' | 'vertical'
   socialColors?: boolean
   socialButtonSize?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
@@ -276,10 +274,10 @@ function EmailAuth({
   supabaseClient,
   redirectTo,
 }: {
-  authView: any
+  authView: ViewType
   defaultEmail: string
   defaultPassword: string
-  id: string
+  id: 'auth-sign-up' | 'auth-sign-in'
   setAuthView: any
   setDefaultEmail: (email: string) => void
   setDefaultPassword: (password: string) => void
