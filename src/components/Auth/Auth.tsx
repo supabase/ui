@@ -51,6 +51,7 @@ export interface Props {
   view?: ViewType
   redirectTo?: RedirectTo
   onlyThirdPartyProviders?: boolean
+  magicLink?: boolean
 }
 
 function Auth({
@@ -64,6 +65,7 @@ function Auth({
   view = 'sign_in',
   redirectTo,
   onlyThirdPartyProviders = false,
+  magicLink = false,
 }: Props): JSX.Element | null {
   const [authView, setAuthView] = useState(view)
   const [defaultEmail, setDefaultEmail] = useState('')
@@ -88,6 +90,7 @@ function Auth({
           socialColors={socialColors}
           redirectTo={redirectTo}
           onlyThirdPartyProviders={onlyThirdPartyProviders}
+          magicLink={magicLink}
         />
         {!onlyThirdPartyProviders && props.children}
       </Space>
@@ -114,6 +117,7 @@ function Auth({
             setDefaultEmail={setDefaultEmail}
             setDefaultPassword={setDefaultPassword}
             redirectTo={redirectTo}
+            magicLink={magicLink}
           />
         </Container>
       )
@@ -163,6 +167,7 @@ function SocialAuth({
   verticalSocialLayout,
   redirectTo,
   onlyThirdPartyProviders,
+  magicLink,
   ...props
 }: Props) {
   const buttonStyles: any = {
@@ -274,6 +279,7 @@ function EmailAuth({
   setDefaultPassword,
   supabaseClient,
   redirectTo,
+  magicLink,
 }: {
   authView: ViewType
   defaultEmail: string
@@ -284,6 +290,7 @@ function EmailAuth({
   setDefaultPassword: (password: string) => void
   supabaseClient: SupabaseClient
   redirectTo?: RedirectTo
+  magicLink?: boolean
 }) {
   const [email, setEmail] = useState(defaultEmail)
   const [password, setPassword] = useState(defaultPassword)
@@ -385,16 +392,16 @@ function EmailAuth({
           <Button
             htmlType="submit"
             type="primary"
-            block
             size="large"
             icon={<IconLock size={21} />}
             loading={loading}
+            block
           >
             {authView === VIEWS.SIGN_IN ? 'Sign in' : 'Sign up'}
           </Button>
         </Space>
         <Space direction="vertical" style={{ textAlign: 'center' }}>
-          {authView === VIEWS.SIGN_IN && (
+          {authView === VIEWS.SIGN_IN && magicLink && (
             <Typography.Link
               href="#auth-magic-link"
               onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
