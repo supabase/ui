@@ -36,7 +36,6 @@ function Link({
       target={target}
       rel="noopener noreferrer"
       style={style}
-      tabIndex={0}
     >
       {children}
     </a>
