@@ -22,7 +22,7 @@ export interface Props {
   label?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
-  onChange?(x: React.ChangeEvent<HTMLSelectElement>): void
+  onChange?(x: string): void
   style?: React.CSSProperties
   value?: any
   reveal?: boolean
