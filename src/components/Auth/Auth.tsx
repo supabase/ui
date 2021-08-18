@@ -40,10 +40,9 @@ type RedirectTo = undefined | string
 
 export interface Props {
   supabaseClient: SupabaseClient
-  className?: any
-  style?: any
-  children?: any
-  authView?: any
+  className?: string
+  children?: React.ReactNode
+  style?: React.CSSProperties
   socialLayout?: 'horizontal' | 'vertical'
   socialColors?: boolean
   socialButtonSize?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
@@ -106,6 +105,7 @@ function Auth({
       return (
         <Container>
           <EmailAuth
+            id={authView === VIEWS.SIGN_UP ? 'auth-sign-up' : 'auth-sign-in'}
             supabaseClient={supabaseClient}
             authView={authView}
             setAuthView={setAuthView}
@@ -268,15 +268,17 @@ function EmailAuth({
   authView,
   defaultEmail,
   defaultPassword,
+  id,
   setAuthView,
   setDefaultEmail,
   setDefaultPassword,
   supabaseClient,
   redirectTo,
 }: {
-  authView: any
+  authView: ViewType
   defaultEmail: string
   defaultPassword: string
+  id: 'auth-sign-up' | 'auth-sign-in'
   setAuthView: any
   setDefaultEmail: (email: string) => void
   setDefaultPassword: (password: string) => void
@@ -335,7 +337,7 @@ function EmailAuth({
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form id={id} onSubmit={handleSubmit}>
       <Space size={6} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
@@ -370,7 +372,11 @@ function EmailAuth({
             />
             {authView === VIEWS.SIGN_IN && (
               <Typography.Link
-                onClick={() => setAuthView(VIEWS.FORGOTTEN_PASSWORD)}
+                href="#auth-forgot-password"
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                  e.preventDefault()
+                  setAuthView(VIEWS.FORGOTTEN_PASSWORD)
+                }}
               >
                 Forgot your password?
               </Typography.Link>
@@ -389,16 +395,34 @@ function EmailAuth({
         </Space>
         <Space direction="vertical" style={{ textAlign: 'center' }}>
           {authView === VIEWS.SIGN_IN && (
-            <Typography.Link onClick={() => setAuthView(VIEWS.MAGIC_LINK)}>
+            <Typography.Link
+              href="#auth-magic-link"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.preventDefault()
+                setAuthView(VIEWS.MAGIC_LINK)
+              }}
+            >
               Sign in with magic link
             </Typography.Link>
           )}
           {authView === VIEWS.SIGN_IN ? (
-            <Typography.Link onClick={() => handleViewChange(VIEWS.SIGN_UP)}>
+            <Typography.Link
+              href="#auth-sign-up"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.preventDefault()
+                handleViewChange(VIEWS.SIGN_UP)
+              }}
+            >
               Don't have an account? Sign up
             </Typography.Link>
           ) : (
-            <Typography.Link onClick={() => handleViewChange(VIEWS.SIGN_IN)}>
+            <Typography.Link
+              href="#auth-sign-in"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.preventDefault()
+                handleViewChange(VIEWS.SIGN_IN)
+              }}
+            >
               Do you have an account? Sign in
             </Typography.Link>
           )}
@@ -439,7 +463,7 @@ function MagicLink({
   }
 
   return (
-    <form onSubmit={handleMagicLinkSignIn}>
+    <form id="auth-magic-link" onSubmit={handleMagicLinkSignIn}>
       <Space size={4} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
@@ -460,7 +484,13 @@ function MagicLink({
             Send magic link
           </Button>
         </Space>
-        <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
+        <Typography.Link
+          href="#auth-sign-in"
+          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+            e.preventDefault()
+            setAuthView(VIEWS.SIGN_IN)
+          }}
+        >
           Sign in with password
         </Typography.Link>
         {message && <Typography.Text>{message}</Typography.Text>}
@@ -499,7 +529,7 @@ function ForgottenPassword({
   }
 
   return (
-    <form onSubmit={handlePasswordReset}>
+    <form id="auth-forgot-password" onSubmit={handlePasswordReset}>
       <Space size={4} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
@@ -520,7 +550,13 @@ function ForgottenPassword({
             Send reset password instructions
           </Button>
         </Space>
-        <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
+        <Typography.Link
+          href="#auth-sign-in"
+          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+            e.preventDefault()
+            setAuthView(VIEWS.SIGN_IN)
+          }}
+        >
           Go back to sign in
         </Typography.Link>
         {message && <Typography.Text>{message}</Typography.Text>}
@@ -552,7 +588,7 @@ function UpdatePassword({
   }
 
   return (
-    <form onSubmit={handlePasswordReset}>
+    <form id="auth-update-password" onSubmit={handlePasswordReset}>
       <Space size={4} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
