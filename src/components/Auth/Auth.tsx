@@ -392,10 +392,10 @@ function EmailAuth({
           <Button
             htmlType="submit"
             type="primary"
-            block
             size="large"
             icon={<IconLock size={21} />}
             loading={loading}
+            block
           >
             {authView === VIEWS.SIGN_IN ? 'Sign in' : 'Sign up'}
           </Button>
