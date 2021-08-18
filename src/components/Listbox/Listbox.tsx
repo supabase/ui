@@ -72,8 +72,6 @@ function Listbox({
     } else setSelectedNode(content[0])
   }, [children, selected])
 
-  // const item = find(flattenItems(children, 'props'), ['value', 1])
-
   function handleOnChange(e: any) {
     if (onChange) onChange(e)
     setSelected(e)

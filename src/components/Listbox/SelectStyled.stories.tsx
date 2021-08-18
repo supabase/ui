@@ -162,8 +162,6 @@ export const WithState = (args: any) => {
               />,
             ]}
             children={({ active, selected }: any) => {
-              // console.log('selected', selected)
-              // console.log('active', active)
               return (
                 <span className={'font-normal block truncate'}>
                   {person.label}
