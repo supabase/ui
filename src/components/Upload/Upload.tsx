@@ -7,37 +7,40 @@ function Upload({ label, children }: any) {
   return <h1>WIP</h1>
 }
 
-function Dragger({ label, afterLabel, beforeLabel, layout, children }: any) {
+function Dragger({
+  label,
+  afterLabel,
+  beforeLabel,
+  layout,
+  children,
+  files,
+  setFiles,
+}: any) {
   const [classes, setClasses] = useState([UploadStyles['sbui-upload-dragger']])
 
   const draggedCssClass = UploadStyles['sbui-upload-dragger--dragged']
 
   const dragOver = (e: any) => {
     e.preventDefault()
-    // console.log('dragOver')
 
     if (!classes.includes(draggedCssClass)) {
       let originalClasses = classes
       originalClasses.push(draggedCssClass)
       setClasses(originalClasses)
-      console.log(classes)
     }
   }
 
   const dragEnter = (e: any) => {
     e.preventDefault()
-    // console.log('dragEnter')
     if (!classes.includes(draggedCssClass)) {
       let originalClasses = classes
       originalClasses.push(draggedCssClass)
       setClasses(originalClasses)
-      console.log(classes)
     }
   }
 
   const dragLeave = (e: any) => {
     e.preventDefault()
-    // console.log('dragLeave'
 
     if (classes.includes(draggedCssClass)) {
       let newClasses = classes
@@ -48,16 +51,19 @@ function Dragger({ label, afterLabel, beforeLabel, layout, children }: any) {
         }
       }
       setClasses(newClasses)
-      console.log(classes)
     }
   }
 
   const fileDrop = (e: any) => {
     e.preventDefault()
-    // console.log('fileDrop')
-    const files = e.dataTransfer.files
-    console.log(files)
-    console.log(classes)
+    const newFiles = e.dataTransfer.files
+    setFiles([...files, ...newFiles])
+  }
+
+  const fileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    const newFiles = e.target.files || []
+    setFiles([...files, ...newFiles])
   }
 
   return (
@@ -79,6 +85,7 @@ function Dragger({ label, afterLabel, beforeLabel, layout, children }: any) {
             name="file-upload"
             type="file"
             className="sr-only"
+            onChange={fileUpload}
           />
 
           {children}
