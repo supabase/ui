@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Select from './Listbox'
 import { IconBook } from '../../index'
@@ -129,6 +129,55 @@ export const People = (args: any) => (
 )
 
 People.args = {
+  disabled: false,
+  label: 'Label',
+  layout: 'vertical',
+  size: 'medium',
+}
+
+export const WithState = (args: any) => {
+  const [value, setValue] = useState('foo')
+  return (
+    <Select
+      value={value}
+      onChange={(value) => setValue(value)}
+      label="Choose a person"
+      layout="horizontal"
+      descriptionText="Choose a person for this role"
+    >
+      <Select.Option value="foo" id="foo" label="foo" kay="foo">
+        foo
+      </Select.Option>
+      {people.map((person) => {
+        return (
+          <Select.Option
+            key={person.value}
+            value={person.value}
+            label={person.label}
+            addOnBefore={({ active, selected }: any) => [
+              <img
+                src={person.avatar}
+                alt=""
+                className="h-6 w-6 rounded-full"
+              />,
+            ]}
+            children={({ active, selected }: any) => {
+              // console.log('selected', selected)
+              // console.log('active', active)
+              return (
+                <span className={'font-normal block truncate'}>
+                  {person.label}
+                </span>
+              )
+            }}
+          />
+        )
+      })}
+    </Select>
+  )
+}
+
+WithState.args = {
   disabled: false,
   label: 'Label',
   layout: 'vertical',

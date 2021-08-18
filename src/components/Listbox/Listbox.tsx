@@ -1,12 +1,15 @@
 /* This example requires Tailwind CSS v2.0+ */
-import React, { Fragment, useEffect, useState } from 'react'
-import { Listbox, Transition } from '@headlessui/react'
+import React, { Fragment, ReactNode, useEffect, useState } from 'react'
+import { Listbox as HeadlessListbox, Transition } from '@headlessui/react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 // @ts-ignore
 import SelectStyles from './SelectStyled.module.css'
+
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import { IconCheck } from '../Icon/icons/IconCheck'
+
+import { flatten } from 'lodash'
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
@@ -29,11 +32,10 @@ export interface Props {
   actions?: React.ReactNode
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   defaultValue?: any
-  options?: any
   borderless?: boolean
 }
 
-function Select({
+function Listbox({
   children,
   className,
   descriptionText,
@@ -48,32 +50,29 @@ function Select({
   style,
   size = 'medium',
   defaultValue,
-  options,
   borderless = false,
 }: Props) {
   const [selected, setSelected] = useState(
     value ? value : defaultValue ? defaultValue : null
   )
-  const [content, setContent] = useState([])
 
   const [selectedNode, setSelectedNode] = useState<any>({})
 
   useEffect(() => {
     const data: any = children
-
-    // loop through children and add to content state
-    data.map((node: any) => {
-      let modifiedContent: any = content
-      modifiedContent.push(node.props)
-      setContent(modifiedContent)
-    })
+    const content = flatten(data)
 
     // sets the active select option using content array
     // and selected value from headlessui select
-    if (selected)
-      setSelectedNode(content.find((node: any) => node.value === selected))
-    else setSelectedNode(content[0])
-  }, [children, options, selected])
+    if (selected) {
+      const node: any = content.find(
+        (node: any) => node.props.value == selected
+      )
+      setSelectedNode(node.props)
+    } else setSelectedNode(content[0])
+  }, [children, selected])
+
+  // const item = find(flattenItems(children, 'props'), ['value', 1])
 
   function handleOnChange(e: any) {
     if (onChange) onChange(e)
@@ -99,11 +98,11 @@ function Select({
       size={size}
     >
       <div className={SelectStyles['sbui-listbox-container']}>
-        <Listbox value={selected} onChange={handleOnChange}>
+        <HeadlessListbox value={selected} onChange={handleOnChange}>
           {({ open }) => {
             return (
               <div className="relative">
-                <Listbox.Button className={selectClasses.join(' ')}>
+                <HeadlessListbox.Button className={selectClasses.join(' ')}>
                   {icon && <InputIconContainer icon={icon} />}
                   <span className={SelectStyles['sbui-listbox-addonbefore']}>
                     {selectedNode?.addOnBefore && <selectedNode.addOnBefore />}
@@ -135,7 +134,7 @@ function Select({
                       {error && <InputErrorIcon size={size} />}
                     </div>
                   )}
-                </Listbox.Button>
+                </HeadlessListbox.Button>
                 <Transition
                   show={open}
                   as={Fragment}
@@ -145,17 +144,17 @@ function Select({
                   }
                   leaveTo={SelectStyles['sbui-listbox-transition--leave-to']}
                 >
-                  <Listbox.Options
+                  <HeadlessListbox.Options
                     static
                     className={SelectStyles['sbui-listbox-option-container']}
                   >
                     {children}
-                  </Listbox.Options>
+                  </HeadlessListbox.Options>
                 </Transition>
               </div>
             )
           }}
-        </Listbox>
+        </HeadlessListbox>
       </div>
     </FormLayout>
   )
@@ -172,7 +171,7 @@ function SelectOption({
   // console.log('children typeof', typeof children)
 
   return (
-    <Listbox.Option key={id} value={value}>
+    <HeadlessListbox.Option key={id} value={value}>
       {({ selected, active }) => {
         // if (active) {
         //   console.log('selected', selected, 'active', active)
@@ -212,10 +211,10 @@ function SelectOption({
           </div>
         )
       }}
-    </Listbox.Option>
+    </HeadlessListbox.Option>
   )
 }
 
-Select.Option = SelectOption
+Listbox.Option = SelectOption
 
-export default Select
+export default Listbox
