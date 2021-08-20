@@ -105,11 +105,15 @@
 }
 
 .sbui-listbox-option {
-  @apply cursor-default select-none relative py-2 pl-3 pr-9 text-gray-900 dark:text-white;
+  @apply cursor-pointer select-none relative py-2 pl-3 pr-9 text-gray-900 dark:text-white;
 }
 
 .sbui-listbox-option--active {
   @apply text-brand-600 dark:text-brand-600 bg-brand-600 bg-opacity-20;
+}
+
+.sbui-listbox-option--disabled {
+  @apply cursor-not-allowed opacity-50;
 }
 
 .sbui-listbox-option__inner {
