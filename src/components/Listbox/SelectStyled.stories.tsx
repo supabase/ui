@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 
-import Select from './Listbox'
+import Listbox from './Listbox'
 import { IconBook } from '../../index'
+import { Button } from '../Button'
 
 export default {
   title: 'Data Input/Listbox',
-  component: Select,
+  component: Listbox,
 }
 
-const { Option } = Select
+const { Option } = Listbox
 
 const options = [
   { value: 'one', label: 'one' },
@@ -18,10 +19,10 @@ const options = [
 ]
 
 export const Default = (args: any) => (
-  <Select label="Default listbox">
+  <Listbox label="Default listbox">
     {options.map((option) => {
       return (
-        <Select.Option
+        <Listbox.Option
           label={option.label}
           value={option.value}
           children={({ active, selected }: any) => {
@@ -32,7 +33,7 @@ export const Default = (args: any) => (
         />
       )
     })}
-  </Select>
+  </Listbox>
 )
 
 const people = [
@@ -99,7 +100,7 @@ const people = [
 ]
 
 export const People = (args: any) => (
-  <Select
+  <Listbox
     defaultValue={people[1].value}
     label="Choose a person"
     layout="horizontal"
@@ -107,7 +108,7 @@ export const People = (args: any) => (
   >
     {people.map((person) => {
       return (
-        <Select.Option
+        <Listbox.Option
           value={person.value}
           label={person.label}
           addOnBefore={({ active, selected }: any) => [
@@ -125,7 +126,7 @@ export const People = (args: any) => (
         />
       )
     })}
-  </Select>
+  </Listbox>
 )
 
 People.args = {
@@ -138,19 +139,19 @@ People.args = {
 export const WithState = (args: any) => {
   const [value, setValue] = useState('foo')
   return (
-    <Select
+    <Listbox
       value={value}
       onChange={(value) => setValue(value)}
       label="Choose a person"
       layout="horizontal"
       descriptionText="Choose a person for this role"
     >
-      <Select.Option value="foo" id="foo" label="foo" kay="foo">
+      <Lisbox.Option value="foo" id="foo" label="foo" kay="foo">
         foo
-      </Select.Option>
+      </Lisbox.Option>
       {people.map((person) => {
         return (
-          <Select.Option
+          <Lisbox.Option
             key={person.value}
             value={person.value}
             label={person.label}
@@ -171,7 +172,7 @@ export const WithState = (args: any) => {
           />
         )
       })}
-    </Select>
+    </Listbox>
   )
 }
 
@@ -183,24 +184,24 @@ WithState.args = {
 }
 
 // export const Default = (args: any) => (
-//   <Select {...args}>
+//   <Listbox {...args}>
 //     <Option value="javascript">JavaScript</Option>
 //     <Option value="typeScript">TypeScript</Option>
 //     <Option value="react">React</Option>
-//   </Select>
+//   </Listbox>
 // )
 
-// export const withCheckboxes = (args: any) => <Select {...args} />
+// export const withCheckboxes = (args: any) => <Listbox {...args} />
 
 export const ErrorState = (args: any) => (
-  <Select
+  <Listbox
     label="Choose a person"
     descriptionText="Choose a person for this role"
     error="I am an error"
   >
     {people.map((person) => {
       return (
-        <Select.Option
+        <Listbox.Option
           label={person.label}
           value={person.value}
           addOnBefore={({ active, selected }: any) => [
@@ -208,16 +209,61 @@ export const ErrorState = (args: any) => (
           ]}
         >
           {person.label}
-        </Select.Option>
+        </Listbox.Option>
       )
     })}
-  </Select>
+  </Listbox>
 )
-
-const data = ['England', 'Wales', 'Scotland', 'Ireland']
-const icon = <IconBook type={'Book'} />
 
 ErrorState.args = {
   label: 'Choose a person',
   descriptionText: 'Choose a person for this role',
+}
+
+export const ListBoxChildrenPropChange = (args: any) => {
+  const [countries, setCountries] = useState<any[]>([
+    'England',
+    'Wales',
+    'Scotland',
+    'Ireland',
+  ])
+
+  function handlePop() {
+    console.log('handlepop')
+    let _data = []
+    _data = countries
+    _data.pop()
+    setCountries([..._data])
+
+    console.log(countries)
+  }
+
+  return (
+    <>
+      {countries.map((country) => {
+        return <span>{country}</span>
+      })}
+      <Listbox
+        defaultValue={'England'}
+        label="Choose a country"
+        descriptionText="Choose a person for this role"
+      >
+        {countries.map((country) => {
+          return (
+            <Listbox.Option label={country} value={country}>
+              {country}
+            </Listbox.Option>
+          )
+        })}
+        <Listbox.Option label="disabled country" value="disabled" disabled>
+          Disabled
+        </Listbox.Option>
+      </Listbox>
+      <Button onClick={handlePop}>Remove country</Button>
+    </>
+  )
+}
+
+ListBoxChildrenPropChange.args = {
+  label: 'Choose a country',
 }
