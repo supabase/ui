@@ -158,6 +158,21 @@ function Listbox({
   )
 }
 
+interface OptionProps {
+  id?: string
+  className?: string
+  value: any
+  children?: React.ReactNode
+  label: string
+  addOnBefore?: ({ active, selected }: any) => React.ReactNode
+  disabled?: boolean
+}
+
+type addOnBefore = {
+  selected: boolean
+  active: boolean
+}
+
 function SelectOption({
   id,
   className,
@@ -165,11 +180,12 @@ function SelectOption({
   children,
   label,
   addOnBefore,
-}: any) {
+  disabled = false,
+}: OptionProps) {
   // console.log('children typeof', typeof children)
 
   return (
-    <HeadlessListbox.Option key={id} value={value}>
+    <HeadlessListbox.Option key={id} value={value} disabled={disabled}>
       {({ selected, active }) => {
         // if (active) {
         //   console.log('selected', selected, 'active', active)
@@ -178,8 +194,9 @@ function SelectOption({
         return (
           <div
             className={classNames(
+              SelectStyles['sbui-listbox-option'],
               active ? SelectStyles['sbui-listbox-option--active'] : ' ',
-              SelectStyles['sbui-listbox-option']
+              disabled ? SelectStyles['sbui-listbox-option--disabled'] : ' '
             )}
           >
             <div className={SelectStyles['sbui-listbox-option__inner']}>
