@@ -68,7 +68,7 @@ function Listbox({
       const node: any = content.find(
         (node: any) => node.props.value == selected
       )
-      setSelectedNode(node.props)
+      setSelectedNode(node?.props ? node.props : undefined)
     } else setSelectedNode(content[0])
   }, [children, selected])
 
