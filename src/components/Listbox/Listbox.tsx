@@ -52,25 +52,46 @@ function Listbox({
   defaultValue,
   borderless = false,
 }: Props) {
-  const [selected, setSelected] = useState(
-    value ? value : defaultValue ? defaultValue : null
-  )
-
+  const [selected, setSelected] = useState(defaultValue || undefined)
   const [selectedNode, setSelectedNode] = useState<any>({})
 
   useEffect(() => {
-    const data: any = children
-    const content = flatten(data)
+    if (value) {
+      setSelected(value)
+    }
+  }, [value])
 
-    // sets the active select option using content array
-    // and selected value from headlessui select
-    if (selected) {
-      const node: any = content.find(
-        (node: any) => node.props.value == selected
-      )
+  useEffect(() => {
+    const data: any = children
+    const content: any = flatten(data)
+
+    function findNode(value: any) {
+      return content.find((node: any) => node.props.value == value)
+    }
+
+    /*
+     * value prop overrides everything
+     */
+    if (value) {
+      setSelected(value)
+      const node: any = findNode(value)
       setSelectedNode(node?.props ? node.props : undefined)
-    } else setSelectedNode(content[0])
-  }, [children, selected])
+      return
+    }
+
+    /*
+     * if no value prop, then use selected state
+     */
+    if (selected) {
+      const node: any = findNode(selected)
+      setSelectedNode(node?.props ? node.props : undefined)
+    } else {
+      /*
+       * if no selected value (including a `defaultvalue`), then use first child
+       */
+      setSelectedNode(content[0].props)
+    }
+  }, [children, selected, value])
 
   function handleOnChange(e: any) {
     if (onChange) onChange(e)
