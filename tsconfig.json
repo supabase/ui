@@ -26,6 +26,7 @@
     "noEmit": true
   },
   "include": [
+    "*.d.ts",
     "src/components/**/*"
   ],
   "exclude": [
