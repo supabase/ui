@@ -34,6 +34,7 @@ export default {
     tabs: 'src/components/Tabs/index.tsx',
     menu: 'src/components/Menu/index.tsx',
     modal: 'src/components/Modal/index.tsx',
+    modal: 'src/components/Popover/index.tsx',
     sidepanel: 'src/components/SidePanel/index.tsx',
     dropdown: 'src/components/Dropdown/index.tsx',
     contextmenu: 'src/components/ContextMenu/index.tsx',
