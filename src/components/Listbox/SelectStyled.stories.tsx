@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Listbox from './Listbox'
 import { IconBook } from '../../index'
 import { Button } from '../Button'
+import Typography from '../Typography'
 
 export default {
   title: 'Data Input/Listbox',
@@ -146,12 +147,12 @@ export const WithState = (args: any) => {
       layout="horizontal"
       descriptionText="Choose a person for this role"
     >
-      <Lisbox.Option value="foo" id="foo" label="foo" kay="foo">
+      <Listbox.Option value="foo" id="foo" label="foo" key="foo">
         foo
-      </Lisbox.Option>
+      </Listbox.Option>
       {people.map((person) => {
         return (
-          <Lisbox.Option
+          <Listbox.Option
             key={person.value}
             value={person.value}
             label={person.label}
@@ -265,5 +266,56 @@ export const ListBoxChildrenPropChange = (args: any) => {
 }
 
 ListBoxChildrenPropChange.args = {
+  label: 'Choose a country',
+}
+
+export const ValueChange = (args: any) => {
+  const [countries, setCountries] = useState<any[]>([
+    'England',
+    'Wales',
+    'Scotland',
+    'Ireland',
+  ])
+
+  const [value, setValue] = useState<string>('England')
+
+  function handleRandom() {
+    const random = countries[Math.floor(Math.random() * countries.length)]
+    setValue(random)
+  }
+
+  return (
+    <>
+      <Typography.Text>current value: {value}</Typography.Text>
+      <div>
+        <Listbox
+          value={value}
+          label="Choose a country"
+          descriptionText="Choose a person for this role"
+          onChange={setValue}
+        >
+          {countries.map((country) => {
+            return (
+              <Listbox.Option label={country} value={country} key={country}>
+                {country}
+              </Listbox.Option>
+            )
+          })}
+          <Listbox.Option
+            label="disabled country"
+            value="disabled"
+            disabled
+            key="disabled"
+          >
+            Disabled
+          </Listbox.Option>
+        </Listbox>
+      </div>
+      <Button onClick={handleRandom}>Change country</Button>
+    </>
+  )
+}
+
+ValueChange.args = {
   label: 'Choose a country',
 }
