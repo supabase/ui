@@ -1,22 +1,22 @@
 import React, { useState } from 'react'
 
 import * as RadixPopover from '@radix-ui/react-popover'
-import type * as RadixPopoverTypes from '@radix-ui/react-popover-menu/'
+import type * as RadixPopoverTypes from '@radix-ui/react-popover/'
 
 import { IconCheck } from '../Icon/icons/IconCheck'
 
 // @ts-ignore
 import DropdownStyles from './Popover.module.css'
 
-import type * as RadixDropdownTypes from '@radix-ui/react-dropdown-menu/'
+// import type * as RadixDropdownTypes from '@radix-ui/react-dropdown-menu/'
 import { IconX } from '../Icon/icons/IconX'
 
 interface RootProps {
   open?: boolean
   arrow?: boolean
-  onOpenChange?: RadixDropdownTypes.DropdownMenuOwnProps['onOpenChange']
-  side?: RadixDropdownTypes.DropdownMenuContentOwnProps['side']
-  align?: RadixDropdownTypes.DropdownMenuContentOwnProps['align']
+  onOpenChange?: RadixPopoverTypes.PopoverOwnProps['onOpenChange']
+  side?: RadixPopoverTypes.PopoverContentOwnProps['side']
+  align?: RadixPopoverTypes.PopoverContentOwnProps['align']
   overlay?: React.ReactNode
   children?: React.ReactNode
   className?: string
