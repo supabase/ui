@@ -49,9 +49,9 @@ const Modal = ({
   alignFooter = 'left',
   layout = 'horizontal',
   loading = false,
-  onCancel,
   cancelText = 'Cancel',
-  onConfirm,
+  onConfirm = () => {},
+  onCancel = () => {},
   confirmText = 'Confirm',
   showIcon = false,
   title,
@@ -105,15 +105,11 @@ const Modal = ({
             : 'flex-start',
       }}
     >
-      <Button
-        type="outline"
-        onClick={() => (onCancel ? onCancel() : null)}
-        disabled={loading}
-      >
+      <Button type="outline" onClick={onCancel} disabled={loading}>
         {cancelText}
       </Button>
       <Button
-        onClick={() => (onConfirm ? onConfirm() : null)}
+        onClick={onConfirm}
         loading={loading}
         danger={variant === 'danger'}
       >
