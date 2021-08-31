@@ -12,38 +12,39 @@ import DropdownStyles from './Popover.module.css'
 import { IconX } from '../Icon/icons/IconX'
 
 interface RootProps {
-  open?: boolean
-  arrow?: boolean
-  onOpenChange?: RadixPopoverTypes.PopoverOwnProps['onOpenChange']
-  side?: RadixPopoverTypes.PopoverContentOwnProps['side']
   align?: RadixPopoverTypes.PopoverContentOwnProps['align']
-  overlay?: React.ReactNode
+  ariaLabel?: string
+  arrow?: boolean
   children?: React.ReactNode
   className?: string
-  style?: React.CSSProperties
   defaultOpen?: boolean
   modal?: boolean
-  ariaLabel?: string
-
+  onOpenChange?: RadixPopoverTypes.PopoverOwnProps['onOpenChange']
+  open?: boolean
+  overlay?: React.ReactNode
   portalled?: boolean
   showClose?: boolean
+  side?: RadixPopoverTypes.PopoverContentOwnProps['side']
+  sideOffset?: RadixPopoverTypes.PopoverContentOwnProps['sideOffset']
+  style?: React.CSSProperties
 }
 
 function Popover({
-  open,
-  onOpenChange,
-  align = 'center', //Default value
-  side = 'bottom', //Default value
-  overlay,
+  align = 'center',
+  ariaLabel,
+  arrow = false,
   children,
   className,
-  style,
-  arrow,
   defaultOpen = false,
   modal,
-  ariaLabel,
+  onOpenChange,
+  open,
+  overlay,
   portalled,
   showClose,
+  side = 'bottom',
+  sideOffset = 8,
+  style,
 }: RootProps) {
   let classes = [DropdownStyles['sbui-popover__content']]
   if (className) {
@@ -65,7 +66,7 @@ function Popover({
       </RadixPopover.Trigger>
 
       <RadixPopover.Content
-        sideOffset={8}
+        sideOffset={sideOffset}
         side={side}
         align={align}
         className={classes.join(' ')}
