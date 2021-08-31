@@ -58,6 +58,7 @@ function Input({
   actions,
   size = 'medium',
   borderless = false,
+  ...props
 }: Props) {
   const [copyLabel, setCopyLabel] = useState('Copy')
   const [hidden, setHidden] = useState(reveal)
@@ -126,6 +127,7 @@ function Input({
             type={type}
             value={hidden ? hiddenPlaceholder : value}
             className={inputClasses.join(' ')}
+            {...props}
           />
           {icon && <InputIconContainer icon={icon} />}
           {copy || error || actions ? (
