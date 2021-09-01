@@ -5,7 +5,25 @@
 
 const defaults = {
   // brand color
-  primaryBackground: 'bg-black',
+  // primaryBackground: 'bg-indigo-600',
+  // primaryText: 'text-indigo-600',
+
+  bg: {
+    brand: {
+      primary: 'bg-indigo-600',
+      secondary: 'bg-indigo-200',
+    },
+  },
+  text: {
+    brand: 'text-indigo-600',
+    body: 'text-typography-body-light dark:text-typography-body-dark',
+    title: 'text-typography-title-light dark:text-typography-title-dark',
+  },
+  border: {
+    brand: 'border border-indigo-600',
+    primary: 'border dark:border-gray-600',
+    secondary: 'border border-gray-300 dark:border-gray-500',
+  },
   size: {
     // buttons, inputs, input labels use these sizes
     text: {
@@ -23,6 +41,13 @@ const defaults = {
       large: 'px-4 py-2',
       xlarge: 'px-6 py-3',
     },
+  },
+}
+
+const utils = {
+  border: {
+    hover:
+      'border-opacity-50 dark:border-opacity-50 hover:border-opacity-100 dark:hover:border-opacity-100',
   },
 }
 
@@ -129,40 +154,140 @@ export default {
   },
 
   /*
+   * Card
+   */
+
+  card: {
+    base: `
+      bg-white dark:bg-dark-700
+      ${defaults.border.primary} 
+      flex flex-col 
+       rounded-md shadow-lg overflow-hidden relative`,
+    hoverable: 'transition transform hover:-translate-y-1 hover:shadow-2xl',
+    head: 'px-8 py-6 flex justify-between border-b',
+    content: 'p-8',
+  },
+
+  /*
    * Button
    */
 
   button: {
-    base: 'relative cursor-pointer inline-flex items-center space-x-2 text-center border border-solid border-transparent transition ease-out duration-200 outline-none rounded focus:outline-none',
+    base: `
+      relative 
+      cursor-pointer 
+      inline-flex items-center space-x-2 
+      text-center 
+      transition ease-out duration-200 
+      outline-none rounded focus:outline-none
+      hover:bg-opacity-90
+      shadow-sm
+    `,
     container: 'inline-flex font-medium',
     type: {
-      primary: `${defaults.primaryBackground} text-white hover:bg-brand-600 dark:hover:bg-brand-900`,
-      secondary:
-        'bg-gray-200 text-gray-600 hover:text-gray-700 hover:bg-gray-300 dark:text-gray-300 dark:bg-gray-500 dark:hover:bg-gray-600',
-      default:
-        'bg-white text-gray-500 border-gray-200 hover:text-gray-600 hover:bg-white hover:border-gray-200 dark:border-gray-600 dark:bg-gray-600 dark:text-dark-200 dark:hover:bg-gray-700',
-      outline:
-        'border text-gray-500 bg-transparent border-gray-200 border-solid hover:bg-white hover:text-gray-600 hover:border-gray-600 dark:text-white dark:border-dark-400 dark:hover:text-dark-600 dark:hover:border-white',
-      dashed:
-        'border text-gray-500 bg-transparent border-gray-200 border-dashed hover:text-gray-600 hover:border-gray-600 dark:text-white dark:border-dark-400 dark:hover:text-white dark:hover:border-white',
-      link: 'bg-transparent text-brand-800 hover:bg-brand-900 hover:bg-opacity-25',
-      text: 'text-gray-400 bg-transparent hover:bg-gray-200 hover:bg-opacity-25 dark:text-dark-300 dark:hover:bg-dark-600',
+      primary: `
+        ${defaults.bg.brand.primary}
+        text-white 
+      `,
+      default: `
+        bg-white 
+ 
+        hover:bg-gray-50
+
+        text-gray-500 
+        hover:text-gray-600 
+
+        ${defaults.border.secondary} 
+        ${utils.border.hover}
+
+        dark:border-gray-600 
+      `,
+      alternative: `
+        ${defaults.bg.brand.primary}
+        bg-opacity-10 dark:bg-opacity-20
+        hover:bg-opacity-20 dark:hover:bg-opacity-30
+
+        ${defaults.border.brand}
+        border-opacity-20
+        
+
+        text-gray-600 
+        hover:text-gray-700 
+        dark:text-gray-300
+      `,
+      secondary: `
+        bg-gray-100 dark:bg-gray-600
+
+        ${defaults.border.secondary} 
+        ${utils.border.hover}
+
+        text-gray-600 hover:text-gray-700 dark:text-gray-300
+      `,
+      outline: `
+        text-gray-500 
+        bg-transparent 
+        
+        ${defaults.border.secondary} 
+        ${utils.border.hover}
+
+        border-gray-200 border-solid 
+        
+        hover:bg-white 
+        hover:text-gray-600 
+        dark:text-white 
+        
+        dark:hover:text-dark-600 
+      `,
+      link: `
+        ${defaults.text.brand} 
+        ${defaults.bg.brand.primary}
+        ${defaults.border.brand}
+        
+        border-opacity-0
+        bg-opacity-0 dark:bg-opacity-0
+        
+        hover:bg-opacity-10 dark:hover:bg-opacity-10
+        hover:border-opacity-5
+        shadow-none
+      `,
+      dashed: `
+        border-dashed
+        ${defaults.border.secondary} 
+        ${utils.border.hover}
+
+        text-gray-500
+        bg-transparent
+        
+        hover:text-gray-600
+        
+        dark:text-white
+        dark:hover:text-white 
+    `,
+      text: `
+        ${defaults.text.body} 
+        ${defaults.border.brand}
+        
+        bg-gray-50 dark:bg-gray-600
+        
+        border-opacity-0
+        bg-opacity-0 dark:bg-opacity-0
+        
+        hover:bg-opacity-25 dark:hover:bg-opacity-25
+        hover:border-opacity-5 dark:border-opacity-10
+        shadow-none
+      `,
+      danger: `
+        border-red-700 
+        bg-red-600 
+        text-white
+      `,
+      warning: `
+        border-yellow-400 
+        bg-yellow-300 
+        text-gray-600
+      `,
     },
     block: 'w-full flex items-center justify-center',
-    danger: {
-      primary:
-        'border-red-500 text-red-500 dark:border-red-500 dark:text-red-500 bg-red-500 text-white hover:bg-red-600 hover:border-red-600',
-      secondary:
-        'border-red-500 text-red-500 dark:border-red-500 dark:text-red-500 hover:bg-red-600 hover:text-white hover:border-red-600',
-      default:
-        'border-red-500 text-red-500 dark:border-red-500 dark:text-red-500 hover:bg-red-600 hover:text-white hover:border-red-600',
-      outline:
-        'border-red-500 text-red-500 dark:border-red-500 dark:text-red-500 hover:bg-red-600 hover:text-white hover:border-red-600',
-      dashed:
-        'border-red-500 text-red-500 dark:border-red-500 dark:text-red-500 hover:bg-red-600 hover:text-white hover:border-red-600',
-      link: 'border-red-500 text-red-500 dark:border-red-500 dark:text-red-500 hover:bg-red-600 hover:text-white hover:border-red-600',
-      text: 'border-red-500 text-red-500 dark:border-red-500 dark:text-red-500 hover:bg-red-600 hover:text-white hover:border-red-600',
-    },
     shadow: 'shadow-sm',
     size: {
       ...default__padding_and_text,
@@ -179,11 +304,11 @@ export default {
    */
 
   input: {
-    base: `block box-border pl-3 pr-3 py-2 w-full rounded-md shadow-sm text-sm border border-solid transition-all
-bg-white text-input-value-light border-input-border-light
-dark:bg-transparent dark:text-input-value-dark dark:border-input-border-dark
-shadow-sm
-focus:ring-1 focus:ring-brand-600 transition focus:outline-none focus:border-brand-600 dark:focus:border-brand-600 focus:shadow-md
+    base: `
+    block box-border pl-3 pr-3 py-2 w-full rounded-md shadow-sm text-sm border border-solid transition-all
+    bg-white text-input-value-light border-input-border-light
+    dark:bg-transparent dark:text-input-value-dark dark:border-input-border-dark
+    focus:ring-1 focus:ring-brand-600 focus:outline-none focus:border-brand-600 dark:focus:border-brand-600 focus:shadow-md
 `,
     container: 'relative',
     error: 'border-red-500 dark:border-red-500',

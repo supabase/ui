@@ -50,10 +50,13 @@ export const allButtons = (args: any) => (
         <Button {...args} size="tiny">
           Button text
         </Button>
+        <Button {...args} size="tiny" type="default">
+          Button text
+        </Button>
         <Button {...args} size="tiny" type="secondary">
           Button text
         </Button>
-        <Button {...args} size="tiny" type="default">
+        <Button {...args} size="tiny" type="alternative">
           Button text
         </Button>
         <Button {...args} size="tiny" type="link">
@@ -68,16 +71,25 @@ export const allButtons = (args: any) => (
         <Button {...args} size="tiny" type="outline">
           Button text
         </Button>
+        <Button {...args} size="tiny" type="danger">
+          Button text
+        </Button>
+        <Button {...args} size="tiny" type="warning">
+          Button text
+        </Button>
       </Space>
 
       <Space>
         <Button {...args} size="small">
           Button text
         </Button>
+        <Button {...args} size="small" type="default">
+          Button text
+        </Button>
         <Button {...args} size="small" type="secondary">
           Button text
         </Button>
-        <Button {...args} size="small" type="default">
+        <Button {...args} size="small" type="alternative">
           Button text
         </Button>
         <Button {...args} size="small" type="link">
@@ -92,15 +104,24 @@ export const allButtons = (args: any) => (
         <Button {...args} size="small" type="outline">
           Button text
         </Button>
+        <Button {...args} size="small" type="danger">
+          Button text
+        </Button>
+        <Button {...args} size="small" type="warning">
+          Button text
+        </Button>
       </Space>
       <Space>
         <Button {...args} size="medium">
           Button text
         </Button>
+        <Button {...args} size="medium" type="default">
+          Button text
+        </Button>
         <Button {...args} size="medium" type="secondary">
           Button text
         </Button>
-        <Button {...args} size="medium" type="default">
+        <Button {...args} size="medium" type="alternative">
           Button text
         </Button>
         <Button {...args} size="medium" type="link">
@@ -115,15 +136,24 @@ export const allButtons = (args: any) => (
         <Button {...args} size="medium" type="outline">
           Button text
         </Button>
+        <Button {...args} size="medium" type="danger">
+          Button text
+        </Button>
+        <Button {...args} size="medium" type="warning">
+          Button text
+        </Button>
       </Space>
       <Space>
         <Button {...args} size="large">
           Button text
         </Button>
+        <Button {...args} size="large" type="default">
+          Button text
+        </Button>
         <Button {...args} size="large" type="secondary">
           Button text
         </Button>
-        <Button {...args} size="large" type="default">
+        <Button {...args} size="large" type="alternative">
           Button text
         </Button>
         <Button {...args} size="large" type="link">
@@ -138,15 +168,24 @@ export const allButtons = (args: any) => (
         <Button {...args} size="large" type="outline">
           Button text
         </Button>
+        <Button {...args} size="large" type="danger">
+          Button text
+        </Button>
+        <Button {...args} size="large" type="warning">
+          Button text
+        </Button>
       </Space>
       <Space>
         <Button {...args} size="xlarge">
           Button text
         </Button>
+        <Button {...args} size="xlarge" type="default">
+          Button text
+        </Button>
         <Button {...args} size="xlarge" type="secondary">
           Button text
         </Button>
-        <Button {...args} size="xlarge" type="default">
+        <Button {...args} size="xlarge" type="alternative">
           Button text
         </Button>
         <Button {...args} size="xlarge" type="link">
@@ -159,6 +198,12 @@ export const allButtons = (args: any) => (
           Button text
         </Button>
         <Button {...args} size="xlarge" type="outline">
+          Button text
+        </Button>
+        <Button {...args} size="xlarge" type="danger">
+          Button text
+        </Button>
+        <Button {...args} size="xlarge" type="warning">
           Button text
         </Button>
       </Space>

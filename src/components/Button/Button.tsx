@@ -26,10 +26,13 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
     | 'primary'
     | 'default'
     | 'secondary'
+    | 'alt'
     | 'outline'
     | 'dashed'
     | 'link'
     | 'text'
+    | 'danger'
+    | 'warning'
   danger?: boolean
   htmlType?: 'button' | 'submit' | 'reset'
   ref?: any
@@ -100,10 +103,6 @@ const Button = forwardRef<RefHandle, ButtonProps>(
     if (block) {
       containerClasses.push(__styles.block)
       classes.push(__styles.block)
-    }
-
-    if (danger) {
-      classes.push(__styles.danger[type])
     }
 
     if (shadow && type !== 'link' && type !== 'text') {
