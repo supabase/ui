@@ -1,3 +1,8 @@
+/* ./styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .dark,
 .light {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
