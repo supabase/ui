@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions'
 import React, { useState } from 'react'
-import { Button, Space, Typography } from '../../index'
+import { Button, Space, Typography, Popover, Dropdown } from '../../index'
 
 import { SidePanel } from './index'
 
@@ -120,6 +120,37 @@ export const nestedSidepanels = (args: any) => {
   )
 }
 
+export const otherFormElements = (args: any) => (
+  <>
+    <SidePanel {...args}>
+      <p>
+        <Typography.Text type="secondary">
+          This has other form elements
+        </Typography.Text>
+      </p>
+      <div>
+        <Popover
+          className="w-80 pointer-events-auto"
+          overlay={[<div>This is a popover</div>]}
+        >
+          <Typography.Text>Open popover</Typography.Text>
+        </Popover>
+      </div>
+      <div>
+        <Dropdown
+          className="w-80 pointer-events-auto"
+          overlay={[
+            <Dropdown.Misc>This is a dropdown 1</Dropdown.Misc>,
+            <Dropdown.Misc>This is a dropdown 2</Dropdown.Misc>,
+          ]}
+        >
+          <Typography.Text>Open dropdown</Typography.Text>
+        </Dropdown>
+      </div>
+    </SidePanel>
+  </>
+)
+
 Default.args = {
   visible: true,
   onCancel: action('onCancel'),
@@ -179,6 +210,15 @@ customFooter.args = {
 }
 
 triggerElement.args = {
+  visible: true,
+  onCancel: action('onCancel'),
+  onConfirm: action('onConfirm'),
+  title: 'This is the title of the SidePanel',
+  description: 'And i am the description',
+  triggerElement: <Button as="span">Open</Button>,
+}
+
+otherFormElements.args = {
   visible: true,
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
