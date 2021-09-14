@@ -58,6 +58,7 @@ function Input({
   actions,
   size = 'medium',
   borderless = false,
+  ...props
 }: Props) {
   const [copyLabel, setCopyLabel] = useState('Copy')
   const [hidden, setHidden] = useState(reveal)
@@ -126,6 +127,7 @@ function Input({
             type={type}
             value={hidden ? hiddenPlaceholder : value}
             className={inputClasses.join(' ')}
+            {...props}
           />
           {icon && <InputIconContainer icon={icon} />}
           {copy || error || actions ? (
@@ -222,9 +224,9 @@ function TextArea({
   if (borderless) classes.push(InputStyles['sbui-input--borderless'])
 
   function onInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setCharLength(e.target.value.length)
     if (onChange) {
       onChange(e)
-      setCharLength(e.target.value.length)
     }
   }
 

@@ -49,9 +49,9 @@ const Modal = ({
   alignFooter = 'left',
   layout = 'horizontal',
   loading = false,
-  onCancel,
   cancelText = 'Cancel',
-  onConfirm,
+  onConfirm = () => {},
+  onCancel = () => {},
   confirmText = 'Confirm',
   showIcon = false,
   title,
@@ -105,15 +105,11 @@ const Modal = ({
             : 'flex-start',
       }}
     >
-      <Button
-        type="outline"
-        onClick={() => (onCancel ? onCancel() : null)}
-        disabled={loading}
-      >
+      <Button type="outline" onClick={onCancel} disabled={loading}>
         {cancelText}
       </Button>
       <Button
-        onClick={() => (onConfirm ? onConfirm() : null)}
+        onClick={onConfirm}
         loading={loading}
         danger={variant === 'danger'}
       >
@@ -140,7 +136,7 @@ const Modal = ({
         </Dialog.Trigger>
       )}
       <Transition show={open}>
-        <Dialog.Overlay forceMount>
+        <Dialog.Overlay>
           <Transition.Child
             enter={ModalStyles[`sbui-modal-overlay--enter`]}
             enterFrom={ModalStyles[`sbui-modal-overlay--enterFrom`]}
@@ -163,8 +159,6 @@ const Modal = ({
             onClick={() => (onCancel ? onCancel() : null)}
           >
             <div className={ModalStyles['sbui-modal-flex-container']}>
-              {/* <!-- This element is to trick the browser into centering the modal contents. --> */}
-              <span className={ModalStyles['sbui-modal-div-trick']}></span>
               <Transition.Child
                 enter={ModalStyles[`sbui-modal--enter`]}
                 enterFrom={ModalStyles[`sbui-modal--enterFrom`]}
