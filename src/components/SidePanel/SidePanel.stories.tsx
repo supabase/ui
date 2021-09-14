@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions'
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Space, Typography } from '../../index'
 
 import { SidePanel } from './index'
@@ -90,6 +90,35 @@ export const triggerElement = (args: any) => (
     </SidePanel>
   </>
 )
+
+export const nestedSidepanels = (args: any) => {
+  const [panel1Visible, setPanel1Visible] = useState(false)
+  const [panel2Visible, setPanel2Visible] = useState(false)
+
+  return (
+    <>
+      <Button type="secondary" onClick={() => setPanel1Visible(true)}>
+        Open panel 1
+      </Button>
+      <SidePanel visible={panel1Visible}>
+        <Typography.Text type="secondary">
+          This was opened with a trigger element
+        </Typography.Text>
+        <Button type="secondary" onClick={() => setPanel2Visible(true)}>
+          Open panel 2
+        </Button>
+        <Button type="secondary" onClick={() => setPanel1Visible(false)}>
+          Close panel 1
+        </Button>
+        <SidePanel visible={panel2Visible}>
+          <Button type="secondary" onClick={() => setPanel2Visible(false)}>
+            close panel 2
+          </Button>
+        </SidePanel>
+      </SidePanel>
+    </>
+  )
+}
 
 Default.args = {
   visible: true,
