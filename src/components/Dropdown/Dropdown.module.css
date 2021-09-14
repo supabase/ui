@@ -42,25 +42,42 @@
   @apply border border-lightmode dark:border-darkmode;
   @apply rounded;
   @apply shadow;
-  overflow: visible;
   border-style: solid;
   border-width: 1px;
 }
 
-@keyframes transition {
-  0% {
-    opacity: 0;
+@keyframes fadeIn {
+  from {
     transform: scale(0.95);
+    opacity: 0;
   }
-  100% {
-    opacity: 1;
+  to {
     transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.95);
+    opacity: 0;
   }
 }
 
 .sbui-dropdown__content {
-  transform-origin: var(--radix-dropdown-menu-content-transform-origin);
-  animation: transition 0.1s ease-out;
+  transform-origin: 'var(--radix-dropdown-menu-content-transform-origin)';
+}
+
+.sbui-dropdown__content[data-state='open'] {
+  animation: fadeIn 50ms ease-out;
+}
+
+.sbui-dropdown__content[data-state='closed'] {
+  animation: fadeOut 50ms ease-in;
 }
 
 .sbui-dropdown__trigger {

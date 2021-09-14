@@ -43,7 +43,7 @@ function Popover({
   portalled,
   showClose,
   side = 'bottom',
-  sideOffset = 8,
+  sideOffset = 6,
   style,
 }: RootProps) {
   let classes = [DropdownStyles['sbui-popover__content']]

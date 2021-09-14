@@ -136,7 +136,7 @@ const Modal = ({
         </Dialog.Trigger>
       )}
       <Transition show={open}>
-        <Dialog.Overlay forceMount>
+        <Dialog.Overlay>
           <Transition.Child
             enter={ModalStyles[`sbui-modal-overlay--enter`]}
             enterFrom={ModalStyles[`sbui-modal-overlay--enterFrom`]}
@@ -159,8 +159,6 @@ const Modal = ({
             onClick={() => (onCancel ? onCancel() : null)}
           >
             <div className={ModalStyles['sbui-modal-flex-container']}>
-              {/* <!-- This element is to trick the browser into centering the modal contents. --> */}
-              <span className={ModalStyles['sbui-modal-div-trick']}></span>
               <Transition.Child
                 enter={ModalStyles[`sbui-modal--enter`]}
                 enterFrom={ModalStyles[`sbui-modal--enterFrom`]}
