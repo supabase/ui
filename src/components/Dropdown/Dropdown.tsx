@@ -12,9 +12,9 @@ import type * as RadixDropdownTypes from '@radix-ui/react-dropdown-menu/'
 interface RootProps {
   open?: boolean
   arrow?: boolean
-  onOpenChange?: RadixDropdownTypes.DropdownMenuOwnProps['onOpenChange']
-  side?: RadixDropdownTypes.DropdownMenuContentOwnProps['side']
-  align?: RadixDropdownTypes.DropdownMenuContentOwnProps['align']
+  onOpenChange?: RadixDropdownTypes.DropdownMenuProps['onOpenChange']
+  side?: RadixDropdownTypes.DropdownMenuContentProps['side']
+  align?: RadixDropdownTypes.DropdownMenuContentProps['align']
   overlay?: React.ReactNode
   children?: React.ReactNode
   className?: string
@@ -56,7 +56,6 @@ function Dropdown({
       )}
 
       <RadixDropdown.Content
-        disableOutsidePointerEvents={false}
         sideOffset={8}
         side={side}
         align={align}
