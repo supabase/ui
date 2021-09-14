@@ -12,20 +12,20 @@ import DropdownStyles from './Popover.module.css'
 import { IconX } from '../Icon/icons/IconX'
 
 interface RootProps {
-  align?: RadixPopoverTypes.PopoverContentOwnProps['align']
+  align?: RadixPopoverTypes.PopoverContentProps['align']
   ariaLabel?: string
   arrow?: boolean
   children?: React.ReactNode
   className?: string
   defaultOpen?: boolean
   modal?: boolean
-  onOpenChange?: RadixPopoverTypes.PopoverOwnProps['onOpenChange']
+  onOpenChange?: RadixPopoverTypes.PopoverProps['onOpenChange']
   open?: boolean
   overlay?: React.ReactNode
   portalled?: boolean
   showClose?: boolean
-  side?: RadixPopoverTypes.PopoverContentOwnProps['side']
-  sideOffset?: RadixPopoverTypes.PopoverContentOwnProps['sideOffset']
+  side?: RadixPopoverTypes.PopoverContentProps['side']
+  sideOffset?: RadixPopoverTypes.PopoverContentProps['sideOffset']
   style?: React.CSSProperties
 }
 
@@ -43,7 +43,7 @@ function Popover({
   portalled,
   showClose,
   side = 'bottom',
-  sideOffset = 8,
+  sideOffset = 6,
   style,
 }: RootProps) {
   let classes = [DropdownStyles['sbui-popover__content']]
