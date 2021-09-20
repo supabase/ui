@@ -68,13 +68,27 @@ const Modal = ({
   triggerElement,
 }: Props) => {
   const [open, setOpen] = React.useState(visible ? visible : false)
+  const shouldCloseOnOverlayPointerUpRef = React.useRef(false)
 
   useEffect(() => {
     setOpen(visible)
   }, [visible])
 
-  function stopPropagation(e: React.MouseEvent) {
+  function stopPropagation(e: React.MouseEvent | React.TouchEvent) {
     e.stopPropagation()
+  }
+  const onOverlayPointerDown = () => {
+    shouldCloseOnOverlayPointerUpRef.current = true
+  }
+  const onOverlayPointerUp = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault()
+    if (open && onCancel && shouldCloseOnOverlayPointerUpRef.current) {
+      onCancel()
+    }
+  }
+  const onContentPointerDown = (e: React.MouseEvent | React.TouchEvent) => {
+    e.stopPropagation()
+    shouldCloseOnOverlayPointerUpRef.current = false
   }
 
   let footerClasses = [ModalStyles['sbui-modal-footer']]
@@ -156,7 +170,10 @@ const Modal = ({
         <Dialog.Content forceMount style={{ width: '100vw' }}>
           <div
             className={ModalStyles['sbui-modal-container'] + ' ' + className}
-            onClick={() => (onCancel ? onCancel() : null)}
+            onMouseUp={onOverlayPointerUp}
+            onTouchEnd={onOverlayPointerUp}
+            onMouseDown={onOverlayPointerDown}
+            onTouchStart={onOverlayPointerDown}
           >
             <div className={ModalStyles['sbui-modal-flex-container']}>
               <Transition.Child
@@ -174,6 +191,10 @@ const Modal = ({
                   aria-modal="true"
                   aria-labelledby="modal-headline"
                   onClick={stopPropagation}
+                  onMouseUp={stopPropagation}
+                  onMouseDown={onContentPointerDown}
+                  onTouchStart={onContentPointerDown}
+                  onTouchEnd={stopPropagation}
                   style={style}
                 >
                   <div
