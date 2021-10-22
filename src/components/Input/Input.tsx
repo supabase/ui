@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
@@ -7,6 +7,7 @@ import { Button, Space, Typography, IconCopy } from '../../index'
 import InputStyles from './Input.module.css'
 
 import { useFormContext } from '../Form/FormContext'
+import { ValueFunction } from 'react-hot-toast/dist/core/types'
 export interface Props
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   copy?: boolean
@@ -26,6 +27,7 @@ export interface Props
   actions?: React.ReactNode
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   borderless?: boolean
+  validation?: (x: any) => void
 }
 
 function Input({
@@ -51,29 +53,59 @@ function Input({
   onFocus,
   onKeyDown,
   placeholder,
-  type,
-  value,
+  type = 'text',
+  value = undefined,
   style,
   reveal = false,
   actions,
   size = 'medium',
   borderless = false,
+  validation,
   ...props
 }: Props) {
   const [copyLabel, setCopyLabel] = useState('Copy')
   const [hidden, setHidden] = useState(reveal)
 
-  // if `type` is not assigned, default to text input
-  if (!type) {
-    type = 'text'
-  }
+  const {
+    formContextOnChange,
+    values,
+    errors,
+    handleBlur,
+    touched,
+    fieldLevelValidation,
+  } = useFormContext()
 
-  const { formContextOnChange } = useFormContext()
+  // console.log('errors in context', errors)
+
+  // console.log('values[id]', values[id])
+
+  if (values && !value) value = values[id]
+
+  if (errors && !error) error = errors[id]
+  // handle touched
+
+  if (handleBlur) onBlur = handleBlur
+  // if (touched) onBlur = handleBlur
+
+  function validator(_value: Props['value']) {
+    if (validation && id) {
+      const _validation = validation(_value)
+      fieldLevelValidation(id, _validation)
+    }
+  }
 
   function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (onChange) onChange(e)
     if (formContextOnChange) formContextOnChange(e)
+    // run field level validation
+    validator(e.target.value)
   }
+
+  useEffect(() => {
+    if (value) validator(value)
+  }, [])
+
+  error = touched && touched[id] ? error : undefined
 
   let inputClasses = [InputStyles['sbui-input']]
   if (error) inputClasses.push(InputStyles['sbui-input--error'])
@@ -128,7 +160,7 @@ function Input({
             // onChange={(e) => onInputChange(e)}
             onChange={onInputChange}
             onFocus={onFocus ? (event) => onFocus(event) : undefined}
-            onBlur={onBlur ? (event) => onBlur(event) : undefined}
+            onBlur={onBlur}
             onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
             placeholder={placeholder}
             ref={inputRef}
