@@ -1,5 +1,5 @@
 // @ts-ignore
-import React, { Ref } from 'react'
+import React, { Ref, useEffect } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
@@ -7,6 +7,9 @@ import { Space } from '../../index'
 // @ts-ignore
 import SelectStyles from './Select.module.css'
 import { Icon } from '../Icon'
+import { useFormContext } from '../Form/FormContext'
+
+import { validator } from './../../lib/Form/Form.utils'
 
 interface OptionProps {
   value: string
@@ -36,6 +39,7 @@ export interface Props
   actions?: React.ReactNode
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   borderless?: boolean
+  validation?: (x: any) => void
 }
 
 export const ColLayout = (props: any) => (
@@ -68,8 +72,35 @@ function Select({
   style,
   size = 'medium',
   borderless = false,
+  validation,
   ...props
 }: Props) {
+  const {
+    formContextOnChange,
+    values,
+    errors,
+    handleBlur,
+    touched,
+    fieldLevelValidation,
+  } = useFormContext()
+
+  if (values && !value) value = values[id]
+  if (errors && !error) error = errors[id]
+  if (handleBlur) onBlur = handleBlur
+  error = touched && touched[id] ? error : undefined
+
+  function onInputChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    if (onChange) onChange(e)
+    // update form
+    if (formContextOnChange) formContextOnChange(e)
+    // run field level validation
+    if (validation) fieldLevelValidation(id, validation(e.target.value))
+  }
+
+  useEffect(() => {
+    if (validation) fieldLevelValidation(id, validation(value))
+  }, [])
+
   let selectClasses = [SelectStyles['sbui-select']]
   if (error) selectClasses.push(SelectStyles['sbui-select--error'])
   if (icon) selectClasses.push(SelectStyles['sbui-select--with-icon'])
@@ -97,9 +128,9 @@ function Select({
           autoComplete={autoComplete}
           autoFocus={autofocus}
           className={selectClasses.join(' ')}
-          onChange={onChange ? (event) => onChange(event) : undefined}
+          onChange={onInputChange}
           onFocus={onFocus ? (event) => onFocus(event) : undefined}
-          onBlur={onBlur ? (event) => onBlur(event) : undefined}
+          onBlur={onBlur}
           ref={inputRef}
           value={value}
           disabled={disabled}

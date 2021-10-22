@@ -1,5 +1,5 @@
 import { useReducer } from 'react'
-import { useFormik, FormikProps, FormikConfig } from 'formik'
+import { useFormik, FormikConfig } from 'formik'
 import { FormContextProvider } from './FormContext'
 
 // interface Props extends FormikProps<any>, Partial FormikConfig<any> {
@@ -10,6 +10,11 @@ interface Props extends FormikConfig<any> {
 }
 
 function errorReducer(state: any, action: any) {
+  if (!action.error) {
+    const payload = state
+    delete payload[action.key]
+    return payload
+  }
   if (action) {
     return {
       ...state,
@@ -20,7 +25,7 @@ function errorReducer(state: any, action: any) {
   }
 }
 
-export default function Form({ children, validate, ...rest }: Props) {
+export default function Form({ validate, ...props }: Props) {
   const [fieldLevelErrors, dispatchErrors] = useReducer(errorReducer, null)
 
   function handleFieldLevelValidation(key: any, error: string) {
@@ -28,11 +33,14 @@ export default function Form({ children, validate, ...rest }: Props) {
   }
 
   const formik = useFormik({
-    ...rest,
-    initialValues: rest.initialValues,
-    onSubmit: rest.onSubmit,
-    validateOnBlur: true,
-    validate: validate || fieldLevelErrors,
+    ...props,
+    initialValues: props.initialValues,
+    onSubmit: props.onSubmit,
+    validate:
+      validate ||
+      function () {
+        return fieldLevelErrors
+      },
   })
 
   return (
@@ -45,7 +53,7 @@ export default function Form({ children, validate, ...rest }: Props) {
         touched={formik.touched}
         fieldLevelValidation={handleFieldLevelValidation}
         // children={rest.children}
-        children={children({
+        children={props.children({
           /** map of field names to specific error for that field */
           errors: formik.errors, // errors,
           // /** map of field names to whether the field has been touched */

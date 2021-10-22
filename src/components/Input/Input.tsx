@@ -75,37 +75,22 @@ function Input({
     fieldLevelValidation,
   } = useFormContext()
 
-  // console.log('errors in context', errors)
-
-  // console.log('values[id]', values[id])
-
   if (values && !value) value = values[id]
-
   if (errors && !error) error = errors[id]
-  // handle touched
-
   if (handleBlur) onBlur = handleBlur
-  // if (touched) onBlur = handleBlur
-
-  function validator(_value: Props['value']) {
-    if (validation && id) {
-      const _validation = validation(_value)
-      fieldLevelValidation(id, _validation)
-    }
-  }
+  error = touched && touched[id] ? error : undefined
 
   function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (onChange) onChange(e)
+    // update form
     if (formContextOnChange) formContextOnChange(e)
     // run field level validation
-    validator(e.target.value)
+    if (validation) fieldLevelValidation(id, validation(e.target.value))
   }
 
   useEffect(() => {
-    if (value) validator(value)
+    if (validation) fieldLevelValidation(id, validation(value))
   }, [])
-
-  error = touched && touched[id] ? error : undefined
 
   let inputClasses = [InputStyles['sbui-input']]
   if (error) inputClasses.push(InputStyles['sbui-input--error'])
@@ -157,7 +142,6 @@ function Input({
             disabled={disabled}
             id={id}
             name={name}
-            // onChange={(e) => onInputChange(e)}
             onChange={onInputChange}
             onFocus={onFocus ? (event) => onFocus(event) : undefined}
             onBlur={onBlur}
