@@ -41,22 +41,27 @@ export const Default = () => {
         }}
         handleIsSubmitting={setIsSubmitting}
       >
-        <div className="space-y-4">
-          <p>{isSubmitting ? 'submitting' : 'not submitting'}</p>
-          <Input
-            id="first_name"
-            label="first name"
-            placeholder="something in here"
-          />
-          <Input
-            id="last_name"
-            label="last name"
-            placeholder="something in here"
-          />
-          <Button loading={isSubmitting} type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </div>
+        {({ isSubmitting }: any) => (
+          <>
+            <div className="space-y-4">
+              <p>{isSubmitting ? 'submitting' : 'not submitting'}</p>
+              <Input
+                id="first_name"
+                label="first name"
+                placeholder="something in here"
+              />
+              <Input
+                id="last_name"
+                label="last name"
+                placeholder="something in here"
+              />
+              {/* <button type="submit">Submit me</button> */}
+              <Button loading={isSubmitting} type="primary" htmlType="submit">
+                Submit
+              </Button>
+            </div>
+          </>
+        )}
       </Form>
     </>
   )

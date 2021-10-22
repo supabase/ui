@@ -1,22 +1,15 @@
 import { useReducer } from 'react'
-import {
-  Formik,
-  FormikConfig,
-  FormikState,
-  FormikComputedProps,
-  useFormik as UseFormik,
-} from 'formik'
+import { useFormik, FormikProps, FormikConfig } from 'formik'
 import { FormContextProvider } from './FormContext'
 
-interface Props extends FormikConfig<any>, Partial<FormikState<any>> {
+// interface Props extends FormikProps<any>, Partial FormikConfig<any> {
+interface Props extends FormikConfig<any> {
   children: any
   handleIsSubmitting?: any
   handleIsValidating?: any
 }
 
 function errorReducer(state: any, action: any) {
-  console.log('action', action)
-  console.log('state', state)
   if (action) {
     return {
       ...state,
@@ -27,110 +20,44 @@ function errorReducer(state: any, action: any) {
   }
 }
 
-// function reducer(state: any, action: any) {
-//   if (action) {
-//     return {
-//       ...state,
-//       [action.target.id]: {
-//         value: action.target.value,
-//         name: action.target.name,
-//       },
-//     }
-//   } else {
-//     throw new Error()
-//   }
-// }
-
-export default function Form({ validate, ...rest }: any) {
-  // const [state, dispatch] = useReducer(reducer, null)
-
+export default function Form({ children, validate, ...rest }: Props) {
   const [fieldLevelErrors, dispatchErrors] = useReducer(errorReducer, null)
-
-  const { handleIsSubmitting, handleIsValidating } = rest
-
-  // function childOnChange(e: any) {
-  //   e.persist()
-  //   dispatch(e)
-  // }
 
   function handleFieldLevelValidation(key: any, error: string) {
     dispatchErrors({ key, error })
   }
 
-  // function HandleFieldLevelErrors() {
-  //   console.log('fieldLevelErrors, should be obj', fieldLevelErrors)
-  //   return fieldLevelErrors
-  // }
-
-  console.log('final fieldLevelErrors', fieldLevelErrors)
+  const formik = useFormik({
+    ...rest,
+    initialValues: rest.initialValues,
+    onSubmit: rest.onSubmit,
+    validateOnBlur: true,
+    validate: validate || fieldLevelErrors,
+  })
 
   return (
-    <Formik
-      {...rest}
-      validate={
-        validate ||
-        function () {
-          return fieldLevelErrors
-        }
-      }
-    >
-      {({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-
-        isSubmitting,
-        isValidating,
-        // status,
-        // submitCount,
-        /* and other goodies */
-      }) => {
-        if (handleIsSubmitting) handleIsSubmitting(isSubmitting)
-        if (handleIsValidating) handleIsValidating(isValidating)
-
-        return (
-          <form onSubmit={handleSubmit}>
-            <FormContextProvider
-              values={values}
-              errors={errors}
-              formContextOnChange={handleChange}
-              handleBlur={handleBlur}
-              touched={touched}
-              fieldLevelValidation={handleFieldLevelValidation}
-              children={rest.children}
-              // children={props.children({
-              //   /** map of field names to specific error for that field */
-              //   // errors,
-              //   // /** map of field names to whether the field has been touched */
-              //   // touched,
-              //   /** whether the form is currently submitting */
-              //   isSubmitting,
-              //   /** whether the form is currently validating (prior to submission) */
-              //   isValidating,
-              //   /** Number of times user tried to submit the form */
-              //   // submitCount,
-              // })}
-            />
-          </form>
-        )
-      }}
-    </Formik>
+    <form onSubmit={formik.handleSubmit}>
+      <FormContextProvider
+        values={formik.values}
+        errors={formik.errors}
+        formContextOnChange={formik.handleChange}
+        handleBlur={formik.handleBlur}
+        touched={formik.touched}
+        fieldLevelValidation={handleFieldLevelValidation}
+        // children={rest.children}
+        children={children({
+          /** map of field names to specific error for that field */
+          errors: formik.errors, // errors,
+          // /** map of field names to whether the field has been touched */
+          touched: formik.touched,
+          /** whether the form is currently submitting */
+          isSubmitting: formik.isSubmitting,
+          /** whether the form is currently validating (prior to submission) */
+          isValidating: formik.isValidating,
+          /** Number of times user tried to submit the form */
+          submitCount: formik.submitCount,
+        })}
+      />
+    </form>
   )
 }
-
-// function reducer(state: any, action: any) {
-//   if (action) {
-//     return {
-//       ...state,
-//       [action.target.id]: {
-//         value: action.target.value,
-//         name: action.target.name,
-//       },
-//     }
-//   } else {
-//     throw new Error()
-//   }
-// }
