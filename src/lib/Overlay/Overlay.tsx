@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-
-import { Transition } from '../../components/Transition'
-
+import React, { useEffect, useRef, useState } from 'react'
 //@ts-ignore
-import Hooks from './../../lib/Hooks'
+import { useOnClickOutside } from './../../lib/Hooks'
 import { DropdownContext } from './OverlayContext'
+import { AnimationTailwindClasses } from '../../types'
+// @ts-ignore
+import OverlayStyles from './Overlay.module.css'
 
-import './Overlay.css'
+import { Transition } from '@headlessui/react'
 
 interface Props {
   visible?: boolean
@@ -18,22 +18,35 @@ interface Props {
     | 'bottomCenter'
     | 'topLeft'
     | 'topRight'
-    | 'topCentre'
+    | 'topCenter'
   onVisibleChange?: any
   disabled?: boolean
   triggerElement?: any
+  overlayStyle?: React.CSSProperties
+  overlayClassName?: string
+  transition?: AnimationTailwindClasses
 }
 
 function Overlay({
   visible,
   overlay,
   children,
-  placement = 'topCentre',
+  placement = 'topCenter',
   onVisibleChange,
   disabled,
   triggerElement,
+  overlayStyle,
+  overlayClassName,
+  transition,
 }: Props) {
-  const [visibleState, setVisibleState] = useState(false)
+  const ref = useRef(null)
+  const [visibleState, setVisibleState] = useState(!!visible)
+
+  let classes = [
+    OverlayStyles['sbui-overlay-container'],
+    OverlayStyles[`sbui-overlay-container--${placement}`],
+  ]
+  if (overlayClassName) classes.push(overlayClassName)
 
   function onToggle() {
     setVisibleState(!visibleState)
@@ -41,12 +54,15 @@ function Overlay({
   }
 
   // allow ovveride of Dropdown
-  if (visible) {
-    setVisibleState(visible)
-  }
+  useEffect(() => {
+    setVisibleState(!!visible)
+  }, [visible])
 
-  const clickContainerRef = Hooks.clickOutsideListener((event: any) => {
-    if (visibleState) setVisibleState(!visibleState)
+  // detect clicks from outside
+  useOnClickOutside(ref, () => {
+    if (visibleState) {
+      setVisibleState(!visibleState)
+    }
   })
 
   const TriggerElement = () => {
@@ -54,7 +70,7 @@ function Overlay({
   }
 
   return (
-    <div ref={clickContainerRef} className="sbui-overlay">
+    <div ref={ref} className={OverlayStyles['sbui-overlay']}>
       {placement === 'bottomRight' ||
       placement === 'bottomLeft' ||
       placement === 'bottomCenter' ? (
@@ -62,16 +78,14 @@ function Overlay({
       ) : null}
       <Transition
         show={visibleState}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
+        enter={OverlayStyles[`sbui-overlay--enter`]}
+        enterFrom={OverlayStyles[`sbui-overlay--enterFrom`]}
+        enterTo={OverlayStyles[`sbui-overlay--enterTo`]}
+        leave={OverlayStyles[`sbui-overlay--leave`]}
+        leaveFrom={OverlayStyles[`sbui-overlay--leaveFrom`]}
+        leaveTo={OverlayStyles[`sbui-overlay--leaveTo`]}
       >
-        <div
-          className={`sbui-overlay-container sbui-overlay-container--${placement}`}
-        >
+        <div className={classes.join(' ')} style={overlayStyle}>
           <DropdownContext.Provider value={{ onClick: onToggle }}>
             {children}
           </DropdownContext.Provider>
@@ -79,7 +93,7 @@ function Overlay({
       </Transition>
       {placement === 'topRight' ||
       placement === 'topLeft' ||
-      placement === 'topCentre' ? (
+      placement === 'topCenter' ? (
         <TriggerElement />
       ) : null}
     </div>

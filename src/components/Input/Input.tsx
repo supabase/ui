@@ -2,50 +2,38 @@ import React, { useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
-import { useFormContext } from '../Form/FormContext'
-import Typography from '../Typography'
-import './Input.css'
+import { Button, Space, Typography, IconCopy } from '../../index'
+// @ts-ignore
+import InputStyles from './Input.module.css'
 
-export interface Props {
-  autoComplete?: string
-  autofocus?: boolean
-  className?: string
+import { useFormContext } from '../Form/FormContext'
+export interface Props
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  copy?: boolean
+  defaultValue?: string | number
   descriptionText?: string
   disabled?: boolean
   error?: string
   icon?: any
-  id?: string
   inputRef?: string
   label?: string
+  afterLabel?: string
+  beforeLabel?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
   name?: string
-  onChange?: any
-  placeholder?: string
-  style?: React.CSSProperties
-  type?:
-    | 'color'
-    | 'date'
-    | 'datetime-local'
-    | 'email'
-    | 'month'
-    | 'number'
-    | 'password'
-    | 'reset'
-    | 'search'
-    | 'submit'
-    | 'tel'
-    | 'text'
-    | 'time'
-    | 'url'
-    | 'week'
-  value?: any
+  reveal?: boolean
+  actions?: React.ReactNode
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+  borderless?: boolean
 }
 
 function Input({
   autoComplete,
-  autofocus,
+  autoFocus,
   className,
+  copy,
+  defaultValue,
   descriptionText,
   disabled,
   error,
@@ -53,15 +41,28 @@ function Input({
   id,
   inputRef,
   label,
+  afterLabel,
+  beforeLabel,
   labelOptional,
   layout,
   name,
   onChange,
+  onBlur,
+  onFocus,
+  onKeyDown,
   placeholder,
   type,
   value,
   style,
+  reveal = false,
+  actions,
+  size = 'medium',
+  borderless = false,
+  ...props
 }: Props) {
+  const [copyLabel, setCopyLabel] = useState('Copy')
+  const [hidden, setHidden] = useState(reveal)
+
   // if `type` is not assigned, default to text input
   if (!type) {
     type = 'text'
@@ -74,37 +75,93 @@ function Input({
     if (formContextOnChange) formContextOnChange(e)
   }
 
+  let inputClasses = [InputStyles['sbui-input']]
+  if (error) inputClasses.push(InputStyles['sbui-input--error'])
+  if (icon) inputClasses.push(InputStyles['sbui-input--with-icon'])
+  if (size) inputClasses.push(InputStyles[`sbui-input--${size}`])
+  if (borderless) inputClasses.push(InputStyles['sbui-input--borderless'])
+
+  function onCopy(value: any) {
+    navigator.clipboard.writeText(value).then(
+      function () {
+        /* clipboard successfully set */
+        setCopyLabel('Copied')
+        setTimeout(function () {
+          setCopyLabel('Copy')
+        }, 3000)
+      },
+      function () {
+        /* clipboard write failed */
+        setCopyLabel('Failed to copy')
+      }
+    )
+  }
+
+  function onReveal() {
+    setHidden(false)
+  }
+
+  const hiddenPlaceholder = '**** **** **** ****'
+
   return (
     <div className={className}>
       <FormLayout
         label={label}
+        afterLabel={afterLabel}
+        beforeLabel={beforeLabel}
         labelOptional={labelOptional}
         layout={layout}
         id={id}
         error={error}
         descriptionText={descriptionText}
         style={style}
+        size={size}
       >
-        <div className="sbui-input-container">
+        <div className={InputStyles['sbui-input-container']}>
           <input
             autoComplete={autoComplete}
-            autoFocus={autofocus}
+            autoFocus={autoFocus}
+            defaultValue={defaultValue}
             disabled={disabled}
             id={id}
             name={name}
-            onChange={(e) => onInputChange(e)}
+            // onChange={(e) => onInputChange(e)}
+            onChange={onInputChange}
+            onFocus={onFocus ? (event) => onFocus(event) : undefined}
+            onBlur={onBlur ? (event) => onBlur(event) : undefined}
+            onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
             placeholder={placeholder}
             ref={inputRef}
             type={type}
-            value={value}
-            className={
-              'sbui-input' +
-              (error ? ' sbui-input--error' : '') +
-              (icon ? ' sbui-input--with-icon' : '')
-            }
+            value={hidden ? hiddenPlaceholder : value}
+            className={inputClasses.join(' ')}
+            {...props}
           />
           {icon && <InputIconContainer icon={icon} />}
-          {error && <InputErrorIcon />}
+          {copy || error || actions ? (
+            <Space
+              className={InputStyles['sbui-input-actions-container']}
+              size={1}
+            >
+              {error && <InputErrorIcon size={size} />}
+              {copy && !hidden ? (
+                <Button
+                  size="tiny"
+                  type="default"
+                  onClick={() => onCopy(value)}
+                  icon={<IconCopy />}
+                >
+                  {copyLabel}
+                </Button>
+              ) : null}
+              {hidden && reveal ? (
+                <Button size="tiny" type="default" onClick={onReveal}>
+                  Reveal
+                </Button>
+              ) : null}
+              {actions && actions}
+            </Space>
+          ) : null}
         </div>
       </FormLayout>
     </div>
@@ -121,15 +178,22 @@ export interface TextAreaProps {
   icon?: any
   id?: string
   label?: string
+  afterLabel?: string
+  beforeLabel?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
   name?: string
   onChange?(x: React.ChangeEvent<HTMLTextAreaElement>): void
+  onFocus?(x: React.FocusEvent<HTMLTextAreaElement>): void
+  onBlur?(x: React.FocusEvent<HTMLTextAreaElement>): void
+  onKeyDown?(x: React.KeyboardEvent<HTMLTextAreaElement>): void
   placeholder?: string
   value?: any
   style?: React.CSSProperties
   rows?: number
   limit?: number
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+  borderless?: boolean
 }
 
 function TextArea({
@@ -142,28 +206,37 @@ function TextArea({
   icon,
   id,
   label,
+  afterLabel,
+  beforeLabel,
   labelOptional,
   layout,
   name,
   onChange,
+  onFocus,
+  onBlur,
+  onKeyDown,
   placeholder,
   value,
   style,
   rows = 4,
   limit,
+  size,
+  borderless = false,
 }: TextAreaProps) {
   const [charLength, setCharLength] = useState(0)
 
-  let classes = ['sbui-input']
-  if (error) classes.push('sbui-input--error')
-  if (icon) classes.push('sbui-input--with-icon')
+  let classes = [InputStyles['sbui-input']]
+  if (error) classes.push(InputStyles['sbui-input--error'])
+  if (icon) classes.push(InputStyles['sbui-input--with-icon'])
+  if (size) classes.push(InputStyles[`sbui-input--${size}`])
+  if (borderless) classes.push(InputStyles['sbui-input--borderless'])
 
   const { formContextOnChange } = useFormContext()
 
   function onInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setCharLength(e.target.value.length)
     if (onChange) {
       onChange(e)
-      setCharLength(e.target.value.length)
     }
     if (formContextOnChange) formContextOnChange(e)
   }
@@ -172,15 +245,18 @@ function TextArea({
     <FormLayout
       className={className}
       label={label}
+      afterLabel={afterLabel}
+      beforeLabel={beforeLabel}
       labelOptional={labelOptional}
       layout={layout}
       id={id}
       error={error}
       descriptionText={descriptionText}
       style={style}
+      size={size}
     >
       <textarea
-        autoComplete={autoComplete && 'autoComplete'}
+        autoComplete={autoComplete ? 'on' : 'off'}
         autoFocus={autofocus}
         disabled={disabled}
         id={id}
@@ -189,6 +265,9 @@ function TextArea({
         cols={100}
         placeholder={placeholder}
         onChange={onInputChange}
+        onFocus={onFocus ? (event) => onFocus(event) : undefined}
+        onBlur={onBlur ? (event) => onBlur(event) : undefined}
+        onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
         value={value}
         className={classes.join(' ')}
         maxLength={limit}

@@ -5,82 +5,10 @@ Supabase UI is a React UI library.
 🚧  
 Supabase UI is still a work-in-progress until a major release is published.
 
-## Roadmap
+[![Product hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=290768&theme=light)](https://www.producthunt.com/posts/supabase-ui)
 
-Some of these are a work in progress - we invite anyone to submit a [feature request](https://github.com/supabase/ui/issues/new?labels=enhancement&template=2.Feature_request.md) if there is something you would like to see.
 
-_General_
-
-- [x] Button
-- [x] Typography
-- [x] Icon
-
-_Data Input_
-
-- [x] Input
-- [ ] InputNumber
-- [x] Select
-- [x] Checkbox (and Checkbox Groups)
-- [x] Radio (and Radio Groups)
-- [x] Toggle (work in progress)
-- [ ] Upload (work in progress)
-- [ ] Slider
-- [ ] Date picker
-- [ ] Time picker
-- [ ] Form
-
-_Layout_
-
-- [ ] Layout
-- [ ] Grid (Flex)
-- [x] Divider
-- [x] Space (Flex)
-
-_Display_
-
-- [x] Card
-- [ ] Avatar
-- [ ] Alert
-- [x] Badge
-- [x] Menu
-- [ ] Tooltips
-- [ ] Tables
-- [ ] Code block
-
-_Navigation_
-
-- [ ] Tabs
-- [ ] Breadcrumb
-- [x] Dropdown
-- [ ] Menu
-- [ ] Page Header
-- [ ] Sidebar
-- [ ] Flyout menu
-- [ ] Steps
-
-_Overlay_
-
-- [x] Modal
-- [ ] Drawer / SidePanel
-- [ ] Toast messages / Notifaction
-- [ ] Progress
-- [ ] Feeds / Timeline
-
-_Utility_
-
-- [x] Loading
-- [x] Transition (work in progress)
-
-_Misc_
-
-- [ ] Storybook docs
-- [ ] Themeing (in progress)
-- [ ] Supabase Auth Elements
-- [ ] Documentation website
-
-We would be keen to hear any feedback on this project.
-
-Feel free to [submit a question or idea here](https://github.com/supabase/supabase/discussions/category_choices)
+[View docs](https://ui.supabase.com)
 
 ## Install Supabase UI
 
@@ -102,44 +30,150 @@ return <Button>I am a Supabase UI button</Button>
 
 It is probably advisable to use [Normalize](https://github.com/sindresorhus/modern-normalize) with Supabase UI for the timebeing.
 
-## Run storybook locally
+## Using Icons
 
-Supabase UI uses storybook to develop and organise components.
-They can be viewed locally in the Storybook docs explorer
+We use [Feather icon library](https://feathericons.com/) in Supabase UI
 
-make sure you are in the supabase-ui folder
+You can use any Icon from the library as a component by prepending `Icon` to any Icon name, like, `<IconMail>`
 
-```cli
-cd supabase-ui
+```js
+import { IconMail } from '@supabase/ui'
+
+//...
+
+return <IconMail size="small" />
 ```
 
-run storybook
+## Using Supabase UI Auth
+
+You can use our Auth widget straight out the box with Supabase auth including social logins.
+
+<img width="380" alt="Screenshot 2021-02-05 at 19 25 01" src="https://user-images.githubusercontent.com/8291514/107029572-32f72d00-67ea-11eb-982e-e737f052eea1.png">
+
+
+The Auth component also includes a context component which detects whether a user is logged in or not.
+
+Make sure to also install `@supabase/supabase-js`
 
 ```cli
-npm run storybook
+npm install @supabase/supabase-js
 ```
 
-(you may need to run `npm install` first)
+You can then easily import `Auth` from the ui library and pass the `createClient` to the `Auth` component.
 
-Storybook runs by default on `http://localhost:6006/`
+```js
+import { Auth, Typography, Button } from "@supabase/ui";
+import { createClient } from "@supabase/supabase-js";
 
-## Local Development
+const { Text } = Typography
 
-If you want to test Supabase UI components locally, in context in another project locally, then you will need to `npm link` the supabase-ui project locally.
+// Create a single supabase client for interacting with your database
+const supabase = createClient(
+  "https://xyzcompany.supabase.co",
+  "public-anon-key"
+);
 
-Follow these instructions here ->
-[NPM Linking and Unlinking instructions](https://dev.to/erinbush/npm-linking-and-unlinking-2h1g)
+const Container = (props) => {
+  const { user } = Auth.useUser();
+  if (user)
+    return (
+      <>
+        <Text>Signed in: {user.email}</Text>
+        <Button block onClick={() => props.supabaseClient.auth.signOut()}>
+          Sign out
+        </Button>
+      </>
+    );
+  return props.children;
+};
 
-### Common issues
+export default function Home() {
+  return (
+    <Auth.UserContextProvider supabaseClient={supabase}>
+      <Container supabaseClient={supabase}>
+        <Auth providers={['facebook', 'github']} supabaseClient={supabase}/>
+      </Container>
+    </Auth.UserContextProvider>
+  );
+};
+```
 
-_A common issue found with local testing is multiple versions of react running._
+## Roadmap
 
-You may need to npm-link the react node module in the target app you want to locally test the library in. Then use that version of react inside the library, and then npm-link the library so the target app can use the library with just the 1 version of react.
+Some of these are a work in progress - we invite anyone to submit a [feature request](https://github.com/supabase/ui/issues/new?labels=enhancement&template=2.Feature_request.md) if there is something you would like to see.
 
-Step by step:
+_General_
 
-• run npm link in /your-app/node_modules/react. This should make the React's global link.
+- [x] Button
+- [x] Typography
+- [x] Icon
+- [x] Image (work in progress)
 
-• run npm link react in /supabase/ui. This should make the library use the application’s React copy.
+_Data Input_
 
-• run npm link @supabase/ui in /your-app
+- [x] Input
+- [x] InputNumber
+- [x] Select (custom select wip)
+- [x] Checkbox
+- [x] Radio
+- [x] Toggle
+- [ ] Upload
+- [ ] Slider
+- [ ] Date picker
+- [ ] Time picker
+- [ ] Form
+
+_Layout_
+
+~~- [ ] Layout~~
+~~- [ ] Grid (Flex)~~
+- [x] Divider
+- [x] Space (Flex)
+
+_Display_
+
+- [x] Card
+- [ ] Avatar
+- [x] Accordion
+- [x] Alert
+- [x] Badge
+- [x] Menu
+- [ ] Tooltips
+- [ ] Tables
+- [ ] Code block
+
+_Navigation_
+
+- [x] Tabs
+- [ ] Breadcrumb
+- [x] Dropdown
+- [x] Menu
+- [ ] Page Header
+- [ ] Sidebar
+- [ ] Flyout menu
+- [ ] Steps
+
+_Overlay_
+
+- [x] Modal
+- [x] Context Menu
+- [x] Drawer / SidePanel
+- [ ] Toast messages / Notification
+- [ ] Progress
+- [ ] Feeds / Timeline
+
+_Utility_
+
+- [x] Loading
+- [x] Transition (work in progress)
+
+_Misc_
+
+- [x] Storybook docs
+- [ ] Theming (in progress)
+- [x] Supabase Auth Elements
+- [x] Documentation website
+
+We would be keen to hear any feedback on this project.
+
+Feel free to [submit a question or idea here](https://github.com/supabase/supabase/discussions/category_choices)

@@ -1,8 +1,6 @@
 import React, { useRef, useState } from 'react'
 
-import { Button } from '.'
-import { Space } from '../../components/Space'
-import { Icon } from '../Icon'
+import { Button, Space, IconPackage, IconChevronRight } from './../../index'
 
 export default {
   title: 'General/Button',
@@ -18,6 +16,9 @@ export const withIconRight = (args: any) => (
 export const withBlock = (args: any) => <Button {...args}>Button text</Button>
 export const withOnlyIcon = (args: any) => <Button {...args} />
 export const withOnlyLoading = (args: any) => <Button {...args} />
+export const withLoadingCentered = (args: any) => (
+  <Button {...args}>Loading icon is centered</Button>
+)
 export const withRef = () => {
   const buttonRef = useRef(null)
   const [msg, setMsg] = useState('Click button to console.log Ref')
@@ -159,7 +160,11 @@ export const allButtons = (args: any) => (
   </>
 )
 
-const icon = <Icon type={'Package'} />
+export const withCustomTag = (args: any) => (
+  <Button {...args}>Button text</Button>
+)
+
+const icon = <IconPackage />
 
 withIcon.args = {
   type: 'primary',
@@ -168,7 +173,7 @@ withIcon.args = {
 
 withIconRight.args = {
   type: 'primary',
-  iconRight: <Icon type={'ChevronRight'} strokeWidth={2} />,
+  iconRight: <IconChevronRight strokeWidth={2} />,
 }
 
 withStyles.args = {
@@ -189,7 +194,16 @@ withOnlyLoading.args = {
   loading: true,
 }
 
+withLoadingCentered.args = {
+  loading: true,
+  loadingCentered: true,
+}
+
 allButtons.args = {
   loading: false,
   danger: false,
+}
+
+withCustomTag.args = {
+  as: 'span',
 }

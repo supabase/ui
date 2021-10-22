@@ -1,22 +1,22 @@
 import React, { useEffect, useState, createContext, useContext } from 'react'
 import { SupabaseClient, Session, User } from '@supabase/supabase-js'
 
-interface AuthSession {
-  user: User
-  session: Session
+export interface AuthSession {
+  user: User | null
+  session: Session | null
 }
 
 const UserContext = createContext<AuthSession>({ user: null, session: null })
 
-interface Props {
+export interface Props {
   supabaseClient: SupabaseClient
   [propName: string]: any
 }
 
 export const UserContextProvider = (props: Props) => {
   const { supabaseClient } = props
-  const [session, setSession] = useState(null)
-  const [user, setUser] = useState(null)
+  const [session, setSession] = useState<Session | null>(null)
+  const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
     const session = supabaseClient.auth.session()
@@ -30,7 +30,7 @@ export const UserContextProvider = (props: Props) => {
     )
 
     return () => {
-      authListener.unsubscribe()
+      authListener?.unsubscribe()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

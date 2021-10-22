@@ -1,7 +1,0 @@
-.sbui-menu__item {
-  @apply px-4 py-2 cursor-pointer hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-dark-800;
-}
-
-.sbui-menu__group {
-  @apply px-4 py-2;
-}

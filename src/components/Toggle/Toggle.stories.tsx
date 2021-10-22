@@ -1,6 +1,9 @@
 import React from 'react'
 
 import { Toggle } from '.'
+import { Button } from '../Button'
+import { Input } from '../Input'
+import { Space } from '../Space'
 
 export default {
   title: 'Data Input/Toggle',
@@ -13,6 +16,8 @@ export default {
 export const Primary = (args: any) => <Toggle {...args} />
 export const checkedDefault = (args: any) => <Toggle {...args} />
 export const noLabel = (args: any) => <Toggle {...args} />
+export const withBeforeAndAfterLabel = (args: any) => <Toggle {...args} />
+export const size = (args: any) => <Toggle {...args} />
 
 Primary.args = {
   descriptionText: 'This is optional description',
@@ -38,4 +43,15 @@ noLabel.args = {
   error: '',
   name: 'radiogroup-example',
   layout: 'horizontal',
+}
+
+withBeforeAndAfterLabel.args = {
+  label: 'Label',
+  beforeLabel: 'Before : ',
+  afterLabel: ' : After',
+}
+
+size.args = {
+  label: 'Try different sizes',
+  size: 'tiny',
 }

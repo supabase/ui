@@ -1,37 +1,57 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SupabaseClient, Provider } from '@supabase/supabase-js'
 import {
   Input,
   Checkbox,
   Button,
-  Icon,
   Space,
   Typography,
   Divider,
+  IconKey,
+  IconMail,
+  IconInbox,
+  IconLock,
 } from './../../index'
 import { UserContextProvider, useUser } from './UserContext'
 import * as SocialIcons from './Icons'
-import './Auth.css'
+// @ts-ignore
+import AuthStyles from './Auth.module.css'
 
-const VIEWS = {
+const VIEWS: ViewsMap = {
   SIGN_IN: 'sign_in',
   SIGN_UP: 'sign_up',
   FORGOTTEN_PASSWORD: 'forgotten_password',
   MAGIC_LINK: 'magic_link',
+  UPDATE_PASSWORD: 'update_password',
 }
 
-interface Props {
+interface ViewsMap {
+  [key: string]: ViewType
+}
+
+type ViewType =
+  | 'sign_in'
+  | 'sign_up'
+  | 'forgotten_password'
+  | 'magic_link'
+  | 'update_password'
+
+type RedirectTo = undefined | string
+
+export interface Props {
   supabaseClient: SupabaseClient
-  className?: any
-  style?: any
-  children?: any
-  authView?: any
+  className?: string
+  children?: React.ReactNode
+  style?: React.CSSProperties
   socialLayout?: 'horizontal' | 'vertical'
   socialColors?: boolean
   socialButtonSize?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   providers?: Provider[]
   verticalSocialLayout?: any
-  view?: 'sign_in' | 'sign_up' | 'forgotten_password' | 'magic_link'
+  view?: ViewType
+  redirectTo?: RedirectTo
+  onlyThirdPartyProviders?: boolean
+  magicLink?: boolean
 }
 
 function Auth({
@@ -43,15 +63,21 @@ function Auth({
   socialButtonSize = 'medium',
   providers,
   view = 'sign_in',
-}: Props) {
+  redirectTo,
+  onlyThirdPartyProviders = false,
+  magicLink = false,
+}: Props): JSX.Element | null {
   const [authView, setAuthView] = useState(view)
+  const [defaultEmail, setDefaultEmail] = useState('')
+  const [defaultPassword, setDefaultPassword] = useState('')
 
   const verticalSocialLayout = socialLayout === 'vertical' ? true : false
 
-  let containerClasses = ['sbui-auth']
+  let containerClasses = [AuthStyles['sbui-auth']]
   if (className) {
     containerClasses.push(className)
   }
+
   const Container = (props: any) => (
     <div className={containerClasses.join(' ')} style={style}>
       <Space size={8} direction={'vertical'}>
@@ -62,11 +88,19 @@ function Auth({
           socialLayout={socialLayout}
           socialButtonSize={socialButtonSize}
           socialColors={socialColors}
+          redirectTo={redirectTo}
+          onlyThirdPartyProviders={onlyThirdPartyProviders}
+          magicLink={magicLink}
         />
-        {props.children}
+        {!onlyThirdPartyProviders && props.children}
       </Space>
     </div>
   )
+
+  useEffect(() => {
+    // handle view override
+    setAuthView(view)
+  }, [view])
 
   switch (authView) {
     case VIEWS.SIGN_IN:
@@ -74,35 +108,50 @@ function Auth({
       return (
         <Container>
           <EmailAuth
+            id={authView === VIEWS.SIGN_UP ? 'auth-sign-up' : 'auth-sign-in'}
             supabaseClient={supabaseClient}
             authView={authView}
             setAuthView={setAuthView}
+            defaultEmail={defaultEmail}
+            defaultPassword={defaultPassword}
+            setDefaultEmail={setDefaultEmail}
+            setDefaultPassword={setDefaultPassword}
+            redirectTo={redirectTo}
+            magicLink={magicLink}
           />
         </Container>
       )
-      break
     case VIEWS.FORGOTTEN_PASSWORD:
       return (
         <Container>
           <ForgottenPassword
             supabaseClient={supabaseClient}
             setAuthView={setAuthView}
+            redirectTo={redirectTo}
           />
         </Container>
       )
-      break
+
     case VIEWS.MAGIC_LINK:
       return (
         <Container>
           <MagicLink
             supabaseClient={supabaseClient}
             setAuthView={setAuthView}
+            redirectTo={redirectTo}
           />
         </Container>
       )
-      break
+
+    case VIEWS.UPDATE_PASSWORD:
+      return (
+        <Container>
+          <UpdatePassword supabaseClient={supabaseClient} />
+        </Container>
+      )
+
     default:
-      break
+      return null
   }
 }
 
@@ -116,29 +165,49 @@ function SocialAuth({
   socialButtonSize,
   providers,
   verticalSocialLayout,
+  redirectTo,
+  onlyThirdPartyProviders,
+  magicLink,
   ...props
 }: Props) {
   const buttonStyles: any = {
-    google: {
-      backgroundColor: '#ce4430',
+    azure: {
+      backgroundColor: '#008AD7',
+      color: 'white',
+    },
+    bitbucket: {
+      backgroundColor: '#205081',
       color: 'white',
     },
     facebook: {
       backgroundColor: '#4267B2',
       color: 'white',
     },
-    twitter: {
-      backgroundColor: '#1DA1F2',
-    },
-    gitlab: {
-      backgroundColor: '#FC6D27',
-    },
     github: {
       backgroundColor: '#333',
       color: 'white',
     },
-    bitbucket: {
-      backgroundColor: '#205081',
+    gitlab: {
+      backgroundColor: '#FC6D27',
+    },
+    google: {
+      backgroundColor: '#ce4430',
+      color: 'white',
+    },
+    twitter: {
+      backgroundColor: '#1DA1F2',
+      color: 'white',
+    },
+    apple: {
+      backgroundColor: '#000',
+      color: 'white',
+    },
+    discord: {
+      backgroundColor: '#404fec',
+      color: 'white',
+    },
+    twitch: {
+      backgroundColor: '#9146ff',
       color: 'white',
     },
   }
@@ -147,7 +216,10 @@ function SocialAuth({
 
   const handleProviderSignIn = async (provider: Provider) => {
     setLoading(true)
-    const { error } = await supabaseClient.auth.signIn({ provider })
+    const { error } = await supabaseClient.auth.signIn(
+      { provider },
+      { redirectTo }
+    )
     if (error) setError(error.message)
     setLoading(false)
   }
@@ -157,7 +229,10 @@ function SocialAuth({
       {providers && providers.length > 0 && (
         <React.Fragment>
           <Space size={4} direction={'vertical'}>
-            <Typography.Text type="secondary" className="sbui-auth-label">
+            <Typography.Text
+              type="secondary"
+              className={AuthStyles['sbui-auth-label']}
+            >
               Sign in with
             </Typography.Text>
             <Space size={2} direction={socialLayout}>
@@ -178,6 +253,7 @@ function SocialAuth({
                       icon={<AuthIcon />}
                       loading={loading}
                       onClick={() => handleProviderSignIn(provider)}
+                      className="flex items-center"
                     >
                       {verticalSocialLayout && 'Sign up with ' + provider}
                     </Button>
@@ -186,7 +262,7 @@ function SocialAuth({
               })}
             </Space>
           </Space>
-          <Divider>or continue with</Divider>
+          {!onlyThirdPartyProviders && <Divider>or continue with</Divider>}
         </React.Fragment>
       )}
     </Space>
@@ -195,18 +271,38 @@ function SocialAuth({
 
 function EmailAuth({
   authView,
+  defaultEmail,
+  defaultPassword,
+  id,
   setAuthView,
+  setDefaultEmail,
+  setDefaultPassword,
   supabaseClient,
+  redirectTo,
+  magicLink,
 }: {
-  authView: any
+  authView: ViewType
+  defaultEmail: string
+  defaultPassword: string
+  id: 'auth-sign-up' | 'auth-sign-in'
   setAuthView: any
+  setDefaultEmail: (email: string) => void
+  setDefaultPassword: (password: string) => void
   supabaseClient: SupabaseClient
+  redirectTo?: RedirectTo
+  magicLink?: boolean
 }) {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState(defaultEmail)
+  const [password, setPassword] = useState(defaultPassword)
   const [rememberMe, setRememberMe] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState('')
+
+  useEffect(() => {
+    setEmail(defaultEmail)
+    setPassword(defaultPassword)
+  }, [authView])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -214,39 +310,61 @@ function EmailAuth({
     setLoading(true)
     switch (authView) {
       case 'sign_in':
-        const { error: signInError } = await supabaseClient.auth.signIn({
-          email,
-          password,
-        })
+        const { error: signInError } = await supabaseClient.auth.signIn(
+          {
+            email,
+            password,
+          },
+          { redirectTo }
+        )
         if (signInError) setError(signInError.message)
         break
       case 'sign_up':
-        const { error: signUpError } = await supabaseClient.auth.signUp({
-          email,
-          password,
-        })
+        const { error: signUpError, data: signUpData } =
+          await supabaseClient.auth.signUp(
+            {
+              email,
+              password,
+            },
+            { redirectTo }
+          )
         if (signUpError) setError(signUpError.message)
+        // checking if it has access_token to know if email verification is disabled
+        else if (signUpData?.hasOwnProperty('confirmation_sent_at'))
+          setMessage('Check your email for the confirmation link.')
         break
     }
     setLoading(false)
   }
 
+  const handleViewChange = (newView: ViewType) => {
+    setDefaultEmail(email)
+    setDefaultPassword(password)
+    setAuthView(newView)
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form id={id} onSubmit={handleSubmit}>
       <Space size={6} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
             label="Email address"
             autoComplete="email"
-            icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
-            onChange={setEmail}
+            defaultValue={email}
+            icon={<IconMail size={21} stroke={'#666666'} />}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
+            }
           />
           <Input
             label="Password"
             type="password"
+            defaultValue={password}
             autoComplete="current-password"
-            icon={<Icon size={21} stroke={'#666666'} type="Key" />}
-            onChange={setPassword}
+            icon={<IconKey size={21} stroke={'#666666'} />}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
+            }
           />
         </Space>
         <Space direction="vertical" size={6}>
@@ -261,7 +379,11 @@ function EmailAuth({
             />
             {authView === VIEWS.SIGN_IN && (
               <Typography.Link
-                onClick={() => setAuthView(VIEWS.FORGOTTEN_PASSWORD)}
+                href="#auth-forgot-password"
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                  e.preventDefault()
+                  setAuthView(VIEWS.FORGOTTEN_PASSWORD)
+                }}
               >
                 Forgot your password?
               </Typography.Link>
@@ -270,29 +392,48 @@ function EmailAuth({
           <Button
             htmlType="submit"
             type="primary"
-            block
             size="large"
-            icon={<Icon size={21} type="Lock" />}
+            icon={<IconLock size={21} />}
             loading={loading}
+            block
           >
             {authView === VIEWS.SIGN_IN ? 'Sign in' : 'Sign up'}
           </Button>
         </Space>
         <Space direction="vertical" style={{ textAlign: 'center' }}>
-          {authView === VIEWS.SIGN_IN && (
-            <Typography.Link onClick={() => setAuthView(VIEWS.MAGIC_LINK)}>
+          {authView === VIEWS.SIGN_IN && magicLink && (
+            <Typography.Link
+              href="#auth-magic-link"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.preventDefault()
+                setAuthView(VIEWS.MAGIC_LINK)
+              }}
+            >
               Sign in with magic link
             </Typography.Link>
           )}
           {authView === VIEWS.SIGN_IN ? (
-            <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_UP)}>
+            <Typography.Link
+              href="#auth-sign-up"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.preventDefault()
+                handleViewChange(VIEWS.SIGN_UP)
+              }}
+            >
               Don't have an account? Sign up
             </Typography.Link>
           ) : (
-            <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
-              Do you have an account? Sign in.
+            <Typography.Link
+              href="#auth-sign-in"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.preventDefault()
+                handleViewChange(VIEWS.SIGN_IN)
+              }}
+            >
+              Do you have an account? Sign in
             </Typography.Link>
           )}
+          {message && <Typography.Text>{message}</Typography.Text>}
           {error && <Typography.Text type="danger">{error}</Typography.Text>}
         </Space>
       </Space>
@@ -303,9 +444,11 @@ function EmailAuth({
 function MagicLink({
   setAuthView,
   supabaseClient,
+  redirectTo,
 }: {
   setAuthView: any
   supabaseClient: SupabaseClient
+  redirectTo?: RedirectTo
 }) {
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
@@ -317,34 +460,45 @@ function MagicLink({
     setError('')
     setMessage('')
     setLoading(true)
-    const { error } = await supabaseClient.auth.signIn({ email })
+    const { error } = await supabaseClient.auth.signIn(
+      { email },
+      { redirectTo }
+    )
     if (error) setError(error.message)
-    else setMessage('Check your email for the magic link.')
+    else setMessage('Check your email for the magic link')
     setLoading(false)
   }
 
   return (
-    <form onSubmit={handleMagicLinkSignIn}>
+    <form id="auth-magic-link" onSubmit={handleMagicLinkSignIn}>
       <Space size={4} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
             label="Email address"
             placeholder="Your email address"
-            icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
-            onChange={setEmail}
+            icon={<IconMail size={21} stroke={'#666666'} />}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
+            }
           />
           <Button
             block
             size="large"
             htmlType="submit"
-            icon={<Icon size={21} type="Inbox" />}
+            icon={<IconInbox size={21} />}
             loading={loading}
           >
             Send magic link
           </Button>
         </Space>
-        <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
-          Sign in with password.
+        <Typography.Link
+          href="#auth-sign-in"
+          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+            e.preventDefault()
+            setAuthView(VIEWS.SIGN_IN)
+          }}
+        >
+          Sign in with password
         </Typography.Link>
         {message && <Typography.Text>{message}</Typography.Text>}
         {error && <Typography.Text type="danger">{error}</Typography.Text>}
@@ -356,9 +510,11 @@ function MagicLink({
 function ForgottenPassword({
   setAuthView,
   supabaseClient,
+  redirectTo,
 }: {
   setAuthView: any
   supabaseClient: SupabaseClient
+  redirectTo?: RedirectTo
 }) {
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
@@ -370,33 +526,44 @@ function ForgottenPassword({
     setError('')
     setMessage('')
     setLoading(true)
-    const { error } = await supabaseClient.auth.api.resetPasswordForEmail(email)
+    const { error } = await supabaseClient.auth.api.resetPasswordForEmail(
+      email,
+      { redirectTo }
+    )
     if (error) setError(error.message)
-    else setMessage('Check your email for the password reset link.')
+    else setMessage('Check your email for the password reset link')
     setLoading(false)
   }
 
   return (
-    <form onSubmit={handlePasswordReset}>
+    <form id="auth-forgot-password" onSubmit={handlePasswordReset}>
       <Space size={4} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
             label="Email address"
             placeholder="Your email address"
-            icon={<Icon size={21} stroke={'#666666'} type="Mail" />}
-            onChange={setEmail}
+            icon={<IconMail size={21} stroke={'#666666'} />}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
+            }
           />
           <Button
             block
             size="large"
             htmlType="submit"
-            icon={<Icon size={21} type="Inbox" />}
+            icon={<IconInbox size={21} />}
             loading={loading}
           >
             Send reset password instructions
           </Button>
         </Space>
-        <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
+        <Typography.Link
+          href="#auth-sign-in"
+          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+            e.preventDefault()
+            setAuthView(VIEWS.SIGN_IN)
+          }}
+        >
           Go back to sign in
         </Typography.Link>
         {message && <Typography.Text>{message}</Typography.Text>}
@@ -423,26 +590,28 @@ function UpdatePassword({
     setLoading(true)
     const { error } = await supabaseClient.auth.update({ password })
     if (error) setError(error.message)
-    else setMessage('Your password has been updated.')
+    else setMessage('Your password has been updated')
     setLoading(false)
   }
 
   return (
-    <form onSubmit={handlePasswordReset}>
+    <form id="auth-update-password" onSubmit={handlePasswordReset}>
       <Space size={4} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
             label="New password"
             placeholder="Enter your new password"
             type="password"
-            icon={<Icon size={21} stroke={'#666666'} type="Key" />}
-            onChange={setPassword}
+            icon={<IconKey size={21} stroke={'#666666'} />}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
+            }
           />
           <Button
             block
             size="large"
             htmlType="submit"
-            icon={<Icon size={21} type="Key" />}
+            icon={<IconKey size={21} />}
             loading={loading}
           >
             Update password

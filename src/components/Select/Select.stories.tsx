@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Select from '.'
-import { Icon } from '../Icon'
+import { IconBook } from '../../index'
 
 const { Option, OptGroup } = Select
 
@@ -56,6 +56,14 @@ export const withOptionLabel = (args: any) => (
   </Select>
 )
 
+export const withBeforeAndAfterLabel = (args: any) => (
+  <Select {...args}>
+    <Option value="javascript">JavaScript</Option>
+    <Option value="typeScript">TypeScript</Option>
+    <Option value="react">React</Option>
+  </Select>
+)
+
 export const withDescription = (args: any) => (
   <Select {...args}>
     <Option value="javascript">JavaScript</Option>
@@ -64,8 +72,16 @@ export const withDescription = (args: any) => (
   </Select>
 )
 
+export const size = (args: any) => (
+  <Select {...args}>
+    <Option value="javascript">JavaScript</Option>
+    <Option value="typeScript">TypeScript</Option>
+    <Option value="react">React</Option>
+  </Select>
+)
+
 const data = ['England', 'Wales', 'Scotland', 'Ireland']
-const icon = <Icon  type={'Book'} />
+const icon = <IconBook type={'Book'} />
 
 Default.args = {
   disabled: false,
@@ -131,6 +147,19 @@ withOptionLabel.args = {
   layout: 'vertical',
 }
 
+withBeforeAndAfterLabel.args = {
+  placeholder: 'Type text here ...',
+  disabled: false,
+  label: 'Label',
+  beforeLabel: 'Before : ',
+  afterLabel: ' : After',
+  className: 'font-sans',
+  value: 'Value of input',
+  labelOptional: 'This is required',
+  allowedValues: data,
+  layout: 'vertical',
+}
+
 withDescription.args = {
   placeholder: 'Type text here ...',
   disabled: false,
@@ -140,4 +169,15 @@ withDescription.args = {
   descriptionText: 'Make your password short and easy to guess',
   allowedValues: data,
   layout: 'vertical',
+}
+
+size.args = {
+  placeholder: 'Type text here ...',
+  disabled: false,
+  label: 'Input with a size selected',
+  value: 'Value of input',
+  descriptionText: 'Choose a different size and font and padding will change',
+  allowedValues: data,
+  layout: 'vertical',
+  size: 'tiny',
 }

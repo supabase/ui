@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import { CheckboxContext } from './CheckboxContext'
-import './Checkbox.css'
+// @ts-ignore
+import CheckboxStyles from './Checkbox.module.css'
 
 interface InputProps {
   label: string
+  afterLabel?: string
+  beforeLabel?: string
   value?: string
   description?: string
   disabled?: boolean
@@ -13,6 +16,9 @@ interface InputProps {
   checked?: boolean
   className?: string
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
+  onFocus?(x: React.FocusEvent<HTMLInputElement>): void
+  onBlur?(x: React.FocusEvent<HTMLInputElement>): void
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
 interface GroupProps {
@@ -21,6 +27,8 @@ interface GroupProps {
   error?: any
   descriptionText?: any
   label?: any
+  afterLabel?: string
+  beforeLabel?: string
   labelOptional?: any
   name?: any
   value?: any
@@ -29,6 +37,7 @@ interface GroupProps {
   options: Array<InputProps>
   defaultValue?: string
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
 function Group({
@@ -37,12 +46,15 @@ function Group({
   error,
   descriptionText,
   label,
+  afterLabel,
+  beforeLabel,
   labelOptional,
   children,
   className,
   name,
   options,
   onChange,
+  size = 'medium',
 }: GroupProps) {
   const parentCallback = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) onChange(e)
@@ -51,14 +63,19 @@ function Group({
   return (
     <FormLayout
       label={label}
+      afterLabel={afterLabel}
+      beforeLabel={beforeLabel}
       labelOptional={labelOptional}
       layout={layout}
       id={id}
       error={error}
       descriptionText={descriptionText}
       className={className}
+      size={size}
     >
-      <CheckboxContext.Provider value={{ parentCallback, name }}>
+      <CheckboxContext.Provider
+        value={{ parentCallback, name, parentSize: size }}
+      >
         {options
           ? options.map((option: InputProps) => {
               return (
@@ -66,6 +83,8 @@ function Group({
                   id={option.id}
                   value={option.value}
                   label={option.label}
+                  beforeLabel={option.beforeLabel}
+                  afterLabel={option.afterLabel}
                   checked={option.checked}
                   name={option.name}
                   description={option.description}
@@ -82,17 +101,24 @@ export function Checkbox({
   className,
   id,
   label,
+  afterLabel,
+  beforeLabel,
   description,
   name,
   checked,
   value,
   onChange,
+  onFocus,
+  onBlur,
+  size = 'medium',
+  disabled = false,
+  ...props
 }: InputProps) {
   const inputName = name
 
   return (
     <CheckboxContext.Consumer>
-      {({ parentCallback, name }) => {
+      {({ parentCallback, name, parentSize }) => {
         // if id does not exist, use label
         const markupId = id
           ? id
@@ -107,12 +133,15 @@ export function Checkbox({
 
         // check if checkbox checked is true or false
         // if neither true or false the checkbox will rely on native control
-        const active = checked ? true : checked === false ? false : null
+        const active = checked ?? undefined
 
-        let containerClasses = ['sbui-checkbox-container']
-        if (className) {
-          containerClasses.push(className)
-        }
+        let containerClasses = [
+          CheckboxStyles['sbui-checkbox-container'],
+          CheckboxStyles[
+            `sbui-checkbox-container--${parentSize ? parentSize : size}`
+          ],
+        ]
+        if (className) containerClasses.push(className)
 
         function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
           // '`onChange` callback for parent component
@@ -127,21 +156,56 @@ export function Checkbox({
               id={markupId}
               name={markupName}
               type="checkbox"
-              className="sbui-checkbox"
+              className={CheckboxStyles['sbui-checkbox']}
               onChange={onInputChange}
+              onFocus={onFocus ? (event) => onFocus(event) : undefined}
+              onBlur={onBlur ? (event) => onBlur(event) : undefined}
               checked={active}
               value={value ? value : markupId}
+              disabled={disabled}
+              {...props}
             />
-            <div className="sbui-checkbox__label-container">
+            <div className={CheckboxStyles['sbui-checkbox__label-container']}>
               <label
-                className="sbui-checkbox__label-container__label"
+                className={
+                  CheckboxStyles['sbui-checkbox__label-container__label']
+                }
                 htmlFor={markupId}
               >
-                <span className="sbui-checkbox__label-container__label__span">
+                <span
+                  className={
+                    CheckboxStyles[
+                      'sbui-checkbox__label-container__label__span'
+                    ]
+                  }
+                >
+                  {beforeLabel && (
+                    <span
+                      className={
+                        CheckboxStyles['sbui-checkbox__label-text-before']
+                      }
+                    >
+                      {beforeLabel}
+                    </span>
+                  )}
                   {label}
+                  {afterLabel && (
+                    <span
+                      className={
+                        CheckboxStyles['sbui-checkbox__label-text-after']
+                      }
+                    >
+                      {afterLabel}
+                    </span>
+                  )}
                 </span>
+
                 {description && (
-                  <p className="sbui-checkbox__label-container__label__p">
+                  <p
+                    className={
+                      CheckboxStyles['sbui-checkbox__label-container__label__p']
+                    }
+                  >
                     {description}
                   </p>
                 )}

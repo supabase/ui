@@ -1,7 +1,7 @@
 import React from 'react'
-import * as Icons from 'react-feather'
 import { IconContext } from './IconContext'
-import './Icon.css'
+// @ts-ignore
+import IconStyles from './Icon.module.css'
 
 interface Props {
   className?: string
@@ -29,7 +29,7 @@ interface Props {
     | 'indigo'
     | 'purple'
     | 'pink'
-  src?: React.ReactNode
+  src: React.ReactNode
 }
 
 interface StringMap {
@@ -50,7 +50,7 @@ function Icon({
 }: Props) {
   return (
     <IconContext.Consumer>
-      {({ contextSize }) => {
+      {({ contextSize, className: contextClassName }) => {
         const defaultSizes: StringMap = {
           tiny: 14,
           small: 18,
@@ -62,8 +62,6 @@ function Icon({
         }
 
         const defaultSize = defaultSizes['large']
-        // @ts-ignore
-        const FeatherIcon = Icons[type] ? Icons[type] : Icons['Mail']
 
         // const iconSize = typeof size === 'string' ? defaultSizes[contextSize] : 21
         let iconSize: any = 21
@@ -90,40 +88,34 @@ function Icon({
         // default these icons to use 'currentColor' ie, the text color
         const noColor = !color && !fill && !stroke
 
-        const IconComponent = () => (
-          <FeatherIcon
-            color={!noColor ? color : 'currentColor'}
-            stroke={!noColor ? stroke : 'currentColor'}
-            className={`${className}`}
-            strokeWidth={strokeWidth}
-            size={iconSize}
-            fill={!noColor ? (fill ? fill : 'none') : 'none'}
-            {...props}
-          />
-        )
+        let classes = ['sbui-icon', className]
+        if (contextClassName) {
+          classes.push(contextClassName)
+        }
 
-        const Icon = src ? (
+        const Icon = (
           // custom SVG file
           <svg
             xmlns="http://www.w3.org/2000/svg"
             color={!noColor ? color : 'currentColor'}
             fill={!noColor ? (fill ? fill : 'none') : 'none'}
             stroke={!noColor ? stroke : 'currentColor'}
-            className={`${className}`}
+            strokeWidth={strokeWidth}
+            className={classes.join(' ')}
             width={iconSize}
             height={iconSize}
+            {...props}
           >
             {src}
           </svg>
-        ) : (
-          // feather icon
-          <IconComponent />
         )
 
         return background ? (
           <div
             // circle coloured background
-            className={`sbui-icon-container sbui-icon-container--${background}`}
+            className={`${IconStyles['sbui-icon-container']} ${
+              IconStyles[`sbui-icon-container--${background}`]
+            }`}
           >
             {Icon}
           </div>
