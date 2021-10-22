@@ -1,4 +1,4 @@
-import React, { Ref, useState } from 'react'
+import React, { forwardRef, useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
@@ -7,15 +7,23 @@ import { Button, Space, Typography, IconCopy } from '../../index'
 import InputStyles from './Input.module.css'
 import { borderless } from './Input.stories'
 
+// compound the component
+export interface CompoundedComponent
+  extends React.ForwardRefExoticComponent<
+    Props & React.RefAttributes<HTMLInputElement>
+  > {
+  TextArea: (props: TextAreaProps) => void
+}
+
 export interface Props
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  children?: React.ReactNode
   copy?: boolean
   defaultValue?: string | number
   descriptionText?: string
   disabled?: boolean
   error?: string
   icon?: any
-  inputRef?: string
   label?: string
   afterLabel?: string
   beforeLabel?: string
@@ -28,137 +36,141 @@ export interface Props
   borderless?: boolean
 }
 
-function Input({
-  autoComplete,
-  autoFocus,
-  className,
-  copy,
-  defaultValue,
-  descriptionText,
-  disabled,
-  error,
-  icon,
-  id,
-  inputRef,
-  label,
-  afterLabel,
-  beforeLabel,
-  labelOptional,
-  layout,
-  name,
-  onChange,
-  onBlur,
-  onFocus,
-  onKeyDown,
-  placeholder,
-  type,
-  value,
-  style,
-  reveal = false,
-  actions,
-  size = 'medium',
-  borderless = false,
-  ...props
-}: Props) {
-  const [copyLabel, setCopyLabel] = useState('Copy')
-  const [hidden, setHidden] = useState(reveal)
+const Input = forwardRef<HTMLInputElement, Props>(
+  (
+    {
+      autoComplete,
+      autoFocus,
+      className,
+      copy,
+      defaultValue,
+      descriptionText,
+      disabled,
+      error,
+      icon,
+      id,
+      label,
+      afterLabel,
+      beforeLabel,
+      labelOptional,
+      layout,
+      name,
+      onChange,
+      onBlur,
+      onFocus,
+      onKeyDown,
+      placeholder,
+      type,
+      value,
+      style,
+      reveal = false,
+      actions,
+      size = 'medium',
+      borderless = false,
+      ...props
+    },
+    ref
+  ) => {
+    const [copyLabel, setCopyLabel] = useState('Copy')
+    const [hidden, setHidden] = useState(reveal)
 
-  // if `type` is not assigned, default to text input
-  if (!type) {
-    type = 'text'
-  }
+    // if `type` is not assigned, default to text input
+    if (!type) {
+      type = 'text'
+    }
 
-  let inputClasses = [InputStyles['sbui-input']]
-  if (error) inputClasses.push(InputStyles['sbui-input--error'])
-  if (icon) inputClasses.push(InputStyles['sbui-input--with-icon'])
-  if (size) inputClasses.push(InputStyles[`sbui-input--${size}`])
-  if (borderless) inputClasses.push(InputStyles['sbui-input--borderless'])
+    let inputClasses = [InputStyles['sbui-input']]
+    if (error) inputClasses.push(InputStyles['sbui-input--error'])
+    if (icon) inputClasses.push(InputStyles['sbui-input--with-icon'])
+    if (size) inputClasses.push(InputStyles[`sbui-input--${size}`])
+    if (borderless) inputClasses.push(InputStyles['sbui-input--borderless'])
 
-  function onCopy(value: any) {
-    navigator.clipboard.writeText(value).then(
-      function () {
-        /* clipboard successfully set */
-        setCopyLabel('Copied')
-        setTimeout(function () {
-          setCopyLabel('Copy')
-        }, 3000)
-      },
-      function () {
-        /* clipboard write failed */
-        setCopyLabel('Failed to copy')
-      }
+    function onCopy(value: any) {
+      navigator.clipboard.writeText(value).then(
+        function () {
+          /* clipboard successfully set */
+          setCopyLabel('Copied')
+          setTimeout(function () {
+            setCopyLabel('Copy')
+          }, 3000)
+        },
+        function () {
+          /* clipboard write failed */
+          setCopyLabel('Failed to copy')
+        }
+      )
+    }
+
+    function onReveal() {
+      setHidden(false)
+    }
+
+    const hiddenPlaceholder = '**** **** **** ****'
+
+    return (
+      <div className={className}>
+        <FormLayout
+          label={label}
+          afterLabel={afterLabel}
+          beforeLabel={beforeLabel}
+          labelOptional={labelOptional}
+          layout={layout}
+          id={id}
+          error={error}
+          descriptionText={descriptionText}
+          style={style}
+          size={size}
+        >
+          <div className={InputStyles['sbui-input-container']}>
+            <input
+              autoComplete={autoComplete}
+              autoFocus={autoFocus}
+              defaultValue={defaultValue}
+              disabled={disabled}
+              id={id}
+              name={name}
+              onChange={onChange ? (event) => onChange(event) : undefined}
+              onFocus={onFocus ? (event) => onFocus(event) : undefined}
+              onBlur={onBlur ? (event) => onBlur(event) : undefined}
+              onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
+              placeholder={placeholder}
+              ref={ref}
+              type={type}
+              value={hidden ? hiddenPlaceholder : value}
+              className={inputClasses.join(' ')}
+              {...props}
+            />
+            {icon && <InputIconContainer icon={icon} />}
+            {copy || error || actions ? (
+              <Space
+                className={InputStyles['sbui-input-actions-container']}
+                size={1}
+              >
+                {error && <InputErrorIcon size={size} />}
+                {copy && !hidden ? (
+                  <Button
+                    size="tiny"
+                    type="default"
+                    onClick={() => onCopy(value)}
+                    icon={<IconCopy />}
+                  >
+                    {copyLabel}
+                  </Button>
+                ) : null}
+                {hidden && reveal ? (
+                  <Button size="tiny" type="default" onClick={onReveal}>
+                    Reveal
+                  </Button>
+                ) : null}
+                {actions && actions}
+              </Space>
+            ) : null}
+          </div>
+        </FormLayout>
+      </div>
     )
   }
-
-  function onReveal() {
-    setHidden(false)
-  }
-
-  const hiddenPlaceholder = '**** **** **** ****'
-
-  return (
-    <div className={className}>
-      <FormLayout
-        label={label}
-        afterLabel={afterLabel}
-        beforeLabel={beforeLabel}
-        labelOptional={labelOptional}
-        layout={layout}
-        id={id}
-        error={error}
-        descriptionText={descriptionText}
-        style={style}
-        size={size}
-      >
-        <div className={InputStyles['sbui-input-container']}>
-          <input
-            autoComplete={autoComplete}
-            autoFocus={autoFocus}
-            defaultValue={defaultValue}
-            disabled={disabled}
-            id={id}
-            name={name}
-            onChange={onChange ? (event) => onChange(event) : undefined}
-            onFocus={onFocus ? (event) => onFocus(event) : undefined}
-            onBlur={onBlur ? (event) => onBlur(event) : undefined}
-            onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
-            placeholder={placeholder}
-            ref={inputRef}
-            type={type}
-            value={hidden ? hiddenPlaceholder : value}
-            className={inputClasses.join(' ')}
-            {...props}
-          />
-          {icon && <InputIconContainer icon={icon} />}
-          {copy || error || actions ? (
-            <Space
-              className={InputStyles['sbui-input-actions-container']}
-              size={1}
-            >
-              {error && <InputErrorIcon size={size} />}
-              {copy && !hidden ? (
-                <Button
-                  size="tiny"
-                  type="default"
-                  onClick={() => onCopy(value)}
-                  icon={<IconCopy />}
-                >
-                  {copyLabel}
-                </Button>
-              ) : null}
-              {hidden && reveal ? (
-                <Button size="tiny" type="default" onClick={onReveal}>
-                  Reveal
-                </Button>
-              ) : null}
-              {actions && actions}
-            </Space>
-          ) : null}
-        </div>
-      </FormLayout>
-    </div>
-  )
-}
+) as CompoundedComponent
 
 export interface TextAreaProps {
   className?: string
@@ -188,7 +200,7 @@ export interface TextAreaProps {
   borderless?: boolean
 }
 
-function TextArea({
+const TextArea = ({
   autoComplete,
   autofocus,
   className,
@@ -214,7 +226,7 @@ function TextArea({
   limit,
   size,
   borderless = false,
-}: TextAreaProps) {
+}: TextAreaProps) => {
   const [charLength, setCharLength] = useState(0)
 
   let classes = [InputStyles['sbui-input']]

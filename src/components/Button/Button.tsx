@@ -27,7 +27,6 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
     | 'text'
   danger?: boolean
   htmlType?: 'button' | 'submit' | 'reset'
-  ref?: any
   ariaSelected?: boolean
   ariaControls?: string
   tabIndex?: 0 | -1
@@ -68,21 +67,21 @@ const Button = forwardRef<RefHandle, ButtonProps>(
       as,
       textAlign = 'center',
       ...props
-    }: ButtonProps,
+    },
     ref
   ) => {
     // button ref
-    const containerRef = useRef<HTMLElement>(null)
-    const buttonRef = useRef<HTMLButtonElement>(null)
+    // const containerRef = useRef<HTMLElement>(null)
+    // const buttonRef = useRef<HTMLButtonElement>(null)
 
-    useImperativeHandle(ref, () => ({
-      container: () => {
-        return containerRef.current
-      },
-      button: () => {
-        return buttonRef.current
-      },
-    }))
+    // useImperativeHandle(ref, () => ({
+    //   container: () => {
+    //     return containerRef.current
+    //   },
+    //   button: () => {
+    //     return buttonRef.current
+    //   },
+    // }))
 
     // styles
     const showIcon = loading || icon
@@ -142,7 +141,7 @@ const Button = forwardRef<RefHandle, ButtonProps>(
       ) : (
         <button
           {...props}
-          ref={buttonRef}
+          ref={ref}
           className={classes.join(' ')}
           disabled={loading || (disabled && true)}
           onClick={onClick}
@@ -158,7 +157,7 @@ const Button = forwardRef<RefHandle, ButtonProps>(
       )
 
     return (
-      <span ref={containerRef} className={containerClasses.join(' ')}>
+      <span className={containerClasses.join(' ')}>
         <RenderedButton>
           {showIcon &&
             (loading ? (
