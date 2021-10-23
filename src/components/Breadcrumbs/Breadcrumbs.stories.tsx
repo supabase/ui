@@ -9,7 +9,9 @@ export default {
 }
 
 export const Default = ({ children, ...args }) => (
-  <Breadcrumbs {...args}>{children}</Breadcrumbs>
+  <Breadcrumbs {...args} spacing="small">
+    {children}
+  </Breadcrumbs>
 )
 
 Default.args = {

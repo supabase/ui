@@ -5,13 +5,24 @@ interface Props {
   children?: [React.ReactNode]
   className?: string
   style?: React.CSSProperties
+  spacing?: 'small' | 'medium' | 'large'
 }
 
-const Breadcrumbs = ({ className, style, children }: Props) => {
+const Breadcrumbs = ({
+  className,
+  style,
+  children,
+  spacing = 'small',
+}: Props) => {
   let classes = [BreadcrumbsStyles['sbui-breadcrumbs--container']]
+  let seperatorClasses = [BreadcrumbsStyles['sbui-breadcrumbs--separator']]
 
   if (className) {
     classes.push(className)
+  }
+
+  if (spacing) {
+    seperatorClasses.push(`sbui-breadcrumbs--separator-${spacing}`)
   }
 
   return (
@@ -22,9 +33,7 @@ const Breadcrumbs = ({ className, style, children }: Props) => {
             {child}
           </span>
           {idx + 1 < children!.length && (
-            <IconChevronRight
-              className={BreadcrumbsStyles['sbui-breadcrumbs--separator']}
-            />
+            <IconChevronRight className={seperatorClasses.join(' ')} />
           )}
         </>
       ))}
