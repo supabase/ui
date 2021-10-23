@@ -35,20 +35,20 @@ export default function Avatar({
 
   const imageExist = () => {
     const img = new Image()
+    if (!src) return false
+
     img.src = src
-    if (img.complete) {
+    img.onload = () => {
       return true
-    } else {
-      img.onload = () => {
-        return true
-      }
-      img.onerror = () => {
-        return false
-      }
     }
+    img.onerror = () => {
+      return false
+    }
+
+    return img.complete
   }
 
-  if (imageExist && src) {
+  if (imageExist() && src) {
     classes.push(AvatarStyles['sbui-avatar-image'])
     objectToRender = (
       <img
