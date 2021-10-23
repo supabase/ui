@@ -18,6 +18,11 @@ interface Props {
   size: number
 }
 
+interface AvatarAttribute {
+  classKey: keyof typeof AvatarStyles
+  children: React.ReactNode
+}
+
 export default function Avatar({
   src,
   style,
@@ -54,6 +59,30 @@ export default function Avatar({
     return img.complete
   }
 
+  const getAvatarAttribute = (): AvatarAttribute => {
+    if (AvatarIcon) {
+      return {
+        classKey: 'sbui-avatar-icon',
+        children: <AvatarIcon />,
+      }
+    } else if (text) {
+      return {
+        classKey: 'sbui-avatar-text',
+        children: <p>{text[0]}</p>,
+      }
+    } else if (children) {
+      return {
+        classKey: 'sbui-avatar-children',
+        children,
+      }
+    } else {
+      return {
+        classKey: 'sbui-avatar-fallback',
+        children: <IconUser />,
+      }
+    }
+  }
+
   if (isImageExists()) {
     classes.push(AvatarStyles['sbui-avatar-image'])
     return (
@@ -66,33 +95,14 @@ export default function Avatar({
     )
   }
 
-  if (AvatarIcon) {
-    classes.push(AvatarStyles['sbui-avatar-icon'])
-    return (
-      <AvatarContainer classes={classes} size={size} style={style}>
-        <AvatarIcon />
-      </AvatarContainer>
-    )
-  } else if (text) {
-    classes.push(AvatarStyles['sbui-avatar-text'])
-    return (
-      <AvatarContainer classes={classes} size={size} style={style}>
-        <p>{text[0]}</p>
-      </AvatarContainer>
-    )
-  } else if (children) {
-    classes.push(AvatarStyles['sbui-avatar-children'])
-    return (
-      <AvatarContainer classes={classes} size={size} style={style}>
-        {children}
-      </AvatarContainer>
-    )
-  } else {
-    classes.push(AvatarStyles['sbui-avatar-fallback'])
-    return (
-      <AvatarContainer classes={classes} size={size} style={style}>
-        <IconUser />
-      </AvatarContainer>
-    )
-  }
+  const avatarAttribute = getAvatarAttribute()
+  return (
+    <AvatarContainer
+      classes={[...classes, avatarAttribute.classKey]}
+      size={size}
+      style={style}
+    >
+      {avatarAttribute.children}
+    </AvatarContainer>
+  )
 }
