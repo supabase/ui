@@ -1,13 +1,9 @@
-.sbui-avatar {
+.sbui-avatar-type-rounded {
     @apply rounded-full;
 }
 
-.sbui-avatar-type-rounded {
-    border-radius: 10%;
-}
-
 .sbui-avatar-type-square {
-    border-radius: 0;
+    @apply rounded-none;
 }
 
 .sbui-avatar-image {

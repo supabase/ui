@@ -1,6 +1,7 @@
 import React from 'react'
 import { Icon } from '../Icon/IconImportHandler'
 import { IconUser } from '../Icon/icons/IconUser'
+import AvatarContainer from './AvatarContainer'
 // @ts-ignore
 import AvatarStyles from './Avatar.module.css'
 
@@ -24,13 +25,19 @@ export default function Avatar({
   alt,
   responsive,
   text,
-  variant,
+  variant = 'circle',
   AvatarIcon,
   size,
   children,
 }: Props) {
-  const classes = [AvatarStyles['sbui-avatar']]
-  classes.push(className)
+  const classes = [
+    AvatarStyles[
+      variant === 'circle'
+        ? 'sbui-avatar-type-rounded'
+        : 'sbui-avatar-type-square'
+    ],
+    className,
+  ]
   let objectToRender
 
   const isImageExists = () => {
@@ -61,42 +68,30 @@ export default function Avatar({
   } else if (AvatarIcon) {
     classes.push(AvatarStyles['sbui-avatar-icon'])
     objectToRender = (
-      <div
-        className={classes.join(' ')}
-        style={{ height: size, width: size, ...style }}
-      >
+      <AvatarContainer classes={classes} size={size} style={style}>
         <AvatarIcon />
-      </div>
+      </AvatarContainer>
     )
   } else if (text) {
     classes.push(AvatarStyles['sbui-avatar-text'])
     objectToRender = (
-      <div
-        className={classes.join(' ')}
-        style={{ height: size, width: size, ...style }}
-      >
+      <AvatarContainer classes={classes} size={size} style={style}>
         <p>{text[0]}</p>
-      </div>
+      </AvatarContainer>
     )
   } else if (children) {
     classes.push(AvatarStyles['sbui-avatar-children'])
     objectToRender = (
-      <div
-        className={classes.join(' ')}
-        style={{ height: size, width: size, ...style }}
-      >
+      <AvatarContainer classes={classes} size={size} style={style}>
         {children}
-      </div>
+      </AvatarContainer>
     )
   } else {
     classes.push(AvatarStyles['sbui-avatar-fallback'])
     objectToRender = (
-      <div
-        className={classes.join(' ')}
-        style={{ height: size, width: size, ...style }}
-      >
+      <AvatarContainer classes={classes} size={size} style={style}>
         <IconUser />
-      </div>
+      </AvatarContainer>
     )
   }
 
