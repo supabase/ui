@@ -38,7 +38,6 @@ export default function Avatar({
     ],
     className,
   ]
-  let objectToRender
 
   const isImageExists = () => {
     const img = new Image()
@@ -55,9 +54,9 @@ export default function Avatar({
     return img.complete
   }
 
-  if (isImageExists() && src) {
+  if (isImageExists()) {
     classes.push(AvatarStyles['sbui-avatar-image'])
-    objectToRender = (
+    return (
       <img
         className={classes.join(' ')}
         src={src}
@@ -65,35 +64,35 @@ export default function Avatar({
         style={{ height: size, width: size, ...style }}
       />
     )
-  } else if (AvatarIcon) {
+  }
+
+  if (AvatarIcon) {
     classes.push(AvatarStyles['sbui-avatar-icon'])
-    objectToRender = (
+    return (
       <AvatarContainer classes={classes} size={size} style={style}>
         <AvatarIcon />
       </AvatarContainer>
     )
   } else if (text) {
     classes.push(AvatarStyles['sbui-avatar-text'])
-    objectToRender = (
+    return (
       <AvatarContainer classes={classes} size={size} style={style}>
         <p>{text[0]}</p>
       </AvatarContainer>
     )
   } else if (children) {
     classes.push(AvatarStyles['sbui-avatar-children'])
-    objectToRender = (
+    return (
       <AvatarContainer classes={classes} size={size} style={style}>
         {children}
       </AvatarContainer>
     )
   } else {
     classes.push(AvatarStyles['sbui-avatar-fallback'])
-    objectToRender = (
+    return (
       <AvatarContainer classes={classes} size={size} style={style}>
         <IconUser />
       </AvatarContainer>
     )
   }
-
-  return <>{objectToRender}</>
 }
