@@ -33,7 +33,7 @@ export default function Avatar({
   classes.push(className)
   let objectToRender
 
-  const imageExist = () => {
+  const isImageExists = () => {
     const img = new Image()
     if (!src) return false
 
@@ -48,7 +48,7 @@ export default function Avatar({
     return img.complete
   }
 
-  if (imageExist() && src) {
+  if (isImageExists() && src) {
     classes.push(AvatarStyles['sbui-avatar-image'])
     objectToRender = (
       <img
