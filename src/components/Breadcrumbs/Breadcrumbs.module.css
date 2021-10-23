@@ -4,7 +4,16 @@
   align-items: center;
 }
 
+.sbui-breadcrumbs--item {
+  @apply text-gray-500 hover:text-gray-600;
+  @apply dark:text-dark-200 dark:hover:text-white;
+
+  font-family: inherit;
+  font-weight: inherit;
+}
 .sbui-breadcrumbs--separator {
-  margin-left: 10px;
-  margin-right: 10px;
+  @apply mx-2;
+
+  @apply text-gray-500 hover:text-gray-600;
+  @apply dark:text-dark-200 dark:hover:text-white;
 }

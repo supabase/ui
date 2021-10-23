@@ -15,10 +15,12 @@ const Breadcrumbs = ({ className, style, children }: Props) => {
   }
 
   return (
-    <div className={classes.join(' ')} style={{ backgroundColor: '#fff' }}>
+    <div className={classes.join(' ')}>
       {children!.map((child: React.ReactNode, idx: number) => (
         <>
-          {child}
+          <span className={BreadcrumbsStyles['sbui-breadcrumbs--item']}>
+            {child}
+          </span>
           {idx + 1 < children!.length && (
             <IconChevronRight
               className={BreadcrumbsStyles['sbui-breadcrumbs--separator']}
