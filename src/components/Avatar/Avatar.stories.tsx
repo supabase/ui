@@ -2,6 +2,7 @@ import React from 'react'
 import { IconAirplay } from '../Icon/icons/IconAirplay'
 
 import Avatar from './Avatar'
+import AvatarGroup from './AvatarGroup'
 
 export default {
   title: 'General/Avatar',

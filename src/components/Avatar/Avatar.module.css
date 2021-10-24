@@ -51,8 +51,16 @@
 
 }
 
-.sbui-avatar-multiple {
+.sbui-avatar-group {
+    @apply flex;
+}
 
+.sbui-avatar-group-horizontal {
+    @apply flex-row;
+}
+
+.sbui-avatar-group-vertical {
+    @apply flex-col;
 }
 
 .sbui-image-responsive {
