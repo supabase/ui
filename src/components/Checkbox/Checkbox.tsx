@@ -3,6 +3,7 @@ import { FormLayout } from '../../lib/Layout/FormLayout'
 import { CheckboxContext } from './CheckboxContext'
 // @ts-ignore
 import CheckboxStyles from './Checkbox.module.css'
+import { useFormContext } from '../Form/FormContext'
 
 interface InputProps {
   label: string
@@ -34,7 +35,7 @@ interface GroupProps {
   value?: any
   className?: string
   children?: React.ReactNode
-  options: Array<InputProps>
+  options?: Array<InputProps>
   defaultValue?: string
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
@@ -116,6 +117,24 @@ export function Checkbox({
 }: InputProps) {
   const inputName = name
 
+  const {
+    formContextOnChange,
+    values,
+    // errors,
+    handleBlur,
+    touched,
+    fieldLevelValidation,
+  } = useFormContext()
+
+  if (values && checked == undefined) checked = values[id]
+  // if (errors && !error) error = errors[id]
+  if (handleBlur) onBlur = handleBlur
+  // error = touched && touched[id] ? error : undefined
+
+  // useEffect(() => {
+  //   if (validation) fieldLevelValidation(id, validation(value))
+  // }, [])
+
   return (
     <CheckboxContext.Consumer>
       {({ parentCallback, name, parentSize }) => {
@@ -148,6 +167,10 @@ export function Checkbox({
           if (parentCallback) parentCallback(e)
           // '`onChange` callback for this component
           if (onChange) onChange(e)
+          // update form
+          if (formContextOnChange) formContextOnChange(e)
+          // run field level validation
+          // if (validation) fieldLevelValidation(id, validation(e.target.value))
         }
 
         return (
@@ -159,7 +182,7 @@ export function Checkbox({
               className={CheckboxStyles['sbui-checkbox']}
               onChange={onInputChange}
               onFocus={onFocus ? (event) => onFocus(event) : undefined}
-              onBlur={onBlur ? (event) => onBlur(event) : undefined}
+              onBlur={onBlur}
               checked={active}
               value={value ? value : markupId}
               disabled={disabled}
