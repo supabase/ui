@@ -3,7 +3,8 @@ import { useFormik, FormikConfig } from 'formik'
 import { FormContextProvider } from './FormContext'
 
 // interface Props extends FormikProps<any>, Partial FormikConfig<any> {
-interface Props extends FormikConfig<any> {
+interface Props
+  extends Omit<FormikConfig<any>, 'validateOnMount' | 'validateOnChange'> {
   children: any
   handleIsSubmitting?: any
   handleIsValidating?: any
@@ -33,7 +34,9 @@ export default function Form({ validate, ...props }: Props) {
   }
 
   const formik = useFormik({
+    validateOnBlur: true,
     ...props,
+    validationSchema: props.validationSchema,
     initialValues: props.initialValues,
     onSubmit: props.onSubmit,
     validate:
@@ -42,6 +45,10 @@ export default function Form({ validate, ...props }: Props) {
         return fieldLevelErrors
       },
   })
+
+  // console.log('values', formik.values)
+  // console.log('errors', formik.errors)
+  // console.log('touched', formik.touched)
 
   return (
     <form onSubmit={formik.handleSubmit}>
