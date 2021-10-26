@@ -73,10 +73,6 @@ const Modal = ({
     setOpen(visible)
   }, [visible])
 
-  function stopPropagation(e: React.MouseEvent) {
-    e.stopPropagation()
-  }
-
   let footerClasses = [ModalStyles['sbui-modal-footer']]
   if (footerBackground) {
     footerClasses.push(ModalStyles['sbui-modal-footer--with-bg'])
@@ -156,7 +152,6 @@ const Modal = ({
         <Dialog.Content forceMount style={{ width: '100vw' }}>
           <div
             className={ModalStyles['sbui-modal-container'] + ' ' + className}
-            onClick={() => (onCancel ? onCancel() : null)}
           >
             <div className={ModalStyles['sbui-modal-flex-container']}>
               <Transition.Child
@@ -173,7 +168,6 @@ const Modal = ({
                   role="dialog"
                   aria-modal="true"
                   aria-labelledby="modal-headline"
-                  onClick={stopPropagation}
                   style={style}
                 >
                   <div
