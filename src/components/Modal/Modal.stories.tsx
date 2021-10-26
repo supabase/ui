@@ -325,6 +325,22 @@ export const modalWithDropdowns = () => {
   )
 }
 
+export const withUseState = () => {
+  const [visible, setVisible] = useState(false)
+  return (
+    <>
+      <button onClick={() => setVisible(!visible)}>open</button>
+      <Modal visible={visible} onCancel={() => setVisible(!visible)}>
+        <Typography.Text type="secondary">
+          Modal content is inserted here, if you need to insert anything into
+          the Modal you can do so via{' '}
+          <Typography.Text code>{'{children}'}</Typography.Text>
+        </Typography.Text>
+      </Modal>
+    </>
+  )
+}
+
 Default.args = {
   visible: true,
   onCancel: action('onCancel'),

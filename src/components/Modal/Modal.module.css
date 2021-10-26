@@ -42,14 +42,6 @@
   @apply opacity-0 translate-y-4 sm:translate-y-0 transform sm:scale-95;
 }
 
-.sbui-modal-container {
-  @apply fixed z-50 inset-0;
-}
-
-.sbui-modal-flex-container {
-  @apply flex items-end justify-center min-h-screen pt-4 px-6 pb-20 text-center sm:block sm:p-0;
-}
-
 .sbui-modal-overlay-container {
   @apply fixed inset-0 transition-opacity;
 }
@@ -62,13 +54,20 @@
   @apply hidden sm:inline-block sm:align-middle sm:h-screen;
 }
 
+/*
+* 
+* please note:
+*
+* for themeing feature - .sbui-modal has been updated.
+* .sbui-modal-container and .sbui-modal-flex-container have also been removed.
+*/
 .sbui-modal {
-  @apply inline-block bg-white dark:bg-dark-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all align-middle;
+  @apply bg-white dark:bg-dark-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all align-middle;
   /* border */
   @apply border-gray-400 border border-solid;
   @apply dark:border-gray-600 border border-solid;
 
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

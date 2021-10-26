@@ -149,90 +149,74 @@ const Modal = ({
             </div>
           </Transition.Child>
         </Dialog.Overlay>
-        <Dialog.Content forceMount style={{ width: '100vw' }}>
-          <div
-            className={ModalStyles['sbui-modal-container'] + ' ' + className}
+        <Dialog.Content>
+          <Transition.Child
+            enter={ModalStyles[`sbui-modal--enter`]}
+            enterFrom={ModalStyles[`sbui-modal--enterFrom`]}
+            enterTo={ModalStyles[`sbui-modal--enterTo`]}
+            leave={ModalStyles[`sbui-modal--leave`]}
+            leaveFrom={ModalStyles[`sbui-modal--leaveFrom`]}
+            leaveTo={ModalStyles[`sbui-modal--leaveTo`]}
           >
-            <div className={ModalStyles['sbui-modal-flex-container']}>
-              <Transition.Child
-                enter={ModalStyles[`sbui-modal--enter`]}
-                enterFrom={ModalStyles[`sbui-modal--enterFrom`]}
-                enterTo={ModalStyles[`sbui-modal--enterTo`]}
-                leave={ModalStyles[`sbui-modal--leave`]}
-                leaveFrom={ModalStyles[`sbui-modal--leaveFrom`]}
-                leaveTo={ModalStyles[`sbui-modal--leaveTo`]}
-                className="fixed inset-0 overflow-y-auto"
+            <div className={modalClasses.join(' ')} style={style}>
+              <div
+                className={ModalStyles['sbui-modal-content']}
+                style={contentStyle}
               >
-                <div
-                  className={modalClasses.join(' ')}
-                  role="dialog"
-                  aria-modal="true"
-                  aria-labelledby="modal-headline"
-                  style={style}
+                <Space
+                  size={5}
+                  style={{
+                    alignItems: layout === 'vertical' ? 'center' : 'flex-start',
+                  }}
+                  direction={layout}
                 >
-                  <div
-                    className={ModalStyles['sbui-modal-content']}
-                    style={contentStyle}
+                  {icon ? icon : null}
+                  <Space
+                    size={4}
+                    direction="vertical"
+                    style={{
+                      alignItems: 'flex-start',
+                      textAlign: layout === 'vertical' ? 'center' : null,
+                      width: '100%',
+                    }}
                   >
-                    <Space
-                      size={5}
-                      style={{
-                        alignItems:
-                          layout === 'vertical' ? 'center' : 'flex-start',
-                      }}
-                      direction={layout}
-                    >
-                      {icon ? icon : null}
-                      <Space
-                        size={4}
-                        direction="vertical"
-                        style={{
-                          alignItems: 'flex-start',
-                          textAlign: layout === 'vertical' ? 'center' : null,
-                          width: '100%',
-                        }}
-                      >
-                        <span style={{ width: 'inherit' }}>
-                          {title && (
-                            <Typography.Title
-                              style={{
-                                marginBottom: '.1rem',
-                                marginTop: '0',
-                              }}
-                              level={4}
-                            >
-                              {title}
-                            </Typography.Title>
-                          )}
-                          {description && (
-                            <Typography.Text>{description}</Typography.Text>
-                          )}
-                        </span>
+                    <span style={{ width: 'inherit' }}>
+                      {title && (
+                        <Typography.Title
+                          style={{
+                            marginBottom: '.1rem',
+                            marginTop: '0',
+                          }}
+                          level={4}
+                        >
+                          {title}
+                        </Typography.Title>
+                      )}
+                      {description && (
+                        <Typography.Text>{description}</Typography.Text>
+                      )}
+                    </span>
 
-                        {children}
-                        {!footerBackground && !hideFooter && footerContent}
-                      </Space>
-                    </Space>
-                  </div>
-                  {!hideFooter && footerBackground && (
-                    <div className={footerClasses.join(' ')}>
-                      {footerContent}
-                    </div>
-                  )}
-                  {closable && (
-                    <div className={ModalStyles['sbui-modal-close-container']}>
-                      <Button
-                        onClick={onCancel}
-                        type="text"
-                        shadow={false}
-                        icon={<IconX size="medium" />}
-                      />
-                    </div>
-                  )}
+                    {children}
+                    {!footerBackground && !hideFooter && footerContent}
+                  </Space>
+                </Space>
+              </div>
+              {!hideFooter && footerBackground && (
+                <div className={footerClasses.join(' ')}>{footerContent}</div>
+              )}
+              {closable && (
+                <div className={ModalStyles['sbui-modal-close-container']}>
+                  <Button
+                    onClick={onCancel}
+                    type="text"
+                    shadow={false}
+                    icon={<IconX size="medium" />}
+                  />
                 </div>
-              </Transition.Child>
+              )}
             </div>
-          </div>
+          </Transition.Child>
         </Dialog.Content>
       </Transition>
     </Dialog.Root>
