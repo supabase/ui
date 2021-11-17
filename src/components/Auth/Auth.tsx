@@ -340,6 +340,10 @@ function EmailAuth({
         break
     }
 
+    /*
+     * it is possible the auth component may have been unmounted at this point
+     * check if component is mounted before setting a useState
+     */
     if (isMounted.current) setLoading(false)
   }
 
