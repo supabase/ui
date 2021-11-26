@@ -117,7 +117,7 @@ function Tabs({
 }
 
 interface PanelProps {
-  children?: React.ReactNode
+  children?: any
   id?: string
   label?: string
   icon?: React.ReactNode
