@@ -122,6 +122,7 @@ interface PanelProps {
   label?: string
   icon?: React.ReactNode
 }
+
 export function Panel({ children, id }: PanelProps) {
   return (
     children && (
