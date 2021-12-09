@@ -26,7 +26,7 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
     | 'primary'
     | 'default'
     | 'secondary'
-    | 'alt'
+    | 'alternative'
     | 'outline'
     | 'dashed'
     | 'link'

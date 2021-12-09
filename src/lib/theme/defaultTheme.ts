@@ -4,26 +4,25 @@
  */
 
 const defaults = {
-  // brand color
-  // primaryBackground: 'bg-indigo-600',
-  // primaryText: 'text-indigo-600',
-
   bg: {
     brand: {
-      primary: 'bg-indigo-600',
-      secondary: 'bg-indigo-200',
+      primary: 'bg-purple-600',
+      secondary: 'bg-purple-200',
     },
   },
   text: {
-    brand: 'text-indigo-600',
-    body: 'text-typography-body-light dark:text-typography-body-dark',
-    title: 'text-typography-title-light dark:text-typography-title-dark',
+    brand: 'text-purple-600',
+    body: 'text-grayScale-600 dark:text-grayScaleDark-200',
+    title: 'text-grayScale-700 dark:text-grayScaleDark-100',
   },
   border: {
-    brand: 'border border-indigo-600',
-    primary: 'border dark:border-gray-600',
-    secondary: 'border border-gray-300 dark:border-gray-500',
+    brand: 'border-purple-600',
+    primary: 'dark:border-grayScaleDark-600',
+    secondary: 'border-grayScale-300 dark:border-grayScaleDark-500',
+    alternative: 'border-grayScale-600 dark:border-grayScaleDark-200',
   },
+  placeholder: 'placeholder-gray-300 dark:placeholder-grayScaleDark-500',
+  focus: `focus:outline-none focus:ring-brandColor focus:ring-2 focus:ring-opacity-50 dark:focus:ring-opacity-30`,
   size: {
     // buttons, inputs, input labels use these sizes
     text: {
@@ -48,6 +47,7 @@ const utils = {
   border: {
     hover:
       'border-opacity-50 dark:border-opacity-50 hover:border-opacity-100 dark:hover:border-opacity-100',
+    fix: 'border-opacity-100 dark:border-opacity-100',
   },
 }
 
@@ -89,10 +89,10 @@ export default {
   accordion: {
     base: 'flex flex-col rounded',
     bordered:
-      'border border-solid bg-white border-gray-200 dark:bg-dark-700 dark:border-darkmode divide divide-y',
+      'border border-solid bg-white border-grayScale-200 dark:bg-grayScaleDark-700 dark:border-darkmode divide divide-y',
     label: 'text-sm',
     button:
-      'px-6 py-4 flex justify-between w-full text-left cursor-pointer border-0 border-solid font-medium text-base bg-transparent border-gray-200 text-gray-500 hover:text-gray-600 dark:border-darkmode dark:text-dark-200 dark:hover:text-white',
+      'px-6 py-4 flex justify-between w-full text-left cursor-pointer border-0 border-solid font-medium text-base bg-transparent border-grayScale-200 text-grayScale-500 hover:text-grayScale-600 dark:border-darkmode dark:text-grayScaleDark-200 dark:hover:text-white',
     chevron: 'transform',
     'chevron--closed': '-rotate-90',
     'chevron--open': 'rotate-180',
@@ -115,7 +115,7 @@ export default {
     dot: '-ml-0.5 mr-1.5 h-2 w-2 rounded-full',
     color: {
       brand: 'bg-green-500 dark:bg-opacity-10 text-green-500',
-      gray: 'bg-gray-500 dark:bg-opacity-10 text-gray-500',
+      gray: 'bg-grayScale-500 dark:bg-opacity-10 text-grayScale-500',
       red: 'bg-red-500 dark:bg-opacity-10 text-red-500',
       yellow: 'bg-yellow-500 dark:bg-opacity-10 text-yellow-500',
       green: 'bg-green-500 dark:bg-opacity-10 text-green-500',
@@ -159,13 +159,105 @@ export default {
 
   card: {
     base: `
-      bg-white dark:bg-dark-700
+      bg-white dark:bg-grayScaleDark-700
+      
+      border
       ${defaults.border.primary} 
+
       flex flex-col 
-       rounded-md shadow-lg overflow-hidden relative`,
+      rounded-md shadow-lg overflow-hidden relative
+    `,
     hoverable: 'transition transform hover:-translate-y-1 hover:shadow-2xl',
-    head: 'px-8 py-6 flex justify-between border-b',
+    head: `px-8 py-6 flex justify-between 
+    border-b
+      ${defaults.border.primary} `,
     content: 'p-8',
+  },
+
+  /*
+   * Tabs
+   */
+
+  tabs: {
+    base: `w-full justify-between space-y-4`,
+    underlined: {
+      list: `flex items-center border-b ${defaults.border.primary}`,
+      base: ` 
+        relative 
+        cursor-pointer 
+
+        text-grayScale-400 
+        dark:text-grayScale-300
+        
+        flex 
+        items-center 
+        space-x-2
+
+        text-center 
+        transition ease-out duration-200
+
+        text-opacity-50 dark:text-opacity-50
+        hover:text-opacity-100
+        dark:hover:text-opacity-100
+
+        focus:outline-none focus:ring
+      `,
+      inactive: `
+      `,
+      active: `
+        text-opacity-100 dark:text-opacity-100
+        ${defaults.border.alternative}
+        border-b-2
+      `,
+    },
+    pills: {
+      list: 'flex space-x-1',
+      base: ` 
+        relative 
+        cursor-pointer 
+
+        flex 
+        items-center 
+        space-x-2
+
+        text-center 
+        transition ease-out duration-200 
+        hover:bg-opacity-90
+        shadow-sm
+        rounded
+
+        focus:outline-none focus:ring
+      `,
+      inactive: `
+        bg-grayScale-100 dark:bg-grayScaleDark-600
+
+        border
+        ${defaults.border.secondary} 
+        ${utils.border.hover}
+
+        text-grayScale-600 hover:text-grayScale-700 dark:text-grayScaleDark-300
+      `,
+      active: `
+        bg-white 
+ 
+        hover:bg-grayScale-50
+
+        text-grayScale-500 
+        hover:text-grayScale-600 
+
+        border
+        ${defaults.border.secondary} 
+        ${utils.border.hover}
+
+        dark:border-grayScaleDark-600 
+      `,
+    },
+    block: 'w-full flex items-center justify-center',
+    size: {
+      ...default__padding_and_text,
+    },
+    scrollable: `overflow-auto whitespace-nowrap`,
+    content: `focus:outline-none focus:ring`,
   },
 
   /*
@@ -179,68 +271,69 @@ export default {
       inline-flex items-center space-x-2 
       text-center 
       transition ease-out duration-200 
-      outline-none rounded focus:outline-none
+      rounded 
+      ${defaults.focus}
       hover:bg-opacity-90
       shadow-sm
     `,
     container: 'inline-flex font-medium',
     type: {
       primary: `
-        ${defaults.bg.brand.primary}
+        bg-brandColor
         text-white 
+        border
+        border-brandColor
+        ${utils.border.hover}
       `,
       default: `
         bg-white 
- 
-        hover:bg-gray-50
-
-        text-gray-500 
-        hover:text-gray-600 
-
+        hover:bg-grayScale-50
+        text-grayScale-500 
+        hover:text-grayScale-600 
+        border
         ${defaults.border.secondary} 
         ${utils.border.hover}
-
-        dark:border-gray-600 
+        dark:border-grayScaleDark-600 
       `,
       alternative: `
-        ${defaults.bg.brand.primary}
+        bg-brandColor
         bg-opacity-10 dark:bg-opacity-20
         hover:bg-opacity-20 dark:hover:bg-opacity-30
-
-        ${defaults.border.brand}
+        border
+        border-brandColor
         border-opacity-20
-        
-
-        text-gray-600 
-        hover:text-gray-700 
-        dark:text-gray-300
+        text-grayScale-600 
+        hover:text-grayScale-700 
+        dark:text-grayScaleDark-300
       `,
       secondary: `
-        bg-gray-100 dark:bg-gray-600
-
+        bg-grayScale-100 dark:bg-grayScaleDark-600
+        border
         ${defaults.border.secondary} 
         ${utils.border.hover}
-
-        text-gray-600 hover:text-gray-700 dark:text-gray-300
+        ${defaults.text.body}
+        hover:text-grayScale-700
       `,
       outline: `
-        text-gray-500 
+        text-grayScale-500 
         bg-transparent 
         
+        border
         ${defaults.border.secondary} 
         ${utils.border.hover}
 
-        border-gray-200 border-solid 
+        border-grayScale-200 border-solid 
         
         hover:bg-white 
-        hover:text-gray-600 
+        hover:text-grayScale-600 
         dark:text-white 
         
-        dark:hover:text-dark-600 
+        dark:hover:text-grayScaleDark-600 
       `,
       link: `
-        ${defaults.text.brand} 
-        ${defaults.bg.brand.primary}
+        text-brandColor
+        border
+        bg-brandColor
         ${defaults.border.brand}
         
         border-opacity-0
@@ -251,40 +344,56 @@ export default {
         shadow-none
       `,
       dashed: `
+        border
         border-dashed
         ${defaults.border.secondary} 
         ${utils.border.hover}
 
-        text-gray-500
+        ${defaults.text.body}
         bg-transparent
         
-        hover:text-gray-600
+        hover:text-grayScale-600
         
         dark:text-white
         dark:hover:text-white 
     `,
       text: `
-        ${defaults.text.body} 
-        ${defaults.border.brand}
-        
-        bg-gray-50 dark:bg-gray-600
-        
-        border-opacity-0
+        bg-grayScale-50 dark:bg-grayScaleDark-500
+        ${defaults.text.body}
+        border-grayScale-50 dark:border-grayScaleDark-500
+        border-opacity-0 dark:border-opacity-0
         bg-opacity-0 dark:bg-opacity-0
-        
         hover:bg-opacity-25 dark:hover:bg-opacity-25
-        hover:border-opacity-5 dark:border-opacity-10
+        hover:border-opacity-5 dark:hover:border-opacity-10
         shadow-none
       `,
       danger: `
-        border-red-700 
-        bg-red-600 
+        bg-red-500 
+        bg-opacity-75 dark:bg-opacity-75
+        hover:bg-opacity-100 dark:hover:bg-opacity-100
+
+        border
+        border-red-600 
+        border-opacity-40
+        
+
         text-white
+        
+        text-opacity-90
+        hover:text-opacity-100
       `,
       warning: `
-        border-yellow-400 
-        bg-yellow-300 
-        text-gray-600
+        bg-yellow-400 
+        bg-opacity-10 dark:bg-opacity-10
+        hover:bg-opacity-20 dark:hover:bg-opacity-20
+
+        border
+        border-yellow-600 
+        border-opacity-40
+
+        text-yellow-600 
+        text-opacity-90
+        hover:text-opacity-100
       `,
     },
     block: 'w-full flex items-center justify-center',
@@ -305,13 +414,75 @@ export default {
 
   input: {
     base: `
-    block box-border pl-3 pr-3 py-2 w-full rounded-md shadow-sm text-sm border border-solid transition-all
-    bg-white text-input-value-light border-input-border-light
-    dark:bg-transparent dark:text-input-value-dark dark:border-input-border-dark
-    focus:ring-1 focus:ring-brand-600 focus:outline-none focus:border-brand-600 dark:focus:border-brand-600 focus:shadow-md
-`,
+      block 
+      box-border 
+      w-full 
+      rounded-md 
+      shadow-sm 
+      transition-all
+      text-grayScale-600   
+      dark:text-grayScaleDark-200 
+      border
+      focus:border-brandColor
+      focus:shadow-md
+      ${defaults.focus}
+      ${defaults.placeholder}
+    `,
+    variants: {
+      standard: `
+        bg-white
+        dark:bg-transparent
+        border-input-border-light dark:border-input-border-dark
+        `,
+      error: `
+        bg-red-500
+        bg-opacity-5
+        border-red-500 
+        dark:border-red-500
+        focus:outline-none focus:ring-red-500
+       `,
+    },
     container: 'relative',
-    error: 'border-red-500 dark:border-red-500',
+    with_icon: 'pl-10',
+    size: {
+      ...default__padding_and_text,
+    },
+    actions_container: 'absolute inset-y-0 right-0 pl-3 pr-1 flex items-center',
+  },
+
+  /*
+   * Input
+   */
+
+  inputNumber: {
+    base: `
+      block 
+      box-border 
+      w-full 
+      rounded-md 
+      shadow-sm 
+      transition-all
+      text-grayScale-600   
+      dark:text-grayScaleDark-200 
+      border
+      focus:border-brandColor
+      focus:shadow-md
+      ${defaults.focus}
+      ${defaults.placeholder}
+    `,
+    variants: {
+      standard: `
+        bg-white
+        dark:bg-transparent
+        border-input-border-light dark:border-input-border-dark`,
+      error: `
+        bg-red-500
+        bg-opacity-5
+        border-red-500 
+        dark:border-red-500
+       `,
+    },
+    container: 'relative',
     with_icon: 'pl-10',
     size: {
       ...default__padding_and_text,
@@ -351,31 +522,31 @@ export default {
     data_input_vertical_layout__align_right: 'text-right',
 
     label: {
-      base: 'block text-input-label-light dark:text-input-label-dark',
+      base: 'block text-grayScale-600 dark:text-grayScaleDark-200',
       size: {
         ...defaults.size.text,
       },
     },
     label_optional: {
-      base: 'text-gray-400 dark:text-gray-300',
+      base: 'text-grayScale-400 dark:text-grayScaleDark-400',
       size: {
         ...defaults.size.text,
       },
     },
     description: {
-      base: 'mt-2 text-gray-400 dark:text-gray-300',
+      base: 'mt-2 text-grayScale-400 dark:text-grayScaleDark-400',
       size: {
         ...defaults.size.text,
       },
     },
     label_before: {
-      base: 'text-gray-400 dark:text-gray-300',
+      base: 'text-grayScale-400 dark:text-grayScaleDark-400',
       size: {
         ...defaults.size.text,
       },
     },
     label_after: {
-      base: 'text-gray-400 dark:text-gray-300',
+      base: 'text-grayScale-400 dark:text-grayScaleDark-400',
       size: {
         ...defaults.size.text,
       },
@@ -393,6 +564,73 @@ export default {
       large: 'text-base',
       xlarge: 'text-base',
     },
+  },
+
+  /*
+   *  Dropdown
+   */
+
+  dropdown: {
+    // root:
+    trigger: `
+      border-none 
+      rounded
+      bg-transparent p-0
+      ${defaults.focus}
+      
+      `,
+    content: `
+      bg-bgScale-50 dark:bg-bgScaleDark-600 p-0
+      border border-lightmode dark:border-darkmode
+      rounded
+      shadow-lg
+      animate-dropdown
+      origin-dropdown
+      py-1.5
+    `,
+    arrow: `
+      fill-current text-bg-primary-light dark:text-bg-secondary-dark;
+      border-0 border-t;
+    `,
+    item: `
+      relative
+      text-xs
+      ${defaults.text.body}
+      px-4 py-1.5 flex items-center space-x-2
+      cursor-pointer
+      focus:bg-brandColor 
+      focus:text-grayScale-100
+      border-none
+      focus:outline-none
+    `,
+    label: `
+      text-typography-body-secondary-light dark:text-typography-body-secondary-dark;
+      px-4 flex items-center space-x-2 py-1.5
+      text-xs
+    `,
+    seperator: `
+      w-full
+      h-px
+      my-2
+      bg-bgScale-100 dark:bg-bgScaleDark-700
+    `,
+    misc: `
+      px-4 py-1.5
+    `,
+    check: `
+      absolute left-3
+      flex items-center
+    `,
+    input: `
+      flex items-center space-x-0 pl-8 pr-4
+    `,
+    right_slot: `
+      ${defaults.text.body}
+      absolute
+      inset-y-2/4
+      top
+      right-0
+    `,
   },
 }
 // dark:focus:border-input-border-focus-dark dark:focus:ring-input-border-focus-dark

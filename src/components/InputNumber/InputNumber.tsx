@@ -5,8 +5,11 @@ import { IconChevronDown } from '../Icon/icons/IconChevronDown'
 import { IconChevronUp } from '../Icon/icons/IconChevronUp'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import { Space } from '../../index'
+
+import defaultTheme from '../../lib/theme/defaultTheme'
+
 // @ts-ignore
-import InputNumberStyles from './InputNumber.module.css'
+// import InputNumberStyles from './InputNumber.module.css'
 
 export interface Props {
   autoComplete?: string
@@ -65,58 +68,62 @@ function InputNumber({
   min,
   max,
 }: Props) {
-  const inputClasses = [InputNumberStyles['sbui-inputnumber']]
+  const __styles = defaultTheme.inputNumber
 
-  const iconUpClasses = [
-    InputNumberStyles['sbui-inputnumber-button'],
-    InputNumberStyles['sbui-inputnumber-button-up'],
-  ]
+  // const inputClasses = [InputNumberStyles['sbui-inputnumber']]
+  let inputClasses = [__styles.base]
 
-  const inputRefCurrent = inputRef
-    ? inputRef
-    : React.createRef<HTMLInputElement>()
+  // const iconUpClasses = [
+  //   InputNumberStyles['sbui-inputnumber-button'],
+  //   InputNumberStyles['sbui-inputnumber-button-up'],
+  // ]
 
-  const iconDownClasses = [
-    InputNumberStyles['sbui-inputnumber-button'],
-    InputNumberStyles['sbui-inputnumber-button-down'],
-  ]
+  // const inputRefCurrent = inputRef
+  //   ? inputRef
+  //   : React.createRef<HTMLInputElement>()
 
-  const iconNavClasses = [InputNumberStyles['sbui-inputnumber-nav']]
+  // const iconDownClasses = [
+  //   InputNumberStyles['sbui-inputnumber-button'],
+  //   InputNumberStyles['sbui-inputnumber-button-down'],
+  // ]
 
-  if (error) inputClasses.push(InputNumberStyles['sbui-inputnumber--error'])
-
-  if (icon) inputClasses.push(InputNumberStyles['sbui-inputnumber--with-icon'])
+  // const iconNavClasses = [InputNumberStyles['sbui-inputnumber-nav']]
 
   if (size) {
-    inputClasses.push(InputNumberStyles[`sbui-inputnumber--${size}`])
-    iconNavClasses.push(InputNumberStyles[`sbui-inputnumber-nav--${size}`])
+    // inputClasses.push(InputNumberStyles[`sbui-inputnumber--${size}`])
+    // iconNavClasses.push(InputNumberStyles[`sbui-inputnumber-nav--${size}`])
   }
 
-  const onClickChevronUp = () => {
-    inputRefCurrent.current?.stepUp()
-    if (onChange) {
-      inputRefCurrent.current?.dispatchEvent(
-        new InputEvent('change', {
-          view: window,
-          bubbles: true,
-          cancelable: false,
-        })
-      )
-    }
-  }
+  if (error) inputClasses.push(__styles.variants.error)
+  if (!error) inputClasses.push(__styles.variants.standard)
+  if (icon) inputClasses.push(__styles.with_icon)
+  if (size) inputClasses.push(__styles.size[size])
 
-  const onClickChevronDown = () => {
-    inputRefCurrent.current?.stepDown()
-    if (onChange) {
-      inputRefCurrent.current?.dispatchEvent(
-        new InputEvent('change', {
-          view: window,
-          bubbles: true,
-          cancelable: false,
-        })
-      )
-    }
-  }
+  // const onClickChevronUp = () => {
+  //   inputRefCurrent.current?.stepUp()
+  //   if (onChange) {
+  //     inputRefCurrent.current?.dispatchEvent(
+  //       new InputEvent('change', {
+  //         view: window,
+  //         bubbles: true,
+  //         cancelable: false,
+  //       })
+  //     )
+  //   }
+  // }
+
+  // const onClickChevronDown = () => {
+  //   inputRefCurrent.current?.stepDown()
+  //   if (onChange) {
+  //     inputRefCurrent.current?.dispatchEvent(
+  //       new InputEvent('change', {
+  //         view: window,
+  //         bubbles: true,
+  //         cancelable: false,
+  //       })
+  //     )
+  //   }
+  // }
 
   return (
     <div className={className}>
@@ -132,7 +139,7 @@ function InputNumber({
         style={style}
         size={size}
       >
-        <div className={InputNumberStyles['sbui-inputnumber-container']}>
+        <div className={__styles.container}>
           <input
             autoComplete={autoComplete}
             autoFocus={autofocus}
@@ -145,14 +152,14 @@ function InputNumber({
             onBlur={onBlur ? (event) => onBlur(event) : undefined}
             onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
             placeholder={placeholder}
-            ref={inputRefCurrent}
+            // ref={inputRefCurrent}
             type={'number'}
             value={value}
             className={inputClasses.join(' ')}
             min={min}
             max={max}
           />
-          <div className={iconNavClasses.join(' ')}>
+          {/* <div className={iconNavClasses.join(' ')}>
             <IconChevronUp
               className={iconUpClasses.join(' ')}
               onClick={onClickChevronUp}
@@ -167,15 +174,10 @@ function InputNumber({
                 e.preventDefault()
               }}
             />
-          </div>
+          </div> */}
           {icon && <InputIconContainer icon={icon} />}
           {error ? (
-            <Space
-              className={
-                InputNumberStyles['sbui-inputnumber-actions-container']
-              }
-              size={1}
-            >
+            <Space className={__styles.actions_container} size={1}>
               {error && <InputErrorIcon size={size} />}
             </Space>
           ) : null}

@@ -1,11 +1,10 @@
-import React, { Ref, useState } from 'react'
+import React, { useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import { Button, Space, Typography, IconCopy } from '../../index'
-// @ts-ignore
-import InputStyles from './Input.module.css'
 import defaultTheme from '../../lib/theme/defaultTheme'
+import { HIDDEN_PLACEHOLDER } from './../../lib/constants'
 
 export interface Props
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -50,7 +49,7 @@ function Input({
   onFocus,
   onKeyDown,
   placeholder,
-  type,
+  type = 'text',
   value,
   style,
   reveal = false,
@@ -62,13 +61,10 @@ function Input({
 
   const __styles = defaultTheme.input
 
-  // if `type` is not assigned, default to text input
-  if (!type) {
-    type = 'text'
-  }
-
   let inputClasses = [__styles.base]
-  if (error) inputClasses.push(__styles.error)
+
+  if (error) inputClasses.push(__styles.variants.error)
+  if (!error) inputClasses.push(__styles.variants.standard)
   if (icon) inputClasses.push(__styles.with_icon)
   if (size) inputClasses.push(__styles.size[size])
 
@@ -91,8 +87,6 @@ function Input({
   function onReveal() {
     setHidden(false)
   }
-
-  const hiddenPlaceholder = '**** **** **** ****'
 
   return (
     <div className={className}>
@@ -123,7 +117,7 @@ function Input({
             placeholder={placeholder}
             ref={inputRef}
             type={type}
-            value={hidden ? hiddenPlaceholder : value}
+            value={hidden ? HIDDEN_PLACEHOLDER : value}
             className={inputClasses.join(' ')}
           />
           {icon && <InputIconContainer icon={icon} />}
@@ -209,10 +203,14 @@ function TextArea({
 }: TextAreaProps) {
   const [charLength, setCharLength] = useState(0)
 
-  let classes = [InputStyles['sbui-input']]
-  if (error) classes.push(InputStyles['sbui-input--error'])
-  if (icon) classes.push(InputStyles['sbui-input--with-icon'])
-  if (size) classes.push(InputStyles[`sbui-input--${size}`])
+  const __styles = defaultTheme.input
+
+  let classes = [__styles.base]
+
+  if (error) classes.push(__styles.variants.error)
+  if (!error) classes.push(__styles.variants.standard)
+  if (icon) classes.push(__styles.with_icon)
+  if (size) classes.push(__styles.size[size])
 
   function onInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     if (onChange) {

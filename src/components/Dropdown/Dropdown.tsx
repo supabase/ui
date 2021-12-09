@@ -9,6 +9,9 @@ import DropdownStyles from './Dropdown.module.css'
 
 import type * as RadixDropdownTypes from '@radix-ui/react-dropdown-menu/'
 
+import styleHandler from '../../lib/theme/styleHandler'
+import { IconTarget } from '../..'
+
 interface RootProps {
   open?: boolean
   arrow?: boolean
@@ -32,16 +35,16 @@ function Dropdown({
   style,
   arrow,
 }: RootProps) {
-  let classes = [DropdownStyles['sbui-dropdown__content']]
+  let __styles = styleHandler('dropdown')
+
+  let classes = [__styles.content]
   if (className) {
     classes.push(className)
   }
 
   return (
     <RadixDropdown.Root onOpenChange={onOpenChange} open={open}>
-      <RadixDropdown.Trigger
-        className={DropdownStyles['sbui-dropdown__trigger']}
-      >
+      <RadixDropdown.Trigger className={__styles.trigger}>
         {children}
       </RadixDropdown.Trigger>
 
@@ -55,7 +58,7 @@ function Dropdown({
       >
         {arrow && (
           <RadixDropdown.Arrow
-            className={DropdownStyles['sbui-dropdown__arrow']}
+            className={__styles.arrow}
             offset={10}
           ></RadixDropdown.Arrow>
         )}
@@ -65,17 +68,31 @@ function Dropdown({
   )
 }
 
+export function RightSlot({ children }: any) {
+  let __styles = styleHandler('dropdown')
+  return <div className={__styles.right_slot}>{children}</div>
+}
+
 interface ItemProps {
   children: React.ReactNode
   icon?: React.ReactNode
   disabled?: boolean
   onClick?: (event: Event) => void
+  rightSlot?: string
 }
 
-export function Item({ children, icon, disabled, onClick }: ItemProps) {
+export function Item({
+  children,
+  icon,
+  disabled,
+  onClick,
+  rightSlot,
+}: ItemProps) {
+  let __styles = styleHandler('dropdown')
+
   return (
     <RadixDropdown.Item
-      className={DropdownStyles['sbui-dropdown-item']}
+      className={__styles.item}
       disabled={disabled}
       onSelect={onClick}
     >
@@ -86,8 +103,9 @@ export function Item({ children, icon, disabled, onClick }: ItemProps) {
 }
 
 export function Misc({ children, icon }: ItemProps) {
+  let __styles = styleHandler('dropdown')
   return (
-    <div className={DropdownStyles['sbui-dropdown-misc']}>
+    <div className={__styles.misc}>
       {icon && icon}
       {children}
     </div>
@@ -102,6 +120,12 @@ interface CheckboxProps {
   ItemIndicator?: React.ReactNode
 }
 
+export function Seperator() {
+  let __styles = styleHandler('dropdown')
+
+  return <RadixDropdown.Separator className={__styles.seperator} />
+}
+
 export function Checkbox({
   children,
   checked: propsChecked,
@@ -110,6 +134,8 @@ export function Checkbox({
   ItemIndicator,
 }: CheckboxProps) {
   const [checked, setChecked] = useState(propsChecked ? propsChecked : false)
+
+  let __styles = styleHandler('dropdown')
 
   const handleChange = (e: boolean) => {
     if (onChange) onChange(e)
@@ -120,13 +146,15 @@ export function Checkbox({
     <RadixDropdown.CheckboxItem
       checked={checked}
       onCheckedChange={handleChange}
-      className={`${DropdownStyles['sbui-dropdown-item']} ${DropdownStyles['sbui-dropdown-input']}`}
+      className={`${__styles.item} ${__styles.input}`}
       disabled={disabled}
     >
-      <RadixDropdown.ItemIndicator
-        className={DropdownStyles['sbui-dropdown-input__check']}
-      >
-        {ItemIndicator ? ItemIndicator : <IconCheck size="tiny" />}
+      <RadixDropdown.ItemIndicator className={__styles.check}>
+        {ItemIndicator ? (
+          ItemIndicator
+        ) : (
+          <IconCheck size="tiny" strokeWidth={3} />
+        )}
         <RadixDropdown.CheckboxItem />
       </RadixDropdown.ItemIndicator>
       <span>{children}</span>
@@ -141,15 +169,19 @@ interface RadioProps {
 }
 
 export function Radio({ children, value, ItemIndicator }: RadioProps) {
+  let __styles = styleHandler('dropdown')
+
   return (
     <RadixDropdown.RadioItem
       value={value}
-      className={`${DropdownStyles['sbui-dropdown-item']} ${DropdownStyles['sbui-dropdown-input']}`}
+      className={`${__styles.item} ${__styles.input}`}
     >
-      <RadixDropdown.ItemIndicator
-        className={DropdownStyles['sbui-dropdown-input__check']}
-      >
-        {ItemIndicator ? ItemIndicator : <IconCheck size="tiny" />}
+      <RadixDropdown.ItemIndicator className={__styles.check}>
+        {ItemIndicator ? (
+          ItemIndicator
+        ) : (
+          <IconTarget strokeWidth={6} size={10} />
+        )}
       </RadixDropdown.ItemIndicator>
       <span>{children}</span>
     </RadixDropdown.RadioItem>
@@ -186,8 +218,10 @@ interface LabelProps {
 }
 
 export function Label({ children }: LabelProps) {
+  let __styles = styleHandler('dropdown')
+
   return (
-    <RadixDropdown.Label className={DropdownStyles['sbui-dropdown-label']}>
+    <RadixDropdown.Label className={__styles.label}>
       {children}
     </RadixDropdown.Label>
   )
@@ -199,4 +233,6 @@ Dropdown.Checkbox = Checkbox
 Dropdown.Radio = Radio
 Dropdown.RadioGroup = RadioGroup
 Dropdown.Label = Label
+Dropdown.Seperator = Seperator
+Dropdown.RightSlot = RightSlot
 export default Dropdown

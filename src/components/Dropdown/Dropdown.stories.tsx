@@ -30,17 +30,19 @@ export const Default = (args: any) => (
             </Typography.Text>
           </div>
         </Dropdown.Misc>,
-        <Divider light />,
+        <Dropdown.Seperator />,
         <Dropdown.Label>Group label</Dropdown.Label>,
         <Dropdown.Item onClick={() => console.log('clicked')}>
           Account
         </Dropdown.Item>,
-        <Dropdown.Item>Settings</Dropdown.Item>,
-        <Divider light />,
+        <Dropdown.Item>
+          Settings <Dropdown.RightSlot>⌘+T</Dropdown.RightSlot>
+        </Dropdown.Item>,
+        <Dropdown.Seperator />,
         <Dropdown.Item icon={<IconLogIn size="tiny" />}>Log out</Dropdown.Item>,
       ]}
     >
-      <Button as="span" type="outline" iconRight={<IconChevronDown />}>
+      <Button as="span" type="secondary" iconRight={<IconChevronDown />}>
         Click for dropdown
       </Button>
     </Dropdown>
@@ -58,7 +60,7 @@ export const doNotcloseOverlay = (args: any) => (
           <Typography.Text>Signed in as </Typography.Text>
           <Typography.Text strong>tom@example.com </Typography.Text>
         </Dropdown.Misc>,
-        <Divider light />,
+        <Dropdown.Seperator />,
         <Dropdown.Item>Account</Dropdown.Item>,
         <Dropdown.Item>Settings</Dropdown.Item>,
         <Dropdown.Item>
@@ -93,10 +95,10 @@ export const withCustomStyles = (args: any) => (
           <Typography.Text>Signed in as </Typography.Text>
           <Typography.Text strong>tom@example.com </Typography.Text>
         </Dropdown.Item>,
-        <Divider light />,
+        <Dropdown.Seperator />,
         <Dropdown.Item>Account</Dropdown.Item>,
         <Dropdown.Item>Settings</Dropdown.Item>,
-        <Divider light />,
+        <Dropdown.Seperator />,
         <Dropdown.Item>
           <Button type="default" icon={<IconLogOut />}>
             Log out
@@ -129,7 +131,7 @@ export const SearchList = (args: any) => (
           <Typography.Text>Signed in as </Typography.Text>
           <Typography.Text strong>tom@example.com </Typography.Text>
         </Dropdown.Item>,
-        <Divider light />,
+        <Dropdown.Seperator />,
         <Dropdown.Item icon={<IconLogIn />}>
           <Typography.Text>Log out</Typography.Text>
         </Dropdown.Item>,
@@ -156,7 +158,7 @@ export const Checkbox = (args: any) => {
             Account
           </Dropdown.Item>,
           <Dropdown.Item>Settings</Dropdown.Item>,
-          <Divider light />,
+          <Dropdown.Seperator />,
           <Dropdown.Checkbox checked={checked} onChange={setChecked}>
             Show subtitles
           </Dropdown.Checkbox>,

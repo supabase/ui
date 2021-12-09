@@ -1,4 +1,4 @@
-.sbui-tab-button-underline {
+/* .sbui-tab-button-underline {
   @apply rounded-none;
   @apply hover:text-gray-600 hover:bg-transparent;
   @apply dark:hover:text-white dark:hover:bg-transparent;
@@ -34,7 +34,8 @@
   flex-grow: 1;
 }
 
+/* base */
 .sbui-tab-bar-container {
   justify-content: space-between;
   width: 100%;
-}
+} */
