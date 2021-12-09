@@ -65,6 +65,12 @@ function Tabs({
   // for styling the tabs for cards style
   const cards = type === 'cards'
 
+  // if only 1 react child, it needs to be converted to a list/array
+  // this is so 1 tab can be displayed
+  if (children && !Array.isArray(children)) {
+    children = [children]
+  }
+
   return (
     <Space direction="vertical" size={4}>
       <div id={id} role="tablist" aria-label={id} style={tabBarStyle}>
