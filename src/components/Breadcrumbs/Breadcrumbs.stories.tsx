@@ -9,11 +9,14 @@ export default {
 }
 
 export const Default = ({ children, ...args }) => (
-  <Breadcrumbs {...args} spacing="small">
-    {children}
-  </Breadcrumbs>
+  <Breadcrumbs {...args}>{children}</Breadcrumbs>
 )
 
 Default.args = {
-  children: [<p>Brothers</p>, <p>Grimm</p>, <p>Hansel</p>, <p>Gretel</p>],
+  children: [
+    <Breadcrumbs.Item>Brothers</Breadcrumbs.Item>,
+    <Breadcrumbs.Item>Grimm</Breadcrumbs.Item>,
+    <Breadcrumbs.Item active>Hansel</Breadcrumbs.Item>,
+    <Breadcrumbs.Item>Gretel</Breadcrumbs.Item>,
+  ],
 }

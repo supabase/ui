@@ -26,19 +26,44 @@ const Breadcrumbs = ({
   }
 
   return (
-    <div className={classes.join(' ')}>
+    <ol className={classes.join(' ')} style={style}>
       {children!.map((child: React.ReactNode, idx: number) => (
-        <>
-          <span className={BreadcrumbsStyles['sbui-breadcrumbs--item']}>
-            {child}
-          </span>
+        <li className="flex items-center">
+          {child}
           {idx + 1 < children!.length && (
-            <IconChevronRight className={seperatorClasses.join(' ')} />
+            <IconChevronRight
+              className={seperatorClasses.join(' ')}
+              aria-hidden="true"
+            />
           )}
-        </>
+        </li>
       ))}
-    </div>
+    </ol>
   )
 }
+
+interface ItemProps {
+  children: React.ReactNode
+  active?: boolean
+  onClick?: any
+  style?: React.CSSProperties
+}
+
+export function Item({ children, active, onClick, style }: ItemProps) {
+  let classes = [BreadcrumbsStyles['sbui-breadcrumbs--item']]
+  if (active) classes.push(BreadcrumbsStyles['sbui-breadcrumbs--item__active'])
+  return (
+    <span
+      className={classes.join(' ')}
+      onClick={onClick}
+      style={style}
+      aria-current={active ? 'page' : false}
+    >
+      {children}
+    </span>
+  )
+}
+
+Breadcrumbs.Item = Item
 
 export default Breadcrumbs
