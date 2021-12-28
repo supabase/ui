@@ -1,5 +1,5 @@
 import { IconChevronRight } from '../Icon/icons/IconChevronRight'
-import BreadcrumbsStyles from './Breadcrumbs.module.css'
+import BreadcrumbStyle from './Breadcrumb.module.css'
 
 interface Props {
   children?: [React.ReactNode]
@@ -8,25 +8,25 @@ interface Props {
   spacing?: 'small' | 'medium' | 'large'
 }
 
-const Breadcrumbs = ({
+const Breadcrumb = ({
   className,
   style,
   children,
   spacing = 'small',
 }: Props) => {
-  let classes = [BreadcrumbsStyles['sbui-breadcrumbs--container']]
-  let seperatorClasses = [BreadcrumbsStyles['sbui-breadcrumbs--separator']]
+  let classes = [BreadcrumbStyle['sbui-breadcrumb--container']]
+  let seperatorClasses = [BreadcrumbStyle['sbui-breadcrumb--separator']]
 
   if (className) {
     classes.push(className)
   }
 
   if (spacing) {
-    seperatorClasses.push(`sbui-breadcrumbs--separator-${spacing}`)
+    seperatorClasses.push(`sbui-breadcrumb--separator-${spacing}`)
   }
 
   return (
-    <ol className={classes.join(' ')} style={style}>
+    <ol className={classes.join(' ')} style={style} aria-label="Breadcrumb">
       {children!.map((child: React.ReactNode, idx: number) => (
         <li className="flex items-center">
           {child}
@@ -50,8 +50,8 @@ interface ItemProps {
 }
 
 export function Item({ children, active, onClick, style }: ItemProps) {
-  let classes = [BreadcrumbsStyles['sbui-breadcrumbs--item']]
-  if (active) classes.push(BreadcrumbsStyles['sbui-breadcrumbs--item__active'])
+  let classes = [BreadcrumbStyle['sbui-breadcrumb--item']]
+  if (active) classes.push(BreadcrumbStyle['sbui-breadcrumb--item__active'])
   return (
     <span
       className={classes.join(' ')}
@@ -64,6 +64,6 @@ export function Item({ children, active, onClick, style }: ItemProps) {
   )
 }
 
-Breadcrumbs.Item = Item
+Breadcrumb.Item = Item
 
-export default Breadcrumbs
+export default Breadcrumb
