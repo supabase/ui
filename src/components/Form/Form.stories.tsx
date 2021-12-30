@@ -1,8 +1,5 @@
-import { string } from 'prop-types'
-import React, { useState } from 'react'
-
 import { Form } from '.'
-import { Input, Button, Space, InputNumber, Toggle } from '../../index'
+import { Input, Button, InputNumber, Toggle } from '../../index'
 import Checkbox from '../Checkbox'
 import Radio from '../Radio'
 import Select from '../Select'
