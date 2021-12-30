@@ -22,6 +22,8 @@ interface Values {
   // remember_me: boolean
   favorite_food: string
   check_3: any
+  check_2: any
+  check_1: any
   textarea: string
 }
 
@@ -31,8 +33,10 @@ const INITIAL_VALUES: Values = {
   profession: '',
   number: undefined,
   // remember_me: false,
-  favorite_food: '',
+  favorite_food: 'pizza',
   check_3: false,
+  check_2: true,
+  check_1: false,
   textarea: '',
 }
 
@@ -156,6 +160,9 @@ export const LargerExample = () => {
         }}
         validate={(values: Values) => {
           const errors: any = {}
+
+          console.log(values)
+
           if (!values.first_name) {
             errors.first_name = 'Required'
           } else if (
@@ -176,7 +183,7 @@ export const LargerExample = () => {
             errors.number = 'Required'
           }
 
-          if (values?.number <= 13) {
+          if (values.number <= 13) {
             errors.number = 'Must be a number above 13'
           }
 
@@ -230,17 +237,20 @@ export const LargerExample = () => {
                 descriptionText="You can also show label hint text here"
               >
                 <Checkbox
-                  name="test.check_1"
+                  name="check_1"
+                  id="check_1"
                   label="Remember me"
                   description="hello world"
                 />
                 <Checkbox
-                  name="test.check_2"
+                  name="check_2"
+                  id="check_2"
                   label="Remember me"
                   description="hello world"
                 />
                 <Checkbox
                   name="check_3"
+                  id="check_3"
                   label="Remember me"
                   description="hello world"
                 />

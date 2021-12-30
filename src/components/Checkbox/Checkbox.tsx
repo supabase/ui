@@ -127,7 +127,9 @@ export function Checkbox({
 
         // check if checkbox checked is true or false
         // if neither true or false the checkbox will rely on native control
-        const active = checked ?? undefined
+        let active = checked ?? undefined
+
+        // if (values && !value) value = values[id || name]
 
         let containerClasses = [
           CheckboxStyles['sbui-checkbox-container'],
@@ -137,7 +139,7 @@ export function Checkbox({
         ]
         if (className) containerClasses.push(className)
 
-        if (values && checked === undefined) checked = values[id || name]
+        if (values && checked === undefined) active = values[id || name]
         if (handleBlur) onBlur = handleBlur
 
         function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
