@@ -40,6 +40,7 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   ariaControls?: string
   tabIndex?: 0 | -1
   role?: string
+  textAlign?: 'left' | 'center' | 'right'
   as?: keyof JSX.IntrinsicElements
 }
 
@@ -73,6 +74,7 @@ const Button = forwardRef<RefHandle, ButtonProps>(
       tabIndex,
       role,
       as,
+      textAlign = 'center',
       ...props
     }: ButtonProps,
     ref
@@ -136,53 +138,58 @@ const Button = forwardRef<RefHandle, ButtonProps>(
       return <Tag {...props} />
     }
 
-    const RenderedButton = ({ children }: any) =>
-      as ? (
-        <CustomButton
-          className={classes.join(' ')}
-          onClick={onClick}
-          style={style}
-        >
-          {children}
-        </CustomButton>
-      ) : (
-        <button
-          {...props}
-          ref={buttonRef}
-          className={classes.join(' ')}
-          disabled={loading || (disabled && true)}
-          onClick={onClick}
-          style={style}
-          type={htmlType}
-          aria-selected={ariaSelected}
-          aria-controls={ariaControls}
-          tabIndex={tabIndex}
-          role={role}
-        >
-          {children}
-        </button>
-      )
-
-    return (
-      <span ref={containerRef} className={containerClasses.join(' ')}>
-        <RenderedButton>
-          {showIcon &&
-            (loading ? (
-              <IconLoader size={size} className={iconLoaderClasses.join(' ')} />
-            ) : icon ? (
-              <IconContext.Provider value={{ contextSize: size }}>
-                {icon}
-              </IconContext.Provider>
-            ) : null)}
-          {children && <span>{children}</span>}
-          {iconRight && !loading && (
+    const buttonContent = (
+      <>
+        {showIcon &&
+          (loading ? (
+            <IconLoader size={size} className={iconLoaderClasses.join(' ')} />
+          ) : icon ? (
             <IconContext.Provider value={{ contextSize: size }}>
-              {iconRight}
+              {icon}
             </IconContext.Provider>
-          )}
-        </RenderedButton>
-      </span>
+          ) : null)}
+        {children && <span>{children}</span>}
+        {iconRight && !loading && (
+          <IconContext.Provider value={{ contextSize: size }}>
+            {iconRight}
+          </IconContext.Provider>
+        )}
+      </>
     )
+
+    if (as) {
+      return (
+        <span ref={containerRef} className={containerClasses.join(' ')}>
+          <CustomButton
+            className={classes.join(' ')}
+            onClick={onClick}
+            style={style}
+          >
+            {buttonContent}
+          </CustomButton>
+        </span>
+      )
+    } else {
+      return (
+        <span ref={containerRef} className={containerClasses.join(' ')}>
+          <button
+            {...props}
+            ref={buttonRef}
+            className={classes.join(' ')}
+            disabled={loading || (disabled && true)}
+            onClick={onClick}
+            style={style}
+            type={htmlType}
+            aria-selected={ariaSelected}
+            aria-controls={ariaControls}
+            tabIndex={tabIndex}
+            role={role}
+          >
+            {buttonContent}
+          </button>
+        </span>
+      )
+    }
   }
 )
 

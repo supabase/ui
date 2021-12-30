@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import { IconChevronDown } from '../Icon/icons/IconChevronDown'
@@ -10,6 +10,8 @@ import defaultTheme from '../../lib/theme/defaultTheme'
 
 // @ts-ignore
 // import InputNumberStyles from './InputNumber.module.css'
+import InputNumberStyles from './InputNumber.module.css'
+import { useFormContext } from '../Form/FormContext'
 
 export interface Props {
   autoComplete?: string
@@ -38,6 +40,8 @@ export interface Props {
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   min?: number
   max?: number
+  borderless?: boolean
+  validation?: (x: any) => void
 }
 
 function InputNumber({
@@ -49,26 +53,53 @@ function InputNumber({
   disabled,
   error,
   icon,
-  id,
+  id = '',
   inputRef,
   label,
   afterLabel,
   beforeLabel,
   labelOptional,
   layout,
-  name,
+  name = '',
   onChange,
   onBlur,
   onFocus,
   onKeyDown,
   placeholder,
-  value,
+  value = undefined,
   style,
   size = 'medium',
   min,
   max,
+  borderless = false,
+  validation,
 }: Props) {
   const __styles = defaultTheme.inputNumber
+  const {
+    formContextOnChange,
+    values,
+    errors,
+    handleBlur,
+    touched,
+    fieldLevelValidation,
+  } = useFormContext()
+
+  if (values && !value) value = values[id]
+  if (errors && !error) error = errors[id]
+  if (handleBlur) onBlur = handleBlur
+  error = touched && touched[id] ? error : undefined
+
+  function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    if (onChange) onChange(e)
+    // update form
+    if (formContextOnChange) formContextOnChange(e)
+    // run field level validation
+    if (validation) fieldLevelValidation(id, validation(e.target.value))
+  }
+
+  useEffect(() => {
+    if (validation) fieldLevelValidation(id, validation(value))
+  }, [])
 
   // const inputClasses = [InputNumberStyles['sbui-inputnumber']]
   let inputClasses = [__styles.base]
@@ -98,6 +129,8 @@ function InputNumber({
   if (!error) inputClasses.push(__styles.variants.standard)
   if (icon) inputClasses.push(__styles.with_icon)
   if (size) inputClasses.push(__styles.size[size])
+  // if (borderless)
+  //   inputClasses.push(InputNumberStyles['sbui-inputnumber--borderless'])
 
   // const onClickChevronUp = () => {
   //   inputRefCurrent.current?.stepUp()
@@ -147,9 +180,9 @@ function InputNumber({
             disabled={disabled}
             id={id}
             name={name}
-            onChange={onChange ? (event) => onChange(event) : undefined}
+            onChange={onInputChange}
             onFocus={onFocus ? (event) => onFocus(event) : undefined}
-            onBlur={onBlur ? (event) => onBlur(event) : undefined}
+            onBlur={onBlur}
             onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
             placeholder={placeholder}
             // ref={inputRefCurrent}

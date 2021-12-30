@@ -26,8 +26,10 @@
     "react-dom": "^17.0.1"
   },
   "dependencies": {
+    "formik": "^2.2.9",
     "lodash": "^4.17.20",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/cli": "^7.11.6",
@@ -37,9 +39,10 @@
     "@babel/preset-react": "^7.10.4",
     "@babel/runtime": "^7.11.2",
     "@headlessui/react": "^1.0.0",
-    "@radix-ui/react-context-menu": "^0.0.19",
-    "@radix-ui/react-dialog": "^0.0.17",
-    "@radix-ui/react-dropdown-menu": "^0.0.18",
+    "@radix-ui/react-context-menu": "^0.1.0",
+    "@radix-ui/react-dialog": "^0.1.0",
+    "@radix-ui/react-dropdown-menu": "^0.1.0",
+    "@radix-ui/react-popover": "^0.1.0",
     "@radix-ui/react-tabs": "^0.1.0",
     "@rollup/plugin-babel": "^5.2.1",
     "@rollup/plugin-commonjs": "^17.0.0",
@@ -48,13 +51,14 @@
     "@storybook/addon-essentials": "^6.2.2",
     "@storybook/addon-links": "^6.2.2",
     "@storybook/react": "^6.2.2",
-    "@supabase/supabase-js": "^1.11.17",
+    "@supabase/supabase-js": "^1.21.0",
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/typography": "^0.3.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
     "@testing-library/user-event": "^12.1.7",
     "autoprefixer": "^10.0.2",
+    "@types/lodash": "^4.14.172",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-add-react-displayname": "^0.0.5",
@@ -105,6 +109,19 @@
   "jest": {
     "transformIgnorePatterns": [
       "/node_modules/(?!react-feather)"
+    ]
+  },
+  "release": {
+    "branches": [
+      "master",
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
     ]
   }
 }

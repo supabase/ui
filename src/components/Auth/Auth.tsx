@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { SupabaseClient, Provider } from '@supabase/supabase-js'
 import {
   Input,
@@ -40,10 +40,9 @@ type RedirectTo = undefined | string
 
 export interface Props {
   supabaseClient: SupabaseClient
-  className?: any
-  style?: any
-  children?: any
-  authView?: any
+  className?: string
+  children?: React.ReactNode
+  style?: React.CSSProperties
   socialLayout?: 'horizontal' | 'vertical'
   socialColors?: boolean
   socialButtonSize?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
@@ -51,6 +50,8 @@ export interface Props {
   verticalSocialLayout?: any
   view?: ViewType
   redirectTo?: RedirectTo
+  onlyThirdPartyProviders?: boolean
+  magicLink?: boolean
 }
 
 function Auth({
@@ -63,6 +64,8 @@ function Auth({
   providers,
   view = 'sign_in',
   redirectTo,
+  onlyThirdPartyProviders = false,
+  magicLink = false,
 }: Props): JSX.Element | null {
   const [authView, setAuthView] = useState(view)
   const [defaultEmail, setDefaultEmail] = useState('')
@@ -86,8 +89,10 @@ function Auth({
           socialButtonSize={socialButtonSize}
           socialColors={socialColors}
           redirectTo={redirectTo}
+          onlyThirdPartyProviders={onlyThirdPartyProviders}
+          magicLink={magicLink}
         />
-        {props.children}
+        {!onlyThirdPartyProviders && props.children}
       </Space>
     </div>
   )
@@ -103,6 +108,7 @@ function Auth({
       return (
         <Container>
           <EmailAuth
+            id={authView === VIEWS.SIGN_UP ? 'auth-sign-up' : 'auth-sign-in'}
             supabaseClient={supabaseClient}
             authView={authView}
             setAuthView={setAuthView}
@@ -111,6 +117,7 @@ function Auth({
             setDefaultEmail={setDefaultEmail}
             setDefaultPassword={setDefaultPassword}
             redirectTo={redirectTo}
+            magicLink={magicLink}
           />
         </Container>
       )
@@ -159,33 +166,48 @@ function SocialAuth({
   providers,
   verticalSocialLayout,
   redirectTo,
+  onlyThirdPartyProviders,
+  magicLink,
   ...props
 }: Props) {
   const buttonStyles: any = {
-    google: {
-      backgroundColor: '#ce4430',
+    azure: {
+      backgroundColor: '#008AD7',
+      color: 'white',
+    },
+    bitbucket: {
+      backgroundColor: '#205081',
       color: 'white',
     },
     facebook: {
       backgroundColor: '#4267B2',
       color: 'white',
     },
-    twitter: {
-      backgroundColor: '#1DA1F2',
-    },
-    apple: {
-      backgroundColor: '#000',
+    github: {
+      backgroundColor: '#333',
       color: 'white',
     },
     gitlab: {
       backgroundColor: '#FC6D27',
     },
-    github: {
-      backgroundColor: '#333',
+    google: {
+      backgroundColor: '#ce4430',
       color: 'white',
     },
-    bitbucket: {
-      backgroundColor: '#205081',
+    twitter: {
+      backgroundColor: '#1DA1F2',
+      color: 'white',
+    },
+    apple: {
+      backgroundColor: '#000',
+      color: 'white',
+    },
+    discord: {
+      backgroundColor: '#404fec',
+      color: 'white',
+    },
+    twitch: {
+      backgroundColor: '#9146ff',
       color: 'white',
     },
   }
@@ -231,6 +253,7 @@ function SocialAuth({
                       icon={<AuthIcon />}
                       loading={loading}
                       onClick={() => handleProviderSignIn(provider)}
+                      className="flex items-center"
                     >
                       {verticalSocialLayout && 'Sign up with ' + provider}
                     </Button>
@@ -239,7 +262,7 @@ function SocialAuth({
               })}
             </Space>
           </Space>
-          <Divider>or continue with</Divider>
+          {!onlyThirdPartyProviders && <Divider>or continue with</Divider>}
         </React.Fragment>
       )}
     </Space>
@@ -250,21 +273,26 @@ function EmailAuth({
   authView,
   defaultEmail,
   defaultPassword,
+  id,
   setAuthView,
   setDefaultEmail,
   setDefaultPassword,
   supabaseClient,
   redirectTo,
+  magicLink,
 }: {
-  authView: any
+  authView: ViewType
   defaultEmail: string
   defaultPassword: string
+  id: 'auth-sign-up' | 'auth-sign-in'
   setAuthView: any
   setDefaultEmail: (email: string) => void
   setDefaultPassword: (password: string) => void
   supabaseClient: SupabaseClient
   redirectTo?: RedirectTo
+  magicLink?: boolean
 }) {
+  const isMounted = useRef<boolean>(true)
   const [email, setEmail] = useState(defaultEmail)
   const [password, setPassword] = useState(defaultPassword)
   const [rememberMe, setRememberMe] = useState(false)
@@ -275,6 +303,10 @@ function EmailAuth({
   useEffect(() => {
     setEmail(defaultEmail)
     setPassword(defaultPassword)
+
+    return () => {
+      isMounted.current = false
+    }
   }, [authView])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -307,7 +339,12 @@ function EmailAuth({
           setMessage('Check your email for the confirmation link.')
         break
     }
-    setLoading(false)
+
+    /*
+     * it is possible the auth component may have been unmounted at this point
+     * check if component is mounted before setting a useState
+     */
+    if (isMounted.current) setLoading(false)
   }
 
   const handleViewChange = (newView: ViewType) => {
@@ -317,7 +354,7 @@ function EmailAuth({
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form id={id} onSubmit={handleSubmit}>
       <Space size={6} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
@@ -352,7 +389,11 @@ function EmailAuth({
             />
             {authView === VIEWS.SIGN_IN && (
               <Typography.Link
-                onClick={() => setAuthView(VIEWS.FORGOTTEN_PASSWORD)}
+                href="#auth-forgot-password"
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                  e.preventDefault()
+                  setAuthView(VIEWS.FORGOTTEN_PASSWORD)
+                }}
               >
                 Forgot your password?
               </Typography.Link>
@@ -361,26 +402,44 @@ function EmailAuth({
           <Button
             htmlType="submit"
             type="primary"
-            block
             size="large"
             icon={<IconLock size={21} />}
             loading={loading}
+            block
           >
             {authView === VIEWS.SIGN_IN ? 'Sign in' : 'Sign up'}
           </Button>
         </Space>
         <Space direction="vertical" style={{ textAlign: 'center' }}>
-          {authView === VIEWS.SIGN_IN && (
-            <Typography.Link onClick={() => setAuthView(VIEWS.MAGIC_LINK)}>
+          {authView === VIEWS.SIGN_IN && magicLink && (
+            <Typography.Link
+              href="#auth-magic-link"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.preventDefault()
+                setAuthView(VIEWS.MAGIC_LINK)
+              }}
+            >
               Sign in with magic link
             </Typography.Link>
           )}
           {authView === VIEWS.SIGN_IN ? (
-            <Typography.Link onClick={() => handleViewChange(VIEWS.SIGN_UP)}>
+            <Typography.Link
+              href="#auth-sign-up"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.preventDefault()
+                handleViewChange(VIEWS.SIGN_UP)
+              }}
+            >
               Don't have an account? Sign up
             </Typography.Link>
           ) : (
-            <Typography.Link onClick={() => handleViewChange(VIEWS.SIGN_IN)}>
+            <Typography.Link
+              href="#auth-sign-in"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.preventDefault()
+                handleViewChange(VIEWS.SIGN_IN)
+              }}
+            >
               Do you have an account? Sign in
             </Typography.Link>
           )}
@@ -421,7 +480,7 @@ function MagicLink({
   }
 
   return (
-    <form onSubmit={handleMagicLinkSignIn}>
+    <form id="auth-magic-link" onSubmit={handleMagicLinkSignIn}>
       <Space size={4} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
@@ -442,7 +501,13 @@ function MagicLink({
             Send magic link
           </Button>
         </Space>
-        <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
+        <Typography.Link
+          href="#auth-sign-in"
+          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+            e.preventDefault()
+            setAuthView(VIEWS.SIGN_IN)
+          }}
+        >
           Sign in with password
         </Typography.Link>
         {message && <Typography.Text>{message}</Typography.Text>}
@@ -481,7 +546,7 @@ function ForgottenPassword({
   }
 
   return (
-    <form onSubmit={handlePasswordReset}>
+    <form id="auth-forgot-password" onSubmit={handlePasswordReset}>
       <Space size={4} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
@@ -502,7 +567,13 @@ function ForgottenPassword({
             Send reset password instructions
           </Button>
         </Space>
-        <Typography.Link onClick={() => setAuthView(VIEWS.SIGN_IN)}>
+        <Typography.Link
+          href="#auth-sign-in"
+          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+            e.preventDefault()
+            setAuthView(VIEWS.SIGN_IN)
+          }}
+        >
           Go back to sign in
         </Typography.Link>
         {message && <Typography.Text>{message}</Typography.Text>}
@@ -534,7 +605,7 @@ function UpdatePassword({
   }
 
   return (
-    <form onSubmit={handlePasswordReset}>
+    <form id="auth-update-password" onSubmit={handlePasswordReset}>
       <Space size={4} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input

@@ -1,5 +1,5 @@
 // @ts-ignore
-import React, { Ref } from 'react'
+import React, { Ref, useEffect } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
@@ -7,6 +7,9 @@ import { Space } from '../../index'
 // @ts-ignore
 import SelectStyles from './Select.module.css'
 import { Icon } from '../Icon'
+import { useFormContext } from '../Form/FormContext'
+
+import { validator } from './../../lib/Form/Form.utils'
 
 interface OptionProps {
   value: string
@@ -19,49 +22,24 @@ interface OptGroupProps {
   children: React.ReactNode
 }
 
-export interface Props {
-  autoComplete?: string
+export interface Props
+  extends Omit<React.InputHTMLAttributes<HTMLSelectElement>, 'size'> {
   autofocus?: boolean
-  className?: string
   children: React.ReactNode
   descriptionText?: string
-  disabled?: boolean
   error?: string
   icon?: any
-  id?: string
   inputRef?: string
   label?: string
   afterLabel?: string
   beforeLabel?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
-  name?: string
-  onChange?(x: React.ChangeEvent<HTMLSelectElement>): void
-  onFocus?(x: React.FocusEvent<HTMLSelectElement>): void
-  onBlur?(x: React.FocusEvent<HTMLSelectElement>): void
-  placeholder?: string
-  style?: React.CSSProperties
-  type?:
-    | 'color'
-    | 'date'
-    | 'datetime-local'
-    | 'email'
-    | 'month'
-    | 'number'
-    | 'password'
-    | 'reset'
-    | 'search'
-    | 'submit'
-    | 'tel'
-    | 'text'
-    | 'time'
-    | 'url'
-    | 'week'
-  value?: any
   reveal?: boolean
-  required?: boolean
   actions?: React.ReactNode
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+  borderless?: boolean
+  validation?: (x: any) => void
 }
 
 export const ColLayout = (props: any) => (
@@ -77,28 +55,58 @@ function Select({
   disabled,
   error,
   icon,
-  id,
+  id = '',
   inputRef,
   label,
   afterLabel,
   beforeLabel,
   labelOptional,
   layout,
-  name,
+  name = '',
   onChange,
   onFocus,
   onBlur,
   placeholder,
   required,
-  value,
+  value = undefined,
+  defaultValue = undefined,
   style,
   size = 'medium',
+  borderless = false,
+  validation,
   ...props
 }: Props) {
+  const {
+    formContextOnChange,
+    values,
+    errors,
+    handleBlur,
+    touched,
+    fieldLevelValidation,
+  } = useFormContext()
+
+  if (values && !value) value = values[id]
+  if (errors && !error) error = errors[id]
+  if (handleBlur) onBlur = handleBlur
+  error = touched && touched[id] ? error : undefined
+
+  function onInputChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    if (onChange) onChange(e)
+    // update form
+    if (formContextOnChange) formContextOnChange(e)
+    // run field level validation
+    if (validation) fieldLevelValidation(id, validation(e.target.value))
+  }
+
+  useEffect(() => {
+    if (validation) fieldLevelValidation(id, validation(value))
+  }, [])
+
   let selectClasses = [SelectStyles['sbui-select']]
   if (error) selectClasses.push(SelectStyles['sbui-select--error'])
   if (icon) selectClasses.push(SelectStyles['sbui-select--with-icon'])
   if (size) selectClasses.push(SelectStyles[`sbui-select--${size}`])
+  if (borderless) selectClasses.push(SelectStyles[`sbui-select--borderless`])
 
   return (
     <FormLayout
@@ -121,9 +129,9 @@ function Select({
           autoComplete={autoComplete}
           autoFocus={autofocus}
           className={selectClasses.join(' ')}
-          onChange={onChange ? (event) => onChange(event) : undefined}
+          onChange={onInputChange}
           onFocus={onFocus ? (event) => onFocus(event) : undefined}
-          onBlur={onBlur ? (event) => onBlur(event) : undefined}
+          onBlur={onBlur}
           ref={inputRef}
           value={value}
           disabled={disabled}

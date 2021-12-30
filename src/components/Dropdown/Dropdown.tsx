@@ -15,13 +15,15 @@ import { IconTarget } from '../..'
 interface RootProps {
   open?: boolean
   arrow?: boolean
-  onOpenChange?: RadixDropdownTypes.DropdownMenuOwnProps['onOpenChange']
-  side?: RadixDropdownTypes.DropdownMenuContentOwnProps['side']
-  align?: RadixDropdownTypes.DropdownMenuContentOwnProps['align']
+  onOpenChange?: RadixDropdownTypes.DropdownMenuProps['onOpenChange'] //   DropdownMenu['onOpenChange']
+  side?: RadixDropdownTypes.DropdownMenuContentProps['side']
+  align?: RadixDropdownTypes.DropdownMenuContentProps['align']
+  sideOffset?: RadixDropdownTypes.DropdownMenuContentProps['sideOffset']
   overlay?: React.ReactNode
   children?: React.ReactNode
   className?: string
   style?: React.CSSProperties
+  isNested?: Boolean
 }
 
 function Dropdown({
@@ -29,11 +31,13 @@ function Dropdown({
   onOpenChange,
   align = 'center', //Default value
   side = 'bottom', //Default value
+  sideOffset = 6,
   overlay,
   children,
   className,
   style,
   arrow,
+  isNested,
 }: RootProps) {
   let __styles = styleHandler('dropdown')
 
@@ -44,13 +48,21 @@ function Dropdown({
 
   return (
     <RadixDropdown.Root onOpenChange={onOpenChange} open={open}>
-      <RadixDropdown.Trigger className={__styles.trigger}>
-        {children}
-      </RadixDropdown.Trigger>
+      {isNested ? (
+        <RadixDropdown.TriggerItem
+          className={DropdownStyles['sbui-dropdown__trigger-item']}
+        >
+          {children}
+        </RadixDropdown.TriggerItem>
+      ) : (
+        <RadixDropdown.Trigger className={__styles.trigger}>
+          {children}
+        </RadixDropdown.Trigger>
+      )}
 
       <RadixDropdown.Content
-        disableOutsidePointerEvents={false}
-        sideOffset={8}
+        portalled={true}
+        sideOffset={sideOffset}
         side={side}
         align={align}
         className={classes.join(' ')}
@@ -99,6 +111,15 @@ export function Item({
       {icon && icon}
       <span>{children}</span>
     </RadixDropdown.Item>
+  )
+}
+
+export function TriggerItem({ children, icon, disabled }: ItemProps) {
+  return (
+    <div className={DropdownStyles['sbui-dropdown-item-trigger']}>
+      {icon && icon}
+      <span>{children}</span>
+    </div>
   )
 }
 
@@ -235,4 +256,5 @@ Dropdown.RadioGroup = RadioGroup
 Dropdown.Label = Label
 Dropdown.Seperator = Seperator
 Dropdown.RightSlot = RightSlot
+Dropdown.TriggerItem = TriggerItem
 export default Dropdown

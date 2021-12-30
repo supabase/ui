@@ -1,5 +1,7 @@
 /* .sbui-tab-button-underline {
   @apply rounded-none;
+.sbui-tab-button-underline {
+  @apply rounded-none border-none;
   @apply hover:text-gray-600 hover:bg-transparent;
   @apply dark:hover:text-white dark:hover:bg-transparent;
   border-bottom-style: solid;

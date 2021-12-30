@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import { Button, Space, Typography, IconCopy } from '../../index'
 import defaultTheme from '../../lib/theme/defaultTheme'
 import { HIDDEN_PLACEHOLDER } from './../../lib/constants'
+
+import { useFormContext } from '../Form/FormContext'
 
 export interface Props
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -20,10 +22,11 @@ export interface Props
   beforeLabel?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
-  name?: string
   reveal?: boolean
   actions?: React.ReactNode
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+  borderless?: boolean
+  validation?: (x: any) => void
 }
 
 function Input({
@@ -36,25 +39,28 @@ function Input({
   disabled,
   error,
   icon,
-  id,
+  id = '',
+  name = '',
   inputRef,
   label,
   afterLabel,
   beforeLabel,
   labelOptional,
   layout,
-  name,
   onChange,
   onBlur,
   onFocus,
   onKeyDown,
   placeholder,
   type = 'text',
-  value,
+  value = undefined,
   style,
   reveal = false,
   actions,
   size = 'medium',
+  borderless = false,
+  validation,
+  ...props
 }: Props) {
   const [copyLabel, setCopyLabel] = useState('Copy')
   const [hidden, setHidden] = useState(reveal)
@@ -67,6 +73,35 @@ function Input({
   if (!error) inputClasses.push(__styles.variants.standard)
   if (icon) inputClasses.push(__styles.with_icon)
   if (size) inputClasses.push(__styles.size[size])
+  const {
+    formContextOnChange,
+    values,
+    errors,
+    handleBlur,
+    touched,
+    fieldLevelValidation,
+  } = useFormContext()
+
+  if (values && !value) value = values[id || name]
+  if (errors && !error) error = errors[id || name]
+  if (handleBlur) onBlur = handleBlur
+  error = touched && touched[id] ? error : undefined
+
+  function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    if (onChange) onChange(e)
+    // update form
+    if (formContextOnChange) formContextOnChange(e)
+    // run field level validation
+    if (validation) fieldLevelValidation(id, validation(e.target.value))
+  }
+
+  useEffect(() => {
+    if (validation) fieldLevelValidation(id, validation(value))
+  }, [])
+
+  // useEffect(() => {
+  //   error = touched && touched[id] ? error : undefined
+  // }, [errors, touched])
 
   function onCopy(value: any) {
     navigator.clipboard.writeText(value).then(
@@ -110,15 +145,16 @@ function Input({
             disabled={disabled}
             id={id}
             name={name}
-            onChange={onChange ? (event) => onChange(event) : undefined}
+            onChange={onInputChange}
             onFocus={onFocus ? (event) => onFocus(event) : undefined}
-            onBlur={onBlur ? (event) => onBlur(event) : undefined}
+            onBlur={onBlur}
             onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
             placeholder={placeholder}
             ref={inputRef}
             type={type}
             value={hidden ? HIDDEN_PLACEHOLDER : value}
             className={inputClasses.join(' ')}
+            {...props}
           />
           {icon && <InputIconContainer icon={icon} />}
           {copy || error || actions ? (
@@ -148,48 +184,36 @@ function Input({
   )
 }
 
-export interface TextAreaProps {
-  className?: string
-  autoComplete?: boolean
-  autofocus?: boolean
+export interface TextAreaProps
+  extends Omit<React.InputHTMLAttributes<HTMLTextAreaElement>, 'size'> {
   descriptionText?: string
-  disabled?: boolean
   error?: string
   icon?: any
-  id?: string
   label?: string
   afterLabel?: string
   beforeLabel?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
-  name?: string
-  onChange?(x: React.ChangeEvent<HTMLTextAreaElement>): void
-  onFocus?(x: React.FocusEvent<HTMLTextAreaElement>): void
-  onBlur?(x: React.FocusEvent<HTMLTextAreaElement>): void
-  onKeyDown?(x: React.KeyboardEvent<HTMLTextAreaElement>): void
-  placeholder?: string
-  value?: any
-  style?: React.CSSProperties
   rows?: number
   limit?: number
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+  borderless?: boolean
+  validation?: (x: any) => void
 }
 
 function TextArea({
-  autoComplete,
-  autofocus,
   className,
   descriptionText,
   disabled,
   error,
   icon,
-  id,
+  id = '',
+  name = '',
   label,
   afterLabel,
   beforeLabel,
   labelOptional,
   layout,
-  name,
   onChange,
   onFocus,
   onBlur,
@@ -200,6 +224,9 @@ function TextArea({
   rows = 4,
   limit,
   size,
+  borderless = false,
+  validation,
+  ...props
 }: TextAreaProps) {
   const [charLength, setCharLength] = useState(0)
 
@@ -212,12 +239,32 @@ function TextArea({
   if (icon) classes.push(__styles.with_icon)
   if (size) classes.push(__styles.size[size])
 
+  const {
+    formContextOnChange,
+    values,
+    errors,
+    handleBlur,
+    touched,
+    fieldLevelValidation,
+  } = useFormContext()
+
+  if (values && !value) value = values[id || name]
+  if (errors && !error) error = errors[id || name]
+  if (handleBlur) onBlur = handleBlur
+  error = touched && touched[id] ? error : undefined
+
   function onInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    if (onChange) {
-      onChange(e)
-      setCharLength(e.target.value.length)
-    }
+    setCharLength(e.target.value.length)
+    if (onChange) onChange(e)
+    // update form
+    if (formContextOnChange) formContextOnChange(e)
+    // run field level validation
+    if (validation) fieldLevelValidation(id, validation(e.target.value))
   }
+
+  useEffect(() => {
+    if (validation) fieldLevelValidation(id, validation(value))
+  }, [])
 
   return (
     <FormLayout
@@ -234,8 +281,6 @@ function TextArea({
       size={size}
     >
       <textarea
-        autoComplete={autoComplete ? 'on' : 'off'}
-        autoFocus={autofocus}
         disabled={disabled}
         id={id}
         name={name}
@@ -244,11 +289,12 @@ function TextArea({
         placeholder={placeholder}
         onChange={onInputChange}
         onFocus={onFocus ? (event) => onFocus(event) : undefined}
-        onBlur={onBlur ? (event) => onBlur(event) : undefined}
+        onBlur={onBlur}
         onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
         value={value}
         className={classes.join(' ')}
         maxLength={limit}
+        {...props}
       >
         {value}
       </textarea>

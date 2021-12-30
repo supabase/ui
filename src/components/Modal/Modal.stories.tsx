@@ -8,6 +8,7 @@ import { Badge } from '../Badge'
 import { Button } from '../Button'
 import { Space } from '../Space'
 import { IconTrash, IconAlertCircle, IconCheck } from './../../index'
+import { Dropdown } from '../Dropdown'
 
 export default {
   title: 'Overlays/Modal',
@@ -308,6 +309,38 @@ export const LongModal = () => (
 )
 
 export const customFooterOneButton = (args: any) => <Modal {...args} />
+
+export const modalWithDropdowns = () => {
+  const [visible, setVisible] = useState(false)
+
+  return (
+    <>
+      <Button onClick={() => setVisible(!visible)}>Open</Button>
+      <Modal
+        visible={visible}
+        onCancel={() => setVisible(!visible)}
+        hideFooter
+        // className="pointer-events-auto"
+      >
+        <Dropdown
+          // className="pointer-events-auto"
+          overlay={
+            <>
+              <Dropdown.Item onClick={() => console.log('item 1 clicked')}>
+                Item 1
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => console.log('item 2 clicked')}>
+                Item 2
+              </Dropdown.Item>
+            </>
+          }
+        >
+          <Button as="span">Trigger dropdown</Button>
+        </Dropdown>
+      </Modal>
+    </>
+  )
+}
 
 Default.args = {
   visible: true,

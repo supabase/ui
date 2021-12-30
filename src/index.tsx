@@ -23,6 +23,7 @@ export * from './components/Modal/index'
 export * from './components/SidePanel/index'
 export * from './components/Dropdown/index'
 export * from './components/ContextMenu/index'
+export * from './components/Popover/index'
 // export * from './components/Toast/index'
 
 // UTILITIES
@@ -35,6 +36,7 @@ export * from './components/ThemeProvider/index'
 // DATA ENTRY
 
 export * from './components/Select/index'
+export * from './components/Listbox/index'
 export * from './components/Checkbox/index'
 export * from './components/Input/index'
 export * from './components/InputNumber/index'

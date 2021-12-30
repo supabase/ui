@@ -37,6 +37,10 @@
   @apply border-red-500 dark:border-red-500;
 }
 
+.sbui-select--borderless {
+  @apply border-transparent shadow-none;
+}
+
 /*
   Select sizes
 */

@@ -23,6 +23,10 @@
   @apply border-red-500 dark:border-red-500;
 }
 
+.sbui-input--borderless {
+  @apply border-transparent shadow-none;
+}
+
 .sbui-input-actions-container {
   @apply absolute inset-y-0 right-0 pl-3 pr-1 flex items-center;
 } */

@@ -126,26 +126,32 @@ withSocialAuth.args = {
 withAllSocialAuth.args = {
   supabaseClient: supabase,
   providers: [
-    'facebook',
-    'twitter',
     'apple',
-    'google',
+    'azure',
+    'bitbucket',
+    'discord',
+    'facebook',
     'github',
     'gitlab',
-    'bitbucket',
+    'google',
+    'twitch',
+    'twitter',
   ],
 }
 
 withSocialLargeButtons.args = {
   supabaseClient: supabase,
   providers: [
-    'facebook',
-    'twitter',
     'apple',
-    'google',
+    'azure',
+    'bitbucket',
+    'discord',
+    'facebook',
     'github',
     'gitlab',
-    'bitbucket',
+    'google',
+    'twitch',
+    'twitter',
   ],
   socialButtonSize: 'large',
 }
@@ -154,13 +160,16 @@ withColouredSocialAuth.args = {
   supabaseClient: supabase,
   socialColors: true,
   providers: [
-    'facebook',
-    'twitter',
     'apple',
-    'google',
+    'azure',
+    'bitbucket',
+    'discord',
+    'facebook',
     'github',
     'gitlab',
-    'bitbucket',
+    'google',
+    'twitch',
+    'twitter',
   ],
 }
 

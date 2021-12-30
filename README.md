@@ -125,8 +125,8 @@ _Data Input_
 
 _Layout_
 
-~~- [ ] Layout~~
-~~- [ ] Grid (Flex)~~
+- [ ] ~~Layout~~
+- [ ] ~~Grid (Flex)~~
 - [x] Divider
 - [x] Space (Flex)
 
@@ -134,7 +134,7 @@ _Display_
 
 - [x] Card
 - [ ] Avatar
-- [x] Accordian
+- [x] Accordion
 - [x] Alert
 - [x] Badge
 - [x] Menu

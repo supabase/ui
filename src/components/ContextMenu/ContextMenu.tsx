@@ -12,8 +12,7 @@ import * as RadixContextMenu from '@radix-ui/react-context-menu'
 
 interface RootProps {
   onOpenChange?(x: boolean): void
-  side?: RadixContextMenuTypes.ContextMenuContentOwnProps['side']
-  align?: RadixContextMenuTypes.ContextMenuContentOwnProps['align']
+  alignOffset?: RadixContextMenuTypes.ContextMenuContentProps['alignOffset']
   overlay?: React.ReactNode
   children?: React.ReactNode
   className?: string
@@ -22,8 +21,8 @@ interface RootProps {
 
 function ContextMenu({
   onOpenChange,
-  side,
-  align,
+
+  alignOffset = 6,
   overlay,
   children,
   className,
@@ -42,10 +41,7 @@ function ContextMenu({
       </RadixContextMenu.Trigger>
 
       <RadixContextMenu.Content
-        disableOutsidePointerEvents={false}
-        sideOffset={8}
-        side={side}
-        align={align}
+        sideOffset={alignOffset}
         className={classes.join(' ')}
         style={style}
       >

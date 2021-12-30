@@ -1,7 +1,4 @@
 import React, { useState } from 'react'
-import { Button } from '../Button'
-import { Divider } from '../Divider'
-import { Space } from '../Space'
 import { TabsContext } from './TabsContext'
 
 import * as TabsPrimitive from '@radix-ui/react-tabs'
@@ -69,6 +66,12 @@ function Tabs({
   const listClasses = [__styles[type].list]
   if (scrollable) listClasses.push(__styles.scrollable)
 
+  // if only 1 react child, it needs to be converted to a list/array
+  // this is so 1 tab can be displayed
+  if (children && !Array.isArray(children)) {
+    children = [children]
+  }
+
   return (
     <TabsPrimitive.Root
       defaultValue={defaultActiveId}
@@ -124,6 +127,7 @@ interface PanelProps {
   label?: string
   icon?: React.ReactNode
 }
+
 export function Panel({ children, id }: PanelProps) {
   let __styles = styleHandler('tabs')
 
