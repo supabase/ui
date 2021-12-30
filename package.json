@@ -107,5 +107,18 @@
     "transformIgnorePatterns": [
       "/node_modules/(?!react-feather)"
     ]
+  },
+  "release": {
+    "branches": [
+      "master",
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
+    ]
   }
 }
