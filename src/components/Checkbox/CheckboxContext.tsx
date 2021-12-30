@@ -4,6 +4,5 @@ import { createContext } from 'react'
 // createContext matches the shape that the consumers expect!
 export const CheckboxContext = createContext({
   parentCallback: (e: any) => {},
-  name: '',
   parentSize: '',
 })
