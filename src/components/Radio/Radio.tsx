@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
+import { useFormContext } from '../Form/FormContext'
 import { Space } from '../Space'
 // @ts-ignore
 import RadioStyles from './Radio.module.css'
 import { RadioContext } from './RadioContext'
 
-interface InputProps {
+interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label: string
   afterLabel?: string
   beforeLabel?: string
-  value: string
   description?: string
-  disabled?: boolean
-  id?: string
-  name?: string
-  checked?: boolean
-  onChange?(x: React.ChangeEvent<HTMLInputElement>): void
-  onFocus?(x: React.FocusEvent<HTMLInputElement>): void
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
@@ -40,6 +35,7 @@ interface GroupProps {
   options?: Array<InputProps>
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+  validation?: (x: any) => void
 }
 
 function RadioGroup({
@@ -59,8 +55,29 @@ function RadioGroup({
   name,
   onChange,
   size = 'medium',
+  validation,
 }: GroupProps) {
   const [activeId, setActiveId] = useState('')
+
+  const {
+    formContextOnChange,
+    values,
+    errors,
+    // handleBlur,
+    touched,
+    fieldLevelValidation,
+  } = useFormContext()
+
+  if (values && !value) value = values[id || name]
+  // console.log('errors in. radio group', errors)
+  // console.log('values in radio group', values)
+  if (errors && !error) error = errors[id || name]
+  // if (handleBlur) onBlur = handleBlur
+  error = touched && touched[id || name] ? error : undefined
+
+  useEffect(() => {
+    if (validation) fieldLevelValidation(id, validation(value))
+  }, [])
 
   useEffect(() => {
     setActiveId(value)
@@ -68,6 +85,13 @@ function RadioGroup({
 
   const parentCallback = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) onChange(e)
+    // update form
+    // console.log('event in group', e)
+    if (formContextOnChange) {
+      formContextOnChange(e)
+    }
+    // run field level validation
+    if (validation) fieldLevelValidation(id, validation(e.target.value))
     setActiveId(e.target.id)
   }
 
@@ -81,7 +105,7 @@ function RadioGroup({
     <RadioContext.Provider
       value={{ parentCallback, type, name, activeId, parentSize: size }}
     >
-      <fieldset className={RadioStyles['sbui-radio-fieldset']}>
+      <fieldset className={RadioStyles['sbui-radio-fieldset']} name={name}>
         <FormLayout
           label={label}
           afterLabel={afterLabel}
@@ -130,13 +154,19 @@ function Radio({
   checked,
   onChange,
   onFocus,
+  onBlur,
   size = 'medium',
 }: InputProps) {
   const inputName = name
+
+  const { handleBlur } = useFormContext()
+  if (handleBlur) onBlur = handleBlur
+
   return (
     <RadioContext.Consumer>
       {({ parentCallback, type, name, activeId, parentSize }) => {
         // if id does not exist, use label
+        // console.log('Consumer name', name)
         const markupId = id
           ? id
           : label
@@ -147,6 +177,7 @@ function Radio({
 
         // if name does not exist on Radio then use Context Name from Radio.Group
         const markupName = inputName ? inputName : name ? name : markupId
+        // console.log('markupName', markupName)
 
         // check if radio id is via parent component
         // then check if radio checked prop is true or false
@@ -176,7 +207,9 @@ function Radio({
 
         function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
           // '`onChange` callback for parent component
-          if (parentCallback) parentCallback(e)
+          if (parentCallback) {
+            parentCallback(e)
+          }
           // '`onChange` callback for this component
           if (onChange) onChange(e)
         }
@@ -192,6 +225,7 @@ function Radio({
               disabled={disabled}
               value={value ? value : markupId}
               onChange={onInputChange}
+              onBlur={onBlur}
               onFocus={onFocus ? (event) => onFocus(event) : undefined}
             />
             <div>
