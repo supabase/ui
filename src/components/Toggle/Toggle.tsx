@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
-import { Space } from '../Space'
+import { useFormContext } from '../Form/FormContext'
 // @ts-ignore
 import ToggleStyles from './Toggle.module.css'
 
-interface Props {
+interface Props extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'size'> {
+  name?: string
   disabled?: boolean
-  id?: string
   layout?: 'horizontal' | 'vertical'
   error?: string
   descriptionText?: string
@@ -14,17 +14,18 @@ interface Props {
   afterLabel?: string
   beforeLabel?: string
   labelOptional?: string
-  onChange?(x: boolean): void
   className?: any
   defaultChecked?: boolean
   checked?: boolean
   align?: 'right' | 'left'
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+  validation?: (x: any) => void
 }
 
 function Toggle({
   disabled,
-  id,
+  id = '',
+  name = '',
   layout = 'vertical',
   error,
   descriptionText,
@@ -33,24 +34,50 @@ function Toggle({
   beforeLabel,
   labelOptional,
   onChange,
+  onBlur,
+  onFocus,
+  onKeyDown,
   defaultChecked,
   checked,
   className,
   align = 'right',
   size = 'medium',
+  validation,
+  ...props
 }: Props) {
   const [intChecked, setIntChecked] = useState(
     (defaultChecked || checked) ?? false
   )
 
+  const {
+    formContextOnChange,
+    values,
+    errors,
+    handleBlur,
+    touched,
+    fieldLevelValidation,
+  } = useFormContext()
+
+  // if (values && !value) value = values[id || name]
+  if (errors && !error) error = errors[id || name]
+  if (handleBlur) onBlur = handleBlur
+  error = touched && touched[id] ? error : undefined
+
   // check if toggle checked is true or false
   // if neither true or false the toggle will rely on component state internally
   const active = checked ?? intChecked
 
-  function onClick(e: React.MouseEvent<HTMLButtonElement>) {
+  function onClick() {
     // '`onChange` callback for this component
+
+    // @ts-ignore // issue with conflicting input/button tag being used
     if (onChange) onChange(!active)
+
     setIntChecked(!intChecked)
+    // update form
+    if (formContextOnChange) formContextOnChange(!intChecked)
+    // run field level validation
+    if (validation) fieldLevelValidation(id, validation(!intChecked))
   }
 
   let toggleClasses = [
@@ -79,10 +106,15 @@ function Toggle({
     >
       <button
         type="button"
-        aria-pressed="false"
+        id={id}
+        name={name}
         className={toggleClasses.join(' ')}
         onClick={onClick}
         disabled={disabled}
+        onFocus={onFocus ? (event) => onFocus(event) : undefined}
+        onBlur={onBlur}
+        onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
+        {...props}
       >
         <span aria-hidden="true" className={handleClasses.join(' ')}></span>
       </button>

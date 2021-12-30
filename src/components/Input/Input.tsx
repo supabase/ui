@@ -7,7 +7,7 @@ import { Button, Space, Typography, IconCopy } from '../../index'
 import InputStyles from './Input.module.css'
 
 import { useFormContext } from '../Form/FormContext'
-import { ValueFunction } from 'react-hot-toast/dist/core/types'
+
 export interface Props
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   copy?: boolean
@@ -253,7 +253,7 @@ function TextArea({
   if (handleBlur) onBlur = handleBlur
   error = touched && touched[id] ? error : undefined
 
-  function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function onInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setCharLength(e.target.value.length)
     if (onChange) onChange(e)
     // update form

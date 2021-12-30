@@ -4,7 +4,7 @@ interface ContextProps {
   formContextOnChange: any
   values: any
   errors: any
-  handleBlur: React.FocusEventHandler<HTMLInputElement> | null
+  handleBlur: React.FocusEventHandler | null
   touched: any
   fieldLevelValidation: any
 }

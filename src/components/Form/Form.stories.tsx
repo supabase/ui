@@ -2,7 +2,7 @@ import { string } from 'prop-types'
 import React, { useState } from 'react'
 
 import { Form } from '.'
-import { Input, Button, Space, InputNumber } from '../../index'
+import { Input, Button, Space, InputNumber, Toggle } from '../../index'
 import Checkbox from '../Checkbox'
 import Radio from '../Radio'
 import Select from '../Select'
@@ -21,10 +21,11 @@ interface Values {
   number: number | undefined
   // remember_me: boolean
   favorite_food: string
-  check_3: any
-  check_2: any
-  check_1: any
+  check_3: boolean
+  check_2: boolean
+  check_1: boolean
   textarea: string
+  toggle: boolean
 }
 
 const INITIAL_VALUES: Values = {
@@ -38,6 +39,7 @@ const INITIAL_VALUES: Values = {
   check_2: true,
   check_1: false,
   textarea: '',
+  toggle: true,
 }
 
 export const InputLevelValidation = () => {
@@ -191,6 +193,10 @@ export const LargerExample = () => {
             errors.favorite_food = 'You must select a favourite food'
           }
 
+          if (!values.toggle) {
+            errors.toggle = 'This is the error'
+          }
+
           // if (values.remember_me)
 
           return errors
@@ -255,6 +261,7 @@ export const LargerExample = () => {
                   description="hello world"
                 />
               </Checkbox.Group>
+              <Toggle id="toggle" label="Remember me" />
               <Radio.Group
                 layout="horizontal"
                 name="favorite_food"
