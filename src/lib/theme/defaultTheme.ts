@@ -584,8 +584,9 @@ export default {
       border border-lightmode dark:border-darkmode
       rounded
       shadow-lg
-      animate-dropdown
       origin-dropdown
+      dropdown-content
+      data-open:bg-red-500
       py-1.5
     `,
     arrow: `

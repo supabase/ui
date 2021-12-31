@@ -67,17 +67,17 @@
     opacity: 0;
   }
 }
-.sbui-dropdown__content {
+/* .sbui-dropdown__content {
   transform-origin: 'var(--radix-dropdown-menu-content-transform-origin)';
-}
+} */
 
-.sbui-dropdown__content[data-state='open'] {
+/* .sbui-dropdown__content[data-state='open'] {
   animation: fadeIn 50ms ease-out;
 }
 
 .sbui-dropdown__content[data-state='closed'] {
   animation: fadeOut 50ms ease-in;
-}
+} */
 
 /* .sbui-dropdown__trigger {
   @apply border-none bg-transparent p-0 focus:ring-0;
@@ -107,6 +107,6 @@
   outline: none;
 } */
 
-.sbui-dropdown__trigger-item[data-state='open'] {
+/* .sbui-dropdown__trigger-item[data-state='open'] {
   @apply bg-bg-secondary-light dark:bg-bg-primary-dark border-none;
-}
+} */

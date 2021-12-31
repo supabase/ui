@@ -1,5 +1,6 @@
 const deepMerge = require('deepmerge')
 const customFormsPlugin = require('@tailwindcss/forms')
+const plugin = require('tailwindcss/plugin')
 
 const backgroundOpacity = (theme) => ({
   10: '0.1',
@@ -37,11 +38,27 @@ const windmillConfig = {
       DEFAULT: theme('colors.brandColor', 'currentColor'),
     }),
     extend: {
+      // dropdown extensions
+
       transformOrigin: {
+        // tailwind class for this is `origin-dropdown`
         dropdown: 'var(--radix-dropdown-menu-content-transform-origin)',
       },
+      keyframes: {
+        dropdownFadeIn: {
+          '0%': { transform: 'scale(0.95)', opacity: 0 },
+          '100%': { transform: 'scale(1)', opacity: 1 },
+        },
+        dropdownFadeOut: {
+          '0%': { transform: 'scale(1)', opacity: 1 },
+          '100%': { transform: 'scale(0.95)', opacity: 0 },
+        },
+      },
       animation: {
-        dropdown: 'transition 0.1s ease-out',
+        // tailwind class for this is `animate-dropdownFadeIn`
+        dropdownFadeIn: 'dropdownFadeIn 0.1s ease-out',
+        // tailwind class for this is `animate-dropdownFadeOut`
+        dropdownFadeOut: 'dropdownFadeOut 0.1s ease-out',
       },
     },
   },
@@ -63,7 +80,19 @@ const windmillConfig = {
     boxShadow: ['responsive', 'hover', 'focus', 'dark'],
     margin: ['responsive', 'last'],
   },
-  plugins: [customFormsPlugin],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        ".dropdown-content[data-state='open']": {
+          animation: 'fadeIn 50ms ease-out',
+        },
+        ".dropdown-content[data-state='closed']": {
+          animation: 'fadeOut 50ms ease-in',
+        },
+      })
+    }),
+    customFormsPlugin,
+  ],
 }
 
 function arrayMergeFn(destinationArray, sourceArray) {
