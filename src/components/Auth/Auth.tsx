@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { SupabaseClient, Provider } from '@supabase/supabase-js'
 import {
   Input,
@@ -292,6 +292,7 @@ function EmailAuth({
   redirectTo?: RedirectTo
   magicLink?: boolean
 }) {
+  const isMounted = useRef<boolean>(true)
   const [email, setEmail] = useState(defaultEmail)
   const [password, setPassword] = useState(defaultPassword)
   const [rememberMe, setRememberMe] = useState(false)
@@ -302,6 +303,10 @@ function EmailAuth({
   useEffect(() => {
     setEmail(defaultEmail)
     setPassword(defaultPassword)
+
+    return () => {
+      isMounted.current = false
+    }
   }, [authView])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -334,7 +339,12 @@ function EmailAuth({
           setMessage('Check your email for the confirmation link.')
         break
     }
-    setLoading(false)
+
+    /*
+     * it is possible the auth component may have been unmounted at this point
+     * check if component is mounted before setting a useState
+     */
+    if (isMounted.current) setLoading(false)
   }
 
   const handleViewChange = (newView: ViewType) => {
