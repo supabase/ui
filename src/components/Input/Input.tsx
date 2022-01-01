@@ -58,6 +58,7 @@ function Input({
   actions,
   size = 'medium',
   borderless = false,
+  ...props
 }: Props) {
   const [copyLabel, setCopyLabel] = useState('Copy')
   const [hidden, setHidden] = useState(reveal)
@@ -126,6 +127,7 @@ function Input({
             type={type}
             value={hidden ? hiddenPlaceholder : value}
             className={inputClasses.join(' ')}
+            {...props}
           />
           {icon && <InputIconContainer icon={icon} />}
           {copy || error || actions ? (
@@ -160,6 +162,7 @@ function Input({
 
 export interface TextAreaProps {
   className?: string
+  copy?: boolean
   autoComplete?: boolean
   autofocus?: boolean
   descriptionText?: string
@@ -188,6 +191,7 @@ export interface TextAreaProps {
 
 function TextArea({
   autoComplete,
+  copy,
   autofocus,
   className,
   descriptionText,
@@ -215,6 +219,24 @@ function TextArea({
 }: TextAreaProps) {
   const [charLength, setCharLength] = useState(0)
 
+  const [copyLabel, setCopyLabel] = useState('Copy')
+
+  function onCopy(value: any) {
+    navigator.clipboard.writeText(value).then(
+      function () {
+        /* clipboard successfully set */
+        setCopyLabel('Copied')
+        setTimeout(function () {
+          setCopyLabel('Copy')
+        }, 3000)
+      },
+      function () {
+        /* clipboard write failed */
+        setCopyLabel('Failed to copy')
+      }
+    )
+  }
+
   let classes = [InputStyles['sbui-input']]
   if (error) classes.push(InputStyles['sbui-input--error'])
   if (icon) classes.push(InputStyles['sbui-input--with-icon'])
@@ -222,9 +244,9 @@ function TextArea({
   if (borderless) classes.push(InputStyles['sbui-input--borderless'])
 
   function onInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setCharLength(e.target.value.length)
     if (onChange) {
       onChange(e)
-      setCharLength(e.target.value.length)
     }
   }
 
@@ -242,25 +264,42 @@ function TextArea({
       style={style}
       size={size}
     >
-      <textarea
-        autoComplete={autoComplete ? 'on' : 'off'}
-        autoFocus={autofocus}
-        disabled={disabled}
-        id={id}
-        name={name}
-        rows={rows}
-        cols={100}
-        placeholder={placeholder}
-        onChange={onInputChange}
-        onFocus={onFocus ? (event) => onFocus(event) : undefined}
-        onBlur={onBlur ? (event) => onBlur(event) : undefined}
-        onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
-        value={value}
-        className={classes.join(' ')}
-        maxLength={limit}
-      >
-        {value}
-      </textarea>
+      <div className={InputStyles['sbui-input-container']}>
+        <textarea
+          autoComplete={autoComplete ? 'on' : 'off'}
+          autoFocus={autofocus}
+          disabled={disabled}
+          id={id}
+          name={name}
+          rows={rows}
+          cols={100}
+          placeholder={placeholder}
+          onChange={onInputChange}
+          onFocus={onFocus ? (event) => onFocus(event) : undefined}
+          onBlur={onBlur ? (event) => onBlur(event) : undefined}
+          onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
+          value={value}
+          className={classes.join(' ')}
+          maxLength={limit}
+        >
+          {value}
+        </textarea>
+        {copy ? (
+          <Space
+            className={InputStyles['sbui-textarea-actions-container']}
+            size={1}
+          >
+            <Button
+              size="tiny"
+              type="default"
+              onClick={() => onCopy(value)}
+              icon={<IconCopy />}
+            >
+              {copyLabel}
+            </Button>
+          </Space>
+        ) : null}
+      </div>
       {limit && (
         <Typography.Text
           type="secondary"

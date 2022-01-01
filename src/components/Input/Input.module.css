@@ -31,6 +31,10 @@
   @apply absolute inset-y-0 right-0 pl-3 pr-1 flex items-center;
 }
 
+.sbui-textarea-actions-container {
+  @apply absolute inset-y-0 right-0 pl-3 pr-1 flex items-start;
+}
+
 /*
   Input sizes
 */
