@@ -1,8 +1,14 @@
 import { Form } from '.'
-import { Input, Button, InputNumber, Toggle } from '../../index'
-import Checkbox from '../Checkbox'
-import Radio from '../Radio'
-import Select from '../Select'
+import {
+  Input,
+  Button,
+  InputNumber,
+  Toggle,
+  Checkbox,
+  Radio,
+  Select,
+  Listbox,
+} from '../../index'
 
 import * as Yup from 'yup'
 
@@ -23,6 +29,7 @@ interface Values {
   check_1: boolean
   textarea: string
   toggle: boolean
+  people: number | undefined
 }
 
 const INITIAL_VALUES: Values = {
@@ -37,6 +44,7 @@ const INITIAL_VALUES: Values = {
   check_1: false,
   textarea: '',
   toggle: true,
+  people: undefined,
 }
 
 export const InputLevelValidation = () => {
@@ -146,6 +154,69 @@ export const InputLevelValidationYip = () => {
   )
 }
 
+const people = [
+  {
+    value: 1,
+    label: 'Wade Cooper',
+    avatar:
+      'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  },
+  {
+    value: 2,
+    label: 'Arlene Mccoy',
+    avatar:
+      'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  },
+  {
+    value: 3,
+    label: 'Devon Webb',
+    avatar:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80',
+  },
+  {
+    value: 4,
+    label: 'Tom Cook',
+    avatar:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  },
+  {
+    value: 5,
+    label: 'Tanya Fox',
+    avatar:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  },
+  {
+    value: 6,
+    label: 'Hellen Schmidt',
+    avatar:
+      'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  },
+  {
+    value: 7,
+    label: 'Caroline Schultz',
+    avatar:
+      'https://images.unsplash.com/photo-1568409938619-12e139227838?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  },
+  {
+    value: 8,
+    label: 'Mason Heaney',
+    avatar:
+      'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  },
+  {
+    value: 9,
+    label: 'Claudie Smitham',
+    avatar:
+      'https://images.unsplash.com/photo-1584486520270-19eca1efcce5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  },
+  {
+    value: 10,
+    label: 'Emil Schaefer',
+    avatar:
+      'https://images.unsplash.com/photo-1561505457-3bcad021f8ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  },
+]
+
 export const LargerExample = () => {
   return (
     <>
@@ -160,7 +231,7 @@ export const LargerExample = () => {
         validate={(values: Values) => {
           const errors: any = {}
 
-          console.log(values)
+          console.log('values for validation', values)
 
           if (!values.first_name) {
             errors.first_name = 'Required'
@@ -186,13 +257,21 @@ export const LargerExample = () => {
             errors.number = 'Must be a number above 13'
           }
 
+          if (values.number >= 32) {
+            errors.number = 'Must be a number below 32'
+          }
+
           if (!values.favorite_food) {
             errors.favorite_food = 'You must select a favourite food'
           }
 
           if (!values.toggle) {
-            errors.toggle = 'This is the error'
+            errors.toggle = 'This needs to be turned on'
           }
+
+          // if (!values.people) {
+          //   errors.people = 'Please select a person'
+          // }
 
           // if (values.remember_me)
 
@@ -273,6 +352,40 @@ export const LargerExample = () => {
                 />
                 <Radio value="fries" label="Fries" description="hello world" />
               </Radio.Group>
+
+              <Listbox
+                id="people"
+                label="Choose a person"
+                layout="horizontal"
+                descriptionText="Choose a person for this role"
+              >
+                {people.map((person) => {
+                  return (
+                    <Listbox.Option
+                      key={`people-${person.value}`}
+                      value={person.value}
+                      label={person.label}
+                      addOnBefore={({ active, selected }: any) => (
+                        <img
+                          src={person.avatar}
+                          alt=""
+                          className="h-6 w-6 rounded-full"
+                        />
+                      )}
+                      children={({ active, selected }: any) => {
+                        // console.log('selected', selected)
+                        // console.log('active', active)
+                        return (
+                          <span className={'font-normal block truncate'}>
+                            {person.label}
+                          </span>
+                        )
+                      }}
+                    />
+                  )
+                })}
+              </Listbox>
+
               <Button loading={isSubmitting} type="primary" htmlType="submit">
                 Submit
               </Button>

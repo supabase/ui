@@ -80,6 +80,7 @@ function Input({
   error = touched && touched[id] ? error : undefined
 
   function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    // console.log('input event', e)
     if (onChange) onChange(e)
     // update form
     if (formContextOnChange) formContextOnChange(e)

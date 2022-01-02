@@ -9,13 +9,16 @@ import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import { IconCheck } from '../Icon/icons/IconCheck'
 
+import { useFormContext } from '../Form/FormContext'
+
 import { flatten } from 'lodash'
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
-export interface Props {
+export interface Props
+  extends Omit<React.InputHTMLAttributes<HTMLButtonElement>, 'size'> {
   className?: string
   children: React.ReactNode
   descriptionText?: string
@@ -25,7 +28,6 @@ export interface Props {
   label?: string
   labelOptional?: string
   layout?: 'horizontal' | 'vertical'
-  onChange?(x: string): void
   style?: React.CSSProperties
   value?: any
   reveal?: boolean
@@ -33,6 +35,7 @@ export interface Props {
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   defaultValue?: any
   borderless?: boolean
+  validation?: (x: any) => void
 }
 
 function Listbox({
@@ -41,19 +44,43 @@ function Listbox({
   descriptionText,
   error,
   icon,
-  id,
+  id = '',
+  name = '',
   label,
   labelOptional,
   layout,
-  onChange,
   value,
+  onChange,
+  onFocus,
+  onBlur,
   style,
   size = 'medium',
   defaultValue,
   borderless = false,
+  validation,
 }: Props) {
-  const [selected, setSelected] = useState(defaultValue || undefined)
+  const [selected, setSelected] = useState(undefined)
   const [selectedNode, setSelectedNode] = useState<any>({})
+
+  const {
+    formContextOnChange,
+    values,
+    errors,
+    handleBlur,
+    touched,
+    fieldLevelValidation,
+  } = useFormContext()
+
+  if (values && !value) defaultValue = values[id || name]
+  if (errors && !error) error = errors[id || name]
+  if (handleBlur) onBlur = handleBlur
+  error = touched && touched[id] ? error : undefined
+
+  useEffect(() => {
+    if (defaultValue) {
+      setSelected(defaultValue)
+    }
+  }, [defaultValue])
 
   useEffect(() => {
     if (value) {
@@ -93,9 +120,32 @@ function Listbox({
     }
   }, [children, selected, value])
 
-  function handleOnChange(e: any) {
-    if (onChange) onChange(e)
-    setSelected(e)
+  function handleOnChange(value: any) {
+    console.log('listbox onchange e', value)
+    if (onChange) onChange(value)
+    setSelected(value)
+
+    /*
+     * Create change event for formik
+     * formik expects an input change event
+     */
+    let event: any = {}
+    event.target = {
+      type: 'select',
+      name: name,
+      id: id,
+      value: value,
+      checked: undefined,
+      // outerHTML: undefined,
+      // options: undefined,
+      // multiple: undefined,
+    }
+
+    // update form
+    // Create a new 'change' event
+    if (formContextOnChange) formContextOnChange(event)
+    // run field level validation
+    if (validation) fieldLevelValidation(id, validation(value))
   }
 
   let selectClasses = [SelectStyles['sbui-listbox']]
@@ -121,7 +171,13 @@ function Listbox({
           {({ open }) => {
             return (
               <div className="relative">
-                <HeadlessListbox.Button className={selectClasses.join(' ')}>
+                <HeadlessListbox.Button
+                  className={selectClasses.join(' ')}
+                  name={name}
+                  id={id}
+                  onBlur={onBlur}
+                  onFocus={onFocus}
+                >
                   {icon && <InputIconContainer icon={icon} />}
                   <span className={SelectStyles['sbui-listbox-addonbefore']}>
                     {selectedNode?.addOnBefore && <selectedNode.addOnBefore />}
