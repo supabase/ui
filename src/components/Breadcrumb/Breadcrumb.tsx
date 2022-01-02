@@ -1,4 +1,5 @@
 import { IconChevronRight } from '../Icon/icons/IconChevronRight'
+// @ts-ignore
 import BreadcrumbStyle from './Breadcrumb.module.css'
 
 interface Props {
@@ -28,10 +29,11 @@ const Breadcrumb = ({
   return (
     <ol className={classes.join(' ')} style={style} aria-label="Breadcrumb">
       {children!.map((child: React.ReactNode, idx: number) => (
-        <li className="flex items-center">
+        <li className={BreadcrumbStyle['sbui-breadcrumb--item-container']}>
           {child}
           {idx + 1 < children!.length && (
             <IconChevronRight
+              size={12}
               className={seperatorClasses.join(' ')}
               aria-hidden="true"
             />
