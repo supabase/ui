@@ -18,7 +18,7 @@ export default {
 }
 
 interface Values {
-  first_name: string
+  email: string
   last_name: string
   profession: string
   number: number | undefined
@@ -33,7 +33,7 @@ interface Values {
 }
 
 const INITIAL_VALUES: Values = {
-  first_name: '',
+  email: '',
   last_name: '',
   profession: '',
   number: undefined,
@@ -233,12 +233,12 @@ export const LargerExample = () => {
 
           console.log('values for validation', values)
 
-          if (!values.first_name) {
-            errors.first_name = 'Required'
+          if (!values.email) {
+            errors.email = 'Required'
           } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.first_name)
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
           ) {
-            errors.first_name = 'Invalid email address'
+            errors.email = 'Invalid email address'
           }
 
           if (!values.profession) {
@@ -283,9 +283,9 @@ export const LargerExample = () => {
             <div className="space-y-8">
               <p>{isSubmitting ? 'submitting' : 'not submitting'}</p>
               <Input
-                id="first_name"
-                label="first name"
-                placeholder="something in here"
+                id="email"
+                label="Email"
+                placeholder="something@gmail.com"
               />
               <Input
                 id="last_name"
