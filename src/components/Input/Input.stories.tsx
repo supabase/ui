@@ -25,6 +25,8 @@ export const withCustomStyle = (args: any) => <Input {...args} />
 
 export const textArea = (args: any) => <Input.TextArea {...args} />
 
+export const textAreaWithCopy = (args: any) => <Input.TextArea {...args} />
+
 export const textAreaWithLimit = (args: any) => <Input.TextArea {...args} />
 
 export const withRevealAndCopy = (args: any) => <Input {...args} />
@@ -87,6 +89,13 @@ withCustomStyle.args = {
 }
 
 textArea.args = {
+  type: 'text',
+  label: 'This is a text area',
+}
+
+textAreaWithCopy.args = {
+  copy: true,
+  rows: 3,
   type: 'text',
   label: 'This is a text area',
 }

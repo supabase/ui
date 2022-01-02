@@ -203,6 +203,8 @@ export interface TextAreaProps
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   borderless?: boolean
   validation?: (x: any) => void
+  copy?: boolean
+  actions?: React.ReactNode
 }
 
 function TextArea({
@@ -230,15 +232,28 @@ function TextArea({
   size,
   borderless = false,
   validation,
+  copy = false,
+  actions,
   ...props
 }: TextAreaProps) {
   const [charLength, setCharLength] = useState(0)
+  const [copyLabel, setCopyLabel] = useState('Copy')
 
-  let classes = [InputStyles['sbui-input']]
-  if (error) classes.push(InputStyles['sbui-input--error'])
-  if (icon) classes.push(InputStyles['sbui-input--with-icon'])
-  if (size) classes.push(InputStyles[`sbui-input--${size}`])
-  if (borderless) classes.push(InputStyles['sbui-input--borderless'])
+  function onCopy(value: any) {
+    navigator.clipboard.writeText(value).then(
+      function () {
+        /* clipboard successfully set */
+        setCopyLabel('Copied')
+        setTimeout(function () {
+          setCopyLabel('Copy')
+        }, 3000)
+      },
+      function () {
+        /* clipboard write failed */
+        setCopyLabel('Failed to copy')
+      }
+    )
+  }
 
   const {
     formContextOnChange,
@@ -267,6 +282,12 @@ function TextArea({
     if (validation) fieldLevelValidation(id, validation(value))
   }, [])
 
+  let classes = [InputStyles['sbui-input']]
+  if (error) classes.push(InputStyles['sbui-input--error'])
+  if (icon) classes.push(InputStyles['sbui-input--with-icon'])
+  if (size) classes.push(InputStyles[`sbui-input--${size}`])
+  if (borderless) classes.push(InputStyles['sbui-input--borderless'])
+
   return (
     <FormLayout
       className={className}
@@ -281,32 +302,47 @@ function TextArea({
       style={style}
       size={size}
     >
-      <textarea
-        disabled={disabled}
-        id={id}
-        name={name}
-        rows={rows}
-        cols={100}
-        placeholder={placeholder}
-        onChange={onInputChange}
-        onFocus={onFocus ? (event) => onFocus(event) : undefined}
-        onBlur={onBlur}
-        onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
-        value={value}
-        className={classes.join(' ')}
-        maxLength={limit}
-        {...props}
-      >
-        {value}
-      </textarea>
-      {limit && (
-        <Typography.Text
-          type="secondary"
-          style={{ marginTop: '0.5rem', display: 'block' }}
+      <div className={InputStyles['sbui-input-container']}>
+        <textarea
+          disabled={disabled}
+          id={id}
+          name={name}
+          rows={rows}
+          cols={100}
+          placeholder={placeholder}
+          onChange={onInputChange}
+          onFocus={onFocus ? (event) => onFocus(event) : undefined}
+          onBlur={onBlur}
+          onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
+          value={value}
+          className={classes.join(' ')}
+          maxLength={limit}
+          {...props}
         >
-          {charLength}/{limit}
-        </Typography.Text>
-      )}
+          {value}
+        </textarea>
+        {copy || error || actions ? (
+          <div className={InputStyles['sbui-textarea-actions-container']}>
+            <Space
+              className={InputStyles['sbui-textarea-actions-container__items']}
+              size={1}
+            >
+              {error && <InputErrorIcon size={size} />}
+              {copy && (
+                <Button
+                  size="tiny"
+                  type="default"
+                  onClick={() => onCopy(value)}
+                  icon={<IconCopy />}
+                >
+                  {copyLabel}
+                </Button>
+              )}
+              {actions && actions}
+            </Space>
+          </div>
+        ) : null}
+      </div>
     </FormLayout>
   )
 }
