@@ -3,26 +3,19 @@ import { FormLayout } from '../../lib/Layout/FormLayout'
 import { CheckboxContext } from './CheckboxContext'
 // @ts-ignore
 import CheckboxStyles from './Checkbox.module.css'
+import { useFormContext } from '../Form/FormContext'
 
-interface InputProps {
-  label: string
+export interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   afterLabel?: string
   beforeLabel?: string
-  value?: string
   description?: string
-  disabled?: boolean
-  id?: string
-  name?: string
-  checked?: boolean
-  className?: string
-  onChange?(x: React.ChangeEvent<HTMLInputElement>): void
-  onFocus?(x: React.FocusEvent<HTMLInputElement>): void
-  onBlur?(x: React.FocusEvent<HTMLInputElement>): void
+  label?: string
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
 interface GroupProps {
-  id?: any
+  id?: string
   layout?: 'horizontal' | 'vertical'
   error?: any
   descriptionText?: any
@@ -34,7 +27,7 @@ interface GroupProps {
   value?: any
   className?: string
   children?: React.ReactNode
-  options: Array<InputProps>
+  options?: Array<InputProps>
   defaultValue?: string
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
@@ -51,13 +44,12 @@ function Group({
   labelOptional,
   children,
   className,
-  name,
   options,
   onChange,
   size = 'medium',
 }: GroupProps) {
   const parentCallback = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (onChange) onChange(e)
+    // if (onChange) onChange(e)
   }
 
   return (
@@ -73,9 +65,7 @@ function Group({
       className={className}
       size={size}
     >
-      <CheckboxContext.Provider
-        value={{ parentCallback, name, parentSize: size }}
-      >
+      <CheckboxContext.Provider value={{ parentCallback, parentSize: size }}>
         {options
           ? options.map((option: InputProps) => {
               return (
@@ -99,12 +89,12 @@ function Group({
 
 export function Checkbox({
   className,
-  id,
+  id = '',
+  name = '',
   label,
   afterLabel,
   beforeLabel,
   description,
-  name,
   checked,
   value,
   onChange,
@@ -114,26 +104,32 @@ export function Checkbox({
   disabled = false,
   ...props
 }: InputProps) {
-  const inputName = name
+  const { formContextOnChange, values, handleBlur } = useFormContext()
 
   return (
     <CheckboxContext.Consumer>
-      {({ parentCallback, name, parentSize }) => {
+      {({ parentCallback, parentSize }) => {
         // if id does not exist, use label
         const markupId = id
           ? id
+          : name
+          ? name
           : label
+          ? label
               .toLowerCase()
               .replace(/^[^A-Z0-9]+/gi, '')
               .replace(/ /g, '-')
+          : undefined
 
         // if name does not exist on Radio then use Context Name from Radio.Group
         // if that fails, use the id
-        const markupName = inputName ? inputName : name ? name : markupId
+        const markupName = name ? name : markupId
 
         // check if checkbox checked is true or false
         // if neither true or false the checkbox will rely on native control
-        const active = checked ?? undefined
+        let active = checked ?? undefined
+
+        // if (values && !value) value = values[id || name]
 
         let containerClasses = [
           CheckboxStyles['sbui-checkbox-container'],
@@ -143,11 +139,16 @@ export function Checkbox({
         ]
         if (className) containerClasses.push(className)
 
+        if (values && checked === undefined) active = values[id || name]
+        if (handleBlur) onBlur = handleBlur
+
         function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
           // '`onChange` callback for parent component
           if (parentCallback) parentCallback(e)
           // '`onChange` callback for this component
           if (onChange) onChange(e)
+          // update form
+          if (formContextOnChange) formContextOnChange(e)
         }
 
         return (
@@ -159,7 +160,7 @@ export function Checkbox({
               className={CheckboxStyles['sbui-checkbox']}
               onChange={onInputChange}
               onFocus={onFocus ? (event) => onFocus(event) : undefined}
-              onBlur={onBlur ? (event) => onBlur(event) : undefined}
+              onBlur={onBlur}
               checked={active}
               value={value ? value : markupId}
               disabled={disabled}
