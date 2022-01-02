@@ -187,6 +187,7 @@ export interface TextAreaProps {
   limit?: number
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   borderless?: boolean
+  actions?: React.ReactNode
 }
 
 function TextArea({
@@ -216,9 +217,9 @@ function TextArea({
   limit,
   size,
   borderless = false,
+  actions,
 }: TextAreaProps) {
   const [charLength, setCharLength] = useState(0)
-
   const [copyLabel, setCopyLabel] = useState('Copy')
 
   function onCopy(value: any) {
@@ -284,20 +285,26 @@ function TextArea({
         >
           {value}
         </textarea>
-        {copy ? (
-          <Space
-            className={InputStyles['sbui-textarea-actions-container']}
-            size={1}
-          >
-            <Button
-              size="tiny"
-              type="default"
-              onClick={() => onCopy(value)}
-              icon={<IconCopy />}
+        {copy || error || actions ? (
+          <div className={InputStyles['sbui-textarea-actions-container']}>
+            <Space
+              className={InputStyles['sbui-textarea-actions-container__items']}
+              size={1}
             >
-              {copyLabel}
-            </Button>
-          </Space>
+              {error && <InputErrorIcon size={size} />}
+              {copy && (
+                <Button
+                  size="tiny"
+                  type="default"
+                  onClick={() => onCopy(value)}
+                  icon={<IconCopy />}
+                >
+                  {copyLabel}
+                </Button>
+              )}
+              {actions && actions}
+            </Space>
+          </div>
         ) : null}
       </div>
       {limit && (
