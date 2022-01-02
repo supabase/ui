@@ -1,6 +1,5 @@
 .sbui-inputnumber-container {
   @apply relative;
-  display: flex;
 }
 
 .sbui-inputnumber {
