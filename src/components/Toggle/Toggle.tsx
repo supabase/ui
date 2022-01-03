@@ -74,8 +74,25 @@ function Toggle({
     if (onChange) onChange(!active)
 
     setIntChecked(!intChecked)
+
+    /*
+     * Create change event for formik
+     * formik expects an input change event
+     */
+    let event: any = {}
+    event.target = {
+      type: 'checkbox',
+      name: name,
+      id: id,
+      value: !intChecked,
+      checked: !intChecked,
+      // outerHTML: undefined,
+      // options: undefined,
+      // multiple: undefined,
+    }
+
     // update form
-    if (formContextOnChange) formContextOnChange(!intChecked)
+    if (formContextOnChange) formContextOnChange(event)
     // run field level validation
     if (validation) fieldLevelValidation(id, validation(!intChecked))
   }

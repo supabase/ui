@@ -1,15 +1,11 @@
 // @ts-ignore
-import React, { Ref, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
-import { Space } from '../../index'
 // @ts-ignore
 import SelectStyles from './Select.module.css'
-import { Icon } from '../Icon'
 import { useFormContext } from '../Form/FormContext'
-
-import { validator } from './../../lib/Form/Form.utils'
 
 interface OptionProps {
   value: string

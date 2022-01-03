@@ -37,6 +37,7 @@ export default {
     modal: 'src/components/Popover/index.tsx',
     sidepanel: 'src/components/SidePanel/index.tsx',
     dropdown: 'src/components/Dropdown/index.tsx',
+    form: 'src/components/Form/index.tsx',
     contextmenu: 'src/components/ContextMenu/index.tsx',
     space: 'src/components/Space/index.tsx',
     loading: 'src/components/Loading/index.tsx',

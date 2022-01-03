@@ -15,8 +15,6 @@
   transition: box-shadow 0.3s ease-in-out;
 
   -moz-appearance: textfield;
-  float: left;
-  display: block;
 }
 
 .sbui-inputnumber::-webkit-inner-spin-button,
@@ -44,8 +42,6 @@
 
 .sbui-inputnumber-nav {
   @apply hidden;
-  float: left;
-  position: relative;
 }
 
 .sbui-inputnumber:focus + .sbui-inputnumber-nav {
