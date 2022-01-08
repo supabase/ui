@@ -39,7 +39,6 @@ const windmillConfig = {
     }),
     extend: {
       // dropdown extensions
-
       transformOrigin: {
         // tailwind class for this is `origin-dropdown`
         dropdown: 'var(--radix-dropdown-menu-content-transform-origin)',
@@ -54,12 +53,12 @@ const windmillConfig = {
           '100%': { transform: 'scale(0.95)', opacity: 0 },
         },
       },
-      animation: {
-        // tailwind class for this is `animate-dropdownFadeIn`
-        dropdownFadeIn: 'dropdownFadeIn 0.1s ease-out',
-        // tailwind class for this is `animate-dropdownFadeOut`
-        dropdownFadeOut: 'dropdownFadeOut 0.1s ease-out',
-      },
+      // animation: {
+      //   // tailwind class for this is `animate-dropdownFadeIn`
+      //   dropdownFadeIn: 'dropdownFadeIn 0.1s ease-out',
+      //   // tailwind class for this is `animate-dropdownFadeOut`
+      //   dropdownFadeOut: 'dropdownFadeOut 0.1s ease-out',
+      // },
     },
   },
   variants: {
