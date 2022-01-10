@@ -67,12 +67,6 @@ function Input({
 
   const __styles = defaultTheme.input
 
-  let inputClasses = [__styles.base]
-
-  if (error) inputClasses.push(__styles.variants.error)
-  if (!error) inputClasses.push(__styles.variants.standard)
-  if (icon) inputClasses.push(__styles.with_icon)
-  if (size) inputClasses.push(__styles.size[size])
   const {
     formContextOnChange,
     values,
@@ -123,6 +117,13 @@ function Input({
   function onReveal() {
     setHidden(false)
   }
+
+  let inputClasses = [__styles.base]
+
+  if (error) inputClasses.push(__styles.variants.error)
+  if (!error) inputClasses.push(__styles.variants.standard)
+  if (icon) inputClasses.push(__styles.with_icon)
+  if (size) inputClasses.push(__styles.size[size])
 
   return (
     <div className={className}>
@@ -302,7 +303,7 @@ function TextArea({
       style={style}
       size={size}
     >
-      <div className={InputStyles['sbui-input-container']}>
+      <div className={__styles.container}>
         <textarea
           disabled={disabled}
           id={id}
@@ -322,9 +323,9 @@ function TextArea({
           {value}
         </textarea>
         {copy || error || actions ? (
-          <div className={InputStyles['sbui-textarea-actions-container']}>
+          <div className={__styles['textarea_actions_container']}>
             <Space
-              className={InputStyles['sbui-textarea-actions-container__items']}
+              className={__styles['textarea_actions_container_items']}
               size={1}
             >
               {error && <InputErrorIcon size={size} />}

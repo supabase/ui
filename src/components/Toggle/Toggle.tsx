@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import { useFormContext } from '../Form/FormContext'
-// @ts-ignore
-import ToggleStyles from './Toggle.module.css'
+
+import defaultTheme from '../../lib/theme/defaultTheme'
 
 interface Props extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'size'> {
   name?: string
@@ -48,6 +48,8 @@ function Toggle({
   const [intChecked, setIntChecked] = useState(
     (defaultChecked || checked) ?? false
   )
+
+  const __styles = defaultTheme.toggle
 
   const {
     formContextOnChange,
@@ -97,14 +99,11 @@ function Toggle({
     if (validation) fieldLevelValidation(id, validation(!intChecked))
   }
 
-  let toggleClasses = [
-    ToggleStyles['sbui-toggle'],
-    ToggleStyles[`sbui-toggle--${size}`],
-  ]
-  if (active) toggleClasses.push(ToggleStyles['sbui-toggle--active'])
+  let toggleClasses = [__styles.base, __styles.handle_container[size]]
+  if (active) toggleClasses.push(__styles.active)
 
-  let handleClasses = [ToggleStyles['sbui-toggle__handle']]
-  if (active) handleClasses.push(ToggleStyles['sbui-toggle__handle--active'])
+  let handleClasses = [__styles.handle['base'], __styles.handle[size]]
+  if (active) handleClasses.push(__styles.handle_active[size])
 
   return (
     <FormLayout

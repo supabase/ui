@@ -17,9 +17,12 @@ export const parameters = {
 import React from 'react'
 
 export const decorators = [
-  (Story) => (
-    <ThemeProvider theme={CustomTheme}>
-      <Story />
-    </ThemeProvider>
-  ),
+  (Story) => {
+    // console.log('story', Story)
+    return (
+      <ThemeProvider theme={CustomTheme}>
+        <Story />
+      </ThemeProvider>
+    )
+  },
 ]

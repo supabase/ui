@@ -195,6 +195,115 @@ const dark = {
   900: '#0f0f0f',
 }
 
+const sbui_border = {
+  100: 'var(--border-1)',
+  200: 'var(--border-2)',
+  300: 'var(--border-3)',
+  400: 'var(--border-4)',
+  500: 'var(--border-5)',
+  600: 'var(--border-6)',
+  700: 'var(--border-7)',
+  800: 'var(--border-8)',
+  900: 'var(--border-9)',
+  1000: 'var(--border-10)',
+  1100: 'var(--border-11)',
+  1200: 'var(--border-12)',
+}
+
+const sbui_background = {
+  100: 'var(--background-1)',
+  200: 'var(--background-2)',
+  300: 'var(--background-3)',
+  400: 'var(--background-4)',
+  500: 'var(--background-5)',
+  600: 'var(--background-6)',
+  700: 'var(--background-7)',
+  800: 'var(--background-8)',
+  900: 'var(--background-9)',
+  1000: 'var(--background-10)',
+  1100: 'var(--background-11)',
+  1200: 'var(--background-12)',
+}
+
+const sbui_brand = {
+  100: 'var(--brand-1)',
+  200: 'var(--brand-2)',
+  300: 'var(--brand-3)',
+  400: 'var(--brand-4)',
+  500: 'var(--brand-5)',
+  600: 'var(--brand-6)',
+  700: 'var(--brand-7)',
+  800: 'var(--brand-8)',
+  900: 'var(--brand-9)',
+  1000: 'var(--brand-10)',
+  1100: 'var(--brand-11)',
+  1200: 'var(--brand-12)',
+}
+
+const sbui_brand_fixed = {
+  100: 'var(--brand-fixed-1)',
+  200: 'var(--brand-fixed-2)',
+  300: 'var(--brand-fixed-3)',
+  400: 'var(--brand-fixed-4)',
+  500: 'var(--brand-fixed-5)',
+  600: 'var(--brand-fixed-6)',
+  700: 'var(--brand-fixed-7)',
+  800: 'var(--brand-fixed-8)',
+  900: 'var(--brand-fixed-9)',
+  1000: 'var(--brand-fixed-10)',
+  1100: 'var(--brand-fixed-11)',
+  1200: 'var(--brand-fixed-12)',
+}
+
+function generateRadixVariables() {
+  const colors = [
+    'brand',
+    'brand-fixed',
+    'scale',
+    'radix-tomato',
+    'radix-red',
+    'radix-crimson',
+    'radix-pink',
+    'radix-plum',
+    'radix-purple',
+    'radix-violet',
+    'radix-indigo',
+    'radix-blue',
+    'radix-cyan',
+    'radix-teal',
+    'radix-green',
+    'radix-grass',
+    'radix-brown',
+    'radix-orange',
+    'radix-sky',
+    'radix-mint',
+    'radix-lime',
+    'radix-yellow',
+    'radix-amber',
+    'radix-gold',
+    'radix-bronze',
+  ]
+
+  let mappedColors = {}
+
+  colors.map((x) => {
+    mappedColors[x] = {}
+  })
+
+  colors.map((x) => {
+    for (let index = 0; index < 12; index++) {
+      const step = index + 1
+      mappedColors[x][step * 100] = `var(--${x}-${step})`
+    }
+  })
+
+  return mappedColors
+}
+
+const custom_colors = generateRadixVariables()
+
+console.log('radix colors', custom_colors)
+
 const ui = require('./ui.config.js')
 
 module.exports = ui({
@@ -211,6 +320,10 @@ module.exports = ui({
   },
   darkMode: 'class',
   theme: {
+    // colors: {
+    //   red: { ...radix.red },
+    //   gray: { ...radix.slate },
+    // },
     extend: {
       typography: {
         DEFAULT: {
@@ -230,12 +343,15 @@ module.exports = ui({
         */
         ['brandColor']: '#EC6F0D',
 
+        ['brandScale']: { ...sbui_brand },
+        ['brandScaleFixed']: { ...sbui_brand_fixed },
+
         // used for backgrounds
-        ['bgScale']: { ...gray },
+        ['bgScale']: { ...sbui_background },
         ['bgScaleDark']: { ...dark },
 
         // used for borders, inputs and text
-        ['grayScale']: { ...coolGray },
+        ['grayScale']: { ...sbui_border },
         ['grayScaleDark']: { ...gray },
 
         /* 
@@ -331,18 +447,25 @@ module.exports = ui({
           dark: '#878787',
         },
 
-        brand: {
-          50: '#82dab0',
-          100: '#82dab0',
-          200: '#69d3a0',
-          300: '#50cb90',
-          400: '#C5F1DD',
-          500: '#9FE7C7',
-          600: '#65D9A5',
-          700: '#3ECF8E',
-          800: '#24b47e', // green-500 in dashboard
-          900: '#2c9c6a',
-        },
+        // brand: {
+        //   50: '#82dab0',
+        //   100: '#82dab0',
+        //   200: '#69d3a0',
+        //   300: '#50cb90',
+        //   400: '#C5F1DD',
+        //   500: '#9FE7C7',
+        //   600: '#65D9A5',
+        //   700: '#3ECF8E',
+        //   800: '#24b47e', // green-500 in dashboard
+        //   900: '#2c9c6a',
+        // },
+
+        'hi-contrast': 'var("--scale-fixed-12")',
+        'lo-contrast': 'var("--scale-fixed-1")',
+
+        ...custom_colors,
+
+        // gray: { ...custom_colors.slate },
       },
 
       transitionProperty: {

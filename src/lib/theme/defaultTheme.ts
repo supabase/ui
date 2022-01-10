@@ -12,17 +12,17 @@ const defaults = {
   },
   text: {
     brand: 'text-purple-600',
-    body: 'text-grayScale-600 dark:text-grayScaleDark-200',
-    title: 'text-grayScale-700 dark:text-grayScaleDark-100',
+    body: 'text-scale-600 dark:text-scaleDark-200',
+    title: 'text-scale-700 dark:text-scaleDark-100',
   },
   border: {
     brand: 'border-purple-600',
-    primary: 'dark:border-grayScaleDark-600',
-    secondary: 'border-grayScale-300 dark:border-grayScaleDark-500',
-    alternative: 'border-grayScale-600 dark:border-grayScaleDark-200',
+    primary: 'dark:border-scaleDark-600',
+    secondary: 'border-scale-300 dark:border-scaleDark-500',
+    alternative: 'border-scale-600 dark:border-scaleDark-200',
   },
-  placeholder: 'placeholder-gray-300 dark:placeholder-grayScaleDark-500',
-  focus: `focus:outline-none focus:ring-brandColor focus:ring-2 focus:ring-opacity-50 dark:focus:ring-opacity-30`,
+  placeholder: 'placeholder-scale-800',
+  focus: `focus:outline-none focus:ring-current focus:ring-2`,
   size: {
     // buttons, inputs, input labels use these sizes
     text: {
@@ -89,10 +89,10 @@ export default {
   accordion: {
     base: 'flex flex-col rounded',
     bordered:
-      'border border-solid bg-white border-grayScale-200 dark:bg-grayScaleDark-700 dark:border-darkmode divide divide-y',
+      'border border-solid bg-white border-scale-200 dark:bg-scaleDark-700 dark:border-darkmode divide divide-y',
     label: 'text-sm',
     button:
-      'px-6 py-4 flex justify-between w-full text-left cursor-pointer border-0 border-solid font-medium text-base bg-transparent border-grayScale-200 text-grayScale-500 hover:text-grayScale-600 dark:border-darkmode dark:text-grayScaleDark-200 dark:hover:text-white',
+      'px-6 py-4 flex justify-between w-full text-left cursor-pointer border-0 border-solid font-medium text-base bg-transparent border-scale-200 text-scale-500 hover:text-scale-600 dark:border-darkmode dark:text-scaleDark-200 dark:hover:text-white',
     chevron: 'transform',
     'chevron--closed': '-rotate-90',
     'chevron--open': 'rotate-180',
@@ -115,8 +115,8 @@ export default {
     dot: '-ml-0.5 mr-1.5 h-2 w-2 rounded-full',
     color: {
       brand: 'bg-green-500 dark:bg-opacity-10 text-green-500',
-      gray: 'bg-grayScale-500 dark:bg-opacity-10 text-grayScale-500',
-      red: 'bg-red-500 dark:bg-opacity-10 text-red-500',
+      gray: 'bg-scale-500 dark:bg-opacity-10 text-scale-500',
+      red: 'bg-radix-red-500 dark:bg-opacity-10 text-radix-red-500',
       yellow: 'bg-yellow-500 dark:bg-opacity-10 text-yellow-500',
       green: 'bg-green-500 dark:bg-opacity-10 text-green-500',
       blue: 'bg-blue-500 dark:bg-opacity-10 text-blue-500',
@@ -135,7 +135,7 @@ export default {
     base: 'relative rounded py-4 px-6 flex space-x-4 border border-solid border-opacity-20',
     type: {
       danger:
-        'bg-red-500 bg-opacity-10 dark:bg-opacity-5 text-red-600 border-red-500',
+        'bg-radix-red-500 bg-opacity-10 dark:bg-opacity-5 text-radix-red-600 border-radix-red-500',
       warning:
         'bg-yellow-600 bg-opacity-10 dark:bg-opacity-5 text-yellow-600 border-yellow-600',
       info: 'bg-blue-600 bg-opacity-10 dark:bg-opacity-5 text-blue-600 border-blue-600',
@@ -143,7 +143,7 @@ export default {
         'bg-green-600 bg-opacity-10 dark:bg-opacity-5 text-green-600 border-green-600',
     },
     description: {
-      danger: 'text-sm text-red-600 text-opacity-80',
+      danger: 'text-sm text-radix-red-600 text-opacity-80',
       warning: 'text-sm text-yellow-600 text-opacity-80',
       info: 'text-sm text-blue-600 text-opacity-80',
       success: 'text-sm text-green-600 text-opacity-80',
@@ -159,7 +159,7 @@ export default {
 
   card: {
     base: `
-      bg-white dark:bg-grayScaleDark-700
+      bg-white dark:bg-scaleDark-700
       
       border
       ${defaults.border.primary} 
@@ -186,8 +186,8 @@ export default {
         relative 
         cursor-pointer 
 
-        text-grayScale-400 
-        dark:text-grayScale-300
+        text-scale-400 
+        dark:text-scale-300
         
         flex 
         items-center 
@@ -229,27 +229,27 @@ export default {
         focus:outline-none focus:ring
       `,
       inactive: `
-        bg-grayScale-100 dark:bg-grayScaleDark-600
+        bg-scale-100 dark:bg-scaleDark-600
 
         border
         ${defaults.border.secondary} 
         ${utils.border.hover}
 
-        text-grayScale-600 hover:text-grayScale-700 dark:text-grayScaleDark-300
+        text-scale-600 hover:text-scale-700 dark:text-scaleDark-300
       `,
       active: `
         bg-white 
  
-        hover:bg-grayScale-50
+        hover:bg-scale-50
 
-        text-grayScale-500 
-        hover:text-grayScale-600 
+        text-scale-500 
+        hover:text-scale-600 
 
         border
         ${defaults.border.secondary} 
         ${utils.border.hover}
 
-        dark:border-grayScaleDark-600 
+        dark:border-scaleDark-600 
       `,
     },
     block: 'w-full flex items-center justify-center',
@@ -273,127 +273,67 @@ export default {
       transition ease-out duration-200 
       rounded 
       ${defaults.focus}
-      hover:bg-opacity-90
       shadow-sm
     `,
     container: 'inline-flex font-medium',
     type: {
       primary: `
-        bg-brandColor
-        text-white 
-        border
-        border-brandColor
-        ${utils.border.hover}
+        bg-brand-fixed-900 hover:bg-brand-fixed-800
+        text-brand-fixed-1200
+        border border border-brand-fixed-800 hover:border-brand-fixed-1000
+        focus:ring-scale-1200
       `,
       default: `
-        bg-white 
-        hover:bg-grayScale-50
-        text-grayScale-500 
-        hover:text-grayScale-600 
-        border
-        ${defaults.border.secondary} 
-        ${utils.border.hover}
-        dark:border-grayScaleDark-600 
-      `,
-      alternative: `
-        bg-brandColor
-        bg-opacity-10 dark:bg-opacity-20
-        hover:bg-opacity-20 dark:hover:bg-opacity-30
-        border
-        border-brandColor
-        border-opacity-20
-        text-grayScale-600 
-        hover:text-grayScale-700 
-        dark:text-grayScaleDark-300
+        bg-scale-1200 hover:bg-scale-1100
+        text-scale-100 hover:text-scale-600 
+        border border-scale-1100
+        focus:ring-scale-1200
       `,
       secondary: `
-        bg-grayScale-100 dark:bg-grayScaleDark-600
-        border
-        ${defaults.border.secondary} 
-        ${utils.border.hover}
-        ${defaults.text.body}
-        hover:text-grayScale-700
+        text-scale-1200
+        bg-scale-300 hover:bg-scale-500
+        border border-scale-700 hover:border-scale-900
+      `,
+      alternative: `
+        bg-brandScale-200 hover:bg-brandScale-400
+        border border-brandScale-600 hover:border-brandScale-800
+        border-opacity-20
+        text-brandScale-1100
       `,
       outline: `
-        text-grayScale-500 
+        text-scale-1200 
         bg-transparent 
-        
-        border
-        ${defaults.border.secondary} 
-        ${utils.border.hover}
-
-        border-grayScale-200 border-solid 
-        
-        hover:bg-white 
-        hover:text-grayScale-600 
-        dark:text-white 
-        
-        dark:hover:text-grayScaleDark-600 
-      `,
-      link: `
-        text-brandColor
-        border
-        bg-brandColor
-        ${defaults.border.brand}
-        
-        border-opacity-0
-        bg-opacity-0 dark:bg-opacity-0
-        
-        hover:bg-opacity-10 dark:hover:bg-opacity-10
-        hover:border-opacity-5
-        shadow-none
+        border border-scale-700 hover:border-scale-900
       `,
       dashed: `
+        text-scale-1200 
         border
         border-dashed
-        ${defaults.border.secondary} 
-        ${utils.border.hover}
-
-        ${defaults.text.body}
+        border border-scale-700 hover:border-scale-900
         bg-transparent
-        
-        hover:text-grayScale-600
-        
-        dark:text-white
-        dark:hover:text-white 
-    `,
-      text: `
-        bg-grayScale-50 dark:bg-grayScaleDark-500
-        ${defaults.text.body}
-        border-grayScale-50 dark:border-grayScaleDark-500
-        border-opacity-0 dark:border-opacity-0
+      `,
+      link: `
+        text-brandScale-1100
+        border
+        hover:bg-brandScale-400
+        border-opacity-0
         bg-opacity-0 dark:bg-opacity-0
-        hover:bg-opacity-25 dark:hover:bg-opacity-25
-        hover:border-opacity-5 dark:hover:border-opacity-10
+        shadow-none
+      `,
+      text: `
+        text-scale-1200 
+        hover:bg-scale-500
         shadow-none
       `,
       danger: `
-        bg-red-500 
-        bg-opacity-75 dark:bg-opacity-75
-        hover:bg-opacity-100 dark:hover:bg-opacity-100
-
-        border
-        border-red-600 
-        border-opacity-40
-        
-
-        text-white
-        
-        text-opacity-90
-        hover:text-opacity-100
+        text-radix-red-1100
+        bg-radix-red-200 hover:bg-radix-red-400
+        border border-radix-red-700 hover:border-radix-red-900
       `,
       warning: `
-        bg-yellow-400 
-        bg-opacity-10 dark:bg-opacity-10
-        hover:bg-opacity-20 dark:hover:bg-opacity-20
-
-        border
-        border-yellow-600 
-        border-opacity-40
-
-        text-yellow-600 
-        text-opacity-90
-        hover:text-opacity-100
+        text-radix-amber-1100
+        bg-radix-amber-200 hover:bg-radix-amber-400
+        border border-radix-amber-700 hover:border-radix-amber-900
       `,
     },
     block: 'w-full flex items-center justify-center',
@@ -420,26 +360,111 @@ export default {
       rounded-md 
       shadow-sm 
       transition-all
-      text-grayScale-600   
-      dark:text-grayScaleDark-200 
+      text-scale-1200  
+      border
+      focus:shadow-md
+      ${defaults.focus}
+      focus:border-scale-900
+      focus:ring-scale-400
+      ${defaults.placeholder}
+    `,
+    variants: {
+      standard: `
+        bg-scale-100
+        border border-scale-700
+        `,
+      error: `
+        bg-radix-red-100
+        border border-radix-red-700 
+        focus:ring-radix-red-900
+       `,
+    },
+    container: 'relative',
+    with_icon: 'pl-10',
+    size: {
+      ...default__padding_and_text,
+    },
+    actions_container: 'absolute inset-y-0 right-0 pl-3 pr-1 flex items-center',
+    textarea_actions_container:
+      'absolute inset-y-1.5 right-0 pl-3 pr-1 flex items-start',
+    textarea_actions_container_items: 'flex items-center',
+  },
+
+  /*
+   * Select
+   */
+
+  select: {
+    base: `
+      block 
+      box-border 
+      w-full 
+      rounded-md 
+      shadow-sm 
+      transition-all
+      text-scale-1200  
+      border
+      focus:shadow-md
+      ${defaults.focus}
+      focus:border-scale-900
+      focus:ring-scale-400
+      ${defaults.placeholder}
+
+      appearance-none
+      bg-none
+    `,
+    variants: {
+      standard: `
+        bg-scale-100
+        border border-scale-700
+        `,
+      error: `
+        bg-radix-red-100
+        border border-radix-red-700 
+        focus:ring-radix-red-900
+       `,
+    },
+    container: 'relative',
+    with_icon: 'pl-10',
+    size: {
+      ...default__padding_and_text,
+    },
+    actions_container: 'absolute inset-y-0 right-0 pl-3 pr-1 flex items-center',
+    chevron_container:
+      'absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none',
+    chevron: 'h-5 w-5 text-scale-600',
+  },
+
+  /*
+   * Input Number
+   */
+
+  inputNumber: {
+    base: `
+      block 
+      box-border 
+      w-full 
+      rounded-md 
+      shadow-sm 
+      transition-all
+      text-scale-700   
+      dark:text-scaleDark-200 
       border
       focus:border-brandColor
       focus:shadow-md
       ${defaults.focus}
+      focus:ring-scale-400
       ${defaults.placeholder}
     `,
     variants: {
       standard: `
         bg-white
         dark:bg-transparent
-        border-input-border-light dark:border-input-border-dark
-        `,
+        border-input-border-light dark:border-input-border-dark`,
       error: `
-        bg-red-500
-        bg-opacity-5
-        border-red-500 
-        dark:border-red-500
-        focus:outline-none focus:ring-red-500
+        bg-radix-red-100
+        border border-radix-red-700 
+        focus:ring-radix-red-900
        `,
     },
     container: 'relative',
@@ -451,43 +476,48 @@ export default {
   },
 
   /*
-   * Input
+   *  Toggle
    */
 
-  inputNumber: {
+  toggle: {
     base: `
-      block 
-      box-border 
-      w-full 
-      rounded-md 
-      shadow-sm 
-      transition-all
-      text-grayScale-600   
-      dark:text-grayScaleDark-200 
-      border
-      focus:border-brandColor
-      focus:shadow-md
+      p-0 relative 
+      inline-flex flex-shrink-0 
+      h-6 w-11 
+      border-2 border-transparent 
+      rounded-full 
+      cursor-pointer
+      transition-colors ease-in-out duration-200
       ${defaults.focus}
-      ${defaults.placeholder}
+      focus:ring-scale-1200
+      bg-scale-300
     `,
-    variants: {
-      standard: `
-        bg-white
-        dark:bg-transparent
-        border-input-border-light dark:border-input-border-dark`,
-      error: `
-        bg-red-500
-        bg-opacity-5
-        border-red-500 
-        dark:border-red-500
-       `,
+    active: `
+      bg-brand-900    
+    `,
+    handle_container: {
+      tiny: 'h-4 w-7',
+      small: 'h-6 w-11',
+      medium: 'h-6 w-11',
+      large: 'h-7 w-12',
+      xlarge: 'h-7 w-12',
     },
-    container: 'relative',
-    with_icon: 'pl-10',
-    size: {
-      ...default__padding_and_text,
+    handle: {
+      base: 'inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200',
+      tiny: 'h-3 w-3',
+      small: 'h-5 w-5',
+      medium: 'h-5 w-5',
+      large: 'h-6 w-6',
+      xlarge: 'h-6 w-6',
     },
-    actions_container: 'absolute inset-y-0 right-0 pl-3 pr-1 flex items-center',
+    handle_active: {
+      tiny: ' translate-x-3',
+      small: 'translate-x-5',
+      medium: 'translate-x-5',
+      large: 'translate-x-5',
+      xlarge: 'translate-x-5',
+    },
+    disabled: 'opacity-75 cursor-not-allowed',
   },
 
   /*
@@ -522,37 +552,37 @@ export default {
     data_input_vertical_layout__align_right: 'text-right',
 
     label: {
-      base: 'block text-grayScale-600 dark:text-grayScaleDark-200',
+      base: 'block text-scale-1100',
       size: {
         ...defaults.size.text,
       },
     },
     label_optional: {
-      base: 'text-grayScale-400 dark:text-grayScaleDark-400',
+      base: 'text-scale-900',
       size: {
         ...defaults.size.text,
       },
     },
     description: {
-      base: 'mt-2 text-grayScale-400 dark:text-grayScaleDark-400',
+      base: 'mt-2 text-scale-900',
       size: {
         ...defaults.size.text,
       },
     },
     label_before: {
-      base: 'text-grayScale-400 dark:text-grayScaleDark-400',
+      base: 'text-scale-500 ',
       size: {
         ...defaults.size.text,
       },
     },
     label_after: {
-      base: 'text-grayScale-400 dark:text-grayScaleDark-400',
+      base: 'text-scale-500',
       size: {
         ...defaults.size.text,
       },
     },
     error: {
-      base: 'mt-1.5 text-red-500',
+      base: 'mt-1.5 text-radix-red-900',
       size: {
         ...defaults.size.text,
       },
@@ -586,7 +616,7 @@ export default {
       shadow-lg
       origin-dropdown
       dropdown-content
-      data-open:bg-red-500
+      data-open:bg-radix-red-500
       py-1.5
     `,
     arrow: `
@@ -600,7 +630,7 @@ export default {
       px-4 py-1.5 flex items-center space-x-2
       cursor-pointer
       focus:bg-brandColor 
-      focus:text-grayScale-100
+      focus:text-scale-100
       border-none
       focus:outline-none
     `,

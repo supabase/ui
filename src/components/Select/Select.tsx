@@ -7,6 +7,8 @@ import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import SelectStyles from './Select.module.css'
 import { useFormContext } from '../Form/FormContext'
 
+import defaultTheme from '../../lib/theme/defaultTheme'
+
 interface OptionProps {
   value: string
   children: React.ReactNode
@@ -98,6 +100,15 @@ function Select({
     if (validation) fieldLevelValidation(id, validation(value))
   }, [])
 
+  const __styles = defaultTheme.select
+
+  let classes = [__styles.base]
+
+  if (error) classes.push(__styles.variants.error)
+  if (!error) classes.push(__styles.variants.standard)
+  if (icon) classes.push(__styles.with_icon)
+  if (size) classes.push(__styles.size[size])
+
   let selectClasses = [SelectStyles['sbui-select']]
   if (error) selectClasses.push(SelectStyles['sbui-select--error'])
   if (icon) selectClasses.push(SelectStyles['sbui-select--with-icon'])
@@ -124,7 +135,7 @@ function Select({
           name={name}
           autoComplete={autoComplete}
           autoFocus={autofocus}
-          className={selectClasses.join(' ')}
+          className={classes.join(' ')}
           onChange={onInputChange}
           onFocus={onFocus ? (event) => onFocus(event) : undefined}
           onBlur={onBlur}
@@ -143,9 +154,9 @@ function Select({
             {error && <InputErrorIcon size={size} />}
           </div>
         )}
-        <span className={SelectStyles['sbui-select-chevron-container']}>
+        <span className={__styles.chevron_container}>
           <svg
-            className={SelectStyles['sbui-select-chevron']}
+            className={__styles.chevron}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
