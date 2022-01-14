@@ -433,7 +433,8 @@ export default {
     size: {
       ...default__padding_and_text,
     },
-    actions_container: 'absolute inset-y-0 right-0 pl-3 pr-1 flex items-center',
+    actions_container:
+      'absolute inset-y-0 right-0 pl-3 pr-1 mr-5 flex items-center',
     chevron_container:
       'absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none',
     chevron: 'h-5 w-5 text-scale-600',
@@ -946,7 +947,3 @@ export default {
     `,
   },
 }
-// dark:focus:border-input-border-focus-dark dark:focus:ring-input-border-focus-dark
-
-// focus:ring-input-border-focus-light focus:border-input-border-focus-light focus:outline-none
-// transition-shadow shadow-sm focus:shadow-md

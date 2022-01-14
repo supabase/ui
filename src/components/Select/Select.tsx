@@ -1,10 +1,8 @@
-// @ts-ignore
 import React, { useEffect } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
-// @ts-ignore
-import SelectStyles from './Select.module.css'
+
 import { useFormContext } from '../Form/FormContext'
 
 import defaultTheme from '../../lib/theme/defaultTheme'
@@ -102,18 +100,14 @@ function Select({
 
   const __styles = defaultTheme.select
 
-  let classes = [__styles.base]
+  let classesContainer = [__styles.container]
+  if (className) classesContainer.push(className)
 
+  let classes = [__styles.base]
   if (error) classes.push(__styles.variants.error)
   if (!error) classes.push(__styles.variants.standard)
   if (icon) classes.push(__styles.with_icon)
   if (size) classes.push(__styles.size[size])
-
-  let selectClasses = [SelectStyles['sbui-select']]
-  if (error) selectClasses.push(SelectStyles['sbui-select--error'])
-  if (icon) selectClasses.push(SelectStyles['sbui-select--with-icon'])
-  if (size) selectClasses.push(SelectStyles[`sbui-select--${size}`])
-  if (borderless) selectClasses.push(SelectStyles[`sbui-select--borderless`])
 
   return (
     <FormLayout
@@ -129,7 +123,7 @@ function Select({
       style={style}
       size={size}
     >
-      <div className={SelectStyles['sbui-select-container']}>
+      <div className={__styles.container}>
         <select
           id={id}
           name={name}
@@ -150,7 +144,7 @@ function Select({
         </select>
         {icon && <InputIconContainer icon={icon} />}
         {error && (
-          <div className="sbui-select-actions-container">
+          <div className={__styles.actions_container}>
             {error && <InputErrorIcon size={size} />}
           </div>
         )}
