@@ -948,4 +948,62 @@ export default {
       right-0
     `,
   },
+
+  /*
+   * Menu
+   */
+
+  menu: {
+    item: {
+      base: `
+        border-l
+        px-3 py-1
+        cursor-pointer
+        flex space-x-3 items-center
+        outline-none
+        focus-visible:ring-1 ring-scale-1200 focus-visible:z-10 
+        group
+      `,
+      // block
+      // border-l
+      // pl-4 -ml-px
+      // border-transparent
+      // hover:border-gray-400
+      // dark:hover:border-gray-500
+      // text-gray-700
+      // hover:text-gray-900
+      // dark:text-gray-400
+      // dark:hover:text-gray-300
+      normal: `
+        font-normal
+        border-scale-500
+        group-hover:border-scale-900`,
+      active: `
+        font-semibold
+        bg-scale-100
+        text-scale-900
+        z-10
+      `,
+      bar: `
+        border-l-2 
+        border-brand-900
+        group-hover:border-brand-900
+      `,
+      content: {
+        base: `transition truncate text-sm`,
+        normal: `text-scale-1000 group-hover:text-scale-1100`,
+        active: `text-brand-900`,
+      },
+      icon: {
+        base: `transition truncate text-sm`,
+        normal: `text-scale-800 group-hover:text-scale-900`,
+        active: `text-brand-900`,
+      },
+    },
+    group: {
+      base: `flex space-x-3 mb-2 mt-4 font-medium`,
+      icon: `text-scale-900`,
+      content: `text-sm text-scale-1200`,
+    },
+  },
 }

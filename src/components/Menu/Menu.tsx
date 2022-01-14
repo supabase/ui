@@ -3,8 +3,7 @@ import { DropdownContext } from '../../lib/Overlay/OverlayContext'
 import { Space } from '../Space'
 import Typography from '../Typography'
 
-// @ts-ignore
-import MenuStyles from './Menu.module.css'
+import defaultTheme from '../../lib/theme/defaultTheme'
 
 interface MenuProps {
   children: React.ReactNode
@@ -13,15 +12,16 @@ interface MenuProps {
 }
 function Menu({ children, className, style }: MenuProps) {
   return (
-    <div
+    <nav
       role="menu"
+      aria-label="Sidebar"
       aria-orientation="vertical"
       aria-labelledby="options-menu"
       className={className}
       style={style}
     >
-      {children}
-    </div>
+      <ul>{children}</ul>
+    </nav>
   )
 }
 
@@ -46,14 +46,37 @@ export function Item({
   showActiveBar = false,
   style,
 }: ItemProps) {
-  let classes = [MenuStyles['sbui-menu__item']]
-  if (active) classes.push(MenuStyles['sbui-menu__item--active'])
-  if (active && showActiveBar)
-    classes.push(MenuStyles['sbui-menu__item--active--bar'])
-  if (rounded) classes.push(MenuStyles['sbui-menu__item--rounded'])
+  // let classes = [MenuStyles['sbui-menu__item']]
+  // if (active) classes.push(MenuStyles['sbui-menu__item--active'])
+  // if (active && showActiveBar)
+  //   classes.push(MenuStyles['sbui-menu__item--active--bar'])
+  // if (rounded) classes.push(MenuStyles['sbui-menu__item--rounded'])
 
   const itemOnClick = onClick
 
+  const __styles = defaultTheme.menu
+
+  let classes = [__styles.item.base]
+  if (active) {
+    classes.push(__styles.item.active)
+  } else {
+    classes.push(__styles.item.normal)
+  }
+  if (active && showActiveBar) classes.push(__styles.item.bar)
+
+  let contentClasses = [__styles.item.content.base]
+  if (active) {
+    contentClasses.push(__styles.item.content.active)
+  } else {
+    contentClasses.push(__styles.item.content.normal)
+  }
+
+  let iconClasses = [__styles.item.icon.base]
+  if (active) {
+    iconClasses.push(__styles.item.icon.active)
+  } else {
+    iconClasses.push(__styles.item.icon.normal)
+  }
   return (
     // DropdownContext allows for MenuItem to
     // close parent dropdown onClick
@@ -65,21 +88,18 @@ export function Item({
         }
 
         return (
-          <div
-            className={classes.join(' ')}
-            role="menuitem"
-            onClick={handleClick}
-            style={style}
-          >
-            <Typography.Text>
-              <Space>
-                {icon && icon}
-                <span className={MenuStyles['sbui-menu__content']}>
-                  {children}
-                </span>
-              </Space>
-            </Typography.Text>
-          </div>
+          <li role="menuitem" className="outline-none">
+            <a
+              className={classes.join(' ')}
+              onClick={handleClick}
+              style={style}
+              aria-current={active ? 'page' : undefined}
+              href="#"
+            >
+              {icon && <span className={iconClasses.join(' ')}>{icon}</span>}
+              <span className={contentClasses.join(' ')}>{children}</span>
+            </a>
+          </li>
         )
       }}
     </DropdownContext.Consumer>
@@ -93,11 +113,12 @@ interface GroupProps {
 }
 
 export function Group({ children, icon, title }: GroupProps) {
+  const __styles = defaultTheme.menu.group
   return (
-    <div className={MenuStyles['sbui-menu__group']}>
+    <div className={__styles.base}>
       <Space>
-        {icon && icon}
-        <Typography.Text type="secondary">{title}</Typography.Text>
+        {icon && <span className={__styles.icon}>{icon}</span>}
+        <h5 className={__styles.content}>{title}</h5>
       </Space>
       {children}
     </div>
@@ -110,9 +131,15 @@ interface MiscProps {
 
 export function Misc({ children }: MiscProps) {
   return (
-    <div className={MenuStyles['sbui-menu__misc']}>
+    <div
+    // className={MenuStyles['sbui-menu__misc']}
+    >
       <Typography.Text>
-        <span className={MenuStyles['sbui-menu__content']}>{children}</span>
+        <span
+        // className={MenuStyles['sbui-menu__content']}
+        >
+          {children}
+        </span>
       </Typography.Text>
     </div>
   )

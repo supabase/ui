@@ -44,7 +44,7 @@ export const withLoadingCentered = (args: any) => (
 // }
 export const allButtons = (args: any) => (
   <>
-    <div className="flex space-y-4">
+    <div className="flex flex-col space-y-4">
       <div className="flex space-x-4">
         <Button {...args} size="tiny">
           Button text

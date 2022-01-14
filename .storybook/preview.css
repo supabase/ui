@@ -4,6 +4,36 @@
 @tailwind utilities;
 
 :root {
+  /* brand scale */
+  --brand-1: hsla(153, 80%, 99%, 1);
+  --brand-2: hsla(148, 88%, 97%, 1);
+  --brand-3: hsla(148, 76%, 95%, 1);
+  --brand-4: hsla(148, 68%, 92%, 1);
+  --brand-5: hsla(148, 59%, 88%, 1);
+  --brand-6: hsla(149, 43%, 82%, 1);
+  --brand-7: hsla(149, 43%, 69%, 1);
+  --brand-8: hsla(154, 55%, 45%, 1);
+  --brand-9: hsla(153, 60%, 53%, 1);
+  --brand-10: hsla(153, 50%, 50%, 1);
+  --brand-11: hsla(153, 50%, 34%, 1);
+  --brand-12: hsla(153, 40%, 12%, 1);
+
+  --brand-hiContrast: var(--brand-9);
+  --brand-loContrast: var(--brand-4);
+
+  /* brand scale fixed */
+  --brand-fixed-1: hsla(153, 80%, 99%, 1);
+  --brand-fixed-2: hsla(148, 88%, 97%, 1);
+  --brand-fixed-3: hsla(148, 76%, 95%, 1);
+  --brand-fixed-4: hsla(148, 68%, 92%, 1);
+  --brand-fixed-5: hsla(148, 59%, 88%, 1);
+  --brand-fixed-6: hsla(149, 43%, 82%, 1);
+  --brand-fixed-7: hsla(149, 43%, 69%, 1);
+  --brand-fixed-8: hsla(154, 55%, 45%, 1);
+  --brand-fixed-9: hsla(153, 60%, 53%, 1);
+  --brand-fixed-10: hsla(153, 50%, 50%, 1);
+  --brand-fixed-11: hsla(153, 50%, 34%, 1);
+  --brand-fixed-12: hsla(153, 40%, 12%, 1);
   /* border scale */
   --scale-1: hsla(210, 33%, 99%, 1);
   --scale-2: hsla(210, 17%, 98%, 1);
@@ -43,36 +73,6 @@
   --background-10: hsla(206, 6%, 52%, 1);
   --background-11: hsla(206, 6%, 44%, 1);
   --background-12: hsla(202, 24%, 9%, 1);
-  /* brand scale */
-  --brand-1: hsla(153, 80%, 99%, 1);
-  --brand-2: hsla(148, 88%, 97%, 1);
-  --brand-3: hsla(148, 76%, 95%, 1);
-  --brand-4: hsla(148, 68%, 92%, 1);
-  --brand-5: hsla(148, 59%, 88%, 1);
-  --brand-6: hsla(149, 43%, 82%, 1);
-  --brand-7: hsla(149, 43%, 69%, 1);
-  --brand-8: hsla(154, 55%, 45%, 1);
-  --brand-9: hsla(153, 60%, 53%, 1);
-  --brand-10: hsla(153, 50%, 50%, 1);
-  --brand-11: hsla(153, 50%, 34%, 1);
-  --brand-12: hsla(153, 40%, 12%, 1);
-
-  --brand-hiContrast: var(--brand-9);
-  --brand-loContrast: var(--brand-4);
-
-  /* brand scale fixed */
-  --brand-fixed-1: hsla(153, 80%, 99%, 1);
-  --brand-fixed-2: hsla(148, 88%, 97%, 1);
-  --brand-fixed-3: hsla(148, 76%, 95%, 1);
-  --brand-fixed-4: hsla(148, 68%, 92%, 1);
-  --brand-fixed-5: hsla(148, 59%, 88%, 1);
-  --brand-fixed-6: hsla(149, 43%, 82%, 1);
-  --brand-fixed-7: hsla(149, 43%, 69%, 1);
-  --brand-fixed-8: hsla(154, 55%, 45%, 1);
-  --brand-fixed-9: hsla(153, 60%, 53%, 1);
-  --brand-fixed-10: hsla(153, 50%, 50%, 1);
-  --brand-fixed-11: hsla(153, 50%, 34%, 1);
-  --brand-fixed-12: hsla(153, 40%, 12%, 1);
 
   /* radix colors */
 
@@ -119,6 +119,19 @@
 }
 
 .dark {
+  /* brand scale */
+  --brand-1: hsla(153, 75%, 6%, 1);
+  --brand-2: hsla(153, 73%, 7%, 1);
+  --brand-3: hsla(154, 69%, 9%, 1);
+  --brand-4: hsla(154, 67%, 11%, 1);
+  --brand-5: hsla(154, 66%, 13%, 1);
+  --brand-6: hsla(154, 64%, 17%, 1);
+  --brand-7: hsla(154, 62%, 22%, 1);
+  --brand-8: hsla(153, 60%, 28%, 1);
+  --brand-9: hsla(153, 60%, 53%, 1);
+  --brand-10: hsla(153, 60%, 70%, 1);
+  --brand-11: hsla(153, 60%, 50%, 1);
+  --brand-12: hsla(153, 60%, 95%, 1);
   /* border scale */
   --scale-1: hsla(200, 7%, 9%, 1);
   --scale-2: hsla(195, 7%, 11%, 1);
@@ -145,19 +158,6 @@
   --background-10: hsla(208, 5%, 50%, 1);
   --background-11: hsla(207, 6%, 63%, 1);
   --background-12: hsla(210, 6%, 93%, 1);
-  /* brand scale */
-  --brand-1: hsla(153, 75%, 6%, 1);
-  --brand-2: hsla(153, 73%, 7%, 1);
-  --brand-3: hsla(154, 69%, 9%, 1);
-  --brand-4: hsla(154, 67%, 11%, 1);
-  --brand-5: hsla(154, 66%, 13%, 1);
-  --brand-6: hsla(154, 64%, 17%, 1);
-  --brand-7: hsla(154, 62%, 22%, 1);
-  --brand-8: hsla(153, 60%, 28%, 1);
-  --brand-9: hsla(153, 60%, 53%, 1);
-  --brand-10: hsla(153, 60%, 70%, 1);
-  --brand-11: hsla(153, 60%, 50%, 1);
-  --brand-12: hsla(153, 60%, 95%, 1);
 
   /* radix colors */
 
