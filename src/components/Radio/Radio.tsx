@@ -1,15 +1,10 @@
 import React, { useEffect, useState, createRef } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
-import { Space } from '../Space'
-// @ts-ignore
-import RadioStyles from './Radio.module.css'
 import { RadioContext } from './RadioContext'
 
-import defaultTheme from '../../lib/theme/defaultTheme'
-
 import { useFormContext } from '../Form/FormContext'
-import { Misc } from '../Menu/Menu'
-import { addOnBefore } from '../Tabs/Tabs.stories'
+
+import defaultTheme from '../../lib/theme/defaultTheme'
 
 interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
