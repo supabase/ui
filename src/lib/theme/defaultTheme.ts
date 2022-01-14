@@ -264,6 +264,10 @@ export default {
    * Button
    */
 
+  // button: {
+  //   base : 'border border-4'
+  // }
+
   button: {
     base: `
       relative 
@@ -441,26 +445,28 @@ export default {
 
   inputNumber: {
     base: `
-      block 
+      block
       box-border 
       w-full 
       rounded-md 
       shadow-sm 
       transition-all
-      text-scale-700   
-      dark:text-scaleDark-200 
+      text-scale-1200  
       border
-      focus:border-brandColor
       focus:shadow-md
       ${defaults.focus}
+      focus:border-scale-900
       focus:ring-scale-400
       ${defaults.placeholder}
+
+      appearance-none
+      bg-none
     `,
     variants: {
       standard: `
-        bg-white
-        dark:bg-transparent
-        border-input-border-light dark:border-input-border-dark`,
+        bg-scale-100
+        border border-scale-700
+      `,
       error: `
         bg-radix-red-100
         border border-radix-red-700 
@@ -473,6 +479,275 @@ export default {
       ...default__padding_and_text,
     },
     actions_container: 'absolute inset-y-0 right-0 pl-3 pr-1 flex items-center',
+  },
+
+  /*
+   *  Checkbox
+   *
+   * 
+   * This Checkbox requires a plugin in your config:
+  
+    ```
+    // tailwind.config.js
+    module.exports = {
+      // ...
+      plugins: [
+        // ...
+        require('@tailwindcss/forms'),
+      ],
+    }
+    ```
+   * 
+   * 
+  */
+
+  checkbox: {
+    base: `
+      bg-transparent 
+      ${defaults.focus}
+      focus:ring-scale-400
+      text-brand-900 
+      border-scale-700 
+      shadow-sm
+      rounded
+      cursor-pointer
+    `,
+    container: `flex cursor-pointer leading-none`,
+    size: {
+      tiny: `h-3 w-3 mt-1 mr-3`,
+      small: `h-3.5 w-3.5 mt-0.5 mr-3.5`,
+      medium: `h-4 w-4 mt-0.5 mr-3.5`,
+      large: `h-5 w-5 mt-0.5 mr-4`,
+      xlarge: `h-5 w-5 mt-0.5 mr-4`,
+    },
+
+    label: {
+      base: `text-scale-1100 cursor-pointer`,
+      ...defaults.size.text,
+    },
+    label_before: {
+      base: 'text-scale-500',
+      ...defaults.size.text,
+    },
+    label_after: {
+      base: 'text-scale-500',
+      ...defaults.size.text,
+    },
+    description: {
+      base: `text-scale-900`,
+      ...defaults.size.text,
+    },
+    group: `space-y-3`,
+  },
+
+  /*
+   *  Radio
+   *
+   * 
+   * This Radio requires a plugin in your config:
+  
+    ```
+    // tailwind.config.js
+    module.exports = {
+      // ...
+      plugins: [
+        // ...
+        require('@tailwindcss/forms'),
+      ],
+    }
+    ```
+   * 
+   * 
+  */
+
+  radio: {
+    base: `
+      absolute
+      bg-transparent
+      ${defaults.focus}
+      focus:ring-brand-400
+      border-scale-700
+      text-brand-900
+      shadow-sm
+      cursor-pointer
+      peer
+    `,
+    hidden: `absolute opacity-0`,
+    size: {
+      tiny: `h-3 w-3`,
+      small: `h-3.5 w-3.5`,
+      medium: `h-4 w-4`,
+      large: `h-5 w-5`,
+      xlarge: `h-5 w-5`,
+    },
+    variants: {
+      cards: {
+        container: {
+          base: `relative cursor-pointer flex`,
+          align: {
+            vertical: 'flex flex-col space-y-1',
+            horizontal: 'flex flex-row space-x-2',
+          },
+        },
+        group: `-space-y-px`,
+        base: `
+          border border-scale-700
+          first:rounded-tl-md first:rounded-tr-md
+          last:rounded-bl-md last:rounded-br-md
+        `,
+        size: {
+          tiny: `px-5 py-3`,
+          small: `px-6 py-4`,
+          medium: `px-6 py-4`,
+          large: `px-8 p-4`,
+          xlarge: `px-8 p-4`,
+        },
+        active: `
+          bg-brand-100 z-10
+          border-brand-900 border-1
+        `,
+        radio_offset: 'left-4',
+      },
+
+      'stacked-cards': {
+        container: {
+          base: `relative cursor-pointer flex items-center justify-between`,
+          align: {
+            vertical: 'flex flex-col space-y-1',
+            horizontal: 'flex flex-row space-x-2',
+          },
+        },
+        group: `space-y-3`,
+        base: `
+          border border-scale-700 rounded-lg
+        `,
+        size: {
+          tiny: `px-5 py-3`,
+          small: `px-6 py-4`,
+          medium: `px-6 py-4`,
+          large: `px-8 p-4`,
+          xlarge: `px-8 p-4`,
+        },
+        active: `
+          bg-brand-100 z-10
+          border-brand-900 border-1
+        `,
+        radio_offset: 'left-4',
+      },
+
+      'small-cards': {
+        container: {
+          base: `relative cursor-pointer flex`,
+          align: {
+            vertical:
+              'flex flex-col space-y-1 flex items-center justify-center',
+            horizontal: 'flex flex-row space-x-2',
+          },
+        },
+        group: `flex flex-row gap-3`,
+        base: `
+          transition 
+          border border-scale-700 hover:border-scale-900 
+          rounded-lg 
+          flex-grow
+          items-center
+          flex-wrap
+          justify-center
+        `,
+        size: {
+          tiny: `px-5 py-3`,
+          small: `px-6 py-4`,
+          medium: `px-6 py-4`,
+          large: `px-8 p-4`,
+          xlarge: `px-8 p-4`,
+        },
+        active: `
+          bg-brand-100 z-10
+          border-brand-900 border-1
+          hover:border-brand-900
+        `,
+        radio_offset: 'left-4',
+      },
+
+      'large-cards': {
+        container: {
+          base: `relative cursor-pointer flex`,
+          align: {
+            vertical: 'flex flex-col space-y-1',
+            horizontal: 'flex flex-row space-x-2',
+          },
+        },
+        group: `flex flex-row gap-3`,
+        base: `
+          transition 
+          border border-scale-700 hover:border-scale-900 
+          rounded-lg 
+          flex-grow
+        `,
+        size: {
+          tiny: `px-5 py-3`,
+          small: `px-6 py-4`,
+          medium: `px-6 py-4`,
+          large: `px-8 p-4`,
+          xlarge: `px-8 p-4`,
+        },
+        active: `
+          bg-brand-100 z-10
+          border-brand-900 border-1
+          hover:border-brand-900
+        `,
+        radio_offset: 'left-4',
+      },
+
+      list: {
+        container: {
+          base: `relative cursor-pointer flex`,
+          size: {
+            tiny: `pl-6`,
+            small: `pl-6`,
+            medium: `pl-7`,
+            large: `pl-10`,
+            xlarge: `pl-10`,
+          },
+          align: {
+            vertical: 'flex flex-col space-y-1',
+            horizontal: 'flex flex-row space-x-2',
+          },
+        },
+        group: `space-y-4`,
+        base: ``,
+        size: {
+          tiny: `0`,
+          small: `0`,
+          medium: `0`,
+          large: `0`,
+          xlarge: `0`,
+        },
+        active: ``,
+        radio_offset: 'left-0',
+      },
+    },
+    label: {
+      base: `text-scale-1100 cursor-pointer`,
+      ...defaults.size.text,
+    },
+    label_before: {
+      base: 'text-scale-500',
+      ...defaults.size.text,
+    },
+    label_after: {
+      base: 'text-scale-500',
+      ...defaults.size.text,
+    },
+    description: {
+      base: `text-scale-900`,
+      ...defaults.size.text,
+    },
+    optionalLabel: {
+      base: `text-scale-900`,
+      ...defaults.size.text,
+    },
+    disabled: `opacity-50 cursor-auto border-dashed`,
   },
 
   /*
@@ -489,8 +764,8 @@ export default {
       cursor-pointer
       transition-colors ease-in-out duration-200
       ${defaults.focus}
-      focus:ring-scale-1200
-      bg-scale-300
+      focus:ring-scale-400
+      bg-scale-500
     `,
     active: `
       bg-brand-900    
@@ -547,6 +822,10 @@ export default {
     label_vertical_layout: 'flex flex-col space-y-2 col-span-4',
 
     data_input_horizontal_layout: 'col-span-12',
+
+    non_box_data_input_spacing_vertical: 'my-3',
+    non_box_data_input_spacing_horizontal: 'my-3 lg:mt-0 mb-3',
+
     data_input_vertical_layout: 'col-span-8',
 
     data_input_vertical_layout__align_right: 'text-right',

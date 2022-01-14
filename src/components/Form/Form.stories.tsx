@@ -11,6 +11,7 @@ import {
 } from '../../index'
 
 import * as Yup from 'yup'
+import { User } from '../Icon/IconImportHandler'
 
 export default {
   title: 'Data Input/Form',
@@ -23,6 +24,7 @@ interface Values {
   profession: string
   number: number | undefined
   // remember_me: boolean
+  check_alone: boolean
   favorite_food: string
   check_3: boolean
   check_2: boolean
@@ -38,6 +40,7 @@ const INITIAL_VALUES: Values = {
   profession: '',
   number: undefined,
   // remember_me: false,
+  check_alone: false,
   favorite_food: 'pizza',
   check_3: false,
   check_2: true,
@@ -310,7 +313,11 @@ export const LargerExample = () => {
                 placeholder="124"
                 labelOptional="Must be between 13 - 31"
               />
-              {/* <Checkbox id="helloworld" label="Hello world" /> */}
+              <Checkbox
+                id="check_alone"
+                label="check_alone"
+                description="This is a lonely checkbox"
+              />
               <Input.TextArea id="textarea" rows={5} name="textarea" />
               <Checkbox.Group
                 label="Group of checkboxes"
@@ -337,7 +344,7 @@ export const LargerExample = () => {
                   description="hello world"
                 />
               </Checkbox.Group>
-              <Toggle id="toggle" label="Remember me" />
+              <Toggle id="toggle" label="Remember me" layout="horizontal" />
               <Radio.Group
                 layout="horizontal"
                 name="favorite_food"

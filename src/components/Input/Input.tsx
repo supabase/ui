@@ -3,8 +3,9 @@ import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import { Button, Space, Typography, IconCopy } from '../../index'
-import defaultTheme from '../../lib/theme/defaultTheme'
 import { HIDDEN_PLACEHOLDER } from './../../lib/constants'
+
+import defaultTheme from '../../lib/theme/defaultTheme'
 
 import { useFormContext } from '../Form/FormContext'
 

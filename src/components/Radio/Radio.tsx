@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, createRef } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
-import { useFormContext } from '../Form/FormContext'
 import { Space } from '../Space'
 // @ts-ignore
 import RadioStyles from './Radio.module.css'
 import { RadioContext } from './RadioContext'
+
+import defaultTheme from '../../lib/theme/defaultTheme'
+
+import { useFormContext } from '../Form/FormContext'
+import { Misc } from '../Menu/Menu'
+import { addOnBefore } from '../Tabs/Tabs.stories'
 
 interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -13,6 +18,10 @@ interface InputProps
   beforeLabel?: string
   description?: string
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+  hidden?: boolean
+  align?: 'vertical' | 'horizontal'
+  optionalLabel?: 'string' | React.ReactNode
+  addOnBefore?: React.ReactNode
 }
 
 interface GroupProps {
@@ -27,7 +36,7 @@ interface GroupProps {
   beforeLabel?: string
   labelOptional?: any
   name?: any
-  type?: any
+  type?: 'cards' | 'list' | 'small-cards' | 'large-cards'
   transform?: any
   value?: any
   className?: any
@@ -36,6 +45,7 @@ interface GroupProps {
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   validation?: (x: any) => void
+  groupClassName?: string
 }
 
 function RadioGroup({
@@ -49,15 +59,18 @@ function RadioGroup({
   labelOptional,
   children,
   className,
-  type,
+  type = 'list',
   options,
   value,
   name,
   onChange,
   size = 'medium',
   validation,
+  groupClassName,
 }: GroupProps) {
   const [activeId, setActiveId] = useState('')
+
+  const __styles = defaultTheme.radio
 
   const {
     formContextOnChange,
@@ -95,18 +108,13 @@ function RadioGroup({
     setActiveId(e.target.id)
   }
 
-  let classes = [RadioStyles['sbui-radio-fieldset']]
-
-  if (type === 'cards') {
-    classes.push(RadioStyles['sbui-radio-fieldset--cards'])
-  }
-
   return (
     <RadioContext.Provider
       value={{ parentCallback, type, name, activeId, parentSize: size }}
     >
-      <fieldset className={RadioStyles['sbui-radio-fieldset']} name={name}>
+      <fieldset name={name}>
         <FormLayout
+          nonBoxInput={true}
           label={label}
           afterLabel={afterLabel}
           beforeLabel={beforeLabel}
@@ -118,23 +126,21 @@ function RadioGroup({
           className={className}
           size={size}
         >
-          <div className={RadioStyles['sbui-radio-group-contents']}>
-            <Space direction="vertical" size="px" minus>
-              {options
-                ? options.map((option: InputProps) => {
-                    return (
-                      <Radio
-                        id={option.id}
-                        label={option.label}
-                        beforeLabel={option.beforeLabel}
-                        afterLabel={option.afterLabel}
-                        value={option.value}
-                        description={option.description}
-                      />
-                    )
-                  })
-                : children}
-            </Space>
+          <div className={groupClassName || __styles.variants[type].group}>
+            {options
+              ? options.map((option: InputProps) => {
+                  return (
+                    <Radio
+                      id={option.id}
+                      label={option.label}
+                      beforeLabel={option.beforeLabel}
+                      afterLabel={option.afterLabel}
+                      value={option.value}
+                      description={option.description}
+                    />
+                  )
+                })
+              : children}
           </div>
         </FormLayout>
       </fieldset>
@@ -155,8 +161,14 @@ function Radio({
   onChange,
   onFocus,
   onBlur,
+  hidden = false,
   size = 'medium',
+  align = 'vertical',
+  optionalLabel,
+  addOnBefore,
 }: InputProps) {
+  const __styles = defaultTheme.radio
+
   const inputName = name
 
   const { handleBlur } = useFormContext()
@@ -178,6 +190,8 @@ function Radio({
         // if name does not exist on Radio then use Context Name from Radio.Group
         const markupName = inputName ? inputName : name ? name : markupId
         // console.log('markupName', markupName)
+        // @ts-ignore
+        size = parentSize || size
 
         // check if radio id is via parent component
         // then check if radio checked prop is true or false
@@ -192,18 +206,25 @@ function Radio({
             : undefined
 
         let classes = [
-          RadioStyles['sbui-radio-container'],
-          RadioStyles['sbui-radio-label'],
-          RadioStyles[
-            `sbui-radio-container--${parentSize ? parentSize : size}`
-          ],
+          __styles.variants[type].container.base,
+          // __styles.variants[type].container.align[align],
+          type === 'list' &&
+            !hidden &&
+            __styles.variants[type].container.size[size],
         ]
-        if (type === 'cards') {
-          classes.push(RadioStyles['sbui-radio-container--card'])
+
+        classes.push(__styles.variants[type].base)
+        classes.push(__styles.variants[type].size[size])
+
+        if (active) {
+          classes.push(__styles.variants[type].active)
         }
-        if (type === 'cards' && active) {
-          classes.push(RadioStyles['sbui-radio-container--card--active'])
+
+        if (disabled) {
+          classes.push(__styles.disabled)
         }
+
+        if (type !== 'list') hidden = true
 
         function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
           // '`onChange` callback for parent component
@@ -215,12 +236,18 @@ function Radio({
         }
 
         return (
-          <label id={id} className={classes.join(' ')}>
+          <label htmlFor={markupId} className={classes.join(' ')}>
             <input
               id={markupId}
               name={markupName}
               type="radio"
-              className={RadioStyles['sbui-radio']}
+              className={[
+                __styles.base,
+                __styles.size[size],
+                hidden && __styles.hidden,
+                __styles.variants[type].radio_offset,
+                '',
+              ].join(' ')}
               checked={active}
               disabled={disabled}
               value={value ? value : markupId}
@@ -228,29 +255,56 @@ function Radio({
               onBlur={onBlur}
               onFocus={onFocus ? (event) => onFocus(event) : undefined}
             />
-            <div>
-              <span className={RadioStyles['sbui-radio-label-text']}>
-                {beforeLabel && (
-                  <span
-                    className={RadioStyles['sbui-radio__label-text-before']}
-                  >
-                    {beforeLabel}
-                  </span>
-                )}
-                {label}
-                {afterLabel && (
-                  <span className={RadioStyles['sbui-radio__label-text-after']}>
-                    {afterLabel}
-                  </span>
-                )}
-              </span>
-
-              {description && (
-                <span className={RadioStyles['sbui-radio-label-description']}>
-                  {description}
+            {addOnBefore}
+            <div
+              className={[
+                __styles.label.base,
+                __styles.label[size],
+                __styles.variants[type].container.align[align],
+              ].join(' ')}
+            >
+              {beforeLabel && (
+                <span
+                  className={[
+                    __styles.label_before.base,
+                    __styles.label_before[size],
+                  ].join(' ')}
+                >
+                  {beforeLabel}
                 </span>
               )}
+              <span>{label}</span>
+              {afterLabel && (
+                <span
+                  className={[
+                    __styles.label_after.base,
+                    __styles.label_after[size],
+                  ].join(' ')}
+                >
+                  {afterLabel}
+                </span>
+              )}
+              {description && (
+                <p
+                  className={[
+                    __styles.description.base,
+                    __styles.description[size],
+                  ].join(' ')}
+                >
+                  {description}
+                </p>
+              )}
             </div>
+            {optionalLabel && (
+              <div
+                className={[
+                  __styles.optionalLabel.base,
+                  __styles.optionalLabel[size],
+                ].join(' ')}
+              >
+                {optionalLabel}
+              </div>
+            )}
           </label>
         )
       }}

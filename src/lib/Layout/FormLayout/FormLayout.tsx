@@ -20,6 +20,7 @@ type Props = {
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   beforeLabel?: string
   afterLabel?: string
+  nonBoxInput?: boolean
 }
 
 export function FormLayout({
@@ -38,6 +39,7 @@ export function FormLayout({
   size = 'medium',
   beforeLabel,
   afterLabel,
+  nonBoxInput = false,
 }: Props) {
   const __styles = defaultTheme.form_layout
 
@@ -145,7 +147,17 @@ export function FormLayout({
         </div>
       ) : null}
       <div className={dataInputContainerClasses.join(' ')} style={style}>
-        {children}
+        <div
+          className={
+            nonBoxInput && layout === 'vertical'
+              ? __styles.non_box_data_input_spacing_vertical
+              : nonBoxInput && layout === 'horizontal'
+              ? __styles.non_box_data_input_spacing_horizontal
+              : ''
+          }
+        >
+          {children}
+        </div>
         {error && (
           <p
             className={[__styles.error.base, __styles.error.size[size]].join(
