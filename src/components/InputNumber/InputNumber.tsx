@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
-import { IconChevronDown } from '../Icon/icons/IconChevronDown'
-import { IconChevronUp } from '../Icon/icons/IconChevronUp'
+// import { IconChevronDown } from '../Icon/icons/IconChevronDown'
+// import { IconChevronUp } from '../Icon/icons/IconChevronUp'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
-import { Space } from '../../index'
 
 import defaultTheme from '../../lib/theme/defaultTheme'
 
@@ -210,9 +209,9 @@ function InputNumber({
           </div> */}
           {icon && <InputIconContainer icon={icon} />}
           {error ? (
-            <Space className={__styles.actions_container} size={1}>
+            <div className={__styles.actions_container}>
               {error && <InputErrorIcon size={size} />}
-            </Space>
+            </div>
           ) : null}
         </div>
       </FormLayout>

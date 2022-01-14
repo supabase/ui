@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react'
+// import React, { useRef, useState } from 'react'
 // import defaultTheme from '../../theme/defaultTheme'
 // import { ThemeProvider } from './../ThemeProvider'
 // import customThemeExample from '../../lib/theme/customThemeExample'
 
-import { Button, Space, IconPackage, IconChevronRight } from './../../index'
+import { Button, IconPackage, IconChevronRight } from './../../index'
 
 export default {
   title: 'General/Button',
@@ -44,9 +44,8 @@ export const withLoadingCentered = (args: any) => (
 // }
 export const allButtons = (args: any) => (
   <>
-    {/* <ThemeProvider theme={customThemeExample}> */}
-    <Space direction="vertical" size={6}>
-      <Space>
+    <div className="flex space-y-4">
+      <div className="flex space-x-4">
         <Button {...args} size="tiny">
           Button text
         </Button>
@@ -77,9 +76,9 @@ export const allButtons = (args: any) => (
         <Button {...args} size="tiny" type="warning">
           Button text
         </Button>
-      </Space>
+      </div>
 
-      <Space>
+      <div className="flex space-x-4">
         <Button {...args} size="small">
           Button text
         </Button>
@@ -110,8 +109,8 @@ export const allButtons = (args: any) => (
         <Button {...args} size="small" type="warning">
           Button text
         </Button>
-      </Space>
-      <Space>
+      </div>
+      <div className="flex space-x-4">
         <Button {...args} size="medium">
           Button text
         </Button>
@@ -142,8 +141,8 @@ export const allButtons = (args: any) => (
         <Button {...args} size="medium" type="warning">
           Button text
         </Button>
-      </Space>
-      <Space>
+      </div>
+      <div className="flex space-x-4">
         <Button {...args} size="large">
           Button text
         </Button>
@@ -174,8 +173,8 @@ export const allButtons = (args: any) => (
         <Button {...args} size="large" type="warning">
           Button text
         </Button>
-      </Space>
-      <Space>
+      </div>
+      <div className="flex space-x-4">
         <Button {...args} size="xlarge">
           Button text
         </Button>
@@ -206,9 +205,8 @@ export const allButtons = (args: any) => (
         <Button {...args} size="xlarge" type="warning">
           Button text
         </Button>
-      </Space>
-    </Space>
-    {/* </ThemeProvider> */}
+      </div>
+    </div>
   </>
 )
 

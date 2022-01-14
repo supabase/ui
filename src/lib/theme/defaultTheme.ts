@@ -388,9 +388,10 @@ export default {
     size: {
       ...default__padding_and_text,
     },
-    actions_container: 'absolute inset-y-0 right-0 pl-3 pr-1 flex items-center',
+    actions_container:
+      'absolute inset-y-0 right-0 pl-3 pr-1 flex space-x-1 items-center',
     textarea_actions_container:
-      'absolute inset-y-1.5 right-0 pl-3 pr-1 flex items-start',
+      'absolute inset-y-1.5 right-0 pl-3 pr-1 flex space-x-1 items-start',
     textarea_actions_container_items: 'flex items-center',
   },
 
@@ -479,7 +480,8 @@ export default {
     size: {
       ...default__padding_and_text,
     },
-    actions_container: 'absolute inset-y-0 right-0 pl-3 pr-1 flex items-center',
+    actions_container:
+      'absolute inset-y-0 right-0 pl-3 pr-1 flex space-x-1 items-center',
   },
 
   /*

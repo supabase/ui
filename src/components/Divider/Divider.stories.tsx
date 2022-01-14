@@ -1,8 +1,6 @@
 import React from 'react'
 import { Button } from '../Button'
-import { Space } from '../Space'
 import Typography from '../Typography'
-
 import { Divider } from './'
 
 export default {
@@ -28,7 +26,7 @@ export const lighterColor = (args: any) => <Divider {...args} />
 
 export const vertical = (args: any) => (
   <div style={{ height: '32px' }}>
-    <Space style={{ height: '100%' }}>
+    <div className="space-x-3 w-full">
       <Divider {...args} />
       <Button>Button one</Button>
       <Divider {...args} />
@@ -37,7 +35,7 @@ export const vertical = (args: any) => (
       <Typography.Text>Some text</Typography.Text>
       <Divider {...args} />
       <Button>Button three</Button>
-    </Space>
+    </div>
   </div>
 )
 

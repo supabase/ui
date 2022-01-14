@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
-import { Button, Space, Typography, IconCopy } from '../../index'
+import { Button, IconCopy } from '../../index'
 import { HIDDEN_PLACEHOLDER } from './../../lib/constants'
 
 import defaultTheme from '../../lib/theme/defaultTheme'
@@ -161,7 +161,7 @@ function Input({
           />
           {icon && <InputIconContainer icon={icon} />}
           {copy || error || actions ? (
-            <Space className={__styles.actions_container} size={1}>
+            <div className={__styles.actions_container}>
               {error && <InputErrorIcon size={size} />}
               {copy && !hidden ? (
                 <Button
@@ -179,7 +179,7 @@ function Input({
                 </Button>
               ) : null}
               {actions && actions}
-            </Space>
+            </div>
           ) : null}
         </div>
       </FormLayout>
@@ -325,10 +325,7 @@ function TextArea({
         </textarea>
         {copy || error || actions ? (
           <div className={__styles['textarea_actions_container']}>
-            <Space
-              className={__styles['textarea_actions_container_items']}
-              size={1}
-            >
+            <div className={__styles['textarea_actions_container_items']}>
               {error && <InputErrorIcon size={size} />}
               {copy && (
                 <Button
@@ -341,7 +338,7 @@ function TextArea({
                 </Button>
               )}
               {actions && actions}
-            </Space>
+            </div>
           </div>
         ) : null}
       </div>
