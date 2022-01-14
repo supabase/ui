@@ -7,7 +7,7 @@ import defaultTheme from '../../lib/theme/defaultTheme'
 interface Props extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'size'> {
   name?: string
   disabled?: boolean
-  layout?: 'horizontal' | 'vertical'
+  layout?: 'horizontal' | 'vertical' | 'flex'
   error?: string
   descriptionText?: string
   label?: string
@@ -19,6 +19,7 @@ interface Props extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'size'> {
   checked?: boolean
   align?: 'right' | 'left'
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+  labelLayout?: 'horizontal' | 'vertical'
   validation?: (x: any) => void
 }
 
@@ -26,7 +27,7 @@ function Toggle({
   disabled,
   id = '',
   name = '',
-  layout = 'vertical',
+  layout = 'flex',
   error,
   descriptionText,
   label,
@@ -40,9 +41,10 @@ function Toggle({
   defaultChecked,
   checked,
   className,
-  align = 'right',
+  align = 'left',
   size = 'medium',
   validation,
+  labelLayout,
   ...props
 }: Props) {
   const [intChecked, setIntChecked] = useState(
@@ -63,7 +65,7 @@ function Toggle({
   // if (values && !value) value = values[id || name]
   if (errors && !error) error = errors[id || name]
   if (handleBlur) onBlur = handleBlur
-  error = touched && touched[id] ? error : undefined
+  error = error || (touched && touched[id]) ? error : undefined
 
   // check if toggle checked is true or false
   // if neither true or false the toggle will rely on component state internally
@@ -115,10 +117,11 @@ function Toggle({
       layout={layout}
       id={id}
       error={error}
-      align={layout === 'vertical' ? align : undefined}
-      flex={layout === 'vertical' ? true : false}
+      align={align}
       descriptionText={descriptionText}
       size={size}
+      labelLayout={labelLayout}
+      nonBoxInput
     >
       <button
         type="button"

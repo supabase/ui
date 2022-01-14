@@ -46,6 +46,7 @@ interface GroupProps {
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   validation?: (x: any) => void
   groupClassName?: string
+  labelsLayout?: 'horizontal' | 'vertical'
 }
 
 function RadioGroup({
@@ -67,6 +68,7 @@ function RadioGroup({
   size = 'medium',
   validation,
   groupClassName,
+  labelsLayout = 'vertical',
 }: GroupProps) {
   const [activeId, setActiveId] = useState('')
 
@@ -125,6 +127,7 @@ function RadioGroup({
           descriptionText={descriptionText}
           className={className}
           size={size}
+          labelLayout={labelsLayout}
         >
           <div className={groupClassName || __styles.variants[type].group}>
             {options

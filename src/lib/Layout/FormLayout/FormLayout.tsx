@@ -5,7 +5,7 @@ import defaultTheme from '../../theme/defaultTheme'
 // import FormLayoutStyles from './FormLayout.module.css'
 
 type Props = {
-  align?: string
+  align?: 'left' | 'right'
   children?: any
   className?: string
   descriptionText?: string
@@ -13,18 +13,19 @@ type Props = {
   id?: string
   label?: string
   labelOptional?: string
-  layout?: 'horizontal' | 'vertical'
+  layout?: 'horizontal' | 'vertical' | 'flex'
   style?: React.CSSProperties
-  flex?: boolean
+  // flex?: boolean
   responsive?: boolean
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   beforeLabel?: string
   afterLabel?: string
   nonBoxInput?: boolean
+  labelLayout?: 'horizontal' | 'vertical'
 }
 
 export function FormLayout({
-  align,
+  align = 'left',
   children,
   className,
   descriptionText,
@@ -32,9 +33,10 @@ export function FormLayout({
   id,
   label,
   labelOptional,
-  layout = 'vertical',
+  layout = 'horizontal',
   style,
-  flex,
+  // flex = false,
+  labelLayout,
   responsive = true,
   size = 'medium',
   beforeLabel,
@@ -43,17 +45,23 @@ export function FormLayout({
 }: Props) {
   const __styles = defaultTheme.form_layout
 
-  let containerClasses = [__styles.container]
+  const flex = layout === 'flex'
+
+  let containerClasses = []
 
   containerClasses.push(__styles.size[size])
 
   let labelContainerClasses = []
   let dataInputContainerClasses = []
 
-  if (layout !== 'horizontal' && !flex) {
-    labelContainerClasses.push(__styles.label_horizontal_layout)
+  if (layout !== 'horizontal' && !labelLayout && !flex) {
+    labelContainerClasses.push(__styles.labels_horizontal_layout)
+  } else if (labelLayout === 'horizontal') {
+    labelContainerClasses.push(__styles.labels_horizontal_layout)
+  } else if (labelLayout === 'vertical') {
+    labelContainerClasses.push(__styles.labels_vertical_layout)
   } else {
-    labelContainerClasses.push(__styles.label_vertical_layout)
+    labelContainerClasses.push(__styles.labels_vertical_layout)
   }
 
   if (layout !== 'horizontal') {
@@ -68,7 +76,7 @@ export function FormLayout({
   }
 
   if (flex) {
-    containerClasses.push(__styles.flex.base)
+    containerClasses.push(__styles.flex[align].base)
     if (align === 'left') {
       labelContainerClasses.push(__styles.flex.left.labels)
       dataInputContainerClasses.push(__styles.flex.left.data_input)
@@ -79,6 +87,7 @@ export function FormLayout({
     }
   } else {
     containerClasses.push(
+      __styles.container,
       responsive ? __styles.responsive : __styles.non_responsive
     )
   }
@@ -89,8 +98,27 @@ export function FormLayout({
 
   const labelled = Boolean(label || beforeLabel || afterLabel)
 
+  const renderError = error && (
+    <p className={[__styles.error.base, __styles.error.size[size]].join(' ')}>
+      {error}
+    </p>
+  )
+
+  const renderDescription = descriptionText && (
+    <p
+      className={[
+        __styles.description.base,
+        __styles.description.size[size],
+      ].join(' ')}
+      id={id + '-description'}
+    >
+      {descriptionText}
+    </p>
+  )
+
   return (
     <div className={containerClasses.join(' ')}>
+      {flex && <div className={__styles.flex[align].content}>{children}</div>}
       {labelled || labelOptional || layout === 'horizontal' ? (
         <div
           // direction={
@@ -144,41 +172,33 @@ export function FormLayout({
               {labelOptional}
             </span>
           )}
+          {flex && (
+            <>
+              {renderDescription}
+              {renderError}
+            </>
+          )}
         </div>
       ) : null}
-      <div className={dataInputContainerClasses.join(' ')} style={style}>
-        <div
-          className={
-            nonBoxInput && layout === 'vertical'
-              ? __styles.non_box_data_input_spacing_vertical
-              : nonBoxInput && layout === 'horizontal'
-              ? __styles.non_box_data_input_spacing_horizontal
-              : ''
-          }
-        >
-          {children}
+      {!flex && (
+        <div className={dataInputContainerClasses.join(' ')} style={style}>
+          <>
+            <div
+              className={
+                nonBoxInput && layout === 'vertical'
+                  ? __styles.non_box_data_input_spacing_vertical
+                  : nonBoxInput && layout === 'horizontal'
+                  ? __styles.non_box_data_input_spacing_horizontal
+                  : ''
+              }
+            >
+              {children}
+            </div>
+            {renderError}
+            {renderDescription}
+          </>
         </div>
-        {error && (
-          <p
-            className={[__styles.error.base, __styles.error.size[size]].join(
-              ' '
-            )}
-          >
-            {error}
-          </p>
-        )}
-        {descriptionText && (
-          <p
-            className={[
-              __styles.description.base,
-              __styles.description.size[size],
-            ].join(' ')}
-            id={id + '-description'}
-          >
-            {descriptionText}
-          </p>
-        )}
-      </div>
+      )}
     </div>
   )
 }

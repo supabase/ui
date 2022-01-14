@@ -803,12 +803,15 @@ export default {
     container: 'grid gap-2',
 
     flex: {
-      base: 'flex justify-between',
       left: {
+        base: 'flex flex-row gap-6',
+        content: ``,
         labels: 'order-2',
         data_input: 'order-1',
       },
       right: {
+        base: 'flex flex-row gap-6 justify-between',
+        content: `order-last`,
         labels: '',
         data_input: 'text-right',
       },
@@ -817,14 +820,14 @@ export default {
     responsive: 'md:grid md:grid-cols-12 md:gap-x-4',
     non_responsive: 'grid grid-cols-12 gap-2',
 
-    label_horizontal_layout:
+    labels_horizontal_layout:
       'flex flex-row space-x-2 justify-between col-span-12',
-    label_vertical_layout: 'flex flex-col space-y-2 col-span-4',
+    labels_vertical_layout: 'flex flex-col space-y-2 col-span-4',
 
     data_input_horizontal_layout: 'col-span-12',
 
     non_box_data_input_spacing_vertical: 'my-3',
-    non_box_data_input_spacing_horizontal: 'my-3 lg:mt-0 mb-3',
+    non_box_data_input_spacing_horizontal: 'my-3 md:mt-0 mb-3',
 
     data_input_vertical_layout: 'col-span-8',
 
