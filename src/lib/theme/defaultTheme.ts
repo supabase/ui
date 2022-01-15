@@ -106,9 +106,11 @@ export default {
           w-full 
           text-left 
           cursor-pointer 
-          font-medium 
-          text-base 
-          bg-transparent
+
+          outline-none
+          focus-visible:ring-1
+          focus-visible:z-50
+          ring-scale-1100
         `,
         content: `
           data-open:animate-slide-down
@@ -116,7 +118,6 @@ export default {
         `,
         panel: `
           py-3
-          -mt-0.5
         `,
       },
       bordered: {
