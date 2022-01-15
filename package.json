@@ -38,6 +38,7 @@
     "@babel/preset-react": "^7.10.4",
     "@babel/runtime": "^7.11.2",
     "@headlessui/react": "^1.0.0",
+    "@radix-ui/react-accordion": "^0.1.5",
     "@radix-ui/react-context-menu": "^0.1.0",
     "@radix-ui/react-dialog": "^0.1.0",
     "@radix-ui/react-dropdown-menu": "^0.1.0",

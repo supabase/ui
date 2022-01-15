@@ -2,16 +2,16 @@ const deepMerge = require('deepmerge')
 const customFormsPlugin = require('@tailwindcss/forms')
 const plugin = require('tailwindcss/plugin')
 
-const backgroundOpacity = (theme) => ({
-  10: '0.1',
-  ...theme('opacity'),
-})
+// const backgroundOpacity = (theme) => ({
+//   10: '0.1',
+//   ...theme('opacity'),
+// })
 
-const maxHeight = (theme) => ({
-  0: '0',
-  xl: '36rem',
-  ...theme('spacing'),
-})
+// const maxHeight = (theme) => ({
+//   0: '0',
+//   xl: '36rem',
+//   ...theme('spacing'),
+// })
 
 const windmillConfig = {
   // darkMode: 'class',
@@ -80,7 +80,10 @@ const windmillConfig = {
     margin: ['responsive', 'last'],
   },
   plugins: [
-    plugin(function ({ addUtilities }) {
+    plugin(function ({
+      addUtilities,
+      // addVariant
+    }) {
       addUtilities({
         ".dropdown-content[data-state='open']": {
           animation: 'fadeIn 50ms ease-out',
@@ -89,6 +92,7 @@ const windmillConfig = {
           animation: 'fadeOut 50ms ease-in',
         },
       })
+      // addVariant('data-open', '[data-state=open] &')
     }),
     customFormsPlugin,
   ],

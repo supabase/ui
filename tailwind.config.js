@@ -302,7 +302,7 @@ function generateRadixVariables() {
 
 const custom_colors = generateRadixVariables()
 
-console.log('radix colors', custom_colors)
+// console.log('radix colors', custom_colors)
 
 const ui = require('./ui.config.js')
 

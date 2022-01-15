@@ -87,16 +87,79 @@ export default {
    */
 
   accordion: {
-    base: 'flex flex-col rounded',
-    bordered:
-      'border border-solid bg-white border-scale-200 dark:bg-scaleDark-700 dark:border-darkmode divide divide-y',
-    label: 'text-sm',
-    button:
-      'px-6 py-4 flex justify-between w-full text-left cursor-pointer border-0 border-solid font-medium text-base bg-transparent border-scale-200 text-scale-500 hover:text-scale-600 dark:border-darkmode dark:text-scaleDark-200 dark:hover:text-white',
-    chevron: 'transform',
-    'chevron--closed': '-rotate-90',
-    'chevron--open': 'rotate-180',
-    panel: 'px-6 py-4',
+    variants: {
+      default: {
+        base: `
+          flex flex-col
+          space-y-3
+        `,
+        container: `
+          group
+          first:rounded-tl-md first:rounded-tr-md
+          last:rounded-bl-md last:rounded-br-md
+          overflow-hidden
+        `,
+        trigger: `
+          flex flex-row
+          gap-3
+          items-center
+          w-full 
+          text-left 
+          cursor-pointer 
+          font-medium 
+          text-base 
+          bg-transparent
+        `,
+        panel: `
+          py-3
+          -mt-0.5
+        `,
+      },
+      bordered: {
+        base: `
+          flex flex-col
+          -space-y-px
+        `,
+        container: `
+          group
+          border
+          border-scale-700
+          first:rounded-tl-md first:rounded-tr-md
+          last:rounded-bl-md last:rounded-br-md
+          overflow-hidden
+        `,
+        trigger: `
+          flex flex-row
+          px-6 py-4 
+          w-full 
+          text-left 
+          cursor-pointer 
+          
+          font-medium 
+          text-base 
+          bg-transparent 
+          
+          transition-colors
+          hover:bg-scale-200
+
+        `,
+        panel: `
+          px-6 py-3
+          border-t border-scale-700
+          bg-scale-200 -mt-0.5
+        `,
+      },
+    },
+    justified: `justify-between`,
+    chevron: {
+      base: 'transform text-scale-900 data-open:-rotate-90',
+      align: {
+        left: 'order-first',
+        right: 'order-last',
+      },
+      'chevron--closed': '-rotate-90',
+      'chevron--open': 'rotate-180',
+    },
     animate: {
       ...default___animations.accordion,
     },
