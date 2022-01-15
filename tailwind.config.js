@@ -307,9 +307,8 @@ const custom_colors = generateRadixVariables()
 const ui = require('./ui.config.js')
 
 module.exports = ui({
-  mode: 'jit',
-  purge: {
-    enabled: true,
+  content: {
+    // enabled: true,
     content: [
       './src/**/**/*.{js,ts,jsx,tsx,html,mdx}',
       './src/**/*.{js,ts,jsx,tsx,html,mdx}',

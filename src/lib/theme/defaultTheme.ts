@@ -152,7 +152,7 @@ export default {
     },
     justified: `justify-between`,
     chevron: {
-      base: 'transform text-scale-900 data-open:-rotate-90',
+      base: 'text-scale-900 data-open:-rotate-90',
       align: {
         left: 'order-first',
         right: 'order-last',
@@ -230,7 +230,7 @@ export default {
       flex flex-col 
       rounded-md shadow-lg overflow-hidden relative
     `,
-    hoverable: 'transition transform hover:-translate-y-1 hover:shadow-2xl',
+    hoverable: 'transition hover:-translate-y-1 hover:shadow-2xl',
     head: `px-8 py-6 flex justify-between 
     border-b
       ${defaults.border.primary} `,
@@ -715,7 +715,7 @@ export default {
           transition 
           border border-scale-700 hover:border-scale-900 
           rounded-lg 
-          flex-grow
+          grow
           items-center
           flex-wrap
           justify-center
@@ -748,7 +748,7 @@ export default {
           transition 
           border border-scale-700 hover:border-scale-900 
           rounded-lg 
-          flex-grow
+          grow
         `,
         size: {
           tiny: `px-5 py-3`,
@@ -844,7 +844,7 @@ export default {
       xlarge: 'h-7 w-12',
     },
     handle: {
-      base: 'inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200',
+      base: 'inline-block h-5 w-5 rounded-full bg-white shadow ring-0 transition ease-in-out duration-200',
       tiny: 'h-3 w-3',
       small: 'h-5 w-5',
       medium: 'h-5 w-5',

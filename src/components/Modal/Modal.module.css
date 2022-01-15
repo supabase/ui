@@ -127,7 +127,7 @@
   @apply text-gray-300;
   @apply hover:text-gray-400;
 
-  @apply dark:text-dark-400;
+  /* @apply dark:text-dark-400; */
   @apply hover:text-dark-300;
 
   @apply hover:bg-transparent;
