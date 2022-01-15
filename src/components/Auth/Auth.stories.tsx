@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { Auth } from './'
 import { createClient } from '@supabase/supabase-js'
+import { clientUrl, clientKey } from '../../test-utils/clientDetails'
 // @ts-ignore
 import { Typography, Button, Space } from '../../index'
 
-const supabase = createClient(
-  'https://rsnibhkhsbfnncjmwnkj.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxNTIxNDE1MywiZXhwIjoxOTMwNzkwMTUzfQ.OQEbAaTfgDdLCCht251P2JRD3QDnui6nsU8N-tZA_Mc'
-)
+const supabase = createClient(clientUrl, clientKey)
 
 export default {
   title: 'Auth/Auth',
