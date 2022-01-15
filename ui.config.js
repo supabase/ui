@@ -1,5 +1,5 @@
 const deepMerge = require('deepmerge')
-const customFormsPlugin = require('@tailwindcss/forms')
+const forms = require('@tailwindcss/forms')
 const plugin = require('tailwindcss/plugin')
 
 // const backgroundOpacity = (theme) => ({
@@ -42,6 +42,7 @@ const windmillConfig = {
       transformOrigin: {
         // tailwind class for this is `origin-dropdown`
         dropdown: 'var(--radix-dropdown-menu-content-transform-origin)',
+        YOLO: 'var(--radix-dropdown-menu-content-transform-origin)',
       },
       keyframes: {
         dropdownFadeIn: {
@@ -52,6 +53,21 @@ const windmillConfig = {
           '0%': { transform: 'scale(1)', opacity: 1 },
           '100%': { transform: 'scale(0.95)', opacity: 0 },
         },
+        slideDown: {
+          '0%': { height: 0, opacity: 0 },
+          '100%': {
+            height: 'var(--radix-accordion-content-height)',
+            opacity: 1,
+          },
+        },
+        slideUp: {
+          '0%': { height: 'var(--radix-accordion-content-height)', opacity: 1 },
+          '100%': { height: 0, opacity: 0 },
+        },
+      },
+      animation: {
+        'slide-down': 'slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+        'slide-up': 'slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1)',
       },
       // animation: {
       //   // tailwind class for this is `animate-dropdownFadeIn`
@@ -80,10 +96,8 @@ const windmillConfig = {
   //   margin: ['responsive', 'last'],
   // },
   plugins: [
-    plugin(function ({
-      addUtilities,
-      // addVariant
-    }) {
+    plugin(function ({ addUtilities, addVariant }) {
+      // addVariant('data-open', '&:[data-state=open]')
       addUtilities({
         ".dropdown-content[data-state='open']": {
           animation: 'fadeIn 50ms ease-out',
@@ -91,10 +105,23 @@ const windmillConfig = {
         ".dropdown-content[data-state='closed']": {
           animation: 'fadeOut 50ms ease-in',
         },
+
+        "[data-state='open'] .accordion-content-animation": {
+          animation: 'slideDown 200ms ease-out',
+        },
+        "[data-state='closed'] .accordion-content-animation": {
+          animation: 'slideUp 200ms ease-in',
+        },
       })
-      // addVariant('data-open', '[data-state=open] &')
+      // addVariant('optional', '&:optional')
+      // addVariant('hocus', ['&:hover', '&:focus'])
+      // addVariant('supports-grid', '@supports (display: grid)')
+      // addVariant('data-open', '&:["data-state=open"]')
+      addVariant('data-open', '&[data-state="open"]')
+      addVariant('data-closed', '&[data-state="closed"]')
     }),
-    customFormsPlugin,
+    require('tailwindcss-radix')(),
+    forms,
   ],
 }
 

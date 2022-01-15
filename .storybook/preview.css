@@ -116,6 +116,8 @@
   --radix-yellow-10: hsl(50, 100%, 48.5%);
   --radix-yellow-11: hsl(42, 100%, 29%);
   --radix-yellow-12: hsl(40, 55%, 13.5%);
+
+  --radix-collapsible-content-height: 1px;
 }
 
 .dark {

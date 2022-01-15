@@ -1,10 +1,11 @@
-import React, { createContext, useContext } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 
 import { IconChevronUp } from '../Icon/icons/IconChevronUp'
 import styleHandler from '../../lib/theme/styleHandler'
 
 import * as RadixAccordion from '@radix-ui/react-accordion'
 import { IconChevronDown } from '../..'
+import { Transition } from '@headlessui/react'
 
 // type ContextValue = Required<
 //   Pick<AccordionProps, 'defaultActiveId' | 'icon' | 'iconPosition'>
@@ -20,16 +21,14 @@ interface ContextValue {
   type: Type
   justified: Boolean
   chevronAlign: Align
+  // currentItems: string[]
 }
 
 const AccordionContext = createContext<ContextValue>({
-  // defaultActiveId: [],/
-  // icon: <IconChevronUp strokeWidth={2} />,
-  // iconPosition: 'right',
-  // onChange: undefined,
   chevronAlign: 'left',
   justified: true,
   type: 'default',
+  // currentItems: [],
 })
 
 interface AccordionProps {
@@ -62,6 +61,8 @@ function Accordion({
   justified = true,
   chevronAlign,
 }: AccordionProps) {
+  // const [currentItems, setCurrentItems] = useState(defaultValue || [])
+
   const __styles = styleHandler('accordion')
 
   let containerClasses = [__styles.variants[type].base]
@@ -70,28 +71,39 @@ function Accordion({
     containerClasses.push(className)
   }
 
+  // let currentItems = defaultValue || []
+
   const contextValue = {
-    // defaultActiveId,
-    // icon,
-    // iconPosition,
-    // onChange,
     chevronAlign,
     justified,
     type,
+    defaultValue,
+  }
+
+  function handleOnChange(e: string | string[]) {
+    if (onChange) onChange(e)
+    const value = e == typeof String ? e.split(' ') : e
+    // setCurrentItems(e)
+    console.log('about to change state')
+    // currentItems = e
+    // console.log('currentItems', currentItems)
   }
 
   return (
-    <AccordionContext.Provider value={contextValue}>
+    <>
       {/* @ts-ignore */}
       <RadixAccordion.Root
         type={openBehaviour}
-        onValueChange={onChange ? (e: any) => onChange(e) : undefined}
+        onValueChange={handleOnChange}
         defaultValue={defaultValue}
         className={containerClasses.join(' ')}
-      >
-        <div className={containerClasses.join(' ')}>{children}</div>
-      </RadixAccordion.Root>
-    </AccordionContext.Provider>
+        children={
+          <AccordionContext.Provider value={{ ...contextValue }}>
+            <div className={containerClasses.join(' ')}>{children}</div>
+          </AccordionContext.Provider>
+        }
+      ></RadixAccordion.Root>
+    </>
   )
 }
 
@@ -105,11 +117,13 @@ interface ItemProps {
 
 export function Item({ children, className, header, id, icon }: ItemProps) {
   const __styles = styleHandler('accordion')
+  // const [open, setOpen] = useState(false)
 
   const {
     type,
     justified,
     chevronAlign,
+    // currentItems,
     // defaultActiveId, iconPosition, onChange
   } = useContext(AccordionContext)
 
@@ -122,22 +136,13 @@ export function Item({ children, className, header, id, icon }: ItemProps) {
     __styles.chevron.align[chevronAlign],
   ]
 
-  // const handleOnChange = useCallback(
-  //   (open: boolean) => () => {
-  //     if (onChange) {
-  //       onChange({ id, label, open })
-  //     }
-  //   },
-  //   [onChange, id, label]
-  // )
+  // console.log('currentItems', currentItems)
 
   return (
     <RadixAccordion.Item
       value={id}
       className={__styles.variants[type].container}
     >
-      {/* <div> */}
-      {/* <RadixAccordion.Header> */}
       <RadixAccordion.Trigger className={triggerClasses.join(' ')}>
         {header}
         <IconChevronDown
@@ -146,10 +151,8 @@ export function Item({ children, className, header, id, icon }: ItemProps) {
           strokeWidth={2}
         />
       </RadixAccordion.Trigger>
-      {/* </RadixAccordion.Header> */}
-      {/* </div>÷ */}
-      <RadixAccordion.Content className={__styles.variants[type].panel}>
-        {children}
+      <RadixAccordion.Content className={__styles.variants[type].content}>
+        <div className={__styles.variants[type].panel}>{children}</div>
       </RadixAccordion.Content>
     </RadixAccordion.Item>
   )

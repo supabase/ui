@@ -110,6 +110,10 @@ export default {
           text-base 
           bg-transparent
         `,
+        content: `
+          data-open:animate-slide-down
+          data-closed:animate-slide-up
+        `,
         panel: `
           py-3
           -mt-0.5
@@ -124,12 +128,13 @@ export default {
           group
           border
           border-scale-700
+          
           first:rounded-tl-md first:rounded-tr-md
           last:rounded-bl-md last:rounded-br-md
-          overflow-hidden
         `,
         trigger: `
           flex flex-row
+          items-center
           px-6 py-4 
           w-full 
           text-left 
@@ -138,27 +143,42 @@ export default {
           font-medium 
           text-base 
           bg-transparent 
+
+          outline-none
+          focus-visible:ring-1
+          focus-visible:z-50
+          ring-scale-1100
           
           transition-colors
           hover:bg-scale-200
 
+          overflow-hidden
+
+          group-first:rounded-tl-md group-first:rounded-tr-md
+          group-last:rounded-bl-md group-last:rounded-br-md
+        `,
+        content: `
+          data-open:animate-slide-down
+          data-closed:animate-slide-up
         `,
         panel: `
           px-6 py-3
           border-t border-scale-700
-          bg-scale-200 -mt-0.5
+          bg-scale-200
         `,
       },
     },
     justified: `justify-between`,
     chevron: {
-      base: 'text-scale-900 data-open:-rotate-90',
+      base: `
+        text-scale-900
+        rotate-0 group-radix-state-open:rotate-180
+        duration-200
+      `,
       align: {
         left: 'order-first',
         right: 'order-last',
       },
-      'chevron--closed': '-rotate-90',
-      'chevron--open': 'rotate-180',
     },
     animate: {
       ...default___animations.accordion,
