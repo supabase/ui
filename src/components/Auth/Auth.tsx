@@ -17,12 +17,55 @@ import * as SocialIcons from './Icons'
 // @ts-ignore
 import AuthStyles from './Auth.module.css'
 
-const VIEWS: ViewsMap = {
+export const VIEWS: ViewsMap = {
   SIGN_IN: 'sign_in',
   SIGN_UP: 'sign_up',
   FORGOTTEN_PASSWORD: 'forgotten_password',
   MAGIC_LINK: 'magic_link',
   UPDATE_PASSWORD: 'update_password',
+}
+
+export const buttonStyles: any = {
+  azure: {
+    backgroundColor: '#008AD7',
+    color: 'white',
+  },
+  bitbucket: {
+    backgroundColor: '#205081',
+    color: 'white',
+  },
+  facebook: {
+    backgroundColor: '#4267B2',
+    color: 'white',
+  },
+  github: {
+    backgroundColor: '#333',
+    color: 'white',
+  },
+  gitlab: {
+    backgroundColor: '#FC6D27',
+    color: 'white',
+  },
+  google: {
+    backgroundColor: '#ce4430',
+    color: 'white',
+  },
+  twitter: {
+    backgroundColor: '#1DA1F2',
+    color: 'white',
+  },
+  apple: {
+    backgroundColor: '#000',
+    color: 'white',
+  },
+  discord: {
+    backgroundColor: '#404fec',
+    color: 'white',
+  },
+  twitch: {
+    backgroundColor: '#9146ff',
+    color: 'white',
+  },
 }
 
 interface ViewsMap {
@@ -170,47 +213,6 @@ function SocialAuth({
   magicLink,
   ...props
 }: Props) {
-  const buttonStyles: any = {
-    azure: {
-      backgroundColor: '#008AD7',
-      color: 'white',
-    },
-    bitbucket: {
-      backgroundColor: '#205081',
-      color: 'white',
-    },
-    facebook: {
-      backgroundColor: '#4267B2',
-      color: 'white',
-    },
-    github: {
-      backgroundColor: '#333',
-      color: 'white',
-    },
-    gitlab: {
-      backgroundColor: '#FC6D27',
-    },
-    google: {
-      backgroundColor: '#ce4430',
-      color: 'white',
-    },
-    twitter: {
-      backgroundColor: '#1DA1F2',
-      color: 'white',
-    },
-    apple: {
-      backgroundColor: '#000',
-      color: 'white',
-    },
-    discord: {
-      backgroundColor: '#404fec',
-      color: 'white',
-    },
-    twitch: {
-      backgroundColor: '#9146ff',
-      color: 'white',
-    },
-  }
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -237,8 +239,8 @@ function SocialAuth({
             </Typography.Text>
             <Space size={2} direction={socialLayout}>
               {providers.map((provider) => {
-                // @ts-ignore
                 const AuthIcon = SocialIcons[provider]
+                if (!AuthIcon) return null
                 return (
                   <div
                     key={provider}
@@ -354,11 +356,12 @@ function EmailAuth({
   }
 
   return (
-    <form id={id} onSubmit={handleSubmit}>
+    <form id={id} onSubmit={handleSubmit} aria-label="email-auth-form">
       <Space size={6} direction={'vertical'}>
         <Space size={3} direction={'vertical'}>
           <Input
             label="Email address"
+            id="email"
             autoComplete="email"
             defaultValue={email}
             icon={<IconMail size={21} stroke={'#666666'} />}
@@ -368,6 +371,7 @@ function EmailAuth({
           />
           <Input
             label="Password"
+            id="password"
             type="password"
             defaultValue={password}
             autoComplete="current-password"
@@ -485,6 +489,7 @@ function MagicLink({
         <Space size={3} direction={'vertical'}>
           <Input
             label="Email address"
+            id="email"
             placeholder="Your email address"
             icon={<IconMail size={21} stroke={'#666666'} />}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -551,6 +556,7 @@ function ForgottenPassword({
         <Space size={3} direction={'vertical'}>
           <Input
             label="Email address"
+            id="email"
             placeholder="Your email address"
             icon={<IconMail size={21} stroke={'#666666'} />}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -610,6 +616,7 @@ function UpdatePassword({
         <Space size={3} direction={'vertical'}>
           <Input
             label="New password"
+            id="New password"
             placeholder="Enter your new password"
             type="password"
             icon={<IconKey size={21} stroke={'#666666'} />}
