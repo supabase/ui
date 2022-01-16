@@ -77,10 +77,17 @@ function Input({
     fieldLevelValidation,
   } = useFormContext()
 
+  console.log('error', error)
+  console.log('errors', errors)
+  console.log('errors is truthy', errors ? true : false)
+
   if (values && !value) value = values[id || name]
-  if (errors && !error) error = errors[id || name]
   if (handleBlur) onBlur = handleBlur
-  error = error || (touched && touched[id]) ? error : undefined
+
+  if (!error) {
+    if (errors && !error) error = errors[id || name]
+    error = touched && touched[id] ? error : undefined
+  }
 
   function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     // console.log('input event', e)
@@ -264,9 +271,12 @@ function TextArea({
   } = useFormContext()
 
   if (values && !value) value = values[id || name]
-  if (errors && !error) error = errors[id || name]
   if (handleBlur) onBlur = handleBlur
-  error = error || (touched && touched[id]) ? error : undefined
+
+  if (!error) {
+    if (errors && !error) error = errors[id || name]
+    error = touched && touched[id || name] ? error : undefined
+  }
 
   function onInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setCharLength(e.target.value.length)
