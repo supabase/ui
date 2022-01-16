@@ -72,6 +72,7 @@ const windmillConfig = {
           '0%': { height: 'var(--radix-accordion-content-height)', opacity: 1 },
           '100%': { height: 0, opacity: 0 },
         },
+
         slideDownNormal: {
           '0%': { height: 0, opacity: 0 },
           '100%': {
@@ -83,6 +84,7 @@ const windmillConfig = {
           '0%': { height: 'inherit', opacity: 1 },
           '100%': { height: 0, opacity: 0 },
         },
+
         panelSlideLeftOut: {
           '0%': { transform: 'translateX(-100%)', opacity: 0 },
           '100%': {
@@ -116,8 +118,9 @@ const windmillConfig = {
         'slide-down': 'slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1)',
         'slide-up': 'slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1)',
 
-        'slide-down-normal': 'slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1)',
-        'slide-up-normal': 'slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+        'slide-down-normal':
+          'slideDownNormal 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+        'slide-up-normal': 'slideUpNormal 300ms cubic-bezier(0.87, 0, 0.13, 1)',
 
         'panel-slide-left-out':
           'panelSlideLeftOut 200ms cubic-bezier(0.87, 0, 0.13, 1)',

@@ -85,11 +85,11 @@ export const InputLevelValidation = () => {
             labelOptional="This is a required field"
             validation={validateEmail}
           />
-          <Input
+          {/* <Input
             id="firstname"
             label="firstname"
             placeholder="something in here"
-          />
+          /> */}
           <Button loading={isSubmitting} type="primary" htmlType="submit">
             Submit
           </Button>

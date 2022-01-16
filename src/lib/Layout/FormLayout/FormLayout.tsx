@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 // @ts-ignore
 import defaultTheme from '../../theme/defaultTheme'
 // @ts-ignore
@@ -43,6 +43,23 @@ export function FormLayout({
   afterLabel,
   nonBoxInput = false,
 }: Props) {
+  // _error is used to delay the error string beind removed too soon
+  // once it has animated out, the string will be removed
+  // const [_error, _setError] = useState(error)
+
+  // useEffect(() => {
+  //   if (!error) {
+  //     console.log('no error')
+  //     setTimeout(function () {
+  //       _setError(error)
+  //     }, 500)
+  //   } else {
+  //     console.log('has error')
+  //     _setError(error)
+  //   }
+  //   // Update the document title using the browser API
+  // }, [error])
+
   const __styles = defaultTheme.form_layout
 
   const flex = layout === 'flex'
@@ -98,8 +115,9 @@ export function FormLayout({
 
   const labelled = Boolean(label || beforeLabel || afterLabel)
 
-  console.log('error', error)
-  const renderError = error && (
+  // console.log('error', error)
+
+  const renderError = (
     <p
       data-state={error ? 'show' : 'hide'}
       className={[__styles.error.base, __styles.error.size[size]].join(' ')}

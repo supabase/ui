@@ -477,6 +477,7 @@ export default {
         bg-radix-red-100
         border border-radix-red-700 
         focus:ring-radix-red-900
+        placeholder:text-radix-red-600
        `,
     },
     container: 'relative',
@@ -1022,11 +1023,12 @@ export default {
     },
     error: {
       base: `
-        text-radix-red-900
-        transition
-        data-show:mt-1.5
+        text-radix-red-900 
+        transition-all
+        data-show:mt-2
         data-show:animate-slide-down-normal
-        data-hide:animate-slide-down-normal
+        data-hide:animate-slide-up-normal
+        
       `,
       size: {
         ...defaults.size.text,
