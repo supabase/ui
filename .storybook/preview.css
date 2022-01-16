@@ -153,8 +153,8 @@
   --scale-11: hsla(207, 6%, 63%, 1);
   --scale-12: hsla(210, 6%, 93%, 1);
 
-  --overlay-bg: var(--scale-3);
-  --overlay-border: var(--scale-5);
+  --overlay-bg: var(--scale-2);
+  --overlay-border: var(--scale-4);
 
   /* background scale */
   --background-1: hsla(200, 7%, 9%, 1);

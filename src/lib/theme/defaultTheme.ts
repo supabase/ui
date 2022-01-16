@@ -1152,4 +1152,41 @@ export default {
       content: `text-sm text-scale-1200`,
     },
   },
+
+  /*
+   * modal
+   */
+  modal: {
+    base: `
+      absolute
+      inline-block
+      bg-overlay-bg 
+
+      rounded-md text-left overflow-hidden 
+      
+      shadow-xl 
+      transform 
+      transition-all 
+      
+      border
+      border-overlay-border
+
+      top-1/2
+      left-1/2
+
+      -translate-x-1/2
+      -translate-y-1/2
+
+    `,
+    header: `
+      space-y-1 py-4 px-4 bg-overlay-bg sm:px-6 
+      border-b border-overlay-border
+    `,
+    footer: `
+      bg-overlay-bg 
+      flex justify-end gap-2
+      py-4 px-5 
+      border-t border-overlay-border
+    `,
+  },
 }

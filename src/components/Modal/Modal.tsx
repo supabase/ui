@@ -7,8 +7,20 @@ import { AnimationTailwindClasses } from '../../types'
 import * as Dialog from '@radix-ui/react-dialog'
 
 import { Transition } from '@headlessui/react'
+import styleHandler from '../../lib/theme/styleHandler'
 
 // import { Transition } from '@tailwindui/react'
+
+interface RadixProps
+  extends Dialog.DialogProps,
+    Pick<
+      Dialog.DialogContentProps,
+      | 'onOpenAutoFocus'
+      | 'onCloseAutoFocus'
+      | 'onEscapeKeyDown'
+      | 'onPointerDownOutside'
+      | 'onInteractOutside'
+    > {}
 
 interface Props {
   children?: React.ReactNode
@@ -38,6 +50,7 @@ interface Props {
   transition?: AnimationTailwindClasses
   transitionOverlay?: AnimationTailwindClasses
   triggerElement?: React.ReactNode
+  header?: React.ReactNode
 }
 
 const Modal = ({
@@ -66,8 +79,11 @@ const Modal = ({
   className = '',
   overlayClassName,
   triggerElement,
+  header,
 }: Props) => {
   const [open, setOpen] = React.useState(visible ? visible : false)
+
+  const __styles = styleHandler('modal')
 
   useEffect(() => {
     setOpen(visible)
@@ -83,7 +99,8 @@ const Modal = ({
   }
 
   let modalClasses = [
-    ModalStyles[`sbui-modal`],
+    __styles.base,
+    // ModalStyles[`sbui-modal`],
     ModalStyles[`sbui-modal--${size}`],
   ]
   if (className) modalClasses.push(className)
@@ -105,7 +122,7 @@ const Modal = ({
             : 'flex-start',
       }}
     >
-      <Button type="outline" onClick={onCancel} disabled={loading}>
+      <Button type="secondary" onClick={onCancel} disabled={loading}>
         {cancelText}
       </Button>
       <Button
@@ -176,54 +193,15 @@ const Modal = ({
                   onClick={stopPropagation}
                   style={style}
                 >
+                  {header && <div className={__styles.header}>{header}</div>}
                   <div
                     className={ModalStyles['sbui-modal-content']}
                     style={contentStyle}
                   >
-                    <Space
-                      size={5}
-                      style={{
-                        alignItems:
-                          layout === 'vertical' ? 'center' : 'flex-start',
-                      }}
-                      direction={layout}
-                    >
-                      {icon ? icon : null}
-                      <Space
-                        size={4}
-                        direction="vertical"
-                        style={{
-                          alignItems: 'flex-start',
-                          textAlign: layout === 'vertical' ? 'center' : null,
-                          width: '100%',
-                        }}
-                      >
-                        <span style={{ width: 'inherit' }}>
-                          {title && (
-                            <Typography.Title
-                              style={{
-                                marginBottom: '.1rem',
-                                marginTop: '0',
-                              }}
-                              level={4}
-                            >
-                              {title}
-                            </Typography.Title>
-                          )}
-                          {description && (
-                            <Typography.Text>{description}</Typography.Text>
-                          )}
-                        </span>
-
-                        {children}
-                        {!footerBackground && !hideFooter && footerContent}
-                      </Space>
-                    </Space>
+                    {children}
                   </div>
-                  {!hideFooter && footerBackground && (
-                    <div className={footerClasses.join(' ')}>
-                      {footerContent}
-                    </div>
+                  {!hideFooter && (
+                    <div className={__styles.footer}>{footerContent}</div>
                   )}
                   {closable && (
                     <div className={ModalStyles['sbui-modal-close-container']}>

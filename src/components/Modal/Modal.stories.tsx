@@ -9,6 +9,8 @@ import { Button } from '../Button'
 import { Space } from '../Space'
 import { IconTrash, IconAlertCircle, IconCheck } from './../../index'
 import { Dropdown } from '../Dropdown'
+import { IconGlobe } from '../Icon/icons/IconGlobe'
+import { IconLink2 } from '../Icon/icons/IconLink2'
 
 export default {
   title: 'Overlays/Modal',
@@ -34,7 +36,20 @@ export const withUseState = () => {
 }
 
 export const Default = (args: any) => (
-  <Modal {...args}>
+  <Modal
+    {...args}
+    header={
+      <div className="flex items-center gap-2 text-scale-1200">
+        <div className="text-brand-700">
+          <IconLink2 />
+        </div>
+        <div className="flex items-baseline gap-2">
+          <h3>This is the title</h3>
+          <span className="text-xs text-scale-900">This is the title</span>
+        </div>
+      </div>
+    }
+  >
     <Typography.Text type="secondary">
       Modal content is inserted here, if you need to insert anything into the
       Modal you can do so via{' '}
