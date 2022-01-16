@@ -26,7 +26,7 @@ export const withRef = () => {
   function onClick() {
     const message = `container: ${buttonRef?.current.container} button:${buttonRef?.current.button}  `
     setMsg(message)
-    console.log(message)
+    // console.log(message)
   }
 
   return (

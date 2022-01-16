@@ -74,10 +74,6 @@ function Input({
     fieldLevelValidation,
   } = useFormContext()
 
-  console.log('error', error)
-  console.log('errors', errors)
-  console.log('errors is truthy', errors ? true : false)
-
   if (values && !value) value = values[id || name]
   if (handleBlur) onBlur = handleBlur
 
