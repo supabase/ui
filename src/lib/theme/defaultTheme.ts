@@ -1021,7 +1021,13 @@ export default {
       },
     },
     error: {
-      base: 'mt-1.5 text-radix-red-900',
+      base: `
+        text-radix-red-900
+        transition
+        data-show:mt-1.5
+        data-show:animate-slide-down-normal
+        data-hide:animate-slide-down-normal
+      `,
       size: {
         ...defaults.size.text,
       },

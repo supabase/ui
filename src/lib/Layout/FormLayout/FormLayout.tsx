@@ -98,8 +98,12 @@ export function FormLayout({
 
   const labelled = Boolean(label || beforeLabel || afterLabel)
 
+  console.log('error', error)
   const renderError = error && (
-    <p className={[__styles.error.base, __styles.error.size[size]].join(' ')}>
+    <p
+      data-state={error ? 'show' : 'hide'}
+      className={[__styles.error.base, __styles.error.size[size]].join(' ')}
+    >
       {error}
     </p>
   )
