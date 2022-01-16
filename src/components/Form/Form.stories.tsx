@@ -23,6 +23,7 @@ interface Values {
   profession: string
   number: number | undefined
   // remember_me: boolean
+  checkbox_alone: boolean
   favorite_food: string
   check_3: boolean
   check_2: boolean
@@ -37,6 +38,7 @@ const INITIAL_VALUES: Values = {
   last_name: '',
   profession: '',
   number: undefined,
+  checkbox_alone: false,
   // remember_me: false,
   favorite_food: 'pizza',
   check_3: false,
@@ -310,7 +312,7 @@ export const LargerExample = () => {
                 placeholder="124"
                 labelOptional="Must be between 13 - 31"
               />
-              {/* <Checkbox id="helloworld" label="Hello world" /> */}
+              <Checkbox id="checkbox_alone" label="checkbox_alone" />
               <Input.TextArea id="textarea" rows={5} name="textarea" />
               <Checkbox.Group
                 label="Group of checkboxes"

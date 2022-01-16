@@ -82,7 +82,7 @@ function InputNumber({
   if (values && !value) value = values[id]
   if (errors && !error) error = errors[id]
   if (handleBlur) onBlur = handleBlur
-  error = touched && touched[id] ? error : undefined
+  error = error || (touched && touched[id]) ? error : undefined
 
   function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (onChange) onChange(e)

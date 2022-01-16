@@ -77,7 +77,7 @@ function Input({
   if (values && !value) value = values[id || name]
   if (errors && !error) error = errors[id || name]
   if (handleBlur) onBlur = handleBlur
-  error = touched && touched[id] ? error : undefined
+  error = error || (touched && touched[id]) ? error : undefined
 
   function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     // console.log('input event', e)
@@ -267,7 +267,7 @@ function TextArea({
   if (values && !value) value = values[id || name]
   if (errors && !error) error = errors[id || name]
   if (handleBlur) onBlur = handleBlur
-  error = touched && touched[id] ? error : undefined
+  error = error || (touched && touched[id]) ? error : undefined
 
   function onInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setCharLength(e.target.value.length)

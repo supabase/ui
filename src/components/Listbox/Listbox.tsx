@@ -74,7 +74,7 @@ function Listbox({
   if (values && !value) defaultValue = values[id || name]
   if (errors && !error) error = errors[id || name]
   if (handleBlur) onBlur = handleBlur
-  error = touched && touched[id] ? error : undefined
+  error = error || (touched && touched[id]) ? error : undefined
 
   useEffect(() => {
     if (defaultValue) {

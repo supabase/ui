@@ -84,7 +84,7 @@ function Select({
   if (values && !value) value = values[id]
   if (errors && !error) error = errors[id]
   if (handleBlur) onBlur = handleBlur
-  error = touched && touched[id] ? error : undefined
+  error = error || (touched && touched[id]) ? error : undefined
 
   function onInputChange(e: React.ChangeEvent<HTMLSelectElement>) {
     if (onChange) onChange(e)

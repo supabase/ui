@@ -61,7 +61,7 @@ function Toggle({
   // if (values && !value) value = values[id || name]
   if (errors && !error) error = errors[id || name]
   if (handleBlur) onBlur = handleBlur
-  error = touched && touched[id] ? error : undefined
+  error = error || (touched && touched[id]) ? error : undefined
 
   // check if toggle checked is true or false
   // if neither true or false the toggle will rely on component state internally
