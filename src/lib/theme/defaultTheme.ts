@@ -476,7 +476,7 @@ export default {
       error: `
         bg-radix-red-100
         border border-radix-red-700 
-        focus:ring-radix-red-900
+        focus:ring-radix-red-500
         placeholder:text-radix-red-600
        `,
     },
@@ -523,7 +523,8 @@ export default {
       error: `
         bg-radix-red-100
         border border-radix-red-700 
-        focus:ring-radix-red-900
+        focus:ring-radix-red-500
+        placeholder:text-radix-red-600
        `,
     },
     container: 'relative',
@@ -569,7 +570,8 @@ export default {
       error: `
         bg-radix-red-100
         border border-radix-red-700 
-        focus:ring-radix-red-900
+        focus:ring-radix-red-500
+        placeholder:text-radix-red-600
        `,
     },
     container: 'relative',
