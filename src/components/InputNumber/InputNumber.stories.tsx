@@ -21,7 +21,7 @@ export const Controlled = (props: any) => {
   const [state, setState] = useState(() => undefined)
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log({ e, value: e.currentTarget.value })
+    // console.log({ e, value: e.currentTarget.value })
     setState(e.currentTarget.value)
   }, [])
 

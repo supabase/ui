@@ -3,6 +3,7 @@
 // import { ThemeProvider } from './../ThemeProvider'
 // import customThemeExample from '../../lib/theme/customThemeExample'
 
+import { useRef, useState } from 'react'
 import { Button, IconPackage, IconChevronRight } from './../../index'
 
 export default {
@@ -22,26 +23,26 @@ export const withOnlyLoading = (args: any) => <Button {...args} />
 export const withLoadingCentered = (args: any) => (
   <Button {...args}>Loading icon is centered</Button>
 )
-// export const withRef = () => {
-//   const buttonRef = useRef(null)
-//   const [msg, setMsg] = useState('Click button to console.log Ref')
+export const withRef = () => {
+  const buttonRef = useRef(null)
+  const [msg, setMsg] = useState('Click button to console.log Ref')
 
-//   function onClick() {
-//     const message = `container: ${buttonRef?.current?.container} button:${buttonRef?.current?.button}  `
-//     setMsg(message)
-//     console.log(message)
-//   }
+  function onClick() {
+    const message = `container: ${buttonRef?.current.container} button:${buttonRef?.current.button}  `
+    setMsg(message)
+    // console.log(message)
+  }
 
-//   return (
-//     <>
-//       <Button ref={buttonRef} onClick={onClick}>
-//         Button with forwardRef
-//       </Button>
+  return (
+    <>
+      <Button ref={buttonRef} onClick={onClick}>
+        Button with forwardRef
+      </Button>
 
-//       <p style={{ color: '#666666' }}>{msg}</p>
-//     </>
-//   )
-// }
+      <p style={{ color: '#666666' }}>{msg}</p>
+    </>
+  )
+}
 export const allButtons = (args: any) => (
   <>
     <div className="flex flex-col space-y-4">

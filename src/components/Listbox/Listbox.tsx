@@ -124,7 +124,7 @@ function Listbox({
   }, [children, selected, value])
 
   function handleOnChange(value: any) {
-    console.log('listbox onchange e', value)
+    // console.log('listbox onchange e', value)
     if (onChange) onChange(value)
     setSelected(value)
 
