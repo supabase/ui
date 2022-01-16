@@ -22,7 +22,10 @@ const defaults = {
     alternative: 'border-scale-600 dark:border-scaleDark-200',
   },
   placeholder: 'placeholder-scale-800',
-  focus: `focus:outline-none focus:ring-current focus:ring-2`,
+  focus: `
+    outline-none
+    focus:ring-current focus:ring-2
+  `,
   size: {
     // buttons, inputs, input labels use these sizes
     text: {
