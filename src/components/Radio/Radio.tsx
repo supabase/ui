@@ -83,7 +83,7 @@ function RadioGroup({
   // console.log('values in radio group', values)
   if (errors && !error) error = errors[id || name]
   // if (handleBlur) onBlur = handleBlur
-  error = touched && touched[id || name] ? error : undefined
+  error = error || (touched && touched[id || name]) ? error : undefined
 
   useEffect(() => {
     if (validation) fieldLevelValidation(id, validation(value))
