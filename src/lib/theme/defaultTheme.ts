@@ -26,6 +26,10 @@ const defaults = {
     outline-none
     focus:ring-current focus:ring-2
   `,
+  'focus-visible': `
+    outline-none
+    focus-visible:ring-current focus-visible:ring-2
+  `,
   size: {
     // buttons, inputs, input labels use these sizes
     text: {
@@ -367,7 +371,7 @@ export default {
       text-center 
       transition ease-out duration-200 
       rounded 
-      ${defaults.focus}
+      ${defaults['focus-visible']}
       shadow-sm
     `,
     container: 'inline-flex font-medium',
@@ -376,13 +380,13 @@ export default {
         bg-brand-fixed-900 hover:bg-brand-fixed-800
         text-brand-fixed-1200
         border border border-brand-fixed-800 hover:border-brand-fixed-1000
-        focus:ring-scale-1200
+        focus-visible:ring-scale-1200
       `,
       default: `
         bg-scale-1200 hover:bg-scale-1100
         text-scale-100 hover:text-scale-600 
         border border-scale-1100
-        focus:ring-scale-1200
+        focus-visible:ring-scale-1200
       `,
       secondary: `
         text-scale-1200
@@ -410,6 +414,7 @@ export default {
       link: `
         text-brandScale-1100
         border
+        border-transparent
         hover:bg-brandScale-400
         border-opacity-0
         bg-opacity-0 dark:bg-opacity-0
