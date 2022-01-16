@@ -59,9 +59,12 @@ function Toggle({
   } = useFormContext()
 
   // if (values && !value) value = values[id || name]
-  if (errors && !error) error = errors[id || name]
   if (handleBlur) onBlur = handleBlur
-  error = error || (touched && touched[id]) ? error : undefined
+
+  if (!error) {
+    if (errors && !error) error = errors[id || name]
+    error = touched && touched[id || name] ? error : undefined
+  }
 
   // check if toggle checked is true or false
   // if neither true or false the toggle will rely on component state internally

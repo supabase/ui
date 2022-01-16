@@ -40,7 +40,7 @@ const INITIAL_VALUES: Values = {
   number: undefined,
   checkbox_alone: false,
   // remember_me: false,
-  favorite_food: 'pizza',
+  favorite_food: '',
   check_3: false,
   check_2: true,
   check_1: false,

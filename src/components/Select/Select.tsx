@@ -82,9 +82,12 @@ function Select({
   } = useFormContext()
 
   if (values && !value) value = values[id]
-  if (errors && !error) error = errors[id]
   if (handleBlur) onBlur = handleBlur
-  error = error || (touched && touched[id]) ? error : undefined
+
+  if (!error) {
+    if (errors && !error) error = errors[id || name]
+    error = touched && touched[id || name] ? error : undefined
+  }
 
   function onInputChange(e: React.ChangeEvent<HTMLSelectElement>) {
     if (onChange) onChange(e)

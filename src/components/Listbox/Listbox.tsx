@@ -72,9 +72,12 @@ function Listbox({
   } = useFormContext()
 
   if (values && !value) defaultValue = values[id || name]
-  if (errors && !error) error = errors[id || name]
   if (handleBlur) onBlur = handleBlur
-  error = error || (touched && touched[id]) ? error : undefined
+
+  if (!error) {
+    if (errors && !error) error = errors[id || name]
+    error = touched && touched[id || name] ? error : undefined
+  }
 
   useEffect(() => {
     if (defaultValue) {
