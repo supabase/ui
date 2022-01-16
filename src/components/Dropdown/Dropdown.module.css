@@ -46,7 +46,7 @@
   border-width: 1px;
 } */
 
-@keyframes fadeIn {
+/* @keyframes fadeIn {
   from {
     transform: scale(0.95);
     opacity: 0;
@@ -66,7 +66,7 @@
     transform: scale(0.95);
     opacity: 0;
   }
-}
+} */
 /* .sbui-dropdown__content {
   transform-origin: 'var(--radix-dropdown-menu-content-transform-origin)';
 } */

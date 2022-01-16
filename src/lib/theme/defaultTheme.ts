@@ -41,6 +41,10 @@ const defaults = {
       xlarge: 'px-6 py-3',
     },
   },
+  overlay: {
+    base: `absolute inset-0 bg-scale-200 opacity-50`,
+    container: `fixed inset-0 transition-opacity`,
+  },
 }
 
 const utils = {
@@ -835,6 +839,64 @@ export default {
       ...defaults.size.text,
     },
     disabled: `opacity-50 cursor-auto border-dashed`,
+  },
+
+  sidepanel: {
+    base: `
+      bg-overlay-bg
+      h-full 
+      flex flex-col 
+      fixed 
+      inset-y-0 
+      max-w-full 
+      flex 
+      h-screen
+      border-l border-overlay-border
+      shadow-xl
+    `,
+    header: `
+      space-y-1 py-4 px-4 bg-overlay-bg sm:px-6 
+      border-b border-overlay-border
+    `,
+    content: `
+      relative flex-1 px-4 sm:px-6 py-4
+    `,
+    footer: `
+      flex justify-end gap-2
+      p-4 bg-overlay-bg 
+      border-t border-overlay-border
+    `,
+    size: {
+      medium: `w-screen max-w-md h-full`,
+      large: `w-screen max-w-2xl h-full`,
+    },
+    align: {
+      left: `
+        left-0
+        data-open:animate-panel-slide-left-out 
+        data-closed:animate-panel-slide-left-in
+      `,
+      right: `
+        right-0
+        data-open:animate-panel-slide-right-out 
+        data-closed:animate-panel-slide-right-in
+      `,
+    },
+    overlay: `
+      fixed
+      h-full
+      w-full
+      bg-scale-100
+      opacity-50
+      data-closed:animate-fade-out-overlay-bg 
+      data-open:animate-fade-in-overlay-bg
+      
+    `,
+    // this is to reset the button
+    // it is advised not to change this
+    trigger: `
+      border-none bg-transparent p-0 focus:ring-0
+    `,
   },
 
   /*

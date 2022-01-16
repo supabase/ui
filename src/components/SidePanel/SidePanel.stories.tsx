@@ -9,84 +9,66 @@ export default {
   component: SidePanel,
 }
 
+const content = (
+  <span className="text-scale-900 text-sm">
+    SidePanel content is inserted here, if you need to insert anything into the
+    SidePanel you can do so via
+    <span className="text-code">children</span>
+  </span>
+)
+
 export const Default = (args: any) => (
   <>
-    <SidePanel {...args}>
-      <Typography.Text type="secondary">
-        SidePanel content is inserted here, if you need to insert anything into
-        the SidePanel you can do so via{' '}
-        <Typography.Text code>{'{children}'}</Typography.Text>
-      </Typography.Text>
+    <SidePanel
+      {...args}
+      header={
+        <>
+          <h3 className="text-base text-scale-1200">This is the title</h3>
+          <p className="text-xs text-scale-900">This is the title</p>
+        </>
+      }
+    >
+      {content}
     </SidePanel>
   </>
 )
 
 export const withWideLayout = (args: any) => (
   <>
-    <SidePanel {...args}>
-      <Typography.Text type="secondary">
-        SidePanel content is inserted here, if you need to insert anything into
-        the SidePanel you can do so via{' '}
-        <Typography.Text code>{'{children}'}</Typography.Text>
-      </Typography.Text>
-    </SidePanel>
+    <SidePanel {...args}>{content}</SidePanel>
   </>
 )
 
 export const leftAlignedFooter = (args: any) => (
   <>
-    <SidePanel {...args}>
-      <Typography.Text type="secondary">
-        SidePanel content is inserted here, if you need to insert anything into
-        the SidePanel you can do so via{' '}
-        <Typography.Text code>{'{children}'}</Typography.Text>
-      </Typography.Text>
-    </SidePanel>
+    <SidePanel {...args}>{content}</SidePanel>
   </>
 )
 
 export const leftAligned = (args: any) => (
   <>
-    <SidePanel {...args}>
-      <Typography.Text type="secondary">
-        SidePanel content is inserted here, if you need to insert anything into
-        the SidePanel you can do so via{' '}
-        <Typography.Text code>{'{children}'}</Typography.Text>
-      </Typography.Text>
-    </SidePanel>
+    <SidePanel {...args}>{content}</SidePanel>
   </>
 )
 
 export const hideFooter = (args: any) => (
   <>
-    <SidePanel {...args}>
-      <Typography.Text type="secondary">
-        SidePanel content is inserted here, if you need to insert anything into
-        the SidePanel you can do so via{' '}
-        <Typography.Text code>{'{children}'}</Typography.Text>
-      </Typography.Text>
-    </SidePanel>
+    <SidePanel {...args}>{content}</SidePanel>
   </>
 )
 
 export const customFooter = (args: any) => (
   <>
-    <SidePanel {...args}>
-      <Typography.Text type="secondary">
-        SidePanel content is inserted here, if you need to insert anything into
-        the SidePanel you can do so via{' '}
-        <Typography.Text code>{'{children}'}</Typography.Text>
-      </Typography.Text>
-    </SidePanel>
+    <SidePanel {...args}>{content}</SidePanel>
   </>
 )
 
 export const triggerElement = (args: any) => (
   <>
     <SidePanel {...args}>
-      <Typography.Text type="secondary">
+      <span className="text-scale-900">
         This was opened with a trigger element
-      </Typography.Text>
+      </span>
     </SidePanel>
   </>
 )
@@ -100,19 +82,31 @@ export const nestedSidepanels = (args: any) => {
       <Button type="secondary" onClick={() => setPanel1Visible(true)}>
         Open panel 1
       </Button>
-      <SidePanel visible={panel1Visible}>
-        <Typography.Text type="secondary">
-          This was opened with a trigger element
-        </Typography.Text>
-        <Button type="secondary" onClick={() => setPanel2Visible(true)}>
-          Open panel 2
-        </Button>
-        <Button type="secondary" onClick={() => setPanel1Visible(false)}>
-          Close panel 1
-        </Button>
-        <SidePanel visible={panel2Visible}>
+      <SidePanel
+        visible={panel1Visible}
+        onCancel={() => setPanel1Visible(false)}
+        onConfirm={() => setPanel1Visible(false)}
+      >
+        <div className="space-y-3">
+          <p className="text-sm text-scale-900 font-light">
+            This Sidepanel was opened with a trigger element
+          </p>
+
+          <p className="text-sm text-scale-1200">
+            You can open a nested panel by clicking the button below
+          </p>
+
+          <Button type="secondary" onClick={() => setPanel2Visible(true)}>
+            Open nested sidepanel
+          </Button>
+        </div>
+        <SidePanel
+          visible={panel2Visible}
+          onCancel={() => setPanel2Visible(false)}
+          onConfirm={() => setPanel2Visible(false)}
+        >
           <Button type="secondary" onClick={() => setPanel2Visible(false)}>
-            close panel 2
+            Close nested sidepanel
           </Button>
         </SidePanel>
       </SidePanel>
@@ -130,7 +124,7 @@ Default.args = {
 
 withWideLayout.args = {
   visible: true,
-  wide: true,
+  size: 'large',
   onCancel: action('onCancel'),
   onConfirm: action('onConfirm'),
   title: 'This is the title of the SidePanel',

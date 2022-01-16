@@ -49,9 +49,9 @@ const coolGray = {
 }
 
 const colors = {
-  transparent: 'transparent',
-  white: '#ffffff',
-  black: '#000000',
+  // transparent: 'transparent',
+  // white: '#ffffff',
+  // black: '#000000',
   // gray: {
   //   '50': '#f9fafb',
   //   '100': '#f4f5f7',
@@ -315,7 +315,7 @@ module.exports = ui({
       './src/**/*.{js,ts,jsx,tsx,html,mdx}',
       './src/lib/theme/defaultTheme.ts',
     ],
-    safelist: ['space-x-1'],
+    // safelist: ['space-x-1'],
   },
   darkMode: 'class',
   theme: {
@@ -464,12 +464,17 @@ module.exports = ui({
 
         ...custom_colors,
 
+        overlay: {
+          bg: 'var(--overlay-bg)',
+          border: 'var(--overlay-border)',
+        },
+
         // gray: { ...custom_colors.slate },
       },
 
-      transitionProperty: {
-        'max-height': 'max-height',
-      },
+      // transitionProperty: {
+      //   'max-height': 'max-height',
+      // },
     },
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],

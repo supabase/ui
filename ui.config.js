@@ -53,6 +53,14 @@ const windmillConfig = {
           '0%': { transform: 'scale(1)', opacity: 1 },
           '100%': { transform: 'scale(0.95)', opacity: 0 },
         },
+        fadeInOverlayBg: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 0.5 },
+        },
+        fadeOutOverlayBg: {
+          '0%': { opacity: 0.5 },
+          '100%': { opacity: 0 },
+        },
         slideDown: {
           '0%': { height: 0, opacity: 0 },
           '100%': {
@@ -64,10 +72,47 @@ const windmillConfig = {
           '0%': { height: 'var(--radix-accordion-content-height)', opacity: 1 },
           '100%': { height: 0, opacity: 0 },
         },
+        panelSlideLeftOut: {
+          '0%': { transform: 'translateX(-100%)', opacity: 0 },
+          '100%': {
+            transform: 'translate-x-0',
+            opacity: 1,
+          },
+        },
+        panelSlideLeftIn: {
+          '0%': { transform: 'translate-x-0', opacity: 1 },
+          '100%': { transform: 'translateX(-100%)', opacity: 0 },
+        },
+        panelSlideRightOut: {
+          '0%': { transform: 'translateX(100%)', opacity: 0 },
+          '100%': {
+            transform: 'translate-x-0',
+            opacity: 1,
+          },
+        },
+        panelSlideRightIn: {
+          '0%': { transform: 'translate-x-0', opacity: 1 },
+          '100%': { transform: 'translateX(100%)', opacity: 0 },
+        },
       },
       animation: {
+        'fade-in': 'fadeIn 300ms',
+        'fade-out': 'fadeOut 300ms',
+
+        'fade-in-overlay-bg': 'fadeInOverlayBg 300ms',
+        'fade-out-overlay-bg': 'fadeOutOverlayBg 300ms',
+
         'slide-down': 'slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1)',
         'slide-up': 'slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+
+        'panel-slide-left-out':
+          'panelSlideLeftOut 200ms cubic-bezier(0.87, 0, 0.13, 1)',
+        'panel-slide-left-in':
+          'panelSlideLeftIn 250ms cubic-bezier(0.87, 0, 0.13, 1)',
+        'panel-slide-right-out':
+          'panelSlideRightOut 200ms cubic-bezier(0.87, 0, 0.13, 1)',
+        'panel-slide-right-in':
+          'panelSlideRightIn 250ms cubic-bezier(0.87, 0, 0.13, 1)',
       },
       // animation: {
       //   // tailwind class for this is `animate-dropdownFadeIn`
@@ -112,6 +157,13 @@ const windmillConfig = {
         "[data-state='closed'] .accordion-content-animation": {
           animation: 'slideUp 200ms ease-in',
         },
+        '.text-code': {
+          margin: '0 0.2em',
+          padding: '0.2em 0.4em 0.1em',
+          background: 'hsla(0, 0%, 58.8%, 0.1)',
+          border: '1px solid hsla(0, 0%, 39.2%, 0.2)',
+          borderRadius: '3px',
+        },
       })
       // addVariant('optional', '&:optional')
       // addVariant('hocus', ['&:hover', '&:focus'])
@@ -119,6 +171,8 @@ const windmillConfig = {
       // addVariant('data-open', '&:["data-state=open"]')
       addVariant('data-open', '&[data-state="open"]')
       addVariant('data-closed', '&[data-state="closed"]')
+
+      addVariant('parent-data-open', '[data-state="open"]&')
     }),
     require('tailwindcss-radix')(),
     forms,

@@ -7,7 +7,7 @@
   border-width: 1px;
 }
 
-@keyframes fadeIn {
+/* @keyframes fadeIn {
   from {
     transform: scale(0.95);
     opacity: 0;
@@ -27,7 +27,7 @@
     transform: scale(0.95);
     opacity: 0;
   }
-}
+} */
 
 .sbui-popover__content {
   transform-origin: var(--radix-popover-menu-content-transform-origin);

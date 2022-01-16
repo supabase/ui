@@ -34,6 +34,7 @@
   --brand-fixed-10: hsla(153, 50%, 50%, 1);
   --brand-fixed-11: hsla(153, 50%, 34%, 1);
   --brand-fixed-12: hsla(153, 40%, 12%, 1);
+
   /* border scale */
   --scale-1: hsla(210, 33%, 99%, 1);
   --scale-2: hsla(210, 17%, 98%, 1);
@@ -47,6 +48,10 @@
   --scale-10: hsla(206, 6%, 52%, 1);
   --scale-11: hsla(206, 6%, 44%, 1);
   --scale-12: hsla(202, 24%, 9%, 1);
+
+  --overlay-bg: var(--scale-2);
+  --overlay-border: var(--scale-4);
+
   /* border scale fixed*/
   --scale-fixed-1: hsla(210, 33%, 99%, 1);
   --scale-fixed-2: hsla(210, 17%, 98%, 1);
@@ -147,6 +152,10 @@
   --scale-10: hsla(208, 5%, 50%, 1);
   --scale-11: hsla(207, 6%, 63%, 1);
   --scale-12: hsla(210, 6%, 93%, 1);
+
+  --overlay-bg: var(--scale-3);
+  --overlay-border: var(--scale-5);
+
   /* background scale */
   --background-1: hsla(200, 7%, 9%, 1);
   --background-2: hsla(195, 7%, 11%, 1);
@@ -216,6 +225,6 @@
 .light,
 .light .docs-story,
 .dark .docs-story {
-  @apply bg-scale-100;
+  @apply bg-scale-200;
   /* background: #181818; */
 }
