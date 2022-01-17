@@ -53,6 +53,10 @@
   --overlay-bg-accent: var(--scale-3);
   --overlay-border: var(--scale-4);
 
+  --overlay-secondary-bg: var(--scale-2);
+  --overlay-secondary-bg-accent: var(--scale-3);
+  --overlay-secondary-border: var(--scale-4);
+
   /* border scale fixed*/
   --scale-fixed-1: hsla(210, 33%, 99%, 1);
   --scale-fixed-2: hsla(210, 17%, 98%, 1);
@@ -157,6 +161,10 @@
   --overlay-bg: var(--scale-2);
   --overlay-bg-accent: var(--scale-3);
   --overlay-border: var(--scale-4);
+
+  --overlay-secondary-bg: var(--scale-3);
+  --overlay-secondary-bg-accent: var(--scale-4);
+  --overlay-secondary-border: var(--scale-5);
 
   /* background scale */
   --background-1: hsla(200, 7%, 9%, 1);

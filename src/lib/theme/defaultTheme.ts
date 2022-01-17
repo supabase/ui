@@ -379,30 +379,33 @@ export default {
       primary: `
         bg-brand-fixed-900 hover:bg-brand-fixed-800
         text-brand-fixed-1200
-        border border border-brand-fixed-800 hover:border-brand-fixed-1000
-        focus-visible:ring-scale-1200
+        border border border-brand-fixed-800 hover:border-brand-700 focus-visible:border-brand-700
+        focus-visible:ring-brand-700
       `,
       default: `
         bg-scale-1200 hover:bg-scale-1100
-        text-scale-100 hover:text-scale-600 
+        text-scale-100 hover:text-scale-600 focus-visible:text-scale-600 
         border border-scale-1100
-        focus-visible:ring-scale-1200
+        focus-visible:ring-scale-900
       `,
       secondary: `
         text-scale-1200
         bg-scale-300 hover:bg-scale-500
-        border border-scale-700 hover:border-scale-900
+        border border-scale-700 hover:border-scale-900 focus-visible:border-scale-900
+        focus-visible:ring-scale-600
       `,
       alternative: `
         bg-brandScale-200 hover:bg-brandScale-400
-        border border-brandScale-600 hover:border-brandScale-800
+        border border-brandScale-600 hover:border-brandScale-800 focus-visible:border-brandScale-800
         border-opacity-20
         text-brandScale-1100
+        focus-visible:ring-scale-600
       `,
       outline: `
         text-scale-1200 
         bg-transparent 
-        border border-scale-700 hover:border-scale-900
+        border border-scale-700 hover:border-scale-900 focus-visible:border-scale-900
+        focus-visible:ring-scale-600
       `,
       dashed: `
         text-scale-1200 
@@ -410,6 +413,7 @@ export default {
         border-dashed
         border border-scale-700 hover:border-scale-900
         bg-transparent
+        focus-visible:ring-scale-600
       `,
       link: `
         text-brandScale-1100
@@ -419,21 +423,25 @@ export default {
         border-opacity-0
         bg-opacity-0 dark:bg-opacity-0
         shadow-none
+        focus-visible:ring-scale-600
       `,
       text: `
         text-scale-1200 
         hover:bg-scale-500
         shadow-none
+        focus-visible:ring-scale-600
       `,
       danger: `
         text-radix-red-1100
         bg-radix-red-200 hover:bg-radix-red-400
-        border border-radix-red-700 hover:border-radix-red-900
+        border border-radix-red-700 hover:border-radix-red-900 focus-visible:border-radix-red-900
+        focus-visible:ring-radix-red-700
       `,
       warning: `
         text-radix-amber-1100
         bg-radix-amber-200 hover:bg-radix-amber-400
-        border border-radix-amber-700 hover:border-radix-amber-900
+        border border-radix-amber-700 hover:border-radix-amber-900 focus-visible:border-radix-amber-900
+        focus-visible:ring-radix-amber-400
       `,
     },
     block: 'w-full flex items-center justify-center',
@@ -1055,36 +1063,51 @@ export default {
       border-none 
       rounded
       bg-transparent p-0
-      ${defaults.focus}
-      
-      `,
+      data-open:ring-2
+      data-open:ring-scale-900
+    `,
+    item_nested: `
+      border-none
+      data-open:bg-overlay-secondary-bg-accent
+      data-open:text-scale-1200
+    `,
     content: `
-      bg-bgScale-50 dark:bg-bgScaleDark-600 p-0
-      border border-lightmode dark:border-darkmode
+      bg-overlay-secondary-bg 
+      border border-overlay-secondary-border
       rounded
       shadow-lg
       origin-dropdown
-      dropdown-content
-      data-open:bg-radix-red-500
+      data-open:animate-dropdown-content-show
+      data-closed:animate-dropdown-content-hide
+      min-w-fit
       py-1.5
     `,
+    size: {
+      tiny: `w-40`,
+      small: `w-48`,
+      medium: `w-64`,
+      large: `w-80`,
+      xlarge: `w-96`,
+      content: `w-auto`,
+    },
     arrow: `
       fill-current text-bg-primary-light dark:text-bg-secondary-dark;
       border-0 border-t;
     `,
     item: `
+      group
       relative
       text-xs
-      ${defaults.text.body}
+      text-scale-1100
       px-4 py-1.5 flex items-center space-x-2
       cursor-pointer
-      focus:bg-brandColor 
-      focus:text-scale-100
+      focus:bg-overlay-secondary-bg-accent
+      focus:text-scale-1200
       border-none
       focus:outline-none
     `,
     label: `
-      text-typography-body-secondary-light dark:text-typography-body-secondary-dark;
+      text-scale-900
       px-4 flex items-center space-x-2 py-1.5
       text-xs
     `,
@@ -1092,7 +1115,7 @@ export default {
       w-full
       h-px
       my-2
-      bg-bgScale-100 dark:bg-bgScaleDark-700
+      bg-overlay-secondary-border
     `,
     misc: `
       px-4 py-1.5
@@ -1100,16 +1123,18 @@ export default {
     check: `
       absolute left-3
       flex items-center
+      data-checked:text-scale-1200
     `,
     input: `
       flex items-center space-x-0 pl-8 pr-4
     `,
     right_slot: `
-      ${defaults.text.body}
+      text-scale-900
+      group-focus:text-scale-1000
       absolute
-      inset-y-2/4
-      top
-      right-0
+      -translate-y-1/2
+      right-2
+      top-1/2
     `,
   },
 

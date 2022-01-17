@@ -21,6 +21,7 @@ interface RootProps {
   sideOffset?: RadixDropdownTypes.DropdownMenuContentProps['sideOffset']
   overlay?: React.ReactNode
   children?: React.ReactNode
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge' | 'content'
   className?: string
   style?: React.CSSProperties
   isNested?: Boolean
@@ -34,6 +35,7 @@ function Dropdown({
   sideOffset = 6,
   overlay,
   children,
+  size = 'medium',
   className,
   style,
   arrow,
@@ -41,7 +43,7 @@ function Dropdown({
 }: RootProps) {
   let __styles = styleHandler('dropdown')
 
-  let classes = [__styles.content]
+  let classes = [__styles.content, __styles.size[size]]
   if (className) {
     classes.push(className)
   }
@@ -50,7 +52,7 @@ function Dropdown({
     <RadixDropdown.Root onOpenChange={onOpenChange} open={open}>
       {isNested ? (
         <RadixDropdown.TriggerItem
-          className={DropdownStyles['sbui-dropdown__trigger-item']}
+          className={[__styles.item, __styles.item_nested].join(' ')}
         >
           {children}
         </RadixDropdown.TriggerItem>
@@ -90,7 +92,7 @@ interface ItemProps {
   icon?: React.ReactNode
   disabled?: boolean
   onClick?: (event: Event) => void
-  rightSlot?: string
+  rightSlot?: React.ReactNode
 }
 
 export function Item({

@@ -42,7 +42,6 @@ const windmillConfig = {
       transformOrigin: {
         // tailwind class for this is `origin-dropdown`
         dropdown: 'var(--radix-dropdown-menu-content-transform-origin)',
-        YOLO: 'var(--radix-dropdown-menu-content-transform-origin)',
       },
       keyframes: {
         fadeIn: {
@@ -128,6 +127,11 @@ const windmillConfig = {
         'fade-in': 'fadeIn 300ms',
         'fade-out': 'fadeOut 300ms',
 
+        'dropdown-content-show':
+          'overlayContentShow 100ms cubic-bezier(0.16, 1, 0.3, 1)',
+        'dropdown-content-hide':
+          'overlayContentHide 100ms cubic-bezier(0.16, 1, 0.3, 1)',
+
         'overlay-show':
           'overlayContentShow 300ms cubic-bezier(0.16, 1, 0.3, 1)',
         'overlay-hide':
@@ -151,6 +155,11 @@ const windmillConfig = {
           'panelSlideRightOut 200ms cubic-bezier(0.87, 0, 0.13, 1)',
         'panel-slide-right-in':
           'panelSlideRightIn 250ms cubic-bezier(0.87, 0, 0.13, 1)',
+
+        // tailwind class for this is `animate-dropdownFadeIn`
+        dropdownFadeIn: 'dropdownFadeIn 0.1s ease-out',
+        // tailwind class for this is `animate-dropdownFadeOut`
+        dropdownFadeOut: 'dropdownFadeOut 0.1s ease-out',
       },
       // animation: {
       //   // tailwind class for this is `animate-dropdownFadeIn`
@@ -211,6 +220,8 @@ const windmillConfig = {
       addVariant('data-closed', '&[data-state="closed"]')
       addVariant('data-show', '&[data-state="show"]')
       addVariant('data-hide', '&[data-state="hide"]')
+      addVariant('data-checked', '&[data-state="checked"]')
+      addVariant('data-unchecked', '&[data-state="unchecked"]')
 
       // addVariant('parent-data-open', '[data-state="open"]&')
     }),
