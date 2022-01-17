@@ -445,7 +445,7 @@ export default {
     // disabled prefix is disabled (lol..) by default in tailwind
     // so we apply normal utilities instead, however you can add disabled prefixes if you enabled them in tailwind config.
     // see more: https://tailwindcss.com/docs/hover-focus-and-other-states#disabled
-    disabled: 'opacity-75 cursor-not-allowed pointer-events-none',
+    disabled: 'opacity-50 cursor-not-allowed pointer-events-none',
   },
 
   /*
@@ -898,7 +898,7 @@ export default {
       h-full
       w-full
       bg-scale-100
-      opacity-50
+      opacity-75
       data-closed:animate-fade-out-overlay-bg 
       data-open:animate-fade-in-overlay-bg
       
@@ -1176,16 +1176,52 @@ export default {
    */
   modal: {
     base: `
-      absolute
-      inline-block
+   
+    `,
+    header: `
+      space-y-1 py-3 px-4 bg-overlay-bg sm:px-5 
+      bg-overlay-bg-accent
+      border-b border-overlay-border
+    `,
+    footer: `
       bg-overlay-bg 
+      flex justify-end gap-2
+      py-3 px-5 
+      border-t border-overlay-border
+    `,
+    overlay: `
+      fixed
+      h-full
+      w-full
+      bg-scale-100
+      opacity-75
+      data-closed:animate-fade-out-overlay-bg 
+      data-open:animate-fade-in-overlay-bg
+      
+    `,
+    size: {
+      tiny: `
+       sm:align-middle sm:w-full sm:max-w-xs
+      `,
 
-      rounded-md text-left overflow-hidden 
-      
+      small: `
+       sm:align-middle sm:w-full sm:max-w-sm
+      `,
+
+      medium: `
+       sm:align-middle sm:w-full sm:max-w-lg
+      `,
+
+      large: `
+       sm:align-middle sm:w-full max-w-xl
+      `,
+    },
+    anim: `
+      fixed
+      bg-overlay-bg 
+      rounded-md 
+      overflow-hidden 
       shadow-xl 
-      transform 
-      transition-all 
-      
       border
       border-overlay-border
 
@@ -1195,16 +1231,11 @@ export default {
       -translate-x-1/2
       -translate-y-1/2
 
-    `,
-    header: `
-      space-y-1 py-4 px-4 bg-overlay-bg sm:px-6 
-      border-b border-overlay-border
-    `,
-    footer: `
-      bg-overlay-bg 
-      flex justify-end gap-2
-      py-4 px-5 
-      border-t border-overlay-border
+      inset-0
+
+      h-min
+
+      data-open:animate-overlay-show data-closed:animate-overlay-hide  
     `,
   },
 }

@@ -79,9 +79,31 @@ export const nestedSidepanels = (args: any) => {
 
   return (
     <>
-      <Button type="secondary" onClick={() => setPanel1Visible(true)}>
-        Open panel 1
-      </Button>
+      <div
+        className="
+          p-3 px-5 
+          bg-scale-300 border border-scale-600 rounded flex gap-4 
+          justify-between
+          items-center
+          
+          fixed
+          top-1/2
+          left-1/2
+          w-3/4
+
+          -translate-x-1/2
+          -translate-y-1/2"
+      >
+        <div>
+          <h4 className="text-scale-1200 text-base">
+            Shall we nest some components?
+          </h4>
+          <p className="text-scale-1100 text-sm">yea sure, go on then.</p>
+        </div>
+        <Button type="secondary" onClick={() => setPanel1Visible(true)}>
+          Open sidepanel
+        </Button>
+      </div>
       <SidePanel
         visible={panel1Visible}
         onCancel={() => setPanel1Visible(false)}

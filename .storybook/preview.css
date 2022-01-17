@@ -50,6 +50,7 @@
   --scale-12: hsla(202, 24%, 9%, 1);
 
   --overlay-bg: var(--scale-2);
+  --overlay-bg-accent: var(--scale-3);
   --overlay-border: var(--scale-4);
 
   /* border scale fixed*/
@@ -154,6 +155,7 @@
   --scale-12: hsla(210, 6%, 93%, 1);
 
   --overlay-bg: var(--scale-2);
+  --overlay-bg-accent: var(--scale-3);
   --overlay-border: var(--scale-4);
 
   /* background scale */

@@ -152,73 +152,44 @@ const Modal = ({
           {triggerElement}
         </Dialog.Trigger>
       )}
-      <Transition show={open}>
-        <Dialog.Overlay>
-          <Transition.Child
-            enter={ModalStyles[`sbui-modal-overlay--enter`]}
-            enterFrom={ModalStyles[`sbui-modal-overlay--enterFrom`]}
-            enterTo={ModalStyles[`sbui-modal-overlay--enterTo`]}
-            leave={ModalStyles[`sbui-modal-overlay--leave`]}
-            leaveFrom={ModalStyles[`sbui-modal-overlay--leaveFrom`]}
-            leaveTo={ModalStyles[`sbui-modal-overlay--leaveTo`]}
-          >
-            <div className={ModalStyles['sbui-modal-overlay-container']}>
-              <div
-                className={overlayClasses.join(' ')}
-                style={overlayStyle}
-              ></div>
-            </div>
-          </Transition.Child>
-        </Dialog.Overlay>
-        <Dialog.Content forceMount style={{ width: '100vw' }}>
-          <div
-            className={ModalStyles['sbui-modal-container'] + ' ' + className}
-            onClick={() => (onCancel ? onCancel() : null)}
-          >
-            <div className={ModalStyles['sbui-modal-flex-container']}>
-              <Transition.Child
-                enter={ModalStyles[`sbui-modal--enter`]}
-                enterFrom={ModalStyles[`sbui-modal--enterFrom`]}
-                enterTo={ModalStyles[`sbui-modal--enterTo`]}
-                leave={ModalStyles[`sbui-modal--leave`]}
-                leaveFrom={ModalStyles[`sbui-modal--leaveFrom`]}
-                leaveTo={ModalStyles[`sbui-modal--leaveTo`]}
-                className="fixed inset-0 overflow-y-auto"
-              >
-                <div
-                  className={modalClasses.join(' ')}
-                  role="dialog"
-                  aria-modal="true"
-                  aria-labelledby="modal-headline"
-                  onClick={stopPropagation}
-                  style={style}
-                >
-                  {header && <div className={__styles.header}>{header}</div>}
-                  <div
-                    className={ModalStyles['sbui-modal-content']}
-                    style={contentStyle}
-                  >
-                    {children}
-                  </div>
-                  {!hideFooter && (
-                    <div className={__styles.footer}>{footerContent}</div>
-                  )}
-                  {closable && (
-                    <div className={ModalStyles['sbui-modal-close-container']}>
-                      <Button
-                        onClick={onCancel}
-                        type="text"
-                        shadow={false}
-                        icon={<IconX size="medium" />}
-                      />
-                    </div>
-                  )}
-                </div>
-              </Transition.Child>
-            </div>
+
+      <Dialog.Overlay className={__styles.overlay} />
+      <Dialog.Content
+        style={{ width: '100vw' }}
+        className={[__styles.anim, __styles.size[size]].join(' ')}
+      >
+        {/* <div
+          className={ModalStyles['sbui-modal-container'] + ' ' + className}
+          onClick={() => (onCancel ? onCancel() : null)}
+        > */}
+        {/* <div className={ModalStyles['sbui-modal-flex-container']}> */}
+        {/* <div
+              className={modalClasses.join(' ')}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="modal-headline"
+              onClick={stopPropagation}
+              style={style}
+            > */}
+        {header && <div className={__styles.header}>{header}</div>}
+        <div className={ModalStyles['sbui-modal-content']} style={contentStyle}>
+          {children}
+        </div>
+        {!hideFooter && <div className={__styles.footer}>{footerContent}</div>}
+        {closable && (
+          <div className={ModalStyles['sbui-modal-close-container']}>
+            <Button
+              onClick={onCancel}
+              type="text"
+              shadow={false}
+              icon={<IconX size="medium" />}
+            />
           </div>
-        </Dialog.Content>
-      </Transition>
+        )}
+        {/* </div>
+          </div>
+        </div> */}
+      </Dialog.Content>
     </Dialog.Root>
   )
 }

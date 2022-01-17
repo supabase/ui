@@ -466,6 +466,7 @@ module.exports = ui({
 
         overlay: {
           bg: 'var(--overlay-bg)',
+          'bg-accent': 'var(--overlay-bg-accent)',
           border: 'var(--overlay-border)',
         },
 
