@@ -1176,11 +1176,18 @@ export default {
    */
   modal: {
     base: `
-   
+      relative
+      bg-overlay-bg 
+      my-4
+      border border-overlay-border 
+      rounded-md 
+      shadow-xl 
+      data-open:animate-overlay-show 
+      data-closed:animate-overlay-hide  
     `,
     header: `
-      space-y-1 py-3 px-4 bg-overlay-bg sm:px-5 
       bg-overlay-bg-accent
+      space-y-1 py-3 px-4 sm:px-5 
       border-b border-overlay-border
     `,
     footer: `
@@ -1189,52 +1196,28 @@ export default {
       py-3 px-5 
       border-t border-overlay-border
     `,
+    size: {
+      tiny: `sm:align-middle sm:w-full sm:max-w-xs`,
+      small: `sm:align-middle sm:w-full sm:max-w-sm`,
+      medium: `sm:align-middle sm:w-full sm:max-w-lg`,
+      large: `sm:align-middle sm:w-full max-w-xl`,
+    },
     overlay: `
       fixed
-      h-full
-      w-full
       bg-scale-100
+      h-full w-full
+      left-0
+      top-0 
       opacity-75
       data-closed:animate-fade-out-overlay-bg 
       data-open:animate-fade-in-overlay-bg
-      
     `,
-    size: {
-      tiny: `
-       sm:align-middle sm:w-full sm:max-w-xs
-      `,
-
-      small: `
-       sm:align-middle sm:w-full sm:max-w-sm
-      `,
-
-      medium: `
-       sm:align-middle sm:w-full sm:max-w-lg
-      `,
-
-      large: `
-       sm:align-middle sm:w-full max-w-xl
-      `,
-    },
-    anim: `
+    scroll_overlay: `
       fixed
-      bg-overlay-bg 
-      rounded-md 
-      overflow-hidden 
-      shadow-xl 
-      border
-      border-overlay-border
-
-      top-1/2
-      left-1/2
-
-      -translate-x-1/2
-      -translate-y-1/2
-
       inset-0
-
-      h-min
-
+      grid
+      place-items-center
+      overflow-y-auto
       data-open:animate-overlay-show data-closed:animate-overlay-hide  
     `,
   },

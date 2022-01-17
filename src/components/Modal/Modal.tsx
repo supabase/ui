@@ -152,44 +152,35 @@ const Modal = ({
           {triggerElement}
         </Dialog.Trigger>
       )}
-
-      <Dialog.Overlay className={__styles.overlay} />
-      <Dialog.Content
-        style={{ width: '100vw' }}
-        className={[__styles.anim, __styles.size[size]].join(' ')}
-      >
-        {/* <div
-          className={ModalStyles['sbui-modal-container'] + ' ' + className}
-          onClick={() => (onCancel ? onCancel() : null)}
-        > */}
-        {/* <div className={ModalStyles['sbui-modal-flex-container']}> */}
-        {/* <div
-              className={modalClasses.join(' ')}
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="modal-headline"
-              onClick={stopPropagation}
-              style={style}
-            > */}
-        {header && <div className={__styles.header}>{header}</div>}
-        <div className={ModalStyles['sbui-modal-content']} style={contentStyle}>
-          {children}
-        </div>
-        {!hideFooter && <div className={__styles.footer}>{footerContent}</div>}
-        {closable && (
-          <div className={ModalStyles['sbui-modal-close-container']}>
-            <Button
-              onClick={onCancel}
-              type="text"
-              shadow={false}
-              icon={<IconX size="medium" />}
-            />
-          </div>
-        )}
-        {/* </div>
-          </div>
-        </div> */}
-      </Dialog.Content>
+      <Dialog.Portal>
+        <Dialog.Overlay className={__styles.overlay} />
+        <Dialog.Overlay className={__styles.scroll_overlay}>
+          <Dialog.Content
+            className={[__styles.base, __styles.size[size]].join(' ')}
+          >
+            {header && <div className={__styles.header}>{header}</div>}
+            <div
+              className={ModalStyles['sbui-modal-content']}
+              style={contentStyle}
+            >
+              {children}
+            </div>
+            {!hideFooter && (
+              <div className={__styles.footer}>{footerContent}</div>
+            )}
+            {closable && (
+              <div className={ModalStyles['sbui-modal-close-container']}>
+                <Button
+                  onClick={onCancel}
+                  type="text"
+                  shadow={false}
+                  icon={<IconX size="medium" />}
+                />
+              </div>
+            )}
+          </Dialog.Content>
+        </Dialog.Overlay>
+      </Dialog.Portal>
     </Dialog.Root>
   )
 }

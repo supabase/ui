@@ -54,12 +54,12 @@ const windmillConfig = {
           '100%': { transform: 'scale(0.95)', opacity: 0 },
         },
         overlayContentShow: {
-          '0%': { opacity: 0, transform: 'translate(-50%, -48%) scale(.96)' },
-          '100%': { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
+          '0%': { opacity: 0, transform: 'translate(0%, -2%) scale(.96)' },
+          '100%': { opacity: 1, transform: 'translate(0%, 0%) scale(1)' },
         },
         overlayContentHide: {
-          '0%': { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
-          '100%': { opacity: 0, transform: 'translate(-50%, -48%) scale(.96)' },
+          '0%': { opacity: 1, transform: 'translate(0%, 0%) scale(1)' },
+          '100%': { opacity: 0, transform: 'translate(0%, -2%) scale(.96)' },
         },
         dropdownFadeIn: {
           '0%': { transform: 'scale(0.95)', opacity: 0 },
@@ -129,9 +129,9 @@ const windmillConfig = {
         'fade-out': 'fadeOut 300ms',
 
         'overlay-show':
-          'overlayContentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
+          'overlayContentShow 300ms cubic-bezier(0.16, 1, 0.3, 1)',
         'overlay-hide':
-          'overlayContentHide 150ms cubic-bezier(0.16, 1, 0.3, 1)',
+          'overlayContentHide 300ms cubic-bezier(0.16, 1, 0.3, 1)',
 
         'fade-in-overlay-bg': 'fadeInOverlayBg 300ms',
         'fade-out-overlay-bg': 'fadeOutOverlayBg 300ms',
