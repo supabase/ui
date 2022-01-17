@@ -51,7 +51,7 @@ export * from './components/Form/index'
 
 // AUTH
 
-export * from './components/Auth/index'
+// export * from './components/Auth/index'
 
 // ICONS
 
