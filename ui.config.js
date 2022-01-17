@@ -33,10 +33,10 @@ const windmillConfig = {
       lightmode: '#f0f2f5',
       darkmode: theme('colors.gray.600', 'currentColor'),
     }),
-    ringColor: (theme) => ({
-      ...theme('colors'),
-      DEFAULT: theme('colors.brandColor', 'currentColor'),
-    }),
+    // ringColor: (theme) => ({
+    //   ...theme('colors'),
+    //   DEFAULT: theme('colors.scale', 'currentColor'),
+    // }),
     extend: {
       // dropdown extensions
       transformOrigin: {
@@ -161,12 +161,18 @@ const windmillConfig = {
         // tailwind class for this is `animate-dropdownFadeOut`
         dropdownFadeOut: 'dropdownFadeOut 0.1s ease-out',
       },
-      // animation: {
-      //   // tailwind class for this is `animate-dropdownFadeIn`
-      //   dropdownFadeIn: 'dropdownFadeIn 0.1s ease-out',
-      //   // tailwind class for this is `animate-dropdownFadeOut`
-      //   dropdownFadeOut: 'dropdownFadeOut 0.1s ease-out',
-      // },
+      colors: {
+        overlay: {
+          bg: 'var(--overlay-bg)',
+          'bg-accent': 'var(--overlay-bg-accent)',
+          border: 'var(--overlay-border)',
+        },
+        'overlay-secondary': {
+          bg: 'var(--overlay-secondary-bg)',
+          'bg-accent': 'var(--overlay-secondary-bg-accent)',
+          border: 'var(--overlay-secondary-border)',
+        },
+      },
     },
   },
   // variants: {

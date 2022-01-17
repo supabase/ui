@@ -464,18 +464,6 @@ module.exports = ui({
 
         ...custom_colors,
 
-        overlay: {
-          bg: 'var(--overlay-bg)',
-          'bg-accent': 'var(--overlay-bg-accent)',
-          border: 'var(--overlay-border)',
-        },
-
-        'overlay-secondary': {
-          bg: 'var(--overlay-secondary-bg)',
-          'bg-accent': 'var(--overlay-secondary-bg-accent)',
-          border: 'var(--overlay-secondary-border)',
-        },
-
         // gray: { ...custom_colors.slate },
       },
 

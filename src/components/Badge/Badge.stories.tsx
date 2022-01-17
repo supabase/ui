@@ -9,41 +9,31 @@ export default {
   component: Badge,
 }
 
-export const Default = (args: any) => (
-  <Badge {...args}>Hello world</Badge>
-)
+export const Default = (args: any) => <Badge {...args}>Hello world</Badge>
 
-export const withColor = (args: any) => (
-  <Badge {...args}>Hello world</Badge>
-)
+export const withColor = (args: any) => <Badge {...args}>Hello world</Badge>
 
-export const withDot = (args: any) => (
-  <Badge {...args}>Hello world</Badge>
-)
+export const withDot = (args: any) => <Badge {...args}>Hello world</Badge>
 
-export const large = (args: any) => (
-  <Badge {...args}>Hello world</Badge>
-)
+export const large = (args: any) => <Badge {...args}>Hello world</Badge>
 
-export const withDotLarge = (args: any) => (
-  <Badge {...args}>Hello world</Badge>
-)
+export const withDotLarge = (args: any) => <Badge {...args}>Hello world</Badge>
 
 Default.args = {}
 
 withColor.args = {
-  color: 'red'
+  color: 'red',
 }
 
 withDot.args = {
-  dot: true
+  dot: true,
 }
 
 large.args = {
-  size: 'large'
+  size: 'large',
 }
 
 withDotLarge.args = {
   size: 'large',
-  dot: true
+  dot: true,
 }

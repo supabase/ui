@@ -16,8 +16,8 @@ const defaults = {
     title: 'text-scale-700 dark:text-scaleDark-100',
   },
   border: {
-    brand: 'border-purple-600',
-    primary: 'dark:border-scaleDark-600',
+    brand: 'border-brand-600',
+    primary: 'border-scale-700',
     secondary: 'border-scale-300 dark:border-scaleDark-500',
     alternative: 'border-scale-600 dark:border-scaleDark-200',
   },
@@ -209,15 +209,36 @@ export default {
     },
     dot: '-ml-0.5 mr-1.5 h-2 w-2 rounded-full',
     color: {
-      brand: 'bg-green-500 dark:bg-opacity-10 text-green-500',
-      gray: 'bg-scale-500 dark:bg-opacity-10 text-scale-500',
-      red: 'bg-radix-red-500 dark:bg-opacity-10 text-radix-red-500',
-      yellow: 'bg-yellow-500 dark:bg-opacity-10 text-yellow-500',
-      green: 'bg-green-500 dark:bg-opacity-10 text-green-500',
-      blue: 'bg-blue-500 dark:bg-opacity-10 text-blue-500',
-      indigo: 'bg-indigo-500 dark:bg-opacity-10 text-indigo-500',
-      purple: 'bg-purple-500 dark:bg-opacity-10 text-purple-500',
-      pink: 'bg-pink-500 dark:bg-opacity-10 text-pink-500',
+      brand: 'bg-brand-200 border text-brand-1100 border-brand-700',
+      scale: 'bg-scale-200 border text-scale-1100 border-scale-700',
+      tomato: `bg-radix-tomato-200 text-radix-tomato-1100  border-radix-tomato-700`,
+      red: `bg-radix-red-200 text-radix-red-1100  border-radix-red-700`,
+      crimson: `bg-radix-crimson-200 text-radix-crimson-1100  border-radix-crimson-700`,
+      pink: `bg-radix-pink-200 text-radix-pink-1100  border-radix-pink-700`,
+      plum: `bg-radix-plum-200 text-radix-plum-1100  border-radix-plum-700`,
+      purple: `bg-radix-purple-200 text-radix-purple-1100  border-radix-purple-700`,
+      violet: `bg-radix-violet-200 text-radix-violet-1100  border-radix-violet-700`,
+      indigo: `bg-radix-indigo-200 text-radix-indigo-1100  border-radix-indigo-700`,
+      blue: `bg-radix-blue-200 text-radix-blue-1100  border-radix-blue-700`,
+      cyan: `bg-radix-cyan-200 text-radix-cyan-1100  border-radix-cyan-700`,
+      teal: `bg-radix-teal-200 text-radix-teal-1100  border-radix-teal-700`,
+      green: `bg-radix-green-200 text-radix-green-1100  border-radix-green-700`,
+      grass: `bg-radix-grass-200 text-radix-grass-1100  border-radix-grass-700`,
+      brown: `bg-radix-brown-200 text-radix-brown-1100  border-radix-brown-700`,
+      orange: `bg-radix-orange-200 text-radix-orange-1100  border-radix-orange-700`,
+      sky: `bg-radix-sky-200 text-radix-sky-1100  border-radix-sky-700`,
+      mint: `bg-radix-mint-200 text-radix-mint-1100  border-radix-mint-700`,
+      lime: `bg-radix-lime-200 text-radix-lime-1100  border-radix-lime-700`,
+      yellow: `bg-radix-yellow-200 text-radix-yellow-1100  border-radix-yellow-700`,
+      amber: `bg-radix-amber-200 text-radix-amber-1100  border-radix-amber-700`,
+      gold: `bg-radix-gold-200 text-radix-gold-1100  border-radix-gold-700`,
+      bronze: `bg-radix-bronze-200 text-radix-bronze-1100  border-radix-bronze-700`,
+      gray: `bg-radix-gray-200 text-radix-gray-1100 border-radix-gray-700`,
+      mauve: `bg-radix-mauve-200 text-radix-mauve-1100 border-radix-mauve-700`,
+      slate: `bg-radix-slate-200 text-radix-slate-1100 border-radix-slate-700`,
+      sage: `bg-radix-sage-200 text-radix-sage-1100 border-radix-sage-700`,
+      olive: `bg-radix-olive-200 text-radix-olive-1100 border-radix-olive-700`,
+      sand: `bg-radix-sand-200 text-radix-sand-1100 border-radix-sand-700`,
     },
   },
 
@@ -280,29 +301,23 @@ export default {
       base: ` 
         relative 
         cursor-pointer 
-
-        text-scale-400 
-        dark:text-scale-300
-        
+        text-scale-900 
         flex 
         items-center 
         space-x-2
-
         text-center 
-        transition ease-out duration-200
-
-        text-opacity-50 dark:text-opacity-50
-        hover:text-opacity-100
-        dark:hover:text-opacity-100
-
-        focus:outline-none focus:ring
+        transition
+        focus:outline-none 
+        focus-visible:ring 
+        focus-visible:ring-scale-700
+        focus-visible:border-scale-900
       `,
       inactive: `
+        hover:text-scale-1200
       `,
       active: `
-        text-opacity-100 dark:text-opacity-100
-        ${defaults.border.alternative}
-        border-b-2
+        text-scale-1200
+        border-b-2 border-scale-1200
       `,
     },
     pills: {
@@ -310,41 +325,27 @@ export default {
       base: ` 
         relative 
         cursor-pointer 
-
         flex 
         items-center 
         space-x-2
-
         text-center 
-        transition ease-out duration-200 
-        hover:bg-opacity-90
+        transition
         shadow-sm
         rounded
-
-        focus:outline-none focus:ring
-      `,
+        focus:outline-none 
+        focus-visible:ring 
+        focus-visible:ring-scale-700
+        focus-visible:border-scale-900
+        `,
       inactive: `
-        bg-scale-100 dark:bg-scaleDark-600
-
-        border
-        ${defaults.border.secondary} 
-        ${utils.border.hover}
-
-        text-scale-600 hover:text-scale-700 dark:text-scaleDark-300
+        bg-scale-200
+        border border-scale-700 hover:border-scale-900
+        text-scale-900 hover:text-scale-1200
       `,
       active: `
-        bg-white 
- 
-        hover:bg-scale-50
-
-        text-scale-500 
-        hover:text-scale-600 
-
-        border
-        ${defaults.border.secondary} 
-        ${utils.border.hover}
-
-        dark:border-scaleDark-600 
+        bg-scale-1200
+        text-scale-200
+        border-scale-1200 
       `,
     },
     block: 'w-full flex items-center justify-center',
