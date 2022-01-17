@@ -184,7 +184,7 @@ export default {
     chevron: {
       base: `
         text-scale-900
-        rotate-0 group-radix-state-open:rotate-180
+        rotate-0 group-state-open:rotate-180
         duration-200
       `,
       align: {
@@ -211,34 +211,34 @@ export default {
     color: {
       brand: 'bg-brand-200 border text-brand-1100 border-brand-700',
       scale: 'bg-scale-200 border text-scale-1100 border-scale-700',
-      tomato: `bg-radix-tomato-200 text-radix-tomato-1100  border-radix-tomato-700`,
-      red: `bg-radix-red-200 text-radix-red-1100  border-radix-red-700`,
-      crimson: `bg-radix-crimson-200 text-radix-crimson-1100  border-radix-crimson-700`,
-      pink: `bg-radix-pink-200 text-radix-pink-1100  border-radix-pink-700`,
-      plum: `bg-radix-plum-200 text-radix-plum-1100  border-radix-plum-700`,
-      purple: `bg-radix-purple-200 text-radix-purple-1100  border-radix-purple-700`,
-      violet: `bg-radix-violet-200 text-radix-violet-1100  border-radix-violet-700`,
-      indigo: `bg-radix-indigo-200 text-radix-indigo-1100  border-radix-indigo-700`,
-      blue: `bg-radix-blue-200 text-radix-blue-1100  border-radix-blue-700`,
-      cyan: `bg-radix-cyan-200 text-radix-cyan-1100  border-radix-cyan-700`,
-      teal: `bg-radix-teal-200 text-radix-teal-1100  border-radix-teal-700`,
-      green: `bg-radix-green-200 text-radix-green-1100  border-radix-green-700`,
-      grass: `bg-radix-grass-200 text-radix-grass-1100  border-radix-grass-700`,
-      brown: `bg-radix-brown-200 text-radix-brown-1100  border-radix-brown-700`,
-      orange: `bg-radix-orange-200 text-radix-orange-1100  border-radix-orange-700`,
-      sky: `bg-radix-sky-200 text-radix-sky-1100  border-radix-sky-700`,
-      mint: `bg-radix-mint-200 text-radix-mint-1100  border-radix-mint-700`,
-      lime: `bg-radix-lime-200 text-radix-lime-1100  border-radix-lime-700`,
-      yellow: `bg-radix-yellow-200 text-radix-yellow-1100  border-radix-yellow-700`,
-      amber: `bg-radix-amber-200 text-radix-amber-1100  border-radix-amber-700`,
-      gold: `bg-radix-gold-200 text-radix-gold-1100  border-radix-gold-700`,
-      bronze: `bg-radix-bronze-200 text-radix-bronze-1100  border-radix-bronze-700`,
-      gray: `bg-radix-gray-200 text-radix-gray-1100 border-radix-gray-700`,
-      mauve: `bg-radix-mauve-200 text-radix-mauve-1100 border-radix-mauve-700`,
-      slate: `bg-radix-slate-200 text-radix-slate-1100 border-radix-slate-700`,
-      sage: `bg-radix-sage-200 text-radix-sage-1100 border-radix-sage-700`,
-      olive: `bg-radix-olive-200 text-radix-olive-1100 border-radix-olive-700`,
-      sand: `bg-radix-sand-200 text-radix-sand-1100 border-radix-sand-700`,
+      tomato: `bg-tomato-200 text-tomato-1100  border-tomato-700`,
+      red: `bg-red-200 text-red-1100  border-red-700`,
+      crimson: `bg-crimson-200 text-crimson-1100  border-crimson-700`,
+      pink: `bg-pink-200 text-pink-1100  border-pink-700`,
+      plum: `bg-plum-200 text-plum-1100  border-plum-700`,
+      purple: `bg-purple-200 text-purple-1100  border-purple-700`,
+      violet: `bg-violet-200 text-violet-1100  border-violet-700`,
+      indigo: `bg-indigo-200 text-indigo-1100  border-indigo-700`,
+      blue: `bg-blue-200 text-blue-1100  border-blue-700`,
+      cyan: `bg-cyan-200 text-cyan-1100  border-cyan-700`,
+      teal: `bg-teal-200 text-teal-1100  border-teal-700`,
+      green: `bg-green-200 text-green-1100  border-green-700`,
+      grass: `bg-grass-200 text-grass-1100  border-grass-700`,
+      brown: `bg-brown-200 text-brown-1100  border-brown-700`,
+      orange: `bg-orange-200 text-orange-1100  border-orange-700`,
+      sky: `bg-sky-200 text-sky-1100  border-sky-700`,
+      mint: `bg-mint-200 text-mint-1100  border-mint-700`,
+      lime: `bg-lime-200 text-lime-1100  border-lime-700`,
+      yellow: `bg-yellow-200 text-yellow-1100  border-yellow-700`,
+      amber: `bg-amber-200 text-amber-1100  border-amber-700`,
+      gold: `bg-gold-200 text-gold-1100  border-gold-700`,
+      bronze: `bg-bronze-200 text-bronze-1100  border-bronze-700`,
+      gray: `bg-gray-200 text-gray-1100 border-gray-700`,
+      mauve: `bg-mauve-200 text-mauve-1100 border-mauve-700`,
+      slate: `bg-slate-200 text-slate-1100 border-slate-700`,
+      sage: `bg-sage-200 text-sage-1100 border-sage-700`,
+      olive: `bg-olive-200 text-olive-1100 border-olive-700`,
+      sand: `bg-sand-200 text-sand-1100 border-sand-700`,
     },
   },
 
@@ -251,7 +251,7 @@ export default {
     base: 'relative rounded py-4 px-6 flex space-x-4 border border-solid border-opacity-20',
     type: {
       danger:
-        'bg-radix-red-500 bg-opacity-10 dark:bg-opacity-5 text-radix-red-600 border-radix-red-500',
+        'bg-red-500 bg-opacity-10 dark:bg-opacity-5 text-red-600 border-red-500',
       warning:
         'bg-yellow-600 bg-opacity-10 dark:bg-opacity-5 text-yellow-600 border-yellow-600',
       info: 'bg-blue-600 bg-opacity-10 dark:bg-opacity-5 text-blue-600 border-blue-600',
@@ -259,7 +259,7 @@ export default {
         'bg-green-600 bg-opacity-10 dark:bg-opacity-5 text-green-600 border-green-600',
     },
     description: {
-      danger: 'text-sm text-radix-red-600 text-opacity-80',
+      danger: 'text-sm text-red-600 text-opacity-80',
       warning: 'text-sm text-yellow-600 text-opacity-80',
       info: 'text-sm text-blue-600 text-opacity-80',
       success: 'text-sm text-green-600 text-opacity-80',
@@ -396,10 +396,10 @@ export default {
         focus-visible:ring-scale-600
       `,
       alternative: `
-        bg-brandScale-200 hover:bg-brandScale-400
-        border border-brandScale-600 hover:border-brandScale-800 focus-visible:border-brandScale-800
+        bg-brand-200 hover:bg-brand-400
+        border border-brand-600 hover:border-brand-800 focus-visible:border-brand-800
         border-opacity-20
-        text-brandScale-1100
+        text-brand-1100
         focus-visible:ring-scale-600
       `,
       outline: `
@@ -417,10 +417,10 @@ export default {
         focus-visible:ring-scale-600
       `,
       link: `
-        text-brandScale-1100
+        text-brand-1100
         border
         border-transparent
-        hover:bg-brandScale-400
+        hover:bg-brand-400
         border-opacity-0
         bg-opacity-0 dark:bg-opacity-0
         shadow-none
@@ -433,16 +433,16 @@ export default {
         focus-visible:ring-scale-600
       `,
       danger: `
-        text-radix-red-1100
-        bg-radix-red-200 hover:bg-radix-red-400
-        border border-radix-red-700 hover:border-radix-red-900 focus-visible:border-radix-red-900
-        focus-visible:ring-radix-red-700
+        text-red-1100
+        bg-red-200 hover:bg-red-400
+        border border-red-700 hover:border-red-900 focus-visible:border-red-900
+        focus-visible:ring-red-700
       `,
       warning: `
-        text-radix-amber-1100
-        bg-radix-amber-200 hover:bg-radix-amber-400
-        border border-radix-amber-700 hover:border-radix-amber-900 focus-visible:border-radix-amber-900
-        focus-visible:ring-radix-amber-400
+        text-amber-1100
+        bg-amber-200 hover:bg-amber-400
+        border border-amber-700 hover:border-amber-900 focus-visible:border-amber-900
+        focus-visible:ring-amber-400
       `,
     },
     block: 'w-full flex items-center justify-center',
@@ -483,10 +483,10 @@ export default {
         border border-scale-700
         `,
       error: `
-        bg-radix-red-100
-        border border-radix-red-700 
-        focus:ring-radix-red-500
-        placeholder:text-radix-red-600
+        bg-red-100
+        border border-red-700 
+        focus:ring-red-500
+        placeholder:text-red-600
        `,
     },
     container: 'relative',
@@ -530,10 +530,10 @@ export default {
         border border-scale-700
         `,
       error: `
-        bg-radix-red-100
-        border border-radix-red-700 
-        focus:ring-radix-red-500
-        placeholder:text-radix-red-600
+        bg-red-100
+        border border-red-700 
+        focus:ring-red-500
+        placeholder:text-red-600
        `,
     },
     container: 'relative',
@@ -577,10 +577,10 @@ export default {
         border border-scale-700
       `,
       error: `
-        bg-radix-red-100
-        border border-radix-red-700 
-        focus:ring-radix-red-500
-        placeholder:text-radix-red-600
+        bg-red-100
+        border border-red-700 
+        focus:ring-red-500
+        placeholder:text-red-600
        `,
     },
     container: 'relative',
@@ -1034,7 +1034,7 @@ export default {
     },
     error: {
       base: `
-        text-radix-red-900 
+        text-red-900 
         transition-all
         data-show:mt-2
         data-show:animate-slide-down-normal
@@ -1245,6 +1245,19 @@ export default {
       place-items-center
       overflow-y-auto
       data-open:animate-overlay-show data-closed:animate-overlay-hide  
+    `,
+  },
+  listbox: {
+    base: `
+      block w-full bg-white pl-3 pr-10 py-2 text-sm rounded-md transition-all
+      text-gray-700 border border-solid border-gray-300
+      cursor-default focus:outline-none focus:ring-1 focus:ring-brand-600 focus:border-brand-600
+      dark:bg-transparent dark:text-white dark:border-gray-500
+      dark:focus:border-brand-500
+      appearance-none
+
+      indent-px
+      transition-all
     `,
   },
 }

@@ -100,8 +100,8 @@ export const withUseState = () => {
               console.log('touched in form', touched)
               return (
                 <div className="space-y-4 mb-4">
-                  <div className="px-5 py-3 bg-radix-amber-100 border-t border-b border-radix-amber-300">
-                    <span className="flex gap-3 items-center text-xs text-radix-amber-900">
+                  <div className="px-5 py-3 bg-amber-100 border-t border-b border-amber-300">
+                    <span className="flex gap-3 items-center text-xs text-amber-900">
                       <IconAlertCircle strokeWidth={2} />
                       <span>
                         Once deleted, this project cannot be restored. Please

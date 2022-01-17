@@ -260,28 +260,28 @@ function generateRadixVariables() {
     'brand',
     'brand-fixed',
     'scale',
-    'radix-tomato',
-    'radix-red',
-    'radix-crimson',
-    'radix-pink',
-    'radix-plum',
-    'radix-purple',
-    'radix-violet',
-    'radix-indigo',
-    'radix-blue',
-    'radix-cyan',
-    'radix-teal',
-    'radix-green',
-    'radix-grass',
-    'radix-brown',
-    'radix-orange',
-    'radix-sky',
-    'radix-mint',
-    'radix-lime',
-    'radix-yellow',
-    'radix-amber',
-    'radix-gold',
-    'radix-bronze',
+    'tomato',
+    'red',
+    'crimson',
+    'pink',
+    'plum',
+    'purple',
+    'violet',
+    'indigo',
+    'blue',
+    'cyan',
+    'teal',
+    'green',
+    'grass',
+    'brown',
+    'orange',
+    'sky',
+    'mint',
+    'lime',
+    'yellow',
+    'amber',
+    'gold',
+    'bronze',
   ]
 
   let mappedColors = {}
@@ -293,7 +293,7 @@ function generateRadixVariables() {
   colors.map((x) => {
     for (let index = 0; index < 12; index++) {
       const step = index + 1
-      mappedColors[x][step * 100] = `var(--${x}-${step})`
+      mappedColors[x][step * 100] = `var(--colors-${x}${step})`
     }
   })
 
@@ -302,7 +302,7 @@ function generateRadixVariables() {
 
 const custom_colors = generateRadixVariables()
 
-// console.log('radix colors', custom_colors)
+console.log('radix colors', custom_colors)
 
 const ui = require('./ui.config.js')
 

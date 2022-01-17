@@ -1,3 +1,4 @@
+@import url('colors.css'); /* Using a url */
 /* ./styles/globals.css */
 @tailwind base;
 @tailwind components;
@@ -5,223 +6,162 @@
 
 :root {
   /* brand scale */
-  --brand-1: hsla(153, 80%, 99%, 1);
-  --brand-2: hsla(148, 88%, 97%, 1);
-  --brand-3: hsla(148, 76%, 95%, 1);
-  --brand-4: hsla(148, 68%, 92%, 1);
-  --brand-5: hsla(148, 59%, 88%, 1);
-  --brand-6: hsla(149, 43%, 82%, 1);
-  --brand-7: hsla(149, 43%, 69%, 1);
-  --brand-8: hsla(154, 55%, 45%, 1);
-  --brand-9: hsla(153, 60%, 53%, 1);
-  --brand-10: hsla(153, 50%, 50%, 1);
-  --brand-11: hsla(153, 50%, 34%, 1);
-  --brand-12: hsla(153, 40%, 12%, 1);
+  --colors-brand1: hsla(153, 80%, 99%, 1);
+  --colors-brand2: hsla(148, 88%, 97%, 1);
+  --colors-brand3: hsla(148, 76%, 95%, 1);
+  --colors-brand4: hsla(148, 68%, 92%, 1);
+  --colors-brand5: hsla(148, 59%, 88%, 1);
+  --colors-brand6: hsla(149, 43%, 82%, 1);
+  --colors-brand7: hsla(149, 43%, 69%, 1);
+  --colors-brand8: hsla(154, 55%, 45%, 1);
+  --colors-brand9: hsla(153, 60%, 53%, 1);
+  --colors-brand10: hsla(153, 50%, 50%, 1);
+  --colors-brand11: hsla(153, 50%, 34%, 1);
+  --colors-brand12: hsla(153, 40%, 12%, 1);
 
-  --brand-hiContrast: var(--brand-9);
-  --brand-loContrast: var(--brand-4);
+  --colors-brand-hiContrast: var(--colors-brand-9);
+  --colors-brand-loContrast: var(--colors-brand-4);
 
   /* brand scale fixed */
-  --brand-fixed-1: hsla(153, 80%, 99%, 1);
-  --brand-fixed-2: hsla(148, 88%, 97%, 1);
-  --brand-fixed-3: hsla(148, 76%, 95%, 1);
-  --brand-fixed-4: hsla(148, 68%, 92%, 1);
-  --brand-fixed-5: hsla(148, 59%, 88%, 1);
-  --brand-fixed-6: hsla(149, 43%, 82%, 1);
-  --brand-fixed-7: hsla(149, 43%, 69%, 1);
-  --brand-fixed-8: hsla(154, 55%, 45%, 1);
-  --brand-fixed-9: hsla(153, 60%, 53%, 1);
-  --brand-fixed-10: hsla(153, 50%, 50%, 1);
-  --brand-fixed-11: hsla(153, 50%, 34%, 1);
-  --brand-fixed-12: hsla(153, 40%, 12%, 1);
+  --colors-brand-fixed1: var(--colors-brand1);
+  --colors-brand-fixed2: var(--colors-brand2);
+  --colors-brand-fixed3: var(--colors-brand3);
+  --colors-brand-fixed4: var(--colors-brand4);
+  --colors-brand-fixed5: var(--colors-brand5);
+  --colors-brand-fixed6: var(--colors-brand6);
+  --colors-brand-fixed7: var(--colors-brand7);
+  --colors-brand-fixed8: var(--colors-brand8);
+  --colors-brand-fixed9: var(--colors-brand9);
+  --colors-brand-fixed10: var(--colors-brand10);
+  --colors-brand-fixed11: var(--colors-brand11);
+  --colors-brand-fixed12: var(--colors-brand12);
 
   /* border scale */
-  --scale-1: hsla(210, 33%, 99%, 1);
-  --scale-2: hsla(210, 17%, 98%, 1);
-  --scale-3: hsla(210, 17%, 95%, 1);
-  --scale-4: hsla(210, 12%, 93%, 1);
-  --scale-5: hsla(216, 11%, 91%, 1);
-  --scale-6: hsla(206, 12%, 89%, 1);
-  --scale-7: hsla(210, 11%, 86%, 1);
-  --scale-8: hsla(205, 11%, 78%, 1);
-  --scale-9: hsla(206, 6%, 56%, 1);
-  --scale-10: hsla(206, 6%, 52%, 1);
-  --scale-11: hsla(206, 6%, 44%, 1);
-  --scale-12: hsla(202, 24%, 9%, 1);
+  --colors-scale1: var(--colors-gray1);
+  --colors-scale2: var(--colors-gray2);
+  --colors-scale3: var(--colors-gray3);
+  --colors-scale4: var(--colors-gray4);
+  --colors-scale5: var(--colors-gray5);
+  --colors-scale6: var(--colors-gray6);
+  --colors-scale7: var(--colors-gray7);
+  --colors-scale8: var(--colors-gray8);
+  --colors-scale9: var(--colors-gray9);
+  --colors-scale10: var(--colors-gray10);
+  --colors-scale11: var(--colors-gray11);
+  --colors-scale12: var(--colors-gray12);
 
-  --overlay-bg: var(--scale-1);
-  --overlay-bg-accent: var(--scale-2);
-  --overlay-border: var(--scale-4);
+  --colors-overlay-bg: var(--colors-scale1);
+  --colors-overlay-bg-accent: var(--colors-scale2);
+  --colors-overlay-border: var(--colors-scale4);
 
-  --overlay-secondary-bg: var(--scale-1);
-  --overlay-secondary-bg-accent: var(--scale-2);
-  --overlay-secondary-border: var(--scale-3);
+  --colors-overlay-secondary-bg: var(--colors-scale1);
+  --colors-overlay-secondary-bg-accent: var(--colors-scale2);
+  --colors-overlay-secondary-border: var(--colors-scale3);
 
   /* border scale fixed*/
-  --scale-fixed-1: hsla(210, 33%, 99%, 1);
-  --scale-fixed-2: hsla(210, 17%, 98%, 1);
-  --scale-fixed-3: hsla(210, 17%, 95%, 1);
-  --scale-fixed-4: hsla(210, 12%, 93%, 1);
-  --scale-fixed-5: hsla(216, 11%, 91%, 1);
-  --scale-fixed-6: hsla(206, 12%, 89%, 1);
-  --scale-fixed-7: hsla(210, 11%, 86%, 1);
-  --scale-fixed-8: hsla(205, 11%, 78%, 1);
-  --scale-fixed-9: hsla(206, 6%, 56%, 1);
-  --scale-fixed-10: hsla(206, 6%, 52%, 1);
-  --scale-fixed-11: hsla(206, 6%, 44%, 1);
-  --scale-fixed-12: hsla(202, 24%, 9%, 1);
+  --colors-scale-fixed1: var(--colors-scale1);
+  --colors-scale-fixed2: var(--colors-scale2);
+  --colors-scale-fixed3: var(--colors-scale3);
+  --colors-scale-fixed4: var(--colors-scale4);
+  --colors-scale-fixed5: var(--colors-scale5);
+  --colors-scale-fixed6: var(--colors-scale6);
+  --colors-scale-fixed7: var(--colors-scale7);
+  --colors-scale-fixed8: var(--colors-scale8);
+  --colors-scale-fixed9: var(--colors-scale9);
+  --colors-scale-fixed10: var(--colors-scale10);
+  --colors-scale-fixed11: var(--colors-scale11);
+  --colors-scale-fixed12: var(--colors-scale12);
   /* background scale */
-  --background-1: hsla(210, 33%, 99%, 1);
-  --background-2: hsla(210, 17%, 98%, 1);
-  --background-3: hsla(210, 17%, 95%, 1);
-  --background-4: hsla(210, 12%, 93%, 1);
-  --background-5: hsla(216, 11%, 91%, 1);
-  --background-6: hsla(206, 12%, 89%, 1);
-  --background-7: hsla(210, 11%, 86%, 1);
-  --background-8: hsla(205, 11%, 78%, 1);
-  --background-9: hsla(206, 6%, 56%, 1);
-  --background-10: hsla(206, 6%, 52%, 1);
-  --background-11: hsla(206, 6%, 44%, 1);
-  --background-12: hsla(202, 24%, 9%, 1);
+  --colors-background1: hsla(210, 33%, 99%, 1);
+  --colors-background2: hsla(210, 17%, 98%, 1);
+  --colors-background3: hsla(210, 17%, 95%, 1);
+  --colors-background4: hsla(210, 12%, 93%, 1);
+  --colors-background5: hsla(216, 11%, 91%, 1);
+  --colors-background6: hsla(206, 12%, 89%, 1);
+  --colors-background7: hsla(210, 11%, 86%, 1);
+  --colors-background8: hsla(205, 11%, 78%, 1);
+  --colors-background9: hsla(206, 6%, 56%, 1);
+  --colors-background10: hsla(206, 6%, 52%, 1);
+  --colors-background11: hsla(206, 6%, 44%, 1);
+  --colors-background12: hsla(202, 24%, 9%, 1);
 
   /* radix colors */
 
-  /* amber */
-  --radix-amber-1: hsl(39, 70%, 99%);
-  --radix-amber-2: hsl(40, 100%, 96.5%);
-  --radix-amber-3: hsl(44, 100%, 91.7%);
-  --radix-amber-4: hsl(43, 100%, 86.8%);
-  --radix-amber-5: hsl(42, 100%, 81.8%);
-  --radix-amber-6: hsl(38, 99.7%, 76.3%);
-  --radix-amber-7: hsl(36, 86.1%, 67.1%);
-  --radix-amber-8: hsl(35, 85.2%, 55.1%);
-  --radix-amber-9: hsl(39, 100%, 57%);
-  --radix-amber-10: hsl(35, 100%, 55.5%);
-  --radix-amber-11: hsl(30, 100%, 34%);
-  --radix-amber-12: hsl(20, 80%, 17%);
-
-  /* red */
-  --radix-red-1: hsl(359, 100%, 99.4%);
-  --radix-red-2: hsl(359, 100%, 98.6%);
-  --radix-red-3: hsl(360, 100%, 96.8%);
-  --radix-red-4: hsl(360, 97.9%, 94.8%);
-  --radix-red-5: hsl(360, 90.2%, 91.9%);
-  --radix-red-6: hsl(360, 81.7%, 87.8%);
-  --radix-red-7: hsl(359, 74.2%, 81.7%);
-  --radix-red-8: hsl(359, 69.5%, 74.3%);
-  --radix-red-9: hsl(358, 75%, 59%);
-  --radix-red-10: hsl(358, 69.4%, 55.2%);
-  --radix-red-11: hsl(358, 65%, 48.7%);
-  --radix-red-12: hsl(354, 50%, 14.6%);
-  /* yellow */
-  --radix-yellow-1: hsl(60, 54%, 98.5%);
-  --radix-yellow-2: hsl(52, 100%, 95.5%);
-  --radix-yellow-3: hsl(55, 100%, 90.9%);
-  --radix-yellow-4: hsl(54, 100%, 86.6%);
-  --radix-yellow-5: hsl(52, 97.9%, 82%);
-  --radix-yellow-6: hsl(50, 89.4%, 76.1%);
-  --radix-yellow-7: hsl(47, 80.4%, 68%);
-  --radix-yellow-8: hsl(48, 100%, 46.1%);
-  --radix-yellow-9: hsl(53, 92%, 50%);
-  --radix-yellow-10: hsl(50, 100%, 48.5%);
-  --radix-yellow-11: hsl(42, 100%, 29%);
-  --radix-yellow-12: hsl(40, 55%, 13.5%);
-
-  --radix-collapsible-content-height: 1px;
+  --colors-radix-collapsible-content-height: 1px;
 }
 
 .dark {
   /* brand scale */
-  --brand-1: hsla(153, 75%, 6%, 1);
-  --brand-2: hsla(153, 73%, 7%, 1);
-  --brand-3: hsla(154, 69%, 9%, 1);
-  --brand-4: hsla(154, 67%, 11%, 1);
-  --brand-5: hsla(154, 66%, 13%, 1);
-  --brand-6: hsla(154, 64%, 17%, 1);
-  --brand-7: hsla(154, 62%, 22%, 1);
-  --brand-8: hsla(153, 60%, 28%, 1);
-  --brand-9: hsla(153, 60%, 53%, 1);
-  --brand-10: hsla(153, 60%, 70%, 1);
-  --brand-11: hsla(153, 60%, 50%, 1);
-  --brand-12: hsla(153, 60%, 95%, 1);
+  --colors-brand1: hsla(153, 75%, 6%, 1);
+  --colors-brand2: hsla(153, 73%, 7%, 1);
+  --colors-brand3: hsla(154, 69%, 9%, 1);
+  --colors-brand4: hsla(154, 67%, 11%, 1);
+  --colors-brand5: hsla(154, 66%, 13%, 1);
+  --colors-brand6: hsla(154, 64%, 17%, 1);
+  --colors-brand7: hsla(154, 62%, 22%, 1);
+  --colors-brand8: hsla(153, 60%, 28%, 1);
+  --colors-brand9: hsla(153, 60%, 53%, 1);
+  --colors-brand10: hsla(153, 60%, 70%, 1);
+  --colors-brand11: hsla(153, 60%, 50%, 1);
+  --colors-brand12: hsla(153, 60%, 95%, 1);
   /* border scale */
-  --scale-1: hsla(200, 7%, 9%, 1);
-  --scale-2: hsla(195, 7%, 11%, 1);
-  --scale-3: hsla(192, 7%, 14%, 1);
-  --scale-4: hsla(204, 6%, 16%, 1);
-  --scale-5: hsla(200, 7%, 18%, 1);
-  --scale-6: hsla(206, 7%, 21%, 1);
-  --scale-7: hsla(203, 6%, 24%, 1);
-  --scale-8: hsla(207, 6%, 32%, 1);
-  --scale-9: hsla(206, 6%, 44%, 1);
-  --scale-10: hsla(208, 5%, 50%, 1);
-  --scale-11: hsla(207, 6%, 63%, 1);
-  --scale-12: hsla(210, 6%, 93%, 1);
+  /* --scale1: hsla(200, 7%, 9%, 1);
+  --colors-scale2: hsla(195, 7%, 11%, 1);
+  --colors-scale3: hsla(192, 7%, 14%, 1);
+  --colors-scale4: hsla(204, 6%, 16%, 1);
+  --colors-scale5: hsla(200, 7%, 18%, 1);
+  --colors-scale6: hsla(206, 7%, 21%, 1);
+  --colors-scale7: hsla(203, 6%, 24%, 1);
+  --colors-scale8: hsla(207, 6%, 32%, 1);
+  --colors-scale9: hsla(206, 6%, 44%, 1);
+  --colors-scale10: hsla(208, 5%, 50%, 1);
+  --colors-scale11: hsla(207, 6%, 63%, 1);
+  --colors-scale12: hsla(210, 6%, 93%, 1); */
 
-  --overlay-bg: var(--scale-2);
-  --overlay-bg-accent: var(--scale-3);
-  --overlay-border: var(--scale-4);
+  /* 
+-gray
+-gray
+  slate
+  sage
+  olive
+  sand 
+  */
+  --colors-scale1: var(--colors-gray1);
+  --colors-scale2: var(--colors-gray2);
+  --colors-scale3: var(--colors-gray3);
+  --colors-scale4: var(--colors-gray4);
+  --colors-scale5: var(--colors-gray5);
+  --colors-scale6: var(--colors-gray6);
+  --colors-scale7: var(--colors-gray7);
+  --colors-scale8: var(--colors-gray8);
+  --colors-scale9: var(--colors-gray9);
+  --colors-scale10: var(--colors-gray10);
+  --colors-scale11: var(--colors-gray11);
+  --colors-scale12: var(--colors-gray12);
 
-  --overlay-secondary-bg: var(--scale-3);
-  --overlay-secondary-bg-accent: var(--scale-4);
-  --overlay-secondary-border: var(--scale-5);
+  --colors-overlay-bg: var(--colors-scale2);
+  --colors-overlay-bg-accent: var(--colors-scale3);
+  --colors-overlay-border: var(--colors-scale4);
+
+  --colors-overlay-secondary-bg: var(--colors-scale3);
+  --colors-overlay-secondary-bg-accent: var(--colors-scale4);
+  --colors-overlay-secondary-border: var(--colors-scale5);
 
   /* background scale */
-  --background-1: hsla(200, 7%, 9%, 1);
-  --background-2: hsla(195, 7%, 11%, 1);
-  --background-3: hsla(192, 7%, 14%, 1);
-  --background-4: hsla(204, 6%, 16%, 1);
-  --background-5: hsla(200, 7%, 18%, 1);
-  --background-6: hsla(206, 7%, 21%, 1);
-  --background-7: hsla(203, 6%, 24%, 1);
-  --background-8: hsla(207, 6%, 32%, 1);
-  --background-9: hsla(206, 6%, 44%, 1);
-  --background-10: hsla(208, 5%, 50%, 1);
-  --background-11: hsla(207, 6%, 63%, 1);
-  --background-12: hsla(210, 6%, 93%, 1);
+  --colors-background1: hsla(200, 7%, 9%, 1);
+  --colors-background2: hsla(195, 7%, 11%, 1);
+  --colors-background3: hsla(192, 7%, 14%, 1);
+  --colors-background4: hsla(204, 6%, 16%, 1);
+  --colors-background5: hsla(200, 7%, 18%, 1);
+  --colors-background6: hsla(206, 7%, 21%, 1);
+  --colors-background7: hsla(203, 6%, 24%, 1);
+  --colors-background8: hsla(207, 6%, 32%, 1);
+  --colors-background9: hsla(206, 6%, 44%, 1);
+  --colors-background10: hsla(208, 5%, 50%, 1);
+  --colors-background11: hsla(207, 6%, 63%, 1);
+  --colors-background12: hsla(210, 6%, 93%, 1);
 
   /* radix colors */
-
-  /* amber */
-  --radix-amber-1: hsl(36, 100%, 6.1%);
-  --radix-amber-2: hsl(35, 100%, 7.6%);
-  --radix-amber-3: hsl(32, 100%, 10.2%);
-  --radix-amber-4: hsl(32, 100%, 12.4%);
-  --radix-amber-5: hsl(33, 100%, 14.6%);
-  --radix-amber-6: hsl(35, 100%, 17.1%);
-  --radix-amber-7: hsl(35, 91%, 21.6%);
-  --radix-amber-8: hsl(36, 100%, 25.5%);
-  --radix-amber-9: hsl(39, 100%, 57%);
-  --radix-amber-10: hsl(43, 100%, 64%);
-  --radix-amber-11: hsl(39, 90%, 49.8%);
-  --radix-amber-12: hsl(39, 97%, 93.2%);
-
-  /* red */
-  --radix-red-1: hsl(353, 23%, 9.8%);
-  --radix-red-2: hsl(357, 34.4%, 12%);
-  --radix-red-3: hsl(356, 43.4%, 16.4%);
-  --radix-red-4: hsl(356, 47.6%, 19.2%);
-  --radix-red-5: hsl(356, 51.1%, 21.9%);
-  --radix-red-6: hsl(356, 55.2%, 25.9%);
-  --radix-red-7: hsl(357, 60.2%, 31.8%);
-  --radix-red-8: hsl(358, 65%, 40.4%);
-  --radix-red-9: hsl(358, 75%, 59%);
-  --radix-red-10: hsl(358, 85.3%, 64%);
-  --radix-red-11: hsl(358, 100%, 69.5%);
-  --radix-red-12: hsl(351, 89%, 96%);
-  /* yellow */
-  --radix-yellow-1: hsl(45, 100%, 5.5%);
-  --radix-yellow-2: hsl(46, 100%, 6.7%);
-  --radix-yellow-3: hsl(45, 100%, 8.7%);
-  --radix-yellow-4: hsl(45, 100%, 10.4%);
-  --radix-yellow-5: hsl(47, 100%, 12.1%);
-  --radix-yellow-6: hsl(49, 100%, 14.3%);
-  --radix-yellow-7: hsl(49, 90.3%, 18.4%);
-  --radix-yellow-8: hsl(50, 100%, 22%);
-  --radix-yellow-9: hsl(53, 92%, 50%);
-  --radix-yellow-10: hsl(54, 100%, 68%);
-  --radix-yellow-11: hsl(48, 100%, 47%);
-  --radix-yellow-12: hsl(53, 100%, 91%);
 }
 
 .dark,

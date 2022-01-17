@@ -163,14 +163,14 @@ const windmillConfig = {
       },
       colors: {
         overlay: {
-          bg: 'var(--overlay-bg)',
-          'bg-accent': 'var(--overlay-bg-accent)',
-          border: 'var(--overlay-border)',
+          bg: 'var(--colors-overlay-bg)',
+          'bg-accent': 'var(--colors-overlay-bg-accent)',
+          border: 'var(--colors-overlay-border)',
         },
         'overlay-secondary': {
-          bg: 'var(--overlay-secondary-bg)',
-          'bg-accent': 'var(--overlay-secondary-bg-accent)',
-          border: 'var(--overlay-secondary-border)',
+          bg: 'var(--colors-overlay-secondary-bg)',
+          'bg-accent': 'var(--colors-overlay-secondary-bg-accent)',
+          border: 'var(--colors-overlay-secondary-border)',
         },
       },
     },
