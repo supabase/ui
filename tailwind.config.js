@@ -282,6 +282,12 @@ function generateRadixVariables() {
     'amber',
     'gold',
     'bronze',
+    'gray',
+    'mauve',
+    'slate',
+    'sage',
+    'olive',
+    'sand',
   ]
 
   let mappedColors = {}
@@ -302,7 +308,7 @@ function generateRadixVariables() {
 
 const custom_colors = generateRadixVariables()
 
-console.log('radix colors', custom_colors)
+// console.log('radix colors', custom_colors)
 
 const ui = require('./ui.config.js')
 
@@ -320,8 +326,8 @@ module.exports = ui({
   darkMode: 'class',
   theme: {
     // colors: {
-    //   red: { ...radix.red },
-    //   gray: { ...radix.slate },
+    //   gray: { ...custom_colors.gray },
+    //   slate: { ...custom_colors.slate },
     // },
     extend: {
       typography: {
@@ -424,10 +430,10 @@ module.exports = ui({
         black: '#000',
         white: '#fff',
 
-        gray: { ...gray },
+        // gray: { ...gray },
         // brand: { ...brand },
-        blueGray: { ...blueGray },
-        coolGray: { ...coolGray },
+        // blueGray: { ...blueGray },
+        // coolGray: { ...coolGray },
 
         dark: {
           100: '#eeeeee',
@@ -459,12 +465,7 @@ module.exports = ui({
         //   900: '#2c9c6a',
         // },
 
-        'hi-contrast': 'var("--scale-fixed-12")',
-        'lo-contrast': 'var("--scale-fixed-1")',
-
         ...custom_colors,
-
-        // gray: { ...custom_colors.slate },
       },
 
       // transitionProperty: {

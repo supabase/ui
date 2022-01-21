@@ -171,7 +171,10 @@ const windmillConfig = {
           bg: 'var(--colors-overlay-secondary-bg)',
           'bg-accent': 'var(--colors-overlay-secondary-bg-accent)',
           border: 'var(--colors-overlay-secondary-border)',
+          'border-accent': 'var(--colors-overlay-secondary-border-accent)',
         },
+        'hi-contrast': 'var(--colors-scale-fixed12)',
+        'lo-contrast': 'var(--colors-scale-fixed1)',
       },
     },
   },
@@ -222,12 +225,18 @@ const windmillConfig = {
       // addVariant('hocus', ['&:hover', '&:focus'])
       // addVariant('supports-grid', '@supports (display: grid)')
       // addVariant('data-open', '&:["data-state=open"]')
+
+      addVariant('data-open-parent', '[data-state="open"] &')
+      addVariant('data-closed-parent', '[data-state="closed"] &')
+
       addVariant('data-open', '&[data-state="open"]')
       addVariant('data-closed', '&[data-state="closed"]')
       addVariant('data-show', '&[data-state="show"]')
       addVariant('data-hide', '&[data-state="hide"]')
       addVariant('data-checked', '&[data-state="checked"]')
       addVariant('data-unchecked', '&[data-state="unchecked"]')
+
+      addVariant('aria-expanded', '&[aria-expanded="true"]')
 
       // addVariant('parent-data-open', '[data-state="open"]&')
     }),
