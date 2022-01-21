@@ -12,7 +12,7 @@
     "build": "NODE_ENV=production rollup -c",
     "build-watch": "NODE_ENV=production rollup -c -w",
     "test": "react-scripts test",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -s ./src/static -p 6006",
     "build-storybook": "build-storybook",
     "build:icons": "node --experimental-modules internals/populate-icons.js",
     "typedoc:json": "typedoc --json spec/spec.json --mode modules --includeDeclarations --excludeExternals"
@@ -26,6 +26,7 @@
     "react-dom": "^17.0.1"
   },
   "dependencies": {
+    "@radix-ui/react-collapsible": "^0.1.5",
     "formik": "^2.2.9",
     "lodash": "^4.17.20",
     "prop-types": "^15.7.2",
