@@ -62,7 +62,7 @@ function Toggle({
     fieldLevelValidation,
   } = useFormContext()
 
-  // if (values && !value) value = values[id || name]
+  if (values && !checked) checked = values[id || name]
   if (handleBlur) onBlur = handleBlur
 
   if (!error) {

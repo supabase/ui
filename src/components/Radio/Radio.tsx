@@ -5,19 +5,9 @@ import { RadioContext } from './RadioContext'
 import { useFormContext } from '../Form/FormContext'
 
 import defaultTheme from '../../lib/theme/defaultTheme'
+import styleHandler from '../../lib/theme/styleHandler'
 
-interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
-  label: string
-  afterLabel?: string
-  beforeLabel?: string
-  description?: string
-  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
-  hidden?: boolean
-  align?: 'vertical' | 'horizontal'
-  optionalLabel?: 'string' | React.ReactNode
-  addOnBefore?: React.ReactNode
-}
+import randomIdGenerator from './../../utils/randomIdGenerator'
 
 interface GroupProps {
   allowedValues?: any
@@ -67,7 +57,7 @@ function RadioGroup({
 }: GroupProps) {
   const [activeId, setActiveId] = useState('')
 
-  const __styles = defaultTheme.radio
+  const __styles = styleHandler('radio')
 
   const {
     formContextOnChange,
@@ -96,10 +86,9 @@ function RadioGroup({
     setActiveId(value)
   }, [value])
 
-  const parentCallback = (e: React.ChangeEvent<HTMLInputElement>) => {
+  function parentCallback(e: React.ChangeEvent<HTMLInputElement>) {
     if (onChange) onChange(e)
     // update form
-    // console.log('event in group', e)
     if (formContextOnChange) {
       formContextOnChange(e)
     }
@@ -109,25 +98,24 @@ function RadioGroup({
   }
 
   return (
-    <RadioContext.Provider
-      value={{ parentCallback, type, name, activeId, parentSize: size }}
-    >
-      <fieldset name={name}>
-        <FormLayout
-          nonBoxInput={true}
-          label={label}
-          afterLabel={afterLabel}
-          beforeLabel={beforeLabel}
-          labelOptional={labelOptional}
-          layout={layout}
-          id={id}
-          error={error}
-          descriptionText={descriptionText}
-          className={className}
-          size={size}
-          labelLayout={labelsLayout}
-        >
-          <div className={groupClassName || __styles.variants[type].group}>
+    <fieldset name={name} className={className}>
+      <FormLayout
+        nonBoxInput={true}
+        label={label}
+        afterLabel={afterLabel}
+        beforeLabel={beforeLabel}
+        labelOptional={labelOptional}
+        layout={layout}
+        id={id}
+        error={error}
+        descriptionText={descriptionText}
+        size={size}
+        labelLayout={labelsLayout}
+      >
+        <div className={groupClassName || __styles.variants[type].group}>
+          <RadioContext.Provider
+            value={{ parentCallback, type, name, activeId, parentSize: size }}
+          >
             {options
               ? options.map((option: InputProps) => {
                   return (
@@ -142,15 +130,28 @@ function RadioGroup({
                   )
                 })
               : children}
-          </div>
-        </FormLayout>
-      </fieldset>
-    </RadioContext.Provider>
+          </RadioContext.Provider>
+        </div>
+      </FormLayout>
+    </fieldset>
   )
 }
 
+interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  label: string
+  afterLabel?: string
+  beforeLabel?: string
+  description?: string
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+  hidden?: boolean
+  align?: 'vertical' | 'horizontal'
+  optionalLabel?: 'string' | React.ReactNode
+  addOnBefore?: React.ReactNode
+}
+
 function Radio({
-  id,
+  id = randomIdGenerator(),
   disabled,
   value,
   label,
@@ -168,7 +169,7 @@ function Radio({
   optionalLabel,
   addOnBefore,
 }: InputProps) {
-  const __styles = defaultTheme.radio
+  const __styles = styleHandler('radio')
 
   const inputName = name
 
@@ -179,17 +180,12 @@ function Radio({
     <RadioContext.Consumer>
       {({ parentCallback, type, name, activeId, parentSize }) => {
         // if id does not exist, use label
-        // console.log('Consumer name', name)
+
         const markupId = id
-          ? id
-          : label
-              .toLowerCase()
-              .toLowerCase()
-              .replace(/^[^A-Z0-9]+/gi, '')
-              .replace(/ /g, '-')
 
         // if name does not exist on Radio then use Context Name from Radio.Group
-        const markupName = inputName ? inputName : name ? name : markupId
+        const markupName = name || inputName
+
         // console.log('markupName', markupName)
         // @ts-ignore
         size = parentSize || size
@@ -219,6 +215,8 @@ function Radio({
 
         if (active) {
           classes.push(__styles.variants[type].active)
+        } else {
+          classes.push(__styles.variants[type].inactive)
         }
 
         if (disabled) {
@@ -252,7 +250,10 @@ function Radio({
               checked={active}
               disabled={disabled}
               value={value ? value : markupId}
-              onChange={onInputChange}
+              onChange={(e) => {
+                console.log('radio input changed')
+                onInputChange(e)
+              }}
               onBlur={onBlur}
               onFocus={onFocus ? (event) => onFocus(event) : undefined}
             />

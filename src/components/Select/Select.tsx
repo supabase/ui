@@ -111,6 +111,7 @@ function Select({
   if (!error) classes.push(__styles.variants.standard)
   if (icon) classes.push(__styles.with_icon)
   if (size) classes.push(__styles.size[size])
+  if (disabled) inputClasses.push(__styles.disabled)
 
   return (
     <FormLayout

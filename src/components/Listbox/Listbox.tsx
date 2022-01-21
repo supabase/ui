@@ -13,6 +13,8 @@ import { useFormContext } from '../Form/FormContext'
 
 import { flatten } from 'lodash'
 
+import styleHandler from '../../lib/theme/styleHandler'
+
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
@@ -58,9 +60,12 @@ function Listbox({
   defaultValue,
   borderless = false,
   validation,
+  disabled,
 }: Props) {
   const [selected, setSelected] = useState(undefined)
   const [selectedNode, setSelectedNode] = useState<any>({})
+
+  const __styles = styleHandler('listbox')
 
   const {
     formContextOnChange,
@@ -151,11 +156,15 @@ function Listbox({
     if (validation) fieldLevelValidation(id, validation(value))
   }
 
-  let selectClasses = [SelectStyles['sbui-listbox']]
-  if (error) selectClasses.push(SelectStyles['sbui-listbox--error'])
-  if (icon) selectClasses.push(SelectStyles['sbui-listbox--with-icon'])
-  if (size) selectClasses.push(SelectStyles[`sbui-listbox--${size}`])
-  if (borderless) selectClasses.push(SelectStyles['sbui-listbox--borderless'])
+  let selectClasses = [__styles.base]
+  if (error) selectClasses.push(__styles.error)
+  if (!error) selectClasses.push(__styles.variants.standard)
+  // if (icon) selectClasses.push(SelectStyles['sbui-listbox--with-icon'])
+  if (icon) selectClasses.push(__styles.with_icon)
+  // if (size) selectClasses.push(SelectStyles[`sbui-listbox--${size}`])
+  if (size) selectClasses.push(__styles.size[size])
+  // if (borderless) selectClasses.push(SelectStyles['sbui-listbox--borderless'])
+  if (disabled) selectClasses.push(__styles.disabled)
 
   return (
     <FormLayout
@@ -169,7 +178,7 @@ function Listbox({
       style={style}
       size={size}
     >
-      <div className={SelectStyles['sbui-listbox-container']}>
+      <div className={__styles.container}>
         <HeadlessListbox value={selected} onChange={handleOnChange}>
           {({ open }) => {
             return (
@@ -206,9 +215,7 @@ function Listbox({
                     </svg>
                   </span>
                   {error && (
-                    <div
-                      className={SelectStyles['sbui-listbox-actions-container']}
-                    >
+                    <div className={__styles.actions_container}>
                       {error && <InputErrorIcon size={size} />}
                     </div>
                   )}
@@ -224,7 +231,7 @@ function Listbox({
                 >
                   <HeadlessListbox.Options
                     static
-                    className={SelectStyles['sbui-listbox-option-container']}
+                    className={__styles.options_container}
                   >
                     {children}
                   </HeadlessListbox.Options>

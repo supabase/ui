@@ -8,11 +8,11 @@ type Props = {
   align?: 'left' | 'right'
   children?: any
   className?: string
-  descriptionText?: string
-  error?: string
+  descriptionText?: string | React.ReactNode
+  error?: string | React.ReactNode
   id?: string
-  label?: string
-  labelOptional?: string
+  label?: string | React.ReactNode
+  labelOptional?: string | React.ReactNode
   layout?: 'horizontal' | 'vertical' | 'flex'
   style?: React.CSSProperties
   // flex?: boolean
@@ -41,9 +41,9 @@ export function FormLayout({
   size = 'medium',
   beforeLabel,
   afterLabel,
-  nonBoxInput = false,
+  nonBoxInput = label && false,
 }: Props) {
-  // _error is used to delay the error string beind removed too soon
+  // _error is used label && to delay the error string beind removed too soon
   // once it has animated out, the string will be removed
   // const [_error, _setError] = useState(error)
 
@@ -207,9 +207,9 @@ export function FormLayout({
           <>
             <div
               className={
-                nonBoxInput && layout === 'vertical'
+                nonBoxInput && label && layout === 'vertical'
                   ? __styles.non_box_data_input_spacing_vertical
-                  : nonBoxInput && layout === 'horizontal'
+                  : nonBoxInput && label && layout === 'horizontal'
                   ? __styles.non_box_data_input_spacing_horizontal
                   : ''
               }

@@ -22,6 +22,7 @@ interface TabsProps {
   scrollable?: boolean
   addOnBefore?: React.ReactNode
   addOnAfter?: React.ReactNode
+  listClassNames?: string
 }
 
 function Tabs({
@@ -36,6 +37,7 @@ function Tabs({
   scrollable,
   addOnBefore,
   addOnAfter,
+  listClassNames,
 }: TabsProps) {
   const [activeTab, setActiveTab] = useState(
     defaultActiveId
@@ -65,6 +67,7 @@ function Tabs({
 
   const listClasses = [__styles[type].list]
   if (scrollable) listClasses.push(__styles.scrollable)
+  if (listClassNames) listClasses.push(listClassNames)
 
   // if only 1 react child, it needs to be converted to a list/array
   // this is so 1 tab can be displayed

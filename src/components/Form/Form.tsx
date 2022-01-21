@@ -8,6 +8,8 @@ interface Props
   children: any
   handleIsSubmitting?: any
   handleIsValidating?: any
+  name?: string
+  id?: string
 }
 
 function errorReducer(state: any, action: any) {
@@ -51,7 +53,7 @@ export default function Form({ validate, ...props }: Props) {
   // console.log('touched', formik.touched)
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form id={props.id} name={props.name} onSubmit={formik.handleSubmit}>
       <FormContextProvider
         values={formik.values}
         errors={formik.errors}
@@ -71,6 +73,10 @@ export default function Form({ validate, ...props }: Props) {
           isValidating: formik.isValidating,
           /** Number of times user tried to submit the form */
           submitCount: formik.submitCount,
+
+          handleReset: formik.handleReset,
+
+          values: formik.values,
         })}
       />
     </form>

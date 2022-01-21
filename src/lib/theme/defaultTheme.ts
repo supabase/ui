@@ -18,7 +18,7 @@ const defaults = {
   border: {
     brand: 'border-brand-600',
     primary: 'border-scale-700',
-    secondary: 'border-scale-300 dark:border-scaleDark-500',
+    secondary: 'border-scale-400',
     alternative: 'border-scale-600 dark:border-scaleDark-200',
   },
   placeholder: 'placeholder-scale-800',
@@ -297,7 +297,10 @@ export default {
   tabs: {
     base: `w-full justify-between space-y-4`,
     underlined: {
-      list: `flex items-center border-b ${defaults.border.primary}`,
+      list: `
+        flex items-center border-b 
+        ${defaults.border.secondary}
+        `,
       base: ` 
         relative 
         cursor-pointer 
@@ -392,6 +395,9 @@ export default {
       secondary: `
         text-scale-1200
         bg-scale-300 hover:bg-scale-500
+
+        dark:bg-scale-400 dark:hover:bg-scale-600
+
         border border-scale-700 hover:border-scale-900 focus-visible:border-scale-900
         focus-visible:ring-scale-600
       `,
@@ -434,15 +440,19 @@ export default {
       `,
       danger: `
         text-red-1100
-        bg-red-200 hover:bg-red-400
+        bg-red-200 hover:bg-scale-500
         border border-red-700 hover:border-red-900 focus-visible:border-red-900
+        hover:bg-red-900
+        hover:text-lo-contrast
         focus-visible:ring-red-700
       `,
       warning: `
         text-amber-1100
-        bg-amber-200 hover:bg-amber-400
+        bg-amber-200 hover:bg-scale-500
         border border-amber-700 hover:border-amber-900 focus-visible:border-amber-900
-        focus-visible:ring-amber-400
+        hover:bg-amber-900
+        hover:text-hi-contrast
+        focus-visible:ring-amber-700
       `,
     },
     block: 'w-full flex items-center justify-center',
@@ -479,7 +489,7 @@ export default {
     `,
     variants: {
       standard: `
-        bg-scale-100
+        bg-scale-200 dark:bg-scale-200
         border border-scale-700
         `,
       error: `
@@ -494,6 +504,7 @@ export default {
     size: {
       ...default__padding_and_text,
     },
+    disabled: 'opacity-50',
     actions_container:
       'absolute inset-y-0 right-0 pl-3 pr-1 flex space-x-1 items-center',
     textarea_actions_container:
@@ -526,7 +537,7 @@ export default {
     `,
     variants: {
       standard: `
-        bg-scale-100
+        bg-scale-200 dark:bg-scale-200
         border border-scale-700
         `,
       error: `
@@ -541,6 +552,7 @@ export default {
     size: {
       ...default__padding_and_text,
     },
+    disabled: 'opacity-50',
     actions_container:
       'absolute inset-y-0 right-0 pl-3 pr-1 mr-5 flex items-center',
     chevron_container:
@@ -573,7 +585,7 @@ export default {
     `,
     variants: {
       standard: `
-        bg-scale-100
+        bg-scale-200 dark:bg-scale-200
         border border-scale-700
       `,
       error: `
@@ -583,6 +595,7 @@ export default {
         placeholder:text-red-600
        `,
     },
+    disabled: 'opacity-50',
     container: 'relative',
     with_icon: 'pl-10',
     size: {
@@ -631,7 +644,7 @@ export default {
       large: `h-5 w-5 mt-0.5 mr-4`,
       xlarge: `h-5 w-5 mt-0.5 mr-4`,
     },
-
+    disabled: 'opacity-50',
     label: {
       base: `text-scale-1100 cursor-pointer`,
       ...defaults.size.text,
@@ -674,14 +687,16 @@ export default {
   radio: {
     base: `
       absolute
-      bg-transparent
       ${defaults.focus}
       focus:ring-brand-400
       border-scale-700
+      
       text-brand-900
       shadow-sm
       cursor-pointer
       peer
+
+      bg-scale-300
     `,
     hidden: `absolute opacity-0`,
     size: {
@@ -702,6 +717,8 @@ export default {
         },
         group: `-space-y-px`,
         base: `
+          transition
+          bg-scale-100 hover:bg-scale-200
           border border-scale-700
           first:rounded-tl-md first:rounded-tr-md
           last:rounded-bl-md last:rounded-br-md
@@ -714,8 +731,9 @@ export default {
           xlarge: `px-8 p-4`,
         },
         active: `
-          bg-brand-100 z-10
+          bg-brand-300 hover:bg-brand-300 z-10
           border-brand-900 border-1
+          hover:border-brand-900
         `,
         radio_offset: 'left-4',
       },
@@ -730,7 +748,10 @@ export default {
         },
         group: `space-y-3`,
         base: `
-          border border-scale-700 rounded-lg
+          transition
+          rounded-md
+          border
+          shadow-sm
         `,
         size: {
           tiny: `px-5 py-3`,
@@ -739,9 +760,14 @@ export default {
           large: `px-8 p-4`,
           xlarge: `px-8 p-4`,
         },
+        inactive: `
+          bg-scale-400
+          border-scale-500
+          hover:border-scale-700
+        `,
         active: `
-          bg-brand-100 z-10
-          border-brand-900 border-1
+          bg-scale-300 dark:bg-scale-500 z-10
+          border-scale-900 dark:border-scale-900 border-1
         `,
         radio_offset: 'left-4',
       },
@@ -772,10 +798,14 @@ export default {
           large: `px-8 p-4`,
           xlarge: `px-8 p-4`,
         },
+        inactive: `
+          bg-scale-100
+          dark:bg-scale-300
+          border-scale-400 hover:border-scale-700
+        `,
         active: `
-          bg-brand-100 z-10
-          border-brand-900 border-1
-          hover:border-brand-900
+          bg-scale-300 dark:bg-brand-300 z-10
+          border-scale-900 dark:border-brand-500 border-1
         `,
         radio_offset: 'left-4',
       },
@@ -935,9 +965,12 @@ export default {
       ${defaults.focus}
       focus:ring-scale-400
       bg-scale-500
+
+      hover:bg-scale-700
     `,
     active: `
       bg-brand-900    
+      hover:bg-brand-900    
     `,
     handle_container: {
       tiny: 'h-4 w-7',
@@ -947,7 +980,15 @@ export default {
       xlarge: 'h-7 w-12',
     },
     handle: {
-      base: 'inline-block h-5 w-5 rounded-full bg-white shadow ring-0 transition ease-in-out duration-200',
+      base: `
+        inline-block h-5 w-5 
+        rounded-full 
+        bg-scale-100
+        dark:bg-scale-900
+        shadow ring-0 
+        transition 
+        ease-in-out duration-200
+      `,
       tiny: 'h-3 w-3',
       small: 'h-5 w-5',
       medium: 'h-5 w-5',
@@ -955,11 +996,11 @@ export default {
       xlarge: 'h-6 w-6',
     },
     handle_active: {
-      tiny: ' translate-x-3',
-      small: 'translate-x-5',
-      medium: 'translate-x-5',
-      large: 'translate-x-5',
-      xlarge: 'translate-x-5',
+      tiny: ' translate-x-3 dark:bg-white',
+      small: 'translate-x-5 dark:bg-white',
+      medium: 'translate-x-5 dark:bg-white',
+      large: 'translate-x-5 dark:bg-white',
+      xlarge: 'translate-x-5 dark:bg-white',
     },
     disabled: 'opacity-75 cursor-not-allowed',
   },
@@ -1039,7 +1080,6 @@ export default {
         data-show:mt-2
         data-show:animate-slide-down-normal
         data-hide:animate-slide-up-normal
-        
       `,
       size: {
         ...defaults.size.text,
@@ -1247,17 +1287,75 @@ export default {
       data-open:animate-overlay-show data-closed:animate-overlay-hide  
     `,
   },
+
+  // listbox
   listbox: {
     base: `
-      block w-full bg-white pl-3 pr-10 py-2 text-sm rounded-md transition-all
-      text-gray-700 border border-solid border-gray-300
-      cursor-default focus:outline-none focus:ring-1 focus:ring-brand-600 focus:border-brand-600
-      dark:bg-transparent dark:text-white dark:border-gray-500
-      dark:focus:border-brand-500
+
+      block 
+      box-border 
+      w-full 
+      rounded-md 
+      shadow-sm 
+      transition-all
+      text-scale-1200  
+      border
+      focus:shadow-md
+      ${defaults.focus}
+      focus:border-scale-900
+      focus:ring-scale-400
+      ${defaults.placeholder}
+
       appearance-none
 
       indent-px
       transition-all
+
+      bg-none
+    `,
+    variants: {
+      standard: `
+        bg-scale-200 dark:bg-scale-200
+        border border-scale-700
+
+        aria-expanded:border-scale-900
+        aria-expanded:ring-scale-400
+        aria-expanded:ring-2
+        `,
+      error: `
+        bg-red-100
+        border border-red-700 
+        focus:ring-red-500
+        placeholder:text-red-600
+       `,
+    },
+    options_container: `
+      list-none p-0 
+      absolute mt-1 w-full 
+      bg-white dark:bg-gray-800 
+      shadow-lg 
+      border border-solid 
+      border-gray-100 dark:border-gray-600 max-h-60 
+      rounded-md py-1 text-base 
+      ring-1 ring-black 
+      ring-opacity-5 
+      overflow-auto 
+      focus:outline-none 
+      sm:text-sm z-10`,
+    container: 'relative',
+    with_icon: 'pl-10',
+    size: {
+      ...default__padding_and_text,
+    },
+    disabled: `opacity-50`,
+    actions_container:
+      'absolute inset-y-0 right-0 pl-3 pr-1 flex space-x-1 items-center',
+  },
+
+  collapsible: {
+    content: `
+      data-open:animate-slide-down-normal
+      data-closed:animate-slide-up-normal
     `,
   },
 }

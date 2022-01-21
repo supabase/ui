@@ -13,7 +13,7 @@ export interface Props
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   copy?: boolean
   defaultValue?: string | number
-  descriptionText?: string
+  descriptionText?: string | React.ReactNode | undefined
   disabled?: boolean
   error?: string
   icon?: any
@@ -128,65 +128,65 @@ function Input({
   if (!error) inputClasses.push(__styles.variants.standard)
   if (icon) inputClasses.push(__styles.with_icon)
   if (size) inputClasses.push(__styles.size[size])
+  if (disabled) inputClasses.push(__styles.disabled)
 
   return (
-    <div className={className}>
-      <FormLayout
-        label={label}
-        afterLabel={afterLabel}
-        beforeLabel={beforeLabel}
-        labelOptional={labelOptional}
-        layout={layout}
-        id={id}
-        error={error}
-        descriptionText={descriptionText}
-        style={style}
-        size={size}
-      >
-        <div className={__styles.container}>
-          <input
-            autoComplete={autoComplete}
-            autoFocus={autoFocus}
-            defaultValue={defaultValue}
-            disabled={disabled}
-            id={id}
-            name={name}
-            onChange={onInputChange}
-            onFocus={onFocus ? (event) => onFocus(event) : undefined}
-            onBlur={onBlur}
-            onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
-            placeholder={placeholder}
-            ref={inputRef}
-            type={type}
-            value={hidden ? HIDDEN_PLACEHOLDER : value}
-            className={inputClasses.join(' ')}
-            {...props}
-          />
-          {icon && <InputIconContainer icon={icon} />}
-          {copy || error || actions ? (
-            <div className={__styles.actions_container}>
-              {error && <InputErrorIcon size={size} />}
-              {copy && !hidden ? (
-                <Button
-                  size="tiny"
-                  type="default"
-                  onClick={() => onCopy(value)}
-                  icon={<IconCopy />}
-                >
-                  {copyLabel}
-                </Button>
-              ) : null}
-              {hidden && reveal ? (
-                <Button size="tiny" type="default" onClick={onReveal}>
-                  Reveal
-                </Button>
-              ) : null}
-              {actions && actions}
-            </div>
-          ) : null}
-        </div>
-      </FormLayout>
-    </div>
+    <FormLayout
+      label={label}
+      afterLabel={afterLabel}
+      beforeLabel={beforeLabel}
+      labelOptional={labelOptional}
+      layout={layout}
+      id={id}
+      error={error}
+      descriptionText={descriptionText}
+      style={style}
+      size={size}
+      className={className}
+    >
+      <div className={__styles.container}>
+        <input
+          autoComplete={autoComplete}
+          autoFocus={autoFocus}
+          defaultValue={defaultValue}
+          disabled={disabled}
+          id={id}
+          name={name}
+          onChange={onInputChange}
+          onFocus={onFocus ? (event) => onFocus(event) : undefined}
+          onBlur={onBlur}
+          onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
+          placeholder={placeholder}
+          ref={inputRef}
+          type={type}
+          value={hidden ? HIDDEN_PLACEHOLDER : value}
+          className={inputClasses.join(' ')}
+          {...props}
+        />
+        {icon && <InputIconContainer icon={icon} />}
+        {copy || error || actions ? (
+          <div className={__styles.actions_container}>
+            {error && <InputErrorIcon size={size} />}
+            {copy && !hidden ? (
+              <Button
+                size="tiny"
+                type="default"
+                onClick={() => onCopy(value)}
+                icon={<IconCopy />}
+              >
+                {copyLabel}
+              </Button>
+            ) : null}
+            {hidden && reveal ? (
+              <Button size="tiny" type="default" onClick={onReveal}>
+                Reveal
+              </Button>
+            ) : null}
+            {actions && actions}
+          </div>
+        ) : null}
+      </div>
+    </FormLayout>
   )
 }
 
@@ -295,6 +295,7 @@ function TextArea({
   if (!error) classes.push(__styles.variants.standard)
   if (icon) classes.push(__styles.with_icon)
   if (size) classes.push(__styles.size[size])
+  if (disabled) classes.push(__styles.disabled)
 
   return (
     <FormLayout

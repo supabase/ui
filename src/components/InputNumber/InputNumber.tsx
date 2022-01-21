@@ -131,6 +131,7 @@ function InputNumber({
   if (!error) inputClasses.push(__styles.variants.standard)
   if (icon) inputClasses.push(__styles.with_icon)
   if (size) inputClasses.push(__styles.size[size])
+  if (disabled) inputClasses.push(__styles.disabled)
   // if (borderless)
   //   inputClasses.push(InputNumberStyles['sbui-inputnumber--borderless'])
 
