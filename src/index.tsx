@@ -12,6 +12,7 @@ export * from './components/Badge/index'
 export * from './components/Tabs/index'
 export * from './components/Alert/index'
 export * from './components/Accordion/index'
+export * from './components/Collapsible/index'
 
 // NAV
 
