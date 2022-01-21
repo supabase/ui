@@ -37,18 +37,18 @@
   --colors-brand-fixed12: var(--colors-brand12);
 
   /* border scale */
-  --colors-scale1: var(--colors-gray1);
-  --colors-scale2: var(--colors-gray2);
-  --colors-scale3: var(--colors-gray3);
-  --colors-scale4: var(--colors-gray4);
-  --colors-scale5: var(--colors-gray5);
-  --colors-scale6: var(--colors-gray6);
-  --colors-scale7: var(--colors-gray7);
-  --colors-scale8: var(--colors-gray8);
-  --colors-scale9: var(--colors-gray9);
-  --colors-scale10: var(--colors-gray10);
-  --colors-scale11: var(--colors-gray11);
-  --colors-scale12: var(--colors-gray12);
+  --colors-scale1: var(--colors-mauve1);
+  --colors-scale2: var(--colors-mauve2);
+  --colors-scale3: var(--colors-mauve3);
+  --colors-scale4: var(--colors-mauve4);
+  --colors-scale5: var(--colors-mauve5);
+  --colors-scale6: var(--colors-mauve6);
+  --colors-scale7: var(--colors-mauve7);
+  --colors-scale8: var(--colors-mauve8);
+  --colors-scale9: var(--colors-mauve9);
+  --colors-scale10: var(--colors-mauve10);
+  --colors-scale11: var(--colors-mauve11);
+  --colors-scale12: var(--colors-mauve12);
 
   --colors-overlay-bg: var(--colors-scale1);
   --colors-overlay-bg-accent: var(--colors-scale2);
@@ -57,6 +57,11 @@
   --colors-overlay-secondary-bg: var(--colors-scale1);
   --colors-overlay-secondary-bg-accent: var(--colors-scale2);
   --colors-overlay-secondary-border: var(--colors-scale3);
+
+  --colors-overlay-secondary-bg: var(--colors-scale1);
+  --colors-overlay-secondary-bg-accent: var(--colors-scale2);
+  --colors-overlay-secondary-border: var(--colors-scale3);
+  --colors-overlay-secondary-border-accent: var(--colors-scale5);
 
   /* border scale fixed*/
   --colors-scale-fixed1: var(--colors-scale1);
@@ -119,25 +124,39 @@
   --colors-scale12: hsla(210, 6%, 93%, 1); */
 
   /* 
--gray
--gray
+-mauve
+-mauve
   slate
   sage
   olive
-  sand 
+  mauve 
   */
-  --colors-scale1: var(--colors-gray1);
-  --colors-scale2: var(--colors-gray2);
-  --colors-scale3: var(--colors-gray3);
-  --colors-scale4: var(--colors-gray4);
-  --colors-scale5: var(--colors-gray5);
-  --colors-scale6: var(--colors-gray6);
-  --colors-scale7: var(--colors-gray7);
-  --colors-scale8: var(--colors-gray8);
-  --colors-scale9: var(--colors-gray9);
-  --colors-scale10: var(--colors-gray10);
-  --colors-scale11: var(--colors-gray11);
-  --colors-scale12: var(--colors-gray12);
+  --colors-scale1: var(--colors-mauve1);
+  --colors-scale2: var(--colors-mauve2);
+  --colors-scale3: var(--colors-mauve3);
+  --colors-scale4: var(--colors-mauve4);
+  --colors-scale5: var(--colors-mauve5);
+  --colors-scale6: var(--colors-mauve6);
+  --colors-scale7: var(--colors-mauve7);
+  --colors-scale8: var(--colors-mauve8);
+  --colors-scale9: var(--colors-mauve9);
+  --colors-scale10: var(--colors-mauve10);
+  --colors-scale11: var(--colors-mauve11);
+  --colors-scale12: var(--colors-mauve12);
+
+  /* border scale fixed*/
+  /* --colors-scale-fixed1: var(--colors-scale1);
+  --colors-scale-fixed2: var(--colors-scale2);
+  --colors-scale-fixed3: var(--colors-scale3);
+  --colors-scale-fixed4: var(--colors-scale4);
+  --colors-scale-fixed5: var(--colors-scale5);
+  --colors-scale-fixed6: var(--colors-scale6);
+  --colors-scale-fixed7: var(--colors-scale7);
+  --colors-scale-fixed8: var(--colors-scale8);
+  --colors-scale-fixed9: var(--colors-scale9);
+  --colors-scale-fixed10: var(--colors-scale10);
+  --colors-scale-fixed11: var(--colors-scale11);
+  --colors-scale-fixed12: var(--colors-scale12); */
 
   --colors-overlay-bg: var(--colors-scale2);
   --colors-overlay-bg-accent: var(--colors-scale3);
@@ -146,6 +165,7 @@
   --colors-overlay-secondary-bg: var(--colors-scale3);
   --colors-overlay-secondary-bg-accent: var(--colors-scale4);
   --colors-overlay-secondary-border: var(--colors-scale5);
+  --colors-overlay-secondary-border-accent: var(--colors-scale7);
 
   /* background scale */
   --colors-background1: hsla(200, 7%, 9%, 1);
