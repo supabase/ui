@@ -1,15 +1,11 @@
-.sbui-listbox-container {
+/* .sbui-listbox-container {
   @apply relative;
-}
+} */
 
-.sbui-listbox {
+/* .sbui-listbox {
   @apply block w-full bg-white pl-3 pr-10 py-2 text-sm rounded-md transition-all;
-
   @apply text-gray-700 border border-solid border-gray-300;
-  /* @apply focus:ring-brand-500 focus:border-brand-500 focus:outline-none; */
-
   @apply cursor-default focus:outline-none focus:ring-1 focus:ring-brand-600 focus:border-brand-600;
-
   @apply dark:bg-transparent dark:text-white dark:border-gray-500;
   @apply dark:focus:border-brand-500;
   -webkit-appearance: none;
@@ -17,16 +13,16 @@
   text-indent: 1px;
   text-overflow: '';
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0);
-  transition: box-shadow 0.3s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out; */
 
-  /* // temporary fix
+/* // temporary fix
   //
   // temporary fix for supabase apps
   // tailwind @base styles adds a dropdown chevron
   // using background image as default
   // */
-  background-image: none;
-}
+/* background-image: none;
+} */
 
 .sbui-listbox:focus {
   box-shadow: 0 0 0 2px rgba(62, 207, 142, 0.1);
@@ -44,7 +40,7 @@
   Select sizes
 */
 
-.sbui-listbox--tiny {
+/* .sbui-listbox--tiny {
   @apply px-2.5 py-1.5 text-xs;
 }
 .sbui-listbox--small {
@@ -58,19 +54,19 @@
 }
 .sbui-listbox--xlarge {
   @apply px-6 py-3 text-base;
-}
+} */
 
-.sbui-listbox-actions-container {
+/* .sbui-listbox-actions-container {
   @apply absolute inset-y-0 right-0 pl-3 pr-1 mr-5 flex items-center;
-}
+} */
 
 /*
   Select icon
 */
 
-.sbui-listbox--with-icon {
+/* .sbui-listbox--with-icon {
   @apply pl-10;
-}
+} */
 
 /*
   Add on before

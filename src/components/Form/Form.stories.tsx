@@ -12,6 +12,7 @@ import {
 
 import * as Yup from 'yup'
 import { User } from '../Icon/IconImportHandler'
+import React from 'react'
 
 export default {
   title: 'Data Input/Form',
@@ -345,7 +346,7 @@ export const LargerExample = () => {
                 layout="horizontal"
                 name="favorite_food"
                 label="favorite_food"
-                type="cards"
+                type="list"
               >
                 <Radio value="pizza" label="Pizza" description="hello world" />
                 <Radio
@@ -399,3 +400,170 @@ export const LargerExample = () => {
     </>
   )
 }
+
+export const CardForm = () => {
+  // panel
+  const Panel = ({
+    children,
+    header,
+    footer,
+  }: {
+    children: React.ReactNode
+    header?: React.ReactNode
+    footer?: React.ReactNode
+  }) => (
+    <div className="bg-scale-300 border border-scale-400 rounded-md w-3/4 mx-auto my-8 shadow overflow-hidden">
+      {header && (
+        <div className="bg-scale-100 dark:bg-scale-200 px-8 py-4 border-b border-scale-400">
+          {header}
+        </div>
+      )}
+      <div className="space-y-6 py-6">{children}</div>
+      {footer}
+    </div>
+  )
+
+  const Section = ({
+    children,
+    header,
+  }: {
+    children: React.ReactNode
+    header?: React.ReactNode
+  }) => (
+    <div className="grid grid-cols-12 px-8 py-2">
+      {header}
+      {children}
+    </div>
+  )
+
+  return (
+    <>
+      <Form
+        initialValues={{ stripe_email_choice: 'emails-2' }}
+        onSubmit={(values: any, { setSubmitting }: any) => {
+          setTimeout(() => {
+            alert(JSON.stringify(values, null, 2))
+            setSubmitting(false)
+          }, 400)
+        }}
+        validate={(values: Values) => {
+          const errors: any = {}
+
+          return errors
+        }}
+      >
+        {({ isSubmitting }: any) => (
+          <Panel
+            header={
+              <>
+                <h3 className="text-scale-1200 text-xl font-semibold">
+                  Custom Options
+                </h3>
+                <p className="text-scale-900">
+                  These settings apply to payment pages you create using Stripe
+                  Checkout and Payment Links.
+                </p>
+              </>
+            }
+            footer={
+              <>
+                <div className="border-t border-scale-400"></div>
+                <div className="py-3 px-6 flex gap-2 justify-end">
+                  <Button
+                    loading={isSubmitting}
+                    type="secondary"
+                    htmlType="submit"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    loading={isSubmitting}
+                    type="primary"
+                    htmlType="submit"
+                  >
+                    Save
+                  </Button>
+                </div>
+              </>
+            }
+          >
+            {/* <p>{isSubmitting ? 'submitting' : 'not submitting'}</p> */}
+            {/* <div className="border-t border-scale-400"></div> */}
+            <Section
+              header={
+                <label className="text-sm text-scale-1200 col-span-4">
+                  Faster checkout
+                </label>
+              }
+            >
+              <Toggle
+                className="col-span-8"
+                id="link_with_stripe"
+                label="Turn on link with Stripe"
+                layout="flex"
+                descriptionText="Go to Payment methods settings to configure Apple Pay and Google Pay."
+              />
+            </Section>
+            <div className="border-t border-scale-400"></div>
+            <Section
+              header={
+                <label className="text-sm text-scale-1200 col-span-4">
+                  Faster checkout
+                </label>
+              }
+            >
+              <Radio.Group
+                className="col-span-8"
+                name="stripe_email_choice"
+                id="stripe_email_choice"
+                type="list"
+                layout="vertical"
+              >
+                <Radio
+                  // id="1642469211631"
+                  value="emails-1"
+                  label="Send emails about upcoming renewals"
+                  description="hello world"
+                  align="horizontal"
+                />
+                <Radio
+                  // id="1642469211606"
+                  value="emails-2"
+                  label="Send emails about expiring cards"
+                  description="hello world"
+                  align="horizontal"
+                />
+              </Radio.Group>
+            </Section>
+            <div className="border-t border-scale-400"></div>
+            <Section
+              header={
+                <label className="text-sm text-scale-1200 col-span-4">
+                  Faster checkout
+                </label>
+              }
+            >
+              <div className="col-span-8 space-y-4">
+                <Input name="app_id" label="Application ID in Stripe" />
+                <Input
+                  name="service_id"
+                  label="API key"
+                  descriptionText={
+                    <span>
+                      This can be found in{' '}
+                      <span className="text-brand-900 underline cursor-pointer transition hover:text-brand-800">
+                        the developer settings
+                      </span>
+                    </span>
+                  }
+                />
+              </div>
+            </Section>
+          </Panel>
+        )}
+      </Form>
+    </>
+  )
+}
+
+export { default as AuthForm } from './examples/AuthForm'
