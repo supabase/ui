@@ -42,6 +42,7 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   role?: string
   textAlign?: 'left' | 'center' | 'right'
   as?: keyof JSX.IntrinsicElements
+  form?: string
 }
 
 interface CustomButtonProps extends React.HTMLAttributes<HTMLOrSVGElement> {}
@@ -184,6 +185,7 @@ const Button = forwardRef<RefHandle, ButtonProps>(
             aria-controls={ariaControls}
             tabIndex={tabIndex}
             role={role}
+            form={props.form}
           >
             {buttonContent}
           </button>
