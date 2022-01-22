@@ -465,7 +465,7 @@ module.exports = ui({
         //   900: '#2c9c6a',
         // },
 
-        ...custom_colors,
+        // ...custom_colors,
       },
 
       // transitionProperty: {
