@@ -14,6 +14,7 @@ export default {
 }
 
 export const Primary = (args: any) => <Toggle {...args} />
+export const Wide = (args: any) => <Toggle {...args} />
 export const checkedDefault = (args: any) => <Toggle {...args} />
 export const noLabel = (args: any) => <Toggle {...args} />
 export const withBeforeAndAfterLabel = (args: any) => <Toggle {...args} />
@@ -27,7 +28,17 @@ Primary.args = {
   labelOptional:
     'Star history, issue tracking, and more to come repository.surf organization',
   name: 'radiogroup-example',
-  layout: 'horizontal',
+}
+
+Wide.args = {
+  descriptionText: 'This is optional description',
+  disabled: false,
+  error: '',
+  label: "Get insights across your organization's repositories",
+  labelOptional:
+    'Star history, issue tracking, and more to come repository.surf organization',
+  name: 'radiogroup-example',
+  layout: 'wide',
 }
 
 checkedDefault.args = {

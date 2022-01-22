@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import { Button } from '../Button'
-import { Divider } from '../Divider'
-import { Space } from '../Space'
 import { TabsContext } from './TabsContext'
 
+import * as TabsPrimitive from '@radix-ui/react-tabs'
+
 // @ts-ignore
-import TabsStyles from './Tabs.module.css'
+// import TabsStyles from './Tabs.module.css'
+
+import styleHandler from '../../lib/theme/styleHandler'
 
 interface TabsProps {
-  id?: string
   type?: 'pills' | 'underlined' | 'cards'
   children: any
   defaultActiveId?: string
@@ -22,23 +22,22 @@ interface TabsProps {
   scrollable?: boolean
   addOnBefore?: React.ReactNode
   addOnAfter?: React.ReactNode
+  listClassNames?: string
 }
 
 function Tabs({
-  id,
   children,
   defaultActiveId,
   activeId,
-  type,
-  size,
+  type = 'pills',
+  size = 'tiny',
   block,
-  tabBarGutter,
-  tabBarStyle,
   onChange,
   onClick,
   scrollable,
   addOnBefore,
   addOnAfter,
+  listClassNames,
 }: TabsProps) {
   const [activeTab, setActiveTab] = useState(
     defaultActiveId
@@ -48,6 +47,8 @@ function Tabs({
       ? children[0].props.id
       : ''
   )
+
+  let __styles = styleHandler('tabs')
 
   // activeId state can be overriden externally with `active`
   // defaults to use activeTab
@@ -63,7 +64,10 @@ function Tabs({
   // for styling the tabs for underline style
   const underlined = type === 'underlined'
   // for styling the tabs for cards style
-  const cards = type === 'cards'
+
+  const listClasses = [__styles[type].list]
+  if (scrollable) listClasses.push(__styles.scrollable)
+  if (listClassNames) listClasses.push(listClassNames)
 
   // if only 1 react child, it needs to be converted to a list/array
   // this is so 1 tab can be displayed
@@ -72,83 +76,75 @@ function Tabs({
   }
 
   return (
-    <Space direction="vertical" size={4}>
-      <div id={id} role="tablist" aria-label={id} style={tabBarStyle}>
-        <Space className={TabsStyles['sbui-tab-bar-container']} size={0}>
-          <Space
-            size={tabBarGutter ? tabBarGutter : underlined ? 6 : 3}
-            className={
-              TabsStyles['sbui-tab-bar-inner-container'] +
-              (scrollable ? ` ${TabsStyles['sbui-tab-bar--scrollable']}` : '')
-            }
-          >
-            {addOnBefore}
-            {children.map((tab: any) => {
-              const activeMatch = active === tab.props.id
-              return (
-                <Button
-                  icon={tab.props.icon}
-                  size={size}
-                  block={block}
-                  shadow={!block}
-                  className={
-                    underlined && activeMatch
-                      ? `${TabsStyles['sbui-tab-button-underline']} ${TabsStyles['sbui-tab-button-underline--active']}`
-                      : underlined
-                      ? TabsStyles['sbui-tab-button-underline']
-                      : ''
-                  }
-                  type={activeMatch && !underlined ? 'primary' : 'text'}
-                  key={`${tab.props.id}-tab-button`}
-                  onClick={() => onTabClick(tab.props.id)}
-                  ariaSelected={activeMatch ? true : false}
-                  ariaControls={tab.props.id}
-                  tabIndex={activeMatch ? 0 : -1}
-                  role="tab"
-                >
-                  {tab.props.label}
-                </Button>
-              )
-            })}
-          </Space>
-          {addOnAfter}
-        </Space>
-        {underlined && <Divider />}
-      </div>
+    <TabsPrimitive.Root
+      defaultValue={defaultActiveId}
+      value={active}
+      className={__styles.base}
+    >
+      <TabsPrimitive.List className={listClasses.join(' ')}>
+        {addOnBefore}
+        {children.map((tab: any) => {
+          const activeMatch = active === tab.props.id
+
+          const triggerClasses = [__styles[type].base, __styles.size[size]]
+          if (activeMatch) {
+            triggerClasses.push(__styles[type].active)
+          } else {
+            triggerClasses.push(__styles[type].inactive)
+          }
+          if (block) {
+            triggerClasses.push(__styles.block)
+          }
+
+          return (
+            <TabsPrimitive.Trigger
+              onKeyDown={(e: any) => {
+                if (e.keyCode === 13) {
+                  e.preventDefault()
+                  onTabClick(tab.props.id)
+                }
+              }}
+              onClick={() => onTabClick(tab.props.id)}
+              key={`${tab.props.id}-tab-button`}
+              value={tab.props.id}
+              className={triggerClasses.join(' ')}
+            >
+              {tab.props.icon}
+              <span>{tab.props.label}</span>
+            </TabsPrimitive.Trigger>
+          )
+        })}
+        {/* </Space> */}
+        {addOnAfter}
+      </TabsPrimitive.List>
       <TabsContext.Provider value={{ activeId: active }}>
         {children}
       </TabsContext.Provider>
-    </Space>
+    </TabsPrimitive.Root>
   )
 }
 
 interface PanelProps {
-  children?: any
-  id?: string
+  children?: React.ReactNode
+  id: string
   label?: string
   icon?: React.ReactNode
 }
 
 export function Panel({ children, id }: PanelProps) {
+  let __styles = styleHandler('tabs')
+
   return (
-    children && (
-      <TabsContext.Consumer>
-        {({ activeId }) => {
-          const active = activeId === id
-          return (
-            <div
-              id={id}
-              role="tabpanel"
-              tabIndex={active ? 0 : -1}
-              aria-labelledby={id}
-              hidden={!active}
-            >
-              {children}
-            </div>
-          )
-        }}
-      </TabsContext.Consumer>
-    )
+    <TabsContext.Consumer>
+      {({ activeId }) => {
+        const active = activeId === id
+        return (
+          <TabsPrimitive.Content value={id} className={__styles.content}>
+            {children}
+          </TabsPrimitive.Content>
+        )
+      }}
+    </TabsContext.Consumer>
   )
 }
 

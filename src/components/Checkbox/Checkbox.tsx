@@ -3,7 +3,11 @@ import { FormLayout } from '../../lib/Layout/FormLayout'
 import { CheckboxContext } from './CheckboxContext'
 // @ts-ignore
 import CheckboxStyles from './Checkbox.module.css'
+
+import defaultTheme from '../../lib/theme/defaultTheme'
+
 import { useFormContext } from '../Form/FormContext'
+import styleHandler from '../../lib/theme/styleHandler'
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -52,6 +56,8 @@ function Group({
     // if (onChange) onChange(e)
   }
 
+  const __styles = styleHandler('checkbox')
+
   return (
     <FormLayout
       label={label}
@@ -66,22 +72,24 @@ function Group({
       size={size}
     >
       <CheckboxContext.Provider value={{ parentCallback, parentSize: size }}>
-        {options
-          ? options.map((option: InputProps) => {
-              return (
-                <Checkbox
-                  id={option.id}
-                  value={option.value}
-                  label={option.label}
-                  beforeLabel={option.beforeLabel}
-                  afterLabel={option.afterLabel}
-                  checked={option.checked}
-                  name={option.name}
-                  description={option.description}
-                />
-              )
-            })
-          : children}
+        <div className={__styles.group}>
+          {options
+            ? options.map((option: InputProps) => {
+                return (
+                  <Checkbox
+                    id={option.id}
+                    value={option.value}
+                    label={option.label}
+                    beforeLabel={option.beforeLabel}
+                    afterLabel={option.afterLabel}
+                    checked={option.checked}
+                    name={option.name}
+                    description={option.description}
+                  />
+                )
+              })
+            : children}
+        </div>
       </CheckboxContext.Provider>
     </FormLayout>
   )
@@ -106,6 +114,8 @@ export function Checkbox({
 }: InputProps) {
   const { formContextOnChange, values, handleBlur } = useFormContext()
 
+  const __styles = styleHandler('checkbox')
+
   return (
     <CheckboxContext.Consumer>
       {({ parentCallback, parentSize }) => {
@@ -121,6 +131,9 @@ export function Checkbox({
               .replace(/ /g, '-')
           : undefined
 
+        // @ts-ignore
+        size = parentSize ? parentSize : size
+
         // if name does not exist on Radio then use Context Name from Radio.Group
         // if that fails, use the id
         const markupName = name ? name : markupId
@@ -131,16 +144,7 @@ export function Checkbox({
 
         // if (values && !value) value = values[id || name]
 
-        let containerClasses = [
-          CheckboxStyles['sbui-checkbox-container'],
-          CheckboxStyles[
-            `sbui-checkbox-container--${parentSize ? parentSize : size}`
-          ],
-        ]
-        if (className) containerClasses.push(className)
-
-        if (values && checked === undefined) active = values[id || name]
-        if (handleBlur) onBlur = handleBlur
+        let containerClasses = [__styles.container]
 
         function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
           // '`onChange` callback for parent component
@@ -151,13 +155,19 @@ export function Checkbox({
           if (formContextOnChange) formContextOnChange(e)
         }
 
+        if (className) containerClasses.push(className)
+
+        if (values && checked === undefined) active = values[id || name]
+        if (handleBlur) onBlur = handleBlur
+
         return (
           <div className={containerClasses.join(' ')}>
             <input
               id={markupId}
               name={markupName}
               type="checkbox"
-              className={CheckboxStyles['sbui-checkbox']}
+              // className={CheckboxStyles['sbui-checkbox']}
+              className={[__styles.base, __styles.size[size]].join(' ')}
               onChange={onInputChange}
               onFocus={onFocus ? (event) => onFocus(event) : undefined}
               onBlur={onBlur}
@@ -166,52 +176,46 @@ export function Checkbox({
               disabled={disabled}
               {...props}
             />
-            <div className={CheckboxStyles['sbui-checkbox__label-container']}>
-              <label
-                className={
-                  CheckboxStyles['sbui-checkbox__label-container__label']
-                }
-                htmlFor={markupId}
-              >
-                <span
-                  className={
-                    CheckboxStyles[
-                      'sbui-checkbox__label-container__label__span'
-                    ]
-                  }
-                >
-                  {beforeLabel && (
-                    <span
-                      className={
-                        CheckboxStyles['sbui-checkbox__label-text-before']
-                      }
-                    >
-                      {beforeLabel}
-                    </span>
-                  )}
-                  {label}
-                  {afterLabel && (
-                    <span
-                      className={
-                        CheckboxStyles['sbui-checkbox__label-text-after']
-                      }
-                    >
-                      {afterLabel}
-                    </span>
-                  )}
-                </span>
 
-                {description && (
-                  <p
-                    className={
-                      CheckboxStyles['sbui-checkbox__label-container__label__p']
-                    }
+            <label
+              className={[__styles.label.base, __styles.label[size]].join(' ')}
+              htmlFor={markupId}
+            >
+              <span>
+                {beforeLabel && (
+                  <span
+                    className={[
+                      __styles.label_before.base,
+                      __styles.label_before[size],
+                    ].join(' ')}
                   >
-                    {description}
-                  </p>
+                    {beforeLabel}
+                  </span>
                 )}
-              </label>
-            </div>
+                {label}
+                {afterLabel && (
+                  <span
+                    className={[
+                      __styles.label_after.base,
+                      __styles.label_after[size],
+                    ].join(' ')}
+                  >
+                    {afterLabel}
+                  </span>
+                )}
+              </span>
+
+              {description && (
+                <p
+                  className={[
+                    __styles.description.base,
+                    __styles.description[size],
+                  ].join(' ')}
+                >
+                  {description}
+                </p>
+              )}
+            </label>
           </div>
         )
       }}

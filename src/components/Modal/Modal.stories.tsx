@@ -5,10 +5,14 @@ import { action } from '@storybook/addon-actions'
 import { Modal } from '.'
 import Typography from '../Typography'
 import { Badge } from '../Badge'
+import { Form } from '../Form'
 import { Button } from '../Button'
 import { Space } from '../Space'
 import { IconTrash, IconAlertCircle, IconCheck } from './../../index'
 import { Dropdown } from '../Dropdown'
+import { IconGlobe } from '../Icon/icons/IconGlobe'
+import { IconLink2 } from '../Icon/icons/IconLink2'
+import { Input } from '../Input'
 
 export default {
   title: 'Overlays/Modal',
@@ -16,8 +20,154 @@ export default {
   argTypes: { onClick: { action: 'clicked' } },
 }
 
+export const withUseState = () => {
+  const [visible, setVisible] = useState(false)
+
+  return (
+    <>
+      <div
+        className="
+          py-4 px-8
+          bg-scale-300 
+          border 
+          border-scale-500 
+          rounded flex gap-4 
+          shadow-sm
+          justify-between
+          items-center
+          
+          fixed
+          top-1/2
+          left-1/2
+          w-3/4
+
+          -translate-x-1/2
+          -translate-y-1/2"
+      >
+        <div>
+          <h4 className="text-scale-1200 text-base">Delete your project</h4>
+          <p className="text-scale-1100 text-sm">
+            It will be sad to see you go
+          </p>
+        </div>
+        <Button
+          type="secondary"
+          onClick={() => setVisible(!visible)}
+          icon={<IconTrash />}
+        >
+          Delete this project
+        </Button>
+      </div>
+      <div>
+        <Modal
+          size="small"
+          visible={visible}
+          onCancel={() => setVisible(!visible)}
+          header={
+            <div className="flex items-center gap-2 text-scale-1200">
+              {/* <div className="text-scale-600">
+              <IconTrash strokeWidth={2} />
+            </div> */}
+              <div className="flex items-baseline gap-2">
+                <h3 className="text-sm">Delete your project</h3>
+                <span className="text-xs text-scale-900">Are you sure?</span>
+              </div>
+            </div>
+          }
+          contentStyle={{ padding: 0 }}
+          hideFooter
+        >
+          <Form
+            initialValues={{
+              name: '',
+            }}
+            onSubmit={(values: any, { setSubmitting }: any) => {
+              setTimeout(() => {
+                // alert(JSON.stringify(values, null, 2))
+                setSubmitting(false)
+                setVisible(false)
+              }, 400)
+            }}
+            validate={(values) => {
+              const errors: any = {}
+              if (!values.name) {
+                errors.name = 'Project name is required'
+              } else if (values.name !== 'MyProject') {
+                errors.name = 'Does not match project name'
+              }
+              return errors
+            }}
+          >
+            {({ isSubmitting, errors, touched }: any) => {
+              console.log('errors in form', errors)
+              console.log('touched in form', touched)
+              return (
+                <div className="space-y-4 mb-4">
+                  <div className="px-5 py-3 bg-amber-100 border-t border-b border-amber-300">
+                    <span className="flex gap-3 items-center text-xs text-amber-900">
+                      <IconAlertCircle strokeWidth={2} />
+                      <span>
+                        Once deleted, this project cannot be restored. Please
+                        proceed carefully.
+                      </span>
+                    </span>
+                  </div>
+                  <div className="px-5">
+                    <p className="text-sm text-scale-1100">
+                      This action cannot be undone. This will permanently delete
+                      the project{' '}
+                      <span className="text-scale-1200 font-regular">
+                        MyProject
+                      </span>
+                      .
+                    </p>
+                  </div>
+                  <div className="border-t border-scale-300 dark:border-scale-500"></div>
+                  <div className="px-5">
+                    <Input
+                      id="name"
+                      size="small"
+                      placeholder="Name of your project"
+                      label="Please type MyProject to confirm."
+                    />
+                  </div>
+                  <div className="border-t border-scale-300 dark:border-scale-500"></div>
+                  <div className="px-5">
+                    <Button
+                      type="danger"
+                      htmlType="submit"
+                      block
+                      size="medium"
+                      loading={isSubmitting}
+                    >
+                      I understand, delete this project
+                    </Button>
+                  </div>
+                </div>
+              )
+            }}
+          </Form>
+        </Modal>
+      </div>
+    </>
+  )
+}
+
 export const Default = (args: any) => (
-  <Modal {...args}>
+  <Modal
+    {...args}
+    header={
+      <div className="flex items-center gap-2 text-scale-1200">
+        <div className="text-brand-700">
+          <IconLink2 />
+        </div>
+        <div className="flex items-baseline gap-2">
+          <h3>This is the title</h3>
+          <span className="text-xs text-scale-900">This is the title</span>
+        </div>
+      </div>
+    }
+  >
     <Typography.Text type="secondary">
       Modal content is inserted here, if you need to insert anything into the
       Modal you can do so via{' '}

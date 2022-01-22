@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { IconAlertTriangle } from '../Icon/icons/IconAlertTriangle'
-import { IconCheck } from '../Icon/icons/IconCheck'
+
 import { IconInfo } from '../Icon/icons/IconInfo'
 import { IconX } from '../Icon/icons/IconX'
-import { IconXCircle } from '../Icon/icons/IconXCircle'
 
 // @ts-ignore
-import AlertStyles from './Alert.module.css'
+// import AlertStyles from './Alert.module.css'
+import styleHandler from '../../lib/theme/styleHandler'
+import { IconAlertOctagon } from '../Icon/icons/IconAlertOctagon'
+import { IconCheckCircle } from '../Icon/icons/IconCheckCircle'
 
 interface Props {
   variant?: 'success' | 'danger' | 'warning' | 'info'
@@ -21,53 +23,49 @@ const icons: Record<
   'success' | 'danger' | 'warning' | 'info',
   React.ReactElement
 > = {
-  danger: <IconXCircle size="medium" />,
-  success: <IconCheck size="medium" />,
-  warning: <IconAlertTriangle size="medium" />,
-  info: <IconInfo size="medium" />,
+  danger: <IconAlertOctagon strokeWidth={2} size="medium" />,
+  success: <IconCheckCircle strokeWidth={2} size="medium" />,
+  warning: <IconAlertTriangle strokeWidth={2} size="medium" />,
+  info: <IconInfo strokeWidth={2} size="medium" />,
 }
 
-const Alert = ({
+function Alert({
   variant = 'success',
   className,
   title,
   withIcon,
   closable,
   children,
-}: Props) => {
+}: Props) {
+  let __styles = styleHandler('alert')
+
   const [visible, setVisible] = useState(true)
-  let containerClasses = [AlertStyles['sbui-alert-container']]
-  containerClasses.push(AlertStyles[`sbui-alert-container--${variant}`])
+
+  let containerClasses = [__styles.base]
+  containerClasses.push(__styles.type[variant])
   if (className) containerClasses.push(className)
-  let descriptionClasses = [AlertStyles['sbui-alert-description']]
-  descriptionClasses.push(AlertStyles[`sbui-alert-description--${variant}`])
-  let closeButtonClasses = [AlertStyles['sbui-close-button']]
-  closeButtonClasses.push(AlertStyles[`sbui-close-button--${variant}`])
+
+  let descriptionClasses = [__styles.description[variant]]
+  let closeButtonClasses = [__styles.close]
 
   return (
     <>
       {visible && (
         <div className={containerClasses.join(' ')}>
-          <div className="flex">
-            <div className="flex-shrink-0">{withIcon && icons[variant]}</div>
-            <div className="ml-3">
-              <h3 className="sbui-alert-title">{title}</h3>
-              <div className={descriptionClasses.join(' ')}>{children}</div>
-            </div>
-            {closable && (
-              <div className="ml-auto pl-3">
-                <div className="-mx-1.5 -my-1.5">
-                  <button
-                    aria-label="Close alert"
-                    onClick={() => setVisible(false)}
-                    className={closeButtonClasses.join(' ')}
-                  >
-                    <IconX size="xlarge" strokeWidth={1.5} />
-                  </button>
-                </div>
-              </div>
-            )}
+          {withIcon && <div>{withIcon && icons[variant]}</div>}
+          <div>
+            <span className={__styles.title}>{title}</span>
+            <div className={descriptionClasses.join(' ')}>{children}</div>
           </div>
+          {closable && (
+            <button
+              aria-label="Close alert"
+              onClick={() => setVisible(false)}
+              className={closeButtonClasses.join(' ')}
+            >
+              <IconX strokeWidth={2} />
+            </button>
+          )}
         </div>
       )}
     </>

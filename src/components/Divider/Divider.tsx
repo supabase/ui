@@ -1,6 +1,6 @@
 import React from 'react'
 // @ts-ignore
-import DividerStyles from './Divider.module.css'
+// import DividerStyles from './Divider.module.css'
 
 interface Props {
   children?: React.ReactNode
@@ -19,25 +19,31 @@ export default function Divider({
   style,
   type = 'horizontal',
 }: Props) {
-  let classes = [
-    type === 'horizontal'
-      ? DividerStyles['sbui-divider']
-      : DividerStyles['sbui-divider-vertical'],
-  ]
-  if (light) classes.push(DividerStyles['sbui-divider--light'])
+  // let classes = [
+  //   type === 'horizontal'
+  //     ? DividerStyles['sbui-divider']
+  //     : DividerStyles['sbui-divider-vertical'],
+  // ]
+  // if (light) classes.push(DividerStyles['sbui-divider--light'])
 
-  if (children) {
-    classes.push(DividerStyles[`sbui-divider--${orientation}`])
-  } else if (!children && type === 'horizontal') {
-    classes.push(DividerStyles[`sbui-divider--no-text`])
-  }
+  // if (children) {
+  //   classes.push(DividerStyles[`sbui-divider--${orientation}`])
+  // } else if (!children && type === 'horizontal') {
+  //   classes.push(DividerStyles[`sbui-divider--no-text`])
+  // }
 
-  if (className) classes.push(className)
+  // if (className) classes.push(className)
 
   return (
-    <div className={classes.join(' ')} role="seperator" style={style}>
+    <div
+      // className={classes.join(' ')}
+      role="seperator"
+      style={style}
+    >
       {children && (
-        <span className={DividerStyles['sbui-divider__content']}>
+        <span
+        // className={DividerStyles['sbui-divider__content']}
+        >
           {children}
         </span>
       )}

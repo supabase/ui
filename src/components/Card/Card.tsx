@@ -3,6 +3,8 @@ import Typography from '../Typography'
 // @ts-ignore
 import CardStyles from './Card.module.css'
 
+import styleHandler from '../../lib/theme/styleHandler'
+
 interface CardProps {
   children?: React.ReactNode
   className?: string
@@ -23,20 +25,22 @@ function Card({
   title,
   titleExtra,
 }: CardProps) {
-  let classes = [CardStyles['sbui-card']]
-  if (hoverable) classes.push(CardStyles['sbui-card--hoverable'])
+  let __styles = styleHandler('card')
+
+  let classes = [__styles.base]
+  if (hoverable) classes.push(__styles.hoverable)
   if (className) classes.push(className)
 
   return (
     <div className={classes.join(' ')} style={style}>
       {title && (
-        <div className={CardStyles['sbui-card-head']}>
+        <div className={__styles.head}>
           <Typography.Text style={{ margin: 0 }}>{title}</Typography.Text>
           <Typography.Link style={{ margin: 0 }}>{titleExtra}</Typography.Link>
         </div>
       )}
       {cover}
-      <div className={CardStyles['sbui-card-content']}>{children}</div>
+      <div className={__styles.content}>{children}</div>
     </div>
   )
 }

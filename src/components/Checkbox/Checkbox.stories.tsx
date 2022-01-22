@@ -92,6 +92,7 @@ withGroup.args = {
   label: 'This is the label',
   description: 'This is the description',
   disabled: false,
+  size: 'medium',
   className: 'font-sans',
   layout: 'vertical',
 }

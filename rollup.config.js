@@ -1,6 +1,7 @@
 import babel from '@rollup/plugin-babel'
 import external from 'rollup-plugin-peer-deps-external'
-import postcss from 'rollup-plugin-postcss-modules'
+// import postcss from 'rollup-plugin-postcss-modules'
+// import postcss from 'rollup-plugin-postcss'
 import del from 'rollup-plugin-delete'
 import pkg from './package.json'
 import typescript from 'rollup-plugin-typescript2'
@@ -24,9 +25,9 @@ export default {
     index: 'src/index.tsx',
     // avatar: 'src/components/Avatar/index.tsx',
     button: 'src/components/Button/index.tsx',
-    typography: 'src/components/Typography/index.tsx',
+    // typography: 'src/components/Typography/index.tsx',
     icon: 'src/components/Icon/index.tsx',
-    image: 'src/components/Image/index.tsx',
+    // image: 'src/components/Image/index.tsx',
     card: 'src/components/Card/index.tsx',
     badge: 'src/components/Badge/index.tsx',
     alert: 'src/components/Alert/index.tsx',
@@ -48,8 +49,9 @@ export default {
     input: 'src/components/Input/index.tsx',
     radio: 'src/components/Radio/index.tsx',
     toggle: 'src/components/Toggle/index.tsx',
-    upload: 'src/components/Upload/index.tsx',
-    auth: 'src/components/Auth/index.tsx',
+    // upload: 'src/components/Upload/index.tsx',
+    // auth: 'src/components/Auth/index.tsx',
+    // auth: 'src/components/ThemeProvider/index.tsx',
     ...icons,
   },
   external: [
@@ -88,24 +90,24 @@ export default {
       ignoreGlobal: false,
       include: 'node_modules/**',
     }),
-    postcss({
-      // plugins: require('./postcss.config').plugins,
-      plugins: [
-        require('postcss-import'),
-        require('tailwindcss'),
-        require('autoprefixer'),
-      ],
-      // modules: true,
-      minimize: true,
-      sourceMap: false,
-      // extract: false,
-      minimize: true,
-      modules: {
-        // see generateScopedName options here
-        // https://github.com/css-modules/postcss-modules
-        generateScopedName: '[local]',
-      },
-    }),
+    // postcss({
+    //   // plugins: require('./postcss.config').plugins,
+    //   // plugins: [
+    //   //   require('postcss-import'),
+    //   //   require('tailwindcss'),
+    //   //   require('autoprefixer'),
+    //   // ],
+    //   // modules: true,
+    //   minimize: true,
+    //   sourceMap: false,
+    //   // extract: false,
+    //   minimize: true,
+    //   // modules: {
+    //   //   // see generateScopedName options here
+    //   //   // https://github.com/css-modules/postcss-modules
+    //   //   generateScopedName: '[local]',
+    //   // },
+    // }),
     babel({
       babelHelpers: 'runtime',
       exclude: 'node_modules/**',

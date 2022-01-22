@@ -1,6 +1,10 @@
-import React, { useRef, useState } from 'react'
+// import React, { useRef, useState } from 'react'
+// import defaultTheme from '../../theme/defaultTheme'
+// import { ThemeProvider } from './../ThemeProvider'
+// import customThemeExample from '../../lib/theme/customThemeExample'
 
-import { Button, Space, IconPackage, IconChevronRight } from './../../index'
+import { useRef, useState } from 'react'
+import { Button, IconPackage, IconChevronRight } from './../../index'
 
 export default {
   title: 'General/Button',
@@ -24,7 +28,7 @@ export const withRef = () => {
   const [msg, setMsg] = useState('Click button to console.log Ref')
 
   function onClick() {
-    const message = `container: ${buttonRef?.current.container} button:${buttonRef?.current.button}  `
+    const message = `button:${buttonRef?.current}  `
     setMsg(message)
     // console.log(message)
   }
@@ -41,15 +45,18 @@ export const withRef = () => {
 }
 export const allButtons = (args: any) => (
   <>
-    <Space direction="vertical" size={6}>
-      <Space>
+    <div className="flex flex-col space-y-4">
+      <div className="flex space-x-4">
         <Button {...args} size="tiny">
+          Button text
+        </Button>
+        <Button {...args} size="tiny" type="default">
           Button text
         </Button>
         <Button {...args} size="tiny" type="secondary">
           Button text
         </Button>
-        <Button {...args} size="tiny" type="default">
+        <Button {...args} size="tiny" type="alternative">
           Button text
         </Button>
         <Button {...args} size="tiny" type="link">
@@ -64,16 +71,25 @@ export const allButtons = (args: any) => (
         <Button {...args} size="tiny" type="outline">
           Button text
         </Button>
-      </Space>
+        <Button {...args} size="tiny" type="danger">
+          Button text
+        </Button>
+        <Button {...args} size="tiny" type="warning">
+          Button text
+        </Button>
+      </div>
 
-      <Space>
+      <div className="flex space-x-4">
         <Button {...args} size="small">
+          Button text
+        </Button>
+        <Button {...args} size="small" type="default">
           Button text
         </Button>
         <Button {...args} size="small" type="secondary">
           Button text
         </Button>
-        <Button {...args} size="small" type="default">
+        <Button {...args} size="small" type="alternative">
           Button text
         </Button>
         <Button {...args} size="small" type="link">
@@ -88,13 +104,24 @@ export const allButtons = (args: any) => (
         <Button {...args} size="small" type="outline">
           Button text
         </Button>
-      </Space>
-      <Space>
-        <Button {...args}>Button text</Button>
-        <Button {...args} size="medium" type="secondary">
+        <Button {...args} size="small" type="danger">
+          Button text
+        </Button>
+        <Button {...args} size="small" type="warning">
+          Button text
+        </Button>
+      </div>
+      <div className="flex space-x-4">
+        <Button {...args} size="medium">
           Button text
         </Button>
         <Button {...args} size="medium" type="default">
+          Button text
+        </Button>
+        <Button {...args} size="medium" type="secondary">
+          Button text
+        </Button>
+        <Button {...args} size="medium" type="alternative">
           Button text
         </Button>
         <Button {...args} size="medium" type="link">
@@ -109,15 +136,24 @@ export const allButtons = (args: any) => (
         <Button {...args} size="medium" type="outline">
           Button text
         </Button>
-      </Space>
-      <Space>
+        <Button {...args} size="medium" type="danger">
+          Button text
+        </Button>
+        <Button {...args} size="medium" type="warning">
+          Button text
+        </Button>
+      </div>
+      <div className="flex space-x-4">
         <Button {...args} size="large">
+          Button text
+        </Button>
+        <Button {...args} size="large" type="default">
           Button text
         </Button>
         <Button {...args} size="large" type="secondary">
           Button text
         </Button>
-        <Button {...args} size="large" type="default">
+        <Button {...args} size="large" type="alternative">
           Button text
         </Button>
         <Button {...args} size="large" type="link">
@@ -132,15 +168,24 @@ export const allButtons = (args: any) => (
         <Button {...args} size="large" type="outline">
           Button text
         </Button>
-      </Space>
-      <Space>
+        <Button {...args} size="large" type="danger">
+          Button text
+        </Button>
+        <Button {...args} size="large" type="warning">
+          Button text
+        </Button>
+      </div>
+      <div className="flex space-x-4">
         <Button {...args} size="xlarge">
+          Button text
+        </Button>
+        <Button {...args} size="xlarge" type="default">
           Button text
         </Button>
         <Button {...args} size="xlarge" type="secondary">
           Button text
         </Button>
-        <Button {...args} size="xlarge" type="default">
+        <Button {...args} size="xlarge" type="alternative">
           Button text
         </Button>
         <Button {...args} size="xlarge" type="link">
@@ -155,8 +200,14 @@ export const allButtons = (args: any) => (
         <Button {...args} size="xlarge" type="outline">
           Button text
         </Button>
-      </Space>
-    </Space>
+        <Button {...args} size="xlarge" type="danger">
+          Button text
+        </Button>
+        <Button {...args} size="xlarge" type="warning">
+          Button text
+        </Button>
+      </div>
+    </div>
   </>
 )
 

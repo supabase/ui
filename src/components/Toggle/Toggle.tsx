@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import { useFormContext } from '../Form/FormContext'
-// @ts-ignore
-import ToggleStyles from './Toggle.module.css'
+
+import defaultTheme from '../../lib/theme/defaultTheme'
+import styleHandler from '../../lib/theme/styleHandler'
 
 interface Props extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'size'> {
   name?: string
   disabled?: boolean
-  layout?: 'horizontal' | 'vertical'
+  layout?: 'horizontal' | 'vertical' | 'flex'
   error?: string
   descriptionText?: string
   label?: string
@@ -19,6 +20,7 @@ interface Props extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'size'> {
   checked?: boolean
   align?: 'right' | 'left'
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+  labelLayout?: 'horizontal' | 'vertical'
   validation?: (x: any) => void
 }
 
@@ -26,7 +28,7 @@ function Toggle({
   disabled,
   id = '',
   name = '',
-  layout = 'vertical',
+  layout = 'flex',
   error,
   descriptionText,
   label,
@@ -40,14 +42,17 @@ function Toggle({
   defaultChecked,
   checked,
   className,
-  align = 'right',
+  align = 'left',
   size = 'medium',
   validation,
+  labelLayout,
   ...props
 }: Props) {
   const [intChecked, setIntChecked] = useState(
     (defaultChecked || checked) ?? false
   )
+
+  const __styles = styleHandler('toggle')
 
   const {
     formContextOnChange,
@@ -58,7 +63,7 @@ function Toggle({
     fieldLevelValidation,
   } = useFormContext()
 
-  // if (values && !value) value = values[id || name]
+  if (values && !checked) checked = values[id || name]
   if (handleBlur) onBlur = handleBlur
 
   if (!error) {
@@ -100,14 +105,11 @@ function Toggle({
     if (validation) fieldLevelValidation(id, validation(!intChecked))
   }
 
-  let toggleClasses = [
-    ToggleStyles['sbui-toggle'],
-    ToggleStyles[`sbui-toggle--${size}`],
-  ]
-  if (active) toggleClasses.push(ToggleStyles['sbui-toggle--active'])
+  let toggleClasses = [__styles.base, __styles.handle_container[size]]
+  if (active) toggleClasses.push(__styles.active)
 
-  let handleClasses = [ToggleStyles['sbui-toggle__handle']]
-  if (active) handleClasses.push(ToggleStyles['sbui-toggle__handle--active'])
+  let handleClasses = [__styles.handle['base'], __styles.handle[size]]
+  if (active) handleClasses.push(__styles.handle_active[size])
 
   return (
     <FormLayout
@@ -119,10 +121,11 @@ function Toggle({
       layout={layout}
       id={id}
       error={error}
-      align={layout === 'vertical' ? align : undefined}
-      flex={layout === 'vertical' ? true : false}
+      align={align}
       descriptionText={descriptionText}
       size={size}
+      labelLayout={labelLayout}
+      nonBoxInput
     >
       <button
         type="button"

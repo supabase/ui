@@ -3,7 +3,7 @@
 export * from './components/Button/index'
 export * from './components/Typography/index'
 export * from './components/Icon/index'
-export * from './components/Image/index'
+// export * from './components/Image/index'
 
 // DISPLAYS
 
@@ -12,6 +12,7 @@ export * from './components/Badge/index'
 export * from './components/Tabs/index'
 export * from './components/Alert/index'
 export * from './components/Accordion/index'
+export * from './components/Collapsible/index'
 
 // NAV
 
@@ -31,6 +32,7 @@ export * from './components/Popover/index'
 export * from './components/Space/index'
 export * from './components/Loading/index'
 export * from './components/Divider/index'
+export * from './components/ThemeProvider/index'
 
 // DATA ENTRY
 
@@ -50,7 +52,7 @@ export * from './components/Form/index'
 
 // AUTH
 
-export * from './components/Auth/index'
+// export * from './components/Auth/index'
 
 // ICONS
 

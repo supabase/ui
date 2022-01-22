@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
-import { Button, Space, Typography, IconCopy } from '../../index'
-// @ts-ignore
-import InputStyles from './Input.module.css'
+import { Button, IconCopy } from '../../index'
+import { HIDDEN_PLACEHOLDER } from './../../lib/constants'
+
+import defaultTheme from '../../lib/theme/defaultTheme'
 
 import { useFormContext } from '../Form/FormContext'
+import styleHandler from '../../lib/theme/styleHandler'
 
 export interface Props
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   copy?: boolean
   defaultValue?: string | number
-  descriptionText?: string
+  descriptionText?: string | React.ReactNode | undefined
   disabled?: boolean
   error?: string
   icon?: any
@@ -65,6 +67,8 @@ function Input({
   const [copyLabel, setCopyLabel] = useState('Copy')
   const [hidden, setHidden] = useState(reveal)
 
+  const __styles = styleHandler('input')
+
   const {
     formContextOnChange,
     values,
@@ -99,12 +103,6 @@ function Input({
   //   error = touched && touched[id] ? error : undefined
   // }, [errors, touched])
 
-  let inputClasses = [InputStyles['sbui-input']]
-  if (error) inputClasses.push(InputStyles['sbui-input--error'])
-  if (icon) inputClasses.push(InputStyles['sbui-input--with-icon'])
-  if (size) inputClasses.push(InputStyles[`sbui-input--${size}`])
-  if (borderless) inputClasses.push(InputStyles['sbui-input--borderless'])
-
   function onCopy(value: any) {
     navigator.clipboard.writeText(value).then(
       function () {
@@ -125,69 +123,71 @@ function Input({
     setHidden(false)
   }
 
-  const hiddenPlaceholder = '**** **** **** ****'
+  let inputClasses = [__styles.base]
+
+  if (error) inputClasses.push(__styles.variants.error)
+  if (!error) inputClasses.push(__styles.variants.standard)
+  if (icon) inputClasses.push(__styles.with_icon)
+  if (size) inputClasses.push(__styles.size[size])
+  if (disabled) inputClasses.push(__styles.disabled)
 
   return (
-    <div className={className}>
-      <FormLayout
-        label={label}
-        afterLabel={afterLabel}
-        beforeLabel={beforeLabel}
-        labelOptional={labelOptional}
-        layout={layout}
-        id={id}
-        error={error}
-        descriptionText={descriptionText}
-        style={style}
-        size={size}
-      >
-        <div className={InputStyles['sbui-input-container']}>
-          <input
-            autoComplete={autoComplete}
-            autoFocus={autoFocus}
-            defaultValue={defaultValue}
-            disabled={disabled}
-            id={id}
-            name={name}
-            onChange={onInputChange}
-            onFocus={onFocus ? (event) => onFocus(event) : undefined}
-            onBlur={onBlur}
-            onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
-            placeholder={placeholder}
-            ref={inputRef}
-            type={type}
-            value={hidden ? hiddenPlaceholder : value}
-            className={inputClasses.join(' ')}
-            {...props}
-          />
-          {icon && <InputIconContainer icon={icon} />}
-          {copy || error || actions ? (
-            <Space
-              className={InputStyles['sbui-input-actions-container']}
-              size={1}
-            >
-              {error && <InputErrorIcon size={size} />}
-              {copy && !hidden ? (
-                <Button
-                  size="tiny"
-                  type="default"
-                  onClick={() => onCopy(value)}
-                  icon={<IconCopy />}
-                >
-                  {copyLabel}
-                </Button>
-              ) : null}
-              {hidden && reveal ? (
-                <Button size="tiny" type="default" onClick={onReveal}>
-                  Reveal
-                </Button>
-              ) : null}
-              {actions && actions}
-            </Space>
-          ) : null}
-        </div>
-      </FormLayout>
-    </div>
+    <FormLayout
+      label={label}
+      afterLabel={afterLabel}
+      beforeLabel={beforeLabel}
+      labelOptional={labelOptional}
+      layout={layout}
+      id={id}
+      error={error}
+      descriptionText={descriptionText}
+      style={style}
+      size={size}
+      className={className}
+    >
+      <div className={__styles.container}>
+        <input
+          autoComplete={autoComplete}
+          autoFocus={autoFocus}
+          defaultValue={defaultValue}
+          disabled={disabled}
+          id={id}
+          name={name}
+          onChange={onInputChange}
+          onFocus={onFocus ? (event) => onFocus(event) : undefined}
+          onBlur={onBlur}
+          onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
+          placeholder={placeholder}
+          ref={inputRef}
+          type={type}
+          value={hidden ? HIDDEN_PLACEHOLDER : value}
+          className={inputClasses.join(' ')}
+          {...props}
+        />
+        {icon && <InputIconContainer icon={icon} />}
+        {copy || error || actions ? (
+          <div className={__styles.actions_container}>
+            {error && <InputErrorIcon size={size} />}
+            {copy && !hidden ? (
+              <Button
+                size="tiny"
+                type="default"
+                onClick={() => onCopy(value)}
+                icon={<IconCopy />}
+              >
+                {copyLabel}
+              </Button>
+            ) : null}
+            {hidden && reveal ? (
+              <Button size="tiny" type="default" onClick={onReveal}>
+                Reveal
+              </Button>
+            ) : null}
+            {actions && actions}
+          </div>
+        ) : null}
+      </div>
+    </FormLayout>
   )
 }
 
@@ -288,11 +288,15 @@ function TextArea({
     if (validation) fieldLevelValidation(id, validation(value))
   }, [])
 
-  let classes = [InputStyles['sbui-input']]
-  if (error) classes.push(InputStyles['sbui-input--error'])
-  if (icon) classes.push(InputStyles['sbui-input--with-icon'])
-  if (size) classes.push(InputStyles[`sbui-input--${size}`])
-  if (borderless) classes.push(InputStyles['sbui-input--borderless'])
+  const __styles = styleHandler('input')
+
+  let classes = [__styles.base]
+
+  if (error) classes.push(__styles.variants.error)
+  if (!error) classes.push(__styles.variants.standard)
+  if (icon) classes.push(__styles.with_icon)
+  if (size) classes.push(__styles.size[size])
+  if (disabled) classes.push(__styles.disabled)
 
   return (
     <FormLayout
@@ -308,7 +312,7 @@ function TextArea({
       style={style}
       size={size}
     >
-      <div className={InputStyles['sbui-input-container']}>
+      <div className={__styles.container}>
         <textarea
           disabled={disabled}
           id={id}
@@ -328,11 +332,8 @@ function TextArea({
           {value}
         </textarea>
         {copy || error || actions ? (
-          <div className={InputStyles['sbui-textarea-actions-container']}>
-            <Space
-              className={InputStyles['sbui-textarea-actions-container__items']}
-              size={1}
-            >
+          <div className={__styles['textarea_actions_container']}>
+            <div className={__styles['textarea_actions_container_items']}>
               {error && <InputErrorIcon size={size} />}
               {copy && (
                 <Button
@@ -345,7 +346,7 @@ function TextArea({
                 </Button>
               )}
               {actions && actions}
-            </Space>
+            </div>
           </div>
         ) : null}
       </div>

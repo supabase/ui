@@ -1,8 +1,13 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-// @ts-ignore
-import ButtonStyles from './Button.module.css'
+import React, {
+  forwardRef,
+  useRef,
+  useImperativeHandle,
+  useContext,
+} from 'react'
 import { IconContext } from '../Icon/IconContext'
 import { IconLoader } from '../Icon/icons/IconLoader'
+
+import styleHandler from '../../lib/theme/styleHandler'
 
 export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   block?: boolean
@@ -21,10 +26,13 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
     | 'primary'
     | 'default'
     | 'secondary'
+    | 'alternative'
     | 'outline'
     | 'dashed'
     | 'link'
     | 'text'
+    | 'danger'
+    | 'warning'
   danger?: boolean
   htmlType?: 'button' | 'submit' | 'reset'
   ref?: any
@@ -34,12 +42,13 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   role?: string
   textAlign?: 'left' | 'center' | 'right'
   as?: keyof JSX.IntrinsicElements
+  form?: string
 }
 
 interface CustomButtonProps extends React.HTMLAttributes<HTMLOrSVGElement> {}
 
 export interface RefHandle {
-  container: () => HTMLElement | null
+  // container: () => HTMLElement | null
   button: () => HTMLButtonElement | null
 }
 
@@ -72,57 +81,54 @@ const Button = forwardRef<RefHandle, ButtonProps>(
     ref
   ) => {
     // button ref
-    const containerRef = useRef<HTMLElement>(null)
+    // const containerRef = useRef<HTMLElement>(null)
     const buttonRef = useRef<HTMLButtonElement>(null)
 
     useImperativeHandle(ref, () => ({
-      container: () => {
-        return containerRef.current
-      },
       button: () => {
         return buttonRef.current
       },
     }))
 
+    let __styles = styleHandler('button')
+
     // styles
     const showIcon = loading || icon
 
-    let classes = [ButtonStyles['sbui-btn']]
-    let containerClasses = [ButtonStyles['sbui-btn-container']]
+    let classes = [__styles.base]
+    let containerClasses = [__styles.container]
 
-    classes.push(ButtonStyles[`sbui-btn-${type}`])
+    classes.push(__styles.type[type])
 
     if (block) {
-      containerClasses.push(ButtonStyles['sbui-btn--w-full'])
-      classes.push(ButtonStyles['sbui-btn--w-full'])
-    }
-
-    if (danger) {
-      classes.push(ButtonStyles['sbui-btn--danger'])
+      containerClasses.push(__styles.block)
+      classes.push(__styles.block)
     }
 
     if (shadow && type !== 'link' && type !== 'text') {
-      classes.push(ButtonStyles['sbui-btn-container--shadow'])
+      classes.push(__styles.shadow)
     }
 
     if (size) {
-      classes.push(ButtonStyles[`sbui-btn--${size}`])
+      classes.push(__styles.size[size])
     }
 
     if (className) {
       classes.push(className)
     }
 
-    const iconLoaderClasses = [ButtonStyles['sbui-btn--anim--spin']]
-
-    if (loadingCentered) {
-      iconLoaderClasses.push(ButtonStyles[`sbui-btn-loader--center`])
-    }
-    if (loading && loadingCentered) {
-      classes.push(ButtonStyles[`sbui-btn--text-fade-out`])
+    if (disabled) {
+      classes.push(__styles.disabled)
     }
 
-    classes.push(ButtonStyles[`sbui-btn--text-align-${textAlign}`])
+    const iconLoaderClasses = [__styles.loading]
+
+    // if (loadingCentered) {
+    //   iconLoaderClasses.push(ButtonStyles[`sbui-btn-loader--center`])
+    // }
+    // if (loading && loadingCentered) {
+    //   classes.push(ButtonStyles[`sbui-btn--text-fade-out`])
+    // }
 
     // custom button tag
     const CustomButton: React.FC<CustomButtonProps> = ({ ...props }) => {
@@ -151,35 +157,36 @@ const Button = forwardRef<RefHandle, ButtonProps>(
 
     if (as) {
       return (
-        <span ref={containerRef} className={containerClasses.join(' ')}>
-          <CustomButton
-            className={classes.join(' ')}
-            onClick={onClick}
-            style={style}
-          >
-            {buttonContent}
-          </CustomButton>
-        </span>
+        // <span ref={containerRef} className={containerClasses.join(' ')}>
+        <CustomButton
+          className={classes.join(' ')}
+          onClick={onClick}
+          style={style}
+        >
+          {buttonContent}
+        </CustomButton>
+        // </span>
       )
     } else {
       return (
-        <span ref={containerRef} className={containerClasses.join(' ')}>
-          <button
-            {...props}
-            ref={buttonRef}
-            className={classes.join(' ')}
-            disabled={loading || (disabled && true)}
-            onClick={onClick}
-            style={style}
-            type={htmlType}
-            aria-selected={ariaSelected}
-            aria-controls={ariaControls}
-            tabIndex={tabIndex}
-            role={role}
-          >
-            {buttonContent}
-          </button>
-        </span>
+        // <span ref={containerRef} className={containerClasses.join(' ')}>
+        <button
+          {...props}
+          ref={buttonRef}
+          className={classes.join(' ')}
+          disabled={loading || (disabled && true)}
+          onClick={onClick}
+          style={style}
+          type={htmlType}
+          aria-selected={ariaSelected}
+          aria-controls={ariaControls}
+          tabIndex={tabIndex}
+          role={role}
+          form={props.form}
+        >
+          {buttonContent}
+        </button>
+        // </span>
       )
     }
   }

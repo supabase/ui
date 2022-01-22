@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
-import { IconChevronDown } from '../Icon/icons/IconChevronDown'
-import { IconChevronUp } from '../Icon/icons/IconChevronUp'
+// import { IconChevronDown } from '../Icon/icons/IconChevronDown'
+// import { IconChevronUp } from '../Icon/icons/IconChevronUp'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
-import { Space } from '../../index'
+
+import defaultTheme from '../../lib/theme/defaultTheme'
+
 // @ts-ignore
+// import InputNumberStyles from './InputNumber.module.css'
 import InputNumberStyles from './InputNumber.module.css'
 import { useFormContext } from '../Form/FormContext'
+import styleHandler from '../../lib/theme/styleHandler'
 
 export interface Props {
   autoComplete?: string
@@ -70,6 +74,8 @@ function InputNumber({
   borderless = false,
   validation,
 }: Props) {
+  const __styles = styleHandler('inputNumber')
+
   const {
     formContextOnChange,
     values,
@@ -99,61 +105,63 @@ function InputNumber({
     if (validation) fieldLevelValidation(id, validation(value))
   }, [])
 
-  const inputClasses = [InputNumberStyles['sbui-inputnumber']]
+  // const inputClasses = [InputNumberStyles['sbui-inputnumber']]
+  let inputClasses = [__styles.base]
 
-  const iconUpClasses = [
-    InputNumberStyles['sbui-inputnumber-button'],
-    InputNumberStyles['sbui-inputnumber-button-up'],
-  ]
+  // const iconUpClasses = [
+  //   InputNumberStyles['sbui-inputnumber-button'],
+  //   InputNumberStyles['sbui-inputnumber-button-up'],
+  // ]
 
-  const inputRefCurrent = inputRef
-    ? inputRef
-    : React.createRef<HTMLInputElement>()
+  // const inputRefCurrent = inputRef
+  //   ? inputRef
+  //   : React.createRef<HTMLInputElement>()
 
-  const iconDownClasses = [
-    InputNumberStyles['sbui-inputnumber-button'],
-    InputNumberStyles['sbui-inputnumber-button-down'],
-  ]
+  // const iconDownClasses = [
+  //   InputNumberStyles['sbui-inputnumber-button'],
+  //   InputNumberStyles['sbui-inputnumber-button-down'],
+  // ]
 
-  const iconNavClasses = [InputNumberStyles['sbui-inputnumber-nav']]
-
-  if (error) inputClasses.push(InputNumberStyles['sbui-inputnumber--error'])
-
-  if (icon) inputClasses.push(InputNumberStyles['sbui-inputnumber--with-icon'])
+  // const iconNavClasses = [InputNumberStyles['sbui-inputnumber-nav']]
 
   if (size) {
-    inputClasses.push(InputNumberStyles[`sbui-inputnumber--${size}`])
-    iconNavClasses.push(InputNumberStyles[`sbui-inputnumber-nav--${size}`])
+    // inputClasses.push(InputNumberStyles[`sbui-inputnumber--${size}`])
+    // iconNavClasses.push(InputNumberStyles[`sbui-inputnumber-nav--${size}`])
   }
 
-  if (borderless)
-    inputClasses.push(InputNumberStyles['sbui-inputnumber--borderless'])
+  if (error) inputClasses.push(__styles.variants.error)
+  if (!error) inputClasses.push(__styles.variants.standard)
+  if (icon) inputClasses.push(__styles.with_icon)
+  if (size) inputClasses.push(__styles.size[size])
+  if (disabled) inputClasses.push(__styles.disabled)
+  // if (borderless)
+  //   inputClasses.push(InputNumberStyles['sbui-inputnumber--borderless'])
 
-  const onClickChevronUp = () => {
-    inputRefCurrent.current?.stepUp()
-    if (onChange) {
-      inputRefCurrent.current?.dispatchEvent(
-        new InputEvent('change', {
-          view: window,
-          bubbles: true,
-          cancelable: false,
-        })
-      )
-    }
-  }
+  // const onClickChevronUp = () => {
+  //   inputRefCurrent.current?.stepUp()
+  //   if (onChange) {
+  //     inputRefCurrent.current?.dispatchEvent(
+  //       new InputEvent('change', {
+  //         view: window,
+  //         bubbles: true,
+  //         cancelable: false,
+  //       })
+  //     )
+  //   }
+  // }
 
-  const onClickChevronDown = () => {
-    inputRefCurrent.current?.stepDown()
-    if (onChange) {
-      inputRefCurrent.current?.dispatchEvent(
-        new InputEvent('change', {
-          view: window,
-          bubbles: true,
-          cancelable: false,
-        })
-      )
-    }
-  }
+  // const onClickChevronDown = () => {
+  //   inputRefCurrent.current?.stepDown()
+  //   if (onChange) {
+  //     inputRefCurrent.current?.dispatchEvent(
+  //       new InputEvent('change', {
+  //         view: window,
+  //         bubbles: true,
+  //         cancelable: false,
+  //       })
+  //     )
+  //   }
+  // }
 
   return (
     <div className={className}>
@@ -169,7 +177,7 @@ function InputNumber({
         style={style}
         size={size}
       >
-        <div className={InputNumberStyles['sbui-inputnumber-container']}>
+        <div className={__styles.container}>
           <input
             autoComplete={autoComplete}
             autoFocus={autofocus}
@@ -182,7 +190,7 @@ function InputNumber({
             onBlur={onBlur}
             onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
             placeholder={placeholder}
-            ref={inputRefCurrent}
+            // ref={inputRefCurrent}
             type={'number'}
             value={value}
             className={inputClasses.join(' ')}
@@ -207,14 +215,9 @@ function InputNumber({
           </div> */}
           {icon && <InputIconContainer icon={icon} />}
           {error ? (
-            <Space
-              className={
-                InputNumberStyles['sbui-inputnumber-actions-container']
-              }
-              size={1}
-            >
+            <div className={__styles.actions_container}>
               {error && <InputErrorIcon size={size} />}
-            </Space>
+            </div>
           ) : null}
         </div>
       </FormLayout>

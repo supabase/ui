@@ -1,9 +1,11 @@
 import React from 'react'
 
-import { Alert } from './'
+import { Alert } from './../../index'
+
+// import ThemeProvider from '../../theme/themeContext'
 
 export default {
-  title: 'Displays/Alert',
+  title: 'Displays/Alerts',
   component: Alert,
 }
 

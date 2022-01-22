@@ -7,8 +7,20 @@ import { AnimationTailwindClasses } from '../../types'
 import * as Dialog from '@radix-ui/react-dialog'
 
 import { Transition } from '@headlessui/react'
+import styleHandler from '../../lib/theme/styleHandler'
 
 // import { Transition } from '@tailwindui/react'
+
+interface RadixProps
+  extends Dialog.DialogProps,
+    Pick<
+      Dialog.DialogContentProps,
+      | 'onOpenAutoFocus'
+      | 'onCloseAutoFocus'
+      | 'onEscapeKeyDown'
+      | 'onPointerDownOutside'
+      | 'onInteractOutside'
+    > {}
 
 interface Props {
   children?: React.ReactNode
@@ -38,6 +50,7 @@ interface Props {
   transition?: AnimationTailwindClasses
   transitionOverlay?: AnimationTailwindClasses
   triggerElement?: React.ReactNode
+  header?: React.ReactNode
 }
 
 const Modal = ({
@@ -66,8 +79,11 @@ const Modal = ({
   className = '',
   overlayClassName,
   triggerElement,
+  header,
 }: Props) => {
   const [open, setOpen] = React.useState(visible ? visible : false)
+
+  const __styles = styleHandler('modal')
 
   useEffect(() => {
     setOpen(visible)
@@ -77,19 +93,20 @@ const Modal = ({
     e.stopPropagation()
   }
 
-  let footerClasses = [ModalStyles['sbui-modal-footer']]
+  // let footerClasses = [ModalStyles['sbui-modal-footer']]
   if (footerBackground) {
-    footerClasses.push(ModalStyles['sbui-modal-footer--with-bg'])
+    // footerClasses.push(ModalStyles['sbui-modal-footer--with-bg'])
   }
 
   let modalClasses = [
-    ModalStyles[`sbui-modal`],
-    ModalStyles[`sbui-modal--${size}`],
+    __styles.base,
+    // ModalStyles[`sbui-modal`],
+    // ModalStyles[`sbui-modal--${size}`],
   ]
-  if (className) modalClasses.push(className)
+  // if (className) modalClasses.push(className)
 
-  let overlayClasses = [ModalStyles['sbui-modal-overlay']]
-  if (overlayClassName) overlayClasses.push(overlayClassName)
+  // let overlayClasses = [ModalStyles['sbui-modal-overlay']]
+  // if (overlayClassName) overlayClasses.push(overlayClassName)
 
   const footerContent = customFooter ? (
     customFooter
@@ -105,7 +122,7 @@ const Modal = ({
             : 'flex-start',
       }}
     >
-      <Button type="outline" onClick={onCancel} disabled={loading}>
+      <Button type="secondary" onClick={onCancel} disabled={loading}>
         {cancelText}
       </Button>
       <Button
@@ -131,116 +148,41 @@ const Modal = ({
   return (
     <Dialog.Root open={open} onOpenChange={handleOpenChange}>
       {triggerElement && (
-        <Dialog.Trigger className={ModalStyles[`sbui-modal__trigger`]}>
+        <Dialog.Trigger
+        // className={ModalStyles[`sbui-modal__trigger`]}
+        >
           {triggerElement}
         </Dialog.Trigger>
       )}
-      <Transition show={open}>
-        <Dialog.Overlay>
-          <Transition.Child
-            enter={ModalStyles[`sbui-modal-overlay--enter`]}
-            enterFrom={ModalStyles[`sbui-modal-overlay--enterFrom`]}
-            enterTo={ModalStyles[`sbui-modal-overlay--enterTo`]}
-            leave={ModalStyles[`sbui-modal-overlay--leave`]}
-            leaveFrom={ModalStyles[`sbui-modal-overlay--leaveFrom`]}
-            leaveTo={ModalStyles[`sbui-modal-overlay--leaveTo`]}
+      <Dialog.Portal>
+        <Dialog.Overlay className={__styles.overlay} />
+        <Dialog.Overlay className={__styles.scroll_overlay}>
+          <Dialog.Content
+            className={[__styles.base, __styles.size[size]].join(' ')}
           >
-            <div className={ModalStyles['sbui-modal-overlay-container']}>
-              <div
-                className={overlayClasses.join(' ')}
-                style={overlayStyle}
-              ></div>
-            </div>
-          </Transition.Child>
+            {header && <div className={__styles.header}>{header}</div>}
+            {/* <div
+              className={ModalStyles['sbui-modal-content']}
+              style={contentStyle}
+            > */}
+            {children}
+            {/* </div> */}
+            {!hideFooter && (
+              <div className={__styles.footer}>{footerContent}</div>
+            )}
+            {/* {closable && (
+              <div className={ModalStyles['sbui-modal-close-container']}>
+                <Button
+                  onClick={onCancel}
+                  type="text"
+                  shadow={false}
+                  icon={<IconX size="medium" />}
+                />
+              </div>
+            )} */}
+          </Dialog.Content>
         </Dialog.Overlay>
-        <Dialog.Content forceMount style={{ width: '100vw' }}>
-          <div
-            className={ModalStyles['sbui-modal-container'] + ' ' + className}
-            onClick={() => (onCancel ? onCancel() : null)}
-          >
-            <div className={ModalStyles['sbui-modal-flex-container']}>
-              <Transition.Child
-                enter={ModalStyles[`sbui-modal--enter`]}
-                enterFrom={ModalStyles[`sbui-modal--enterFrom`]}
-                enterTo={ModalStyles[`sbui-modal--enterTo`]}
-                leave={ModalStyles[`sbui-modal--leave`]}
-                leaveFrom={ModalStyles[`sbui-modal--leaveFrom`]}
-                leaveTo={ModalStyles[`sbui-modal--leaveTo`]}
-                className="fixed inset-0 overflow-y-auto"
-              >
-                <div
-                  className={modalClasses.join(' ')}
-                  role="dialog"
-                  aria-modal="true"
-                  aria-labelledby="modal-headline"
-                  onClick={stopPropagation}
-                  style={style}
-                >
-                  <div
-                    className={ModalStyles['sbui-modal-content']}
-                    style={contentStyle}
-                  >
-                    <Space
-                      size={5}
-                      style={{
-                        alignItems:
-                          layout === 'vertical' ? 'center' : 'flex-start',
-                      }}
-                      direction={layout}
-                    >
-                      {icon ? icon : null}
-                      <Space
-                        size={4}
-                        direction="vertical"
-                        style={{
-                          alignItems: 'flex-start',
-                          textAlign: layout === 'vertical' ? 'center' : null,
-                          width: '100%',
-                        }}
-                      >
-                        <span style={{ width: 'inherit' }}>
-                          {title && (
-                            <Typography.Title
-                              style={{
-                                marginBottom: '.1rem',
-                                marginTop: '0',
-                              }}
-                              level={4}
-                            >
-                              {title}
-                            </Typography.Title>
-                          )}
-                          {description && (
-                            <Typography.Text>{description}</Typography.Text>
-                          )}
-                        </span>
-
-                        {children}
-                        {!footerBackground && !hideFooter && footerContent}
-                      </Space>
-                    </Space>
-                  </div>
-                  {!hideFooter && footerBackground && (
-                    <div className={footerClasses.join(' ')}>
-                      {footerContent}
-                    </div>
-                  )}
-                  {closable && (
-                    <div className={ModalStyles['sbui-modal-close-container']}>
-                      <Button
-                        onClick={onCancel}
-                        type="text"
-                        shadow={false}
-                        icon={<IconX size="medium" />}
-                      />
-                    </div>
-                  )}
-                </div>
-              </Transition.Child>
-            </div>
-          </div>
-        </Dialog.Content>
-      </Transition>
+      </Dialog.Portal>
     </Dialog.Root>
   )
 }

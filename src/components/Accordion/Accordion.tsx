@@ -1,20 +1,34 @@
-import React, { createContext, useCallback, useContext, useEffect } from 'react'
-import { Disclosure, Transition } from '@headlessui/react'
-// @ts-ignore
-import AccordionStyles from './Accordion.module.css'
-import { IconChevronUp } from '../Icon/icons/IconChevronUp'
-import Typography from '../Typography'
+import React, { createContext, useContext, useState } from 'react'
 
-type ContextValue = Required<
-  Pick<AccordionProps, 'defaultActiveId' | 'icon' | 'iconPosition'>
-> &
-  Pick<AccordionProps, 'onChange'>
+import { IconChevronUp } from '../Icon/icons/IconChevronUp'
+import styleHandler from '../../lib/theme/styleHandler'
+
+import * as RadixAccordion from '@radix-ui/react-accordion'
+import { IconChevronDown } from '../..'
+import { Transition } from '@headlessui/react'
+
+// type ContextValue = Required<
+//   Pick<AccordionProps, 'defaultActiveId' | 'icon' | 'iconPosition'>
+// > &
+//   Pick<AccordionProps, 'onChange'>
+
+type Type = 'default' | 'bordered'
+type Size = 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
+type Align = 'left' | 'right'
+
+interface ContextValue {
+  bordered?: boolean
+  type: Type
+  justified: Boolean
+  chevronAlign: Align
+  // currentItems: string[]
+}
 
 const AccordionContext = createContext<ContextValue>({
-  defaultActiveId: [],
-  icon: <IconChevronUp strokeWidth={2} />,
-  iconPosition: 'right',
-  onChange: undefined,
+  chevronAlign: 'left',
+  justified: true,
+  type: 'default',
+  // currentItems: [],
 })
 
 interface AccordionProps {
@@ -22,13 +36,15 @@ interface AccordionProps {
   className?: string
   defaultActiveId?: (string | number)[]
   icon?: React.ReactNode
-  iconPosition?: 'left' | 'right'
-  bordered?: boolean
-  onChange?: (item: {
-    label: string
-    id?: string | number
-    open: boolean
-  }) => void
+  iconPosition?: Align
+  bordered: boolean
+  onChange?: (item: string | string[]) => void
+  openBehaviour: 'single' | 'multiple'
+  type: Type
+  size: Size
+  defaultValue?: string | string[] | undefined
+  justified: Boolean
+  chevronAlign: Align
 }
 
 function Accordion({
@@ -37,93 +53,108 @@ function Accordion({
   defaultActiveId = [],
   icon = <IconChevronUp strokeWidth={2} />,
   iconPosition = 'right',
-  bordered,
   onChange,
+  openBehaviour = 'multiple',
+  type = 'default',
+  // size, // TO DO
+  defaultValue = undefined,
+  justified = true,
+  chevronAlign,
 }: AccordionProps) {
-  let containerClasses = [AccordionStyles['sbui-accordion-container']]
-  if (bordered) {
-    containerClasses.push(AccordionStyles['sbui-accordion-container--bordered'])
-  }
+  // const [currentItems, setCurrentItems] = useState(defaultValue || [])
+
+  const __styles = styleHandler('accordion')
+
+  let containerClasses = [__styles.variants[type].base]
+
   if (className) {
     containerClasses.push(className)
   }
 
+  // let currentItems = defaultValue || []
+
   const contextValue = {
-    defaultActiveId,
-    icon,
-    iconPosition,
-    onChange,
+    chevronAlign,
+    justified,
+    type,
+    defaultValue,
+  }
+
+  function handleOnChange(e: string | string[]) {
+    if (onChange) onChange(e)
+    const value = e == typeof String ? e.split(' ') : e
+    // setCurrentItems(e)
+    console.log('about to change state')
+    // currentItems = e
+    // console.log('currentItems', currentItems)
   }
 
   return (
-    <AccordionContext.Provider value={contextValue}>
-      <div className={containerClasses.join(' ')}>{children}</div>
-    </AccordionContext.Provider>
+    <>
+      {/* @ts-ignore */}
+      <RadixAccordion.Root
+        type={openBehaviour}
+        onValueChange={handleOnChange}
+        defaultValue={defaultValue}
+        className={containerClasses.join(' ')}
+        children={
+          <AccordionContext.Provider value={{ ...contextValue }}>
+            <div className={containerClasses.join(' ')}>{children}</div>
+          </AccordionContext.Provider>
+        }
+      ></RadixAccordion.Root>
+    </>
   )
 }
 
 interface ItemProps {
   children?: React.ReactNode
   className?: string
-  label: string
-  id?: string | number
+  header: React.ReactNode
+  id: string
+  icon?: React.ReactNode
 }
 
-export function Item({ children, className, label, id }: ItemProps) {
-  const { defaultActiveId, icon, iconPosition, onChange } =
-    useContext(AccordionContext)
+export function Item({ children, className, header, id, icon }: ItemProps) {
+  const __styles = styleHandler('accordion')
+  // const [open, setOpen] = useState(false)
 
-  let panelClasses = [AccordionStyles['sbui-accordion-item__panel']]
+  const {
+    type,
+    justified,
+    chevronAlign,
+    // currentItems,
+    // defaultActiveId, iconPosition, onChange
+  } = useContext(AccordionContext)
 
-  let buttonClasses = [AccordionStyles['sbui-accordion-item__button']]
-  if (className) {
-    buttonClasses.push(className)
-  }
+  let triggerClasses = [__styles.variants[type].trigger]
+  if (justified) triggerClasses.push(__styles.justified)
+  if (className) triggerClasses.push(className)
 
-  const isDefaultActive = id ? defaultActiveId?.includes(id) : false
+  let chevronClasses = [
+    __styles.chevron.base,
+    __styles.chevron.align[chevronAlign],
+  ]
 
-  const handleOnChange = useCallback(
-    (open: boolean) => () => {
-      if (onChange) {
-        onChange({ id, label, open })
-      }
-    },
-    [onChange, id, label]
-  )
+  // console.log('currentItems', currentItems)
 
   return (
-    <Disclosure defaultOpen={isDefaultActive}>
-      {({ open }) => (
-        <>
-          <Disclosure.Button
-            className={
-              open
-                ? `${buttonClasses.join(' ')} sbui-accordion-item__button--open`
-                : buttonClasses.join(' ')
-            }
-          >
-            {iconPosition === 'left' && icon}
-            <Typography.Text>{label}</Typography.Text>
-            {iconPosition === 'right' && icon}
-          </Disclosure.Button>
-          <Transition
-            show={open}
-            enter={AccordionStyles[`sbui-accordion-item__panel--enter`]}
-            enterFrom={AccordionStyles[`sbui-accordion-item__panel--enterFrom`]}
-            enterTo={AccordionStyles[`sbui-accordion-item__panel--enterTo`]}
-            leave={AccordionStyles[`sbui-accordion-item__panel--leave`]}
-            leaveFrom={AccordionStyles[`sbui-accordion-item__panel--leaveFrom`]}
-            leaveTo={AccordionStyles[`sbui-accordion-item__panel--leaveTo`]}
-            afterEnter={handleOnChange(open)}
-            afterLeave={handleOnChange(open)}
-          >
-            <Disclosure.Panel className={panelClasses.join(' ')} static>
-              {children}
-            </Disclosure.Panel>
-          </Transition>
-        </>
-      )}
-    </Disclosure>
+    <RadixAccordion.Item
+      value={id}
+      className={__styles.variants[type].container}
+    >
+      <RadixAccordion.Trigger className={triggerClasses.join(' ')}>
+        {header}
+        <IconChevronDown
+          aria-hidden
+          className={chevronClasses.join(' ')}
+          strokeWidth={2}
+        />
+      </RadixAccordion.Trigger>
+      <RadixAccordion.Content className={__styles.variants[type].content}>
+        <div className={__styles.variants[type].panel}>{children}</div>
+      </RadixAccordion.Content>
+    </RadixAccordion.Item>
   )
 }
 

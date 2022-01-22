@@ -1,11 +1,7 @@
 import React from 'react'
-// @ts-ignore
-import InputIconContainerStyles from './InputIconContainer.module.css'
+import styleHandler from '../theme/styleHandler'
 
 export default function InputIconContainer({ icon }: any) {
-  return (
-    <div className={InputIconContainerStyles['sbui-input-icon-container']}>
-      {icon}
-    </div>
-  )
+  const __styles = styleHandler('inputIconContainer')
+  return <div className={__styles.base}>{icon}</div>
 }
