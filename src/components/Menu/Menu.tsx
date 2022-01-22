@@ -4,6 +4,7 @@ import { Space } from '../Space'
 import Typography from '../Typography'
 
 import defaultTheme from '../../lib/theme/defaultTheme'
+import styleHandler from '../../lib/theme/styleHandler'
 
 interface MenuProps {
   children: React.ReactNode
@@ -54,7 +55,7 @@ export function Item({
 
   const itemOnClick = onClick
 
-  const __styles = defaultTheme.menu
+  const __styles = styleHandler('menu')
 
   let classes = [__styles.item.base]
   if (active) {
@@ -113,12 +114,12 @@ interface GroupProps {
 }
 
 export function Group({ children, icon, title }: GroupProps) {
-  const __styles = defaultTheme.menu.group
+  const __styles = styleHandler('menu')
   return (
-    <div className={__styles.base}>
+    <div className={__styles.group.base}>
       <Space>
-        {icon && <span className={__styles.icon}>{icon}</span>}
-        <h5 className={__styles.content}>{title}</h5>
+        {icon && <span className={__styles.group.icon}>{icon}</span>}
+        <h5 className={__styles.group.content}>{title}</h5>
       </Space>
       {children}
     </div>

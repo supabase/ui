@@ -11,6 +11,7 @@ import defaultTheme from '../../lib/theme/defaultTheme'
 // import InputNumberStyles from './InputNumber.module.css'
 import InputNumberStyles from './InputNumber.module.css'
 import { useFormContext } from '../Form/FormContext'
+import styleHandler from '../../lib/theme/styleHandler'
 
 export interface Props {
   autoComplete?: string
@@ -73,7 +74,8 @@ function InputNumber({
   borderless = false,
   validation,
 }: Props) {
-  const __styles = defaultTheme.inputNumber
+  const __styles = styleHandler('inputNumber')
+
   const {
     formContextOnChange,
     values,

@@ -8,6 +8,7 @@ import { HIDDEN_PLACEHOLDER } from './../../lib/constants'
 import defaultTheme from '../../lib/theme/defaultTheme'
 
 import { useFormContext } from '../Form/FormContext'
+import styleHandler from '../../lib/theme/styleHandler'
 
 export interface Props
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -66,7 +67,7 @@ function Input({
   const [copyLabel, setCopyLabel] = useState('Copy')
   const [hidden, setHidden] = useState(reveal)
 
-  const __styles = defaultTheme.input
+  const __styles = styleHandler('input')
 
   const {
     formContextOnChange,
@@ -287,7 +288,7 @@ function TextArea({
     if (validation) fieldLevelValidation(id, validation(value))
   }, [])
 
-  const __styles = defaultTheme.input
+  const __styles = styleHandler('input')
 
   let classes = [__styles.base]
 

@@ -7,6 +7,7 @@ import CheckboxStyles from './Checkbox.module.css'
 import defaultTheme from '../../lib/theme/defaultTheme'
 
 import { useFormContext } from '../Form/FormContext'
+import styleHandler from '../../lib/theme/styleHandler'
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -55,7 +56,7 @@ function Group({
     // if (onChange) onChange(e)
   }
 
-  const __styles = defaultTheme.checkbox
+  const __styles = styleHandler('checkbox')
 
   return (
     <FormLayout
@@ -113,7 +114,7 @@ export function Checkbox({
 }: InputProps) {
   const { formContextOnChange, values, handleBlur } = useFormContext()
 
-  const __styles = defaultTheme.checkbox
+  const __styles = styleHandler('checkbox')
 
   return (
     <CheckboxContext.Consumer>

@@ -3,6 +3,7 @@ import { FormLayout } from '../../lib/Layout/FormLayout'
 import { useFormContext } from '../Form/FormContext'
 
 import defaultTheme from '../../lib/theme/defaultTheme'
+import styleHandler from '../../lib/theme/styleHandler'
 
 interface Props extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'size'> {
   name?: string
@@ -51,7 +52,7 @@ function Toggle({
     (defaultChecked || checked) ?? false
   )
 
-  const __styles = defaultTheme.toggle
+  const __styles = styleHandler('toggle')
 
   const {
     formContextOnChange,
