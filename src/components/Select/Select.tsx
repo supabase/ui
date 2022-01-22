@@ -25,6 +25,7 @@ export interface Props
   children: React.ReactNode
   descriptionText?: string
   error?: string
+  hideErrorIcon?: boolean
   icon?: any
   inputRef?: string
   label?: string
@@ -51,6 +52,7 @@ function Select({
   descriptionText,
   disabled,
   error,
+  hideErrorIcon = false,
   icon,
   id = '',
   inputRef,
@@ -123,6 +125,7 @@ function Select({
       layout={layout}
       id={id}
       error={error}
+      hideErrorIcon={hideErrorIcon}
       descriptionText={descriptionText}
       className={className}
       style={style}
@@ -150,7 +153,7 @@ function Select({
         {icon && <InputIconContainer icon={icon} />}
         {error && (
           <div className={__styles.actions_container}>
-            {error && <InputErrorIcon size={size} />}
+            {error && !hideErrorIcon && <InputErrorIcon size={size} />}
           </div>
         )}
         <span className={__styles.chevron_container}>
