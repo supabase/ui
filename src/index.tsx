@@ -46,6 +46,10 @@ export * from './components/Toggle/index'
 export * from './components/Upload/index'
 export * from './components/Form/index'
 
+// config
+
+// export { default as Config } from './../ui.config'
+
 // ARCHIVE
 
 // export * from './components/Textarea/index'
