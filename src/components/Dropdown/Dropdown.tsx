@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 
 import * as RadixDropdown from '@radix-ui/react-dropdown-menu'
-import { Card } from '../Card'
 import { IconCheck } from '../Icon/icons/IconCheck'
 
 // @ts-ignore
-import DropdownStyles from './Dropdown.module.css'
+// import DropdownStyles from './Dropdown.module.css'
 
 import type * as RadixDropdownTypes from '@radix-ui/react-dropdown-menu/'
 
@@ -117,8 +116,9 @@ export function Item({
 }
 
 export function TriggerItem({ children, icon, disabled }: ItemProps) {
+  let __styles = styleHandler('dropdown')
   return (
-    <div className={DropdownStyles['sbui-dropdown-item-trigger']}>
+    <div className={__styles.trigger}>
       {icon && icon}
       <span>{children}</span>
     </div>

@@ -41,7 +41,7 @@ export function FormLayout({
   size = 'medium',
   beforeLabel,
   afterLabel,
-  nonBoxInput = label && false,
+  nonBoxInput = label ? false : true,
 }: Props) {
   // _error is used label && to delay the error string beind removed too soon
   // once it has animated out, the string will be removed

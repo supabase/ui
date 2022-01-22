@@ -3,7 +3,7 @@
 export * from './components/Button/index'
 export * from './components/Typography/index'
 export * from './components/Icon/index'
-export * from './components/Image/index'
+// export * from './components/Image/index'
 
 // DISPLAYS
 

@@ -93,20 +93,20 @@ const Modal = ({
     e.stopPropagation()
   }
 
-  let footerClasses = [ModalStyles['sbui-modal-footer']]
+  // let footerClasses = [ModalStyles['sbui-modal-footer']]
   if (footerBackground) {
-    footerClasses.push(ModalStyles['sbui-modal-footer--with-bg'])
+    // footerClasses.push(ModalStyles['sbui-modal-footer--with-bg'])
   }
 
   let modalClasses = [
     __styles.base,
     // ModalStyles[`sbui-modal`],
-    ModalStyles[`sbui-modal--${size}`],
+    // ModalStyles[`sbui-modal--${size}`],
   ]
-  if (className) modalClasses.push(className)
+  // if (className) modalClasses.push(className)
 
-  let overlayClasses = [ModalStyles['sbui-modal-overlay']]
-  if (overlayClassName) overlayClasses.push(overlayClassName)
+  // let overlayClasses = [ModalStyles['sbui-modal-overlay']]
+  // if (overlayClassName) overlayClasses.push(overlayClassName)
 
   const footerContent = customFooter ? (
     customFooter
@@ -148,7 +148,9 @@ const Modal = ({
   return (
     <Dialog.Root open={open} onOpenChange={handleOpenChange}>
       {triggerElement && (
-        <Dialog.Trigger className={ModalStyles[`sbui-modal__trigger`]}>
+        <Dialog.Trigger
+        // className={ModalStyles[`sbui-modal__trigger`]}
+        >
           {triggerElement}
         </Dialog.Trigger>
       )}
@@ -159,16 +161,16 @@ const Modal = ({
             className={[__styles.base, __styles.size[size]].join(' ')}
           >
             {header && <div className={__styles.header}>{header}</div>}
-            <div
+            {/* <div
               className={ModalStyles['sbui-modal-content']}
               style={contentStyle}
-            >
-              {children}
-            </div>
+            > */}
+            {children}
+            {/* </div> */}
             {!hideFooter && (
               <div className={__styles.footer}>{footerContent}</div>
             )}
-            {closable && (
+            {/* {closable && (
               <div className={ModalStyles['sbui-modal-close-container']}>
                 <Button
                   onClick={onCancel}
@@ -177,7 +179,7 @@ const Modal = ({
                   icon={<IconX size="medium" />}
                 />
               </div>
-            )}
+            )} */}
           </Dialog.Content>
         </Dialog.Overlay>
       </Dialog.Portal>

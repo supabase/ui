@@ -1357,4 +1357,24 @@ export default {
       data-closed:animate-slide-up-normal
     `,
   },
+
+  inputErrorIcon: {
+    base: `
+      flex items-center 
+      right-3 pr-2 pl-2 
+      inset-y-0 
+      pointer-events-none
+      text-red-900
+    `,
+  },
+
+  inputIconContainer: {
+    base: `
+    absolute inset-y-0 
+    left-0 pl-3 flex 
+    items-center pointer-events-none
+    text-gray-600
+    dark:text-white
+    `,
+  },
 }
