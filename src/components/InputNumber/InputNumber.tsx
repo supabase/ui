@@ -21,6 +21,7 @@ export interface Props {
   descriptionText?: string
   disabled?: boolean
   error?: string
+  hideErrorIcon?: boolean
   icon?: any
   id?: string
   inputRef?: React.RefObject<HTMLInputElement>
@@ -52,6 +53,7 @@ function InputNumber({
   descriptionText,
   disabled,
   error,
+  hideErrorIcon = false,
   icon,
   id = '',
   inputRef,
@@ -173,6 +175,7 @@ function InputNumber({
         layout={layout}
         id={id}
         error={error}
+        hideErrorIcon={hideErrorIcon}
         descriptionText={descriptionText}
         style={style}
         size={size}
@@ -216,7 +219,7 @@ function InputNumber({
           {icon && <InputIconContainer icon={icon} />}
           {error ? (
             <div className={__styles.actions_container}>
-              {error && <InputErrorIcon size={size} />}
+              {error && !hideErrorIcon && <InputErrorIcon size={size} />}
             </div>
           ) : null}
         </div>
