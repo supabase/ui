@@ -384,17 +384,17 @@ export default {
       primary: `
         bg-brand-fixed-800 hover:bg-brand-fixed-900
         text-lo-contrast
-        border border border-brand-800 hover:border-brand-700 
+        border border-brand-800 hover:border-brand-700 
         focus-visible:border-brand-700
         focus-visible:ring-brand-700
       `,
-      default: `
+      secondary: `
         bg-scale-1200 hover:bg-scale-1100
         text-scale-100 hover:text-scale-600 focus-visible:text-scale-600 
         border border-scale-1100
         focus-visible:ring-scale-900
       `,
-      secondary: `
+      default: `
         text-scale-1200
         bg-scale-300 hover:bg-scale-500
 
@@ -420,7 +420,7 @@ export default {
         text-scale-1200 
         border
         border-dashed
-        border border-scale-700 hover:border-scale-900
+        border-scale-700 hover:border-scale-900
         bg-transparent
         focus-visible:ring-scale-600
       `,
@@ -442,7 +442,7 @@ export default {
       `,
       danger: `
         text-red-1100
-        bg-red-200 hover:bg-scale-500
+        bg-red-200
         border border-red-700 hover:border-red-900 focus-visible:border-red-900
         hover:bg-red-900
         hover:text-lo-contrast
@@ -450,7 +450,7 @@ export default {
       `,
       warning: `
         text-amber-1100
-        bg-amber-200 hover:bg-scale-500
+        bg-amber-200
         border border-amber-700 hover:border-amber-900 focus-visible:border-amber-900
         hover:bg-amber-900
         hover:text-hi-contrast
