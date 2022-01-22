@@ -209,36 +209,36 @@ export default {
     },
     dot: '-ml-0.5 mr-1.5 h-2 w-2 rounded-full',
     color: {
-      brand: 'bg-brand-200 border text-brand-1100 border-brand-700',
-      scale: 'bg-scale-200 border text-scale-1100 border-scale-700',
-      tomato: `bg-tomato-200 text-tomato-1100  border-tomato-700`,
-      red: `bg-red-200 text-red-1100  border-red-700`,
-      crimson: `bg-crimson-200 text-crimson-1100  border-crimson-700`,
-      pink: `bg-pink-200 text-pink-1100  border-pink-700`,
-      plum: `bg-plum-200 text-plum-1100  border-plum-700`,
-      purple: `bg-purple-200 text-purple-1100  border-purple-700`,
-      violet: `bg-violet-200 text-violet-1100  border-violet-700`,
-      indigo: `bg-indigo-200 text-indigo-1100  border-indigo-700`,
-      blue: `bg-blue-200 text-blue-1100  border-blue-700`,
-      cyan: `bg-cyan-200 text-cyan-1100  border-cyan-700`,
-      teal: `bg-teal-200 text-teal-1100  border-teal-700`,
-      green: `bg-green-200 text-green-1100  border-green-700`,
-      grass: `bg-grass-200 text-grass-1100  border-grass-700`,
-      brown: `bg-brown-200 text-brown-1100  border-brown-700`,
-      orange: `bg-orange-200 text-orange-1100  border-orange-700`,
-      sky: `bg-sky-200 text-sky-1100  border-sky-700`,
-      mint: `bg-mint-200 text-mint-1100  border-mint-700`,
-      lime: `bg-lime-200 text-lime-1100  border-lime-700`,
-      yellow: `bg-yellow-200 text-yellow-1100  border-yellow-700`,
-      amber: `bg-amber-200 text-amber-1100  border-amber-700`,
-      gold: `bg-gold-200 text-gold-1100  border-gold-700`,
-      bronze: `bg-bronze-200 text-bronze-1100  border-bronze-700`,
-      gray: `bg-gray-200 text-gray-1100 border-gray-700`,
-      mauve: `bg-mauve-200 text-mauve-1100 border-mauve-700`,
-      slate: `bg-slate-200 text-slate-1100 border-slate-700`,
-      sage: `bg-sage-200 text-sage-1100 border-sage-700`,
-      olive: `bg-olive-200 text-olive-1100 border-olive-700`,
-      sand: `bg-sand-200 text-sand-1100 border-sand-700`,
+      brand: 'bg-brand-200 text-brand-1100 border border-brand-700',
+      scale: 'bg-scale-200 text-scale-1100 border border-scale-700',
+      tomato: `bg-tomato-200 text-tomato-1100 border border-tomato-700`,
+      red: `bg-red-200 text-red-1100 border border-red-700`,
+      crimson: `bg-crimson-200 text-crimson-1100 border border-crimson-700`,
+      pink: `bg-pink-200 text-pink-1100 border border-pink-700`,
+      plum: `bg-plum-200 text-plum-1100 border border-plum-700`,
+      purple: `bg-purple-200 text-purple-1100 border border-purple-700`,
+      violet: `bg-violet-200 text-violet-1100 border border-violet-700`,
+      indigo: `bg-indigo-200 text-indigo-1100 border border-indigo-700`,
+      blue: `bg-blue-200 text-blue-1100 border border-blue-700`,
+      cyan: `bg-cyan-200 text-cyan-1100 border border-cyan-700`,
+      teal: `bg-teal-200 text-teal-1100 border border-teal-700`,
+      green: `bg-green-200 text-green-1100 border border-green-700`,
+      grass: `bg-grass-200 text-grass-1100 border border-grass-700`,
+      brown: `bg-brown-200 text-brown-1100 border border-brown-700`,
+      orange: `bg-orange-200 text-orange-1100 border border-orange-700`,
+      sky: `bg-sky-200 text-sky-1100 border border-sky-700`,
+      mint: `bg-mint-200 text-mint-1100 border border-mint-700`,
+      lime: `bg-lime-200 text-lime-1100 border border-lime-700`,
+      yellow: `bg-yellow-200 text-yellow-1100 border border-yellow-700`,
+      amber: `bg-amber-200 text-amber-1100 border border-amber-700`,
+      gold: `bg-gold-200 text-gold-1100 border border-gold-700`,
+      bronze: `bg-bronze-200 text-bronze-1100 border border-bronze-700`,
+      gray: `bg-gray-200 text-gray-1100 border border-gray-700`,
+      mauve: `bg-mauve-200 text-mauve-1100 border border-mauve-700`,
+      slate: `bg-slate-200 text-slate-1100 border border-slate-700`,
+      sage: `bg-sage-200 text-sage-1100 border border-sage-700`,
+      olive: `bg-olive-200 text-olive-1100 border border-olive-700`,
+      sand: `bg-sand-200 text-sand-1100 border border-sand-700`,
     },
   },
 
@@ -373,6 +373,7 @@ export default {
       cursor-pointer 
       inline-flex items-center space-x-2 
       text-center 
+      font-regular
       transition ease-out duration-200 
       rounded 
       ${defaults['focus-visible']}
@@ -381,9 +382,10 @@ export default {
     container: 'inline-flex font-medium',
     type: {
       primary: `
-        bg-brand-fixed-900 hover:bg-brand-fixed-800
-        text-brand-fixed-1200
-        border border border-brand-fixed-800 hover:border-brand-700 focus-visible:border-brand-700
+        bg-brand-fixed-800 hover:bg-brand-fixed-900
+        text-lo-contrast
+        border border border-brand-800 hover:border-brand-700 
+        focus-visible:border-brand-700
         focus-visible:ring-brand-700
       `,
       default: `
@@ -893,13 +895,11 @@ export default {
 
   sidepanel: {
     base: `
-      bg-overlay-bg
-      h-full 
+      bg-scale-100 dark:bg-scale-300
       flex flex-col 
       fixed 
       inset-y-0 
       max-w-full 
-      flex 
       h-screen
       border-l border-overlay-border
       shadow-xl
@@ -913,7 +913,7 @@ export default {
     `,
     footer: `
       flex justify-end gap-2
-      p-4 bg-overlay-bg 
+      p-4 bg-overlay-bg
       border-t border-overlay-border
     `,
     size: {
@@ -934,13 +934,13 @@ export default {
     },
     overlay: `
       fixed
-      h-full
-      w-full
       bg-scale-100
+      h-full w-full
+      left-0
+      top-0 
       opacity-75
       data-closed:animate-fade-out-overlay-bg 
       data-open:animate-fade-in-overlay-bg
-      
     `,
     // this is to reset the button
     // it is advised not to change this
@@ -1109,12 +1109,12 @@ export default {
     `,
     item_nested: `
       border-none
-      data-open:bg-overlay-secondary-bg-accent
+      data-open:bg-scale-300 dark:data-open:bg-scale-500
       data-open:text-scale-1200
     `,
     content: `
-      bg-overlay-secondary-bg 
-      border border-overlay-secondary-border
+      bg-scale-100 dark:bg-scale-300
+      border border-scale-300 dark:border-scale-500
       rounded
       shadow-lg
       origin-dropdown
@@ -1132,8 +1132,8 @@ export default {
       content: `w-auto`,
     },
     arrow: `
-      fill-current text-bg-primary-light dark:text-bg-secondary-dark;
-      border-0 border-t;
+      fill-current
+      border-0 border-t
     `,
     item: `
       group
@@ -1142,7 +1142,7 @@ export default {
       text-scale-1100
       px-4 py-1.5 flex items-center space-x-2
       cursor-pointer
-      focus:bg-overlay-secondary-bg-accent
+      focus:bg-scale-300 dark:focus:bg-scale-500
       focus:text-scale-1200
       border-none
       focus:outline-none
@@ -1156,7 +1156,7 @@ export default {
       w-full
       h-px
       my-2
-      bg-overlay-secondary-border
+      bg-scale-300 dark:bg-scale-500
     `,
     misc: `
       px-4 py-1.5
@@ -1243,24 +1243,24 @@ export default {
   modal: {
     base: `
       relative
-      bg-overlay-bg 
+      bg-scale-100 dark:bg-scale-300
       my-4
-      border border-overlay-border 
+      border border-scale-300 dark:border-scale-500
       rounded-md 
       shadow-xl 
       data-open:animate-overlay-show 
       data-closed:animate-overlay-hide  
+      overflow-hidden
     `,
     header: `
-      bg-overlay-bg-accent
+      bg-scale-200 dark:bg-scale-400
       space-y-1 py-3 px-4 sm:px-5 
-      border-b border-overlay-border
+      border-b border-scale-300 dark:border-scale-500
     `,
     footer: `
-      bg-overlay-bg 
       flex justify-end gap-2
       py-3 px-5 
-      border-t border-overlay-border
+      border-t border-scale-300 dark:border-scale-500
     `,
     size: {
       tiny: `sm:align-middle sm:w-full sm:max-w-xs`,
@@ -1291,7 +1291,6 @@ export default {
   // listbox
   listbox: {
     base: `
-
       block 
       box-border 
       w-full 

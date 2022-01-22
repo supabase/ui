@@ -1,42 +1,142 @@
 const deepMerge = require('deepmerge')
 const forms = require('@tailwindcss/forms')
 const plugin = require('tailwindcss/plugin')
+const radixUiColors = require('@radix-ui/colors')
+const brandColors = require('./brandColors')
 
-// const backgroundOpacity = (theme) => ({
-//   10: '0.1',
-//   ...theme('opacity'),
-// })
+// console.log(Object.keys(radixUiColors))
 
-// const maxHeight = (theme) => ({
-//   0: '0',
-//   xl: '36rem',
-//   ...theme('spacing'),
-// })
+// generates fixed scales
+// based on the root/light mode version
+const fixedOptions = ['scale', 'brand']
 
-const windmillConfig = {
-  // darkMode: 'class',
-  // purge: {
-  //   content: [
-  //     'node_modules/@windmill/react-ui/lib/defaultTheme.js',
-  //     'node_modules/@windmill/react-ui/dist/index.js',
-  //   ],
-  // },
+function radixColorKeys() {
+  let keys = Object.keys(radixUiColors)
+
+  /**
+   * Filter array items based on search criteria (query)
+   */
+  function filterItems(arr, query) {
+    return arr.filter(function (el) {
+      return el.toLowerCase().indexOf(query.toLowerCase()) == -1
+    })
+  }
+
+  keys = filterItems(keys, 'Dark')
+
+  // console.log('radixColorKeys', keys)
+  return keys
+}
+
+function generateColorClasses() {
+  const brandColors = ['brand', 'scale']
+  const colors = [...radixColorKeys(), ...brandColors]
+
+  let mappedColors = {}
+
+  // generate the shape of the colors object
+  colors.map((x) => {
+    // create empty obj for each color
+    mappedColors[x] = {}
+    // create empty obj for each fixed color
+    if (
+      fixedOptions.some(function (v) {
+        return x.indexOf(v) >= 0
+      })
+    ) {
+      mappedColors[`${x}-fixed`] = {}
+    }
+  })
+
+  colors.map((x) => {
+    for (let index = 0; index < 12; index++) {
+      const step = index + 1
+      mappedColors[x][step * 100] = `var(--colors-${x}${step})`
+
+      if (
+        fixedOptions.some(function (v) {
+          return x.indexOf(v) >= 0
+        })
+      ) {
+        console.log(x)
+        mappedColors[`${x}-fixed`][
+          step * 100
+        ] = `var(--colors-fixed-${x}${step})`
+      }
+    }
+  })
+
+  return mappedColors
+}
+
+const colorClasses = generateColorClasses()
+
+// console.log('colors', colorClasses)
+
+/*
+ * generateCssVariables()
+ *
+ * generate the CSS variables for tailwind to use
+ *
+ */
+
+function generateCssVariables() {
+  // potential options
+  // { fixedOptions, brandColors }
+
+  let rootColors = {}
+  let darkColors = {}
+
+  const radixArray = Object.values(radixUiColors)
+  const brandArray = Object.values(brandColors)
+
+  function generateColors(colors, index, colorSet) {
+    const key = Object.keys(colorSet)[index]
+
+    if (key.includes('Dark')) {
+      darkColors = { ...darkColors, ...colors }
+    } else {
+      rootColors = { ...rootColors, ...colors }
+
+      // generate an optional 'fixed' scale of colors
+      if (
+        fixedOptions.some(function (v) {
+          return key.indexOf(v) >= 0
+        })
+      ) {
+        rootColors.fixed = { ...rootColors?.fixed, ...colors }
+      }
+    }
+  }
+
+  radixArray.map((x, i) => {
+    generateColors(x, i, radixUiColors)
+  })
+
+  brandArray.map((x, i) => {
+    generateColors(x, i, brandColors)
+  })
+
+  return {
+    root: { ...rootColors },
+    dark: { ...darkColors },
+  }
+}
+
+const variables = generateCssVariables()
+
+// console.log(variables)
+
+const uiConfig = {
   theme: {
-    // colors,
-    // backgroundOpacity,
-    // maxHeight,
-    borderColor: (theme) => ({
-      ...theme('colors'),
-      DEFAULT: '#f0f2f5',
-      // note: default border not working
-      // temp workaround is to use variations below
-      lightmode: '#f0f2f5',
-      darkmode: theme('colors.gray.600', 'currentColor'),
-    }),
-    // ringColor: (theme) => ({
-    //   ...theme('colors'),
-    //   DEFAULT: theme('colors.scale', 'currentColor'),
-    // }),
+    variables: {
+      DEFAULT: {
+        colors: { ...variables.root },
+      },
+      '.dark': {
+        colors: { ...variables.dark },
+      },
+    },
     extend: {
       // dropdown extensions
       transformOrigin: {
@@ -162,41 +262,14 @@ const windmillConfig = {
         dropdownFadeOut: 'dropdownFadeOut 0.1s ease-out',
       },
       colors: {
-        overlay: {
-          bg: 'var(--colors-overlay-bg)',
-          'bg-accent': 'var(--colors-overlay-bg-accent)',
-          border: 'var(--colors-overlay-border)',
-        },
-        'overlay-secondary': {
-          bg: 'var(--colors-overlay-secondary-bg)',
-          'bg-accent': 'var(--colors-overlay-secondary-bg-accent)',
-          border: 'var(--colors-overlay-secondary-border)',
-          'border-accent': 'var(--colors-overlay-secondary-border-accent)',
-        },
-        'hi-contrast': 'var(--colors-scale-fixed12)',
-        'lo-contrast': 'var(--colors-scale-fixed1)',
+        ...colorClasses,
+        'hi-contrast': `var(--colors-fixed-scale12)`,
+        'lo-contrast': `var(--colors-fixed-scale1)`,
       },
     },
   },
-  // variants: {
-  //   backgroundOpacity: ['responsive', 'hover', 'focus', 'dark'],
-  //   backgroundColor: ['responsive', 'hover', 'focus', 'active', 'odd', 'dark'],
-  //   display: ['responsive', 'dark'],
-  //   textColor: [
-  //     'responsive',
-  //     'focus',
-  //     'focus-within',
-  //     'hover',
-  //     'active',
-  //     'dark',
-  //   ],
-  //   placeholderColor: ['responsive', 'focus', 'dark'],
-  //   borderColor: ['responsive', 'hover', 'focus', 'dark'],
-  //   divideColor: ['responsive', 'dark'],
-  //   boxShadow: ['responsive', 'hover', 'focus', 'dark'],
-  //   margin: ['responsive', 'last'],
-  // },
   plugins: [
+    require('@mertasan/tailwindcss-variables'),
     plugin(function ({ addUtilities, addVariant }) {
       // addVariant('data-open', '&:[data-state=open]')
       addUtilities({
@@ -221,23 +294,15 @@ const windmillConfig = {
           borderRadius: '3px',
         },
       })
-      // addVariant('optional', '&:optional')
-      // addVariant('hocus', ['&:hover', '&:focus'])
-      // addVariant('supports-grid', '@supports (display: grid)')
-      // addVariant('data-open', '&:["data-state=open"]')
-
       addVariant('data-open-parent', '[data-state="open"] &')
       addVariant('data-closed-parent', '[data-state="closed"] &')
-
       addVariant('data-open', '&[data-state="open"]')
       addVariant('data-closed', '&[data-state="closed"]')
       addVariant('data-show', '&[data-state="show"]')
       addVariant('data-hide', '&[data-state="hide"]')
       addVariant('data-checked', '&[data-state="checked"]')
       addVariant('data-unchecked', '&[data-state="unchecked"]')
-
       addVariant('aria-expanded', '&[aria-expanded="true"]')
-
       // addVariant('parent-data-open', '[data-state="open"]&')
     }),
     require('tailwindcss-radix')(),
@@ -253,7 +318,7 @@ function arrayMergeFn(destinationArray, sourceArray) {
 }
 
 /**
- * Merge Windmill and Tailwind CSS configurations
+ * Merge Supabase UI and Tailwind CSS configurations
  * @param {object} tailwindConfig - Tailwind config object
  * @return {object} new config object
  */
@@ -266,7 +331,7 @@ function wrapper(tailwindConfig) {
   } else {
     purge = tailwindConfig.purge
   }
-  return deepMerge({ ...tailwindConfig, purge }, windmillConfig, {
+  return deepMerge({ ...tailwindConfig, purge }, uiConfig, {
     arrayMerge: arrayMergeFn,
   })
 }

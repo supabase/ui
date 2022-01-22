@@ -37,7 +37,7 @@
 .sbui-contextmenu__content {
   @apply bg-bg-primary-light dark:bg-bg-secondary-dark p-0;
   @apply rounded;
-  @apply border border-lightmode dark:border-darkmode;
+  @apply border;
   @apply shadow;
   overflow: visible;
   border-style: solid;

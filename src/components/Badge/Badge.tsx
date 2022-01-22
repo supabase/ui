@@ -1,7 +1,4 @@
-import React from 'react'
 import styleHandler from '../../lib/theme/styleHandler'
-// @ts-ignore
-// import BadgeStyles from './Badge.module.css'
 
 interface Props {
   color?:

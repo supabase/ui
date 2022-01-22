@@ -48,7 +48,7 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 interface CustomButtonProps extends React.HTMLAttributes<HTMLOrSVGElement> {}
 
 export interface RefHandle {
-  container: () => HTMLElement | null
+  // container: () => HTMLElement | null
   button: () => HTMLButtonElement | null
 }
 
@@ -81,13 +81,10 @@ const Button = forwardRef<RefHandle, ButtonProps>(
     ref
   ) => {
     // button ref
-    const containerRef = useRef<HTMLElement>(null)
+    // const containerRef = useRef<HTMLElement>(null)
     const buttonRef = useRef<HTMLButtonElement>(null)
 
     useImperativeHandle(ref, () => ({
-      container: () => {
-        return containerRef.current
-      },
       button: () => {
         return buttonRef.current
       },
@@ -160,36 +157,36 @@ const Button = forwardRef<RefHandle, ButtonProps>(
 
     if (as) {
       return (
-        <span ref={containerRef} className={containerClasses.join(' ')}>
-          <CustomButton
-            className={classes.join(' ')}
-            onClick={onClick}
-            style={style}
-          >
-            {buttonContent}
-          </CustomButton>
-        </span>
+        // <span ref={containerRef} className={containerClasses.join(' ')}>
+        <CustomButton
+          className={classes.join(' ')}
+          onClick={onClick}
+          style={style}
+        >
+          {buttonContent}
+        </CustomButton>
+        // </span>
       )
     } else {
       return (
-        <span ref={containerRef} className={containerClasses.join(' ')}>
-          <button
-            {...props}
-            ref={buttonRef}
-            className={classes.join(' ')}
-            disabled={loading || (disabled && true)}
-            onClick={onClick}
-            style={style}
-            type={htmlType}
-            aria-selected={ariaSelected}
-            aria-controls={ariaControls}
-            tabIndex={tabIndex}
-            role={role}
-            form={props.form}
-          >
-            {buttonContent}
-          </button>
-        </span>
+        // <span ref={containerRef} className={containerClasses.join(' ')}>
+        <button
+          {...props}
+          ref={buttonRef}
+          className={classes.join(' ')}
+          disabled={loading || (disabled && true)}
+          onClick={onClick}
+          style={style}
+          type={htmlType}
+          aria-selected={ariaSelected}
+          aria-controls={ariaControls}
+          tabIndex={tabIndex}
+          role={role}
+          form={props.form}
+        >
+          {buttonContent}
+        </button>
+        // </span>
       )
     }
   }

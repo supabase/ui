@@ -1,6 +1,6 @@
 .sbui-popover__content {
   @apply bg-bg-primary-light dark:bg-bg-secondary-dark p-0;
-  @apply border border-lightmode dark:border-darkmode;
+  @apply border;
   @apply rounded;
   @apply shadow;
   border-style: solid;
