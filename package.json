@@ -86,6 +86,7 @@
     "react-transition-group": "^4.4.1",
     "remark-gfm": "^1.0.0",
     "rollup": "^2.28.2",
+    "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-node-externals": "^2.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",

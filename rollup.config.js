@@ -9,6 +9,7 @@ import typescript from 'rollup-plugin-typescript2'
 // remove when JS files have been removed
 import nodeResolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
+import copy from 'rollup-plugin-copy'
 
 import icons from './internals/icons'
 
@@ -115,17 +116,17 @@ export default [
         extensions,
       }),
       del({ targets: ['dist/*'] }),
+      copy({
+        targets: [
+          { src: 'ui.config.js', dest: 'dist/config' },
+          { src: 'default-colors.js', dest: 'dist/config' },
+          {
+            src: 'src/lib/theme/defaultTheme.ts',
+            dest: 'dist/config',
+            rename: () => 'default-theme.js',
+          },
+        ],
+      }),
     ],
-  },
-  // add the ui config file to root of dist
-  {
-    input: {
-      'ui.config': 'ui.config.js',
-      'brand-colors': 'default-colors.js',
-    },
-    output: {
-      dir: 'dist',
-      format: 'es',
-    },
   },
 ]

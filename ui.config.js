@@ -2,7 +2,7 @@ const deepMerge = require('deepmerge')
 const forms = require('@tailwindcss/forms')
 const plugin = require('tailwindcss/plugin')
 const radixUiColors = require('@radix-ui/colors')
-const brandColors = require('./brand-colors')
+const brandColors = require('./default-colors')
 
 // console.log(Object.keys(radixUiColors))
 
@@ -58,7 +58,7 @@ function generateColorClasses() {
           return x.indexOf(v) >= 0
         })
       ) {
-        console.log(x)
+        // console.log(x)
         mappedColors[`${x}-fixed`][
           step * 100
         ] = `var(--colors-fixed-${x}${step})`
