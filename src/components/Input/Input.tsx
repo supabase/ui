@@ -17,6 +17,7 @@ export interface Props
   descriptionText?: string | React.ReactNode | undefined
   disabled?: boolean
   error?: string
+  hideErrorIcon?: boolean
   icon?: any
   inputRef?: string
   label?: string
@@ -40,6 +41,7 @@ function Input({
   descriptionText,
   disabled,
   error,
+  hideErrorIcon = false,
   icon,
   id = '',
   name = '',
@@ -140,6 +142,7 @@ function Input({
       layout={layout}
       id={id}
       error={error}
+      hideErrorIcon={hideErrorIcon}
       descriptionText={descriptionText}
       style={style}
       size={size}
@@ -167,7 +170,7 @@ function Input({
         {icon && <InputIconContainer icon={icon} />}
         {copy || error || actions ? (
           <div className={__styles.actions_container}>
-            {error && <InputErrorIcon size={size} />}
+            {error && !hideErrorIcon && <InputErrorIcon size={size} />}
             {copy && !hidden ? (
               <Button
                 size="tiny"

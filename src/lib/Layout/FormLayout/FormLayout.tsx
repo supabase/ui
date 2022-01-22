@@ -10,6 +10,7 @@ type Props = {
   className?: string
   descriptionText?: string | React.ReactNode
   error?: string | React.ReactNode
+  hideErrorIcon?: boolean
   id?: string
   label?: string | React.ReactNode
   labelOptional?: string | React.ReactNode
@@ -30,6 +31,7 @@ export function FormLayout({
   className,
   descriptionText,
   error,
+  hideErrorIcon = false,
   id,
   label,
   labelOptional,
