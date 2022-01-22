@@ -217,11 +217,11 @@ function InputNumber({
             />
           </div> */}
           {icon && <InputIconContainer icon={icon} />}
-          {error ? (
+          {error && (
             <div className={__styles.actions_container}>
-              {error && !hideErrorIcon && <InputErrorIcon size={size} />}
+              {!hideErrorIcon && <InputErrorIcon size={size} />}
             </div>
-          ) : null}
+          )}
         </div>
       </FormLayout>
     </div>
