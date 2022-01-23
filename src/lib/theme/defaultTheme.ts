@@ -778,8 +778,7 @@ export default {
         container: {
           base: `relative cursor-pointer flex`,
           align: {
-            vertical:
-              'flex flex-col space-y-1 flex items-center justify-center',
+            vertical: 'flex flex-col space-y-1 items-center justify-center',
             horizontal: 'flex flex-row space-x-2',
           },
         },
@@ -1296,7 +1295,6 @@ export default {
       w-full 
       rounded-md 
       shadow-sm 
-      transition-all
       text-scale-1200  
       border
       focus:shadow-md
