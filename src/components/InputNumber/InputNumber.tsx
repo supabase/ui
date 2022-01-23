@@ -78,6 +78,8 @@ function InputNumber({
 }: Props) {
   const __styles = styleHandler('inputNumber')
 
+  const showErrorIcon = error && !hideErrorIcon
+
   const {
     formContextOnChange,
     values,
@@ -217,9 +219,9 @@ function InputNumber({
             />
           </div> */}
           {icon && <InputIconContainer icon={icon} />}
-          {error && (
+          {showErrorIcon && (
             <div className={__styles.actions_container}>
-              {!hideErrorIcon && <InputErrorIcon size={size} />}
+              <InputErrorIcon size={size} />
             </div>
           )}
         </div>

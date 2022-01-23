@@ -105,6 +105,7 @@ function Select({
   }, [])
 
   const __styles = styleHandler('select')
+  const showErrorIcon = error && !hideErrorIcon
 
   let classesContainer = [__styles.container]
   if (className) classesContainer.push(className)
@@ -151,9 +152,9 @@ function Select({
           {children}
         </select>
         {icon && <InputIconContainer icon={icon} />}
-        {error && (
+        {showErrorIcon && (
           <div className={__styles.actions_container}>
-            {error && !hideErrorIcon && <InputErrorIcon size={size} />}
+            <InputErrorIcon size={size} />
           </div>
         )}
         <span className={__styles.chevron_container}>

@@ -70,6 +70,7 @@ function Input({
   const [hidden, setHidden] = useState(reveal)
 
   const __styles = styleHandler('input')
+  const showErrorIcon = error && !hideErrorIcon
 
   const {
     formContextOnChange,
@@ -170,7 +171,7 @@ function Input({
         {icon && <InputIconContainer icon={icon} />}
         {copy || error || actions ? (
           <div className={__styles.actions_container}>
-            {error && !hideErrorIcon && <InputErrorIcon size={size} />}
+            {showErrorIcon && <InputErrorIcon size={size} />}
             {copy && !hidden ? (
               <Button
                 size="tiny"
