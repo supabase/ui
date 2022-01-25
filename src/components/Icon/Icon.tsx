@@ -51,11 +51,11 @@ function Icon({
   src,
   ...props
 }: Props) {
+  const __styles = styleHandler('icon')
+
   return (
     <IconContext.Consumer>
       {({ contextSize, className: contextClassName }) => {
-        const __styles = styleHandler('icon')
-
         const defaultSizes: StringMap = {
           tiny: 14,
           small: 18,
