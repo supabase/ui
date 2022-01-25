@@ -41,7 +41,7 @@ const defaults = {
     },
     // buttons, inputs, input labels use these sizes
     padding: {
-      tiny: 'px-2.5 py-1.5',
+      tiny: 'px-2.5 py-1',
       small: 'px-3 py-2',
       medium: 'px-4 py-2',
       large: 'px-4 py-2',
@@ -1175,6 +1175,59 @@ export default {
       -translate-y-1/2
       right-2
       top-1/2
+    `,
+  },
+
+  /*
+   *  Popover
+   */
+
+  popover: {
+    trigger: `
+      border-none bg-transparent 
+      p-0 
+      focus:ring-0
+    `,
+    content: `
+      bg-scale-100 dark:bg-scale-300
+      border border-scale-300 dark:border-scale-500
+      rounded
+      shadow-lg
+      data-open:animate-dropdown-content-show
+      data-closed:animate-dropdown-content-hide
+      min-w-fit
+
+      origin-popover 
+      data-open:animate-dropdown-content-show
+      data-closed:animate-dropdown-content-hide
+    `,
+    size: {
+      tiny: `w-40`,
+      small: `w-48`,
+      medium: `w-64`,
+      large: `w-80`,
+      xlarge: `w-96`,
+      content: `w-auto`,
+    },
+    header: `
+      bg-scale-200 dark:bg-scale-400
+      space-y-1 py-1.5 px-3
+      border-b border-scale-300 dark:border-scale-500
+    `,
+    footer: `
+      bg-scale-200 dark:bg-scale-400
+      py-1.5 px-3
+      border-t border-scale-300 dark:border-scale-500
+    `,
+    close: `
+      transition
+      text-scale-900 hover:text-scale-1100
+    `,
+    seperator: `
+      w-full
+      h-px
+      my-2
+      bg-scale-300 dark:bg-scale-500
     `,
   },
 

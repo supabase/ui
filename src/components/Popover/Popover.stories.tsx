@@ -17,31 +17,42 @@ export const Default = (args: any) => (
     <Popover
       {...args}
       side="bottom"
-      align="center"
+      align="end"
       portalled
       showClose
       className="w-96"
+      header={
+        <div className="flex justify-between items-center">
+          <Button type="default" size="tiny">
+            Clear
+          </Button>
+          <h5 className="text-sm text-scale-1200">Filter</h5>
+          <Button type="primary">Save</Button>
+        </div>
+      }
       overlay={[
         <>
-          <div className="p-3 px-4">
-            <Typography.Title className="mt-0" level={5}>
-              Title is here
-            </Typography.Title>
+          <div className="py-6 space-y-4">
             <Input
+              className="px-3"
               size="tiny"
               label="Width"
               defaultValue="100%"
               descriptionText="Set the width of something"
               layout="horizontal"
             />
+            <Popover.Seperator />
             <Input
+              className="px-3"
               size="tiny"
               label="Width"
               defaultValue="100%"
               descriptionText="Set the width of something"
               layout="horizontal"
             />
+            <Popover.Seperator />
             <Input
+              className="px-3"
               size="tiny"
               label="Width"
               defaultValue="100%"
@@ -52,7 +63,7 @@ export const Default = (args: any) => (
         </>,
       ]}
     >
-      <Button as="span" type="outline" iconRight={<IconChevronDown />}>
+      <Button as="span" type="default" iconRight={<IconChevronDown />}>
         Click for Popover
       </Button>
     </Popover>

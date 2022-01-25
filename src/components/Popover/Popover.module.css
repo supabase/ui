@@ -29,7 +29,7 @@
   }
 } */
 
-.sbui-popover__content {
+/* .sbui-popover__content {
   transform-origin: var(--radix-popover-menu-content-transform-origin);
 }
 
@@ -39,11 +39,11 @@
 
 .sbui-popover__content[data-state='closed'] {
   animation: fadeOut 50ms ease-in;
-}
+} */
 
-.sbui-popover__trigger {
+/* .sbui-popover__trigger {
   @apply border-none bg-transparent p-0 focus:ring-0;
-}
+} */
 
 .sbui-popover__arrow {
   @apply fill-current text-bg-primary-light dark:text-bg-secondary-dark;

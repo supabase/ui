@@ -142,6 +142,7 @@ const uiConfig = {
       transformOrigin: {
         // tailwind class for this is `origin-dropdown`
         dropdown: 'var(--radix-dropdown-menu-content-transform-origin)',
+        popover: 'var(--radix-popover-menu-content-transform-origin);',
       },
       keyframes: {
         fadeIn: {
