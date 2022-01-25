@@ -1341,6 +1341,7 @@ export default {
   },
 
   // listbox
+
   listbox: {
     base: `
       block 
@@ -1355,14 +1356,12 @@ export default {
       focus:border-scale-900
       focus:ring-scale-400
       ${defaults.placeholder}
-
       appearance-none
-
       indent-px
       transition-all
-
       bg-none
     `,
+    label: `truncate`,
     variants: {
       standard: `
         bg-scale-200 dark:bg-scale-200
@@ -1379,10 +1378,17 @@ export default {
         placeholder:text-red-600
        `,
     },
+    options_container_animate: `
+      transition
+      data-open:animate-slide-down 
+      data-open:opacity-1
+      data-closed:animate-slide-up
+      data-closed:opacity-0
+    `,
     options_container: `
       list-none p-0 
       absolute mt-1 w-full 
-      bg-white dark:bg-gray-800 
+      bg-scale-100 dark:bg-scale-300 
       shadow-lg 
       border border-solid 
       border-gray-100 dark:border-gray-600 max-h-60 
@@ -1394,12 +1400,26 @@ export default {
       sm:text-sm z-10`,
     container: 'relative',
     with_icon: 'pl-10',
+    addOnBefore: `w-full flex flex-row items-center space-x-3`,
     size: {
       ...default__padding_and_text,
     },
     disabled: `opacity-50`,
     actions_container:
       'absolute inset-y-0 right-0 pl-3 pr-1 flex space-x-1 items-center',
+    chevron_container:
+      'absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none',
+    chevron: 'h-5 w-5 text-scale-600',
+    option: `transition cursor-pointer select-none relative py-2 pl-3 pr-9 
+      text-scale-900
+      text-sm
+    `,
+    option_active: `text-scale-1200 bg-scale-600`,
+    option_disabled: `cursor-not-allowed opacity-50`,
+    option_inner: `flex items-center space-x-3`,
+    option_check: `absolute inset-y-0 right-0 flex items-center pr-3 text-brand-900`,
+    option_check_active: `text-brand-900`,
+    option_check_icon: `h-5 w-5`,
   },
 
   collapsible: {

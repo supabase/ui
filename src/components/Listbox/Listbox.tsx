@@ -157,7 +157,7 @@ function Listbox({
   }
 
   let selectClasses = [__styles.base]
-  if (error) selectClasses.push(__styles.error)
+  if (error) selectClasses.push(__styles.variants.error)
   if (!error) selectClasses.push(__styles.variants.standard)
   // if (icon) selectClasses.push(SelectStyles['sbui-listbox--with-icon'])
   if (icon) selectClasses.push(__styles.with_icon)
@@ -191,21 +191,15 @@ function Listbox({
                   onFocus={onFocus}
                 >
                   {icon && <InputIconContainer icon={icon} />}
-                  <span
-                  // className={SelectStyles['sbui-listbox-addonbefore']}
-                  >
+                  <span className={__styles.addOnBefore}>
                     {selectedNode?.addOnBefore && <selectedNode.addOnBefore />}
-                    <span
-                    // className={SelectStyles['sbui-listbox-label']}
-                    >
+                    <span className={__styles.label}>
                       {selectedNode?.label}
                     </span>
                   </span>
-                  <span
-                  // className={SelectStyles['sbui-listbox-chevron-container']}
-                  >
+                  <span className={__styles.chevron_container}>
                     <svg
-                      // className={SelectStyles['sbui-listbox-chevron']}
+                      className={__styles.chevron}
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -224,7 +218,7 @@ function Listbox({
                     </div>
                   )}
                 </HeadlessListbox.Button>
-                <Transition
+                {/* <Transition
                   show={open}
                   as={Fragment}
                   // leave={SelectStyles['sbui-listbox-transition--leave']}
@@ -232,14 +226,18 @@ function Listbox({
                   //   SelectStyles['sbui-listbox-transition--leave-from']
                   // }
                   // leaveTo={SelectStyles['sbui-listbox-transition--leave-to']}
+                > */}
+                <div
+                  data-state={open ? 'open' : 'closed'}
+                  className={__styles.options_container_animate}
                 >
                   <HeadlessListbox.Options
-                    static
                     className={__styles.options_container}
                   >
                     {children}
                   </HeadlessListbox.Options>
-                </Transition>
+                </div>
+                {/* </Transition> */}
               </div>
             )
           }}
@@ -275,6 +273,8 @@ function SelectOption({
 }: OptionProps) {
   // console.log('children typeof', typeof children)
 
+  const __styles = styleHandler('listbox')
+
   return (
     <HeadlessListbox.Option key={id} value={value} disabled={disabled}>
       {({ selected, active }) => {
@@ -284,15 +284,13 @@ function SelectOption({
         // }
         return (
           <div
-          // className={classNames(
-          //   SelectStyles['sbui-listbox-option'],
-          //   active ? SelectStyles['sbui-listbox-option--active'] : ' ',
-          //   disabled ? SelectStyles['sbui-listbox-option--disabled'] : ' '
-          // )}
+            className={classNames(
+              __styles.option,
+              active ? __styles.option_active : ' ',
+              disabled ? __styles.option_disabled : ' '
+            )}
           >
-            <div
-            // className={SelectStyles['sbui-listbox-option__inner']}
-            >
+            <div className={__styles.option_inner}>
               {addOnBefore && addOnBefore({ active, selected })}
               <span>
                 {typeof children === 'function'
@@ -303,15 +301,13 @@ function SelectOption({
 
             {selected ? (
               <span
-              // className={classNames(
-              //   active
-              //     ? SelectStyles['sbui-listbox-option__check--active']
-              //     : '',
-              //   SelectStyles['sbui-listbox-option__check']
-              // )}
+                className={classNames(
+                  __styles.option_check,
+                  active ? __styles.option_check_active : ''
+                )}
               >
                 <IconCheck
-                  // className={SelectStyles['sbui-listbox-option__check__icon']}
+                  className={__styles.option_check_icon}
                   aria-hidden="true"
                 />
               </span>
