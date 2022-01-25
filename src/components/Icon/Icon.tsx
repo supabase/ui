@@ -53,6 +53,8 @@ function Icon({
   return (
     <IconContext.Consumer>
       {({ contextSize, className: contextClassName }) => {
+        const __styles = styleHandler('icon')
+
         const defaultSizes: StringMap = {
           tiny: 14,
           small: 18,
@@ -114,10 +116,8 @@ function Icon({
 
         return background ? (
           <div
-          // circle coloured background
-          // className={`${IconStyles['sbui-icon-container']} ${
-          //   IconStyles[`sbui-icon-container--${background}`]
-          // }`}
+            // circle coloured background
+            className={__styles.container}
           >
             {Icon}
           </div>

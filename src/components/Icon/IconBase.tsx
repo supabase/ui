@@ -1,4 +1,5 @@
 import React from 'react'
+import styleHandler from '../../lib/theme/styleHandler'
 import { IconContext } from './IconContext'
 // @ts-ignore
 // import IconStyles from './Icon.module.css'
@@ -53,6 +54,8 @@ function IconBase({
   return (
     <IconContext.Consumer>
       {({ contextSize, className: contextClassName }) => {
+        const __styles = styleHandler('icon')
+
         const defaultSizes: StringMap = {
           tiny: 14,
           small: 18,
@@ -129,14 +132,7 @@ function IconBase({
         )
 
         return background ? (
-          <div
-          // circle coloured background
-          // className={`${IconStyles['sbui-icon-container']} ${
-          //   IconStyles[`sbui-icon-container--${background}`]
-          // }`}
-          >
-            {Icon}
-          </div>
+          <div className={__styles.container}>{Icon}</div>
         ) : (
           Icon
         )

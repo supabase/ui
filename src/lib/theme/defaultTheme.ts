@@ -1428,4 +1428,11 @@ export default {
     dark:text-white
     `,
   },
+
+  // Icon
+
+  icon: {
+    container: `flex-shrink-0 flex items-center justify-center rounded-full p-3`,
+    base: ``,
+  },
 }
