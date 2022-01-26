@@ -325,7 +325,7 @@ function EmailAuth({
         if (signInError) setError(signInError.message)
         break
       case 'sign_up':
-        const { error: signUpError, data: signUpData } =
+        const { user: signUpUser, session: signUpSession, error: signUpError } =
           await supabaseClient.auth.signUp(
             {
               email,
@@ -334,8 +334,8 @@ function EmailAuth({
             { redirectTo }
           )
         if (signUpError) setError(signUpError.message)
-        // checking if it has access_token to know if email verification is disabled
-        else if (signUpData?.hasOwnProperty('confirmation_sent_at'))
+        // Check if session is null -> email confirmation setting is turned on
+        else if (signUpUser && !signUpSession)
           setMessage('Check your email for the confirmation link.')
         break
     }
