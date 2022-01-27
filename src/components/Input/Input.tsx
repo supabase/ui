@@ -19,7 +19,7 @@ export interface Props
   error?: string
   icon?: any
   inputRef?: string
-  label?: string
+  label?: string | React.ReactNode
   afterLabel?: string
   beforeLabel?: string
   labelOptional?: string
