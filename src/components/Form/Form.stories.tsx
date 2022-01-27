@@ -77,7 +77,7 @@ export const InputLevelValidation = () => {
         }, 400)
       }}
     >
-      {({ isSubmitting }: any) => (
+      {({ isSubmitting }: { isSubmitting: boolean }) => (
         <div className="space-y-4">
           <Input
             id="email"

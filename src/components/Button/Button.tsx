@@ -140,6 +140,7 @@ const Button = forwardRef<RefHandle, ButtonProps>(
       <>
         {showIcon &&
           (loading ? (
+            // <div className="spin-loader" aria-hidden="true"></div>
             <IconLoader size={size} className={iconLoaderClasses.join(' ')} />
           ) : icon ? (
             <IconContext.Provider value={{ contextSize: size }}>

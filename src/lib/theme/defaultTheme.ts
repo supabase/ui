@@ -720,8 +720,7 @@ export default {
         group: `-space-y-px`,
         base: `
           transition
-          bg-scale-100 hover:bg-scale-200
-          border border-scale-700
+          border
           first:rounded-tl-md first:rounded-tr-md
           last:rounded-bl-md last:rounded-br-md
         `,
@@ -732,10 +731,15 @@ export default {
           large: `px-8 p-4`,
           xlarge: `px-8 p-4`,
         },
+        inactive: `
+          bg-scale-100 dark:bg-scale-400
+          border-scale-300 dark:border-scale-500
+          hover:bg-scale-200 dark:hover:bg-scale-500
+        `,
         active: `
-          bg-brand-300 hover:bg-brand-300 z-10
-          border-brand-900 border-1
-          hover:border-brand-900
+          bg-scale-300 dark:bg-scale-600 z-10
+          border-scale-900 dark:border-scale-900 
+          border-1
         `,
         radio_offset: 'left-4',
       },
@@ -763,13 +767,14 @@ export default {
           xlarge: `px-8 p-4`,
         },
         inactive: `
-          bg-scale-400
-          border-scale-500
-          hover:border-scale-700
+          bg-scale-100 dark:bg-scale-400
+          border-scale-300 dark:border-scale-500
+          hover:bg-scale-200 dark:hover:bg-scale-500
         `,
         active: `
-          bg-scale-300 dark:bg-scale-500 z-10
-          border-scale-900 dark:border-scale-900 border-1
+          bg-scale-300 dark:bg-scale-600 z-10
+          border-scale-900 dark:border-scale-900 
+          border-1
         `,
         radio_offset: 'left-4',
       },
@@ -785,7 +790,7 @@ export default {
         group: `flex flex-row gap-3`,
         base: `
           transition 
-          border border-scale-700 hover:border-scale-900 
+          border
           rounded-lg 
           grow
           items-center
@@ -800,13 +805,13 @@ export default {
           xlarge: `px-8 p-4`,
         },
         inactive: `
-          bg-scale-100
-          dark:bg-scale-300
-          border-scale-400 hover:border-scale-700
+          bg-scale-400
+          border-scale-500
+          hover:border-scale-700
         `,
         active: `
-          bg-scale-300 dark:bg-brand-300 z-10
-          border-scale-900 dark:border-brand-500 border-1
+          bg-scale-300 dark:bg-scale-500 z-10
+          border-scale-900 dark:border-scale-900 border-1
         `,
         radio_offset: 'left-4',
       },

@@ -72,9 +72,9 @@
   Add on before
 */
 
-.sbui-listbox-addonbefore {
+/* .sbui-listbox-addonbefore {
   @apply w-full flex flex-row items-center space-x-3;
-}
+} */
 
 .sbui-listbox-label {
   @apply truncate;
@@ -96,33 +96,33 @@
   Option
 */
 
-.sbui-listbox-option-container {
+/* .sbui-listbox-option-container {
   @apply list-none p-0 absolute mt-1 w-full bg-white dark:bg-gray-800 shadow-lg border border-solid border-gray-100 dark:border-gray-600 max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm z-10;
-}
+} */
 
-.sbui-listbox-option {
+/* .sbui-listbox-option {
   @apply cursor-pointer select-none relative py-2 pl-3 pr-9 text-gray-900 dark:text-white;
-}
+} */
 
-.sbui-listbox-option--active {
+/* .sbui-listbox-option--active {
   @apply text-brand-600 dark:text-brand-600 bg-brand-600 bg-opacity-20;
 }
 
 .sbui-listbox-option--disabled {
   @apply cursor-not-allowed opacity-50;
-}
+} */
 
-.sbui-listbox-option__inner {
+/* .sbui-listbox-option__inner {
   @apply flex items-center space-x-3;
-}
+} */
 
-.sbui-listbox-option__check {
+/* .sbui-listbox-option__check {
   @apply absolute inset-y-0 right-0 flex items-center pr-3;
 }
 
 .sbui-listbox-option__check--active {
   @apply text-brand-600;
-}
+} */
 
 .sbui-listbox-option__check__icon {
   @apply h-5 w-5;

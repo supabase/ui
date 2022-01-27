@@ -149,8 +149,7 @@ const CardForm = () => {
                 <div className="border-t border-scale-400"></div>
                 <div className="py-3 px-6 flex gap-2 justify-end">
                   <Button
-                    loading={isSubmitting}
-                    type="secondary"
+                    type="default"
                     htmlType="reset"
                     onClick={() => handleReset()}
                   >
@@ -708,7 +707,7 @@ const DomainsForm = () => {
                   {domain}
                 </div>
                 <Button
-                  type="secondary"
+                  type="default"
                   icon={<IconTrash />}
                   onClick={() => {
                     setSelected(domain)
