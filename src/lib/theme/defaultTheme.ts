@@ -768,7 +768,8 @@ export default {
         },
         inactive: `
           bg-scale-100 dark:bg-scale-400
-          border-scale-300 dark:border-scale-500
+          border-scale-500 dark:border-scale-500
+          hover:border-scale-700 hover:dark:border-scale-700
           hover:bg-scale-200 dark:hover:bg-scale-500
         `,
         active: `
@@ -805,9 +806,10 @@ export default {
           xlarge: `px-8 p-4`,
         },
         inactive: `
-          bg-scale-400
-          border-scale-500
-          hover:border-scale-700
+          bg-scale-100 dark:bg-scale-400
+          border-scale-500 dark:border-scale-500
+          hover:border-scale-700 hover:dark:border-scale-700
+          hover:bg-scale-200 dark:hover:bg-scale-500
         `,
         active: `
           bg-scale-300 dark:bg-scale-500 z-10
