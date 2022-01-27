@@ -1338,6 +1338,13 @@ export default {
       overflow-y-auto
       data-open:animate-overlay-show data-closed:animate-overlay-hide  
     `,
+    seperator: `
+      w-full
+      h-px
+      my-2
+      bg-scale-300 dark:bg-scale-500
+    `,
+    content: `px-5`,
   },
 
   // listbox
