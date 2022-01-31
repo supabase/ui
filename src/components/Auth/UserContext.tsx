@@ -15,12 +15,15 @@ export interface Props {
 
 export const UserContextProvider = (props: Props) => {
   const { supabaseClient } = props
-  const [session, setSession] = useState<Session | null>(
-    supabaseClient.auth.session()
-  )
-  const [user, setUser] = useState<User | null>(session?.user ?? null)
+  const [session, setSession] = useState<Session | null>(null)
+  const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
+    const initialSession = supabaseClient.auth.session()
+
+    setSession(initialSession)
+    setUser(initialSession?.user ?? null)
+
     const { data: authListener } = supabaseClient.auth.onAuthStateChange(
       async (event, session) => {
         setSession(session)
