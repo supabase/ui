@@ -125,6 +125,14 @@ export const addOnAfter = (args: any) => (
   </Tabs>
 )
 
+export const OneTab = () => (
+  <Tabs defaultActiveId={'panel-1'}>
+    <Tabs.Panel id="panel-1" label="1st tab">
+      <Typography.Text>Content for the first panel</Typography.Text>
+    </Tabs.Panel>
+  </Tabs>
+)
+
 Default.args = {}
 Underlined.args = {
   type: 'underlined',

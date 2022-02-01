@@ -125,8 +125,8 @@ _Data Input_
 
 _Layout_
 
-~~- [ ] Layout~~
-~~- [ ] Grid (Flex)~~
+- [ ] ~~Layout~~
+- [ ] ~~Grid (Flex)~~
 - [x] Divider
 - [x] Space (Flex)
 
