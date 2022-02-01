@@ -14,7 +14,7 @@ interface Props {
   responsive?: boolean
   text?: string
   variant?: 'circle' | 'square'
-  AvatarIcon?: Icon
+  Icon?: Icon
   size: number
 }
 
@@ -31,7 +31,7 @@ export default function Avatar({
   responsive,
   text,
   variant = 'circle',
-  AvatarIcon,
+  Icon,
   size,
   children,
 }: Props) {
@@ -60,10 +60,10 @@ export default function Avatar({
   }
 
   const getAvatarAttribute = (): AvatarAttribute => {
-    if (AvatarIcon) {
+    if (Icon) {
       return {
         classKey: 'sbui-avatar-icon',
-        children: <AvatarIcon />,
+        children: <Icon />,
       }
     } else if (text) {
       return {
