@@ -2,9 +2,8 @@ import React from 'react'
 import { IconAirplay } from '../Icon/icons/IconAirplay'
 
 import Avatar from './Avatar'
-import AvatarGroup from './AvatarGroup'
 
-export default {
+const avatarStorybookAttribute = {
   title: 'General/Avatar',
   component: Avatar,
 }
@@ -59,3 +58,5 @@ Icon.args = {
 Fallback.args = {
   active: true,
 }
+
+export default avatarStorybookAttribute

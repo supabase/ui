@@ -5,7 +5,7 @@ import AvatarContainer from './AvatarContainer'
 // @ts-ignore
 import AvatarStyles from './Avatar.module.css'
 
-interface Props {
+export interface Props {
   children?: React.ReactNode
   src?: string | undefined
   style?: React.CSSProperties

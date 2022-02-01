@@ -1,11 +1,8 @@
-import React from 'react'
-
-import AvatarGroup from './AvatarGroup'
-import Avatar from './Avatar'
+import Avatar from '.'
 
 const story = {
   title: 'General/AvatarGroup',
-  component: AvatarGroup,
+  component: Avatar.Group,
 }
 
 export default story
@@ -13,12 +10,12 @@ export default story
 export const Default = (args: any) => {
   return (
     <>
-      <AvatarGroup {...args}>
+      <Avatar.Group {...args}>
         <Avatar text="test" size={50} />
         <Avatar text="test" size={50} />
         <Avatar text="test" size={50} />
         <Avatar text="test" size={50} />
-      </AvatarGroup>
+      </Avatar.Group>
     </>
   )
 }
