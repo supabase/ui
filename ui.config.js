@@ -131,6 +131,9 @@ const uiConfig = {
   theme: {
     variables: {
       DEFAULT: {
+        width: {
+          listbox: '320px',
+        },
         colors: { ...variables.root },
       },
       '.dark': {
@@ -143,6 +146,9 @@ const uiConfig = {
         // tailwind class for this is `origin-dropdown`
         dropdown: 'var(--radix-dropdown-menu-content-transform-origin)',
         popover: 'var(--radix-popover-menu-content-transform-origin);',
+      },
+      width: {
+        listbox: 'var(--width-listbox);',
       },
       keyframes: {
         fadeIn: {

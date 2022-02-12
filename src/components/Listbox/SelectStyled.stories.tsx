@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import Listbox from './Listbox'
+import Listbox from './Listbox2'
 import { IconBook } from '../../index'
 import { Button } from '../Button'
 import Typography from '../Typography'
@@ -101,33 +101,39 @@ const people = [
 ]
 
 export const People = (args: any) => (
-  <Listbox
-    defaultValue={people[1].value}
-    label="Choose a person"
-    layout="horizontal"
-    descriptionText="Choose a person for this role"
-  >
-    {people.map((person) => {
-      return (
-        <Listbox.Option
-          value={person.value}
-          label={person.label}
-          addOnBefore={({ active, selected }: any) => [
-            <img src={person.avatar} alt="" className="h-6 w-6 rounded-full" />,
-          ]}
-          children={({ active, selected }: any) => {
-            // console.log('selected', selected)
-            // console.log('active', active)
-            return (
-              <span className={'font-normal block truncate'}>
-                {person.label}
-              </span>
-            )
-          }}
-        />
-      )
-    })}
-  </Listbox>
+  <div className="overflow-hidden">
+    <Listbox
+      // defaultValue={people[1].value}
+      label="Choose a person"
+      layout="horizontal"
+      descriptionText="Choose a person for this role"
+    >
+      {people.map((person) => {
+        return (
+          <Listbox.Option
+            value={person.value}
+            label={person.label}
+            addOnBefore={({ active, selected }: any) => [
+              <img
+                src={person.avatar}
+                alt=""
+                className="h-6 w-6 rounded-full"
+              />,
+            ]}
+            children={({ active, selected }: any) => {
+              // console.log('selected', selected)
+              // console.log('active', active)
+              return (
+                <span className={'font-normal block truncate'}>
+                  {person.label}
+                </span>
+              )
+            }}
+          />
+        )
+      })}
+    </Listbox>
+  </div>
 )
 
 People.args = {

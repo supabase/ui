@@ -717,7 +717,7 @@ export default {
             horizontal: 'flex flex-row space-x-2',
           },
         },
-        group: `-space-y-px`,
+        group: `-space-y-px shadow-sm`,
         base: `
           transition
           border
@@ -733,7 +733,8 @@ export default {
         },
         inactive: `
           bg-scale-100 dark:bg-scale-400
-          border-scale-300 dark:border-scale-500
+          border-scale-500 dark:border-scale-500
+          hover:border-scale-700 hover:dark:border-scale-700
           hover:bg-scale-200 dark:hover:bg-scale-500
         `,
         active: `
@@ -757,7 +758,7 @@ export default {
           transition
           rounded-md
           border
-          shadow-sm
+          shadow-sm 
         `,
         size: {
           tiny: `px-5 py-3`,
@@ -797,6 +798,7 @@ export default {
           items-center
           flex-wrap
           justify-center
+          shadow-sm
         `,
         size: {
           tiny: `px-5 py-3`,
@@ -830,6 +832,7 @@ export default {
         base: `
           transition 
           border border-scale-700 hover:border-scale-900 
+          shadow-sm
           rounded-lg 
           grow
         `,
@@ -840,10 +843,16 @@ export default {
           large: `px-8 p-4`,
           xlarge: `px-8 p-4`,
         },
+        inactive: `
+          bg-scale-100 dark:bg-scale-400
+          border-scale-500 dark:border-scale-500
+          hover:border-scale-700 hover:dark:border-scale-700
+          hover:bg-scale-200 dark:hover:bg-scale-500
+        `,
         active: `
-          bg-brand-100 z-10
-          border-brand-900 border-1
-          hover:border-brand-900
+          bg-scale-300 dark:bg-scale-600 z-10
+          border-scale-900 dark:border-scale-900 
+          border-1
         `,
         radio_offset: 'left-4',
       },
@@ -1370,11 +1379,11 @@ export default {
       focus:border-scale-900
       focus:ring-scale-400
       ${defaults.placeholder}
-      appearance-none
       indent-px
       transition-all
       bg-none
     `,
+    container: 'relative',
     label: `truncate`,
     variants: {
       standard: `
@@ -1400,21 +1409,17 @@ export default {
       data-closed:opacity-0
     `,
     options_container: `
-      list-none p-0 
-      absolute mt-1 w-full 
       bg-scale-100 dark:bg-scale-300 
       shadow-lg 
       border border-solid 
       border-gray-100 dark:border-gray-600 max-h-60 
       rounded-md py-1 text-base 
-      ring-1 ring-black 
-      ring-opacity-5 
-      overflow-auto 
-      focus:outline-none 
-      sm:text-sm z-10`,
-    container: 'relative',
+      sm:text-sm z-10 overflow-hidden overflow-y-scroll
+    `,
     with_icon: 'pl-10',
-    addOnBefore: `w-full flex flex-row items-center space-x-3`,
+    addOnBefore: `
+    w-full flex flex-row items-center space-x-3
+    `,
     size: {
       ...default__padding_and_text,
     },
@@ -1424,7 +1429,9 @@ export default {
     chevron_container:
       'absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none',
     chevron: 'h-5 w-5 text-scale-600',
-    option: `transition cursor-pointer select-none relative py-2 pl-3 pr-9 
+    option: `
+      w-listbox
+      transition cursor-pointer select-none relative py-2 pl-3 pr-9 
       text-scale-900
       text-sm
     `,
