@@ -186,7 +186,7 @@ function Listbox({
   // if (borderless) selectClasses.push(SelectStyles['sbui-listbox--borderless'])
   if (disabled) selectClasses.push(__styles.disabled)
 
-  const triggerRef = useRef(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
 
   return (
     <FormLayout
@@ -201,8 +201,9 @@ function Listbox({
       size={size}
     >
       <DropdownMenuPrimitive.Root>
-        <DropdownMenuPrimitive.Trigger ref={triggerRef} asChild>
+        <DropdownMenuPrimitive.Trigger asChild>
           <button
+            ref={triggerRef}
             className={selectClasses.join(' ')}
             onBlur={onBlur}
             onFocus={onFocus}
