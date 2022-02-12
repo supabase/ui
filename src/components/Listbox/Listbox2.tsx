@@ -95,10 +95,10 @@ function Listbox({
   }, [value])
 
   useEffect(() => {
-    console.log(triggerRef?.current?.offsetWidth)
-    if (document) {
-      document.documentElement.style.setProperty('--width-listbox', `533px`)
-    }
+    document.documentElement.style.setProperty(
+      '--width-listbox',
+      `${triggerRef.current?.offsetWidth}px`
+    )
   }, [])
 
   useEffect(() => {

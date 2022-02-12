@@ -1415,6 +1415,10 @@ export default {
       border-gray-100 dark:border-gray-600 max-h-60 
       rounded-md py-1 text-base 
       sm:text-sm z-10 overflow-hidden overflow-y-scroll
+
+      origin-dropdown
+      data-open:animate-dropdown-content-show
+      data-closed:animate-dropdown-content-hide
     `,
     with_icon: 'pl-10',
     addOnBefore: `
