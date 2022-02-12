@@ -13,7 +13,6 @@ import { flatten } from 'lodash'
 import { SelectContext } from './SelectContext'
 
 import styleHandler from '../../lib/theme/styleHandler'
-import { Button } from '../Button'
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
@@ -67,6 +66,8 @@ function Listbox({
 
   const __styles = styleHandler('listbox')
 
+  const triggerRef = useRef<HTMLButtonElement>(null)
+
   const {
     formContextOnChange,
     values,
@@ -95,19 +96,29 @@ function Listbox({
   }, [value])
 
   useEffect(() => {
-    document.documentElement.style.setProperty(
-      '--width-listbox',
-      `${triggerRef.current?.offsetWidth}px`
-    )
+    // handle listbox options width size
+
+    function handleResize() {
+      // Set window width/height to state
+      document.documentElement.style.setProperty(
+        '--width-listbox',
+        `${triggerRef.current?.offsetWidth}px`
+      )
+    }
+
+    // Add event listener
+    window.addEventListener('resize', handleResize)
+
+    // Call handler right away so state gets updated with initial window size
+    handleResize()
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   useEffect(() => {
     const data: any = children
     const content: any = flatten(data)
-
-    console.log('selected in useEffect', selected)
-
-    console.log('value has changed')
 
     function findNode(_value: any) {
       return content.find((node: any) => node.props.value === _value)
@@ -117,7 +128,6 @@ function Listbox({
      * value prop overrides everything
      */
     if (value) {
-      console.log('if value')
       setSelected(value)
       const node: any = findNode(value)
       setSelectedNode(node?.props ? node.props : undefined)
@@ -128,18 +138,15 @@ function Listbox({
      * if no value prop, then use selected state
      */
     if (selected) {
-      console.log('if selected')
       const node: any = findNode(selected)
       setSelectedNode(node?.props ? node.props : undefined)
       return
     } else if (defaultValue) {
-      console.log('if defaultValue')
       setSelected(defaultValue)
       const node: any = findNode(selected)
       setSelectedNode(node?.props ? node.props : undefined)
       return
     } else {
-      console.log('else')
       /*
        * if no selected value (including a `defaultvalue`), then use first child
        */
@@ -149,7 +156,6 @@ function Listbox({
   }, [selected])
 
   function handleOnChange(value: any) {
-    // console.log('listbox onchange e', value)
     if (onChange) onChange(value)
     setSelected(value)
 
@@ -185,8 +191,6 @@ function Listbox({
   if (size) selectClasses.push(__styles.size[size])
   // if (borderless) selectClasses.push(SelectStyles['sbui-listbox--borderless'])
   if (disabled) selectClasses.push(__styles.disabled)
-
-  const triggerRef = useRef<HTMLButtonElement>(null)
 
   return (
     <FormLayout
@@ -281,22 +285,13 @@ function SelectOption({
   addOnBefore,
   disabled = false,
 }: OptionProps) {
-  // console.log('children typeof', typeof children)
-
   const __styles = styleHandler('listbox')
-
-  //   const active = false
-  //   const selected = false
 
   return (
     <SelectContext.Consumer>
       {({ onChange, selected }) => {
-        // console.log('selected inside SelectOption', selected)
-        // console.log('onChange inside SelectOption', onChange)
-
         const active = selected === value ? true : false
 
-        console.log('active inside SelectOption', active, value)
         return (
           <DropdownMenuPrimitive.Item
             key={id}
