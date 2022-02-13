@@ -1,17 +1,18 @@
 import React from 'react'
-import { DropdownContext } from '../../lib/Overlay/OverlayContext'
 import { Space } from '../Space'
 import Typography from '../Typography'
+import { MenuContextProvider, useMenuContext } from './MenuContext'
 
-import defaultTheme from '../../lib/theme/defaultTheme'
 import styleHandler from '../../lib/theme/styleHandler'
 
 interface MenuProps {
   children: React.ReactNode
   className?: string
   style?: React.CSSProperties
+  type?: 'text' | 'pills' | 'border'
 }
-function Menu({ children, className, style }: MenuProps) {
+
+function Menu({ children, className, style, type = 'text' }: MenuProps) {
   return (
     <nav
       role="menu"
@@ -21,7 +22,9 @@ function Menu({ children, className, style }: MenuProps) {
       className={className}
       style={style}
     >
-      <ul>{children}</ul>
+      <MenuContextProvider type={type}>
+        <ul>{children}</ul>
+      </MenuContextProvider>
     </nav>
   )
 }
@@ -47,23 +50,19 @@ export function Item({
   showActiveBar = false,
   style,
 }: ItemProps) {
-  // let classes = [MenuStyles['sbui-menu__item']]
-  // if (active) classes.push(MenuStyles['sbui-menu__item--active'])
-  // if (active && showActiveBar)
-  //   classes.push(MenuStyles['sbui-menu__item--active--bar'])
-  // if (rounded) classes.push(MenuStyles['sbui-menu__item--rounded'])
-
-  const itemOnClick = onClick
-
   const __styles = styleHandler('menu')
 
+  const { type } = useMenuContext()
+
   let classes = [__styles.item.base]
+
+  classes.push(__styles.item.variants[type].base)
+
   if (active) {
-    classes.push(__styles.item.active)
+    classes.push(__styles.item.variants[type].active)
   } else {
-    classes.push(__styles.item.normal)
+    classes.push(__styles.item.variants[type].normal)
   }
-  if (active && showActiveBar) classes.push(__styles.item.bar)
 
   let contentClasses = [__styles.item.content.base]
   if (active) {
@@ -78,32 +77,20 @@ export function Item({
   } else {
     iconClasses.push(__styles.item.icon.normal)
   }
-  return (
-    // DropdownContext allows for MenuItem to
-    // close parent dropdown onClick
-    <DropdownContext.Consumer>
-      {({ onClick }) => {
-        function handleClick(e: React.MouseEvent) {
-          if (!doNotCloseOverlay) onClick(e)
-          if (itemOnClick) itemOnClick(e)
-        }
 
-        return (
-          <li role="menuitem" className="outline-none">
-            <a
-              className={classes.join(' ')}
-              onClick={handleClick}
-              style={style}
-              aria-current={active ? 'page' : undefined}
-              href="#"
-            >
-              {icon && <span className={iconClasses.join(' ')}>{icon}</span>}
-              <span className={contentClasses.join(' ')}>{children}</span>
-            </a>
-          </li>
-        )
-      }}
-    </DropdownContext.Consumer>
+  return (
+    <li role="menuitem" className="outline-none">
+      <a
+        className={classes.join(' ')}
+        onClick={onClick}
+        style={style}
+        aria-current={active ? 'page' : undefined}
+        href="#"
+      >
+        {icon && <span className={iconClasses.join(' ')}>{icon}</span>}
+        <span className={contentClasses.join(' ')}>{children}</span>
+      </a>
+    </li>
   )
 }
 
@@ -115,8 +102,11 @@ interface GroupProps {
 
 export function Group({ children, icon, title }: GroupProps) {
   const __styles = styleHandler('menu')
+  const { type } = useMenuContext()
   return (
-    <div className={__styles.group.base}>
+    <div
+      className={[__styles.group.base, __styles.group.variants[type]].join(' ')}
+    >
       <Space>
         {icon && <span className={__styles.group.icon}>{icon}</span>}
         <h5 className={__styles.group.content}>{title}</h5>

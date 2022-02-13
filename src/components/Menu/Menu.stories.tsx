@@ -14,7 +14,7 @@ export default {
 const SampleIcon = () => <IconMail size={14} strokeWidth={2} />
 
 export const Default = (args: any) => (
-  <Menu>
+  <Menu type="text">
     <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
     <Divider />
     <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
@@ -23,7 +23,7 @@ export const Default = (args: any) => (
 )
 
 export const withActiveState = (args: any) => (
-  <Menu>
+  <Menu type="text">
     <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
     <Divider />
     <Menu.Item active icon={<SampleIcon />}>
@@ -33,50 +33,33 @@ export const withActiveState = (args: any) => (
   </Menu>
 )
 
-export const withRounded = (args: any) => (
-  <Menu>
-    <Menu.Item rounded icon={<SampleIcon />}>
-      Account settings
-    </Menu.Item>
+export const pills = (args: any) => (
+  <Menu type="pills">
+    <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
     <Divider />
-    <Menu.Item rounded active icon={<SampleIcon />}>
+    <Menu.Item active icon={<SampleIcon />}>
       Account settings
     </Menu.Item>
-    <Menu.Item rounded icon={<SampleIcon />}>
-      Account settings
-    </Menu.Item>
+    <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
   </Menu>
 )
 
-export const withGroupTitles = () => (
-  <Menu>
-    <Menu.Group title="First group" />
-    <Menu.Item rounded icon={<SampleIcon />}>
+export const border = (args: any) => (
+  <Menu type="border">
+    <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
+    <Divider />
+    <Menu.Item active icon={<SampleIcon />}>
       Account settings
     </Menu.Item>
-    <Menu.Item rounded icon={<SampleIcon />}>
-      Account settings
-    </Menu.Item>
-    <Menu.Item rounded icon={<SampleIcon />}>
-      Account settings
-    </Menu.Item>
-    <Menu.Group title="Second group" />
-    <Menu.Item rounded icon={<SampleIcon />}>
-      Account settings
-    </Menu.Item>
-    <Menu.Item rounded icon={<SampleIcon />}>
-      Account settings
-    </Menu.Item>
+    <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
   </Menu>
 )
 
-export const withActiveBar = () => (
-  <Menu>
+export const Groups = () => (
+  <Menu type="text">
     <Menu.Group title="First group" />
     <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
-    <Menu.Item active showActiveBar icon={<SampleIcon />}>
-      Account settings
-    </Menu.Item>
+    <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
     <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
     <Menu.Group title="Second group" />
     <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
@@ -84,17 +67,30 @@ export const withActiveBar = () => (
   </Menu>
 )
 
-Default.args = {
-  title: 'I am a title',
-  titleExtra: <Typography.Link>Learn more</Typography.Link>,
-}
+export const PillsAndGroups = () => (
+  <Menu type="pills">
+    <Menu.Group title="First group" />
+    <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
+    <Menu.Item icon={<SampleIcon />} active>
+      Account settings
+    </Menu.Item>
+    <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
+    <Menu.Group title="Second group" />
+    <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
+    <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
+  </Menu>
+)
 
-withActiveState.args = {
-  title: 'I am a title',
-  titleExtra: <Typography.Link>Learn more</Typography.Link>,
-}
-
-withRounded.args = {
-  title: 'I am a title',
-  titleExtra: <Typography.Link>Learn more</Typography.Link>,
-}
+export const BorderAndGroups = () => (
+  <Menu type="border">
+    <Menu.Group title="First group" />
+    <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
+    <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
+    <Menu.Item icon={<SampleIcon />} active>
+      Account settings
+    </Menu.Item>
+    <Menu.Group title="Second group" />
+    <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
+    <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
+  </Menu>
+)
