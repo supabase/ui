@@ -73,7 +73,7 @@ function Popover({
         sideOffset={sideOffset}
         side={side}
         align={align}
-        className={__styles.content}
+        className={classes.join(' ')}
         style={style}
         portalled={portalled}
       >

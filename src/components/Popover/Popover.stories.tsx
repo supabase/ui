@@ -18,9 +18,9 @@ export const Default = (args: any) => (
       {...args}
       side="bottom"
       align="end"
+      size="content"
       portalled
       showClose
-      className="w-96"
       header={
         <div className="flex justify-between items-center">
           <Button type="default" size="tiny">
