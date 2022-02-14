@@ -126,4 +126,11 @@ const SidePanel = ({
   )
 }
 
+export function Seperator() {
+  let __styles = styleHandler('sidepanel')
+
+  return <div className={__styles.seperator}></div>
+}
+
+SidePanel.Seperator = Seperator
 export default SidePanel

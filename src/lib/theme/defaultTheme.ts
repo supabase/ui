@@ -977,6 +977,12 @@ export default {
         data-closed:animate-panel-slide-right-in
       `,
     },
+    seperator: `
+      w-full
+      h-px
+      my-2
+      bg-scale-300 dark:bg-scale-500
+    `,
     overlay: `
       fixed
       bg-scale-100
