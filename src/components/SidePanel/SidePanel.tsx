@@ -104,24 +104,26 @@ const SidePanel = ({
         </Dialog.Trigger>
       )}
 
-      <Dialog.Overlay className={__styles.overlay} />
-      <Dialog.Content
-        className={[
-          __styles.base,
-          __styles.size[size],
-          __styles.align[align],
-          className && className,
-        ].join(' ')}
-        onOpenAutoFocus={props.onOpenAutoFocus}
-        onCloseAutoFocus={props.onCloseAutoFocus}
-        onEscapeKeyDown={props.onEscapeKeyDown}
-        onPointerDownOutside={props.onPointerDownOutside}
-        onInteractOutside={props.onInteractOutside}
-      >
-        {header && <header className={__styles.header}>{header}</header>}
-        <div className={__styles.contents}>{children}</div>
-        {!hideFooter && footerContent}
-      </Dialog.Content>
+      <Dialog.Portal>
+        <Dialog.Overlay className={__styles.overlay} />
+        <Dialog.Content
+          className={[
+            __styles.base,
+            __styles.size[size],
+            __styles.align[align],
+            className && className,
+          ].join(' ')}
+          onOpenAutoFocus={props.onOpenAutoFocus}
+          onCloseAutoFocus={props.onCloseAutoFocus}
+          onEscapeKeyDown={props.onEscapeKeyDown}
+          onPointerDownOutside={props.onPointerDownOutside}
+          onInteractOutside={props.onInteractOutside}
+        >
+          {header && <header className={__styles.header}>{header}</header>}
+          <div className={__styles.contents}>{children}</div>
+          {!hideFooter && footerContent}
+        </Dialog.Content>
+      </Dialog.Portal>
     </Dialog.Root>
   )
 }
