@@ -248,25 +248,55 @@ export default {
    */
 
   alert: {
-    base: 'relative rounded py-4 px-6 flex space-x-4 border border-solid border-opacity-20',
-    type: {
-      danger:
-        'bg-red-500 bg-opacity-10 dark:bg-opacity-5 text-red-600 border-red-500',
-      warning:
-        'bg-yellow-600 bg-opacity-10 dark:bg-opacity-5 text-yellow-600 border-yellow-600',
-      info: 'bg-blue-600 bg-opacity-10 dark:bg-opacity-5 text-blue-600 border-blue-600',
-      success:
-        'bg-green-600 bg-opacity-10 dark:bg-opacity-5 text-green-600 border-green-600',
+    base: `
+      relative
+      rounded 
+      py-4 px-6 
+      flex space-x-4 items-start 
+      border
+    `,
+    header: 'block text-sm font-normal',
+    description: `text-sm`,
+    variant: {
+      danger: {
+        base: `bg-red-200 dark:bg-red-100 btext-red-1200 border-red-700`,
+        icon: `text-red-900`,
+        header: `text-red-1200`,
+        description: `text-scale-900`,
+      },
+      warning: {
+        base: `bg-amber-200 dark:bg-amber-100 border-amber-700`,
+        icon: `text-amber-900`,
+        header: `text-amber-1200`,
+        description: `text-scale-900`,
+      },
+      info: {
+        base: `bg-blue-200 dark:bg-blue-100 border-blue-700`,
+        icon: `text-blue-900`,
+        header: `text-blue-1200`,
+        description: `text-scale-900`,
+      },
+      success: {
+        base: `bg-green-200 dark:bg-green-100 border-green-700`,
+        icon: `text-green-900`,
+        header: `text-green-1200`,
+        description: `text-scale-900`,
+      },
+      neutral: {
+        base: `bg-scale-300 dark:bg-scale-300 border-scale-400`,
+        icon: `text-red-900`,
+        header: `text-red-1200`,
+        description: `text-scale-900`,
+      },
     },
-    description: {
-      danger: 'text-sm text-red-600 text-opacity-80',
-      warning: 'text-sm text-yellow-600 text-opacity-80',
-      info: 'text-sm text-blue-600 text-opacity-80',
-      success: 'text-sm text-green-600 text-opacity-80',
-    },
-    title: 'block text-base leading-none font-normal mb-1',
-    close:
-      'absolute right-6 top-4 p-0 m-0 cursor-pointer transition ease-in-out bg-transparent border-transparent focus:outline-none text-current opacity-50 hover:opacity-100',
+    close: `
+      absolute 
+      right-6 top-4 
+      p-0 m-0 
+      text-scale-900
+      cursor-pointer transition ease-in-out 
+      bg-transparent border-transparent focus:outline-none
+      opacity-50 hover:opacity-100`,
   },
 
   /*

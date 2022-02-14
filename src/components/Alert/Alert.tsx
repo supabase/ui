@@ -11,50 +11,69 @@ import { IconAlertOctagon } from '../Icon/icons/IconAlertOctagon'
 import { IconCheckCircle } from '../Icon/icons/IconCheckCircle'
 
 interface Props {
-  variant?: 'success' | 'danger' | 'warning' | 'info'
+  variant?: 'success' | 'danger' | 'warning' | 'info' | 'neutral'
   className?: string
   title: string
   withIcon?: boolean
   closable?: boolean
   children?: React.ReactNode
+  icon?: React.ReactNode
 }
 
 const icons: Record<
-  'success' | 'danger' | 'warning' | 'info',
+  'success' | 'danger' | 'warning' | 'info' | 'neutral',
   React.ReactElement
 > = {
-  danger: <IconAlertOctagon strokeWidth={2} size="medium" />,
-  success: <IconCheckCircle strokeWidth={2} size="medium" />,
-  warning: <IconAlertTriangle strokeWidth={2} size="medium" />,
-  info: <IconInfo strokeWidth={2} size="medium" />,
+  danger: <IconAlertOctagon strokeWidth={1.5} size="medium" />,
+  success: <IconCheckCircle strokeWidth={1.5} size="medium" />,
+  warning: <IconAlertTriangle strokeWidth={1.5} size="medium" />,
+  info: <IconInfo strokeWidth={1.5} size="medium" />,
+  neutral: <></>,
 }
 
 function Alert({
-  variant = 'success',
+  variant = 'neutral',
   className,
   title,
   withIcon,
   closable,
   children,
+  icon,
 }: Props) {
   let __styles = styleHandler('alert')
 
   const [visible, setVisible] = useState(true)
 
   let containerClasses = [__styles.base]
-  containerClasses.push(__styles.type[variant])
+  containerClasses.push(__styles.variant[variant].base)
+
   if (className) containerClasses.push(className)
 
-  let descriptionClasses = [__styles.description[variant]]
+  let descriptionClasses = [
+    __styles.description,
+    __styles.variant[variant].description,
+  ]
   let closeButtonClasses = [__styles.close]
 
   return (
     <>
       {visible && (
         <div className={containerClasses.join(' ')}>
-          {withIcon && <div>{withIcon && icons[variant]}</div>}
+          {withIcon ? (
+            <div className={__styles.variant[variant].icon}>
+              {withIcon && icons[variant]}
+            </div>
+          ) : null}
+          {icon && icon}
           <div>
-            <span className={__styles.title}>{title}</span>
+            <h3
+              className={[
+                __styles.variant[variant].header,
+                __styles.header,
+              ].join(' ')}
+            >
+              {title}
+            </h3>
             <div className={descriptionClasses.join(' ')}>{children}</div>
           </div>
           {closable && (
@@ -63,7 +82,7 @@ function Alert({
               onClick={() => setVisible(false)}
               className={closeButtonClasses.join(' ')}
             >
-              <IconX strokeWidth={2} />
+              <IconX strokeWidth={1.5} size={14} />
             </button>
           )}
         </div>

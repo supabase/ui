@@ -9,6 +9,13 @@ export default {
   component: Alert,
 }
 
+export const Neutral = (args: any) => (
+  <Alert {...args}>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet
+    labore.
+  </Alert>
+)
+
 export const Success = (args: any) => (
   <Alert {...args}>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet
@@ -71,6 +78,12 @@ export const Closable = (args: any) => (
     labore.
   </Alert>
 )
+
+Neutral.args = {
+  title: 'Success alert with icon',
+  withIcon: true,
+  type: 'neutral',
+}
 
 Success.args = {
   title: 'Success alert',
