@@ -955,6 +955,7 @@ export default {
     `,
     content: `
       relative flex-1 px-4 sm:px-6 py-4
+      overflow-y-auto
     `,
     footer: `
       flex justify-end gap-2

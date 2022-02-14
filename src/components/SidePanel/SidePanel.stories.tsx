@@ -136,6 +136,58 @@ export const nestedSidepanels = (args: any) => {
   )
 }
 
+export const longContent = (args: any) => (
+  <>
+    <SidePanel {...args}>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+      <p className="text-scale-900">This is a paragraph</p>
+    </SidePanel>
+  </>
+)
+
 Default.args = {
   visible: true,
   onCancel: action('onCancel'),
@@ -201,4 +253,9 @@ triggerElement.args = {
   title: 'This is the title of the SidePanel',
   description: 'And i am the description',
   triggerElement: <Button as="span">Open</Button>,
+}
+
+longContent.args = {
+  visible: true,
+  header: 'Long content',
 }
