@@ -985,7 +985,8 @@ export default {
     `,
     overlay: `
       fixed
-      bg-scale-100
+      bg-scale-300
+      dark:bg-scale-100
       h-full w-full
       left-0
       top-0 
@@ -1410,7 +1411,8 @@ export default {
     },
     overlay: `
       fixed
-      bg-scale-100
+      bg-scale-300
+      dark:bg-scale-100
       h-full w-full
       left-0
       top-0 
