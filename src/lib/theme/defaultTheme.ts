@@ -255,38 +255,38 @@ export default {
       flex space-x-4 items-start 
       border
     `,
-    header: 'block text-sm font-normal',
-    description: `text-sm`,
+    header: 'block text-sm font-normal mb-1',
+    description: `text-xs`,
     variant: {
       danger: {
         base: `bg-red-200 dark:bg-red-100 btext-red-1200 border-red-700`,
         icon: `text-red-900`,
         header: `text-red-1200`,
-        description: `text-scale-900`,
+        description: `text-red-1100`,
       },
       warning: {
         base: `bg-amber-200 dark:bg-amber-100 border-amber-700`,
         icon: `text-amber-900`,
         header: `text-amber-1200`,
-        description: `text-scale-900`,
+        description: `text-amber-1100`,
       },
       info: {
         base: `bg-blue-200 dark:bg-blue-100 border-blue-700`,
         icon: `text-blue-900`,
         header: `text-blue-1200`,
-        description: `text-scale-900`,
+        description: `text-blue-1100`,
       },
       success: {
-        base: `bg-green-200 dark:bg-green-100 border-green-700`,
-        icon: `text-green-900`,
-        header: `text-green-1200`,
-        description: `text-scale-900`,
+        base: `bg-brand-300 dark:bg-brand-100 border-brand-700`,
+        icon: `text-brand-900`,
+        header: `text-brand-1200`,
+        description: `text-brand-1100`,
       },
       neutral: {
-        base: `bg-scale-300 dark:bg-scale-300 border-scale-400`,
-        icon: `text-red-900`,
-        header: `text-red-1200`,
-        description: `text-scale-900`,
+        base: `bg-scale-300 dark:bg-scale-300 border-scale-500`,
+        icon: `text-scale-900`,
+        header: `text-scale-1200`,
+        description: `text-scale-1100`,
       },
     },
     close: `

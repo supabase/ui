@@ -24,10 +24,10 @@ const icons: Record<
   'success' | 'danger' | 'warning' | 'info' | 'neutral',
   React.ReactElement
 > = {
-  danger: <IconAlertOctagon strokeWidth={1.5} size="medium" />,
-  success: <IconCheckCircle strokeWidth={1.5} size="medium" />,
-  warning: <IconAlertTriangle strokeWidth={1.5} size="medium" />,
-  info: <IconInfo strokeWidth={1.5} size="medium" />,
+  danger: <IconAlertOctagon strokeWidth={1.5} size={18} />,
+  success: <IconCheckCircle strokeWidth={1.5} size={18} />,
+  warning: <IconAlertTriangle strokeWidth={1.5} size={18} />,
+  info: <IconInfo strokeWidth={1.5} size={18} />,
   neutral: <></>,
 }
 

@@ -82,15 +82,16 @@ export const Closable = (args: any) => (
 Neutral.args = {
   title: 'Success alert with icon',
   withIcon: true,
-  type: 'neutral',
 }
 
 Success.args = {
   title: 'Success alert',
+  variant: 'success',
 }
 
 SuccessWithIcon.args = {
   title: 'Success alert with icon',
+  variant: 'success',
   withIcon: true,
 }
 
