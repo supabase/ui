@@ -37,6 +37,7 @@ export interface Props
   defaultValue?: any
   borderless?: boolean
   validation?: (x: any) => void
+  optionsWidth?: number
 }
 
 function Listbox({
@@ -60,6 +61,7 @@ function Listbox({
   borderless = false,
   validation,
   disabled,
+  optionsWidth,
 }: Props) {
   const [selected, setSelected] = useState(undefined)
   const [selectedNode, setSelectedNode] = useState<any>({})
@@ -100,9 +102,10 @@ function Listbox({
 
     function handleResize() {
       // Set window width/height to state
+
       document.documentElement.style.setProperty(
         '--width-listbox',
-        `${triggerRef.current?.offsetWidth}px`
+        `${optionsWidth ? optionsWidth : triggerRef.current?.offsetWidth}px`
       )
     }
 
