@@ -119,7 +119,7 @@ const SidePanel = ({
         onInteractOutside={props.onInteractOutside}
       >
         {header && <header className={__styles.header}>{header}</header>}
-        <div className={__styles.content}>{children}</div>
+        <div className={__styles.contents}>{children}</div>
         {!hideFooter && footerContent}
       </Dialog.Content>
     </Dialog.Root>
@@ -132,5 +132,12 @@ export function Seperator() {
   return <div className={__styles.seperator}></div>
 }
 
+export function Content() {
+  let __styles = styleHandler('sidepanel')
+
+  return <div className={__styles.content}></div>
+}
+
+SidePanel.Content = Content
 SidePanel.Seperator = Seperator
 export default SidePanel

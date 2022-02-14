@@ -953,9 +953,14 @@ export default {
       space-y-1 py-4 px-4 bg-overlay-bg sm:px-6 
       border-b border-overlay-border
     `,
-    content: `
-      relative flex-1 px-4 sm:px-6 py-4
+    contents: `
+      relative 
+      flex-1 
+      py-4
       overflow-y-auto
+    `,
+    content: `
+      px-4 sm:px-6
     `,
     footer: `
       flex justify-end gap-2
