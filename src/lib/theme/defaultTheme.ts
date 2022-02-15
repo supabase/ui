@@ -1375,7 +1375,7 @@ export default {
         font-normal
       `,
       icon: `text-scale-900`,
-      content: `text-sm text-scale-900`,
+      content: `text-sm text-scale-900 w-full`,
       variants: {
         text: ``,
         pills: `px-3`,
