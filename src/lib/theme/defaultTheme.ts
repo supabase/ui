@@ -1304,7 +1304,7 @@ export default {
         group
       `,
       content: {
-        base: `transition truncate text-sm`,
+        base: `transition truncate text-sm w-full`,
         normal: `text-scale-1100 group-hover:text-scale-1200`,
         active: `text-scale-1200 font-semibold`,
       },

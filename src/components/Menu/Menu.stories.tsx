@@ -5,6 +5,9 @@ import { IconMail } from './../../index'
 import Typography from '../Typography'
 
 import { Menu } from './'
+import { Button } from '../Button'
+import { IconDatabase } from '../Icon/icons/IconDatabase'
+import { IconMenu } from '../Icon/icons/IconMenu'
 
 export default {
   title: 'Navigation/Menu',
@@ -86,6 +89,30 @@ export const BorderAndGroups = () => (
     <Menu.Group title="First group" />
     <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
     <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
+    <Menu.Item icon={<SampleIcon />} active>
+      Account settings
+    </Menu.Item>
+    <Menu.Group title="Second group" />
+    <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
+    <Menu.Item icon={<SampleIcon />}>Account settings</Menu.Item>
+  </Menu>
+)
+
+export const CustomNode = () => (
+  <Menu type="border">
+    <Menu.Group title="First group" />
+    <Menu.Item icon={<SampleIcon />}>
+      <div className="flex items-center gap-2">
+        <span>Account settings</span>
+        <Button type="default">Button</Button>
+      </div>
+    </Menu.Item>
+    <Menu.Item icon={<SampleIcon />}>
+      <div className="flex items-center gap-2">
+        <span>Account settings</span>
+        <IconMenu size={14} strokeWidth={1.5} />
+      </div>
+    </Menu.Item>
     <Menu.Item icon={<SampleIcon />} active>
       Account settings
     </Menu.Item>
