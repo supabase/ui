@@ -107,10 +107,8 @@ export function Group({ children, icon, title }: GroupProps) {
     <div
       className={[__styles.group.base, __styles.group.variants[type]].join(' ')}
     >
-      <Space>
-        {icon && <span className={__styles.group.icon}>{icon}</span>}
-        <h5 className={__styles.group.content}>{title}</h5>
-      </Space>
+      {icon && <span className={__styles.group.icon}>{icon}</span>}
+      <span className={__styles.group.content}>{title}</span>
       {children}
     </div>
   )

@@ -1371,7 +1371,7 @@ export default {
     group: {
       base: `
         flex space-x-3 
-        mb-2 mt-4 
+        mb-2
         font-normal
       `,
       icon: `text-scale-900`,
