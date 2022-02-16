@@ -53,7 +53,7 @@ function Group({
   size = 'medium',
 }: GroupProps) {
   const parentCallback = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // if (onChange) onChange(e)
+    if (onChange) onChange(e)
   }
 
   const __styles = styleHandler('checkbox')
