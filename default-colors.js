@@ -45,6 +45,7 @@ module.exports = {
     scale11: 'var(--colors-slate11)',
     scale12: 'var(--colors-slate12)',
   },
+
   scaleDark: {
     scale1: 'var(--colors-gray1)',
     scale2: 'var(--colors-gray2)',
