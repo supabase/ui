@@ -1359,7 +1359,8 @@ export default {
             group-hover:border-scale-900`,
           active: `
             font-semibold
-            bg-scale-300
+            bg-scale-400
+            dark:bg-scale-300
             text-scale-900
             z-10
 
