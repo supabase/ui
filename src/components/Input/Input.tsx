@@ -61,7 +61,7 @@ function Input({
   ...props
 }: Props) {
   const [copyLabel, setCopyLabel] = useState('Copy')
-  const [hidden, setHidden] = useState(reveal)
+  const [hidden, setHidden] = useState(true)
 
   // if `type` is not assigned, default to text input
   if (!type) {
@@ -125,7 +125,7 @@ function Input({
             placeholder={placeholder}
             ref={inputRef}
             type={type}
-            value={hidden ? hiddenPlaceholder : value}
+            value={reveal && hidden ? hiddenPlaceholder : value}
             className={inputClasses.join(' ')}
             {...props}
           />
@@ -136,7 +136,7 @@ function Input({
               size={1}
             >
               {error && <InputErrorIcon size={size} />}
-              {copy && !hidden ? (
+              {copy && !(reveal && hidden) ? (
                 <Button
                   size="tiny"
                   type="default"
@@ -146,7 +146,7 @@ function Input({
                   {copyLabel}
                 </Button>
               ) : null}
-              {hidden && reveal ? (
+              {reveal && hidden ? (
                 <Button size="tiny" type="default" onClick={onReveal}>
                   Reveal
                 </Button>
