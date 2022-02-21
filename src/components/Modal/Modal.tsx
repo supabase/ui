@@ -41,7 +41,7 @@ interface Props {
   title?: string
   variant?: 'danger' | 'warning' | 'success'
   visible: boolean
-  size?: 'tiny' | 'small' | 'medium' | 'large'
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'
   style?: React.CSSProperties
   overlayStyle?: React.CSSProperties
   contentStyle?: React.CSSProperties

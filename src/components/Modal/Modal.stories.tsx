@@ -481,6 +481,7 @@ Default.args = {
   onConfirm: action('onConfirm'),
   title: 'This is the title of the modal',
   description: 'And i am the description',
+  size: 'medium',
 }
 
 withFooterBackground.args = {

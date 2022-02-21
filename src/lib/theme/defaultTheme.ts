@@ -1415,6 +1415,9 @@ export default {
       small: `sm:align-middle sm:w-full sm:max-w-sm`,
       medium: `sm:align-middle sm:w-full sm:max-w-lg`,
       large: `sm:align-middle sm:w-full max-w-xl`,
+      xlarge: `sm:align-middle sm:w-full max-w-3xl`,
+      xxlarge: `sm:align-middle sm:w-full max-w-6xl`,
+      xxxlarge: `sm:align-middle sm:w-full max-w-7xl`,
     },
     overlay: `
       fixed
