@@ -521,7 +521,7 @@ export default {
     `,
     variants: {
       standard: `
-        bg-scale-200 dark:bg-scale-200
+        bg-scaleA-200
         border border-scale-700
         `,
       error: `
@@ -569,7 +569,7 @@ export default {
     `,
     variants: {
       standard: `
-        bg-scale-200 dark:bg-scale-200
+        bg-scaleA-200
         border border-scale-700
         `,
       error: `
@@ -617,7 +617,7 @@ export default {
     `,
     variants: {
       standard: `
-        bg-scale-200 dark:bg-scale-200
+        bg-scaleA-200
         border border-scale-700
       `,
       error: `
@@ -1471,7 +1471,7 @@ export default {
     label: `truncate`,
     variants: {
       standard: `
-        bg-scale-200 dark:bg-scale-200
+        bg-scaleA-200
         border border-scale-700
 
         aria-expanded:border-scale-900

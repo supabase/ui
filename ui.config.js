@@ -8,7 +8,7 @@ const brandColors = require('./default-colors')
 
 // generates fixed scales
 // based on the root/light mode version
-const fixedOptions = ['scale', 'brand']
+const fixedOptions = ['scale', 'scaleA', 'brand']
 
 function radixColorKeys() {
   let keys = Object.keys(radixUiColors)
@@ -29,7 +29,7 @@ function radixColorKeys() {
 }
 
 function generateColorClasses() {
-  const brandColors = ['brand', 'scale']
+  const brandColors = ['brand', 'scale', 'scaleA']
   const colors = [...radixColorKeys(), ...brandColors]
 
   let mappedColors = {}
@@ -51,7 +51,7 @@ function generateColorClasses() {
   colors.map((x) => {
     for (let index = 0; index < 12; index++) {
       const step = index + 1
-      mappedColors[x][step * 100] = `var(--colors-${x}${step})`
+      mappedColors[x][step * 100] = `var(--colors-${x.toLowerCase()}${step})`
 
       if (
         fixedOptions.some(function (v) {
@@ -125,7 +125,7 @@ function generateCssVariables() {
 
 const variables = generateCssVariables()
 
-// console.log(variables)
+// console.log('variables', variables)
 
 const uiConfig = {
   theme: {
