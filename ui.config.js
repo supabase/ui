@@ -71,8 +71,6 @@ function generateColorClasses() {
 
 const colorClasses = generateColorClasses()
 
-// console.log('colors', colorClasses)
-
 /*
  * generateCssVariables()
  *
@@ -124,8 +122,6 @@ function generateCssVariables() {
 }
 
 const variables = generateCssVariables()
-
-// console.log('variables', variables)
 
 const uiConfig = {
   theme: {
