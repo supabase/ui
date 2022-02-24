@@ -32,7 +32,7 @@ interface Props {
     | 'sage'
     | 'olive'
     | 'sand'
-  children: string
+  children: string | React.ReactNode
   size?: 'large' | 'small'
   dot?: boolean
 }

@@ -38,7 +38,7 @@ interface Props {
   confirmText?: string
   showIcon?: boolean
   footerBackground?: boolean
-  title?: string
+  title?: string | React.ReactNode
   variant?: 'danger' | 'warning' | 'success'
   visible: boolean
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'

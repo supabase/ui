@@ -20,7 +20,7 @@ interface CustomProps {
   id?: String | undefined
   className?: String
   children?: React.ReactNode
-  header?: React.ReactNode
+  header?: string | React.ReactNode
   visible: boolean
   size?: 'medium' | 'large'
   loading?: boolean
