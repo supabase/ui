@@ -1563,4 +1563,18 @@ export default {
   icon: {
     container: `flex-shrink-0 flex items-center justify-center rounded-full p-3`,
   },
+
+  loading: {
+    base: `relative`,
+    content: {
+      base: `transition-opacity duration-300`,
+      active: `opacity-10`,
+    },
+    spinner: `
+      absolute
+      text-brand-900 animate-spin
+      inset-0
+      m-auto
+    `,
+  },
 }

@@ -1,33 +1,28 @@
 import React from 'react'
+import styleHandler from '../../lib/theme/styleHandler'
 import { IconLoader } from './../../index'
-// @ts-ignore
-// import LoadingStyles from './Loading.module.css'
 
 interface Props {
   children: React.ReactNode
   active: boolean
 }
 export default function Loading({ children, active }: Props) {
-  // let classNames = [LoadingStyles['sbui-loading']]
-  // if (active) {
-  //   classNames.push(LoadingStyles['sbui-loading--active'])
-  // }
+  const __styles = styleHandler('loading')
+
+  let classNames = [__styles.base]
+
+  let contentClasses = [__styles.content.base]
+
+  if (active) {
+    contentClasses.push(__styles.content.active)
+  }
+
+  let spinnerClasses = [__styles.spinner]
 
   return (
-    <div
-    // className={classNames.join(' ')}
-    >
-      <div
-      // className={LoadingStyles['sbui-loading-content']}
-      >
-        {children}
-      </div>
-      {active && (
-        <IconLoader
-          size="xlarge"
-          // className={LoadingStyles['sbui-loading-spinner']}
-        />
-      )}
+    <div className={classNames.join(' ')}>
+      <div className={contentClasses.join(' ')}>{children}</div>
+      {active && <IconLoader size="xlarge" className={spinnerClasses} />}
     </div>
   )
 }
