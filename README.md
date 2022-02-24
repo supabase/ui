@@ -11,11 +11,103 @@ Supabase UI is still a work-in-progress until a major release is published.
 
 ## Install Supabase UI
 
+### Install TailwindCSS
+
+You will need to have tailwind already installed.
+Follow the instructions for [installing tailwind on their docs](https://tailwindcss.com/docs/installation/framework-guides).
+
+You will need to use at least tailwind v3.
+
+### Install Supabase UI package
+
+After that, you can go ahead and install Supabase UI.
+
 ```cli
 npm install @supabase/ui
 ```
 
+### Modify the tailwind config
+
+You will need to update tailwind.config.js in the root of your project.
+
+#### Default tailwind.config.js tailwind setup
+This is what a regular tailwind config file looks like
+
+```js
+
+// tailwind.config.js
+
+module.exports = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+```
+
+
+#### Update tailwind.config.js to the following
+
+You will need to wrap the SupabaseUI config around your own tailwind config like below.
+Also add the new purge rules
+
+```js
+
+// using Supabase UI
+
+// tailwind.config.js
+const ui = require('@supabase/ui/dist/config/ui.config.js')
+
+module.exports = ui({
+  purge: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@supabase/ui/dist/config/default-theme.js', // add this
+  ],
+ theme: {
+    extend: {},
+  },
+  plugins: [],
+})
+```
+
+
 ## Using Supabase UI
+
+### Colors
+
+Supabase UI uses Radix Colors for everything, and all the colors are already set up and ready to use once the installation above is complete.
+
+**Scale**
+
+In addition to accessing all colors from Radix, we have also assigned a new color pallete called `scale`. This is the designated grayscale color we use throughout all the component. 
+
+`scale`, as a default, is actually just the radix `gray` in dark mode, and radix `slate` in light mode. The colors are stored as CSS variables, so they can be swapped out for other color scales. These serve as the backbone of the components theme. It is advised you use `scale` whereever possible.
+
+**Dark mode**
+
+### Typography
+
+Use tailwind classes as normal for typography, but use `text-scale-*` classes for the text color.
+
+You can also use the class `text-code` to style text for inline code blocks.
+
+```jsx
+
+const index = () => {
+  <body>
+    <h1 className="text-xl text-scale-1200">Hello world, this is a header, using scale-1200</h1>
+    <p className="text-sm text-scale-1100">This is a paragraph that is using scale-1100</h1>
+    <p className="text-xs text-scale-900">This is a paragraph that is small and more gray, for things like captions</p>
+    <p className="text-xs text-code">{"$ npm install @supabase/ui"}</p>
+  </body>
+}
+```
 
 Example of importing a component
 
@@ -29,7 +121,7 @@ return <Button>I am a Supabase UI button</Button>
 
 It is probably advisable to use [Normalize](https://github.com/sindresorhus/modern-normalize) with Supabase UI for the timebeing.
 
-## Using Icons
+### Using Icons
 
 We use [Feather icon library](https://feathericons.com/) in Supabase UI
 
