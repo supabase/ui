@@ -87,9 +87,57 @@ Supabase UI uses Radix Colors for everything, and all the colors are already set
 
 In addition to accessing all colors from Radix, we have also assigned a new color pallete called `scale`. This is the designated grayscale color we use throughout all the component. 
 
-`scale`, as a default, is actually just the radix `gray` in dark mode, and radix `slate` in light mode. The colors are stored as CSS variables, so they can be swapped out for other color scales. These serve as the backbone of the components theme. It is advised you use `scale` whereever possible.
+`scale`, as a default, is actually just the radix `gray` in dark mode, and radix `slate` in light mode. The colors are stored as CSS variables, so they can be swapped out for other color scales. These serve as the backbone of the components theme. It is advised you use `scale` wherever possible so that, if the scale theme is changed, everything will follow suite.
+
+To ahieve this, the `scale` colors just reference other CSS variables.
+
+As an example, and for aneyone interested, the CSS variables look a bit like this:
+
+```css
+:root {
+  --colors-scale1 : var(--colors-gray1)`;
+  --colors-scale2 : var(--colors-gray2)`;
+  /* and so on */
+}
+
+.dark {
+  --colors-scale1 : var(--colors-slate1)`;
+  --colors-scale2 : var(--colors-slate2)`;
+  /* and so on */
+}
+```
+
+We have then populated tailwind with the relevant colors based on CSS variables, rather than the usual hex values.
+
+A drawback to this is that [bg opacity classes eg: (bg-scale-100/25)](https://tailwindcss.com/docs/background-color#changing-the-opacity) don't work, although maybe a workaround can be figured out in the future.
 
 **Dark mode**
+
+All colors now do not need a dark mode equivalent.
+
+For example, `bg-scale-100` will show the dark mode version of the color in dark mode (which is actually `bg-gray-100`), and then automatically show the light mode version when in light mode (which is `bg-slate-100`).
+
+We have already seperated all the radix colors for light and dark with CSS variables, so the app will render the correct light/dark shade depending on wether or not the app has `.dark` class added into the `<body>`.
+
+You may however sometimes want to a different color shade in darkmode vs lightmode. This makes sense, a lot of subtle background and borders need to be different between the two so you will need to add some variation in sometimes.
+
+For example, you may want to have a app background the same shade across light and dark mode but the panel is a white background for light mode, and in dark mode you want the panel in a ligher shade.
+
+You can just use tailwind dark mode classes as normal to achieve that:
+
+```jsx
+
+const index = () => {
+  <body className="bg-scale-200">
+    <div className="bg-scale-100 dark:bg-scale-300">
+      This is a panel
+      /* content in here */
+    </div>
+  </body>
+}
+```
+
+
 
 ### Typography
 
