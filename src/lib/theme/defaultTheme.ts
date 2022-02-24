@@ -1015,7 +1015,6 @@ export default {
     base: `
       p-0 relative 
       inline-flex flex-shrink-0 
-      h-6 w-11 
       border-2 border-transparent 
       rounded-full 
       cursor-pointer
