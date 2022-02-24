@@ -1568,7 +1568,7 @@ export default {
     base: `relative`,
     content: {
       base: `transition-opacity duration-300`,
-      active: `opacity-10`,
+      active: `opacity-40`,
     },
     spinner: `
       absolute
