@@ -109,7 +109,14 @@ As an example, and for aneyone interested, the CSS variables look a bit like thi
 
 We have then populated tailwind with the relevant colors based on CSS variables, rather than the usual hex values.
 
+Caveats: 
+
 A drawback to this is that [bg opacity classes eg: (bg-scale-100/25)](https://tailwindcss.com/docs/background-color#changing-the-opacity) don't work, although maybe a workaround can be figured out in the future.
+
+Another, and possibly larger drawback, is that by relying on a 'color scale' as a theme, we are effectively making it quite hard to have element level theming. For example, custom themeing by a user to, perhaps, pick the 'app background color', or maybe the 'border color'. This is rather hard with this current solution but it's also a bit of a drawback with Tailwind its self as we declare the color and index of the color directly in jsx usually. 
+
+A possible workaround could be to create tailwind classes for various things, and then they reference a tailwind class themselves. Although that could be convoluted as we then have a custom tailwind class, referencing another tailwind class, which in turn references a CSS variable (pheww!). 
+
 
 **Dark mode**
 
