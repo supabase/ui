@@ -38,6 +38,9 @@ export interface Props
   borderless?: boolean
   validation?: (x: any) => void
   optionsWidth?: number
+  // override the button prop for onchange we only return a single value
+  // rather than a ChangeEvent<HTMLButtonElement>
+  onChange?: (x: any) => void
 }
 
 function Listbox({
