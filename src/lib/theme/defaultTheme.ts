@@ -1521,6 +1521,11 @@ export default {
       transition cursor-pointer select-none relative py-2 pl-3 pr-9 
       text-scale-900
       text-sm
+
+      focus:bg-scale-300 dark:focus:bg-scale-500
+      focus:text-scale-1200
+      border-none
+      focus:outline-none
     `,
     option_active: `text-scale-1200 bg-scale-600`,
     option_disabled: `cursor-not-allowed opacity-50`,
