@@ -218,8 +218,8 @@ function Listbox({
             name={name}
             id={id}
           >
-            {/* {icon && <InputIconContainer icon={icon} />} */}
             <span className={__styles.addOnBefore}>
+              {icon && <InputIconContainer icon={icon} />}
               {selectedNode?.addOnBefore && <selectedNode.addOnBefore />}
               <span className={__styles.label}>{selectedNode?.label}</span>
             </span>
