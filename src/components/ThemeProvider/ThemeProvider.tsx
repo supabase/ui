@@ -61,7 +61,7 @@ const ThemeProvider: React.FC<Props> = ({
     []
   )
 
-  console.log('defaultTheme', defaultTheme)
+  // console.log('defaultTheme', defaultTheme)
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }
 

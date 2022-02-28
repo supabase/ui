@@ -83,7 +83,6 @@ function Listbox({
   } = useFormContext()
 
   if (values && !value) {
-    console.log('WRONG THING RAN 1')
     defaultValue = values[id || name]
   }
   if (handleBlur) onBlur = handleBlur
@@ -95,7 +94,6 @@ function Listbox({
 
   useEffect(() => {
     if (value) {
-      console.log('value useeffect')
       setSelected(value)
     }
   }, [value])
