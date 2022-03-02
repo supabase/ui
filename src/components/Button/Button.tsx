@@ -11,7 +11,7 @@ import styleHandler from '../../lib/theme/styleHandler'
 
 export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   block?: boolean
-  className?: any
+  className?: string
   children?: React.ReactNode
   disabled?: boolean
   onClick?: React.MouseEventHandler<HTMLButtonElement>
@@ -147,7 +147,7 @@ const Button = forwardRef<RefHandle, ButtonProps>(
               {icon}
             </IconContext.Provider>
           ) : null)}
-        {children && <span>{children}</span>}
+        {children && <span className={__styles.label}>{children}</span>}
         {iconRight && !loading && (
           <IconContext.Provider value={{ contextSize: size }}>
             {iconRight}

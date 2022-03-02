@@ -409,6 +409,7 @@ export default {
       ${defaults['focus-visible']}
       shadow-sm
     `,
+    label: `truncate`,
     container: 'inline-flex font-medium',
     type: {
       primary: `
