@@ -65,7 +65,7 @@ function Input({
   ...props
 }: Props) {
   const [copyLabel, setCopyLabel] = useState('Copy')
-  const [hidden, setHidden] = useState(reveal)
+  const [hidden, setHidden] = useState(true)
 
   const __styles = styleHandler('input')
 
@@ -160,7 +160,7 @@ function Input({
           placeholder={placeholder}
           ref={inputRef}
           type={type}
-          value={hidden ? HIDDEN_PLACEHOLDER : value}
+          value={reveal && hidden ? HIDDEN_PLACEHOLDER : value}
           className={inputClasses.join(' ')}
           {...props}
         />
@@ -168,7 +168,7 @@ function Input({
         {copy || error || actions ? (
           <div className={__styles.actions_container}>
             {error && <InputErrorIcon size={size} />}
-            {copy && !hidden ? (
+            {copy && !(reveal && hidden) ? (
               <Button
                 size="tiny"
                 type="default"
@@ -178,7 +178,7 @@ function Input({
                 {copyLabel}
               </Button>
             ) : null}
-            {hidden && reveal ? (
+            {reveal && hidden ? (
               <Button size="tiny" type="default" onClick={onReveal}>
                 Reveal
               </Button>
