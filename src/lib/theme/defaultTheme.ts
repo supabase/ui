@@ -28,7 +28,10 @@ const defaults = {
   `,
   'focus-visible': `
     outline-none
-    focus-visible:ring-current focus-visible:ring-2
+    transition-all
+    outline-0
+    focus-visible:outline-4
+    focus-visible:outline-offset-1
   `,
   size: {
     // buttons, inputs, input labels use these sizes
@@ -407,7 +410,7 @@ export default {
       transition ease-out duration-200 
       rounded 
       ${defaults['focus-visible']}
-      shadow-sm
+      
     `,
     label: `truncate`,
     container: 'inline-flex font-medium',
@@ -415,37 +418,41 @@ export default {
       primary: `
         bg-brand-fixed-800 hover:bg-brand-fixed-900
         text-lo-contrast
-        border border-brand-800 hover:border-brand-700 
-        focus-visible:border-brand-700
-        focus-visible:ring-brand-700
+        bordershadow-brand-fixed-800 hover:bordershadow-brand-fixed-1000
+        focus-visible:outline-brand-700
       `,
       secondary: `
-        bg-scale-1200 hover:bg-scale-1100
-        text-scale-100 hover:text-scale-600 focus-visible:text-scale-600 
-        border border-scale-1100
-        focus-visible:ring-scale-900
+        bg-scale-1200
+        text-scale-100 hover:text-scale-800
+        focus-visible:text-scale-600 
+
+        bordershadow-scale-1100 hover:bordershadow-scale-900
+
+        focus-visible:outline-scale-700
       `,
       default: `
         text-scale-1200
-        bg-scale-300 hover:bg-scale-500
-
-        dark:bg-scale-400 dark:hover:bg-scale-600
-
-        border border-scale-700 hover:border-scale-900 focus-visible:border-scale-900
-        focus-visible:ring-scale-600
+        bg-scale-100 hover:bg-scale-300
+        bordershadow-scale-600 hover:bordershadow-scale-700
+        dark:bordershadow-scale-700 hover:dark:bordershadow-scale-800
+        dark:bg-scale-500 dark:hover:bg-scale-600
+        focus-visible:outline-brand-700
+        
       `,
       alternative: `
-        bg-brand-200 hover:bg-brand-400
-        border border-brand-600 hover:border-brand-800 focus-visible:border-brand-800
-        border-opacity-20
         text-brand-1100
-        focus-visible:ring-scale-600
+        bg-brand-200 hover:bg-brand-400
+        bordershadow-brand-600 hover:bordershadow-brand-800
+        dark:bordershadow-brand-700 hover:dark:bordershadow-brand-800
+        focus-visible:border-brand-800
+        focus-visible:outline-brand-700
       `,
       outline: `
         text-scale-1200 
         bg-transparent 
-        border border-scale-700 hover:border-scale-900 focus-visible:border-scale-900
-        focus-visible:ring-scale-600
+        bordershadow-scale-600 hover:bordershadow-scale-700
+        dark:bordershadow-scale-800 hover:dark:bordershadow-scale-900
+        focus-visible:outline-scale-700
       `,
       dashed: `
         text-scale-1200 
@@ -453,7 +460,7 @@ export default {
         border-dashed
         border-scale-700 hover:border-scale-900
         bg-transparent
-        focus-visible:ring-scale-600
+        focus-visible:outline-scale-700
       `,
       link: `
         text-brand-1100
@@ -463,29 +470,29 @@ export default {
         border-opacity-0
         bg-opacity-0 dark:bg-opacity-0
         shadow-none
-        focus-visible:ring-scale-600
+        focus-visible:outline-scale-700
       `,
       text: `
         text-scale-1200 
         hover:bg-scale-500
         shadow-none
-        focus-visible:ring-scale-600
+        focus-visible:outline-scale-700
       `,
       danger: `
         text-red-1100
         bg-red-200
-        border border-red-700 hover:border-red-900 focus-visible:border-red-900
+        bordershadow-red-700 hover:bordershadow-red-900
         hover:bg-red-900
         hover:text-lo-contrast
-        focus-visible:ring-red-700
+        focus-visible:outline-red-700
       `,
       warning: `
         text-amber-1100
         bg-amber-200
-        border border-amber-700 hover:border-amber-900 focus-visible:border-amber-900
+        bordershadow-amber-700 hover:bordershadow-amber-900
         hover:bg-amber-900
         hover:text-hi-contrast
-        focus-visible:ring-amber-700
+        focus-visible:outline-amber-700
       `,
     },
     block: 'w-full flex items-center justify-center',

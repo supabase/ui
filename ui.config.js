@@ -4,6 +4,10 @@ const plugin = require('tailwindcss/plugin')
 const radixUiColors = require('@radix-ui/colors')
 const brandColors = require('./default-colors')
 
+const {
+  default: flattenColorPalette,
+} = require('tailwindcss/lib/util/flattenColorPalette')
+
 // console.log(Object.keys(radixUiColors))
 
 // generates fixed scales
@@ -273,7 +277,7 @@ const uiConfig = {
   },
   plugins: [
     require('@mertasan/tailwindcss-variables'),
-    plugin(function ({ addUtilities, addVariant }) {
+    function ({ addUtilities, addVariant }) {
       // addVariant('data-open', '&:[data-state=open]')
       addUtilities({
         ".dropdown-content[data-state='open']": {
@@ -307,7 +311,49 @@ const uiConfig = {
       addVariant('data-unchecked', '&[data-state="unchecked"]')
       addVariant('aria-expanded', '&[aria-expanded="true"]')
       // addVariant('parent-data-open', '[data-state="open"]&')
-    }),
+    },
+    function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          highlight: (value) => ({ boxShadow: `inset 0 1px 0 0 ${value}` }),
+        },
+        { values: flattenColorPalette(theme('backgroundColor')), type: 'color' }
+      ),
+        matchUtilities(
+          {
+            subhighlight: (value) => ({
+              boxShadow: `inset 0 -1px 0 0 ${value}`,
+            }),
+          },
+          {
+            values: flattenColorPalette(theme('backgroundColor')),
+            type: 'color',
+          }
+        ),
+        matchUtilities(
+          {
+            bordershadow: (value) => {
+              console.log(value)
+              const split = value.split('-to-')
+              return {
+                boxShadow: `
+                var(--colors-blacka1) 0px 0px 0px 0px, 
+                var(--colors-blacka1) 0px 0px 0px 0px, 
+                var(--colors-blacka8) 0px 1px 1px 0px, 
+                ${value} 0px 0px 0px 1px, 
+                var(--colors-blacka1) 0px 0px 0px 0px, 
+                var(--colors-blacka1) 0px 0px 0px 0px, 
+                rgb(64 68 82 / 8%) 0px 2px 5px 0px;
+                `,
+              }
+            },
+          },
+          {
+            values: flattenColorPalette(theme('backgroundColor')),
+            type: 'color',
+          }
+        )
+    },
     require('tailwindcss-radix')(),
     forms,
   ],

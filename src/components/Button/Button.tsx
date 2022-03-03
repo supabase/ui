@@ -123,13 +123,6 @@ const Button = forwardRef<RefHandle, ButtonProps>(
 
     const iconLoaderClasses = [__styles.loading]
 
-    // if (loadingCentered) {
-    //   iconLoaderClasses.push(ButtonStyles[`sbui-btn-loader--center`])
-    // }
-    // if (loading && loadingCentered) {
-    //   classes.push(ButtonStyles[`sbui-btn--text-fade-out`])
-    // }
-
     // custom button tag
     const CustomButton: React.FC<CustomButtonProps> = ({ ...props }) => {
       const Tag = as as keyof JSX.IntrinsicElements
@@ -140,7 +133,6 @@ const Button = forwardRef<RefHandle, ButtonProps>(
       <>
         {showIcon &&
           (loading ? (
-            // <div className="spin-loader" aria-hidden="true"></div>
             <IconLoader size={size} className={iconLoaderClasses.join(' ')} />
           ) : icon ? (
             <IconContext.Provider value={{ contextSize: size }}>
@@ -158,7 +150,6 @@ const Button = forwardRef<RefHandle, ButtonProps>(
 
     if (as) {
       return (
-        // <span ref={containerRef} className={containerClasses.join(' ')}>
         <CustomButton
           className={classes.join(' ')}
           onClick={onClick}
@@ -166,7 +157,6 @@ const Button = forwardRef<RefHandle, ButtonProps>(
         >
           {buttonContent}
         </CustomButton>
-        // </span>
       )
     } else {
       return (

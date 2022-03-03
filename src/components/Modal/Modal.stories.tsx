@@ -51,7 +51,7 @@ export const withUseState = () => {
           </p>
         </div>
         <Button
-          type="secondary"
+          type="default"
           onClick={() => setVisible(!visible)}
           icon={<IconTrash />}
         >
