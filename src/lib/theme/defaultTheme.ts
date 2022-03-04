@@ -1179,10 +1179,11 @@ export default {
     `,
     item_nested: `
       border-none
+      focus:outline-none
+      focus:bg-scale-300 dark:focus:bg-scale-500
+      focus:text-scale-1200
       data-open:bg-scale-300 dark:data-open:bg-scale-500
       data-open:text-scale-1200
-      focus:outline-none
-      focus:text-scale-1200
     `,
     content: `
       bg-scale-100 dark:bg-scale-300
