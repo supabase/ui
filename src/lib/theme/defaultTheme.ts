@@ -419,7 +419,7 @@ export default {
         bg-brand-fixed-800 hover:bg-brand-fixed-900
         text-lo-contrast
         bordershadow-brand-fixed-800 hover:bordershadow-brand-fixed-1000
-        focus-visible:outline-brand-700
+        focus-visible:outline-brand-600
       `,
       secondary: `
         bg-scale-1200
@@ -436,7 +436,7 @@ export default {
         bordershadow-scale-600 hover:bordershadow-scale-700
         dark:bordershadow-scale-700 hover:dark:bordershadow-scale-800
         dark:bg-scale-500 dark:hover:bg-scale-600
-        focus-visible:outline-brand-700
+        focus-visible:outline-brand-600
         
       `,
       alternative: `
@@ -445,7 +445,7 @@ export default {
         bordershadow-brand-600 hover:bordershadow-brand-800
         dark:bordershadow-brand-700 hover:dark:bordershadow-brand-800
         focus-visible:border-brand-800
-        focus-visible:outline-brand-700
+        focus-visible:outline-brand-600
       `,
       outline: `
         text-scale-1200 
@@ -1175,7 +1175,7 @@ export default {
       outline-offset-1
       transition-all
       focus:outline-4
-      focus:outline-brand-700
+      focus:outline-brand-600
     `,
     item_nested: `
       border-none
