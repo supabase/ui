@@ -6,6 +6,7 @@ import {
   IconLogOut,
   IconChevronDown,
   IconChevronRight,
+  IconHardDrive,
 } from './../../index'
 import Typography from '../Typography'
 
@@ -104,7 +105,7 @@ export const DefaultFull = (args: any) => {
               </Dropdown.Item>,
             ]}
           >
-            <Dropdown.TriggerItem>
+            <Dropdown.TriggerItem icon={<IconHardDrive />}>
               Open sub menu{' '}
               <Dropdown.RightSlot>
                 <IconChevronRight size={14} />
@@ -117,7 +118,7 @@ export const DefaultFull = (args: any) => {
           </Dropdown.Item>,
         ]}
       >
-        <Button as="span" type="secondary" iconRight={<IconChevronDown />}>
+        <Button as="span" type="default" iconRight={<IconChevronDown />}>
           Click for dropdown
         </Button>
       </Dropdown>

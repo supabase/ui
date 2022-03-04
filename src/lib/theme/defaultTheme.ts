@@ -1166,16 +1166,23 @@ export default {
   dropdown: {
     // root:
     trigger: `
+      flex
       border-none 
       rounded
       bg-transparent p-0
-      data-open:ring-2
-      data-open:ring-scale-900
+      
+      outline-none
+      outline-offset-1
+      transition-all
+      focus:outline-4
+      focus:outline-brand-700
     `,
     item_nested: `
       border-none
       data-open:bg-scale-300 dark:data-open:bg-scale-500
       data-open:text-scale-1200
+      focus:outline-none
+      focus:text-scale-1200
     `,
     content: `
       bg-scale-100 dark:bg-scale-300

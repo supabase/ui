@@ -50,9 +50,7 @@ function Dropdown({
   return (
     <RadixDropdown.Root onOpenChange={onOpenChange} open={open}>
       {isNested ? (
-        <RadixDropdown.TriggerItem
-          className={[__styles.item, __styles.item_nested].join(' ')}
-        >
+        <RadixDropdown.TriggerItem className={[__styles.item_nested].join(' ')}>
           {children}
         </RadixDropdown.TriggerItem>
       ) : (
@@ -118,7 +116,7 @@ export function Item({
 export function TriggerItem({ children, icon, disabled }: ItemProps) {
   let __styles = styleHandler('dropdown')
   return (
-    <div className={__styles.trigger}>
+    <div className={__styles.item}>
       {icon && icon}
       <span>{children}</span>
     </div>
