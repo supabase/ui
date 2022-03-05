@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  useRef,
-  useImperativeHandle,
-  useContext,
-} from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import { IconContext } from '../Icon/IconContext'
 import { IconLoader } from '../Icon/icons/IconLoader'
 
@@ -151,6 +146,7 @@ const Button = forwardRef<RefHandle, ButtonProps>(
     if (as) {
       return (
         <CustomButton
+          {...props}
           className={classes.join(' ')}
           onClick={onClick}
           style={style}
