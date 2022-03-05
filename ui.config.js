@@ -333,8 +333,6 @@ const uiConfig = {
         matchUtilities(
           {
             bordershadow: (value) => {
-              console.log(value)
-              const split = value.split('-to-')
               return {
                 boxShadow: `
                 var(--colors-blacka1) 0px 0px 0px 0px, 
