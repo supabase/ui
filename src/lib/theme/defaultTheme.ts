@@ -1167,15 +1167,15 @@ export default {
     // root:
     trigger: `
       flex
+
       border-none 
       rounded
       bg-transparent p-0
-      
       outline-none
       outline-offset-1
       transition-all
       focus:outline-4
-      focus:outline-brand-600
+      focus:outline-scale-600
     `,
     item_nested: `
       border-none
@@ -1190,11 +1190,12 @@ export default {
       border border-scale-300 dark:border-scale-500
       rounded
       shadow-lg
+      py-1.5
+
       origin-dropdown
       data-open:animate-dropdown-content-show
       data-closed:animate-dropdown-content-hide
       min-w-fit
-      py-1.5
     `,
     size: {
       tiny: `w-40`,
@@ -1258,9 +1259,18 @@ export default {
 
   popover: {
     trigger: `
-      border-none bg-transparent 
-      p-0 
-      focus:ring-0
+      flex
+      border-none 
+  
+      rounded
+      bg-transparent
+      p-0
+      outline-none
+      outline-offset-1
+      transition-all
+      focus:outline-4
+      focus:outline-scale-600
+
     `,
     content: `
       bg-scale-100 dark:bg-scale-300
