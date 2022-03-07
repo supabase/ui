@@ -1274,9 +1274,11 @@ export default {
     `,
     content: `
       bg-scale-100 dark:bg-scale-300
-      border border-scale-300 dark:border-scale-500
+      border border-scale-600 dark:border-scale-600
       rounded
-      shadow-lg
+      overflow-hidden
+
+      drop-shadow-xl
       data-open:animate-dropdown-content-show
       data-closed:animate-dropdown-content-hide
       min-w-fit
