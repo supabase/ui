@@ -71,6 +71,9 @@ function Tabs({
     children = [children]
   }
 
+  // Filter out conditional expressions, such as {showThisTab && <Tabs.Panel>..</Tabs.Panel>}.
+  children = children.filter(Boolean);
+  
   return (
     <Space direction="vertical" size={4}>
       <div id={id} role="tablist" aria-label={id} style={tabBarStyle}>
