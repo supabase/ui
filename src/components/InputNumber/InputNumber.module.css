@@ -15,7 +15,6 @@
   transition: box-shadow 0.3s ease-in-out;
 
   -moz-appearance: textfield;
-  float: left;
   display: block;
 }
 
