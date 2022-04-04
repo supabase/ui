@@ -250,7 +250,7 @@ function SocialAuth({
                       shadow
                       size={socialButtonSize}
                       style={socialColors ? buttonStyles[provider] : {}}
-                      icon={<AuthIcon />}
+                      icon={AuthIcon ? <AuthIcon /> : ''}
                       loading={loading}
                       onClick={() => handleProviderSignIn(provider)}
                       className="flex items-center"
