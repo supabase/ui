@@ -10,6 +10,8 @@ interface Props
   handleIsValidating?: any
   name?: string
   id?: string
+  className?: string
+  style?: React.CSSProperties
 }
 
 function errorReducer(state: any, action: any) {
@@ -53,7 +55,13 @@ export default function Form({ validate, ...props }: Props) {
   // console.log('touched', formik.touched)
 
   return (
-    <form id={props.id} name={props.name} onSubmit={formik.handleSubmit}>
+    <form
+      id={props.id}
+      name={props.name}
+      onSubmit={formik.handleSubmit}
+      className={props.className}
+      style={props.style}
+    >
       <FormContextProvider
         values={formik.values}
         errors={formik.errors}
