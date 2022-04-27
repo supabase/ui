@@ -388,7 +388,7 @@ export default {
     size: {
       ...default__padding_and_text,
     },
-    scrollable: `overflow-x-auto whitespace-nowrap no-scrollbar mask-fadeout-right`,
+    scrollable: `overflow-auto whitespace-nowrap no-scrollbar mask-fadeout-right`,
     content: `focus:outline-none focus:ring text-scale-900`,
   },
 
