@@ -9,13 +9,19 @@ make sure you are in the supabase-ui folder
 cd supabase-ui
 ```
 
+install dependencies
+
+> :warning: **This project currently won't work using the latest node version. Internally we are using node 17.**
+
+```cli
+npm install
+```
+
 run storybook
 
 ```cli
 npm run storybook
 ```
-
-(you may need to run `npm install` first)
 
 Storybook runs by default on `http://localhost:6006/`
 
