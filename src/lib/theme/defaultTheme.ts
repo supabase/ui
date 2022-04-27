@@ -389,7 +389,7 @@ export default {
       ...default__padding_and_text,
     },
     scrollable: `overflow-auto whitespace-nowrap`,
-    content: `focus:outline-none focus:ring`,
+    content: `focus:outline-none focus:ring text-scale-900`,
   },
 
   /*
