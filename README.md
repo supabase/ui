@@ -2,13 +2,26 @@
 
 Supabase UI is a React UI library.
 
-🚧  
-Supabase UI is still a work-in-progress until a major release is published.
+---
+
+### ⚠️ Development is currently being worked on in [alpha](https://github.com/supabase/ui/tree/alpha) branch
+
+Supabase UI will be using tailwind css classes and dropping support for CSS modules is in the alpha branch.
+This UI library will exclusively need to be used with tailwind.
+
+The Auth component will be moved over to [@supabase/auth-helpers](https://github.com/supabase-community/supabase-auth-helpers).
+
+
+---
+
+🚧  Supabase UI is still a work-in-progress until a major release is published.
 
 [![Product hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=290768&theme=light)](https://www.producthunt.com/posts/supabase-ui)
 
 
 [View docs](https://ui.supabase.com)
+
+---
 
 ## Install Supabase UI
 
