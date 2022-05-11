@@ -83,7 +83,11 @@ function Select({
   } = useFormContext()
 
   if (values && !value) value = values[id]
-  if (handleBlur) onBlur = handleBlur
+
+  function handleBlurEvent(e: React.FocusEvent<HTMLSelectElement>) {
+    if (handleBlur) handleBlur(e)
+    if (onBlur) onBlur(e)
+  }
 
   if (!error) {
     if (errors && !error) error = errors[id || name]
@@ -137,7 +141,7 @@ function Select({
           className={classes.join(' ')}
           onChange={onInputChange}
           onFocus={onFocus ? (event) => onFocus(event) : undefined}
-          onBlur={onBlur}
+          onBlur={handleBlurEvent}
           ref={inputRef}
           value={value}
           disabled={disabled}

@@ -85,7 +85,11 @@ function Listbox({
   if (values && !value) {
     defaultValue = values[id || name]
   }
-  if (handleBlur) onBlur = handleBlur
+
+  function handleBlurEvent(e: React.FocusEvent<HTMLButtonElement>) {
+    if (handleBlur) handleBlur(e)
+    if (onBlur) onBlur(e)
+  }
 
   if (!error) {
     if (errors && !error) error = errors[id || name]
@@ -213,7 +217,7 @@ function Listbox({
           <button
             ref={triggerRef}
             className={selectClasses.join(' ')}
-            onBlur={onBlur}
+            onBlur={handleBlurEvent}
             onFocus={onFocus}
             name={name}
             id={id}

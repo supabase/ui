@@ -158,7 +158,11 @@ export function Checkbox({
         if (className) containerClasses.push(className)
 
         if (values && checked === undefined) active = values[id || name]
-        if (handleBlur) onBlur = handleBlur
+
+        function handleBlurEvent(e: React.FocusEvent<HTMLInputElement>) {
+          if (handleBlur) handleBlur(e)
+          if (onBlur) onBlur(e)
+        }
 
         return (
           <div className={containerClasses.join(' ')}>
@@ -170,7 +174,7 @@ export function Checkbox({
               className={[__styles.base, __styles.size[size]].join(' ')}
               onChange={onInputChange}
               onFocus={onFocus ? (event) => onFocus(event) : undefined}
-              onBlur={onBlur}
+              onBlur={handleBlurEvent}
               checked={active}
               value={value ? value : markupId}
               disabled={disabled}

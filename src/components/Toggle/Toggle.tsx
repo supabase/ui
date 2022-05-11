@@ -64,7 +64,11 @@ function Toggle({
   } = useFormContext()
 
   if (values && !checked) checked = values[id || name]
-  if (handleBlur) onBlur = handleBlur
+
+  function handleBlurEvent(e: React.FocusEvent<HTMLButtonElement>) {
+    if (handleBlur) handleBlur(e)
+    if (onBlur) onBlur(e)
+  }
 
   if (!error) {
     if (errors && !error) error = errors[id || name]
@@ -135,7 +139,7 @@ function Toggle({
         onClick={onClick}
         disabled={disabled}
         onFocus={onFocus ? (event) => onFocus(event) : undefined}
-        onBlur={onBlur}
+        onBlur={handleBlurEvent}
         onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
         {...props}
       >

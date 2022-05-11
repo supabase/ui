@@ -71,7 +71,6 @@ function RadioGroup({
   if (values && !value) value = values[id || name]
   // console.log('errors in. radio group', errors)
   // console.log('values in radio group', values)
-  // if (handleBlur) onBlur = handleBlur
 
   if (!error) {
     if (errors && !error) error = errors[id || name]
@@ -174,7 +173,11 @@ function Radio({
   const inputName = name
 
   const { handleBlur } = useFormContext()
-  if (handleBlur) onBlur = handleBlur
+
+  function handleBlurEvent(e: React.FocusEvent<HTMLInputElement>) {
+    if (handleBlur) handleBlur(e)
+    if (onBlur) onBlur(e)
+  }
 
   return (
     <RadioContext.Consumer>
@@ -254,7 +257,7 @@ function Radio({
                 console.log('radio input changed')
                 onInputChange(e)
               }}
-              onBlur={onBlur}
+              onBlur={handleBlurEvent}
               onFocus={onFocus ? (event) => onFocus(event) : undefined}
             />
             {addOnBefore}
