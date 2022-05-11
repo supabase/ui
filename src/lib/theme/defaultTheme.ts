@@ -964,7 +964,6 @@ export default {
     contents: `
       relative 
       flex-1 
-      py-4
       overflow-y-auto
     `,
     content: `

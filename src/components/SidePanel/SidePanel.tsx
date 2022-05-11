@@ -66,7 +66,7 @@ const SidePanel = ({
     <div className={__styles.footer}>
       <Button
         disabled={loading}
-        type="secondary"
+        type="default"
         onClick={() => (onCancel ? onCancel() : null)}
       >
         {cancelText}
