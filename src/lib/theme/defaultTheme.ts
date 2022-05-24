@@ -1422,7 +1422,7 @@ export default {
       shadow-xl 
       data-open:animate-overlay-show 
       data-closed:animate-overlay-hide  
-      overflow-hidden
+      
     `,
     header: `
       bg-scale-200 dark:bg-scale-400
