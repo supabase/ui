@@ -31,25 +31,23 @@ npm install @supabase/ui
 You will need to update tailwind.config.js in the root of your project.
 
 #### Default tailwind.config.js tailwind setup
+
 This is what a regular tailwind config file looks like
 
 ```js
-
 // tailwind.config.js
 
 module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {},
   },
   plugins: [],
 }
-
 ```
-
 
 #### Update tailwind.config.js to the following
 
@@ -57,7 +55,6 @@ You will need to wrap the SupabaseUI config around your own tailwind config like
 Also add the new purge rules
 
 ```js
-
 // using Supabase UI
 
 // tailwind.config.js
@@ -69,13 +66,12 @@ module.exports = ui({
     './components/**/*.{js,ts,jsx,tsx}',
     './node_modules/@supabase/ui/dist/config/default-theme.js', // add this
   ],
- theme: {
+  theme: {
     extend: {},
   },
   plugins: [],
 })
 ```
-
 
 ## Using Supabase UI
 
@@ -85,7 +81,7 @@ Supabase UI uses Radix Colors for everything, and all the colors are already set
 
 #### Scale
 
-In addition to accessing all colors from Radix, we have also assigned a new color pallete called `scale`. This is the designated grayscale color we use throughout all the component. 
+In addition to accessing all colors from Radix, we have also assigned a new color pallete called `scale`. This is the designated grayscale color we use throughout all the component.
 
 `scale`, as a default, is actually just the radix `gray` in dark mode, and radix `slate` in light mode. The colors are stored as CSS variables, so they can be swapped out for other color scales. These serve as the backbone of the components theme. It is advised you use `scale` wherever possible so that, if the scale theme is changed, everything will follow suite.
 
@@ -95,14 +91,14 @@ As an example, and for aneyone interested, the CSS variables look a bit like thi
 
 ```css
 :root {
-  --colors-scale1 : var(--colors-gray1)`;
-  --colors-scale2 : var(--colors-gray2)`;
+  --colors-scale1: var(--colors-gray1) `;
+  --colors-scale2: var(--colors-gray2) `;
   /* and so on */
 }
 
 .dark {
-  --colors-scale1 : var(--colors-slate1)`;
-  --colors-scale2 : var(--colors-slate2)`;
+  --colors-scale1: var(--colors-slate1) `;
+  --colors-scale2: var(--colors-slate2) `;
   /* and so on */
 }
 ```
@@ -113,10 +109,9 @@ We have then populated tailwind with the relevant colors based on CSS variables,
 
 A drawback to this is that [bg opacity classes eg: (bg-scale-100/25)](https://tailwindcss.com/docs/background-color#changing-the-opacity) don't work, although maybe a workaround can be figured out in the future.
 
-Another, and possibly larger drawback, is that by relying on a 'color scale' as a theme, we are effectively making it quite hard to have element level theming. For example, custom themeing by a user to, perhaps, pick the 'app background color', or maybe the 'border color'. This is rather hard with this current solution but it's also a bit of a drawback with Tailwind its self as we declare the color and index of the color directly in jsx usually. 
+Another, and possibly larger drawback, is that by relying on a 'color scale' as a theme, we are effectively making it quite hard to have element level theming. For example, custom themeing by a user to, perhaps, pick the 'app background color', or maybe the 'border color'. This is rather hard with this current solution but it's also a bit of a drawback with Tailwind its self as we declare the color and index of the color directly in jsx usually.
 
-A possible workaround could be to create tailwind classes for various things, and then they reference a tailwind class themselves. Although that could be convoluted as we then have a custom tailwind class, referencing another tailwind class, which in turn references a CSS variable (pheww!). 
-
+A possible workaround could be to create tailwind classes for various things, and then they reference a tailwind class themselves. Although that could be convoluted as we then have a custom tailwind class, referencing another tailwind class, which in turn references a CSS variable (pheww!).
 
 #### Dark mode
 
@@ -133,18 +128,12 @@ For example, you may want to have a app background the same shade across light a
 You can just use tailwind dark mode classes as normal to achieve that:
 
 ```jsx
-
-const index = () => {
+const index = () => (
   <body className="bg-scale-200">
-    <div className="bg-scale-100 dark:bg-scale-300">
-      This is a panel
-      /* content in here */
-    </div>
+    <div className="bg-scale-100 dark:bg-scale-300">I am content</div>
   </body>
-}
+)
 ```
-
-
 
 ### Typography
 
