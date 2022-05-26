@@ -3,7 +3,7 @@
 Supabase UI is a React UI library.
 
 🚧  
-Supabase UI is still a work-in-progress until a major release is published.
+Note: Supabase UI is still a work-in-progress until a major release is published.
 
 [![Product hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=290768&theme=light)](https://www.producthunt.com/posts/supabase-ui)
 
