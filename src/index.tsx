@@ -20,6 +20,7 @@ export * from './components/Menu/index'
 
 // OVERLAYS
 
+export * from './components/CommandPalette/index'
 export * from './components/Modal/index'
 export * from './components/SidePanel/index'
 export * from './components/Dropdown/index'
