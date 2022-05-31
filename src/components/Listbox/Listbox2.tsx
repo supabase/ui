@@ -271,12 +271,11 @@ function Listbox({
 
 interface OptionProps {
   id?: string
-  className?: string
   value: any
-  children?: React.ReactNode
   label: string
-  addOnBefore?: ({ active, selected }: any) => React.ReactNode
   disabled?: boolean
+  children?: React.ReactNode
+  addOnBefore?: ({ active, selected }: any) => React.ReactNode
 }
 
 type addOnBefore = {
@@ -286,12 +285,11 @@ type addOnBefore = {
 
 function SelectOption({
   id,
-  className,
   value,
-  children,
   label,
-  addOnBefore,
   disabled = false,
+  children,
+  addOnBefore,
 }: OptionProps) {
   const __styles = styleHandler('listbox')
 
@@ -308,7 +306,7 @@ function SelectOption({
               active ? __styles.option_active : ' ',
               disabled ? __styles.option_disabled : ' '
             )}
-            onSelect={() => onChange(value)}
+            onSelect={() => (!disabled ? onChange(value) : {})}
           >
             <div className={__styles.option_inner}>
               {addOnBefore && addOnBefore({ active, selected })}
