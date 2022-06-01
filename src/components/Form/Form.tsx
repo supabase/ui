@@ -81,9 +81,9 @@ export default function Form({ validate, ...props }: Props) {
           isValidating: formik.isValidating,
           /** Number of times user tried to submit the form */
           submitCount: formik.submitCount,
-
-          handleReset: formik.handleReset,
-
+          /** Initial values of form */
+          initialValues: formik.initialValues,
+          /** Current values of form */
           values: formik.values,
         })}
       />
