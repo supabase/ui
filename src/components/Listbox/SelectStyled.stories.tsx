@@ -37,6 +37,20 @@ export const Default = (args: any) => (
   </Listbox>
 )
 
+export const WithDisabled = (args: any) => (
+  <Listbox label="Default listbox">
+    <Listbox.Option label="Option 1" value="option-1">
+      Option 1
+    </Listbox.Option>
+    <Listbox.Option label="Option 2" value="option-2">
+      Option 2
+    </Listbox.Option>
+    <Listbox.Option disabled label="Option 3" value="option-3">
+      Option 3
+    </Listbox.Option>
+  </Listbox>
+)
+
 const people = [
   {
     value: 1,
