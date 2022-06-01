@@ -85,6 +85,8 @@ export default function Form({ validate, ...props }: Props) {
           initialValues: formik.initialValues,
           /** Current values of form */
           values: formik.values,
+          /** Resets the form back to initialValues */
+          handleReset: formik.handleReset,
         })}
       />
     </form>
