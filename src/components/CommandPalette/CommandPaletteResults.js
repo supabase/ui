@@ -1,4 +1,5 @@
 import { Loading } from '../Loading'
+import CommandPaletteStyles from './CommandPalette.module.css'
 
 export default function CommandPaletteResults({
   results,
@@ -46,7 +47,9 @@ export default function CommandPaletteResults({
   const renderResults = () => {
     if (loading) {
       return (
-        <div className="h-full flex items-center justify-center">
+        <div
+          className={CommandPaletteStyles['sbui-cp--results-loader-wrapper']}
+        >
           <Loading active={true} />
         </div>
       )
@@ -54,14 +57,14 @@ export default function CommandPaletteResults({
 
     if (results?.list?.length > 0) {
       return (
-        <div className="h-full">
+        <div className={CommandPaletteStyles['sbui-cp--results-list-wrapper']}>
           {results?.list?.map((item, resultsIndex) => {
             return (
               <a
                 href=""
                 tabIndex="0"
                 key={item.slug + resultsIndex}
-                className="cp-result group px-3 hover:bg-dark-100 focus:bg-dark-100 dark:hover:bg-dark-600 items-center text-[0.93rem] py-2 dark:text-dark-200 dark:focus:bg-dark-600 flex focus:outline-none"
+                className={`group ${CommandPaletteStyles['sbui-cp--result-item']}`}
                 ref={(el) => (resultsRef.current[resultsIndex + 1] = el)}
                 onKeyDown={(e) => {
                   handlePagesShortcuts({ e, activeIndex: resultsIndex + 1 })
@@ -73,11 +76,21 @@ export default function CommandPaletteResults({
                 <span className="flex flex-col">
                   <span className="">{item.title}</span>
                   {item?.breadcrumbs?.length > 0 ? (
-                    <span className="cp-breadcrumb flex items-center text-[0.75rem]">
+                    <span
+                      className={
+                        CommandPaletteStyles[
+                          'sbui-cp--result-breadcrumbs-wrapper'
+                        ]
+                      }
+                    >
                       {item?.breadcrumbs?.map((link, breadcrumbsIndex) => (
                         <div
                           key={link}
-                          className="dark:group-hover:text-white dark:group-focus:text-white opacity-50"
+                          className={
+                            CommandPaletteStyles[
+                              'sbui-cp--result-breadcrumbs-item'
+                            ]
+                          }
                         >
                           {link}
                           {breadcrumbsIndex < item.breadcrumbs.length - 1 ? (
@@ -92,7 +105,11 @@ export default function CommandPaletteResults({
                     ''
                   )}
                 </span>
-                <span className="hidden group-focus:flex group-hover:flex opacity-40 ml-auto">
+                <span
+                  className={
+                    CommandPaletteStyles['sbui-cp--result-return-icon']
+                  }
+                >
                   ↵
                 </span>
               </a>
@@ -115,34 +132,28 @@ export default function CommandPaletteResults({
 
 const ResultsWrapper = ({ children }) => {
   return (
-    <div className="bg-gray-200 h-[calc(410px)] overflow-y-auto relative cp-results dark:bg-dark-700">
+    <div className={CommandPaletteStyles['sbui-cp--results-wrapper']}>
       {children}
     </div>
   )
 }
 
 const NoResults = ({ term }) => (
-  <div className="flex items-center justify-center min-h-[200px] dark:text-dark-200 opacity-50 bg-gray-200">
+  <div className={CommandPaletteStyles['sbui-cp--no-results-wrapper']}>
     No results found {term ? `for ${(<strong>{term}</strong>)}` : ''}
   </div>
 )
 
 const CommandPaletteHints = () => (
-  <div className="duration-300 hidden md:block text-[0.78rem] sticky bottom-0 left-0 w-full bg-gray-200/80 dark:border-dark-500/40 backdrop-blur-lg text-dark-400/60 dark:text-dark-300/50 px-4 py-2 rounded-b-lg dark:text-dark-300/80 border-t border-gray-400">
+  <div className={CommandPaletteStyles['sbui-cp--hints-wrapper']}>
     Use{' '}
-    <span className="bg-white text-dark-400/70 dark:text-dark-300/80 dark:bg-dark-500/70 px-1 py-px shadow rounded-md mr-1">
-      ↑
-    </span>{' '}
+    <span className={CommandPaletteStyles['sbui-cp--hints-highlight']}>↑</span>{' '}
     and{' '}
-    <span className="bg-white text-dark-400/70 dark:text-dark-300/80 dark:bg-dark-500/70 px-1 py-px shadow rounded-md mx-1">
-      ↓
-    </span>{' '}
+    <span className={CommandPaletteStyles['sbui-cp--hints-highlight']}>↓</span>{' '}
     arrow keys to navigate,{' '}
-    <span className="bg-white text-dark-400/70 dark:text-dark-300/80 dark:bg-dark-500/70 px-1 py-px shadow rounded-md mx-1">
-      ↵
-    </span>{' '}
+    <span className={CommandPaletteStyles['sbui-cp--hints-highlight']}>↵</span>{' '}
     to select,{' '}
-    <span className="mx-1 bg-white text-dark-400/70 dark:text-dark-300/80 dark:bg-dark-500/70 px-1 py-px shadow rounded-md">
+    <span className={CommandPaletteStyles['sbui-cp--hints-highlight']}>
       esc
     </span>{' '}
     to close

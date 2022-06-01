@@ -3,6 +3,7 @@ import { Modal } from '../Modal'
 import { IconSearch } from '../Icon/icons/IconSearch'
 import { IconX } from '../Icon/icons/IconX'
 import CommandPaletteResults from './CommandPaletteResults'
+import CommandPaletteStyles from './CommandPalette.module.css'
 import { action } from '@storybook/addon-actions'
 
 export default function Default({
@@ -62,9 +63,7 @@ export default function Default({
       contentStyle={{ border: 0 }}
     >
       <div className="rounded-lg overflow-hidden">
-        <div
-          className={`flex items-center w-full bg-white rounded-t-lg dark:bg-scale-500`}
-        >
+        <div className={CommandPaletteStyles['sbui-cp--input-wrapper']}>
           <div className="px-2">
             <IconSearch size={18} stroke="#999" strokeWidth="1.8" />
           </div>
@@ -73,12 +72,11 @@ export default function Default({
             onKeyDown={(e) => handleShortcuts(e)}
             value={term}
             onChange={onSearch}
-            className="text-sm md:text-base pr-3 py-3 w-full focus:outline-none bg-transparent placeholder-dark-300 dark:placeholder-dark-400 dark:text-white"
+            className={CommandPaletteStyles['sbui-cp--input-field']}
             placeholder="Type to search..."
-            style={{ margin: 0 }}
           />
           {results?.list?.length > 0 ? (
-            <div className="text-gray-800 px-4 text-sm whitespace-nowrap dark:text-dark-400">
+            <div className={CommandPaletteStyles['sbui-cp--results-count']}>
               {results?.list?.length} results
             </div>
           ) : (
@@ -87,9 +85,11 @@ export default function Default({
           <button
             title="Use Esc to close the Search Bar"
             onClick={onCancel}
-            className="cursor-pointer text-gray-800 border-l border-gray-400 dark:border-dark-500 hover:text-gray-700 text-sm dark:border-dark-500/50 dark:hover:text-dark-500 opacity-60 hover:opacity-100 pl-2 pr-3"
+            className={CommandPaletteStyles['sbui-cp--close-icon']}
           >
-            <IconX size={18} stroke="#888" strokeWidth="1.8" />
+            <div>
+              <IconX size={18} stroke="#888" strokeWidth="1.8" />
+            </div>
           </button>
         </div>
 

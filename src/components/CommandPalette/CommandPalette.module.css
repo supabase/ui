@@ -1,0 +1,60 @@
+.sbui-cp--input-wrapper {
+  @apply flex items-center w-full bg-white rounded-t-lg dark:bg-scale-500;
+}
+
+.sbui-cp--input-field {
+  @apply text-sm md:text-base pr-3 py-3 w-full focus:outline-none bg-transparent placeholder-scale-800 dark:placeholder-scale-900 dark:text-white;
+}
+
+.sbui-cp--results-count {
+  @apply text-scale-800 px-4 text-sm whitespace-nowrap;
+}
+
+.sbui-cp--close-icon {
+  @apply  border-l border-scale-600 dark:border-scale-800 pl-2 pr-3;
+}
+
+.sbui-cp--close-icon > div {
+  @apply cursor-pointer opacity-50 hover:opacity-100 text-sm text-black;
+}
+
+.sbui-cp--results-wrapper {
+  @apply bg-scale-200 h-[calc(410px)] overflow-y-auto relative dark:bg-scale-200;
+}
+
+.sbui-cp--results-list-wrapper {
+  @apply h-full mb-12;
+}
+
+.sbui-cp--results-loader-wrapper {
+  @apply h-full flex items-center justify-center;
+}
+
+.sbui-cp--result-item {
+  @apply px-3 hover:bg-scale-400 focus:bg-scale-400 dark:hover:bg-scale-400 items-center text-[0.93rem] py-2 dark:text-scale-1200 dark:focus:bg-scale-400 flex focus:outline-none;
+}
+
+.sbui-cp--result-breadcrumbs-wrapper {
+  @apply flex items-center text-[0.75rem];
+}
+
+.sbui-cp--result-breadcrumbs-item {
+  @apply dark:group-hover:text-white dark:group-focus:text-white opacity-50;
+}
+
+.sbui-cp--result-return-icon {
+  @apply hidden group-focus:flex group-hover:flex opacity-40 ml-auto;
+}
+
+.sbui-cp--no-results-wrapper {
+  @apply flex items-center justify-center min-h-[200px] dark:text-scale-1000 opacity-50;
+}
+
+.sbui-cp--hints-wrapper {
+  @apply duration-300 hidden md:block text-[0.78rem] sticky bottom-0 left-0 w-full backdrop-blur-lg px-4 py-2 rounded-b-lg border-t border-scale-400;
+  @apply text-scale-900 dark:text-scale-900;
+}
+
+.sbui-cp--hints-highlight {
+  @apply bg-white text-scale-900 dark:text-scale-1100 dark:bg-scale-600 px-1 py-px shadow rounded-md mx-1;
+}
