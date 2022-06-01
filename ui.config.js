@@ -300,6 +300,27 @@ const uiConfig = {
           border: '1px solid hsla(0, 0%, 39.2%, 0.2)',
           borderRadius: '3px',
         },
+        '.no-scrollbar': {
+          /* Hide scrollbar for IE, Edge*/
+          '-ms-overflow-style': 'none',
+
+          /* Firefox */
+          'scrollbar-width': 'none', /* Firefox */
+          
+          /* Hide scrollbar for Chrome, Safari and Opera */
+          '&::-webkit-scrollbar': {
+            display: 'none'
+          }
+        },
+        /* Add fadeout effect */
+        '.mask-fadeout-right': {
+          '-webkit-mask-image': 'linear-gradient(to right, white 98%, transparent 100%)',
+          'mask-image': 'linear-gradient(to right, white 98%, transparent 100%)',
+        },
+        '.mask-fadeout-left': {
+          '-webkit-mask-image': 'linear-gradient(to left, white 98%, transparent 100%)',
+          'mask-image': 'linear-gradient(to left, white 98%, transparent 100%)',
+        },
       })
       addVariant('data-open-parent', '[data-state="open"] &')
       addVariant('data-closed-parent', '[data-state="closed"] &')
