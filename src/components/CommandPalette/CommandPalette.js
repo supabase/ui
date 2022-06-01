@@ -5,12 +5,6 @@ import { IconX } from '../Icon/icons/IconX'
 import CommandPaletteResults from './CommandPaletteResults'
 import { action } from '@storybook/addon-actions'
 
-const NoResults = ({ term }) => (
-  <div className="flex items-center justify-center min-h-[200px] dark:text-dark-200 opacity-50 bg-gray-200">
-    No results found for <strong>{term}</strong>
-  </div>
-)
-
 export default function Default({
   onToggle,
   visible,

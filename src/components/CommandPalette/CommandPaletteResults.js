@@ -54,7 +54,7 @@ export default function CommandPaletteResults({
 
     if (results?.list?.length > 0) {
       return (
-        <ResultsWrapper>
+        <div className="h-full">
           {results?.list?.map((item, resultsIndex) => {
             return (
               <a
@@ -98,15 +98,19 @@ export default function CommandPaletteResults({
               </a>
             )
           })}
-          <CommandPaletteHints />
-        </ResultsWrapper>
+        </div>
       )
     }
 
     return <NoResults term={term} />
   }
 
-  return <ResultsWrapper>{renderResults()}</ResultsWrapper>
+  return (
+    <ResultsWrapper>
+      {renderResults()}
+      {!loading && results?.list?.length > 0 ? <CommandPaletteHints /> : ''}
+    </ResultsWrapper>
+  )
 }
 
 const ResultsWrapper = ({ children }) => {
@@ -124,7 +128,7 @@ const NoResults = ({ term }) => (
 )
 
 const CommandPaletteHints = () => (
-  <div className="hidden md:block text-[0.78rem] sticky bottom-0 left-0 w-full bg-gray-200/80 dark:border-dark-500/40 backdrop-blur-lg text-dark-400/60 dark:text-dark-300/50 px-4 py-2 rounded-b-lg dark:text-dark-300/80 border-t border-gray-400">
+  <div className="duration-300 hidden md:block text-[0.78rem] sticky bottom-0 left-0 w-full bg-gray-200/80 dark:border-dark-500/40 backdrop-blur-lg text-dark-400/60 dark:text-dark-300/50 px-4 py-2 rounded-b-lg dark:text-dark-300/80 border-t border-gray-400">
     Use{' '}
     <span className="bg-white text-dark-400/70 dark:text-dark-300/80 dark:bg-dark-500/70 px-1 py-px shadow rounded-md mr-1">
       ↑

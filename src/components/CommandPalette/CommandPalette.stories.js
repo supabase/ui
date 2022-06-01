@@ -27,31 +27,31 @@ const RESULTS = {
       slug: 'auth-providers',
       breadcrumbs: ['Docs', 'Auth'],
     },
-    {
-      title: 'Starter templates',
-      slug: 'auth-providers',
-      breadcrumbs: ['Docs', 'Starters'],
-    },
-    {
-      title: 'Using auth with Next.js',
-      slug: 'auth-nextjs',
-      breadcrumbs: ['Docs', 'Auth'],
-    },
-    {
-      title: 'Getting started with Auth providers',
-      slug: 'auth-providers',
-      breadcrumbs: ['Docs', 'Auth'],
-    },
-    {
-      title: 'Starter templates',
-      slug: 'auth-providers',
-      breadcrumbs: ['Docs', 'Starters'],
-    },
-    {
-      title: 'Using auth with Next.js',
-      slug: 'auth-nextjs',
-      breadcrumbs: ['Docs', 'Auth'],
-    },
+    // {
+    //   title: 'Starter templates',
+    //   slug: 'auth-providers',
+    //   breadcrumbs: ['Docs', 'Starters'],
+    // },
+    // {
+    //   title: 'Using auth with Next.js',
+    //   slug: 'auth-nextjs',
+    //   breadcrumbs: ['Docs', 'Auth'],
+    // },
+    // {
+    //   title: 'Getting started with Auth providers',
+    //   slug: 'auth-providers',
+    //   breadcrumbs: ['Docs', 'Auth'],
+    // },
+    // {
+    //   title: 'Starter templates',
+    //   slug: 'auth-providers',
+    //   breadcrumbs: ['Docs', 'Starters'],
+    // },
+    // {
+    //   title: 'Using auth with Next.js',
+    //   slug: 'auth-nextjs',
+    //   breadcrumbs: ['Docs', 'Auth'],
+    // },
     {
       title: 'Getting started with Auth providers',
       slug: 'auth-providers',
