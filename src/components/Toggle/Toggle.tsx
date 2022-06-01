@@ -48,10 +48,6 @@ function Toggle({
   labelLayout,
   ...props
 }: Props) {
-  const [intChecked, setIntChecked] = useState(
-    (defaultChecked || checked) ?? false
-  )
-
   const __styles = styleHandler('toggle')
 
   const {
@@ -64,6 +60,10 @@ function Toggle({
   } = useFormContext()
 
   if (values && !checked) checked = values[id || name]
+
+  const [intChecked, setIntChecked] = useState(
+    (defaultChecked || checked) ?? false
+  )
 
   function handleBlurEvent(e: React.FocusEvent<HTMLButtonElement>) {
     if (handleBlur) handleBlur(e)
