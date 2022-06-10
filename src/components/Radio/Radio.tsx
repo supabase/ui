@@ -253,10 +253,7 @@ function Radio({
               checked={active}
               disabled={disabled}
               value={value ? value : markupId}
-              onChange={(e) => {
-                console.log('radio input changed')
-                onInputChange(e)
-              }}
+              onChange={(e) => onInputChange(e)}
               onBlur={handleBlurEvent}
               onFocus={onFocus ? (event) => onFocus(event) : undefined}
             />

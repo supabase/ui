@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import { useFormContext } from '../Form/FormContext'
 
@@ -48,10 +48,6 @@ function Toggle({
   labelLayout,
   ...props
 }: Props) {
-  const [intChecked, setIntChecked] = useState(
-    (defaultChecked || checked) ?? false
-  )
-
   const __styles = styleHandler('toggle')
 
   const {
@@ -65,6 +61,18 @@ function Toggle({
 
   if (values && !checked) checked = values[id || name]
 
+  const [intChecked, setIntChecked] = useState(
+    (defaultChecked || checked) ?? false
+  )
+
+  // check if toggle checked is true or false
+  // if neither true or false the toggle will rely on component state internally
+  const active = checked ?? intChecked
+
+  useEffect(() => {
+    setIntChecked(active)
+  }, [])
+
   function handleBlurEvent(e: React.FocusEvent<HTMLButtonElement>) {
     if (handleBlur) handleBlur(e)
     if (onBlur) onBlur(e)
@@ -74,10 +82,6 @@ function Toggle({
     if (errors && !error) error = errors[id || name]
     error = touched && touched[id || name] ? error : undefined
   }
-
-  // check if toggle checked is true or false
-  // if neither true or false the toggle will rely on component state internally
-  const active = checked ?? intChecked
 
   function onClick() {
     // '`onChange` callback for this component
@@ -96,8 +100,8 @@ function Toggle({
       type: 'checkbox',
       name: name,
       id: id,
-      value: !intChecked,
-      checked: !intChecked,
+      value: !active,
+      checked: !active,
       // outerHTML: undefined,
       // options: undefined,
       // multiple: undefined,
