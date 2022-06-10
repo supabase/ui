@@ -151,36 +151,69 @@ export const interactive = (args) => {
             searches: [
               {
                 collection: 'supabase',
-                filter_by:
-                  'language:=en && docusaurus_tag:=[default,docs-default-current]',
-                group_by: 'url',
-                group_limit: 3,
-                highlight_full_fields:
-                  'hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3,hierarchy.lvl4,hierarchy.lvl5,hierarchy.lvl6,content',
-                include_fields:
-                  'hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3,hierarchy.lvl4,hierarchy.lvl5,hierarchy.lvl6,content,anchor,url,type,id',
+                // filter_by:
+                //   'language:=en && docusaurus_tag:=[default,docs-default-current]',
+                // filter_by: 'language:=en',
+                // group_by: 'url',
+                // group_limit: 6,
+                // highlight_full_fields:
+                //   'hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3,hierarchy.lvl4,hierarchy.lvl5,hierarchy.lvl6,content',
+                // include_fields:
+                //   'hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3,hierarchy.lvl4,hierarchy.lvl5,hierarchy.lvl6,content,anchor,url,type,id',
                 q: value,
                 query_by:
                   'hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3,hierarchy.lvl4,hierarchy.lvl5,hierarchy.lvl6,content',
+                // attributesToSnippet: [
+                //   'hierarchy.lvl1:5',
+                //   'hierarchy.lvl2:5',
+                //   'hierarchy.lvl3:5',
+                //   'hierarchy.lvl4:5',
+                //   'hierarchy.lvl5:5',
+                //   'hierarchy.lvl6:5',
+                //   'content:5',
+                // ],
+                snippetEllipsisText: '...',
+                highlightPreTag: '<mark>',
+                highlightPostTag: '<mark>',
               },
             ],
           }),
         }
-      )
+      ).then((r) => {
+        return r.json()
+      })
+
+      const pluckedResult = response.results[0]
+      console.log('pluckedResult', pluckedResult)
+
+      const results = {
+        count: pluckedResult.found,
+        list: pluckedResult.grouped_hits.map((hit) => {
+          console.log(hit)
+          return {
+            title: 'hello', // hit.hits.document.anchor,
+            slug: 'document', // hit.hits.document.url,
+            breadcrumbs: ['Docs', 'Auth'],
+          }
+        }),
+      }
+
       setLoading(false)
-      setResults(response.json())
+      console.log(response)
+      console.log(results)
+      setResults(results)
     } catch (error) {
       setLoading(false)
       console.error(error)
     }
-
-    return response
   }
 
   return (
     <>
-      {searchTerm}
-      <pre>{JSON.stringify(results)}</pre>
+      {/* {searchTerm} */}
+
+      <pre style={{ color: 'red' }}>{JSON.stringify(results, null, '\t')}</pre>
+
       <div className="min-h-[600px] flex items-center justify-center">
         <div
           onClick={(e) => {
@@ -195,6 +228,7 @@ export const interactive = (args) => {
           term={searchTerm}
           onSearch={(e) => handlePost(e)}
           visible={isVisible}
+          results={results}
           onCancel={() => setIsVisible(false)}
           onToggle={() => setIsVisible(!isVisible)}
           {...args}
