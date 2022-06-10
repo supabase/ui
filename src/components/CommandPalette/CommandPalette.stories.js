@@ -131,6 +131,79 @@ export const loadingResults = (args) => {
   )
 }
 
+export const interactive = (args) => {
+  const [isVisible, setIsVisible] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [results, setResults] = useState({})
+  const [loading, setLoading] = useState(false)
+
+  async function handlePost(e) {
+    const value = e.target.value
+    setSearchTerm(value)
+
+    try {
+      setLoading(true)
+      const response = await fetch(
+        'https://doc-search.supabase.com/multi_search?x-typesense-api-key=t0HAJQy4KtcMk3aYGnm8ONqab2oAysJz',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            searches: [
+              {
+                collection: 'supabase',
+                filter_by:
+                  'language:=en && docusaurus_tag:=[default,docs-default-current]',
+                group_by: 'url',
+                group_limit: 3,
+                highlight_full_fields:
+                  'hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3,hierarchy.lvl4,hierarchy.lvl5,hierarchy.lvl6,content',
+                include_fields:
+                  'hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3,hierarchy.lvl4,hierarchy.lvl5,hierarchy.lvl6,content,anchor,url,type,id',
+                q: value,
+                query_by:
+                  'hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3,hierarchy.lvl4,hierarchy.lvl5,hierarchy.lvl6,content',
+              },
+            ],
+          }),
+        }
+      )
+      setLoading(false)
+      setResults(response.json())
+    } catch (error) {
+      setLoading(false)
+      console.error(error)
+    }
+
+    return response
+  }
+
+  return (
+    <>
+      {searchTerm}
+      <pre>{JSON.stringify(results)}</pre>
+      <div className="min-h-[600px] flex items-center justify-center">
+        <div
+          onClick={(e) => {
+            e.stopPropagation()
+            setIsVisible(!isVisible)
+          }}
+        >
+          <SearchBox />
+        </div>
+        <CommandPalette
+          loading={loading}
+          term={searchTerm}
+          onSearch={(e) => handlePost(e)}
+          visible={isVisible}
+          onCancel={() => setIsVisible(false)}
+          onToggle={() => setIsVisible(!isVisible)}
+          {...args}
+        />
+      </div>
+    </>
+  )
+}
+
 Default.args = {
   results: RESULTS,
   term: 'search term',
@@ -146,4 +219,8 @@ noResults.args = {
 
 loadingResults.args = {
   loading: true,
+}
+
+interactive.args = {
+  // loading: true,
 }
