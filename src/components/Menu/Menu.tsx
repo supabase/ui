@@ -81,9 +81,9 @@ export function Item({
   return (
     <li role="menuitem" className="outline-none">
       <a
+        style={style}
         className={classes.join(' ')}
         onClick={onClick}
-        style={style}
         aria-current={active ? 'page' : undefined}
       >
         {icon && <span className={iconClasses.join(' ')}>{icon}</span>}
