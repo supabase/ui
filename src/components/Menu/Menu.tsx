@@ -85,7 +85,6 @@ export function Item({
         onClick={onClick}
         style={style}
         aria-current={active ? 'page' : undefined}
-        href="#"
       >
         {icon && <span className={iconClasses.join(' ')}>{icon}</span>}
         <span className={contentClasses.join(' ')}>{children}</span>
