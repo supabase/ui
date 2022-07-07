@@ -22,7 +22,7 @@ export interface Props
   label?: string | React.ReactNode
   afterLabel?: string
   beforeLabel?: string
-  labelOptional?: string
+  labelOptional?: string | React.ReactNode
   layout?: 'horizontal' | 'vertical'
   reveal?: boolean
   actions?: React.ReactNode
