@@ -18,7 +18,7 @@ export interface Props {
   autofocus?: boolean
   className?: string
   defaultValue?: string | number
-  descriptionText?: string
+  descriptionText?: string | React.ReactNode
   disabled?: boolean
   error?: string
   icon?: any
@@ -27,7 +27,7 @@ export interface Props {
   label?: string
   afterLabel?: string
   beforeLabel?: string
-  labelOptional?: string
+  labelOptional?: string | React.ReactNode
   layout?: 'horizontal' | 'vertical'
   name?: string
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
