@@ -176,8 +176,8 @@ function Input({
               <Button
                 size="tiny"
                 type="default"
-                onClick={() => onCopy(value)}
                 icon={<IconCopy />}
+                onClick={() => onCopy(value)}
               >
                 {copyLabel}
               </Button>
