@@ -64,7 +64,7 @@ const Button = forwardRef<RefHandle, ButtonProps>(
       size = 'tiny',
       style,
       type = 'primary',
-      htmlType,
+      htmlType = 'button',
       ariaSelected,
       ariaControls,
       tabIndex,
