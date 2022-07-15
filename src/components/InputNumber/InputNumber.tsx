@@ -5,74 +5,44 @@ import InputErrorIcon from '../../lib/Layout/InputErrorIcon'
 // import { IconChevronUp } from '../Icon/icons/IconChevronUp'
 import InputIconContainer from '../../lib/Layout/InputIconContainer'
 
-import defaultTheme from '../../lib/theme/defaultTheme'
-
-// @ts-ignore
-// import InputNumberStyles from './InputNumber.module.css'
-import InputNumberStyles from './InputNumber.module.css'
 import { useFormContext } from '../Form/FormContext'
 import styleHandler from '../../lib/theme/styleHandler'
 
-export interface Props {
-  autoComplete?: string
-  autofocus?: boolean
-  className?: string
+export interface Props
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   defaultValue?: string | number
   descriptionText?: string | React.ReactNode
-  disabled?: boolean
   error?: string
   icon?: any
-  id?: string
   inputRef?: React.RefObject<HTMLInputElement>
   label?: string
   afterLabel?: string
   beforeLabel?: string
   labelOptional?: string | React.ReactNode
+  actions?: React.ReactNode
   layout?: 'horizontal' | 'vertical'
-  name?: string
-  onChange?(x: React.ChangeEvent<HTMLInputElement>): void
-  onFocus?(x: React.FocusEvent<HTMLInputElement>): void
-  onBlur?(x: React.FocusEvent<HTMLInputElement>): void
-  onKeyDown?(x: React.KeyboardEvent<HTMLInputElement>): void
-  placeholder?: string
-  style?: React.CSSProperties
-  value?: any
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
-  min?: number
-  max?: number
-  borderless?: boolean
   validation?: (x: any) => void
 }
 
 function InputNumber({
-  autoComplete,
-  autofocus,
-  className,
   defaultValue,
   descriptionText,
-  disabled,
   error,
   icon,
-  id = '',
   inputRef,
   label,
   afterLabel,
   beforeLabel,
   labelOptional,
   layout,
-  name = '',
-  onChange,
-  onBlur,
-  onFocus,
-  onKeyDown,
-  placeholder,
   value = undefined,
-  style,
+  actions,
   size = 'medium',
-  min,
-  max,
-  borderless = false,
   validation,
+  id = '',
+  name = '',
+  ...props
 }: Props) {
   const __styles = styleHandler('inputNumber')
 
@@ -89,7 +59,7 @@ function InputNumber({
 
   function handleBlurEvent(e: React.FocusEvent<HTMLInputElement>) {
     if (handleBlur) handleBlur(e)
-    if (onBlur) onBlur(e)
+    if (props.onBlur) props.onBlur(e)
   }
 
   if (!error) {
@@ -98,7 +68,7 @@ function InputNumber({
   }
 
   function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    if (onChange) onChange(e)
+    if (props.onChange) props.onChange(e)
     // update form
     if (formContextOnChange) formContextOnChange(e)
     // run field level validation
@@ -137,7 +107,7 @@ function InputNumber({
   if (!error) inputClasses.push(__styles.variants.standard)
   if (icon) inputClasses.push(__styles.with_icon)
   if (size) inputClasses.push(__styles.size[size])
-  if (disabled) inputClasses.push(__styles.disabled)
+  if (props.disabled) inputClasses.push(__styles.disabled)
   // if (borderless)
   //   inputClasses.push(InputNumberStyles['sbui-inputnumber--borderless'])
 
@@ -168,7 +138,7 @@ function InputNumber({
   // }
 
   return (
-    <div className={className}>
+    <div className={props.className}>
       <FormLayout
         label={label}
         afterLabel={afterLabel}
@@ -178,28 +148,17 @@ function InputNumber({
         id={id}
         error={error}
         descriptionText={descriptionText}
-        style={style}
+        style={props.style}
         size={size}
       >
         <div className={__styles.container}>
           <input
-            autoComplete={autoComplete}
-            autoFocus={autofocus}
-            defaultValue={defaultValue}
-            disabled={disabled}
-            id={id}
-            name={name}
+            {...props}
             onChange={onInputChange}
-            onFocus={onFocus ? (event) => onFocus(event) : undefined}
             onBlur={handleBlurEvent}
-            onKeyDown={onKeyDown ? (event) => onKeyDown(event) : undefined}
-            placeholder={placeholder}
-            // ref={inputRefCurrent}
             type={'number'}
             value={value}
             className={inputClasses.join(' ')}
-            min={min}
-            max={max}
           />
           {/* <div className={iconNavClasses.join(' ')}>
             <IconChevronUp
@@ -218,9 +177,10 @@ function InputNumber({
             />
           </div> */}
           {icon && <InputIconContainer icon={icon} />}
-          {error ? (
+          {error || actions ? (
             <div className={__styles.actions_container}>
               {error && <InputErrorIcon size={size} />}
+              {actions && actions}
             </div>
           ) : null}
         </div>

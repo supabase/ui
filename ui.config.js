@@ -305,22 +305,30 @@ const uiConfig = {
           '-ms-overflow-style': 'none',
 
           /* Firefox */
-          'scrollbar-width': 'none', /* Firefox */
-          
+          'scrollbar-width': 'none' /* Firefox */,
+
           /* Hide scrollbar for Chrome, Safari and Opera */
           '&::-webkit-scrollbar': {
-            display: 'none'
-          }
+            display: 'none',
+          },
         },
         /* Add fadeout effect */
         '.mask-fadeout-right': {
-          '-webkit-mask-image': 'linear-gradient(to right, white 98%, transparent 100%)',
-          'mask-image': 'linear-gradient(to right, white 98%, transparent 100%)',
+          '-webkit-mask-image':
+            'linear-gradient(to right, white 98%, transparent 100%)',
+          'mask-image':
+            'linear-gradient(to right, white 98%, transparent 100%)',
         },
         '.mask-fadeout-left': {
-          '-webkit-mask-image': 'linear-gradient(to left, white 98%, transparent 100%)',
+          '-webkit-mask-image':
+            'linear-gradient(to left, white 98%, transparent 100%)',
           'mask-image': 'linear-gradient(to left, white 98%, transparent 100%)',
         },
+        'input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button':
+          {
+            '-webkit-appearance': 'none',
+            margin: '0',
+          },
       })
       addVariant('data-open-parent', '[data-state="open"] &')
       addVariant('data-closed-parent', '[data-state="closed"] &')
