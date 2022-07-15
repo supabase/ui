@@ -55,7 +55,7 @@ function InputNumber({
     fieldLevelValidation,
   } = useFormContext()
 
-  if (values && !value) value = values[id]
+  if (values && !value) value = values[id || name]
 
   function handleBlurEvent(e: React.FocusEvent<HTMLInputElement>) {
     if (handleBlur) handleBlur(e)
