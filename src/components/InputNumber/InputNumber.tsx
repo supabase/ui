@@ -98,10 +98,10 @@ function InputNumber({
 
   // const iconNavClasses = [InputNumberStyles['sbui-inputnumber-nav']]
 
-  if (size) {
-    // inputClasses.push(InputNumberStyles[`sbui-inputnumber--${size}`])
-    // iconNavClasses.push(InputNumberStyles[`sbui-inputnumber-nav--${size}`])
-  }
+  // if (size) {
+  // inputClasses.push(InputNumberStyles[`sbui-inputnumber--${size}`])
+  // iconNavClasses.push(InputNumberStyles[`sbui-inputnumber-nav--${size}`])
+  // }
 
   if (error) inputClasses.push(__styles.variants.error)
   if (!error) inputClasses.push(__styles.variants.standard)
@@ -153,12 +153,15 @@ function InputNumber({
       >
         <div className={__styles.container}>
           <input
-            {...props}
+            id={id}
+            name={name}
             onChange={onInputChange}
             onBlur={handleBlurEvent}
             type={'number'}
+            ref={inputRef}
             value={value}
             className={inputClasses.join(' ')}
+            {...props}
           />
           {/* <div className={iconNavClasses.join(' ')}>
             <IconChevronUp
