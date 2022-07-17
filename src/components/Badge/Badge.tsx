@@ -35,9 +35,11 @@ interface Props {
   children: string | React.ReactNode
   size?: 'large' | 'small'
   dot?: boolean
+    overlayClasses?: string
+
 }
 
-function Badge({ color = 'brand', children, size, dot }: Props) {
+function Badge({ color = 'brand', children, size, dot,overlayClasses }: Props) {
   const __styles = styleHandler('badge')
 
   let classes = [__styles.base]
@@ -46,6 +48,9 @@ function Badge({ color = 'brand', children, size, dot }: Props) {
   }
   if (size === 'large') {
     classes.push(__styles.size.large)
+  }
+  if(overlayClasses){
+    classes.push(overlayClasses)
   }
 
   return (
