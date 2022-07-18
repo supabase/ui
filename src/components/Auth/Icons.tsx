@@ -1,5 +1,3 @@
-import React from 'react'
-
 const size = 21
 
 export const google = () => (

@@ -5,8 +5,6 @@ import InputIconContainer from '../../lib/Layout/InputIconContainer'
 import { Button, IconCopy } from '../../index'
 import { HIDDEN_PLACEHOLDER } from './../../lib/constants'
 
-import defaultTheme from '../../lib/theme/defaultTheme'
-
 import { useFormContext } from '../Form/FormContext'
 import styleHandler from '../../lib/theme/styleHandler'
 

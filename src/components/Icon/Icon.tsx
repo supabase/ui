@@ -4,8 +4,6 @@ import { IconContext } from './IconContext'
 // @ts-ignore
 // import IconStyles from './Icon.module.css'
 
-const IconStyles = {}
-
 export interface IconProps {
   className?: string
   size?:

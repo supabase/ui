@@ -1,10 +1,9 @@
-import React, { useEffect, useState, createRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FormLayout } from '../../lib/Layout/FormLayout'
 import { RadioContext } from './RadioContext'
 
 import { useFormContext } from '../Form/FormContext'
 
-import defaultTheme from '../../lib/theme/defaultTheme'
 import styleHandler from '../../lib/theme/styleHandler'
 
 import randomIdGenerator from './../../utils/randomIdGenerator'

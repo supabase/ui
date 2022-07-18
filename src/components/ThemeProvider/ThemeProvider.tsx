@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { createContext } from 'react'
 
 import defaultTheme from '../../lib/theme/defaultTheme'

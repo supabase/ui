@@ -1,11 +1,10 @@
-import React, { createContext, useContext, useState } from 'react'
+import { createContext, ReactNode, useContext } from 'react'
 
 import { IconChevronUp } from '../Icon/icons/IconChevronUp'
 import styleHandler from '../../lib/theme/styleHandler'
 
 import * as RadixAccordion from '@radix-ui/react-accordion'
 import { IconChevronDown } from '../..'
-import { Transition } from '@headlessui/react'
 
 // type ContextValue = Required<
 //   Pick<AccordionProps, 'defaultActiveId' | 'icon' | 'iconPosition'>
@@ -32,10 +31,10 @@ const AccordionContext = createContext<ContextValue>({
 })
 
 interface AccordionProps {
-  children?: React.ReactNode
+  children?: ReactNode
   className?: string
   defaultActiveId?: (string | number)[]
-  icon?: React.ReactNode
+  icon?: ReactNode
   iconPosition?: Align
   bordered: boolean
   onChange?: (item: string | string[]) => void
@@ -108,11 +107,11 @@ function Accordion({
 }
 
 interface ItemProps {
-  children?: React.ReactNode
+  children?: ReactNode
   className?: string
-  header: React.ReactNode
+  header: ReactNode
   id: string
-  icon?: React.ReactNode
+  icon?: ReactNode
 }
 
 export function Item({ children, className, header, id, icon }: ItemProps) {

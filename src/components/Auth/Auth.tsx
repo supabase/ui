@@ -38,7 +38,6 @@ type ViewType =
 
 type RedirectTo = undefined | string
 
-//Todo RW: Props already exported
 export interface Props {
   supabaseClient: SupabaseClient
   className?: string

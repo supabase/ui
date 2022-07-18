@@ -1,7 +1,5 @@
 import React from 'react'
 import * as RadixCollapsible from '@radix-ui/react-collapsible'
-import { Button } from '../Button'
-import { IconChevronRight, IconGlobe } from '../..'
 import styleHandler from '../../lib/theme/styleHandler'
 
 export interface CollapsibleProps extends RadixCollapsible.CollapsibleProps {

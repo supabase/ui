@@ -1,5 +1,4 @@
 import React from 'react'
-import { Space } from '../Space'
 import Typography from '../Typography'
 import { MenuContextProvider, useMenuContext } from './MenuContext'
 

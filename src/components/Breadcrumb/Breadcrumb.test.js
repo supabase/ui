@@ -1,6 +1,6 @@
-import React from from 'react';
-import { render, screen } from '@testing-library/react';
-import Breadcrumb from './Breadcrumb';
+import React from 'react'
+import { render, screen } from '@testing-library/react'
+import Breadcrumb from './Breadcrumb'
 
 describe('#Breadcrumb', () => {
   it('should render breadcrumb correctly', async () => {
@@ -20,6 +20,8 @@ describe('#Breadcrumb', () => {
         <p> Item 2 </p>
       </Breadcrumb>
     )
-    expect(screen.queryByTestId('breadcrumb')).toHaveClass('.sbui-breadcrumb--item ')
+    expect(screen.queryByTestId('breadcrumb')).toHaveClass(
+      '.sbui-breadcrumb--item '
+    )
   })
 })

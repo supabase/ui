@@ -1,4 +1,3 @@
-import React from 'react'
 import Typography from '../Typography'
 // import { AutoForm } from 'uniforms'
 
@@ -26,13 +25,19 @@ export const withCover = (args: any) => (
 
 export const withMeta = (args: any) => (
   <Card {...args}>
-    <Card.Meta title={'To Do List with Vue.JS'} description={'To Do List with Vue.JS'}/>
+    <Card.Meta
+      title={'To Do List with Vue.JS'}
+      description={'To Do List with Vue.JS'}
+    />
   </Card>
 )
 
 export const withHover = (args: any) => (
   <Card {...args}>
-    <Card.Meta title={'To Do List with Vue.JS'} description={'To Do List with Vue.JS'}/>
+    <Card.Meta
+      title={'To Do List with Vue.JS'}
+      description={'To Do List with Vue.JS'}
+    />
   </Card>
 )
 
@@ -52,10 +57,10 @@ withCover.args = {
 }
 
 withMeta.args = {
-  title: 'title is here'
+  title: 'title is here',
 }
 
 withHover.args = {
   title: 'This card can hover',
-  hoverable: true
+  hoverable: true,
 }

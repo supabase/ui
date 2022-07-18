@@ -1,26 +1,10 @@
 import React, { useEffect } from 'react'
-// @ts-ignore
-import ModalStyles from './Modal.module.css'
-import { Button, IconX, Typography, Space } from './../../index'
+import { Button, Space } from './../../index'
 import { AnimationTailwindClasses } from '../../types'
 
 import * as Dialog from '@radix-ui/react-dialog'
 
-import { Transition } from '@headlessui/react'
 import styleHandler from '../../lib/theme/styleHandler'
-
-// import { Transition } from '@tailwindui/react'
-
-interface RadixProps
-  extends Dialog.DialogProps,
-    Pick<
-      Dialog.DialogContentProps,
-      | 'onOpenAutoFocus'
-      | 'onCloseAutoFocus'
-      | 'onEscapeKeyDown'
-      | 'onPointerDownOutside'
-      | 'onInteractOutside'
-    > {}
 
 export interface ModalProps {
   children?: React.ReactNode
