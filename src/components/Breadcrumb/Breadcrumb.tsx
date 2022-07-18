@@ -14,6 +14,7 @@ const Breadcrumb = ({
   style,
   children,
   spacing = 'small',
+  ...rest
 }: Props) => {
   let classes = [BreadcrumbStyle['sbui-breadcrumb--container']]
   let seperatorClasses = [BreadcrumbStyle['sbui-breadcrumb--separator']]
@@ -27,9 +28,17 @@ const Breadcrumb = ({
   }
 
   return (
-    <ol className={classes.join(' ')} style={style} aria-label="Breadcrumb">
-      {children!.map((child: React.ReactNode, idx: number) => (
-        <li className={BreadcrumbStyle['sbui-breadcrumb--item-container']}>
+    <ol
+      className={classes.join(' ')}
+      style={style}
+      aria-label="Breadcrumb"
+      {...rest}
+    >
+      {children?.map((child: React.ReactNode, idx: number) => (
+        <li
+          className={BreadcrumbStyle['sbui-breadcrumb--item-container']}
+          key={idx}
+        >
           {child}
           {idx + 1 < children!.length && (
             <IconChevronRight

@@ -1,7 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import Alert from './Alert'
 
-const VARIANTS = ['success', 'danger', 'warning', 'info']
+const VARIANTS = [
+  { variant: 'success', color: 'brand' },
+  { variant: 'danger', color: 'red' },
+  { variant: 'warning', color: 'amber' },
+  { variant: 'info', color: 'blue' },
+]
 
 describe('#Alert', () => {
   it('should render elements correctly', () => {
@@ -17,7 +22,7 @@ describe('#Alert', () => {
       </Alert>
     )
     expect(container.querySelector('div')).toHaveClass(
-      `sbui-alert-container sbui-alert-container--success custom classes`
+      `relative rounded py-4 px-6 flex space-x-4 items-start border bg-scale-300 dark:bg-scale-300 border-scale-500 custom classes`
     )
   })
 
@@ -37,13 +42,12 @@ describe('#Alert', () => {
 
   it('should render an icon when passed withIcon', () => {
     const { container } = render(
-      <Alert title="Required Title" withIcon>
+      <Alert title="Required Title" withIcon variant="success">
         {'Description'}
       </Alert>
     )
-
     expect(
-      container.querySelector('div.flex-shrink-0 > svg')
+      container.querySelector('div.text-brand-900 > svg')
     ).toBeInTheDocument()
   })
 
@@ -51,16 +55,18 @@ describe('#Alert', () => {
     'should have "sbui-alert-[container|description]--%s" class',
     (variant) => {
       const { container } = render(
-        <Alert title="Required Title" variant={variant}>
+        <Alert title="Required Title" variant={variant.variant}>
           {'Description'}
         </Alert>
       )
 
       expect(container.querySelector('div')).toHaveClass(
-        `sbui-alert-container sbui-alert-container--${variant}`
+        `items-start border bg-${variant.color}-${
+          variant.variant === 'success' ? '300' : '200'
+        } dark:bg-${variant.color}-100 border-${variant.color}-700`
       )
       expect(screen.queryByText('Description')).toHaveClass(
-        `sbui-alert-description sbui-alert-description--${variant}`
+        `text-xs text-${variant.color}-1100`
       )
     }
   )

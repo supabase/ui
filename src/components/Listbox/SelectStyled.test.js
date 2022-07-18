@@ -1,27 +1,25 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import Select from './Listbox'
+import Select from './Listbox2'
 
 describe('#Select', () => {
   it('should render select correctly', async () => {
     render(
-      <Select data-testid="form-select">
+      <Select label="Default listbox">
         <option>1</option>
         <option>2</option>
       </Select>
     )
-    expect(screen.queryByTestId('form-select')).toBeInTheDocument()
+    expect(screen.queryByText('Default listbox')).toBeInTheDocument()
   })
 
   it('should have "form-select--error" class', () => {
     render(
-      <Select isError data-testid="form-select">
+      <Select isError error="I am an error">
         <option>1</option>
         <option>2</option>
       </Select>
     )
-    expect(screen.queryByTestId('form-select')).toHaveClass(
-      'form-select border-solid form-select--error'
-    )
+    expect(screen.queryByText('I am an error')).toBeInTheDocument()
   })
 })

@@ -21,7 +21,7 @@ describe('#Select', () => {
       </Select>
     )
     expect(screen.queryByTestId('form-select')).toHaveClass(
-      'sbui-select sbui-select--error sbui-select--medium'
+      'bg-red-100 border-red-700 focus:ring-red-500 placeholder:text-red-600'
     )
   })
 })

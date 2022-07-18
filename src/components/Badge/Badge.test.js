@@ -11,7 +11,7 @@ const COLORS = [
   'blue',
   'indigo',
   'purple',
-  'pink'
+  'pink',
 ]
 
 describe('#Badge', () => {
@@ -37,14 +37,16 @@ describe('#Badge', () => {
   it.each(COLORS)('should have %s color', (color) => {
     render(<Badge color={color}>{color}</Badge>)
     expect(screen.getByText(color)).toHaveClass(
-      `sbui-badge sbui-badge--${color}`
+      `bg-${color}-200 text-${color}-1100 border-${color}-700`
     )
   })
 
   it.each(SIZES)('should render with %s size', (size) => {
     render(<Badge size={size}>{size}</Badge>)
     expect(screen.getByText(size)).toHaveClass(
-      `sbui-badge ${size === 'large' ? 'sbui-badge--large' : ''}`
+      `px-2.5 py-0.5 rounded-full text-xs ${
+        size === 'large' ? 'px-3 py-0.5 rounded-full text-sm' : ''
+      }`
     )
   })
 
