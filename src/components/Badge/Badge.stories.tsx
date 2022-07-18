@@ -94,5 +94,5 @@ withDotLarge.args = {
 }
 
 withCustomClassNames.args = {
-  className: ' border-teal-50 border-2',
+  className: 'border-teal-100 border-2'
 }
