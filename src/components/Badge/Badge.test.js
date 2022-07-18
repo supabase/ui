@@ -1,5 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
+import theme from '../../lib/theme/defaultTheme'
 import Badge from './Badge'
 
 const SIZES = ['small', 'large']
@@ -36,22 +37,20 @@ describe('#Badge', () => {
 
   it.each(COLORS)('should have %s color', (color) => {
     render(<Badge color={color}>{color}</Badge>)
-    expect(screen.getByText(color)).toHaveClass(
-      `bg-${color}-200 text-${color}-1100 border-${color}-700`
-    )
+    expect(screen.getByText(color)).toHaveClass(theme.badge.color[color])
   })
 
   it.each(SIZES)('should render with %s size', (size) => {
     render(<Badge size={size}>{size}</Badge>)
     expect(screen.getByText(size)).toHaveClass(
       `px-2.5 py-0.5 rounded-full text-xs ${
-        size === 'large' ? 'px-3 py-0.5 rounded-full text-sm' : ''
+        size === 'large' ? theme.badge.size[size] : ''
       }`
     )
   })
 
-  it('should render with Classes',()=>{
-    render(<Badge className='border-2'>Badge</Badge>)
+  it('should render with Classes', () => {
+    render(<Badge className="border-2">Badge</Badge>)
     expect(screen.getByText('Badge')).toHaveClass('border-2')
   })
 })

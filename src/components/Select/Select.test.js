@@ -1,5 +1,7 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
+import theme from '../../lib/theme/defaultTheme'
+import { styleClassString } from '../../lib/theme/styleHandler'
 import Select from './Select'
 
 describe('#Select', () => {
@@ -20,8 +22,7 @@ describe('#Select', () => {
         <option>2</option>
       </Select>
     )
-    expect(screen.queryByTestId('form-select')).toHaveClass(
-      'bg-red-100 border-red-700 focus:ring-red-500 placeholder:text-red-600'
-    )
+    const exepectedClass = styleClassString(theme.select.variants.error)
+    expect(screen.queryByTestId('form-select')).toHaveClass(exepectedClass)
   })
 })

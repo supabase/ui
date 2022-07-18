@@ -1,12 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react'
+import theme from '../../lib/theme/defaultTheme'
 import Alert from './Alert'
 
-const VARIANTS = [
-  { variant: 'success', color: 'brand' },
-  { variant: 'danger', color: 'red' },
-  { variant: 'warning', color: 'amber' },
-  { variant: 'info', color: 'blue' },
-]
+const VARIANTS = ['success', 'danger', 'warning', 'info']
 
 describe('#Alert', () => {
   it('should render elements correctly', () => {
@@ -55,18 +51,16 @@ describe('#Alert', () => {
     'should have "sbui-alert-[container|description]--%s" class',
     (variant) => {
       const { container } = render(
-        <Alert title="Required Title" variant={variant.variant}>
+        <Alert title="Required Title" variant={variant}>
           {'Description'}
         </Alert>
       )
 
       expect(container.querySelector('div')).toHaveClass(
-        `items-start border bg-${variant.color}-${
-          variant.variant === 'success' ? '300' : '200'
-        } dark:bg-${variant.color}-100 border-${variant.color}-700`
+        theme.alert.variant[variant].base
       )
       expect(screen.queryByText('Description')).toHaveClass(
-        `text-xs text-${variant.color}-1100`
+        theme.alert.variant[variant].description
       )
     }
   )

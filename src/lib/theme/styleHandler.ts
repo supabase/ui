@@ -16,7 +16,7 @@ export default function styleHandler(target: string) {
   // console.log('before string', __styles)
 
   // __styles = JSON.stringify(JSON.parse(__styles))
-  __styles = JSON.stringify(__styles).replace(/\\n/g, '').replace(/\s\s+/g, ' ')
+  __styles = styleClassString(JSON.stringify(__styles))
 
   // console.log('string', __styles)
 
@@ -26,3 +26,6 @@ export default function styleHandler(target: string) {
 
   return __styles
 }
+
+export const styleClassString = (style: string) =>
+  style.replace(/\\n/g, '').replace(/\s\s+/g, ' ')
