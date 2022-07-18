@@ -35,9 +35,10 @@ interface Props {
   children: string | React.ReactNode
   size?: 'large' | 'small'
   dot?: boolean
+  className?: string
 }
 
-function Badge({ color = 'brand', children, size, dot }: Props) {
+function Badge({ color = 'brand', children, size, dot, className }: Props) {
   const __styles = styleHandler('badge')
 
   let classes = [__styles.base]
@@ -46,6 +47,9 @@ function Badge({ color = 'brand', children, size, dot }: Props) {
   }
   if (size === 'large') {
     classes.push(__styles.size.large)
+  }
+  if (className) {
+    classes.push(className)
   }
 
   return (

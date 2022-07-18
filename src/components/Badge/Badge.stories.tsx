@@ -50,6 +50,10 @@ export const large = (args: any) => <Badge {...args}>Hello world</Badge>
 
 export const withDotLarge = (args: any) => <Badge {...args}>Hello world</Badge>
 
+export const withCustomClassNames = (args: any) => (
+  <Badge {...args}>Hello world</Badge>
+)
+
 export const allBadges = () => (
   <>
     <div className="flex flex-row gap-6 mx-auto my-4">
@@ -87,4 +91,8 @@ large.args = {
 withDotLarge.args = {
   size: 'large',
   dot: true,
+}
+
+withCustomClassNames.args = {
+  className: 'border-teal-100 border-2'
 }

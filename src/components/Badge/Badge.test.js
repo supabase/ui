@@ -47,4 +47,9 @@ describe('#Badge', () => {
       `sbui-badge ${size === 'large' ? 'sbui-badge--large' : ''}`
     )
   })
+
+  it('should render with Classes',()=>{
+    render(<Badge className='border-2'>Badge</Badge>)
+    expect(screen.getByText('Badge')).toHaveClass('border-2')
+  })
 })
