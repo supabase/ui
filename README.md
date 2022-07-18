@@ -239,9 +239,9 @@ Some of these are a work in progress - we invite anyone to submit a [feature req
 _General_
 
 - [x] Button
-- [x] Typography
+- [x] Typography (deprecating)
 - [x] Icon
-- [x] Image (work in progress)
+- [x] Image (deprecating)
 
 _Data Input_
 
@@ -251,23 +251,23 @@ _Data Input_
 - [x] Checkbox
 - [x] Radio
 - [x] Toggle
-- [ ] Upload
+- [ ] Upload (deprecating)
 - [ ] Slider
 - [ ] Date picker
 - [ ] Time picker
-- [ ] Form
+- [x] Form
 
 _Layout_
 
 - [ ] ~~Layout~~
 - [ ] ~~Grid (Flex)~~
-- [x] Divider
-- [x] Space (Flex)
+- [x] Divider (deprecating)
+- [x] Space (Flex) (deprecating)
 
 _Display_
 
-- [x] Card
-- [ ] Avatar
+- [x] Card (deprecating)
+- [ ] Avatar (deprecating)
 - [x] Accordion
 - [x] Alert
 - [x] Badge
@@ -279,7 +279,7 @@ _Display_
 _Navigation_
 
 - [x] Tabs
-- [x] Breadcrumb
+- [x] Breadcrumb (possibly deprecating)
 - [x] Dropdown
 - [x] Menu
 - [ ] Page Header
