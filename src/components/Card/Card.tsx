@@ -5,7 +5,7 @@ import CardStyles from './Card.module.css'
 
 import styleHandler from '../../lib/theme/styleHandler'
 
-interface CardProps {
+export interface CardProps {
   children?: React.ReactNode
   className?: string
   cover?: React.ReactNode
@@ -45,7 +45,7 @@ function Card({
   )
 }
 
-interface MetaProps {
+export interface MetaProps {
   title?: string
   description?: string
   style?: React.CSSProperties

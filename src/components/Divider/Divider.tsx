@@ -2,7 +2,7 @@ import React from 'react'
 // @ts-ignore
 // import DividerStyles from './Divider.module.css'
 
-interface Props {
+export interface DividerProps {
   children?: React.ReactNode
   className?: string
   light?: boolean
@@ -18,7 +18,7 @@ export default function Divider({
   orientation = 'center',
   style,
   type = 'horizontal',
-}: Props) {
+}: DividerProps) {
   // let classes = [
   //   type === 'horizontal'
   //     ? DividerStyles['sbui-divider']

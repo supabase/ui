@@ -2,7 +2,7 @@ import React from 'react'
 // @ts-ignore
 // import ImageStyles from './Image.module.css'
 
-interface Props {
+export interface ImageProps {
   source?: string
   style?: React.CSSProperties
   className?: string
@@ -18,7 +18,7 @@ export default function Image({
   type,
   alt,
   responsive,
-}: Props) {
+}: ImageProps) {
   // let classes = [ImageStyles['sbui-image-normal']]
   // classes.push(type === 'rounded' && ImageStyles['sbui-image-rounded'])
   // classes.push(type === 'circle' && ImageStyles['sbui-image-circle'])

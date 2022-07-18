@@ -4,7 +4,7 @@ import { IconUser } from '../Icon/icons/IconUser'
 // @ts-ignore
 import AvatarStyles from './Avatar.module.css'
 
-interface Props {
+export interface AvatarProps {
   children?: React.ReactNode
   src?: string | undefined
   style?: React.CSSProperties
@@ -28,7 +28,7 @@ export default function Avatar({
   AvatarIcon,
   size,
   children,
-}: Props) {
+}: AvatarProps) {
   const classes = [AvatarStyles['sbui-avatar']]
   classes.push(className)
   let objectToRender

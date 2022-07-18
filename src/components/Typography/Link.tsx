@@ -3,7 +3,7 @@ import React from 'react'
 // @ts-ignore
 // import LinkStyles from './Link.module.css'
 
-interface Props {
+export interface LinkProps {
   children?: React.ReactNode
   target?: '_blank' | '_self' | '_parent' | '_top' | 'framename'
   href?: string
@@ -19,7 +19,7 @@ function Link({
   className,
   onClick,
   style,
-}: Props) {
+}: LinkProps) {
   // let classes = [
   //   LinkStyles['sbui-typography'],
   //   LinkStyles['sbui-typography-link'],
