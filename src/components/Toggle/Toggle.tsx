@@ -5,7 +5,8 @@ import { useFormContext } from '../Form/FormContext'
 import defaultTheme from '../../lib/theme/defaultTheme'
 import styleHandler from '../../lib/theme/styleHandler'
 
-interface Props extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'size'> {
+export interface ToggleProps
+  extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'size'> {
   name?: string
   disabled?: boolean
   layout?: 'horizontal' | 'vertical' | 'flex'
@@ -47,7 +48,7 @@ function Toggle({
   validation,
   labelLayout,
   ...props
-}: Props) {
+}: ToggleProps) {
   const __styles = styleHandler('toggle')
 
   const {

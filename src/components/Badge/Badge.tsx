@@ -1,6 +1,6 @@
 import styleHandler from '../../lib/theme/styleHandler'
 
-interface Props {
+export interface BadgeProps {
   color?:
     | 'brand'
     | 'scale'
@@ -37,7 +37,7 @@ interface Props {
   dot?: boolean
 }
 
-function Badge({ color = 'brand', children, size, dot }: Props) {
+function Badge({ color = 'brand', children, size, dot }: BadgeProps) {
   const __styles = styleHandler('badge')
 
   let classes = [__styles.base]

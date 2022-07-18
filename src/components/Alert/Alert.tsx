@@ -10,7 +10,7 @@ import styleHandler from '../../lib/theme/styleHandler'
 import { IconAlertOctagon } from '../Icon/icons/IconAlertOctagon'
 import { IconCheckCircle } from '../Icon/icons/IconCheckCircle'
 
-interface Props {
+export interface AlertProps {
   variant?: 'success' | 'danger' | 'warning' | 'info' | 'neutral'
   className?: string
   title: string
@@ -39,7 +39,7 @@ function Alert({
   closable,
   children,
   icon,
-}: Props) {
+}: AlertProps) {
   let __styles = styleHandler('alert')
 
   const [visible, setVisible] = useState(true)

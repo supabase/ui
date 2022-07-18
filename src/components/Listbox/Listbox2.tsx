@@ -269,7 +269,7 @@ function Listbox({
   )
 }
 
-interface OptionProps {
+export interface SelectOptionProps {
   id?: string
   value: any
   label: string
@@ -290,7 +290,7 @@ function SelectOption({
   disabled = false,
   children,
   addOnBefore,
-}: OptionProps) {
+}: SelectOptionProps) {
   const __styles = styleHandler('listbox')
 
   return (

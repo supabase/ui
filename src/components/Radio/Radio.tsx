@@ -9,7 +9,7 @@ import styleHandler from '../../lib/theme/styleHandler'
 
 import randomIdGenerator from './../../utils/randomIdGenerator'
 
-interface GroupProps {
+export interface RadioGroupProps {
   allowedValues?: any
   checkboxes?: any
   id?: any
@@ -26,7 +26,7 @@ interface GroupProps {
   value?: any
   className?: any
   children?: React.ReactNode
-  options?: Array<InputProps>
+  options?: Array<RadioProps>
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
   validation?: (x: any) => void
@@ -54,7 +54,7 @@ function RadioGroup({
   validation,
   groupClassName,
   labelsLayout = 'vertical',
-}: GroupProps) {
+}: RadioGroupProps) {
   const [activeId, setActiveId] = useState('')
 
   const __styles = styleHandler('radio')
@@ -116,7 +116,7 @@ function RadioGroup({
             value={{ parentCallback, type, name, activeId, parentSize: size }}
           >
             {options
-              ? options.map((option: InputProps) => {
+              ? options.map((option: RadioProps) => {
                   return (
                     <Radio
                       id={option.id}
@@ -136,7 +136,7 @@ function RadioGroup({
   )
 }
 
-interface InputProps
+export interface RadioProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label: string
   afterLabel?: string
@@ -167,7 +167,7 @@ function Radio({
   align = 'vertical',
   optionalLabel,
   addOnBefore,
-}: InputProps) {
+}: RadioProps) {
   const __styles = styleHandler('radio')
 
   const inputName = name

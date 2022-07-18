@@ -6,7 +6,7 @@ import { IconContext } from './IconContext'
 
 const IconStyles = {}
 
-interface Props {
+export interface IconProps {
   className?: string
   size?:
     | 'tiny'
@@ -50,7 +50,7 @@ function Icon({
   background,
   src,
   ...props
-}: Props) {
+}: IconProps) {
   const __styles = styleHandler('icon')
 
   return (

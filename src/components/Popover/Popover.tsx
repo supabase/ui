@@ -7,7 +7,7 @@ import { IconX } from '../Icon/icons/IconX'
 
 import styleHandler from '../../lib/theme/styleHandler'
 
-interface RootProps {
+export interface PopoverProps {
   align?: RadixPopoverTypes.PopoverContentProps['align']
   ariaLabel?: string
   arrow?: boolean
@@ -46,7 +46,7 @@ function Popover({
   header,
   footer,
   size = 'content',
-}: RootProps) {
+}: PopoverProps) {
   const __styles = styleHandler('popover')
 
   let classes = [__styles.content, __styles.size[size]]

@@ -11,7 +11,7 @@ import type * as RadixDropdownTypes from '@radix-ui/react-dropdown-menu/'
 import styleHandler from '../../lib/theme/styleHandler'
 import { IconTarget } from '../..'
 
-interface RootProps {
+interface DropdownProps {
   open?: boolean
   arrow?: boolean
   onOpenChange?: RadixDropdownTypes.DropdownMenuProps['onOpenChange'] //   DropdownMenu['onOpenChange']
@@ -39,7 +39,7 @@ function Dropdown({
   style,
   arrow,
   isNested,
-}: RootProps) {
+}: DropdownProps) {
   let __styles = styleHandler('dropdown')
 
   let classes = [__styles.content, __styles.size[size]]
@@ -84,7 +84,7 @@ export function RightSlot({ children }: any) {
   return <div className={__styles.right_slot}>{children}</div>
 }
 
-interface ItemProps {
+export interface ItemProps {
   children: React.ReactNode
   icon?: React.ReactNode
   disabled?: boolean
@@ -133,7 +133,7 @@ export function Misc({ children, icon }: ItemProps) {
   )
 }
 
-interface CheckboxProps {
+export interface CheckboxProps {
   children: React.ReactNode
   checked?: boolean
   onChange?(x: boolean): void
@@ -183,7 +183,7 @@ export function Checkbox({
   )
 }
 
-interface RadioProps {
+export interface RadioProps {
   children: React.ReactNode
   value: string
   ItemIndicator?: React.ReactNode
@@ -209,7 +209,7 @@ export function Radio({ children, value, ItemIndicator }: RadioProps) {
   )
 }
 
-interface RadioGroupProps {
+export interface RadioGroupProps {
   children: React.ReactNode
   value: string
   onChange?(x: string): void
@@ -234,7 +234,7 @@ export function RadioGroup({
   )
 }
 
-interface LabelProps {
+export interface LabelProps {
   children: React.ReactNode
 }
 

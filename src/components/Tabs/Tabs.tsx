@@ -8,7 +8,7 @@ import * as TabsPrimitive from '@radix-ui/react-tabs'
 
 import styleHandler from '../../lib/theme/styleHandler'
 
-interface TabsProps {
+export interface TabsProps {
   type?: 'pills' | 'underlined' | 'cards'
   children: any
   defaultActiveId?: string
@@ -124,7 +124,7 @@ function Tabs({
   )
 }
 
-interface PanelProps {
+export interface PanelProps {
   children?: React.ReactNode
   id: string
   label?: string

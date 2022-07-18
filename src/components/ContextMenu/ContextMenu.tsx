@@ -12,7 +12,7 @@ import * as RadixContextMenu from '@radix-ui/react-context-menu'
 
 const ContextMenuStyles = {}
 
-interface RootProps {
+interface ContextMenuProps {
   onOpenChange?(x: boolean): void
   alignOffset?: RadixContextMenuTypes.ContextMenuContentProps['alignOffset']
   overlay?: React.ReactNode
@@ -29,7 +29,7 @@ function ContextMenu({
   children,
   className,
   style,
-}: RootProps) {
+}: ContextMenuProps) {
   // let classes = [ContextMenuStyles['sbui-contextmenu__content']]
   // if (className) {
   //   classes.push(className)
@@ -53,7 +53,7 @@ function ContextMenu({
   )
 }
 
-interface ItemProps {
+export interface ItemProps {
   children: React.ReactNode
   icon?: React.ReactNode
   disabled?: boolean
@@ -84,7 +84,7 @@ export function Misc({ children, icon }: ItemProps) {
   )
 }
 
-interface CheckboxProps {
+export interface CheckboxProps {
   children: React.ReactNode
   checked?: boolean
   onChange?(x: boolean): void
@@ -124,7 +124,7 @@ export function Checkbox({
   )
 }
 
-interface RadioProps {
+export interface RadioProps {
   children: React.ReactNode
   value: string
   ItemIndicator?: React.ReactNode
@@ -146,7 +146,7 @@ export function Radio({ children, value, ItemIndicator }: RadioProps) {
   )
 }
 
-interface RadioGroupProps {
+export interface RadioGroupProps {
   children: React.ReactNode
   value: string
   onChange?(x: string): void
@@ -171,7 +171,7 @@ export function RadioGroup({
   )
 }
 
-interface LabelProps {
+export interface LabelProps {
   children: React.ReactNode
 }
 

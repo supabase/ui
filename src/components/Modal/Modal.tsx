@@ -22,7 +22,7 @@ interface RadixProps
       | 'onInteractOutside'
     > {}
 
-interface Props {
+export interface ModalProps {
   children?: React.ReactNode
   customFooter?: React.ReactNode
   closable?: boolean
@@ -80,7 +80,7 @@ const Modal = ({
   overlayClassName,
   triggerElement,
   header,
-}: Props) => {
+}: ModalProps) => {
   const [open, setOpen] = React.useState(visible ? visible : false)
 
   const __styles = styleHandler('modal')
@@ -187,7 +187,11 @@ const Modal = ({
   )
 }
 
-function Content({ children }: { children: React.ReactNode }) {
+export interface ContentProps {
+  children: React.ReactNode
+}
+
+function Content({ children }: ContentProps) {
   const __styles = styleHandler('modal')
   return <div className={__styles.content}>{children}</div>
 }

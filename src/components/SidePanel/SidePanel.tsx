@@ -134,7 +134,11 @@ export function Seperator() {
   return <div className={__styles.seperator}></div>
 }
 
-export function Content({ children }: { children: React.ReactNode }) {
+export interface ContentProps {
+  children: React.ReactNode
+}
+
+export function Content({ children }: ContentProps) {
   let __styles = styleHandler('sidepanel')
 
   return <div className={__styles.content}>{children}</div>

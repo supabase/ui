@@ -16,7 +16,7 @@ type Type = 'default' | 'bordered'
 type Size = 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 type Align = 'left' | 'right'
 
-interface ContextValue {
+export interface ContextValue {
   bordered?: boolean
   type: Type
   justified: Boolean

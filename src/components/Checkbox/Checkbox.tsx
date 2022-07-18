@@ -18,7 +18,7 @@ export interface InputProps
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
-interface GroupProps {
+export interface GroupProps {
   id?: string
   layout?: 'horizontal' | 'vertical'
   error?: any

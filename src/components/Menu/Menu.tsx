@@ -5,7 +5,7 @@ import { MenuContextProvider, useMenuContext } from './MenuContext'
 
 import styleHandler from '../../lib/theme/styleHandler'
 
-interface MenuProps {
+export interface MenuProps {
   children: React.ReactNode
   className?: string
   style?: React.CSSProperties
@@ -29,7 +29,7 @@ function Menu({ children, className, style, type = 'text' }: MenuProps) {
   )
 }
 
-interface ItemProps {
+export interface ItemProps {
   children: React.ReactNode
   icon?: React.ReactNode
   active?: boolean
@@ -93,7 +93,7 @@ export function Item({
   )
 }
 
-interface GroupProps {
+export interface GroupProps {
   children?: React.ReactNode
   icon?: React.ReactNode
   title: string
@@ -113,7 +113,7 @@ export function Group({ children, icon, title }: GroupProps) {
   )
 }
 
-interface MiscProps {
+export interface MiscProps {
   children: React.ReactNode
 }
 

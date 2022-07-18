@@ -3,7 +3,7 @@ import { useFormik, FormikConfig } from 'formik'
 import { FormContextProvider } from './FormContext'
 
 // interface Props extends FormikProps<any>, Partial FormikConfig<any> {
-interface Props
+export interface FormProps
   extends Omit<FormikConfig<any>, 'validateOnMount' | 'validateOnChange'> {
   children: any
   handleIsSubmitting?: any
@@ -30,7 +30,7 @@ function errorReducer(state: any, action: any) {
   }
 }
 
-export default function Form({ validate, ...props }: Props) {
+export default function Form({ validate, ...props }: FormProps) {
   const [fieldLevelErrors, dispatchErrors] = useReducer(errorReducer, null)
 
   function handleFieldLevelValidation(key: any, error: string) {

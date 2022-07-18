@@ -2,11 +2,11 @@ import React from 'react'
 import styleHandler from '../../lib/theme/styleHandler'
 import { IconLoader } from './../../index'
 
-interface Props {
+export interface LoadingProps {
   children: React.ReactNode
   active: boolean
 }
-export default function Loading({ children, active }: Props) {
+export default function Loading({ children, active }: LoadingProps) {
   const __styles = styleHandler('loading')
 
   let classNames = [__styles.base]

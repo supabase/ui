@@ -4,7 +4,7 @@ import { IconContext } from './IconContext'
 // @ts-ignore
 // import IconStyles from './Icon.module.css'
 
-interface Props {
+interface IconBaseProps {
   className?: string
   size?:
     | 'tiny'
@@ -50,7 +50,7 @@ function IconBase({
   src,
   icon,
   ...props
-}: Props) {
+}: IconBaseProps) {
   const __styles = styleHandler('icon')
 
   return (

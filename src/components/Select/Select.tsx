@@ -8,18 +8,18 @@ import { useFormContext } from '../Form/FormContext'
 import defaultTheme from '../../lib/theme/defaultTheme'
 import styleHandler from '../../lib/theme/styleHandler'
 
-interface OptionProps {
+export interface OptionProps {
   value: string
   children: React.ReactNode
   selected?: boolean
 }
 
-interface OptGroupProps {
+export interface OptGroupProps {
   label: string
   children: React.ReactNode
 }
 
-export interface Props
+export interface SelectProps
   extends Omit<React.InputHTMLAttributes<HTMLSelectElement>, 'size'> {
   autofocus?: boolean
   children: React.ReactNode
@@ -72,7 +72,7 @@ function Select({
   borderless = false,
   validation,
   ...props
-}: Props) {
+}: SelectProps) {
   const {
     formContextOnChange,
     values,
