@@ -48,8 +48,8 @@ describe('#Badge', () => {
     )
   })
 
-  it('should render with overlay Classes',()=>{
-    render(<Badge overlayClasses='border-2'>Badge</Badge>)
+  it('should render with Classes',()=>{
+    render(<Badge className='border-2'>Badge</Badge>)
     expect(screen.getByText('Badge')).toHaveClass('border-2')
   })
 })
