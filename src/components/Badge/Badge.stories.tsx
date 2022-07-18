@@ -50,7 +50,9 @@ export const large = (args: any) => <Badge {...args}>Hello world</Badge>
 
 export const withDotLarge = (args: any) => <Badge {...args}>Hello world</Badge>
 
-export const withCustomClassNames = (args: any) => <Badge {...args}>Hello world</Badge>
+export const withCustomClassNames = (args: any) => (
+  <Badge {...args}>Hello world</Badge>
+)
 
 export const allBadges = () => (
   <>
@@ -92,5 +94,5 @@ withDotLarge.args = {
 }
 
 withCustomClassNames.args = {
-  className: ' border-teal-50 border-2'
+  className: ' border-teal-50 border-2',
 }
