@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import theme from '../../lib/theme/defaultTheme'
+import { styleClassString } from '../../lib/theme/styleHandler'
 import Alert from './Alert'
 
 const VARIANTS = ['success', 'danger', 'warning', 'info']
@@ -17,9 +18,8 @@ describe('#Alert', () => {
         {'Description'}
       </Alert>
     )
-    expect(container.querySelector('div')).toHaveClass(
-      `relative rounded py-4 px-6 flex space-x-4 items-start border bg-scale-300 dark:bg-scale-300 border-scale-500 custom classes`
-    )
+    const expectedStyle = styleClassString(theme.alert.base) + 'custom classes'
+    expect(container.querySelector('div')).toHaveClass(expectedStyle)
   })
 
   it('should close alert when close button clicked', () => {
