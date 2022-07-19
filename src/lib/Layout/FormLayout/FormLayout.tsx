@@ -153,9 +153,11 @@ export function FormLayout({
         >
           {labelled && (
             <label
-              className={[__styles.label.base, __styles.label.size[size]].join(
-                ' '
-              )}
+              className={[
+                __styles.label.base,
+                __styles.label.size[size],
+                'break-all',
+              ].join(' ')}
               htmlFor={id}
             >
               {beforeLabel && (
