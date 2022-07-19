@@ -8,7 +8,7 @@ import { HIDDEN_PLACEHOLDER } from './../../lib/constants'
 import { useFormContext } from '../Form/FormContext'
 import styleHandler from '../../lib/theme/styleHandler'
 
-export interface Props
+export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   copy?: boolean
   defaultValue?: string | number
@@ -61,7 +61,7 @@ function Input({
   borderless = false,
   validation,
   ...props
-}: Props) {
+}: InputProps) {
   const [copyLabel, setCopyLabel] = useState('Copy')
   const [hidden, setHidden] = useState(true)
 
@@ -193,7 +193,7 @@ function Input({
   )
 }
 
-export interface TextAreaProps
+export interface InputTextAreaProps
   extends Omit<React.InputHTMLAttributes<HTMLTextAreaElement>, 'size'> {
   descriptionText?: string
   error?: string
@@ -240,7 +240,7 @@ function TextArea({
   copy = false,
   actions,
   ...props
-}: TextAreaProps) {
+}: InputTextAreaProps) {
   const [charLength, setCharLength] = useState(0)
   const [copyLabel, setCopyLabel] = useState('Copy')
 

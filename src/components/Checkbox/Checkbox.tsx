@@ -4,7 +4,7 @@ import { CheckboxContext } from './CheckboxContext'
 import { useFormContext } from '../Form/FormContext'
 import styleHandler from '../../lib/theme/styleHandler'
 
-export interface InputProps
+export interface CheckboxInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   afterLabel?: string
   beforeLabel?: string
@@ -26,7 +26,7 @@ export interface CheckboxGroupProps {
   value?: any
   className?: string
   children?: React.ReactNode
-  options?: Array<InputProps>
+  options?: Array<CheckboxInputProps>
   defaultValue?: string
   onChange?(x: React.ChangeEvent<HTMLInputElement>): void
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
@@ -69,7 +69,7 @@ function Group({
       <CheckboxContext.Provider value={{ parentCallback, parentSize: size }}>
         <div className={__styles.group}>
           {options
-            ? options.map((option: InputProps) => {
+            ? options.map((option: CheckboxInputProps) => {
                 return (
                   <Checkbox
                     id={option.id}
@@ -106,7 +106,7 @@ export function Checkbox({
   size = 'medium',
   disabled = false,
   ...props
-}: InputProps) {
+}: CheckboxInputProps) {
   const { formContextOnChange, values, handleBlur } = useFormContext()
 
   const __styles = styleHandler('checkbox')
