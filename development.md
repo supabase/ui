@@ -34,11 +34,11 @@ You may need to npm-link the react node module in the target app you want to loc
 
 Step by step:
 
-• run npm link in /your-app/node_modules/react. This should make the React's global link.
+• run `npm link` in /your-app/node_modules/react. This should make the React's global link.
 
-• run npm link react in /supabase/ui. This should make the library use the application’s React copy.
+• run `npm link react` in /supabase/ui. This should make the library use the application’s React copy.
 
-• run npm link @supabase/ui in /your-app
+• run `npm link @supabase/ui` in /your-app
 
 ## Icon generation script
 
