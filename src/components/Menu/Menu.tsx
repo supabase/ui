@@ -28,7 +28,7 @@ function Menu({ children, className, style, type = 'text' }: MenuProps) {
   )
 }
 
-export interface ItemProps {
+export interface MenuItemProps {
   children: React.ReactNode
   icon?: React.ReactNode
   active?: boolean
@@ -48,7 +48,7 @@ export function Item({
   doNotCloseOverlay = false,
   showActiveBar = false,
   style,
-}: ItemProps) {
+}: MenuItemProps) {
   const __styles = styleHandler('menu')
 
   const { type } = useMenuContext()
@@ -92,13 +92,13 @@ export function Item({
   )
 }
 
-export interface GroupProps {
+export interface MenuGroupProps {
   children?: React.ReactNode
   icon?: React.ReactNode
   title: string
 }
 
-export function Group({ children, icon, title }: GroupProps) {
+export function Group({ children, icon, title }: MenuGroupProps) {
   const __styles = styleHandler('menu')
   const { type } = useMenuContext()
   return (
@@ -112,11 +112,11 @@ export function Group({ children, icon, title }: GroupProps) {
   )
 }
 
-export interface MiscProps {
+export interface MenuMiscProps {
   children: React.ReactNode
 }
 
-export function Misc({ children }: MiscProps) {
+export function Misc({ children }: MenuMiscProps) {
   return (
     <div
     // className={MenuStyles['sbui-menu__misc']}

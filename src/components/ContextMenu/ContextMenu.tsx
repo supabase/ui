@@ -53,14 +53,19 @@ function ContextMenu({
   )
 }
 
-export interface ItemProps {
+export interface ContextMenuItemProps {
   children: React.ReactNode
   icon?: React.ReactNode
   disabled?: boolean
   onClick?: (event: Event) => void
 }
 
-export function Item({ children, icon, disabled, onClick }: ItemProps) {
+export function Item({
+  children,
+  icon,
+  disabled,
+  onClick,
+}: ContextMenuItemProps) {
   return (
     <RadixContextMenu.Item
       // className={ContextMenuStyles['sbui-contextmenu-item']}
@@ -73,7 +78,7 @@ export function Item({ children, icon, disabled, onClick }: ItemProps) {
   )
 }
 
-export function Misc({ children, icon }: ItemProps) {
+export function Misc({ children, icon }: ContextMenuItemProps) {
   return (
     <div
     // className={ContextMenuStyles['sbui-contextmenu-misc']}
@@ -84,7 +89,7 @@ export function Misc({ children, icon }: ItemProps) {
   )
 }
 
-export interface CheckboxProps {
+export interface ContextMenuCheckboxProps {
   children: React.ReactNode
   checked?: boolean
   onChange?(x: boolean): void
@@ -98,7 +103,7 @@ export function Checkbox({
   onChange,
   disabled,
   ItemIndicator,
-}: CheckboxProps) {
+}: ContextMenuCheckboxProps) {
   const [checked, setChecked] = useState(propsChecked ? propsChecked : false)
 
   const handleChange = (e: boolean) => {
@@ -124,13 +129,17 @@ export function Checkbox({
   )
 }
 
-export interface RadioProps {
+export interface ContextMenuRadioProps {
   children: React.ReactNode
   value: string
   ItemIndicator?: React.ReactNode
 }
 
-export function Radio({ children, value, ItemIndicator }: RadioProps) {
+export function Radio({
+  children,
+  value,
+  ItemIndicator,
+}: ContextMenuRadioProps) {
   return (
     <RadixContextMenu.RadioItem
       value={value}
@@ -146,7 +155,7 @@ export function Radio({ children, value, ItemIndicator }: RadioProps) {
   )
 }
 
-export interface RadioGroupProps {
+export interface ContextMenuRadioGroupProps {
   children: React.ReactNode
   value: string
   onChange?(x: string): void
@@ -156,7 +165,7 @@ export function RadioGroup({
   children,
   value: propsValue,
   onChange,
-}: RadioGroupProps) {
+}: ContextMenuRadioGroupProps) {
   const [value, setValue] = useState(propsValue ? propsValue : '')
 
   const handleChange = (e: string) => {
@@ -171,11 +180,11 @@ export function RadioGroup({
   )
 }
 
-export interface LabelProps {
+export interface ContextMenuLabelProps {
   children: React.ReactNode
 }
 
-export function Label({ children }: LabelProps) {
+export function Label({ children }: ContextMenuLabelProps) {
   return (
     <RadixContextMenu.Label
     // className={ContextMenuStyles['sbui-contextmenu-label']}

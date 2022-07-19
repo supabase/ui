@@ -42,14 +42,14 @@ function Card({
   )
 }
 
-export interface MetaProps {
+export interface CardMetaProps {
   title?: string
   description?: string
   style?: React.CSSProperties
   className?: string
 }
 
-function Meta({ title, description, style, className }: MetaProps) {
+function Meta({ title, description, style, className }: CardMetaProps) {
   return (
     <div style={style} className={className}>
       <Typography.Title style={{ margin: '0' }} level={5}>

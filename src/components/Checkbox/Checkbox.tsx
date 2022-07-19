@@ -13,7 +13,7 @@ export interface InputProps
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 }
 
-export interface GroupProps {
+export interface CheckboxGroupProps {
   id?: string
   layout?: 'horizontal' | 'vertical'
   error?: any
@@ -46,7 +46,7 @@ function Group({
   options,
   onChange,
   size = 'medium',
-}: GroupProps) {
+}: CheckboxGroupProps) {
   const parentCallback = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) onChange(e)
   }

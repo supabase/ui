@@ -11,7 +11,7 @@ import type * as RadixDropdownTypes from '@radix-ui/react-dropdown-menu/'
 import styleHandler from '../../lib/theme/styleHandler'
 import { IconTarget } from '../..'
 
-interface DropdownProps {
+export interface DropdownProps {
   open?: boolean
   arrow?: boolean
   onOpenChange?: RadixDropdownTypes.DropdownMenuProps['onOpenChange'] //   DropdownMenu['onOpenChange']
@@ -79,12 +79,16 @@ function Dropdown({
   )
 }
 
-export function RightSlot({ children }: any) {
+export interface DropdownRightSlotProps {
+  children: React.ReactNode
+}
+
+export function RightSlot({ children }: DropdownRightSlotProps) {
   let __styles = styleHandler('dropdown')
   return <div className={__styles.right_slot}>{children}</div>
 }
 
-export interface ItemProps {
+export interface DropdownItemProps {
   children: React.ReactNode
   icon?: React.ReactNode
   disabled?: boolean
@@ -98,7 +102,7 @@ export function Item({
   disabled,
   onClick,
   rightSlot,
-}: ItemProps) {
+}: DropdownItemProps) {
   let __styles = styleHandler('dropdown')
 
   return (
@@ -113,7 +117,7 @@ export function Item({
   )
 }
 
-export function TriggerItem({ children, icon, disabled }: ItemProps) {
+export function TriggerItem({ children, icon, disabled }: DropdownItemProps) {
   let __styles = styleHandler('dropdown')
   return (
     <div className={__styles.item}>
@@ -123,7 +127,7 @@ export function TriggerItem({ children, icon, disabled }: ItemProps) {
   )
 }
 
-export function Misc({ children, icon }: ItemProps) {
+export function Misc({ children, icon }: DropdownItemProps) {
   let __styles = styleHandler('dropdown')
   return (
     <div className={__styles.misc}>
@@ -133,7 +137,7 @@ export function Misc({ children, icon }: ItemProps) {
   )
 }
 
-export interface CheckboxProps {
+export interface DropdownCheckboxProps {
   children: React.ReactNode
   checked?: boolean
   onChange?(x: boolean): void
@@ -153,7 +157,7 @@ export function Checkbox({
   onChange,
   disabled,
   ItemIndicator,
-}: CheckboxProps) {
+}: DropdownCheckboxProps) {
   const [checked, setChecked] = useState(propsChecked ? propsChecked : false)
 
   let __styles = styleHandler('dropdown')
@@ -183,13 +187,13 @@ export function Checkbox({
   )
 }
 
-export interface RadioProps {
+export interface DropdownRadioProps {
   children: React.ReactNode
   value: string
   ItemIndicator?: React.ReactNode
 }
 
-export function Radio({ children, value, ItemIndicator }: RadioProps) {
+export function Radio({ children, value, ItemIndicator }: DropdownRadioProps) {
   let __styles = styleHandler('dropdown')
 
   return (
@@ -209,7 +213,7 @@ export function Radio({ children, value, ItemIndicator }: RadioProps) {
   )
 }
 
-export interface RadioGroupProps {
+export interface DropdownRadioGroupProps {
   children: React.ReactNode
   value: string
   onChange?(x: string): void
@@ -219,7 +223,7 @@ export function RadioGroup({
   children,
   value: propsValue,
   onChange,
-}: RadioGroupProps) {
+}: DropdownRadioGroupProps) {
   const [value, setValue] = useState(propsValue ? propsValue : '')
 
   const handleChange = (e: string) => {
@@ -234,11 +238,11 @@ export function RadioGroup({
   )
 }
 
-export interface LabelProps {
+export interface DropdownLabelProps {
   children: React.ReactNode
 }
 
-export function Label({ children }: LabelProps) {
+export function Label({ children }: DropdownLabelProps) {
   let __styles = styleHandler('dropdown')
 
   return (

@@ -7,18 +7,18 @@ import { useFormContext } from '../Form/FormContext'
 
 import styleHandler from '../../lib/theme/styleHandler'
 
-export interface OptionProps {
+export interface SelectOptionProps {
   value: string
   children: React.ReactNode
   selected?: boolean
 }
 
-export interface OptGroupProps {
+export interface SelectOptGroupProps {
   label: string
   children: React.ReactNode
 }
 
-export interface SelectProps
+export interface Props
   extends Omit<React.InputHTMLAttributes<HTMLSelectElement>, 'size'> {
   autofocus?: boolean
   children: React.ReactNode
@@ -71,7 +71,7 @@ function Select({
   borderless = false,
   validation,
   ...props
-}: SelectProps) {
+}: Props) {
   const {
     formContextOnChange,
     values,
@@ -176,7 +176,7 @@ function Select({
   )
 }
 
-export function Option({ value, children, selected }: OptionProps) {
+export function Option({ value, children, selected }: SelectOptionProps) {
   return (
     <option value={value} selected={selected}>
       {children}
@@ -184,7 +184,7 @@ export function Option({ value, children, selected }: OptionProps) {
   )
 }
 
-export function OptGroup({ label, children }: OptGroupProps) {
+export function OptGroup({ label, children }: SelectOptGroupProps) {
   return <optgroup label={label}>{children}</optgroup>
 }
 

@@ -171,11 +171,11 @@ const Modal = ({
   )
 }
 
-export interface ContentProps {
+export interface ModalContentProps {
   children: React.ReactNode
 }
 
-function Content({ children }: ContentProps) {
+function Content({ children }: ModalContentProps) {
   const __styles = styleHandler('modal')
   return <div className={__styles.content}>{children}</div>
 }

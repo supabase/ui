@@ -32,12 +32,12 @@ export const Collapsible = ({
   )
 }
 
-export interface TriggerProps {
+export interface CollapsibleTriggerProps {
   children: React.ReactNode
   asChild?: boolean
 }
 
-export function Trigger({ children, asChild }: TriggerProps) {
+export function Trigger({ children, asChild }: CollapsibleTriggerProps) {
   return (
     <RadixCollapsible.Trigger asChild={asChild}>
       {children}
@@ -45,12 +45,12 @@ export function Trigger({ children, asChild }: TriggerProps) {
   )
 }
 
-export interface ContentProps {
+export interface CollapsibleContentProps {
   children: React.ReactNode
   className?: string
 }
 
-export function Content({ children, className }: ContentProps) {
+export function Content({ children, className }: CollapsibleContentProps) {
   const __styles = styleHandler('collapsible')
   return (
     <RadixCollapsible.Content

@@ -15,7 +15,7 @@ type Type = 'default' | 'bordered'
 type Size = 'tiny' | 'small' | 'medium' | 'large' | 'xlarge'
 type Align = 'left' | 'right'
 
-export interface ContextValue {
+interface ContextValue {
   bordered?: boolean
   type: Type
   justified: Boolean
@@ -30,7 +30,7 @@ const AccordionContext = createContext<ContextValue>({
   // currentItems: [],
 })
 
-interface AccordionProps {
+export interface AccordionProps {
   children?: ReactNode
   className?: string
   defaultActiveId?: (string | number)[]
@@ -106,7 +106,7 @@ function Accordion({
   )
 }
 
-interface ItemProps {
+export interface AccordionItemProps {
   children?: ReactNode
   className?: string
   header: ReactNode
@@ -114,7 +114,13 @@ interface ItemProps {
   icon?: ReactNode
 }
 
-export function Item({ children, className, header, id, icon }: ItemProps) {
+export function Item({
+  children,
+  className,
+  header,
+  id,
+  icon,
+}: AccordionItemProps) {
   const __styles = styleHandler('accordion')
   // const [open, setOpen] = useState(false)
 

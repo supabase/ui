@@ -451,15 +451,17 @@ function EmailAuth({
   )
 }
 
+export interface MagicLinkProps {
+  setAuthView: any
+  supabaseClient: SupabaseClient
+  redirectTo?: RedirectTo
+}
+
 function MagicLink({
   setAuthView,
   supabaseClient,
   redirectTo,
-}: {
-  setAuthView: any
-  supabaseClient: SupabaseClient
-  redirectTo?: RedirectTo
-}) {
+}: MagicLinkProps) {
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
@@ -517,15 +519,17 @@ function MagicLink({
   )
 }
 
+export interface ForgottenPasswordProps {
+  setAuthView: any
+  supabaseClient: SupabaseClient
+  redirectTo?: RedirectTo
+}
+
 function ForgottenPassword({
   setAuthView,
   supabaseClient,
   redirectTo,
-}: {
-  setAuthView: any
-  supabaseClient: SupabaseClient
-  redirectTo?: RedirectTo
-}) {
+}: ForgottenPasswordProps) {
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
@@ -583,11 +587,11 @@ function ForgottenPassword({
   )
 }
 
-function UpdatePassword({
-  supabaseClient,
-}: {
+export interface UpdatePasswordProps {
   supabaseClient: SupabaseClient
-}) {
+}
+
+function UpdatePassword({ supabaseClient }: UpdatePasswordProps) {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')

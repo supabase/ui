@@ -124,14 +124,14 @@ function Tabs({
   )
 }
 
-export interface PanelProps {
+export interface TabsPanelProps {
   children?: React.ReactNode
   id: string
   label?: string
   icon?: React.ReactNode
 }
 
-export function Panel({ children, id }: PanelProps) {
+export function Panel({ children, id }: TabsPanelProps) {
   let __styles = styleHandler('tabs')
 
   return (

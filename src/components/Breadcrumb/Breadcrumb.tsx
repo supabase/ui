@@ -44,14 +44,19 @@ const Breadcrumb = ({
   )
 }
 
-export interface ItemProps {
+export interface BreadcrumbItemProps {
   children: React.ReactNode
   active?: boolean
   onClick?: any
   style?: React.CSSProperties
 }
 
-export function Item({ children, active, onClick, style }: ItemProps) {
+export function Item({
+  children,
+  active,
+  onClick,
+  style,
+}: BreadcrumbItemProps) {
   let classes = [BreadcrumbStyle['sbui-breadcrumb--item']]
   if (active) classes.push(BreadcrumbStyle['sbui-breadcrumb--item__active'])
   return (
