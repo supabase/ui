@@ -163,6 +163,7 @@ export function FormLayout({
                   className={[
                     __styles.label_before.base,
                     __styles.label_before.size[size],
+                    'break-all',
                   ].join(' ')}
                   id={id + '-before'}
                 >
