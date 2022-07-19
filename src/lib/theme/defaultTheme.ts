@@ -307,20 +307,20 @@ export default {
    */
 
   card: {
-    base: `
-      bg-white dark:bg-scaleDark-700
-      
+    base: `      
       border
-      ${defaults.border.primary} 
-
+      border-scale-700 
       flex flex-col 
       rounded-md shadow-lg overflow-hidden relative
     `,
     hoverable: 'transition hover:-translate-y-1 hover:shadow-2xl',
     head: `px-8 py-6 flex justify-between 
-    border-b
-      ${defaults.border.primary} `,
-    content: 'p-8',
+    border-b border-scale-700 text-scale-1200 font-semibold`,
+    content: 'p-8 text-scale-1100',
+    meta:{
+      head:'text-scale-1200 font-semibold',
+      content:'text-scale-1100',
+    }
   },
 
   /*

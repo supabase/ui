@@ -1,8 +1,4 @@
-import React from 'react'
-import Typography from '../Typography'
-// @ts-ignore
-import CardStyles from './Card.module.css'
-
+import React, { ReactDOM } from 'react'
 import styleHandler from '../../lib/theme/styleHandler'
 
 interface CardProps {
@@ -35,8 +31,8 @@ function Card({
     <div className={classes.join(' ')} style={style}>
       {title && (
         <div className={__styles.head}>
-          <Typography.Text style={{ margin: 0 }}>{title}</Typography.Text>
-          <Typography.Link style={{ margin: 0 }}>{titleExtra}</Typography.Link>
+          <>{title}</>
+          <>{titleExtra}</>
         </div>
       )}
       {cover}
@@ -53,14 +49,15 @@ interface MetaProps {
 }
 
 function Meta({ title, description, style, className }: MetaProps) {
+  let __styles = styleHandler('card')
   return (
     <div style={style} className={className}>
-      <Typography.Title style={{ margin: '0' }} level={5}>
+      <p className={__styles.meta.head}>
         {title}
-      </Typography.Title>
-      <div>
-        <Typography.Text type="secondary">{description}</Typography.Text>
-      </div>
+      </p>
+      <p className={__styles.meta.content}>
+        {description}
+      </p>
     </div>
   )
 }

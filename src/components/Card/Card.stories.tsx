@@ -1,7 +1,4 @@
 import React from 'react'
-import Typography from '../Typography'
-// import { AutoForm } from 'uniforms'
-
 import { Card } from './'
 
 export default {
@@ -11,48 +8,55 @@ export default {
 
 export const Default = (args: any) => (
   <Card {...args}>
-    <Typography.Title level={5}>Card content</Typography.Title>
-    <Typography.Title level={5}>Card content</Typography.Title>
-    <Typography.Title level={5}>Card content</Typography.Title>
+    <p>Card content</p> 
+    <p>Card content</p> 
+    <p>Card content</p> 
   </Card>
 )
 
 export const withCover = (args: any) => (
   <Card {...args}>
-    <Typography.Text type="secondary">Sub title here</Typography.Text>
-    <Typography.Title level={3}>To Do List with Vue.JS</Typography.Title>
+    <h4 className='text-scale-1200 font-bold'>This is Card with Cover</h4>
+    <p>Description</p>
   </Card>
 )
 
 export const withMeta = (args: any) => (
   <Card {...args}>
-    <Card.Meta title={'To Do List with Vue.JS'} description={'To Do List with Vue.JS'}/>
+    <Card.Meta title={'This is Meta card title'} description={'This is Meta card description'}/>
   </Card>
 )
 
 export const withHover = (args: any) => (
   <Card {...args}>
-    <Card.Meta title={'To Do List with Vue.JS'} description={'To Do List with Vue.JS'}/>
+    <Card.Meta title={'This is Meta card title'} description={'This is Meta card description'}/>
   </Card>
-)
+) 
 
 Default.args = {
-  title: 'I am a title',
-  titleExtra: <Typography.Link>Learn more</Typography.Link>,
+  title: 'This is Card Title',
+  titleExtra: <a href='#' className='underline text-sm'>Learn more</a>,
 }
 
 withCover.args = {
   cover: (
     <img
       className="h-64 w-full object-cover"
-      src={'https://supabase.io/new/images/case-study-monitoro.jpg'}
+      src={'https://images.unsplash.com/photo-1557149289-0b6e90634e02?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D'}
       alt={'title'}
     />
   ),
 }
 
 withMeta.args = {
-  title: 'title is here'
+  title: 'Title is here',
+  cover: (
+    <img
+      className="h-64 w-full object-cover"
+      src={'https://images.unsplash.com/photo-1557149289-0b6e90634e02?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D'}
+      alt={'title'}
+    />
+  ),
 }
 
 withHover.args = {
