@@ -307,7 +307,7 @@ export default {
    */
 
   card: {
-    base: `      
+    base: `  bg-white dark:bg-scale-300    
       border
       border-scale-700 
       flex flex-col 
