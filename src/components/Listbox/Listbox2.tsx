@@ -213,7 +213,7 @@ function Listbox({
       size={size}
     >
       <DropdownMenuPrimitive.Root>
-        <DropdownMenuPrimitive.Trigger asChild>
+        <DropdownMenuPrimitive.Trigger asChild disabled={disabled}>
           <button
             ref={triggerRef}
             className={selectClasses.join(' ')}
