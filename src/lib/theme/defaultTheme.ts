@@ -253,7 +253,7 @@ export default {
   alert: {
     base: `
       relative rounded border py-4 px-6 
-      flex justify-between space-x-4 items-start 
+      flex space-x-4 items-start 
     `,
     header: 'block text-sm font-normal mb-1',
     description: `text-xs`,

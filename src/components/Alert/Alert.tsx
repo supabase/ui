@@ -61,13 +61,13 @@ function Alert({
     <>
       {visible && (
         <div className={containerClasses.join(' ')}>
-          <div className="flex space-x-4">
-            {withIcon ? (
-              <div className={__styles.variant[variant].icon}>
-                {withIcon && icons[variant]}
-              </div>
-            ) : null}
-            {icon && icon}
+          {withIcon ? (
+            <div className={__styles.variant[variant].icon}>
+              {withIcon && icons[variant]}
+            </div>
+          ) : null}
+          {icon && icon}
+          <div className="flex flex-1 justify-between">
             <div>
               <h3
                 className={[
@@ -79,8 +79,8 @@ function Alert({
               </h3>
               <div className={descriptionClasses.join(' ')}>{children}</div>
             </div>
+            {actions}
           </div>
-          {actions}
           {closable && (
             <button
               aria-label="Close alert"
