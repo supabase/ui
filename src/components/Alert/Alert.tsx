@@ -67,7 +67,7 @@ function Alert({
             </div>
           ) : null}
           {icon && icon}
-          <div className="flex flex-1 justify-between">
+          <div className="flex flex-1 items-center justify-between">
             <div>
               <h3
                 className={[
