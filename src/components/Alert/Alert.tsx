@@ -18,6 +18,7 @@ interface Props {
   closable?: boolean
   children?: React.ReactNode
   icon?: React.ReactNode
+  actions?: React.ReactNode
 }
 
 const icons: Record<
@@ -39,6 +40,7 @@ function Alert({
   closable,
   children,
   icon,
+  actions,
 }: Props) {
   let __styles = styleHandler('alert')
 
@@ -59,30 +61,33 @@ function Alert({
     <>
       {visible && (
         <div className={containerClasses.join(' ')}>
-          {withIcon ? (
-            <div className={__styles.variant[variant].icon}>
-              {withIcon && icons[variant]}
+          <div className="flex space-x-4">
+            {withIcon ? (
+              <div className={__styles.variant[variant].icon}>
+                {withIcon && icons[variant]}
+              </div>
+            ) : null}
+            {icon && icon}
+            <div>
+              <h3
+                className={[
+                  __styles.variant[variant].header,
+                  __styles.header,
+                ].join(' ')}
+              >
+                {title}
+              </h3>
+              <div className={descriptionClasses.join(' ')}>{children}</div>
             </div>
-          ) : null}
-          {icon && icon}
-          <div>
-            <h3
-              className={[
-                __styles.variant[variant].header,
-                __styles.header,
-              ].join(' ')}
-            >
-              {title}
-            </h3>
-            <div className={descriptionClasses.join(' ')}>{children}</div>
           </div>
+          {actions}
           {closable && (
             <button
               aria-label="Close alert"
               onClick={() => setVisible(false)}
               className={closeButtonClasses.join(' ')}
             >
-              <IconX strokeWidth={1.5} size={14} />
+              <IconX strokeWidth={2} size={16} />
             </button>
           )}
         </div>

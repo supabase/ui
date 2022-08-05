@@ -79,6 +79,13 @@ export const Closable = (args: any) => (
   </Alert>
 )
 
+export const WithAction = (args: any) => (
+  <Alert {...args}>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet
+    labore.
+  </Alert>
+)
+
 Neutral.args = {
   title: 'Success alert with icon',
   withIcon: true,
@@ -131,4 +138,11 @@ WarningWithIcon.args = {
 Closable.args = {
   title: 'Closable alert',
   closable: true,
+}
+
+WithAction.args = {
+  title: 'Alert with action',
+  variant: 'warning',
+  withIcon: true,
+  actions: <div>Hello</div>,
 }
