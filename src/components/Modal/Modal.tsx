@@ -10,6 +10,7 @@ import { Transition } from '@headlessui/react'
 import styleHandler from '../../lib/theme/styleHandler'
 
 // import { Transition } from '@tailwindui/react'
+export type ModalProps = RadixProps & Props
 
 interface RadixProps
   extends Dialog.DialogProps,
@@ -80,7 +81,8 @@ const Modal = ({
   overlayClassName,
   triggerElement,
   header,
-}: Props) => {
+  ...props
+}: ModalProps) => {
   const [open, setOpen] = React.useState(visible ? visible : false)
 
   const __styles = styleHandler('modal')
@@ -159,6 +161,7 @@ const Modal = ({
         <Dialog.Overlay className={__styles.scroll_overlay}>
           <Dialog.Content
             className={[__styles.base, __styles.size[size]].join(' ')}
+            onInteractOutside={props.onInteractOutside}
           >
             {header && <div className={__styles.header}>{header}</div>}
             {/* <div
