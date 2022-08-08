@@ -10,6 +10,7 @@ import { Transition } from '@headlessui/react'
 import styleHandler from '../../lib/theme/styleHandler'
 
 // import { Transition } from '@tailwindui/react'
+// Merge Radix Props to surface in the modal component
 export type ModalProps = RadixProps & Props
 
 interface RadixProps
