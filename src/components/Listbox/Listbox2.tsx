@@ -275,6 +275,7 @@ interface OptionProps {
   label: string
   disabled?: boolean
   children?: React.ReactNode
+  className?: string
   addOnBefore?: ({ active, selected }: any) => React.ReactNode
 }
 
@@ -289,6 +290,7 @@ function SelectOption({
   label,
   disabled = false,
   children,
+  className = '',
   addOnBefore,
 }: OptionProps) {
   const __styles = styleHandler('listbox')
@@ -301,11 +303,11 @@ function SelectOption({
         return (
           <DropdownMenuPrimitive.Item
             key={id}
-            className={classNames(
+            className={`${classNames(
               __styles.option,
               active ? __styles.option_active : ' ',
               disabled ? __styles.option_disabled : ' '
-            )}
+            )} ${className}`}
             onSelect={() => (!disabled ? onChange(value) : {})}
           >
             <div className={__styles.option_inner}>
