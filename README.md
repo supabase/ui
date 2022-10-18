@@ -6,10 +6,10 @@ Supabase UI is a React UI library.
 
 ## Supabase UI is being deprecated. 
 
-We are moving the components to the main mono repo at [github.com/supabase/supabase](github.com/supabase/supabase).
+We are moving the components to the main mono repo at [github.com/supabase/supabase](https://github.com/supabase/supabase).
 
 The auth component has been moved to it's own repo and package.
-[github.com/supabase-community/auth-ui](github.com/supabase-community/auth-ui).
+[github.com/supabase-community/auth-ui](https://github.com/supabase-community/auth-ui).
 You can also read the [docs for auth ui here](https://supabase.com/docs/guides/auth/auth-helpers/auth-ui).
 
 ---
