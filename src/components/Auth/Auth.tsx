@@ -216,7 +216,10 @@ function SocialAuth({
 
   const handleProviderSignIn = async (provider: Provider) => {
     setLoading(true)
-    const { error } = await supabaseClient.auth.signIn(
+    const { error } = supabaseClient.auth.signIn ? await supabaseClient.auth.signIn(
+      { provider },
+      { redirectTo }
+    ) : await (supabaseClient.auth as any).signInWithPassword(
       { provider },
       { redirectTo }
     )
@@ -315,14 +318,23 @@ function EmailAuth({
     setLoading(true)
     switch (authView) {
       case 'sign_in':
-        const { error: signInError } = await supabaseClient.auth.signIn(
+        const { error: signInError } = supabaseClient.auth.signIn ? await supabaseClient.auth.signIn(
+          {
+            email,
+            password,
+          },
+          { redirectTo }
+        ) : await (supabaseClient.auth as any).signInWithPassword(
           {
             email,
             password,
           },
           { redirectTo }
         )
-        if (signInError) setError(signInError.message)
+        if (signInError) {
+          setError(signInError.message)
+          setLoading(false);
+        }
         break
       case 'sign_up':
         const { user: signUpUser, session: signUpSession, error: signUpError } =
@@ -470,7 +482,10 @@ function MagicLink({
     setError('')
     setMessage('')
     setLoading(true)
-    const { error } = await supabaseClient.auth.signIn(
+    const { error } = supabaseClient.auth.signIn ? await supabaseClient.auth.signIn(
+      { email },
+      { redirectTo }
+    ) : await (supabaseClient.auth as any).signInWithOtp(
       { email },
       { redirectTo }
     )
